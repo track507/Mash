@@ -366,7 +366,7 @@ AddSubClass("spellblade","shaper", {
             },
             calcChanges : {
                 spellList : [
-                    function(spList, spName, spType) {
+                    function(spList, spName, spType) {  //help from joost
                         // Only do this for the above defined CurrentSpells object
                         if (spName === 'spellblade-borrowed power') {
                             // First get all the cantrips known by other spellcasting sources
