@@ -440,12 +440,12 @@ AddSubClass("spellblade","shaper", {
                 SetStringifieds('spells'); CurrentUpdates.types.push('spells');
             },
             extraname : "Mutation Spell List",
-            extrachoices : ["Bard", "Cleric", "Druid", "Sorcerer", "Warlock", "Wizard"],
+            extrachoices : ["Artificer", "Bard", "Cleric", "Druid", "Paladin", "Sorcerer", "Warlock", "Wizard"],
             extratimes : 1,
-            "bard" : {
-                name : "Bard",
+            "artficer" : {
+                name : "Artificer",
                 description : desc([
-                    "I gain access to the Bard spell list and have a number of spells equal to half of my current spells known."
+                    "I gain access to the Artificer spell list and have a number of spells equal to half of my current spells known.",
                 ]),
                 eval : function(lvl,chc) {ClassSubList["spellblade-shaper"].features["subclassfeature3.1"].commoneval(chc[1], classes.known.spellblade.level)},      
                 removeeval : function(lvl, chc) {ClassSubList["spellblade-shaper"].features["subclassfeature3.1"].commonremoveeval(chc[0])}
@@ -453,7 +453,7 @@ AddSubClass("spellblade","shaper", {
             "bard" : {
                 name : "Bard",
                 description : desc([
-                    "I gain access to the Bard spell list and have a number of spells equal to half of my current spells known.",
+                    "I gain access to the Bard spell list and have a number of spells equal to half of my current spells known."
                 ]),
                 eval : function(lvl,chc) {ClassSubList["spellblade-shaper"].features["subclassfeature3.1"].commoneval(chc[1], classes.known.spellblade.level)},      
                 removeeval : function(lvl, chc) {ClassSubList["spellblade-shaper"].features["subclassfeature3.1"].commonremoveeval(chc[0])}
@@ -470,6 +470,14 @@ AddSubClass("spellblade","shaper", {
                 name : "Druid",
                 description : desc([
                     "I gain access to the Druid spell list and have a number of spells equal to half of my current spells known.",
+                ]),
+                eval : function(lvl,chc) {ClassSubList["spellblade-shaper"].features["subclassfeature3.1"].commoneval(chc[1], classes.known.spellblade.level)},      
+                removeeval : function(lvl, chc) {ClassSubList["spellblade-shaper"].features["subclassfeature3.1"].commonremoveeval(chc[0])}
+            },
+            "paladin" : {
+                name : "Paladin",
+                description : desc([
+                    "I gain access to the Paladin spell list and have a number of spells equal to half of my current spells known.",
                 ]),
                 eval : function(lvl,chc) {ClassSubList["spellblade-shaper"].features["subclassfeature3.1"].commoneval(chc[1], classes.known.spellblade.level)},      
                 removeeval : function(lvl, chc) {ClassSubList["spellblade-shaper"].features["subclassfeature3.1"].commonremoveeval(chc[0])}
