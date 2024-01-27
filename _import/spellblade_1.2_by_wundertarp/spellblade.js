@@ -124,8 +124,8 @@ ClassList["spellblade"] = {
             ]),
             extraLimitedFeatures : [{
                 name : "Arcane Points",
-                source : [["WSB",3]],
-                usages : classes.known.spellblade.level, 
+                usages : "My Level", 
+                usagescalc : "event.value = classes.known.wizard.level;",
                 recovery : "short rest"
             }]
         },
@@ -501,7 +501,7 @@ AddSubClass("spellblade","shaper", {
             "wizard" : {
                 name : "Wizard",
                 description : desc([
-                    "I gain access to the I Wizard spell list and have a number of spells equal to half of my current spells known.",
+                    "I gain access to the Wizard spell list and have a number of spells equal to half of my current spells known.",
                 ]),
                 eval : function(lvl,chc) {ClassSubList["spellblade-shaper"].features["subclassfeature3.1"].commoneval(chc[1], classes.known.spellblade.level)},      
                 removeeval : function(lvl, chc) {ClassSubList["spellblade-shaper"].features["subclassfeature3.1"].commonremoveeval(chc[0])}
