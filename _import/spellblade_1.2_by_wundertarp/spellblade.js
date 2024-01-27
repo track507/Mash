@@ -125,7 +125,7 @@ ClassList["spellblade"] = {
             extraLimitedFeatures : [{
                 name : "Arcane Points",
                 usages : "My Level", 
-                usagescalc : "event.value = classes.known.wizard.level;",
+                usagescalc : "event.value = classes.known.spellblade.level;",
                 recovery : "short rest"
             }]
         },
