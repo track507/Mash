@@ -442,7 +442,7 @@ AddSubClass("spellblade","shaper", {
             extraname : "Mutation Spell List",
             extrachoices : ["Artificer", "Bard", "Cleric", "Druid", "Paladin", "Sorcerer", "Warlock", "Wizard"],
             extratimes : 1,
-            "artficer" : {
+            "artificer" : {
                 name : "Artificer",
                 description : desc([
                     "I gain access to the Artificer spell list and have a number of spells equal to half of my current spells known.",
