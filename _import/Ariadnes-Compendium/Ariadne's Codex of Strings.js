@@ -57,16 +57,16 @@ SourceList["A:BS"] = {
 };
 
 //The citadel of radiance
-SourceList["A:CoR"] = {
+SourceList["A:TCoR"] = {
     name : "Ariadne's: The Citadel of Radiance",
-    abbreviation : "A:CoR",
+    abbreviation : "A:TCoR",
     abbreviationSpellsheet : "A",
     group : "Homebrew",
     date : "2024/02/14"
 };
 SpellsList["pulverizing radiance"] = {
     name : "Pulverizing Radiance",
-    source : [["A:CoR", 2]],
+    source : [["A:TCoR", 2]],
     level : 5,
     school : "Evoc",
     time : "1 a",
@@ -75,6 +75,171 @@ SpellsList["pulverizing radiance"] = {
     duration : "Instantaneoous",
     description : "Make ranged spell akt; 6d6+20 Radiant dmg and target gains 3 stacks of irradiated"
 };
+
+//The nova cluster addition
+SourceList["A:TNC"] = {
+    name : "Ariadne's: The Nova Cluster",
+    abbreviation : "A:TNC",
+    abbreviationSpellsheet : "A",
+    group : "Homebrew",
+    date : "2024/02/14"
+};
+SpellsList["astrologist's reading"] = {
+    name : "Astrologist's Reading",
+    source : [["A:TNC", 10]],
+    level : 1,
+    school : "Div",
+    time : "30 sec", //this might cause issues as normally there aren't spells with a casting time of 'seconds'
+    timeFull : "This spell has a casting time of 30 seconds",
+    range: "10 ft",
+    components : "S",
+    duration : "Instantaneous",
+    ritual : true,
+    description : "Spellcasting abilitiy check vs. 8+target crea CR/Level; Know align. and motivations",
+    descriptionFull : "Make a spellcasting ability check with the DC being 8 + the targets CR or Level. On a success, you know the target's current alignment, and may also glimpse into its current motivation. Unless they see you and are familiar with the spell, the target is not aware of your reading."
+};
+SpellsList["starfire"] = {
+    name : "Starfire",
+    source : [["A:TNC", 10]],
+    level : 3,
+    school : "Evoc",
+    time : "1 a",
+    range : "60 ft",
+    components : "V,S,M",
+    duration : "Conc, 1 min",
+    save : "Cha",
+    compMaterial : "a purple glass shard",
+    description : "One crea expend an arcane resource worth at least a 1st level SS",
+    descriptionFull : "When a creature first fails this save and at the end of each of their subsequent turns, the target must choose what the target consumes: a spell slot of the targets choice, a charge from a magic item, or another arcane resource worth at least a 1st level spell slot; like 2 sorcery points. If target has no arcane resources, this spell has no effect."
+};
+SpellsList["cosmic singularity"] = {
+    name : "Cosmic Singularity",
+    source : [["A:TNC", 10]],
+    level : 7,
+    school : "Conj",
+    time : "1 a",
+    range : "S:30-ft line",
+    components : "V,M",
+    compMaterial : "a small doll, a crush button worth at least 1cp",
+    duration : "1 rnd", //6 seconds is one round, avoid conflicts within the sheet
+    save : "Str",
+    description : "All crea within 10ft 6d6 Force dmg, vanish; +6d6 Force dmg start of your next turn, transported into astral sea",
+    descriptionFull : "You conjure a cannonball-sized gravitational orb. This orb travels 30 ft in a straight line, and any creatures within 10ft of the orb must make Strength save or take 6d6 Force damage and be absorbed into the orb. Creatures absorbed by the orb are transported to a demiplane where any effects from outside the demiplane cannot effect the creatures inside. A creature can communicate through the orb using magical means. A creature can teleport away or use its action to make an Strength (Athletics) check to escape. The creature appears 5 ft outside the orb on a success. Any creatures left inside the orb at the start of your next turn, they take an additional 6d6 Force damage and instantly teleported to a random location in the Astral Sea"
+};
+MagicItemsList["astral suit"] = {
+    name : "Astral Suit",
+    source : [["A:TNC", 7]],
+    type : "armor (half plate)",
+    rarity : "uncommon",
+    attunement : true,
+    description : "While attuned to this armor, you have advantage to resist cloud-based effects, such as those created by the Slow, Stinking Cloud, or Cloudkill spells. Additionally, every attack that deals fire, lightning, or acid damage is reduced by 3.",
+    savetxt : { adv_vs : ["cloud-based effects"], text : ["-3 damage per attack dealing lightning, fire, or acid dmg"] },
+    armorAdd : "Astral Suit",
+    armorOptions : {
+        regExpSearch : /^(?=.*astral)(?=.*suit).*$/i,
+		name : "Astral Suit",
+        source : [["A:TNC", 7]],
+        type : "medium",
+        ac : 15,
+        stealthdis : true,
+		weight : 40
+    }
+};
+MagicItemsList["baldric of gravity"] = {
+    name : "Baldric of Gravity",
+    source : [["A:TNC", 15]],
+    type : "wonderous item",
+    rarity : "rare",
+    attunement : true,
+    description : "While you wear this belt, gravity pulls you towards the surface you're standing on. Whenever you switch your gravity to a new surface, you must succeed on a DC 12 Dexterity (Acrobatics) check. Otherwise, you fall prone at the point where you attempted to switch gravity.",
+};
+MagicItemsList["contrabandist's bracer"] = {
+    name : "Contrabandist's Bracer",
+    source : [["A:TNC", 16]],
+    type : "wonderous item",
+    rarity : "rare",
+    attunement : true,
+    description : "This bracer buzzes softly when officers of the law enter a range of 120 ft of it. You can use an action to cast nondetection, requiring no components. Once you do so, you can't do it again until you finish a long rest.",
+    spellcastingBonus : [{
+        name : "Contrabandist's Bracer",
+        spells : ["nondetection"],
+        selection : ["nondetection"],
+        firstCol : "oncelr"
+    }],
+    spellChanges : {
+        "nondetection" : {
+            compMaterial : "",
+            changes : "The Contrabandist's Bracer allows me to cast nondetecting once per long rest without using material components."
+        }
+    }
+};
+MagicItemsList["impulse capsule"] = {
+    name : "Impulse Capsule",
+    source : [["A:TNC", 16]],
+    type : "consumable",
+    rarity : "very rare",
+    description : "For the next hour after consuming this capsule, you auto-succed all Wisdom (History) checks within the last year, advantage on Intelligence-based skill checks and saving throws, and a 1d12 bonus to Dexterity saving throws and initiative rolls. After an hour, you take a level of exhaustion. You ignore exhaustion if you consume more capsules."
+};
+MagicItemsList["lex-i prototype"] = {
+    name : "Lex-I Prototype",
+    source : [["A:TNC", 16]],
+    type : "artifact",
+    rarity : "wondrous item",
+    attunement : true,
+    prerequisite : "Must amputate your right arm and must use 'Eminent Wisp' to attune, select 'yes' at the bottom if you have",
+    prereqeveal : function(v) {
+        return false;
+    },
+    fixedDC : 18,
+    description : "You gain the following: immune to diseases, poison dmg, and poisioned condition, ignore the first Impulse Capsule effects you take between long rests, can make a melee weapon attack using Strength dealing 2d12+Str mod+3 force dmg, can make a beam attack 30ft long and 5ft wide DC 18 Dex save taking 16d8 force dmg or half on a save. After firing this beam, the arm goes dormant for 1d4 days. Absorbing an Eminent Wisp awakens the item early.",
+    savetxt : {immune : ["poison dmg", "disease", "poisioned condition"]},
+    weaponsAdd : ["Lex-I Prototype Strike", "Lex-I Prototype Beam"],
+    weaponOptions : [{
+        regExpSearch : /lex-i prototype strike/i,
+        name : "Lex-I Prototype Strike",
+        source : [["A:TNC", 16]],
+        ability : 1,
+        type : "Magic Item",
+        abilitytodamage : true,
+        damage : [2,12,"force"],
+        range : "Melee",
+        description : "Unarmed strike; Special",
+        special : true,
+        isMagicWeapon : true,
+        isAlwaysProf : true,
+        modifiers : [0, 3] 
+    }, {
+        regExpSearch : /lex-i prototype beam/i,
+        name : "Lex-I Prototype Beam",
+        baseWeapon : "unarmed strike", //technically melee weapon attack
+        source : [["A:TNC", 16]],
+        ability : 2,
+        type : "Magic Item",
+        abilitytodamage : false,
+        damage : [16,8,"force"],
+        range : "Ranged, 30ft",
+        description : "Ranged 30ft long, 5ft wide beam; Special",
+        special : true,
+        isMagicWeapon : false, //prevents attack calculations 
+        isNotWeapon : true,
+        dc : true
+    }]
+};
+var eminent_wisp_toNotes = [
+    "A creature may use its bonus action to consume an Eminent Wisp. A creature non-native to the Nova Cluster must succeed on a DC 20 Consitution saving throw or take 10d6 force damage. Once a creature fails this saving throw, it cannot attempt to commune with an Eminent Wisp for the next 24 hours. On success, they suffer only 5d6 force damage and become aligned with the Eminent Wisp for 24 hours.",
+    "An aligned creature gains a single level in their main class and an additional attunement slot for the duration. In addition, they can use the Wisp's power to recover a single class feature of 5th level or lower or a single spell slot of up to 3rd level. The Wisp isn't consumed this way, but they cannot use this ability again until they finish a long rest.",
+    "After 24 hours have passed, a creature must repeat the saving throw to align itself with the Wisp. On a faulure, they cannot align with an Eminent Wisp for the next week.",
+    "If a creature successfully aligns itself with a Wisp for three days in a row, they are permanently bound to that wisp and gain its benefits permanently. They can't align with another wisp until they renounce the initial one. Upon death, the wisp will hover above the corpse, waiting to be claimed by another."
+];
+MagicItemsList["eminent wisp"] = {
+    name : "Eminent Wisp",
+    source : [["A:TNC", 19]],
+    type : "treasure",
+    rarity : "legendary",
+    attunement : false,
+    description : ""
+}
+
 
 
 //spells without actual sources
