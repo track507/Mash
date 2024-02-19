@@ -148,7 +148,7 @@ MagicItemsList["astral suit"] = {
 MagicItemsList["baldric of gravity"] = {
     name : "Baldric of Gravity",
     source : [["A:TNC", 15]],
-    type : "wonderous item",
+    type : "wondrous item",
     rarity : "rare",
     attunement : true,
     description : "While you wear this belt, gravity pulls you towards the surface you're standing on. Whenever you switch your gravity to a new surface, you must succeed on a DC 12 Dexterity (Acrobatics) check. Otherwise, you fall prone at the point where you attempted to switch gravity.",
@@ -156,7 +156,7 @@ MagicItemsList["baldric of gravity"] = {
 MagicItemsList["contrabandist's bracer"] = {
     name : "Contrabandist's Bracer",
     source : [["A:TNC", 16]],
-    type : "wonderous item",
+    type : "wondrous item",
     rarity : "rare",
     attunement : true,
     description : "This bracer buzzes softly when officers of the law enter a range of 120 ft of it. You can use an action to cast nondetection, requiring no components. Once you do so, you can't do it again until you finish a long rest.",
@@ -183,8 +183,8 @@ MagicItemsList["impulse capsule"] = {
 MagicItemsList["lex-i prototype"] = {
     name : "Lex-I Prototype",
     source : [["A:TNC", 16]],
-    type : "artifact",
-    rarity : "wondrous item",
+    type : "wondrous item",
+    rarity : "artifact",
     attunement : true,
     prerequisite : "Must amputate your right arm and must use 'Eminent Wisp' to attune, select 'yes' at the bottom if you have",
     prereqeveal : function(v) {
@@ -212,6 +212,7 @@ MagicItemsList["lex-i prototype"] = {
         regExpSearch : /lex-i prototype beam/i,
         name : "Lex-I Prototype Beam",
         baseWeapon : "unarmed strike", //technically melee weapon attack
+        list : "Melee",
         source : [["A:TNC", 16]],
         ability : 2,
         type : "Magic Item",
@@ -226,19 +227,247 @@ MagicItemsList["lex-i prototype"] = {
     }]
 };
 var eminent_wisp_toNotes = [
-    "A creature may use its bonus action to consume an Eminent Wisp. A creature non-native to the Nova Cluster must succeed on a DC 20 Consitution saving throw or take 10d6 force damage. Once a creature fails this saving throw, it cannot attempt to commune with an Eminent Wisp for the next 24 hours. On success, they suffer only 5d6 force damage and become aligned with the Eminent Wisp for 24 hours.",
-    "An aligned creature gains a single level in their main class and an additional attunement slot for the duration. In addition, they can use the Wisp's power to recover a single class feature of 5th level or lower or a single spell slot of up to 3rd level. The Wisp isn't consumed this way, but they cannot use this ability again until they finish a long rest.",
-    "After 24 hours have passed, a creature must repeat the saving throw to align itself with the Wisp. On a faulure, they cannot align with an Eminent Wisp for the next week.",
-    "If a creature successfully aligns itself with a Wisp for three days in a row, they are permanently bound to that wisp and gain its benefits permanently. They can't align with another wisp until they renounce the initial one. Upon death, the wisp will hover above the corpse, waiting to be claimed by another."
-];
+    "You may choose to use your bonus action to consume an Eminent Wisp. If you are not native to the Nova Cluster, you must succeed on a DC 20 Constitution saving throw or suffer 10d6 force damage. Once you fail this saving throw, you cannot attempt to commune with an Eminent Wisp for the next 24 hours. On a success, you suffer only 5d6 force damage and become aligned with the Eminent Wisp for 24 hours.",
+    "While aligned, you gain a single level in your main class and an additional attunement slot for the duration. Additionally, you can use the Wisp's power to recover a single class feature of 5th level or lower, or a single spell slot of up to 3rd level. The Wisp isn't consumed this way, but you cannot use this ability again until you finish a long rest.",
+    "After 24 hours have passed, you must repeat the saving throw to align yourself with the Wisp again. On a failure, you cannot align with an Eminent Wisp for the next week.",
+    "If you successfully align yourself with a Wisp for three days in a row, you become permanently bound to that wisp and gain its benefits permanently. You cannot align with another wisp until you renounce the initial one. Upon death, the wisp will hover above your corpse, waiting to be claimed by another."
+]
 MagicItemsList["eminent wisp"] = {
     name : "Eminent Wisp",
     source : [["A:TNC", 19]],
     type : "treasure",
     rarity : "legendary",
     attunement : false,
-    description : ""
+    description : "Gain a single level in your main class and an additional attunment slot. You cannot benefit from another wisp. If you want to attune to another wisp, you must renounce your previous wisp. Every 24 hours, you must succeed a DC 20 Consitution saving throw or you lose these benefits for a week. See Notes",
+    toNotesPage : desc(eminent_wisp_toNotes.replace(/your/g, "my").replace(/you /ig, "I ").replace(/yourself /ig, "myself "))
+};
+MagicItemsList["solar needle"] = {
+    name : "Solar Needle",
+    source : [["A:TNC", 46]],
+    type : "wondrous item",
+    rarity : "very rare",
+    attunement : false,
+    description : "This needle emits dim light in a 10ft radius. I can use it to sow, making the cloth shine with residual gold dust for 24 hours granting advantage on persuasion checks. I can also stab the needle into my skin (as an action) dealing 1 piercing damage, and gain resistance to fire and radiant damage. I take 1 psychic damage per minute it stays in my skin.",
+    dmgres : [
+        ["Fire", "Fire (needle in skin)"],
+        ["Radiant", "Rad. (needle in skin"]
+    ]
+};
+MagicItemsList["assistant drone v-38"] = {
+    name : "Assistant Drone V-38",
+    source : [["A:TNC", 47]],
+    type : "wondrous item",
+    rarity : "legendary",
+    attunement : true,
+    description : "This drone can only be commanded by me. If reduced to 0 HP and if I'm proficient with tinker's tools, I can repair it over the course of a short rest. I may also transform the drone into a helmet giving me 120 ft of darkvision, I can breathe underwater, and my AC increases by 2. The drone cannot use any of its features or any of its actions (includes bns. and reactions) while like this. However, it can still talk.",
+    vision : [
+        ["Darkvision (drone helmet on)", 120]
+    ],
+    savetxt : {text : "I can breath underwater while wearing the helmet as a drone"},
+    creaturesAdd : [["Assistant Drone V-38"]],
+    creatureOptions : [{
+        name : "Assistant Drone V-38",
+        source : [["A:TNC", 47]],
+        size : 4,
+        type : "Construct",
+        alignment : "Unaligned",
+        ac : 15,
+        hp : 34,
+        hd : [8,6],
+        speed : "fly 50 ft (hover)",
+        proficiencyBonus : 2,
+        challengeRating : "1",
+        scores : [12, 14, 13, 8, 12, 14],
+        senses : "Darkvision 120 ft",
+        attacksAction : 1,
+        passivePerception : 13,
+        damage_immunities : "poison, psychic",
+        condition_immunities : "blinded, charmed, deafened, frightened, paralyzed, petrified, poisoned",
+        languages : "Languages of its creator",
+        attacks : [{
+            name : "Bump",
+            ability : 1,
+            damage : [1,6,"bludgeoning"],
+            range : "Melee (5 ft)",
+            description : "Bumps into a target as a melee weapon attack.",
+        }, {
+            name : "Beam",
+            ability : 6,
+            damage : [1,6,"radiant"],
+            range : "Ranged spell attack (60 ft)",
+            description : "Fires a beam at a target as a ranged spell attack."
+        }],
+        traits : [{
+            name : "Advice",
+            description : "If asked, the drone gives advice about any given situation. Sometimes without being prompted too. It likes to talk, but it's not very smart."
+        },{
+            name : "Sturdy Flyer",
+            description : "The drone has handles underneath. A medium or smaller creature can grab onto the handles and be carried at half the drone's fly speed.",
+        },{
+            name : "Skillful Helper (3/day)",
+            description : "This drone can add its proficiency bonus (+2) to an ability check, attack roll, or saving throw made by the creature it is attuned to, if said creature is within 30ft."
+        }],
+        actions : [{
+            name : "Intercept",
+            description : "As a reaction, the drone can block an attack that targets a creature within 5 ft of it, making itself the target of the attack instead."
+        }]
+    }]
 }
+FeatsList["magic specialist"] = {
+    name : "Magic Specialist",
+    souce : [["A:TNC", 44]],
+    prereqeval : function(v) { return CurrentFeats.known.indexOf("magic initiate") !== -1; },
+    description : "Every spell you cast from the chosen school gives you a token. At five tokens, the next spell of 5th level or lower from that school of magic does not expend a spell slot. Cantrips do not award tokens"
+    + " A single 1st level spell from the school becomes a cantrip. At 11th level, a single 2nd level spell from the chosen school becomes a cantrip.",
+    choices : ["Bard", "Cleric", "Druid", "Sorcerer", "Warlock", "Wizard"],
+    selfChoosing : function () {
+		var MagicInit = CurrentFeats.known.indexOf("magic initiate");
+		if (MagicInit !== -1 && CurrentFeats.choices[MagicInit]) {
+			return CurrentFeats.choices[MagicInit];
+		}
+	},
+    "bard" : {
+		description : "Everytime I cast a bard spell, I gain a token. At 5 tokens, the next bard spell of 5th level or lower does not expend a spell slot. Cantrips doesn't award tokens. Additionally, a single 1st level bard spell becomes a cantrip for me. At 11th level, this becomes a single 2nd level bard spell.",
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "bard",
+            level : [1,1],
+            times : levels.map( function(n) { return n < 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }],
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "bard",
+            level : [2,2],
+            times : levels.map( function(n) { return n >= 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }]
+    },
+	"cleric" : {
+		description : "Every time you cast a cleric spell, you gain a token. At 5 tokens, the next cleric spell of 5th level or lower does not expend a spell slot. Cantrips don't award tokens. Additionally, a single 1st-level cleric spell becomes a cantrip for you. At 11th level, this becomes a single 2nd-level cleric spell.",
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "cleric",
+            level : [1,1],
+            times : levels.map( function(n) { return n < 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }],
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "cleric",
+            level : [2,2],
+            times : levels.map( function(n) { return n >= 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }]
+    },
+	"druid" : {
+		description : "Every time you cast a druid spell, you gain a token. At 5 tokens, the next druid spell of 5th level or lower does not expend a spell slot. Cantrips don't award tokens. Additionally, a single 1st-level druid spell becomes a cantrip for you. At 11th level, this becomes a single 2nd-level druid spell.",
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "druid",
+            level : [1,1],
+            times : levels.map( function(n) { return n < 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }],
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "druid",
+            level : [2,2],
+            times : levels.map( function(n) { return n >= 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }]
+    },
+	"sorcerer" : {
+		description : "Every time you cast a sorcerer spell, you gain a token. At 5 tokens, the next sorcerer spell of 5th level or lower does not expend a spell slot. Cantrips don't award tokens. Additionally, a single 1st-level sorcerer spell becomes a cantrip for you. At 11th level, this becomes a single 2nd-level sorcerer spell.",
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "sorcerer",
+            level : [1,1],
+            times : levels.map( function(n) { return n < 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }],
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "sorcerer",
+            level : [2,2],
+            times : levels.map( function(n) { return n >= 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }]
+    },
+	"warlock" : {
+		description : "Every time you cast a warlock spell, you gain a token. At 5 tokens, the next warlock spell of 5th level or lower does not expend a spell slot. Cantrips don't award tokens. Additionally, a single 1st-level warlock spell becomes a cantrip for you. At 11th level, this becomes a single 2nd-level warlock spell.",
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "warlock",
+            level : [1,1],
+            times : levels.map( function(n) { return n < 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }],
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "warlock",
+            level : [2,2],
+            times : levels.map( function(n) { return n >= 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }]
+    },
+	"wizard" : {
+		description : "Every time you cast a wizard spell, you gain a token. At 5 tokens, the next wizard spell of 5th level or lower does not expend a spell slot. Cantrips don't award tokens. Additionally, a single 1st-level wizard spell becomes a cantrip for you. At 11th level, this becomes a single 2nd-level wizard spell.",
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "wizard",
+            level : [1,1],
+            times : levels.map( function(n) { return n < 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }],
+        spellcastingBonus : [{
+            name : "Magic Specialist",
+            "class" : "wizard",
+            level : [2,2],
+            times : levels.map( function(n) { return n >= 11 ? 1 : 0; }),
+            firstCol : "atwill"
+        }]
+    }
+};
+FeatsList["reactive"] = {
+    name : "Reactive",
+    souce : [["A:TNC", 44]],
+    description : "I gain a +2 bonus to Initiative rolls. I may use a bonus action on my turn to gain an additional reaction for this round.",
+    addMod : [ { type : "skill", field : "Init", mod : 2, text : "I gain a +2 to my Initiative rolls." } ],
+    action : ["bonus action", "Reactive (+1 Reaction)"]
+};
+FeatsList["against all odds"] = {
+    name : "Against All Odds",
+    souce : [["A:TNC", 44]],
+    description : "My Charisma score increase by 1, up to a max of 20. For every ally within 30ft of me that has fewer than half their total hit points (including me), I gain +1 to all your attack rolls, saving throws, and ability checks, up to a maximum of +3.",
+    scores : [0, 0, 0, 0, 0, 1]
+};
+FeatsList["perfectionist"] = {
+    name : "Perfectionist",
+    souce : [["A:TNC", 44]],
+    description : "My Intelligence score increases by 1, up to a max of 20. I gain proficiency in a skill of my choice or expertise if I'm already proficient. Whenever I fail a DC or get an undesired result, I may roll again with advantage. I cannot use this ability again until I finish a short rest.",
+    skillstxt : "Proficiency with a skill of my choice, or expertise if I'm already proficient.",
+    usages : 1,
+    recovery : "short rest"
+};
+FeatsList["nerves of steel"] = {
+    name : "Nerves of Steel",
+    souce : [["A:TNC", 44]],
+    description : "My Intelligence, Wisdom, or Charisma increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I cocentrate on a spell, I gain a +2 to my AC.",
+    choices : ["Intelligence", "Wisdom", "Charisma"],
+    "intelligence" : {
+		description : "I gain a +1 to Intelligence",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I gain a +1 to Wisdom",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I gain a +1 to Charisma",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
 
 
 
