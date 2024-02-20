@@ -84,6 +84,8 @@ SourceList["A:TNC"] = {
     group : "Homebrew",
     date : "2024/02/14"
 };
+spellSchoolList["Mul"] = "multiple schools"; //for the nebula spell
+
 SpellsList["astrologist's reading"] = {
     name : "Astrologist's Reading",
     source : [["A:TNC", 10]],
@@ -126,6 +128,123 @@ SpellsList["cosmic singularity"] = {
     description : "All crea within 10ft 6d6 Force dmg, vanish; +6d6 Force dmg start of your next turn, transported into astral sea",
     descriptionFull : "You conjure a cannonball-sized gravitational orb. This orb travels 30 ft in a straight line, and any creatures within 10ft of the orb must make Strength save or take 6d6 Force damage and be absorbed into the orb. Creatures absorbed by the orb are transported to a demiplane where any effects from outside the demiplane cannot effect the creatures inside. A creature can communicate through the orb using magical means. A creature can teleport away or use its action to make an Strength (Athletics) check to escape. The creature appears 5 ft outside the orb on a success. Any creatures left inside the orb at the start of your next turn, they take an additional 6d6 Force damage and instantly teleported to a random location in the Astral Sea"
 };
+SpellsList["astral dust"] = {
+    name : "Astral Dust",
+    source : [["A:TNC", 50]],
+    level : 0,
+    school : "Abjur",
+    time : "1 bns",
+    range : "Self",
+    components : "S",
+    duration : "1 rnd",
+    description : "+1 to my AC (+2 at level 5), lasts until the start of my next turn; Crea ignore if doesn't rely on sight"
+};
+SpellsList["gravity blast"] = {
+    name : "Gravity Blast",
+    source : [["A:TNC", 50]],
+    level : 2,
+    school : "Evoc",
+    time : "1 a",
+    components : "S, M",
+    compMaterial : "a meteorite shard",
+    duration : "Instantaneous",
+    range : "60 ft",
+    save : "Str",
+    description : "Crea within 20 ft; 2d10+1d10/SL force dmg, pushed 10 ft away; save halves and aren't pushed.",
+    descriptionFull : "Choose a point within range. All creatures within 20 ft must make a Strength saving throw taking 2d10 force damage and pushed 10 ft away from the point; or half damage on a save and aren't pushed." + AtHigherLevels + "When you cast this spell with a spell slot of 3rd level or higher, the damage increases by 1d10 for each slot level above 2nd."
+};
+SpellsList["gravity's favor"] = {
+    name : "Gravity's Favor",
+    source : [["A:TNC", 50]],
+    level : 4,
+    school : "Trans",
+    time : "1 a",
+    components : "S, M",
+    compMaterial : "a small platinum sphere",
+    duration : "Conc, 1 min",
+    range : "Self",
+    description : "+force dmg to melee atk equal to spell ability mod; Adv. grapple/shove others; Disadv. grapple/shove me; Jump doubled; +10 ft walking spd",
+    descriptionFull : "My melee attacks deal additional force damage equal to my spellcasting ability modifier. I have advantage on grapple and shove checks against other creatures, and other creatures have disadvantage on grapple and shove checks against me. My jump distance is doubled and my walking speed increases by 10ft."
+};
+SpellsList["nebula"] = {
+    name : "Nebula",
+    source : [["A:TNC", 50]],
+    level : 9,
+    school : "Mul",
+    time : "1 a",
+    components : "V,S",
+    duration : "Conc, 1 min",
+    range : "120 ft",
+    save : "Varies",
+    description : "30ft rad sphere; Choose one of the following (see full desc.); Action to move it 10ft",
+    descriptionFull : "Gold: Orion's Chains. Creatures within the area must make a Wisdom saving throw or be paralyzed. At the end of each of their turns, they can attempt the save again. Red: Burning Core. Creatures within the area must make a Strength saving throw or be pulled to the center of the sphere, taking 6d10 radiant damage and 6d10 fire damage, before being spit out by a flare, landing in a place of the caster's choice 20ft away from the center of the Nebula's area."
+    + " Blue: Particle Accelerator. Creatures within the area must make a Dexterity saving throw, taking 10d12 force on a failed save, or half on a success. Creatures killed this way are molecularly destroyed. Purple: Unendurable Eminence. Creatures within the area must make a DC 10 Charisma saving throw or take 150 force damage that cannot be prevented in any way. Creatures killed this way disappears without leaving behind a body. The DC increases by 2 each time a creature has to roll it between long rests. I can use an action on my turn to move the center of the sphere up to 10ft."
+};
+MagicItemsList["dame eleanor’s flare"] = {
+    name : "Dame Eleanor’s Flare",
+    source : [["A:TNC", 56]],
+    type : "weapon (pistol)",
+    rarity : "rare",
+    advantages : [["Initiative", true]],
+    description : "This pistol has a +2 to damage and attack rolls. Additionally, I can choose to quickdraw, giving myself advantage on Iniative rolls. Doing so, I must make an attack with this weapon as my first action in combat.",
+    attunement : true,
+    weaponsAdd : ["Dame Eleanor’s Flare"],
+    weaponOptions : [{
+        name : "Dame Eleanor’s Flare",
+        source : [["A:TNC", 56]],
+        regExpSearch : /dame eleanor’s flare/i,
+        type : "Martial",
+        ability : 2,
+        list : "firearm",
+        abilitytodamage : true,
+        damage : [1, 10, "piercing"],
+        range : "30/90 ft",
+        description : "Ammunition, loading; Quickdraw (first action must be an attack with this weapon)",
+        tooltip : "Quickdraw: Advantage on Initiative roll, first action must be an attack with this weapon",
+        special : true,
+        modifiers : [2, 2],
+        isMagicWeapon : true,
+    }],
+};
+MagicItemsList["parchment of the wayfarer"] = {
+    name : "Parchment of the Wayferer",
+    source : [["A:TNC", 56]],
+    type : "wondrous item",
+    rarity : "very rare",
+    attunement : true,
+    description : "This parchment appears to be a normal piece of parchment. Saying 'Ahrym Eleian' will make the parchment instantly redraw itself to represent an area 50 miles around its current position. Once per long rest, you may choose a point on the map to create an arcane eye. Places shrouded by divination appear as blank space and cannot be targeted by the arcane eye.",
+    spellcastingBonus : [{
+        name : "Parchment's Arcane Eye",
+        spells : ["arcane eye"],
+        selection : ["arcane eye"],
+        firstCol : "oncelr"
+    }],
+    extraLimitedFeatures : [{
+        name : "Arcane Eye (Parchment)",
+        usages : 1,
+        recovery : "long rest"
+    }]
+};
+MagicItemsList["burstfire hoverback"] = {
+    naem : "Burstfire Hoverback",
+    source : [["A:TNC", 56]],
+    type : "wondrous item",
+    rarity : "lengedary",
+    attunement : true,
+    description : "This hoverback grants a flying speed of 60ft. Additionally, it has 10 charges which can be used for Boom Barrage (5 charges), Overclocked Thrusters (3 charges), or Evasive Maneuvers (2 charges). See notes page.",
+    toNotesPage : desc([
+        "This hoverback is imbued with powerful and explosive arcane energy. When worn, it binds seemlessly to your back, with two ethereal flames that spark with blue and purple energy giving a faint hum. However, it does not burn you. This grants me 60ft of fly speed and has 10 charges, which can be expended to create the following effects: ",
+        "Boom Barrage (5 charges): As an actions, you can unleash a barrage of five arcane missiles from the jetpack. Each missile targets a point with 120 ft. Creatures within 10 ft of where the missile hits must make a DC 20 Dexterity ssaving throw, taking 4d10 force damage on a fail, or half as much on a success.",
+        "Overlocked Thrusters (3 charges): As a bonus action, you can activate the jetpack's overdrive, doubling your flying speed to 120 ft for up to 10 minutes.",
+        "Evasive Maneuvers (2 charges): As a reaction to being targeted by a spell or ranged attack, you can use the jetpack's energy to make a quick evasive maneuver. You gain advantage on the saving throw or a +5 bonus to AC against the triggering attack."
+    ]),
+    action : [["action", "Boom Barrage (5 charges)"], ["bonus action", "Overclocked Thrusters (3 charges)"], ["reaction","Evasive Maneuvers (2 charges) "]],
+    extraLimitedFeatures : [{
+        name : "Burstfire Charges",
+        usages : 10,
+        recovery : "long rest" //doesn't explicitly state the recovery time 
+    }]
+};
 MagicItemsList["astral suit"] = {
     name : "Astral Suit",
     source : [["A:TNC", 7]],
@@ -135,15 +254,15 @@ MagicItemsList["astral suit"] = {
     description : "While attuned to this armor, you have advantage to resist cloud-based effects, such as those created by the Slow, Stinking Cloud, or Cloudkill spells. Additionally, every attack that deals fire, lightning, or acid damage is reduced by 3.",
     savetxt : { adv_vs : ["cloud-based effects"], text : ["-3 damage per attack dealing lightning, fire, or acid dmg"] },
     armorAdd : "Astral Suit",
-    armorOptions : {
-        regExpSearch : /^(?=.*astral)(?=.*suit).*$/i,
+    armorOptions : [{
+        regExpSearch : /astral suit/i,
 		name : "Astral Suit",
         source : [["A:TNC", 7]],
         type : "medium",
         ac : 15,
         stealthdis : true,
 		weight : 40
-    }
+    }]
 };
 MagicItemsList["baldric of gravity"] = {
     name : "Baldric of Gravity",
@@ -187,7 +306,7 @@ MagicItemsList["lex-i prototype"] = {
     rarity : "artifact",
     attunement : true,
     prerequisite : "Must amputate your right arm and must use 'Eminent Wisp' to attune, select 'yes' at the bottom if you have",
-    prereqeveal : function(v) {
+    prereqeveal : function(v) { //force to be false to notify user that they must amputate arm and be attuned to an eminent wisp.
         return false;
     },
     fixedDC : 18,
@@ -253,6 +372,107 @@ MagicItemsList["solar needle"] = {
         ["Radiant", "Rad. (needle in skin"]
     ]
 };
+RaceList["cetkar"] = {
+    regExpSearch : /^(?=.*cetkar).*$/i,
+    name : "Cetkar",
+    source : [["A:TNC", 60]],
+    plural : "Cetkari",
+    size : 3,
+    speed : {
+        walk : { spd : 30, enc : 20},
+        swim : { spd : "walk", enc : 0}
+    },
+    skills : ["Intimidation"],
+    age : " same age rate and lifespan as humans",
+    height : " stand between 6 to 7 feet tall",
+    weight : " weighs around 200 to 300 pounds",
+    trait : "Cetkar (+1 Strength and +1 Constitution)\n Amphibian Adaptation: I can breath air and water, and have a swimming speed equal to my walking speed.\n Cetkari Jaws: My jaws are natural weapons dealing 1d8 + my Strength modifier piercing damage. On a hit and if the creature is medium or smaller, I can grapple it. The DC for my grapple check is 8 + prof bonus + Strength mod.\n Threatening Presence: I gain proficiency with Intimidation. Additionally, I have advantage on the check against creatures that have seen me attack with my Cetkari Jaws.",
+    weaponsAdd : ["Cetkari Jaws"],
+    weaponOptions : [{
+        regExpSearch : /^(?=.*cetkari)(?=.*jaws).*$/i,
+        name : "Cetkari Jaws",
+        source : [["A:TNC", 60]],
+        type : "Natural",
+        ability : 1,
+        abilitytodamage : true,
+        damage : [1, 8, "piercing"],
+        range : "Melee",
+        description : "Natural; On hit, choose to grapple",
+        list : "melee",
+        isAlwaysProf : true,
+    }],
+    improvements : "Cetkar: +1 Strength , +1 Constitution;",
+    scores : [1, 0, 1, 0, 0, 0],
+    abilitySave : 1,
+};
+//work on the subraces
+RaceLust["Cetkar, Quaru"] ={
+    regExpSearch : /^(?=.*cetkar|cetkari)(?=.*quaru).*$/i,
+    name : "Cetkar Quaru",
+    source : [["A:TNC", 61]],
+    plural : "Cetkari",
+    size : 3,
+    speed : {
+        walk : { spd : 30, enc : 20},
+        swim : { spd : "walk", enc : 0}
+    },
+    skills : ["Intimidation"],
+    age : " same age rate and lifespan as humans",
+    height : " stand between 6 to 7 feet tall",
+    weight : " weighs around 200 to 300 pounds",
+    trait : "Cetkar, Quaru (+1 Strength, +1 Constitution, and +1 Strength or Charisma)" +desc([
+        "Exceptional Audience: I have advantage on perception checks relying on hearing, and are considred to be within earshot in distances twice as large as other humanoids.",
+        "Deadly Strength: I have a +2 bonus to damage rolls made against creatures below half their max HP. Temp HP does not count against this condition.",
+        "Born Leader: I cana cast friends at will requirng no components. When I reach 3rd level, I can cast heroism twice per long rest. Charisma is my spellcasting ability for this.",
+    ]),
+    weaponsAdd : ["Cetkari Jaws"],
+    weaponOptions : [{
+        regExpSearch : /^(?=.*cetkari)(?=.*jaws).*$/i,
+        name : "Cetkari Jaws",
+        source : [["A:TNC", 60]],
+        type : "Natural",
+        ability : 1,
+        abilitytodamage : true,
+        damage : [1, 8, "piercing"],
+        range : "Melee",
+        description : "Natural; On hit, choose to grapple",
+        list : "melee",
+        isAlwaysProf : true,
+    }],
+    improvements : "Cetkar, Quaru: +1 Strength , +1 Constitution, and +1 to Strength or Charisma;",
+    scores : [1, 0, 1, 0, 0, 0],
+    abilitySave : 6,
+    features : {
+        "racialfeature1" : {
+            name : "Born Leader (friends)",
+            minlevel : 1,
+            usages : 1,
+            spellcastingBonus : [{
+                name : "Born Leader (friends)",
+                spells : ["friends"],
+                selection : ["friends"],
+                times : 1
+            }],
+            spellChanges  : {
+                "friends" : {
+                    components : "",
+                    changes : "At will requiring no components"
+                }
+            }
+        },
+        "racialfeature3" : {
+            name : "Born Leader (heroism)",
+            minlevel : 3,
+            usages : 2,
+            spellcastingBonus : [{
+                name : "Born Leader (heroism)",
+                spells : ["heroism"],
+                selection : ["heroism"],
+                times : 1,
+            }]
+        }
+    }
+}
 MagicItemsList["assistant drone v-38"] = {
     name : "Assistant Drone V-38",
     source : [["A:TNC", 47]],
@@ -312,7 +532,72 @@ MagicItemsList["assistant drone v-38"] = {
             description : "As a reaction, the drone can block an attack that targets a creature within 5 ft of it, making itself the target of the attack instead."
         }]
     }]
-}
+};
+MagicItemsList["hellspitter"] = {
+    name : "Hellspitter",
+    source : [["A:TNC", 49]],
+    type : "weapon (pistol)",
+    rarity : "artifact",
+    attunement : true,
+    description : "See Notes",
+    toNotesPage : desc([
+        "This pistol has a +3 to attack and damage rolls, doesn't require ammunition, doesn't need to be reloaded, and fires shards of molten mithril dealing 2d6 piercing and 2d6 fire damage on a hit. This ignores resistances, not immunities, and reduces the target's HP for an hour. Critical hits deal an additional 4d6 fire damage. I can also cast fireball at will requiring no components."
+    ]),
+    weaponsAdd : ["Hellspitter"],
+    weaponOptions : [{
+        name : "Hellspitter",
+        source : [["A:TNC", 49]],
+        regExpSearch : /hell spitter/i,
+        type : "Martial",
+        ability : 2,
+        list : "firearm",
+        abilitytodamage : true,
+        damage : [4,6, "fire"],
+        range : "30/90 ft",
+        description : "Special; 2d6 Fire + 2d6 Rad dmg on hit; +4d6 Fire on crit (included above)",
+        tooltip : "Special: Doesn't require ammunition and doesn't need to reload.",
+        special : true,
+        modifiers : [3, 3],
+        isMagicWeapon : true,
+    }],
+    spellcastingBonus : [{
+        name : "Hellspitter (Fireball)",
+        spells : ["fireball"],
+        selection : ["fireball"],
+        firstCol : "atwill"
+    }],
+    spellChanges : {
+        "fireball" : {
+            compMaterial : "",
+            changes : "I can cast fireball at will requiring no material components."
+        }
+    }
+};
+MagicItemsList["malaise"] = {
+    name : "Malaise",
+    source : [["A:TNC", 49]],
+    type : "weapon (dagger)",
+    rarity : "artifact",
+    attunement : true,
+    toNotesPage : desc([
+        "This dagger has a +3 to attack and damage rolls and deals an addiional 3d6 Cold damage. It can also fly, become invisible, and shift into the ethereal plane at will. I can control and use its abilities telekinetically as long as it's within 60ft of me. It follows my every command, but when left alone, it floats atop my head seemingly about to drop down. This creates an ever-present feeling of dread. While the dagger is like this, I cannot be surprised."
+    ]),
+    /*
+        It doesn't state the fly speed
+        Doesn't say whether or not it still functions as a normal dagger (melee 20/60ft) and if we can (at will) make it fly 60ft and attack someone
+        Assuming it has a fly speed of 60ft and takes an action to attack
+    */
+    weaponsAdd : ["Malaise"],
+    weaponOptions : [{ 
+        name : "Malaise",
+        source : [["A:TNC", 49]],
+        regExpSearch : /malaise/i,
+        baseWeapon : "dagger",
+        description : "Finesse, light, thrown; +3d6 cold dmg; fly, invis, plane shift (ethereal) at will; Special",
+        tooltip : "Special: Command and use its features telekinetically up to 60ft",
+        range : "Melee, 20/60 ft",
+    }]
+};
 FeatsList["magic specialist"] = {
     name : "Magic Specialist",
     souce : [["A:TNC", 44]],
