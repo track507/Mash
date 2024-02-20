@@ -2,78 +2,27 @@ if (sheetVersion < 13001012) { throw "This script was made for a newer version o
 var iFileName = "Ariadne's_CoS";
 RequiredSheetVersion("13.1.12");
 
+/*
+    NOTICE
+    
+    This adds content from Ariadne's Codex of Strings' Patreon
+    The deluxe versions take priority over their initiate counterparts, this also applies to other posts released
+    This is not for public use and not to be redistributed.
+
+
+
+    IMPORTANT
+    
+    Since spells doesn't have specified classes, I assume all classes get them.
+*/
 //this is a general source
 SourceList["A:CoS"] = {
     name : "Ariadne's: Codex of Strings",
     abbreviation : "A:CoS",
     abbreviationSpellsheet : "A",
     group : "Homebrew",
+    url : "https://www.patreon.com/codexofstrings/posts",
     date : "2024/02/14"
-};
-
-//The Ichorous Peninsula addition
-SourceList["A:TIP"] = {
-    name : "Ariadne's: The Ichorous Peninsula",
-    abbreviation : "A:TIP",
-    abbreviationSpellsheet : "A",
-    group : "Homebrew",
-    date : "2024/02/14"
-};
-
-SpellsList["death and despair"] = {
-    name : "Death and Despair",
-    source : [["A:TIP", 4]],
-	level : 8,
-    school : "Necro",
-	time : "1 a",
-    range : "90 ft",
-	components : "V,S",
-    duration : "Conc, 1 min",
-    save : "Con",
-    description : "30ft wide, 10ft tall cylinder; all crea 12d6 Necrotic dmg; save halves; see desc.",
-    descriptionFull : "Choose a 30 ft radius surface you can see within range. All creatures that are within 10 ft high of the surface must make a Constitution saving throw taking 12d6 Necrotic damage, or half as much on a save. A creature must make a save when it enters the spells area for the first time or ends its turn there. Nonmagical plants with and die, while magical plants receive double damage. All creatures damaged by this spell at least twice must make a Wisdom saving throw or become demoralized. A demoralized creature has its speed reduced to 0 and falls to its knees in absolute despair."
-};
-SpellsList["thunderous crimson"] = {
-    name : "Thunderous Crimson",
-    source : [["A:TIP", 2]],
-	level : 1,
-    school : "Evoc",
-	time : "1 a",
-    range : "S:30-ft cone",
-	components : "V,S",
-    duration : "Instantaneous",
-    save : "Dex",
-    description : "4d4+2d4/SL Lightning dmg, dazzled until end of their next turn; save no dmg, not dazzled",
-    descriptionFull : "You summon a wave of crackling red lightning that travels in a 30 foot cone in front of you. Each crea in that area must succeed a Dexterity save or suffer 4d4 lightning damage and be dazzled until the end of their next turn" + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 2d4 for each slot about 1st level."
-};
-
-//The better spellbook v1.0 addition
-SourceList["A:BS"] = {
-    name : "Ariadne's: Better Spellbook V1.0",
-    abbreviation : "A:BS",
-    abbreviationSpellsheet : "A",
-    group : "Homebrew",
-    date : "2024/02/14"
-};
-
-//The citadel of radiance
-SourceList["A:TCoR"] = {
-    name : "Ariadne's: The Citadel of Radiance",
-    abbreviation : "A:TCoR",
-    abbreviationSpellsheet : "A",
-    group : "Homebrew",
-    date : "2024/02/14"
-};
-SpellsList["pulverizing radiance"] = {
-    name : "Pulverizing Radiance",
-    source : [["A:TCoR", 2]],
-    level : 5,
-    school : "Evoc",
-    time : "1 a",
-    range : "30 ft",
-    components : "V,S",
-    duration : "Instantaneoous",
-    description : "Make ranged spell akt; 6d6+20 Radiant dmg and target gains 3 stacks of irradiated"
 };
 
 //The nova cluster addition
@@ -91,13 +40,14 @@ SpellsList["astrologist's reading"] = {
     source : [["A:TNC", 10]],
     level : 1,
     school : "Div",
-    time : "30 sec", //this might cause issues as normally there aren't spells with a casting time of 'seconds'
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "0.5 min", //this might cause issues as normally there aren't spells with a casting time of 'seconds'
     timeFull : "This spell has a casting time of 30 seconds",
     range: "10 ft",
     components : "S",
     duration : "Instantaneous",
     ritual : true,
-    description : "Spellcasting abilitiy check vs. 8+target crea CR/Level; Know align. and motivations",
+    description : "Spellcasting ability check vs. DC (8+target crea CR/Level); Know align. and motivations",
     descriptionFull : "Make a spellcasting ability check with the DC being 8 + the targets CR or Level. On a success, you know the target's current alignment, and may also glimpse into its current motivation. Unless they see you and are familiar with the spell, the target is not aware of your reading."
 };
 SpellsList["starfire"] = {
@@ -105,6 +55,7 @@ SpellsList["starfire"] = {
     source : [["A:TNC", 10]],
     level : 3,
     school : "Evoc",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
     time : "1 a",
     range : "60 ft",
     components : "V,S,M",
@@ -119,6 +70,7 @@ SpellsList["cosmic singularity"] = {
     source : [["A:TNC", 10]],
     level : 7,
     school : "Conj",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
     time : "1 a",
     range : "S:30-ft line",
     components : "V,M",
@@ -133,6 +85,7 @@ SpellsList["astral dust"] = {
     source : [["A:TNC", 50]],
     level : 0,
     school : "Abjur",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
     time : "1 bns",
     range : "Self",
     components : "S",
@@ -144,6 +97,7 @@ SpellsList["gravity blast"] = {
     source : [["A:TNC", 50]],
     level : 2,
     school : "Evoc",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
     time : "1 a",
     components : "S, M",
     compMaterial : "a meteorite shard",
@@ -158,6 +112,7 @@ SpellsList["gravity's favor"] = {
     source : [["A:TNC", 50]],
     level : 4,
     school : "Trans",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
     time : "1 a",
     components : "S, M",
     compMaterial : "a small platinum sphere",
@@ -171,28 +126,28 @@ SpellsList["nebula"] = {
     source : [["A:TNC", 50]],
     level : 9,
     school : "Mul",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
     time : "1 a",
     components : "V,S",
     duration : "Conc, 1 min",
     range : "120 ft",
     save : "Varies",
     description : "30ft rad sphere; Choose one of the following (see full desc.); Action to move it 10ft",
-    descriptionFull : "Gold: Orion's Chains. Creatures within the area must make a Wisdom saving throw or be paralyzed. At the end of each of their turns, they can attempt the save again. Red: Burning Core. Creatures within the area must make a Strength saving throw or be pulled to the center of the sphere, taking 6d10 radiant damage and 6d10 fire damage, before being spit out by a flare, landing in a place of the caster's choice 20ft away from the center of the Nebula's area."
-    + " Blue: Particle Accelerator. Creatures within the area must make a Dexterity saving throw, taking 10d12 force on a failed save, or half on a success. Creatures killed this way are molecularly destroyed. Purple: Unendurable Eminence. Creatures within the area must make a DC 10 Charisma saving throw or take 150 force damage that cannot be prevented in any way. Creatures killed this way disappears without leaving behind a body. The DC increases by 2 each time a creature has to roll it between long rests. I can use an action on my turn to move the center of the sphere up to 10ft."
+    descriptionFull : "Gold: Orion's Chains. Creatures within the area must make a Wisdom saving throw or be paralyzed. At the end of each of their turns, they can attempt the save again. Red: Burning Core. Creatures within the area must make a Strength saving throw or be pulled to the center of the sphere, taking 6d10 radiant damage and 6d10 fire damage, before being spit out by a flare, landing in a place of the caster's choice 20ft away from the center of the Nebula's area. Blue: Particle Accelerator. Creatures within the area must make a Dexterity saving throw, taking 10d12 force on a failed save, or half on a success. Creatures killed this way are molecularly destroyed. Purple: Unendurable Eminence. Creatures within the area must make a DC 10 Charisma saving throw or take 150 force damage that cannot be prevented in any way. Creatures killed this way disappears without leaving behind a body. The DC increases by 2 each time a creature has to roll it between long rests. I can use an action on my turn to move the center of the sphere up to 10ft."
 };
-MagicItemsList["dame eleanor’s flare"] = {
-    name : "Dame Eleanor’s Flare",
+MagicItemsList["dame eleanors flare"] = {
+    name : "Dame Eleanors Flare",
     source : [["A:TNC", 56]],
     type : "weapon (pistol)",
     rarity : "rare",
     advantages : [["Initiative", true]],
-    description : "This pistol has a +2 to damage and attack rolls. Additionally, I can choose to quickdraw, giving myself advantage on Iniative rolls. Doing so, I must make an attack with this weapon as my first action in combat.",
+    description : "This pistol has a +2 to damage and attack rolls. Additionally, I can choose to quickdraw, giving myself advantage on Initiative rolls. Doing so, I must make an attack with this weapon as my first action in combat.",
     attunement : true,
-    weaponsAdd : ["Dame Eleanor’s Flare"],
+    weaponsAdd : ["Dame Eleanors Flare"],
     weaponOptions : [{
-        name : "Dame Eleanor’s Flare",
+        regExpSearch : /^(?=.*(dame|eleanor?s))(?=.*flare).*$/i,
+        name : "Dame Eleanors Flare",
         source : [["A:TNC", 56]],
-        regExpSearch : /dame eleanor’s flare/i,
         type : "Martial",
         ability : 2,
         list : "firearm",
@@ -226,18 +181,21 @@ MagicItemsList["parchment of the wayfarer"] = {
     }]
 };
 MagicItemsList["burstfire hoverback"] = {
-    naem : "Burstfire Hoverback",
+    name : "Burstfire Hoverback",
     source : [["A:TNC", 56]],
     type : "wondrous item",
     rarity : "lengedary",
     attunement : true,
     description : "This hoverback grants a flying speed of 60ft. Additionally, it has 10 charges which can be used for Boom Barrage (5 charges), Overclocked Thrusters (3 charges), or Evasive Maneuvers (2 charges). See notes page.",
-    toNotesPage : desc([
-        "This hoverback is imbued with powerful and explosive arcane energy. When worn, it binds seemlessly to your back, with two ethereal flames that spark with blue and purple energy giving a faint hum. However, it does not burn you. This grants me 60ft of fly speed and has 10 charges, which can be expended to create the following effects: ",
-        "Boom Barrage (5 charges): As an actions, you can unleash a barrage of five arcane missiles from the jetpack. Each missile targets a point with 120 ft. Creatures within 10 ft of where the missile hits must make a DC 20 Dexterity ssaving throw, taking 4d10 force damage on a fail, or half as much on a success.",
-        "Overlocked Thrusters (3 charges): As a bonus action, you can activate the jetpack's overdrive, doubling your flying speed to 120 ft for up to 10 minutes.",
-        "Evasive Maneuvers (2 charges): As a reaction to being targeted by a spell or ranged attack, you can use the jetpack's energy to make a quick evasive maneuver. You gain advantage on the saving throw or a +5 bonus to AC against the triggering attack."
-    ]),
+    toNotesPage : [{
+        name : "Burstfire Hoverback",
+        note : desc([
+            "This hoverback is imbued with powerful and explosive arcane energy. When worn, it binds seamlessly to your back, with two ethereal flames that spark with blue and purple energy giving a faint hum. However, it does not burn you. This grants me 60ft of fly speed and has 10 charges, which can be expended to create the following effects: ",
+            "Boom Barrage (5 charges): As an actions, you can unleash a barrage of five arcane missiles from the jetpack. Each missile targets a point with 120 ft. Creatures within 10 ft of where the missile hits must make a DC 20 Dexterity saving throw, taking 4d10 force damage on a fail, or half as much on a success.",
+            "Overclocked Thrusters (3 charges): As a bonus action, you can activate the jetpack's overdrive, doubling your flying speed to 120 ft for up to 10 minutes.",
+            "Evasive Maneuvers (2 charges): As a reaction to being targeted by a spell or ranged attack, you can use the jetpack's energy to make a quick evasive maneuver. You gain advantage on the saving throw or a +5 bonus to AC against the triggering attack."
+        ]),
+    }],
     action : [["action", "Boom Barrage (5 charges)"], ["bonus action", "Overclocked Thrusters (3 charges)"], ["reaction","Evasive Maneuvers (2 charges) "]],
     extraLimitedFeatures : [{
         name : "Burstfire Charges",
@@ -297,7 +255,7 @@ MagicItemsList["impulse capsule"] = {
     source : [["A:TNC", 16]],
     type : "consumable",
     rarity : "very rare",
-    description : "For the next hour after consuming this capsule, you auto-succed all Wisdom (History) checks within the last year, advantage on Intelligence-based skill checks and saving throws, and a 1d12 bonus to Dexterity saving throws and initiative rolls. After an hour, you take a level of exhaustion. You ignore exhaustion if you consume more capsules."
+    description : "For the next hour after consuming this capsule, you auto-succeed all Wisdom (History) checks within the last year, advantage on Intelligence-based skill checks and saving throws, and a 1d12 bonus to Dexterity saving throws and initiative rolls. After an hour, you take a level of exhaustion. You ignore exhaustion if you consume more capsules."
 };
 MagicItemsList["lex-i prototype"] = {
     name : "Lex-I Prototype",
@@ -305,7 +263,7 @@ MagicItemsList["lex-i prototype"] = {
     type : "wondrous item",
     rarity : "artifact",
     attunement : true,
-    prerequisite : "Must amputate your right arm and must use 'Eminent Wisp' to attune, select 'yes' at the bottom if you have",
+    prerequisite : "Must amputate your right arm and must be aligned with an 'Eminent Wisp' to attune, select 'yes' at the bottom if you have",
     prereqeveal : function(v) { //force to be false to notify user that they must amputate arm and be attuned to an eminent wisp.
         return false;
     },
@@ -339,7 +297,9 @@ MagicItemsList["lex-i prototype"] = {
         damage : [16,8,"force"],
         range : "Ranged, 30ft",
         description : "Ranged 30ft long, 5ft wide beam; Special",
+        tooltip : "Special: After firing, arm goes dormant for 1d4 days. A wisp ends this early",
         special : true,
+        isAlwaysProf : true,
         isMagicWeapon : false, //prevents attack calculations 
         isNotWeapon : true,
         dc : true
@@ -350,15 +310,18 @@ var eminent_wisp_toNotes = [
     "While aligned, you gain a single level in your main class and an additional attunement slot for the duration. Additionally, you can use the Wisp's power to recover a single class feature of 5th level or lower, or a single spell slot of up to 3rd level. The Wisp isn't consumed this way, but you cannot use this ability again until you finish a long rest.",
     "After 24 hours have passed, you must repeat the saving throw to align yourself with the Wisp again. On a failure, you cannot align with an Eminent Wisp for the next week.",
     "If you successfully align yourself with a Wisp for three days in a row, you become permanently bound to that wisp and gain its benefits permanently. You cannot align with another wisp until you renounce the initial one. Upon death, the wisp will hover above your corpse, waiting to be claimed by another."
-]
+];
 MagicItemsList["eminent wisp"] = {
     name : "Eminent Wisp",
     source : [["A:TNC", 19]],
     type : "treasure",
     rarity : "legendary",
-    attunement : false,
-    description : "Gain a single level in your main class and an additional attunment slot. You cannot benefit from another wisp. If you want to attune to another wisp, you must renounce your previous wisp. Every 24 hours, you must succeed a DC 20 Consitution saving throw or you lose these benefits for a week. See Notes",
-    toNotesPage : desc(eminent_wisp_toNotes.replace(/your/g, "my").replace(/you /ig, "I ").replace(/yourself /ig, "myself "))
+    attunement : true,
+    description : "Gain a single level in your main class and an additional attunement slot. You cannot benefit from another wisp. If you want to attune to another wisp, you must renounce your previous wisp. Every 24 hours, you must succeed a DC 20 Consitution saving throw or you lose these benefits for a week. See Notes",
+    toNotesPage : [{
+        name : "Eminent Wisp",
+        note : desc(eminent_wisp_toNotes).replace(/>>(.*?)<</g, function(a, match) { return match.toUpperCase(); }).replace(/your/g, "my").replace(/you are /ig, "I am ").replace(/you /ig, "I ").replace(/yourself /ig, "myself ")
+    }]
 };
 MagicItemsList["solar needle"] = {
     name : "Solar Needle",
@@ -386,7 +349,11 @@ RaceList["cetkar"] = {
     age : " same age rate and lifespan as humans",
     height : " stand between 6 to 7 feet tall",
     weight : " weighs around 200 to 300 pounds",
-    trait : "Cetkar (+1 Strength and +1 Constitution)\n Amphibian Adaptation: I can breath air and water, and have a swimming speed equal to my walking speed.\n Cetkari Jaws: My jaws are natural weapons dealing 1d8 + my Strength modifier piercing damage. On a hit and if the creature is medium or smaller, I can grapple it. The DC for my grapple check is 8 + prof bonus + Strength mod.\n Threatening Presence: I gain proficiency with Intimidation. Additionally, I have advantage on the check against creatures that have seen me attack with my Cetkari Jaws.",
+    trait : "Cetkar (+1 Strength and +1 Constitution)" +desc([ 
+        "Amphibian Adaptation: I can breath air and water, and have a swimming speed equal to my walking speed.", 
+        "Cetkari Jaws: My jaws are natural weapons dealing 1d8 + my Strength modifier piercing damage. On a hit and if the creature is medium or smaller, I can grapple it. The DC for my grapple check is 8 + prof bonus + Strength modifier.",
+        "Threatening Presence: I gain proficiency with Intimidation. Additionally, I have advantage on the check against creatures that have seen me attack with my Cetkari Jaws.",
+    ]),
     weaponsAdd : ["Cetkari Jaws"],
     weaponOptions : [{
         regExpSearch : /^(?=.*cetkari)(?=.*jaws).*$/i,
@@ -405,8 +372,7 @@ RaceList["cetkar"] = {
     scores : [1, 0, 1, 0, 0, 0],
     abilitySave : 1,
 };
-//work on the subraces
-RaceLust["Cetkar, Quaru"] ={
+RaceList["cetkar, quaru"] ={
     regExpSearch : /^(?=.*cetkar|cetkari)(?=.*quaru).*$/i,
     name : "Cetkar Quaru",
     source : [["A:TNC", 61]],
@@ -420,10 +386,10 @@ RaceLust["Cetkar, Quaru"] ={
     age : " same age rate and lifespan as humans",
     height : " stand between 6 to 7 feet tall",
     weight : " weighs around 200 to 300 pounds",
-    trait : "Cetkar, Quaru (+1 Strength, +1 Constitution, and +1 Strength or Charisma)" +desc([
-        "Exceptional Audience: I have advantage on perception checks relying on hearing, and are considred to be within earshot in distances twice as large as other humanoids.",
-        "Deadly Strength: I have a +2 bonus to damage rolls made against creatures below half their max HP. Temp HP does not count against this condition.",
-        "Born Leader: I cana cast friends at will requirng no components. When I reach 3rd level, I can cast heroism twice per long rest. Charisma is my spellcasting ability for this.",
+    trait : "Cetkar, Quaru (+1 Str, +1 Con, and +1 Str or Cha)" +desc([
+        "Exceptional Audience: I have advantage on perception checks relying on hearing, and are considered to be within earshot in distances twice as large as other humanoids.",
+        "Deadly Strength: I have a +2 bonus to damage rolls made against creatures below half their max hp; temp HP does not count against this condition.",
+        "Born Leader: I can cast friends at will requiring no components. When I reach 3rd level, I can cast heroism twice per long rest. Charisma is my spellcasting ability for this."
     ]),
     weaponsAdd : ["Cetkari Jaws"],
     weaponOptions : [{
@@ -442,24 +408,19 @@ RaceLust["Cetkar, Quaru"] ={
     improvements : "Cetkar, Quaru: +1 Strength , +1 Constitution, and +1 to Strength or Charisma;",
     scores : [1, 0, 1, 0, 0, 0],
     abilitySave : 6,
+    spellcastingBonus : [{
+        name : "Born Leader (friends)",
+        spells : ["friends"],
+        selection : ["friends"],
+        times : 1
+    }],
+    spellChanges  : {
+        "friends" : {
+            components : "",
+            changes : "At will, requiring no components"
+        }
+    },
     features : {
-        "racialfeature1" : {
-            name : "Born Leader (friends)",
-            minlevel : 1,
-            usages : 1,
-            spellcastingBonus : [{
-                name : "Born Leader (friends)",
-                spells : ["friends"],
-                selection : ["friends"],
-                times : 1
-            }],
-            spellChanges  : {
-                "friends" : {
-                    components : "",
-                    changes : "At will requiring no components"
-                }
-            }
-        },
         "racialfeature3" : {
             name : "Born Leader (heroism)",
             minlevel : 3,
@@ -472,7 +433,59 @@ RaceLust["Cetkar, Quaru"] ={
             }]
         }
     }
-}
+};
+RaceList["cetkar, fykari"] ={
+    regExpSearch : /^(?=.*cetkar|cetkari)(?=.*fykari).*$/i,
+    name : "Cetkar Fykari",
+    source : [["A:TNC", 61]],
+    plural : "Cetkari",
+    size : 3,
+    speed : {
+        walk : { spd : 30, enc : 20},
+        swim : { spd : "walk", enc : 0}
+    },
+    trait : "Cetkar, Fykari (+1 Strength, +1 Constitution, and +1 Dexterity or Intelligence)" + desc([
+        "Constrict and Bite: I can use my Dexterity modifier instead of Strength to resolve grapple checks. My bite attacks deal 1d12 piercing damage instead of 1d8 when the creature is grappled by me.",
+        "Impassive Killer: I have advantage on being frightened and other creatures have disadvantage against being frightened by me.",
+        "Artificer's Psyche: I gain proficiency with Tinker's Tools and have advantage on rolls to understand the functioning of mechanical artificery. Additionally, I can cast mending, requiring no components.",
+    ]),
+    toolProfs : ["Tinker's Tools"],
+    age : " same age rate and lifespan as humans",
+    height : " stand between 6 to 7 feet tall",
+    weight : " weighs around 200 to 300 pounds",
+    weaponsAdd : ["Cetkari Jaws"],
+    weaponOptions : [{
+        regExpSearch : /^(?=.*cetkari)(?=.*jaws).*$/i,
+        name : "Cetkari Jaws",
+        source : [["A:TNC", 60]],
+        type : "Natural",
+        ability : 1,
+        abilitytodamage : true,
+        damage : [1, 8, "piercing"],
+        range : "Melee",
+        description : "Natural; On hit, choose to grapple; Versatile (1d12 if grappled by me)",
+        list : "melee",
+        isAlwaysProf : true,
+    }],
+    spellcastingBonus : [{
+        name : "Artificer's Psyche",
+        spells : ["mending"],
+        selection : ["mending"],
+        times : 1
+    }],
+    spellChanges : {
+        "mending" : {
+            components : "",
+            changes : "I can cast mending at will requiring no components."
+        }
+    },
+    savetxt : {
+        text : "Adv. vs me being frightened; Crea have disadv. vs being frightened by me"
+    },
+    improvements : "Cetkar, Quaru: +1 Strength , +1 Constitution, and +1 to Dexterity or Intelligence;",
+    scores : [1, 0, 1, 0, 0, 0],
+    abilitySave : 6
+};
 MagicItemsList["assistant drone v-38"] = {
     name : "Assistant Drone V-38",
     source : [["A:TNC", 47]],
@@ -539,10 +552,7 @@ MagicItemsList["hellspitter"] = {
     type : "weapon (pistol)",
     rarity : "artifact",
     attunement : true,
-    description : "See Notes",
-    toNotesPage : desc([
-        "This pistol has a +3 to attack and damage rolls, doesn't require ammunition, doesn't need to be reloaded, and fires shards of molten mithril dealing 2d6 piercing and 2d6 fire damage on a hit. This ignores resistances, not immunities, and reduces the target's HP for an hour. Critical hits deal an additional 4d6 fire damage. I can also cast fireball at will requiring no components."
-    ]),
+    description : "This pistol has a +3 to attack and damage rolls, doesn't require ammunition, doesn't need to be reloaded, and fires shards of molten mithril dealing 2d6 piercing and 2d6 fire damage on a hit. This ignores resistances, not immunities, and reduces the target's HP for an hour. Critical hits deal an additional 4d6 fire damage. I can also cast fireball at will requiring no components.",
     weaponsAdd : ["Hellspitter"],
     weaponOptions : [{
         name : "Hellspitter",
@@ -579,9 +589,7 @@ MagicItemsList["malaise"] = {
     type : "weapon (dagger)",
     rarity : "artifact",
     attunement : true,
-    toNotesPage : desc([
-        "This dagger has a +3 to attack and damage rolls and deals an addiional 3d6 Cold damage. It can also fly, become invisible, and shift into the ethereal plane at will. I can control and use its abilities telekinetically as long as it's within 60ft of me. It follows my every command, but when left alone, it floats atop my head seemingly about to drop down. This creates an ever-present feeling of dread. While the dagger is like this, I cannot be surprised."
-    ]),
+    description : "This dagger has a +3 to attack and damage rolls and deals an additional 3d6 Cold damage. It can also fly, become invisible, and shift into the ethereal plane at will. I can control and use its abilities telekinetically as long as it's within 60ft of me. It follows my every command, but when left alone, it floats atop my head seemingly about to drop down. This creates an ever-present feeling of dread. While the dagger is like this, I cannot be surprised.",
     /*
         It doesn't state the fly speed
         Doesn't say whether or not it still functions as a normal dagger (melee 20/60ft) and if we can (at will) make it fly 60ft and attack someone
@@ -589,9 +597,9 @@ MagicItemsList["malaise"] = {
     */
     weaponsAdd : ["Malaise"],
     weaponOptions : [{ 
+        regExpSearch : /malaise/i,
         name : "Malaise",
         source : [["A:TNC", 49]],
-        regExpSearch : /malaise/i,
         baseWeapon : "dagger",
         description : "Finesse, light, thrown; +3d6 cold dmg; fly, invis, plane shift (ethereal) at will; Special",
         tooltip : "Special: Command and use its features telekinetically up to 60ft",
@@ -600,7 +608,8 @@ MagicItemsList["malaise"] = {
 };
 FeatsList["magic specialist"] = {
     name : "Magic Specialist",
-    souce : [["A:TNC", 44]],
+    source : [["A:TNC", 44]],
+    prerequisite : "The magic initiate feat",
     prereqeval : function(v) { return CurrentFeats.known.indexOf("magic initiate") !== -1; },
     description : "Every spell you cast from the chosen school gives you a token. At five tokens, the next spell of 5th level or lower from that school of magic does not expend a spell slot. Cantrips do not award tokens"
     + " A single 1st level spell from the school becomes a cantrip. At 11th level, a single 2nd level spell from the chosen school becomes a cantrip.",
@@ -716,20 +725,20 @@ FeatsList["magic specialist"] = {
 };
 FeatsList["reactive"] = {
     name : "Reactive",
-    souce : [["A:TNC", 44]],
+    source : [["A:TNC", 44]],
     description : "I gain a +2 bonus to Initiative rolls. I may use a bonus action on my turn to gain an additional reaction for this round.",
     addMod : [ { type : "skill", field : "Init", mod : 2, text : "I gain a +2 to my Initiative rolls." } ],
     action : ["bonus action", "Reactive (+1 Reaction)"]
 };
 FeatsList["against all odds"] = {
     name : "Against All Odds",
-    souce : [["A:TNC", 44]],
+    source : [["A:TNC", 44]],
     description : "My Charisma score increase by 1, up to a max of 20. For every ally within 30ft of me that has fewer than half their total hit points (including me), I gain +1 to all your attack rolls, saving throws, and ability checks, up to a maximum of +3.",
     scores : [0, 0, 0, 0, 0, 1]
 };
 FeatsList["perfectionist"] = {
     name : "Perfectionist",
-    souce : [["A:TNC", 44]],
+    source : [["A:TNC", 44]],
     description : "My Intelligence score increases by 1, up to a max of 20. I gain proficiency in a skill of my choice or expertise if I'm already proficient. Whenever I fail a DC or get an undesired result, I may roll again with advantage. I cannot use this ability again until I finish a short rest.",
     skillstxt : "Proficiency with a skill of my choice, or expertise if I'm already proficient.",
     usages : 1,
@@ -737,21 +746,94 @@ FeatsList["perfectionist"] = {
 };
 FeatsList["nerves of steel"] = {
     name : "Nerves of Steel",
-    souce : [["A:TNC", 44]],
+    source : [["A:TNC", 44]],
     description : "My Intelligence, Wisdom, or Charisma increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I cocentrate on a spell, I gain a +2 to my AC.",
     choices : ["Intelligence", "Wisdom", "Charisma"],
     "intelligence" : {
-		description : "I gain a +1 to Intelligence",
+		description : "My Intelligence increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I cocentrate on a spell, I gain a +2 to my AC.",
 		scores : [0, 0, 0, 1, 0, 0],
 	},
 	"wisdom" : {
-		description : "I gain a +1 to Wisdom",
+		description : "My Wisdom increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I cocentrate on a spell, I gain a +2 to my AC.",
 		scores : [0, 0, 0, 0, 1, 0],
 	},
 	"charisma" : {
-		description : "I gain a +1 to Charisma",
+		description : "My Charisma increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I cocentrate on a spell, I gain a +2 to my AC.",
 		scores : [0, 0, 0, 0, 0, 1],
 	}
+};
+
+/*
+    Everything below is not finished or completed.
+*/
+
+
+//The Ichorous Peninsula addition
+SourceList["A:TIP"] = {
+    name : "Ariadne's: The Ichorous Peninsula",
+    abbreviation : "A:TIP",
+    abbreviationSpellsheet : "A",
+    group : "Homebrew",
+    date : "2024/02/14"
+};
+
+SpellsList["death and despair"] = {
+    name : "Death and Despair",
+    source : [["A:TIP", 4]],
+	level : 8,
+    school : "Necro",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+	time : "1 a",
+    range : "90 ft",
+	components : "V,S",
+    duration : "Conc, 1 min",
+    save : "Con",
+    description : "30ft wide, 10ft tall cylinder; all crea 12d6 Necrotic dmg and demoralized; save halves and not demoralized; see desc.",
+    descriptionFull : "Choose a 30 ft radius surface you can see within range. All creatures that are within 10 ft high of the surface must make a Constitution saving throw taking 12d6 Necrotic damage, or half as much on a save. A creature must make a save when it enters the spells area for the first time or ends its turn there. Nonmagical plants with and die, while magical plants receive double damage. All creatures damaged by this spell at least twice must make a Wisdom saving throw or become demoralized. A demoralized creature has its speed reduced to 0 and falls to its knees in absolute despair."
+};
+SpellsList["thunderous crimson"] = {
+    name : "Thunderous Crimson",
+    source : [["A:TIP", 2]],
+	level : 1,
+    school : "Evoc",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+	time : "1 a",
+    range : "S:30-ft cone",
+	components : "V,S",
+    duration : "Instantaneous",
+    save : "Dex",
+    description : "4d4+2d4/SL Lightning dmg, dazzled until end of their next turn; save no dmg, not dazzled",
+    descriptionFull : "You summon a wave of crackling red lightning that travels in a 30 foot cone in front of you. Each crea in that area must succeed a Dexterity save or suffer 4d4 lightning damage and be dazzled until the end of their next turn" + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 2d4 for each slot about 1st level."
+};
+
+//The better spellbook v1.0 addition
+SourceList["A:BS"] = {
+    name : "Ariadne's: Better Spellbook V1.0",
+    abbreviation : "A:BS",
+    abbreviationSpellsheet : "A",
+    group : "Homebrew",
+    date : "2024/02/14"
+};
+
+//The citadel of radiance
+SourceList["A:TCoR"] = {
+    name : "Ariadne's: The Citadel of Radiance",
+    abbreviation : "A:TCoR",
+    abbreviationSpellsheet : "A",
+    group : "Homebrew",
+    date : "2024/02/14"
+};
+SpellsList["pulverizing radiance"] = {
+    name : "Pulverizing Radiance",
+    source : [["A:TCoR", 2]],
+    level : 5,
+    school : "Evoc",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "30 ft",
+    components : "V,S",
+    duration : "Instantaneous",
+    description : "Make ranged spell akt; 6d6+20 Radiant dmg and target gains 3 stacks of irradiated"
 };
 
 
@@ -762,6 +844,7 @@ SpellsList["dark tides"] = {
 	source : [["A:BS", 4]],
 	level : 2,
     school : "Evoc",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
 	time : "1 a",
 	range : "S:30-ft cone",
 	components : "S,M",
@@ -776,6 +859,7 @@ SpellsList["nightmare's embrace"] = {
     source : [["A:BS", 4]],
 	level : 3,
     school : "Ench",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
 	time : "1 a",
     range : "Touch",
 	components : "V",
@@ -789,6 +873,7 @@ SpellsList["mass despair"] = {
     source : [["A:BS", 4]],
 	level : 4,
     school : "Ench",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
 	time : "1 a",
     range : "60 ft",
 	components : "V,S",
@@ -802,6 +887,7 @@ SpellsList["visions of doom"] = {
     source : [["A:BS", 5]],
 	level : 5,
     school : "Div",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
 	time : "10 min",
     range : "Self",
 	components : "V,S,M",
@@ -816,6 +902,7 @@ SpellsList["eldritch oblation"] = {
     source : [["A:BS", 5]],
 	level : 8,
     school : "Div",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
 	time : "1 hr",
     range : "Self",
 	components : "V,S,M",
@@ -830,6 +917,7 @@ SpellsList["ariadne's mimicry"] = {
     source : [["A:BS", 6]],
 	level : 4,
     school : "Trans",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
 	time : "1 a",
     range : "30 ft",
 	components : "V,S,M",
@@ -844,6 +932,7 @@ SpellsList["runo's coin throw"] = {
     source : [["A:BS", 7]],
 	level : 1,
     school : "Evoc",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
 	time : "1 a",
     range : "60 ft",
 	components : "S,M",
