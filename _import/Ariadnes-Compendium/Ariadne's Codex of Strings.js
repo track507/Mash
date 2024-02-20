@@ -8,12 +8,13 @@ RequiredSheetVersion("13.1.12");
     This adds content from Ariadne's Codex of Strings' Patreon
     The deluxe versions take priority over their initiate counterparts, this also applies to other posts released
     This is not for public use and not to be redistributed.
+*/
 
-
-
+/*
     IMPORTANT
     
     Since spells doesn't have specified classes, I assume all classes get them.
+    Only the nova cluster addition is finished.
 */
 //this is a general source
 SourceList["A:CoS"] = {
@@ -191,9 +192,9 @@ MagicItemsList["burstfire hoverback"] = {
         name : "Burstfire Hoverback",
         note : desc([
             "This hoverback is imbued with powerful and explosive arcane energy. When worn, it binds seamlessly to your back, with two ethereal flames that spark with blue and purple energy giving a faint hum. However, it does not burn you. This grants me 60ft of fly speed and has 10 charges, which can be expended to create the following effects: ",
-            "Boom Barrage (5 charges): As an actions, you can unleash a barrage of five arcane missiles from the jetpack. Each missile targets a point with 120 ft. Creatures within 10 ft of where the missile hits must make a DC 20 Dexterity saving throw, taking 4d10 force damage on a fail, or half as much on a success.",
-            "Overclocked Thrusters (3 charges): As a bonus action, you can activate the jetpack's overdrive, doubling your flying speed to 120 ft for up to 10 minutes.",
-            "Evasive Maneuvers (2 charges): As a reaction to being targeted by a spell or ranged attack, you can use the jetpack's energy to make a quick evasive maneuver. You gain advantage on the saving throw or a +5 bonus to AC against the triggering attack."
+            toUni("Boom Barrage (5 charges): ") + "As an actions, you can unleash a barrage of five arcane missiles from the jetpack. Each missile targets a point with 120 ft. Creatures within 10 ft of where the missile hits must make a DC 20 Dexterity saving throw, taking 4d10 force damage on a fail, or half as much on a success.",
+            toUni("Overclocked Thrusters (3 charges): ") + "As a bonus action, you can activate the jetpack's overdrive, doubling your flying speed to 120 ft for up to 10 minutes.",
+            tuUni("Evasive Maneuvers (2 charges): ") + "As a reaction to being targeted by a spell or ranged attack, you can use the jetpack's energy to make a quick evasive maneuver. You gain advantage on the saving throw or a +5 bonus to AC against the triggering attack."
         ]),
     }],
     action : [["action", "Boom Barrage (5 charges)"], ["bonus action", "Overclocked Thrusters (3 charges)"], ["reaction","Evasive Maneuvers (2 charges) "]],
@@ -747,18 +748,18 @@ FeatsList["perfectionist"] = {
 FeatsList["nerves of steel"] = {
     name : "Nerves of Steel",
     source : [["A:TNC", 44]],
-    description : "My Intelligence, Wisdom, or Charisma increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I cocentrate on a spell, I gain a +2 to my AC.",
+    description : "My Intelligence, Wisdom, or Charisma increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I concentrate on a spell, I gain a +2 to my AC.",
     choices : ["Intelligence", "Wisdom", "Charisma"],
     "intelligence" : {
-		description : "My Intelligence increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I cocentrate on a spell, I gain a +2 to my AC.",
+		description : "My Intelligence increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I concentrate on a spell, I gain a +2 to my AC.",
 		scores : [0, 0, 0, 1, 0, 0],
 	},
 	"wisdom" : {
-		description : "My Wisdom increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I cocentrate on a spell, I gain a +2 to my AC.",
+		description : "My Wisdom increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I concentrate on a spell, I gain a +2 to my AC.",
 		scores : [0, 0, 0, 0, 1, 0],
 	},
 	"charisma" : {
-		description : "My Charisma increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I cocentrate on a spell, I gain a +2 to my AC.",
+		description : "My Charisma increases by 1, up to a max of 20. My DC concentration checks never exceed 20. While I concentrate on a spell, I gain a +2 to my AC.",
 		scores : [0, 0, 0, 0, 0, 1],
 	}
 };
@@ -766,7 +767,6 @@ FeatsList["nerves of steel"] = {
 /*
     Everything below is not finished or completed.
 */
-
 
 //The Ichorous Peninsula addition
 SourceList["A:TIP"] = {
