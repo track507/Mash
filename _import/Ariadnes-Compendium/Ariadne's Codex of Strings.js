@@ -734,7 +734,7 @@ FeatsList["reactive"] = {
 FeatsList["against all odds"] = {
     name : "Against All Odds",
     source : [["A:TNC", 44]],
-    description : "My Charisma score increase by 1, up to a max of 20. For every ally within 30ft of me that has fewer than half their total hit points (including me), I gain +1 to all your attack rolls, saving throws, and ability checks, up to a maximum of +3.",
+    description : "My Charisma score increase by 1, up to a max of 20. For every ally within 30ft of me that has fewer than half their total hit points (including me), I gain a +1 to all of my attack rolls, saving throws, and ability checks, up to a maximum of +3.",
     scores : [0, 0, 0, 0, 0, 1]
 };
 FeatsList["perfectionist"] = {
@@ -776,7 +776,6 @@ SourceList["A:TIP"] = {
     group : "Homebrew",
     date : "2024/02/14"
 };
-
 SpellsList["death and despair"] = {
     name : "Death and Despair",
     source : [["A:TIP", 4]],
@@ -805,6 +804,55 @@ SpellsList["thunderous crimson"] = {
     description : "4d4+2d4/SL Lightning dmg, dazzled until end of their next turn; save no dmg, not dazzled",
     descriptionFull : "You summon a wave of crackling red lightning that travels in a 30 foot cone in front of you. Each crea in that area must succeed a Dexterity save or suffer 4d4 lightning damage and be dazzled until the end of their next turn" + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 2d4 for each slot about 1st level."
 };
+MagicItemsList["poncho of caustic ethrealness"] = {
+    name : "Poncho of Caustic Ethrealness",
+    source : [["A:TIP", 2]],
+    type : "wondrous item",
+    rarity : "very rare",
+    attunement : true,
+    description : "To attune to this item, a creature must wear this poncho for 1 minute, taking 1d6 acid damage every round. After which the poncho stops harming them, you gain resistance to acid damage and can cast etherealness once per long rest. Additionally, when hit by a melee attack by a creature within 5 ft, the attacker takes 2d6 acid damage.",
+    spellcastingBonus : [{
+        name : "Caustic Etherealness",
+        spells : ["etherealess"],
+        selection : ["etherealness"],
+        times : 1,
+        firstCol : "oncelr"
+    }],
+    dmgres : ["Acid"],
+};
+MagicItemsList["orb of threadseeking"] = {
+    name : "Orb of Threadseeking",
+    source : [["A:TIP", 4]],
+    type : "artifact",
+    rarity : "legendary",
+    attunement : true,
+    description : "Attuning to this item means that I am now the owner of a personal sub-section of the City of Strings, a timeless demiplane (see desc). As long as I have the orb in my possession, I can open a planar gate as an action which last until I dismiss it (no action required).",
+    toNotesPage : [{
+        name : "Orb of Threadseeking: Demiplane",
+        note : desc([
+            "The demiplane has a surface space of 8000 square feet, which you may arrange in anyway you wish. Typical rooms found in a threadseeker's demiplane include the following:",
+            "Arcanist's Laboratory (2000 square feet): A room to accomdate the mysteries of the cosmos. It has special instruments allowing you to cast the identify, comprehend languages, and detect posion and disease spells at will while inside the room.",
+            //add the extra stuff
+        ])
+    }]
+};
+FeatsList["field medic"] = {
+    name : "Field Medic",
+    source : [["A:TIP", 2]],
+    description : "I gain proficiency in slight of hand, or expertise if I'm already proficient. As a bonus action, I can expend a hit die to heal a creature within 5ft of me. The creature gains half my level in hit points. I can do this a number of times equal to my Proficiency bonus per short rest.",
+    action : ["bonus action", ""],
+    usages : "Proficiency bonus per ",
+	usagescalc : "event.value = How('Proficiency Bonus');",
+    recovery : "short rest",
+    calculate : "event.value = \"I gain proficiency in slight of hand, or expertise if I'm already proficient. As a bonus action, I can expend a hit die to heal a creature within 5ft of me. The creature gains lvl (' + Math.ceil(What('Character Level')/2) + ') in hit points. I can do this a number of times equal to my Proficiency bonus per short rest.\";"
+};
+FeatsList["heroic presence"] = {
+    name : "Heroic Presence",
+    source : [["A:TIP", 4]],
+    description : "During combat, and if I am conscious and not restrained, paralyzed, or incapacitated, allies within 15 ft of me can add 1d4 to any attack or ability check they make."
+};
+
+
 
 //The better spellbook v1.0 addition
 SourceList["A:BS"] = {
