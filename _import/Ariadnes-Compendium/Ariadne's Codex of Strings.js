@@ -194,7 +194,7 @@ MagicItemsList["burstfire hoverback"] = {
             "This hoverback is imbued with powerful and explosive arcane energy. When worn, it binds seamlessly to your back, with two ethereal flames that spark with blue and purple energy giving a faint hum. However, it does not burn you. This grants me 60ft of fly speed and has 10 charges, which can be expended to create the following effects: ",
             toUni("Boom Barrage (5 charges): ") + "As an actions, you can unleash a barrage of five arcane missiles from the jetpack. Each missile targets a point with 120 ft. Creatures within 10 ft of where the missile hits must make a DC 20 Dexterity saving throw, taking 4d10 force damage on a fail, or half as much on a success.",
             toUni("Overclocked Thrusters (3 charges): ") + "As a bonus action, you can activate the jetpack's overdrive, doubling your flying speed to 120 ft for up to 10 minutes.",
-            tuUni("Evasive Maneuvers (2 charges): ") + "As a reaction to being targeted by a spell or ranged attack, you can use the jetpack's energy to make a quick evasive maneuver. You gain advantage on the saving throw or a +5 bonus to AC against the triggering attack."
+            toUni("Evasive Maneuvers (2 charges): ") + "As a reaction to being targeted by a spell or ranged attack, you can use the jetpack's energy to make a quick evasive maneuver. You gain advantage on the saving throw or a +5 bonus to AC against the triggering attack."
         ]),
     }],
     action : [["action", "Boom Barrage (5 charges)"], ["bonus action", "Overclocked Thrusters (3 charges)"], ["reaction","Evasive Maneuvers (2 charges) "]],
@@ -763,11 +763,6 @@ FeatsList["nerves of steel"] = {
 		scores : [0, 0, 0, 0, 0, 1],
 	}
 };
-
-/*
-    Everything below is not finished or completed.
-*/
-
 //The Ichorous Peninsula addition
 SourceList["A:TIP"] = {
     name : "Ariadne's: The Ichorous Peninsula",
@@ -826,16 +821,62 @@ MagicItemsList["orb of threadseeking"] = {
     type : "artifact",
     rarity : "legendary",
     attunement : true,
-    description : "Attuning to this item means that I am now the owner of a personal sub-section of the City of Strings, a timeless demiplane (see desc). As long as I have the orb in my possession, I can open a planar gate as an action which last until I dismiss it (no action required).",
+    description : "Attuning to this item means that I am now the owner of a personal sub-section of the City of Strings, a timeless demiplane (see desc). As long as I have the orb in my possession, I can open a planar gate as an action which lasts until I dismiss it (no action required).",
     toNotesPage : [{
         name : "Orb of Threadseeking: Demiplane",
         note : desc([
             "The demiplane has a surface space of 8000 square feet, which you may arrange in anyway you wish. Typical rooms found in a threadseeker's demiplane include the following:",
-            "Arcanist's Laboratory (2000 square feet): A room to accomdate the mysteries of the cosmos. It has special instruments allowing you to cast the identify, comprehend languages, and detect posion and disease spells at will while inside the room.",
-            //add the extra stuff
+            toUni("Arcanist's Laboratory (2000 square feet): ") + "A room to accomdate the mysteries of the cosmos. It has special instruments allowing me to cast the identify, comprehend languages, and detect posion and disease spells at will while inside the room.",
+            toUni("Arcane Observatory (4000 square feet): ") + "A room to gaze at the stars of the multiverse. While inside, I can use its arcane telescope to view any place I previously visited. When doing so, the area I can see is a 20ft radius sphere and I can move it up to 15ft as an action",
+            toUni("Crafting Station (4000 square feet): ") + "A room filled with arcane machinery. While in this room, I can cast the fabricate spell at will. I am also considered proficient with every type of tool for the purposes of what I can create with this room's ability.",
+            "These are only examples. You can work with your DM to determing hoe the 8000 square feet is used. The more powerful the room, the more space it should occupy."
         ])
-    }]
+    }],
+    action : ["action", "Open Demiplane Gate"]
 };
+//No clue how to do this well as there is virtually no good way to do this
+//To-do: Figure out how to amend the trait from the new race to the old race (misbegotten)
+RaceList["misbegotten"] = {
+    regExpSearch : /misbegotten/i,
+    name : "Misbegotten",
+    source : [["A:TIP", 8]],
+    plural : "Misbegottens",
+    //stuff to make the pdf not yell at me
+    scorestxt : "+1 Constitution",
+    trait : "Please pick a race",
+    size : [3,4],
+    speed : {
+        walk : { spd : 30, enc : 20 }
+    },
+    dmgres : ["Pick psychic/fire/acid/necrotic/cold"],
+    improvements : "+1 to Constitution",
+    scores : [0,0,1,0,0,0],
+    useFromPreviousRace : {
+        message : "Replace one of your current racial features with an Eldritch Mutation from below"+
+        desc(["Abberant Form: ",
+        "Twilight Veil:",
+        "Whispers of Madness: ",
+        "Pick psychic, fire, acid, necrotic, or cold. You now have resistance to that damage type.",
+        "You gain advantage on saving throws against the disease and posion conditions."
+        ]),
+        //So far this is covers most cases, there are probably more from "_common attributes" that I havent tested yet
+        //Things I havent tested: saves, shieldAdd, ammoOptions, ammoAdd, advantages, fixedSpAttack, fixedDC, and basically most of the the common attributes
+        gainTraits : [
+        "size", "plural", "age", "height", "weight", "heightMetric", 
+        "weightMetric", "languageProfs", "skillstxt", "skills", 
+        "speed.climb", "speed.fly", "speed.swim", "toolProfs", 
+        "weapons", "armorAdd", "vision", "dmgres", 
+        "savetxt", "weaponProfs", "armor", "armorProfs", 
+        "abilitySave", "spellcastingAbility", "armorOptions", "spellcastingBonus",
+        "weaponsAdd", "weaponOptions", "action", "scorestxt",
+        "scores"],
+        replaceNameInTrait : ["Misgotten", "prefix"]
+    },
+    //this might work
+    //trait : (!CurrentRace.known || !RaceList[CurrentRace.known]) ? "Please pick a race" : (RaceList["misbegotten"] !== undefined && RaceList["misbegotten"].trait !== RaceList[CurrentRace.known].trait ? RaceList["misbegotten"].trait : "Error"),
+};
+// RaceList["misbegotten"].trait = (!CurrentRace.known || !RaceList[CurrentRace.known]) ? "Please pick a race" : (RaceList["misbegotten"] !== undefined && RaceList["misbegotten"].trait !== RaceList[CurrentRace.known].trait ? RaceList[CurrentRace.known].trait: "");
+
 FeatsList["field medic"] = {
     name : "Field Medic",
     source : [["A:TIP", 2]],
@@ -852,7 +893,24 @@ FeatsList["heroic presence"] = {
     description : "During combat, and if I am conscious and not restrained, paralyzed, or incapacitated, allies within 15 ft of me can add 1d4 to any attack or ability check they make."
 };
 
+/*
+    Everything below is not finished or completed.
+*/
 
+SourceList["A:TMC"] = {
+    name : "Ariadne's: The Molten Crucible",
+    abbreviation : "A:TMC",
+    abbreviationSpellsheet : "A",
+    group : "Homebrew",
+    date : "2024/02/14"
+};
+MagicItemsList["shard of ember pass"] = { 
+    name : "Shard of Ember Pass",
+    source : [["A:TMC", 3]],
+    type : "treasure",
+    rarity : "rare",
+    description : "A shard does little on its own, but a proficient arcane smith can use this to create magical wonders. I can work with my DM with creating my own magic item using this shard."
+}
 
 //The better spellbook v1.0 addition
 SourceList["A:BS"] = {
