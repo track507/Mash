@@ -31,7 +31,7 @@ AddSubClass("barbarian", "path of the challenger", {
             name : "Conquerer of Worthy Foes",
             source : [["A:TAFI", 73]],
             minlevel : 6,
-            description : 'Whenever a creaute is affected by the "Challenger\'s Right" feature for the first time, they take 2d6 psychic damage, and an additional 1d6 psychic damage every time I hit it with a melee attacak while under its effects.'
+            description : 'Whenever a creature is affected by the "Challenger\'s Right" feature for the first time, they take 2d6 psychic damage, and an additional 1d6 psychic damage every time I hit it with a melee attack while under its effects.'
         },
         "subclassfeature10" : {
             name : "Einherjar Bond", 
@@ -50,8 +50,66 @@ AddSubClass("barbarian", "path of the challenger", {
     }
 });
 
+// The one in the deluxe edition is V1.0, this adds V2.0 from the patreon post.
 AddSubClass("bard", "college of madness", { 
-    //add college
+    regExpSearch : /^(?=.*college)(?=.*madness).*$/i,
+    subname : "College of Madness",
+    source : [["A:TAFI", 74]],
+    features : {
+        "subclassfeature3" : {
+            name : "Mad Mockery",
+            source : [["A:TAFI", 74]],
+            minlevel : 3,
+            description : desc([
+                "I learn the vicious mockery cantrip which now deals 1d6 damage instead of 1d4. This increases to 2d6 at 5th level, 3d6 at 11th level, and 4d6 at 17th level.",
+                "Additionally at 7th level, creatures that succeed on a saving throw against this now takes half damage and must subtract 1d4 from the next attack they make before the end of their next turn. A creature that fails this save has disadvantage on all attack rolls they makee until the end of their next turn instead."
+            ]),
+            spellcastingBonus : [{
+                name : "Mad Mockery",
+                spells : ["vicious mockery"],
+                selection : ["vicious mockery"],
+                firstCol : "atwill",
+                times : 1
+            }],
+            spellChanges : {
+                "vicious mockery" : {
+                    description : "1 creature save or 1d6 Psychic dmg; CL 7, half dmg on fail, -1d4 from next attack; disadv. vs all attacks until the end of next turn.",
+                    descriptionCantripDie : "1 crea save or 1d6 psychic dmg; CL 7, 1/2 dmg on fail, -1d4 next attack; disadv. all attacks until end of next turn.",
+                    descriptionFull : "You unleash a string of insults laced with subtle enchantments at a creature you can see within range. If the target can hear you (thought it need not understand you), it must succeed on a Wisdom saving throw or take 1d6 psychic damage and have disadvantage on the next attack roll it makes before the end of its next turn." + "\n   " + "This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6) and 17th level (4d6)." + "\n   " + "At 7th level, creatures that succeed on a saving throw against this now take half damage and must subtract 1d4 from the next attack they make before the end of their next turn. A creature that succeeds this save has disadvantage on all attack rolls they makee until the end of their next turn.",
+                    changes : "Spells damage becomes 1d6 instead of 1d4. At 7th level, creatures take half damage on a failed save and must subtract 1d4 from the next attack they make. On a success, they have disadvantage on all attack rolls they make until the end of their next turn."
+                }
+            }
+        },
+        "subclassfeature3.1" : {
+            name : "Notes of Loss",
+            source : [["A:TAFI", 74]],
+            minlevel : 3,
+            description : desc([
+                "When I see a hostile creature die within 30 ft of me, I can expend one use of bardic inspiration to give every ally of the deceased creature within 30 ft and aware of their death a penalty to their next attack roll, ability check, or saving throw equal to my bardic inspiration die."
+            ])
+        },
+        "subclassfeature6" : {
+            name : "Language of Madness",
+            source : [["A:TAFI", 74]],
+            minlevel : 6,
+            description : desc([
+                "I can speak gibberish and have any creature understand me via telepathy. The creature cannot understand me if it cannot understand any language",
+                "Additionally, I can use this to cast the Command spell as a bonus action on my turn. I can cast this spell a number of times equal to half my Proficiency bonus rounded down."
+            ]),
+            usages : "half my prof bonus rounded down",
+            usagescalc : "event.value = Math.floor( Number(How('Proficiency Bonus')) / 2 )"
+        },
+        "subclassfeature14" : {
+            name : "Madsong",
+            source : [["A:TAFI", 74]],
+            minlevel : 14,
+            description : desc([
+                "At 14th level, I can attempt to play a piece of the Madsong. I must make a DC 20 performance check. On a failure, I fall unconscious until I take damage or a creature uses an action to wake me up. On a success, a 30 ft radius sphere centered on me manifests. I can either give allies within range advantage on all Int, Wis, and Cha ability checks and saving throws, or give my enemies within range disadvantage on all saving saving throws. I can use my bonus action on subsequent turns to maintain the Madsong. I can use this feature once per long rest."
+            ]),
+            usages : 1,
+            recovery : "long rest"
+        }
+    }
 })
 
 RaceList["ink-forged"] = {
@@ -65,7 +123,7 @@ RaceList["ink-forged"] = {
     speed : {
         walk : { spd : 30, enc : 20 }
     },
-    vision : [["Eye's of Ink", 60]],
+    vision : [["Eyes of Ink", 60]],
     languageProfs : ["Common", "Primordial"],
     trait : "Ink-Forged (+2 Dexterity)" +
     "\n \u2022 Born of Ink: I can prepare one of the following abilities found on the notes page at the end of a short or long rest.",
@@ -102,7 +160,7 @@ RaceList["luminescent veil ink-forged"] = {
     speed : {
         walk : { spd : 30, enc : 20 }
     },
-    vision : [["Eye's of Ink", 60]],
+    vision : [["Eyes of Ink", 60]],
     languageProfs : ["Common", "Primordial"],
     spellcastingAbility : 6,
     trait : "Ink-Forged (+2 Dexterity, +1 Charisma)" +
@@ -119,7 +177,7 @@ RaceList["luminescent veil ink-forged"] = {
             "\n    " + "\u2022 Blinding Light: As a bonus action, I can shine maddening light. All creatures withint 30 ft of me must succeed a Constitution saving throw or be blinded until the end of their next turn. Charisma is my spellcasting ability for this."
         ]
     }, {
-        name : "Eye's of Ink",
+        name : "Eyes of Ink",
         page3notes : true,
         note : [
             "I can see normally in magical and normal darkness out to a range of 60 ft."
@@ -155,7 +213,7 @@ RaceList["inkbound marefjes ink-forged"] = {
     speed : {
         walk : { spd : 30, enc : 20 }
     },
-    vision : [["Eye's of Ink", 60]],
+    vision : [["Eyes of Ink", 60]],
     languageProfs : ["Common", "Primordial"],
     trait : "Ink-Forged (+3 Dexterity)" +
     "\n \u2022 Resilience of the Mad: Adv. vs. being charmed or frightened." +
@@ -267,7 +325,7 @@ MagicItemsList["ring of eternal struggle"] = {
             "I can use my action or bonus action to speak the command word, Ouroboros, to activate or deactivate the ring. While active, I gain the following effects:",
             "\u2022 I take 5 necrotic damage at the start of each of my turns and whenever I miss an attack roll. This damage cannot be mitigated in any way.",
             "\u2022 For every successful attack, I deal an additional 5 necrotic damage and heal for 10 hp, or 15hp if I am missing more than half of my total hp.",
-            "\u2022 When I reduce a creature of CR 1 or higher to 0 hp, I gain a charge. This ring can hold up to 3 charges, which are lost after a minute. If my current hp is reduced to 0 and there are currently one or more charges in the ring, I can expend a charge to drop to 1 hp instead.",
+            "\u2022 This ring can hold up to 3 charges, which are lost after a minute. When I reduce a creature of CR 1 or higher to 0 hp, I gain a charge. If my current hp is reduced to 0 and there are currently one or more charges in the ring, I can expend a charge to drop to 1 hp instead.",
             "\u2022 I can also expend a charge to make a powerful but risky enchantment. My next melee attack deals additional necrotic damage equal to my missing hp, up to a max of 50. If I miss, I am instantly reduced to 0 hp instead."
         ])
     }],
@@ -275,16 +333,17 @@ MagicItemsList["ring of eternal struggle"] = {
 
 var pandoras_box_fullDescription = [
     "This small wooden box is an artifact from another land and another time. It can be easily mistaken for a worthless reliquary, but those who touch it, are immediately taken aback by the overflowing power within. They know that this box is primordially evil.",
-    "The box contains power and corruption in equal measure and can only be opened by a non-lawful creature. It takes one minute to open, as the energies of the ancient lock slowly give way to the chaos inside. Once opened, all creatures within 120 ft of the box must succeed on a DC 15 Constitution or be instantly killed. If you survive and also the one that opened the box, you are blessed by chaotic power and regain the following:",
-    "\u2022 Recover all your hit points, features, and abilities",
-    "\u2022 Cleansed of any curse, disease, or poison",
+    "The box contains power and corruption in equal measure and can only be opened by a non-lawful creature. It takes one minute to open, as the energies of the ancient lock slowly give way to the chaos within. Once opened, all creatures within 120 ft of the box must succeed on a DC 15 Constitution or be instantly killed. If you survive and were also the one that opened the box, you are blessed by chaotic power and regain the following:",
+    "\u2022 Recover all your hit points, features, and abilities.",
+    "\u2022 Cleansed of any curse, disease, or poison.",
     "\n While the box is open, the following occurs:",
     "\u2022 While within 120 ft of the box, you can increase any two ability scores of your choosing to a 26 and gain 50 temporary hit points at the end of each of your turns.",
-    "\u2022 The box spawns 1d6+3 Harbringer Draugen and 1d4 Harbringer Trolls every minute. After the first hour, it spawns a single Harbringer Revenant instead of the trolls.",
+    "\u2022 The box spawns 1d6+3 Harbinger Draugen and 1d4 Harbinger Trolls every minute. After the first hour, it spawns a single Harbinger Revenant instead of the trolls.",
     "\u2022 If the box stays opened for more than 24 hours, it spawns a CR 30 Leviathan of Ink. After summoning it, it is considered empty and spawns no more creatures.\n",
-    "If you are still alive and within 120 ft of the box, a ghastly voice offers three wishes. These wishes are granted with evil intent, always bringing great suffering to the world in their fulfillment. Once the box is used in this way, the box cannot be opened again until a century has passed",
-    "A creature of lawful alignment can attempt to close the box. They must spend a minute in communion with it, spending their action to maintain concentration on the ritual. At the start of each of their turns, they take 20 necrotic damage. All creatures spawned by the box will attempt to interrupt the closing ritual at any cost. After the box is sealed this way, it cannot be opened for one month" 
-]
+    "If you are still alive and within 120 ft of the box, a ghastly voice offers three wishes. These wishes are granted with evil intent, always bringing great suffering to the world in their fulfillment. Once the box is used in this way, it cannot be opened again until a century has passed.",
+    "A creature of lawful alignment can attempt to close the box. They must spend a minute in communion with it, spending their action to maintain concentration on the ritual. At the start of each of their turns, they take 20 necrotic damage. All creatures spawned by the box will attempt to interrupt the closing ritual at any cost. After the box is sealed this way, it cannot be opened for one month." 
+];
+
 MagicItemsList["pandora's box"] = {
     name : "Pandora's Box", 
     source : [["A:TAFI", 16]],
@@ -544,7 +603,7 @@ MagicItemsList["mirror of things great and terrible"] = {
     }],
     action : [["action", "Mirror Mirror, on my hand"], ["reaction", "Will I ever not be Damned?"]],
     scores : [0, 0, 0, 0, 0, 2],
-    scorsMaximum : [0, 0, 0, 0, 0, 24]
+    scoresMaximum : [0, 0, 0, 0, 0, 24]
 };
 
 SpellsList["oath of war"] = {
