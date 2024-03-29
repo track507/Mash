@@ -841,14 +841,13 @@ RaceList["misbegotten"] = {
     source : [["A:TIP", 8]],
     plural : "Misbegottens",
     //stuff to make the pdf not yell at me
-    scorestxt : "",
     trait : "",
-    size : [3,4],
+    size : [],
     speed : {
         walk : { spd : 30, enc : 20 }
     },
     dmgres : ["Pick psychic/fire/acid/necrotic/cold"],
-    improvements : "+1 to Constitution",
+    scorestxt : "+1 to Constitution, Any bonuses from previous race",
     scores : [0,0,1,0,0,0],
     toNotesPage : [{
         name : "Misbegotten",
@@ -860,7 +859,7 @@ RaceList["misbegotten"] = {
         ])
     }],
     useFromPreviousRace : {
-        message : "Replace one of your current racial features with an Eldritch Mutation from the notes page"+
+        message : "You gain the following:"+
         desc([
             "Replace one current racial feature with one from the notes page.",
             "You now have resistance to one of the following: psychic, fire, acid, necrotic, or cold.",
@@ -868,21 +867,8 @@ RaceList["misbegotten"] = {
         ]),
         //So far this is covers most cases, there are probably more from "_common attributes" that I havent tested yet
         //Things I havent tested: saves, shieldAdd, ammoOptions, ammoAdd, advantages, fixedSpAttack, fixedDC, and basically most of the the common attributes
-        gainTraits : [
-        "size", "plural", "age", "height", "weight", "heightMetric", 
-        "weightMetric", "languageProfs", "skillstxt", "skills", 
-        "speed.climb", "speed.fly", "speed.swim", "toolProfs", 
-        "weapons", "armorAdd", "vision", "dmgres", 
-        "savetxt", "weaponProfs", "armor", "armorProfs", 
-        "abilitySave", "spellcastingAbility", "armorOptions", "spellcastingBonus",
-        "weaponsAdd", "weaponOptions", "action", "scorestxt",
-        "scores", "usages", "recovery", "usagescalc",
-        "limfeaname", "limfeaAddToExisting", "additional", "extraLimitedFeatures",
-        "saves", "shieldAdd", "ammoAdd", "ammoOptions", "carryingCapacity",
-        "advantages", "fixedDC", "fixedSpAttack", "allowUpCasting", "spellcastingExtra", "spellcastingExtraApplyNonconform",
-        "spellChanges", "spellcastingBonusElsewhere", "creatureOptions", "creaturesAdd", "calcChanges",
-        "addMod", "extraAC", "toNotesPage", "eval", "changeeval", "removeeval"],
-        replaceNameInTrait : ["Misgotten", "prefix"]
+        gainTraits : ["everything", "scores", "scorestxt"],
+        updateName : ["Misbegotten", "prefix"]
     },
 };
 
@@ -1055,166 +1041,4 @@ SpellsList["runo's coin throw"] = {
     duration : "Instantaneous",
     description : "Make ranged spell atk; 3d8 Force dmg; Choose silver, gold, or platinum coin to consume (see desc)",
     descriptionFull : "When you cast this spell, you can select the type of coin coin you want to consume; silver, gold, or platinum. All coins deal 3d8 force damage on a successful hit. A silver coin only deals damage. A gold coin deals the damage and the target must succeed on a Strength saving throw or be restrained until the end of their next turn. A platinum coin deals the damage and the target must make a Charisma saving throw or have a single nonmagical possession of your choice transported to an unreachable extraplanar space, reappearing after one minute has passed. This can be a suit of armor, weapons, a purse, etc."
-};
-
-//Overwrite the current function with this one
-AmendOldToNewRace = function(oInstr, bSkipDialogAndForce) {
-    // If the knownOld race doesn't exist, fix the variable
-    if (CurrentRace.knownOld && !RaceList[CurrentRace.knownOld]) {
-        CurrentRace.knownOld = "";
-        CurrentRace.variantOld = "";
-    }
-    var iAskUser = 3; // No
-    var oOldRace = RaceList[CurrentRace.knownOld];
-    var oOldVariant = RaceSubList[CurrentRace.knownOld + "-" + CurrentRace.variantOld];
-    // Check if there is a new and old race known and they aren't identical
-    if (!CurrentRace.known || !CurrentRace.knownOld || CurrentRace.known === CurrentRace.knownOld) {
-        // Show a message for how this type of race works
-        if (bSkipDialogAndForce === undefined && !CurrentRace.knownOld) {
-            app.alert({
-                nIcon : 3, // Status
-                cTitle : "Tip for using the " + CurrentRace.name + " race",
-                cMsg : "The " + CurrentRace.name + " race has the option to use some specific traits from another race, its 'base race'. To use this option, first select a race as normal, and then change it to " + CurrentRace.name + ". If you do that, you will be prompted wheter or not you want to use the race you had selected first as the base race." + (oInstr.message ? "\n\n" + oInstr.message : "")
-            })
-        }
-    } else if (bSkipDialogAndForce === undefined) {
-        // Ask the user if they want to use the previous race as a base for the new race
-        var sOldRaceName = oOldVariant && oOldVariant.name ? oOldVariant.name : oOldRace.name;
-        iAskUser = app.alert({
-            nIcon : 2, // Question
-            nType : 2, // Yes (return = 4), No (return = 3)
-            cTitle : "Use traits from " + sOldRaceName + " for " + CurrentRace.name,
-            cMsg : "The " + CurrentRace.name + " race has the option to use some specific traits from another race. As you had previously selected " + sOldRaceName + " as the race, would you want to use its features?\n\n" + toUni("Press 'Yes' to use traits from " + sOldRaceName + " or\npress 'No' to use the default traits for " + CurrentRace.name + ".") + (oInstr.message ? "\n\n" + oInstr.message : "")
-        });
-        CurrentVars.oldRaceAmendRemember = iAskUser === 4;
-        SetStringifieds("vars");
-    } else if (bSkipDialogAndForce) {
-        iAskUser = 4; // Yes
-    }
-    if (iAskUser === 4) { // Use the traits fromt he previous race
-        // First make the base race combined object
-        var oBaseRace = newObj(oOldRace);
-        if (oOldVariant) {
-            oOldVariant = newObj(oOldVariant);
-            for (var prop in oOldVariant) {
-                oBaseRace[prop] = oOldVariant[prop];
-            }
-            // --- backwards compatibility --- //
-            // if an old attribute exists in the racial variant, but the RaceList object uses the new attribute name, make sure the variant's version is used
-            var backwardsAttr = [["improvements", "scorestxt"], ["armor", "armorProfs"], ["addarmor", "armorAdd"], ["weaponprofs", "weaponProfs"], ["weapons", "weaponsAdd"]];
-            for (var i = 0; i < backwardsAttr.length; i++) {
-                var aBW = backwardsAttr[i];
-                if (oOldVariant[aBW[0]] && oOldVariant[aBW[1]] == undefined && oBaseRace[aBW[1]]) oBaseRace[aBW[1]] = oOldVariant[aBW[0]];
-            }
-        }
-        // Merge the source
-        if (oBaseRace.source) CurrentRace.source = CurrentRace.source.concat(oBaseRace.source);
-        // If the Current race doesn't have a trait set, append old race trait to the new one and exclude the name
-        if(!CurrentRace.trait || CurrentRace.trait === undefined || CurrentRace.trait === "") { // Checks whether the trait wasn't set or left empty
-            // Our CurrentRace.trait was undefined or not in the current race so now we create a trait for the current race
-            if(!CurrentRace.trait || CurrentRace.trait === undefined) {
-                CurrentRace.trait = "";
-            }
-            // Grab the old races trait, except for the name since this is processed later
-            var oRaceTrait = oBaseRace.trait;
-            // We only want the current race name
-            var cRaceTraitName = CurrentRace.name;
-            // This should now be our CurrentRaces name and everything from our original trait except the name
-            CurrentRace.trait = cRaceTraitName + " " + oRaceTrait; 
-        }
-        // Merge the name in the trait
-        if (oInstr.replaceNameInTrait && CurrentRace.trait && oBaseRace.name) {
-            var sReplace = oInstr.replaceNameInTrait[0], sReplaceWith;
-            switch (oInstr.replaceNameInTrait[1] ? oInstr.replaceNameInTrait[1].toLowerCase() : "") {
-                case "replace" :
-                    sReplaceWith = oBaseRace.name;
-                    break;
-                case "prefix" :
-                    sReplaceWith = oBaseRace.name.capitalize() + " " + sReplace;
-                    break;
-                case "insert" :
-                    sReplaceWith = sReplace + " " + oBaseRace.name + (oInstr.replaceNameInTrait[2] ? " " + oInstr.replaceNameInTrait[2] : "");
-                    break;
-                case "suffix" :
-                default :
-                    sReplaceWith = sReplace + " " + oBaseRace.name;
-            }
-            CurrentRace.trait = CurrentRace.trait.replace(sReplace, sReplaceWith)
-        }
-        // Define a function to handle the merging
-        var mergeAttr = function(aProp, oFrom, oTo) {
-            var oBaseRef = oFrom;
-            var oCurRef = oTo;
-            var oCurRefCreated;
-            for (var p = 0; p < aProp.length; p++) {
-                var sProp = aProp[p];
-                if (oBaseRef[sProp]) {
-                    if (p === (aProp.length - 1)) { // last in the array
-                        oCurRef[sProp] = oBaseRef[sProp];
-                        return true;
-                    } else if (typeof oBaseRef[sProp] === "object") {
-                        // move the reference objects one step deeper
-                        oBaseRef = newObj(oBaseRef[sProp]);
-                        if (!oCurRef[sProp]) {
-                            oCurRef[sProp] = {};
-                            if (!oCurRefCreated) oCurRefCreated = aProp[0];
-                        }
-                        oCurRef = oCurRef[sProp];
-                    }
-                } else {
-                    // This (sub)property doesn't exist, so skip this whole entry in the gainTraits array, but first delete any stuff we created from the CurrentRace as its an empty object
-                    if (oCurRefCreated && CurrentRace[oCurRefCreated]) {
-                        var toClean = CleanObject(CurrentRace[oCurRefCreated]);
-                        if (!ObjLength(CurrentRace[oCurRefCreated])) delete CurrentRace[oCurRefCreated];
-                    }
-                    return false;
-                }
-            }
-        }
-        // Now have the CurrenRace object inheret the traits as needed
-        for (var i = 0; i < oInstr.gainTraits.length; i ++) {
-            aProp = oInstr.gainTraits[i].split(".");
-            if ((/^(known(Old)?|variants?(Old)?|level|name|features|trait)$/i).test(aProp[0])) continue;
-            // Merge the attribute of the base race
-            mergeAttr(aProp, oBaseRace, CurrentRace);
-            // Merge the traits in the features, if any
-            if (!oBaseRace.features) continue;
-            for (var sFea in oBaseRace.features) {
-                var oFea = oBaseRace.features[sFea];
-                var oTemp = {
-                    name : oFea.name,
-                    minlevel : oFea.minlevel,
-                    limfeaname : oFea.limfeaname,
-                    usages : oFea.usages,
-                    recovery : oFea.recovery,
-                    action : oFea.action,
-                    source : CurrentRace.source
-                };
-                if (mergeAttr(aProp, oFea, oTemp)) {
-                    if (!CurrentRace.features) CurrentRace.features = {};
-                    var sAttrName = sFea;
-                    while (CurrentRace.features[sAttrName]) {
-                        sAttrName += " bonus";
-                    }
-                    CurrentRace.features[sAttrName] = oTemp;
-                }
-            }
-            if( aProp === "toNotesPage" && oBaseRace.toNotesPage && CurrentRace.toNotesPage) {
-                // Concatenate the arrays
-                CurrentRace.toNotesPage = CurrentRace.toNotesPage.concat(oBaseRace.toNotesPage);
-            }
-        }
-    } else if (oInstr.defaultTraits) { // Use the defaultTraits
-        for (var prop in oInstr.defaultTraits) {
-            if ((/^(known(Old)?|variants?(Old)?|level|name|plural|source)$/i).test(prop)) continue;
-            if (prop === "features") { // merge instead of replace
-                if (!CurrentRace.features) CurrentRace.features = {};
-                for (var fea in oInstr.defaultTraits.features) {
-                    CurrentRace.features = oInstr.defaultTraits.features[fea];
-                }
-                continue;
-            }
-            CurrentRace[prop] = oInstr.defaultTraits[prop];
-        }
-    }
 };
