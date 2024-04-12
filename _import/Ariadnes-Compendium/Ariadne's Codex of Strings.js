@@ -14,7 +14,8 @@ RequiredSheetVersion("13.1.12");
     IMPORTANT
     
     Since spells doesn't have specified classes, I assume all classes get them.
-    Only the nova cluster addition is finished.
+    
+    Nova Cluster, All Father's
 */
 //this is a general source
 SourceList["A:CoS"] = {
@@ -833,8 +834,6 @@ MagicItemsList["orb of threadseeking"] = {
     }],
     action : ["action", "Open Demiplane Gate"]
 };
-//No clue how to do this well as there is virtually no good way to do this
-//To-do: Figure out how to amend the trait from the new race to the old race (misbegotten)
 RaceList["misbegotten"] = {
     regExpSearch : /misbegotten/i,
     name : "Misbegotten",
@@ -842,7 +841,7 @@ RaceList["misbegotten"] = {
     plural : "Misbegottens",
     //stuff to make the pdf not yell at me
     trait : "",
-    size : [],
+    size : [2,3,4],
     speed : {
         walk : { spd : 30, enc : 20 }
     },
@@ -865,8 +864,6 @@ RaceList["misbegotten"] = {
             "You now have resistance to one of the following: psychic, fire, acid, necrotic, or cold.",
             "You gain advantage on saving throws against disease and posion."
         ]),
-        //So far this is covers most cases, there are probably more from "_common attributes" that I havent tested yet
-        //Things I havent tested: saves, shieldAdd, ammoOptions, ammoAdd, advantages, fixedSpAttack, fixedDC, and basically most of the the common attributes
         gainTraits : ["everything", "scores", "scorestxt"],
         updateName : ["Misbegotten", "prefix"]
     },
