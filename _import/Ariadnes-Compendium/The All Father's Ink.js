@@ -362,7 +362,7 @@ MagicItemsList["pandora's box"] = {
 MagicItemsList["shefus' lucky spear"] = {
     name : "Shefus' Lucky Spear",
     source : [["A:TAFI", 21]],
-    description : "While this spear can normally only be wielded by Shefus, you can also use this +2 spear",
+    description : "While this spear can normally only be wielded by Shefus, I can also use this +2 spear",
     type : "weapon (spear)",
     rarity : "uncommon",
     attunement : false,
@@ -386,6 +386,7 @@ MagicItemsList["daring buckler"] = {
     recovery : "Dawn",
     shieldAdd : ["Daring Buckler", 0, 2],
     scores : [0, 1, 0, 0, 0, 0],
+    shieldAdd : ["Daring Buckler -2", 0, 2],
     toNotesPage : [{
         name : "Daring Riposte",
         page3notes : true,
@@ -393,7 +394,7 @@ MagicItemsList["daring buckler"] = {
             "As a reaction, I can add 5 to my AC against a single melee attack that targets me. If this causes the attack to miss, I can make an opportunity attack against the attacking creature as part of the same reaction."
         ])
     }],
-    action : ["reaction", ""]
+    action : ["reaction", "Daring Riposte"]
 };
 
 MagicItemsList["dart"] = {
@@ -496,6 +497,14 @@ MagicItemsList["hunter's edge"] = {
     source : [["A:TAFI", 53]],
     type : "weapon (dagger)",
     rarity : "legendary",
+    weaponsAdd : ["Hunter's Edge"],
+    weaponOptions : [{
+        regExpSearch : /hunter's edge/i,
+        name : "Hunter's Edge",
+        source : [["A:TAFI", 53]],
+        baseWeapon : "dagger",
+        modifiers : [3, 3]
+    }],
     description : "This dagger has a +3 bonus to attack and damage rolls. Additionally, the dagger deals an extra 1d12 bonus damage to aberrations, fiends, and celestials. If the creature I am attacking is at least one size larger than me, on an 18-20 on the attack roll, it is considered to be a critical hit."
 };
 
@@ -676,6 +685,26 @@ SpellsList["barrier of gold"] = {
     components : "V,,M",
     compMaterial : "a golden coin",
     duration : "1 min",
-    description : "Create 15 ft rad sphere; my spell mod crea use rea. takes -4d8+1d8/SL dmg; hostile crea -1d4 atk roll",
+    description : "15 ft rad sphere; my spell mod crea can use rea. takes -4d8+1d8/SL dmg; hostile crea -1d4 atk roll",
     descriptionFull : "You create a 15 ft radius sphere and can choose a number of creatures equal to your spell casting ability modifier. Whenever an affected creature takes damage and is inside the barrier, they can use their reaction to reduce the damage by 4d8. In addition, hostile creatures inside the barrier must subtract 1d4 from their attack rolls." + AtHigherLevels + "When you cast this spell using a spell slot of 6th level or higher, the damage reduction increases by 1d8 for every level above 5th"
 };
+
+// CreatureList["ink-forged dire wolf"] = {
+//     name : "Ink-Forged Dire Wolf",
+//     source : [["A:TAFI", 45]],
+//     size : 2,
+//     type : "Monstrosity",
+//     alignment : "chaotic evil",
+//     ac : 14,
+//     hp : 78,
+//     hd : [6, 10],
+//     speed : "50 ft",
+//     proficiencyBonus : 2,
+//     challengeRating : "3",
+//     scores : [17, 15, 16, 3, 12, 7],
+//     senses : "Darkvision 60 ft", 
+//     attackAction : 1,
+//     attacks : [{
+//         //fill in attacks
+//     }]
+// }
