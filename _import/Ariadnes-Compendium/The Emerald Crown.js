@@ -366,7 +366,7 @@ SpellsList["mushroom messaging"] = {
     components : "V,S",
     duration : "Conc, until dispelled",
     description : "I and 1 willing crea in terrain able to grow mushrooms, communicate telepathetically"
-}
+};
 
 SpellsList["ironwood tempering"] = { 
     name : "Ironwood Tempering",
@@ -380,4 +380,274 @@ SpellsList["ironwood tempering"] = {
     compMaterial : "a shard of petrified wood",
     duration : "Conc, 1 hr",
     description : "One nonmagical armor or shield gains a +1 bonus to AC"
-}
+};
+
+MagicItemsList["third shard of the emerald crown"] = {
+    name : "Third Shard of the Emerald Crown",
+    source : [["A:TEC", 24]],
+    rarity : "artifact",
+    type : "wondrous item",
+    description : desc([
+        "My spell save DC increases by 2 and my Wisdom score cannot be lower than a 20. In addition, I can cast the following spells: daylight, plant growtn, and control water (3/day each), sunbeam, wall of ice, and flame strike (1/day each)."
+    ]),
+    spellcastingBonus : [{
+        name : "Emerald Crown (3/day each)",
+        spells : ["daylight", "plant growth", "control water"],
+        selection : ["daylight", "plant growth", "control water"],
+        times : 3,
+    }, {
+        name : "Emerald Crown (1/day each)",
+        spells : ["sunbeam", "wall of ice", "flame strike"],
+        selection : ["sunbeam", "wall of ice", "flame strike"],
+        times : 3,
+    }]
+};
+
+RaceList["oberon"] = {
+    regExpSearch : /oberon/i,
+    name : "Oberon",
+    source : [["A:TEC", 26]],
+    plural : "Oberons",
+    size : [3,4],
+    speed : {
+        walk : { spd : 30, enc : 20 }
+    },
+    scores : [0, 0, 0, 0, 0, 2],
+    scorestxt : "+2 to Charisma, +1 to any ability score",
+    age : " immortal or 50 years on the material plane before being reborn",
+    height : " ranges from no bigger than an owl to 7ft tall warriors",
+    weight : " weigh between 30 lb to 190 lb",
+    vision : [["Darkvision", 60]],
+    languageProfs : ["Common", "Sylvan"],
+    savetxt : {
+		text : ["Magic can't put me to sleep"],
+		adv_vs : ["charmed"]
+	},
+    trait : "Oberon (+2 Charisma, +1 to any ability score)" + desc([
+        "Fey: My creature type is fey, rather than humanoid.",
+        "Flight: I start with a 30 ft fly speed. To use this speed, I can't be wearing medium or heavy armor. At 11th level, this becomes 50 ft and I can use it while wearing medium or heavy armor.",
+        "Step of Light: I can cast Misty Step a number of times equal to my Proficiency Bonus per long rest"
+    ]),
+    features : {
+        "flight1" : {
+            name : "Flight",
+            minlevel : 1,
+            speed : { fly : { spd : 30, enc : 20 } }
+        },
+        "flight2" : {
+            name : "Flight",
+            minlevel : 11,
+            speed : { fly : { spd : 50, enc : 20 } }
+        },
+        "step of light" : {
+            name : "Step of Light",
+            minlevel : 1,
+            usages : "Proficiency bonus per",
+            usagescalc : "event.value = How('Proficiency Bonus');",
+            spellcastingBonus : [{
+                name : "Step of Light",
+                spells : ["misty step"],
+                selection : ["misty step"],
+                times : 1
+            }]
+        }
+    }
+};
+RaceList["dryad"] = {
+    regExpSearch : /dryad/i,
+    name : "Dryad",
+    source : [["A:TEC", 32]],
+    plural : "Dryads",
+    size : 3,
+    speed : {
+        walk : { spd : 35, enc : 25 }
+    },
+    scorestxt : "+1 to any ability score",
+    vision : [["Darkvision", 30]],
+    languageProfs : ["Common", "Sylvan", "Druidic"],
+    age : " can live up to 500 years",
+    height : " start off no larger than a doe, some grow as big as elk or bigger",
+    weight : " weight between 70 lb to 250 lb",
+    trait : "Dryad (+1 to any ability score)" + desc([
+        "Fey: My creature type is fey, rather than humanoid.",
+        "Druidic Nature: I can communicate with beasts and plants as if we share a language. I also gain the Druidcraft cantrip.",
+        "Maiden's Calling: I gain a feat at 4th level, and another one at 8th level.",
+        "Saints of the Emerald Queen: I gain a feat at 10th level, and another one at 14th level."
+    ]),
+    spellcastingBonus : [{
+        name : "Druidic Nature",
+        spells : ["druidcraft"],
+        selection : ["druidcraft"],
+        times : 1
+    }],
+    toNotesPage : [{
+        name : "Maiden's Calling",
+        note : desc([
+            "I gain one of the following permanent benefits (coded as feats) when I reach 4th and 8th level:",
+            "\u2022 Chaser of Light: I gain resistance to radiant damage and immunity to being blinded. My fur turns bright and sheds dim light out to 10 ft.",
+            "\u2022 Shadow of Obscurity: I gain resistance to necrotic damage. Once per short or long rest while in dim light or darkness, I can blend in to become invisible for a minute, or until I attack or cast a spell. My darkvision increases by 60 ft.",
+            "\u2022 Mother Nature's Embrace: I can cast Entangle, Goodberry, and Cure Wounds once per long rest each. Wisdom is my spellcasting ability. Additionally, once per turn, I can use 10 ft of movement to step into a tree and emerge from a second tree within 30 ft of it. I can carry a medium creature through without any movement penalties.",
+            "\u2022 Call of the Guardian: My Strength increases by 1. I am now considered a large creature and my carry capacity is doubled. I can carry a medium creature on my back without any movement penalties.",
+            "\u2022 Conflux of Distortion: When I see a creature roll a saving throw, ability check, or attack roll within 30 ft of me, I can use my reaction to subtract or add 1d4 to the roll. I can use this a number of times equal to my Charisma modifier per short rest.",
+            "\u2022 Keeper of the Emerald Crown: I gain advantage on saving throws against spells and other magical effects.",
+            "\u2022 Elemental Affinity: I can choose one of the following elements and my fur color changes to match that element.",
+            "   \u2022 Air: I gain a fly speed of 30 ft.",
+            "   \u2022 Water: I gain resistance to cold damage. I can also breathe underwater and gain a swim speed of 60 ft.",
+            "   \u2022 Earth: My Consitution increases by 1, and my total hit point maximum increases by 1 per level gained including levels previous to this feature.",
+            "   \u2022 Fire: I gain resistance to fire damage. Once per short rest, when I take fire damage, I can use my reaction to gain immunity to fire damage until the end of my next turn."
+        ]) 
+    }, {
+        name : "Saints of the Emerald Queen",
+        note : desc([
+            "I gain one of the following permanent benefits (coded as feats) when I reach 10th and 14th level:",
+            "\u2022 Guiding Light",
+            "\u2022 Darkspawn Chosen",
+            "\u2022 Grove Defender",
+            "\u2022 Incarnon of Chaos",
+            "\u2022 Dryad Ascendance",
+            "\u2022 Bulwark of Nature",
+            "\u2022 Master of Elements"
+        ])
+    }]
+};
+
+FeatsList["chaser of light"] = {
+    name : "Chaser of Light",
+    source : [["A:TEC", 32]],
+    description : "I gain resistance to radiant damage and immunity to being blinded. My fur turns bright and sheds dim light out to 10 ft.",
+    savetxt : { immune : ["blinded"] },
+    dmgres : ["Radiant"]
+};
+
+FeatsList["shadow of obscurity"] = {
+    name : "Shadow of Obscurity",
+    source : [["A:TEC", 32]],
+    description : "I gain resistance to necrotic damage. Once per short or long rest while in dim light or darkness, I can blend in to become invisible for a minute, or until I attack or cast a spell. My darkvision increases by 60 ft.",
+    dmgres : ["Necrotic"],
+    vision : [["Darkvision", "+60"]],
+    usages : 1,
+    recovery : "short rest"
+};
+
+FeatsList["mother nature's embrace"] = {
+    name : "Mother Nature's Embrace",
+    source : [["A:TEC", 32]],
+    description : "I can cast Entangle, Goodberry, and Cure Wounds once per long rest each. Wisdom is my spellcasting ability. Additionally, once per turn, I can use 10 ft of movement to step into a tree and emerge from a second tree within 30 ft of it. I can carry a medium creature through without any movement penalties.",
+    spellcastingBonus : [{
+        name : "Mother Nature's Embrace",
+        spells : ["entangle", "goodberry", "cure wounds"],
+        selection : ["entangle", "goodberry", "cure wounds"],
+        times : 3,
+        firstCol : "oncelr"
+    }],
+    usages : 1,
+    recovery : "Turn"
+};
+
+FeatsList["call of the guardian"] = {
+    name : "Call of the Guardian",
+    source : [["A:TEC", 32]],
+    description : "My Strength increases by 1. I am now considered a large creature and my carry capacity is doubled. I can carry a medium creature on my back without any movement penalties.",
+    scores : [1,0,0,0,0,0],
+    eval : function () { PickDropdown("Size Category", 2); },
+    removeeval : function () { PickDropdown("Size Category", 3); },
+};
+
+FeatsList["conflux of distortion"] = {
+    name : "Conflux of Distortion",
+    source : [["A:TEC", 32]],
+    description : "When I see a creature roll a saving throw, ability check, or attack roll within 30 ft of me, I can use my reaction to subtract or add 1d4 to the roll. I can use this a number of times equal to my Charisma modifier per short rest.",
+    usages : "Charisma modifier per",
+    usagescalc : "event.value = Math.max(1, What('Cha Mod'));",
+    recovery : "short rest"
+};
+
+FeatsList["keeper of the emerald crown"] = {
+    name : "Keeper of the Emerald Crown",
+    source : [["A:TEC", 32]],
+    description : "I gain advantage on saving throws against spells and other magical effects.",
+    savetxt : { adv_vs : ["saves vs spells and other magical effects"] }
+};
+
+FeatsList["elemental affinity"] = {
+    name : "Elemental Affinity",
+    source : [["A:TEC", 32]],
+    description : "I can choose one of the following elements and my fur color changes to match that element.",
+    choices : ["Air", "Water", "Earth", "Fire"],
+    "air" : {
+        description : "I gain a fly speed of 30 ft.",
+        speed : { fly : { spd : 30, enc : 20 } },
+    },
+    "water" : {
+        description : "I gain resistance to cold damage. I can also breathe underwater and gain a swim speed of 60 ft.",
+        speed : { swim : { spd : "fixed60", enc : "fixed50" } },
+        dmgres : ["Cold"]
+    },
+    "earth" : {
+        name : "My Consitution increases by 1, and my total hit point maximum increases by 1 per level gained including levels previous to this feature.",
+        scores : [0,1,0,0,0,0]
+    },
+    "fire" : {
+        description : "I gain resistance to fire damage. Once per short rest, when I take fire damage, I can use my reaction to gain immunity to fire damage until the end of my next turn.",
+        dmgres : ["Fire"],
+        action : ["reaction", "Elemental Affinity (fire)"],
+        usages : 1,
+        recovery : "short rest"
+    }
+};
+
+FeatsList["guiding light"] = {
+    name : "Guiding Light",
+    source : [["A:TEC", 33]],
+    description : "I gain a +1 to my Charisma, and the max becomes 22. I can cast the following spells at will at 1st level, requiring no material components: guiding bolt, color spray, faerie fire. I can use my action to use Step of Light to teleport to an unoccupied space within 30 ft of me.",
+    scores : [0,0,0,0,0,1],
+    scoresMax : [0,0,0,0,0,2],
+    spellcastingBonus : [{
+        name : "Guiding Light",
+        spells : ["guiding bolt", "color spray", "faerie fire"],
+        selection : ["guiding bolt", "color spray", "faerie fire"],
+        spellcastingAbility : 6,
+        times : 3,
+        firstCol : "atwill"
+    }],
+    actions : ["action", "Step of Light"]
+};
+
+FeatsList["darkspawn chosen"] = {
+    name : "Darkspawn Chosen",
+    source : [["A:TEC", 33]],
+    description : "I gain a +1 to my Dexterity, and the max becomes 22. I can cast the following spells at will at 1st level, requiring no material components: darkness, see invisibility. I can see norrmally in both magical and nonmagical darknes to a range of 120 ft.",
+    scores : [0,1,0,0,0,0],
+    scoresMax : [0,22,0,0,0,0],
+    spellcastingBonus : [{
+        name : "Darkspawn Chosen",
+        spells : ["darkness", "see invisibility"],
+        selection : ["darkness", "see invisibility"],
+        spellcastingAbility : "class",
+        times : 2,
+        firstCol : "atwill"
+    }],
+    vision : [["Greater Darkvision", "fixed129"]]
+};
+
+FeatsList["grove defender"] = {
+    name : "Grove Defender",
+    source : [["A:TEC", 33]],
+    description : "I gain a +1 to my Wisdom, and the max becomes 22. I can cast the following spells once per long rest: plant growth, polymorph.",
+    scores : [0,0,0,1,0,0],
+    scoresMax : [0,0,0,22,0,0],
+    spellcastingBonus : [{
+        name : "Grove Defender",
+        spells : ["plant growth", "polymorph"],
+        selection : ["plant growth", "polymorph"],
+        spellcastingAbility : 5,
+        times : 2,
+        firstCol : "oncelr"
+    }],
+};
+
+FeatsList["incarnon of chaos"] = {
+    name : "Incarnon of Chaos",
+    source :[["A:TEC", 33]],
+    
+};
