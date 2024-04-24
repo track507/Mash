@@ -136,7 +136,6 @@ FeatsList["boons of the fae serpent"] = {
     }
 }
 
-// Code Dryad as feats since sheet doesnt allow for RaceList choices
 AddSubClass("fighter", "moss knight", {
     regExpSearch : /^(?=.*moss)(?=.*knight).*$/i,
     subname : "Moss Knight",
@@ -366,7 +365,7 @@ SpellsList["mushroom messaging"] = {
     components : "V,S",
     duration : "Conc, until dispelled",
     description : "I and 1 willing crea in terrain able to grow mushrooms, communicate telepathetically"
-};
+}
 
 SpellsList["ironwood tempering"] = { 
     name : "Ironwood Tempering",
@@ -380,7 +379,7 @@ SpellsList["ironwood tempering"] = {
     compMaterial : "a shard of petrified wood",
     duration : "Conc, 1 hr",
     description : "One nonmagical armor or shield gains a +1 bonus to AC"
-};
+}
 
 MagicItemsList["third shard of the emerald crown"] = {
     name : "Third Shard of the Emerald Crown",
@@ -503,7 +502,7 @@ RaceList["dryad"] = {
             "\u2022 Guiding Light",
             "\u2022 Darkspawn Chosen",
             "\u2022 Grove Defender",
-            "\u2022 Incarnon of Chaos",
+            "\u2022 Incarnation of Chaos",
             "\u2022 Dryad Ascendance",
             "\u2022 Bulwark of Nature",
             "\u2022 Master of Elements"
@@ -643,11 +642,142 @@ FeatsList["grove defender"] = {
         spellcastingAbility : 5,
         times : 2,
         firstCol : "oncelr"
-    }],
+    }]
 };
 
-FeatsList["incarnon of chaos"] = {
-    name : "Incarnon of Chaos",
+FeatsList["incarnation of chaos"] = {
+    name : "Incarnation of Chaos",
     source :[["A:TEC", 33]],
-    
+    desription : "I can cast the following spells once per long rest requiring no material components: confusion, dimension door. Additionally, whenever I roll a 1 on an ability check or saving throw, I cantreat it as a natural 20.",
+    spellcastingBonus : [{
+        name : "Incarnation of Chaos",
+        spells : ["confusion", "dimension door"],
+        selection : ["confusion", "dimension door"],
+        spellcastingAbility : 5,
+        times : 2,
+        firstCol : "oncelr"
+    }]
 };
+
+FeatsList["dryad ascendance"] = {
+    name : "Dryad Ascendance",
+    source : [["A:TEC", 33]],
+    description : "My Wisdom increases by 1. Additionally, I can use Fey Charm.",
+    scores : [0,0,0,0,1,0],
+    toNotesPage : [{
+        name : "Fey Charm",
+        note : desc([
+            "I can target one humanoid or beast that I can see within 30 ft of me. If the target can see me, it must make a Wisdom saving throw or be charmed.",
+            "While charmed, I am considered its trusted friend to be heeded and protected. Although it is not under my control, it takes my requests or actions in the most favorable way it can. Anytime I or my allies harm the target, it can repeat the saving throw. This lasts for an hour.",
+            "If the target succeed's its saving throw, it is immune to Fey Charm for 24 hours. I can have no more than 1 humanoid and up to 3 beasts charmed at a time."
+        ])
+    }]
+}
+
+// finish this and add prereqs to each
+FeatsList["bulwark of nature"] = {
+    name : "Bulwark of Nature",
+    source : [["A:TEC", 33]],
+    description : "My Constitution increases by 1, up to a max of 20, and my hit point maximum increases by 15. Additionally, I become immune to poison damage and the poisoned condition.",
+    scores : [0,0,1,0,0,0],
+    dmgres : ["Poison"],
+    savetxt : { immune : ["Poisoned"]}
+}
+
+SpellsList["summon greater fungi"] = {
+    name : "Summon Greater Fungi",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TEC", 69]],
+    school : "Conj",
+    time : "1 a",
+    range : "90 ft",
+    level : 6,
+    components : "V,S,M",
+    compMaterial : "a vial filled with mycelium",
+    duration : "Conc, 1 hr",
+    description : "Summon giant mushroom; returns home if concentration breaks",
+    descriptionFull : "You call forth a giant mushroom to aid you. It protects you and your allies and follows your verbal commands. If your concentration breaks, it returns to its home. The giant mushroom has the statistics of an awakened tree, but it is immune to poison damage, has an additional 30 hp, and can use Spore Breath." + AtHigherLevels + "When you cast this spell using a spell slot of 7th level or higher, the giant mushroom gains an additional 15 hit points and +2 to hit and damage rolls for each level above 6th."
+}
+
+CreatureList["giant mushroom"] = {
+    name : "Giant Mushroom",
+    source : [["A:TEC", 60]],
+    size : 1,
+    type : "Plant",
+    alignment : "Unaligned",
+    ac : 13,
+    hp : 89,
+    hd : [7, 12],
+    speed : "20 ft",
+    scores : [19,6,15,10,10,7],
+    senses : "",
+    passivePerception : 10,
+    challengeRating : "2",
+    proficiencyBonus : 2,
+    attacksAction : 1,
+    damage_resistances : "bludeoning, piercing",
+    damage_vulnerabilities : "fire",
+    languages : "one language known by its creator",
+    attacks : [{
+        name : "Slam",
+        ability : 1,
+        damage : [3,6,"bludgeoning"],
+        range : "Melee (10 ft)",
+        description : "",
+        abilitytodamage : false,
+    }, {
+        name : "Spore Breath (Recharge 5-6)",
+        ability : 2,
+        damage : [8, 6, "poison"],
+        range : "30-ft cone",
+        dc : true,
+        abilitytodamage : false,
+        description : "8d6 poison and poisoned, 1/2, no poisoned on save; Incapicated if crea is already poisoned",
+    }],
+    features : [{
+		name : "False Appearance",
+		description : "While the tree remains motionless, it is indistinguishable from a normal tree.",
+	}],
+    notes : [{
+        name : "At Higher Levels",
+        description : desc([
+            "When casting Summon Greater Fungi at 7th level or higher, the Giant Mushroom gains an additional 15 hit points and a +2 to hit and damage rolls for each level above 6th"
+        ])
+    }]
+}
+
+SpellsList["blighting smite"] = {
+    name : "Blighting Smite",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TEC", 69]],
+    level : 3,
+    school : "Evoc",
+    time : "1 bns",
+    range : "Self",
+    components : "V",
+    duration : "Conc, 1 min",
+    description : "Next weapon hit +3d8+1d8/SL Necrotic dmg; save or speed 1/2, cannot regain hp; Crit and Disadv. vs Plants",
+    descriptionFull : "On your next weapon hit, the attack deals an extra 3d8 necrotic damage. The target must make a Constitution saving throw or have it speed halved and cannot regain hp until the end of its next turn. When you hit a plant with a weapon imbued with this spell, it's always a critial hit and has disadvantage on the saving throw." + AtHigherLevels + "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd."
+}
+
+MagicItemsList["ixion's greataxe"] = {
+    name : "Ixion's Greataxe",
+    source : [["A:TEC", 88]],
+    type : "weapon (greataxe)",
+    rarity : "artifact",
+    attunement : true,
+    description : "This +3 greataxe increases my critical range by 2. Additionally, it deals 2d8 dark damage on a hit. Only creatures with Necrotic immunity has resistance to this damage. See notes for removing the curse.",
+    toNotesPage : [{
+        name : "Removing Ixion's Curse",
+        note : desc(["If I remove this curse with a remove curse spell at 9th level, I lose the additional 2d8 damage and instead gain life transference. This allows me to heal half the amount of hit points it deals on a successful attack against a creature. Alternatively, I can choose to redirect the healing to an ally with 30 ft of me"])
+    }],
+    weaponsAdd : ["Ixion's Greataxe"],
+    weaponOptions : [{
+        baseWeapon : "greataxe",
+        regExpSearch : /ixion's/i,
+        name : "Ixion's Greataxe",
+        source : [["A:TEC", 88]],
+        description : "Heavy, two-handed; +2d8 dark dmg or heal 1/2 dmg dealt if curse removed; Crit range +2",
+        modifiers : [3,3]
+    }]
+}
