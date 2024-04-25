@@ -517,6 +517,8 @@ RaceList["dryad"] = {
 FeatsList["chaser of light"] = {
     name : "Chaser of Light",
     source : [["A:TEC", 32]],
+    prerequisite : "Being a Dryad",
+    prereqeval : function(v) {return CurrentRace.known.indexOf("dryad") !== -1}, 
     description : "I gain resistance to radiant damage and immunity to being blinded. My fur turns bright and sheds dim light out to 10 ft.",
     savetxt : { immune : ["blinded"] },
     dmgres : ["Radiant"]
@@ -615,7 +617,7 @@ FeatsList["guiding light"] = {
         firstCol : "atwill"
     }],
     prerequisite : "Chaser of Light Racial Feat",
-    prereqeval : function(n) { return CurrentFeats.known.indexOf("chaser of light") !== -1 ;},
+    prereqeval : function(v) { return CurrentFeats.known.indexOf("chaser of light") !== -1 ;},
     actions : ["action", "Step of Light"]
 };
 
@@ -626,7 +628,7 @@ FeatsList["darkspawn chosen"] = {
     scores : [0,1,0,0,0,0],
     scoresMax : [0,22,0,0,0,0],
     prerequisite : "Shroud of Obscurity Racial Feat",
-    prereqeval : function(n) { return CurrentFeats.known.indexOf("shrorud of obscurity") !== -1 ;},
+    prereqeval : function(v) { return CurrentFeats.known.indexOf("shrorud of obscurity") !== -1 ;},
     spellcastingBonus : [{
         name : "Darkspawn Chosen",
         spells : ["darkness", "see invisibility"],
@@ -645,7 +647,7 @@ FeatsList["grove defender"] = {
     scores : [0,0,0,1,0,0],
     scoresMax : [0,0,0,22,0,0],
     prerequisite : "Mother Nature's Embrace Racial Feat",
-    prereqeval : function(n) { return CurrentFeats.known.indexOf("mother nature's embrace") !== -1 ;},
+    prereqeval : function(v) { return CurrentFeats.known.indexOf("mother nature's embrace") !== -1 ;},
     spellcastingBonus : [{
         name : "Grove Defender",
         spells : ["plant growth", "polymorph"],
@@ -661,7 +663,7 @@ FeatsList["incarnation of chaos"] = {
     source :[["A:TEC", 33]],
     desription : "I can cast the following spells once per long rest requiring no material components: confusion, dimension door. Additionally, whenever I roll a 1 on an ability check or saving throw, I cantreat it as a natural 20.",
     prerequisite : "Conflux of Distorsion Racial Feat",
-    prereqeval : function(n) { return CurrentFeats.known.indexOf("conflux of distorsion") !== -1 ;},
+    prereqeval : function(v) { return CurrentFeats.known.indexOf("conflux of distorsion") !== -1 ;},
     spellcastingBonus : [{
         name : "Incarnation of Chaos",
         spells : ["confusion", "dimension door"],
@@ -687,7 +689,6 @@ FeatsList["dryad ascendance"] = {
     }]
 }
 
-// finish this and add prereqs to each
 FeatsList["bulwark of nature"] = {
     name : "Bulwark of Nature",
     source : [["A:TEC", 33]],
