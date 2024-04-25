@@ -85,7 +85,6 @@ AddSubClass("sorcerer", "teng", {
             vision : [
                 ["Arcane Sight", 30]
             ],
-
         },
         "subclassfeature1.1" : {
             name : "Promise to the Fallen",
@@ -191,3 +190,104 @@ AddSubClass("sorcerer", "teng", {
         }
     }
 });
+
+MagicItemsList["nightingale pendants"] = {
+    name : "Nightingale Pendants",
+    source : [["A:TLB", 17]],
+    type : "wondrous item",
+    rarity : "rare",
+    attunement : true,
+    description : "These pendants have 10 charges, and regains 1d4+1 charges at dawn. I may expend a charge to ignore a spell's verbal and somatic components, two charges to cast darkness, pass without trace, or silence, and four charges to cast invisibility.",
+    usages : 10,
+    recovery : "dawn",
+    spellcastingBonus : [{
+        name : "Nightingale Pendants (2 charges)",
+        spells : ["darkness", "pass without trace", "silence"],
+        selection : ["darkness", "pass without trace", "silence"],
+        times : 3,
+        firstCol : 2
+    },{
+        name : "Nightingale Pendants (4 charges)",
+        spells : ["invisibility"],
+        selection : ["invisibility"],
+        times : 1,
+        firstCol : 4
+    }],
+    toNotesPage : [{
+        name : "Nightingale Pendants",
+        page3notes : true,
+        note : "I may expend 1 charge to ignore the verbal and somtic components of a spell."
+    }]
+};
+
+MagicItemsList["monocle of blindsight"] = {
+    name : "Monocle of Blindsight",
+    source : [["A:TLB", 18]],
+    type : "wondrous item",
+    rarity : "rare",
+    attunement : true,
+    description : "I gain blindsight out to a range of 120ft with perfect clarity, but do not see color. Additionally, I have advantage on Perception checks relying on hearing and can cast scrying (DC 15) once per day. I lose the benefits, except spellcasting, if I am deafened or blinded.",
+    vision : [
+        ["Blindsight", 120],
+        ["Keen Hearing"]
+    ],
+    spellcastingBonus : [{
+        name : "Monocle of Blindsight",
+        spells : ["scrying"],
+        selection : ["scrying"],
+        fixedDC : 15,
+        times : 1,
+        firstCol : "dawn"
+    }]
+}
+
+MagicItemsList["time's judgement"] = {
+    name : "Time's Judgement",
+    source : [["A:TLB", 18]],
+    type : "wondrous item",
+    rarity : "very rare",
+    attunement : true,
+    description : "Once per short rest, I can use my action to choose a creature within 60ft to make a DC 17 Charisma save or be on trial for 5 rounds. This fails if the creature is on a different plane, or if I die or fall unconscious.",
+    descriptionFull : "Once per short rest, I can use my action to choose a creature within 60ft to make a DC 17 Charisma save or be on trial for 5 rounds. This fails if the creature is on a different plane, or if I die or fall unconscious.\n   " + toUni("Curse") + ". This item is cursed. When activating this item, there's a 5% chance that I will become the target instead of the designated creature.",
+    toNotesPage : [{
+        name : "Time's Judgement: Trial",
+        page3notes : true,
+        note : "Trial: While on trial, the creature takes 1d4+2 for every attack or damaging spell used. If the target is damaged 5 or more times by this, it must succeed a DC 17 Constitution saving throw or be stunned until the end of their next turn."
+    }, {
+        name : "Time's Judgement: Curse",
+        page3notes : true,
+        note : "Curse: This item is cursed. When activating this item, there's a 5% chance that I will become the target instead of the designated creature."
+    }],
+    cursed : true,
+    usages : 1,
+    recovery : "short rest"
+}
+
+MagicItemsList["circlet of astronomy"] = {
+    name : "Circlet of Astronomy",
+    source : [["A:TLB", 19]],
+    type : "wondrous item",
+    rarity : "legendary",
+    description : "I cannot be banished or transported to another plane against my will. Additionally, I can cast the following spells: banishment, conjure woodland beings, conjure minor elementals (5/day), conjure elemental, contact other plane, commune with nature (3/day), planar ally, conjure fey, plane shift (1/day). When I cast a spell, roll 1d20. On a 1, the circlet can no longer cast that spell ever again. Only a wish spell can restore the broken beads.",
+    spellcastingBonus : [{
+        name : "Circlet of Astronomy (5/day)",
+        spells : ["banishment", "conjure woodland beings", "conjure minor elementals"],
+        selection : ["banishment", "conjure woodland beings", "conjure minor elementals"],
+        times : 3,
+        firstCol : 5
+    }, {
+        name : "Circlet of Astronomy (3/day)",
+        spells : ["conjure elemental", "contact other plane", "commune with nature"],
+        selection : ["conjure elemental", "contact other plane", "commune with nature"],
+        times : 3,
+        firstCol : 3
+    }, {
+        name : "Circlet of Astronomy (1/day)",
+        spells : ["planar ally", "conjure fey", "plane shift"],
+        selection : ["planar ally", "conjure fey", "plane shift"],
+        times : 3,
+        firstCol : 1
+    }],
+    usages : 0,
+    recovery : "dawn"
+}
