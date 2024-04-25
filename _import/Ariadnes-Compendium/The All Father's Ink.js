@@ -37,7 +37,7 @@ AddSubClass("barbarian", "path of the challenger", {
             name : "Einherjar Bond", 
             source : [["A:TAFI", 73]],
             minlevel : 10,
-            description : "If I am reduced to 0 hit points, a spirit appears above me. I have advantage on death saving throws, and an 18 or 19 is treated as a critical success. It disappears after I regain consciousness or are stabilized. I cannot use this again until I finish a short or long rest.",
+            description : "If I am reduced to 0 hit points, a spirit appears above me. I have advantage on death saving throws, and an 18 or 19 is treated as a critical success. It disappears after I regain consciousness or stabilized. I cannot use this again until I finish a short or long rest.",
             usages : 1,
             recovery : "short rest"
         },
@@ -45,7 +45,7 @@ AddSubClass("barbarian", "path of the challenger", {
             name : "Golden Challenger",
             source : [["A:TAFI", 73]],
             minlevel : 14,
-            description : "While I am raging, my AC cannot be lower than 20, I gain resistance to radiant damage and necrotic damage, and have advantage on rolls to resist curses and diseases of any kind."
+            description : "While I am raging, my AC cannot be lower than 20, I gain resistance to radiant and necrotic damage, and have advantage on rolls to resist curses and diseases of any kind."
         }
     }
 });
@@ -688,23 +688,3 @@ SpellsList["barrier of gold"] = {
     description : "15 ft rad sphere; my spell mod crea can use rea. takes -4d8+1d8/SL dmg; hostile crea -1d4 atk roll",
     descriptionFull : "You create a 15 ft radius sphere and can choose a number of creatures equal to your spell casting ability modifier. Whenever an affected creature takes damage and is inside the barrier, they can use their reaction to reduce the damage by 4d8. In addition, hostile creatures inside the barrier must subtract 1d4 from their attack rolls." + AtHigherLevels + "When you cast this spell using a spell slot of 6th level or higher, the damage reduction increases by 1d8 for every level above 5th"
 };
-
-// CreatureList["ink-forged dire wolf"] = {
-//     name : "Ink-Forged Dire Wolf",
-//     source : [["A:TAFI", 45]],
-//     size : 2,
-//     type : "Monstrosity",
-//     alignment : "chaotic evil",
-//     ac : 14,
-//     hp : 78,
-//     hd : [6, 10],
-//     speed : "50 ft",
-//     proficiencyBonus : 2,
-//     challengeRating : "3",
-//     scores : [17, 15, 16, 3, 12, 7],
-//     senses : "Darkvision 60 ft", 
-//     attackAction : 1,
-//     attacks : [{
-//         //fill in attacks
-//     }]
-// }
