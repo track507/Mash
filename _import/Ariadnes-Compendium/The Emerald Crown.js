@@ -527,6 +527,8 @@ FeatsList["chaser of light"] = {
 FeatsList["shadow of obscurity"] = {
     name : "Shadow of Obscurity",
     source : [["A:TEC", 32]],
+    prerequisite : "Being a Dryad",
+    prereqeval : function(v) {return CurrentRace.known.indexOf("dryad") !== -1}, 
     description : "I gain resistance to necrotic damage. Once per short or long rest while in dim light or darkness, I can blend in to become invisible for a minute, or until I attack or cast a spell. My darkvision increases by 60 ft.",
     dmgres : ["Necrotic"],
     vision : [["Darkvision", "+60"]],
@@ -538,6 +540,8 @@ FeatsList["mother nature's embrace"] = {
     name : "Mother Nature's Embrace",
     source : [["A:TEC", 32]],
     description : "I can cast Entangle, Goodberry, and Cure Wounds once per long rest each. Wisdom is my spellcasting ability. Additionally, once per turn, I can use 10 ft of movement to step into a tree and emerge from a second tree within 30 ft of it. I can carry a medium creature through without any movement penalties.",
+    prerequisite : "Being a Dryad",
+    prereqeval : function(v) {return CurrentRace.known.indexOf("dryad") !== -1}, 
     spellcastingBonus : [{
         spellcastingAbility : 5,
         name : "Mother Nature's Embrace",
@@ -555,6 +559,8 @@ FeatsList["call of the guardian"] = {
     source : [["A:TEC", 32]],
     description : "My Strength increases by 1. I am now considered a large creature and my carry capacity is doubled. I can carry a medium creature on my back without any movement penalties.",
     scores : [1,0,0,0,0,0],
+    prerequisite : "Being a Dryad",
+    prereqeval : function(v) {return CurrentRace.known.indexOf("dryad") !== -1}, 
     eval : function () { PickDropdown("Size Category", 2); },
     removeeval : function () { PickDropdown("Size Category", 3); },
 };
@@ -563,6 +569,8 @@ FeatsList["conflux of distorsion"] = {
     name : "Conflux of Distorsion",
     source : [["A:TEC", 32]],
     description : "When I see a creature roll a saving throw, ability check, or attack roll within 30 ft of me, I can use my reaction to subtract or add 1d4 to the roll. I can use this a number of times equal to my Charisma modifier per short rest.",
+    prerequisite : "Being a Dryad",
+    prereqeval : function(v) {return CurrentRace.known.indexOf("dryad") !== -1}, 
     usages : "Charisma modifier per",
     usagescalc : "event.value = Math.max(1, What('Cha Mod'));",
     recovery : "short rest"
@@ -571,6 +579,8 @@ FeatsList["conflux of distorsion"] = {
 FeatsList["keeper of the emerald crown"] = {
     name : "Keeper of the Emerald Crown",
     source : [["A:TEC", 32]],
+    prerequisite : "Being a Dryad",
+    prereqeval : function(v) {return CurrentRace.known.indexOf("dryad") !== -1}, 
     description : "I gain advantage on saving throws against spells and other magical effects.",
     savetxt : { adv_vs : ["saves vs spells and other magical effects"] }
 };
@@ -579,6 +589,8 @@ FeatsList["elemental affinity"] = {
     name : "Elemental Affinity",
     source : [["A:TEC", 32]],
     description : "I can choose one of the following elements and my fur color changes to match that element.",
+    prerequisite : "Being a Dryad",
+    prereqeval : function(v) {return CurrentRace.known.indexOf("dryad") !== -1}, 
     choices : ["Air", "Water", "Earth", "Fire"],
     "air" : {
         description : "I gain a fly speed of 30 ft.",
@@ -616,8 +628,8 @@ FeatsList["guiding light"] = {
         times : 3,
         firstCol : "atwill"
     }],
-    prerequisite : "Chaser of Light Racial Feat",
-    prereqeval : function(v) { return CurrentFeats.known.indexOf("chaser of light") !== -1 ;},
+    prerequisite : "Chaser of Light Racial Feat, Being a Dryad",
+    prereqeval : function(v) { return CurrentRace.known.indexOf("dryad") !== -1 && CurrentFeats.known.indexOf("chaser of light") !== -1 ;},
     actions : ["action", "Step of Light"]
 };
 
@@ -627,8 +639,8 @@ FeatsList["darkspawn chosen"] = {
     description : "I gain a +1 to my Dexterity, and the max becomes 22. I can cast the following spells at will at 1st level, requiring no material components: darkness, see invisibility. I can see norrmally in both magical and nonmagical darknes to a range of 120 ft.",
     scores : [0,1,0,0,0,0],
     scoresMax : [0,22,0,0,0,0],
-    prerequisite : "Shroud of Obscurity Racial Feat",
-    prereqeval : function(v) { return CurrentFeats.known.indexOf("shrorud of obscurity") !== -1 ;},
+    prerequisite : "Shroud of Obscurity Racial Feat, Being a Dryad",
+    prereqeval : function(v) { return CurrentRace.known.indexOf("dryad") !== -1 && CurrentFeats.known.indexOf("shrorud of obscurity") !== -1 ;},
     spellcastingBonus : [{
         name : "Darkspawn Chosen",
         spells : ["darkness", "see invisibility"],
@@ -637,7 +649,7 @@ FeatsList["darkspawn chosen"] = {
         times : 2,
         firstCol : "atwill"
     }],
-    vision : [["Greater Darkvision", "fixed129"]]
+    vision : [["Greater Darkvision", "fixed120"]]
 };
 
 FeatsList["grove defender"] = {
@@ -646,8 +658,8 @@ FeatsList["grove defender"] = {
     description : "I gain a +1 to my Wisdom, and the max becomes 22. I can cast the following spells once per long rest: plant growth, polymorph.",
     scores : [0,0,0,1,0,0],
     scoresMax : [0,0,0,22,0,0],
-    prerequisite : "Mother Nature's Embrace Racial Feat",
-    prereqeval : function(v) { return CurrentFeats.known.indexOf("mother nature's embrace") !== -1 ;},
+    prerequisite : "Mother Nature's Embrace Racial Feat, Being a Dryad",
+    prereqeval : function(v) { return CurrentRace.known.indexOf("dryad") !== -1 && CurrentFeats.known.indexOf("mother nature's embrace") !== -1 ;},
     spellcastingBonus : [{
         name : "Grove Defender",
         spells : ["plant growth", "polymorph"],
@@ -662,8 +674,8 @@ FeatsList["incarnation of chaos"] = {
     name : "Incarnation of Chaos",
     source :[["A:TEC", 33]],
     desription : "I can cast the following spells once per long rest requiring no material components: confusion, dimension door. Additionally, whenever I roll a 1 on an ability check or saving throw, I cantreat it as a natural 20.",
-    prerequisite : "Conflux of Distorsion Racial Feat",
-    prereqeval : function(v) { return CurrentFeats.known.indexOf("conflux of distorsion") !== -1 ;},
+    prerequisite : "Conflux of Distorsion Racial Feat, Being a Dryad",
+    prereqeval : function(v) { return CurrentRace.known.indexOf("dryad") !== -1 && CurrentFeats.known.indexOf("conflux of distorsion") !== -1 ;},
     spellcastingBonus : [{
         name : "Incarnation of Chaos",
         spells : ["confusion", "dimension door"],
@@ -679,6 +691,8 @@ FeatsList["dryad ascendance"] = {
     source : [["A:TEC", 33]],
     description : "My Wisdom increases by 1. Additionally, I can use Fey Charm.",
     scores : [0,0,0,0,1,0],
+    prerequisite : "Being a Dryad",
+    prereqeval : function(v) {return CurrentRace.known.indexOf("dryad") !== -1},
     toNotesPage : [{
         name : "Fey Charm",
         note : desc([
@@ -694,6 +708,8 @@ FeatsList["bulwark of nature"] = {
     source : [["A:TEC", 33]],
     description : "My Constitution increases by 1, up to a max of 20, and my hit point maximum increases by 15. Additionally, I become immune to poison damage and the poisoned condition.",
     scores : [0,0,1,0,0,0],
+    prerequisite : "Being a Dryad",
+    prereqeval : function(v) {return CurrentRace.known.indexOf("dryad") !== -1},
     dmgres : ["Poison"],
     savetxt : { immune : ["Poisoned", "Poison"]},
     calcChanges : {
