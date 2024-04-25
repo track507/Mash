@@ -752,6 +752,7 @@ CreatureList["giant mushroom"] = {
     attacksAction : 1,
     damage_resistances : "bludeoning, piercing",
     damage_vulnerabilities : "fire",
+    damage_immunities : "poison",
     languages : "one language known by its creator",
     attacks : [{
         name : "Slam",
