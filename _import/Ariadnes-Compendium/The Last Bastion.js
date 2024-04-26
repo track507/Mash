@@ -341,6 +341,7 @@ MagicItemsList["the last moonsilver"] = {
         },{
             name : "Tail Swipe",
             damage : [2,6, "radiant"],
+            baseWeapon : "unarmed strike",
             ability : 1,
             range : "Melee (15 ft)",
             description : "DC 18 Dexterity save or knocked prone",
@@ -375,3 +376,5 @@ MagicItemsList["the last moonsilver"] = {
         }]
     }]
 };
+
+
