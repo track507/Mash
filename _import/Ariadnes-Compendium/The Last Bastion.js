@@ -293,103 +293,85 @@ MagicItemsList["circlet of astronomy"] = {
 }
 
 // change and update this magic item
-// MagicItemsList["the last moonsilver"] = {
-//     name : "The Last Moonsilver",
-//     source : [["A:TLB", 20], ["KMI", 0]],
-//     rarity : "artifact",
-//     type : "wondrous item",
-//     description : "",
-//     scorestxt : "+1 to all ability scores, or +2 if moon is out",
-//     scores : [1, 1, 1, 1, 1, 1],
-//     attunement : true,
-//     creaturesAdd : [["Moonsilver Envoy", true]],
-//     creatureOptions : [{
-//         name : "Moonsilver Envoy",
-//         source : [["A:TLB", 20], ["KMI", 0]],
-//         size : 3,
-//         type : "Fey",
-//         alignment : "Chaotic Neutral",
-//         ac : 18,
-//         hp : 80,
-//         hd : [15, 8],
-//         speed : "30 ft, fly 60 ft",
-//         scores : [21, 14, 16, 12, 14, 16],
-//         damage_resistances : "radiant",
-//         condition_immunities : "charmed, blinded",
-//         senses : "",
-//         passivePerception : 19, 
-//         languages : "common, sylvan, and one other language",
-//         challengeRating : "9",
-//         proficiencyBonus : 4,
-//         attacksAction : 2,
-//         skills : {
-//             "athletics" : 9,
-//             "perception" : 10,
-//             "survival" : 7
-//         },
-//         attacks : [{
-//             name : "Justiciar's Halberd",
-//             damage : [1,10, "slashing"],
-//             ability : 1,
-//             range : "Melee (10 ft)",
-//             description : "Heavy, reach, two-handed",
-//             abilitytodamage : true,
-//             modifiers : ["", 2]
-//         },{
-//             name : "Divine Smite (3/day) (Summer)",
-//             damage : [1,10, "slashing"],
-//             ability : 1,
-//             range : "Melee (10 ft)",
-//             description : "+3d8 radiant dmg",
-//             abilitytodamage : true,
-//             modifiers : ["", 2]
-//         },{
-//             name : "Ensnaring Smite (Spring)",
-//             damage : [1,10, "slashing"],
-//             ability : 1,
-//             range : "Melee (10 ft)",
-//             description : "see traits below",
-//             abilitytodamage : true,
-//             modifiers : ["", 2]
-//         }],
-//         traits : [{
-//             name : "Polearm Mastery (reaction)",
-//             description : "The Envoy can make an opportunity attack against a creature that comes within reach of its halberd.",
-//         }],
-//         features : [{
-//             name : "Magic Resistance",
-//             description : "The Envoy has advantage on saving throw against spells and other magical effects.",
-//         }, {
-//             name : "Armor of Black Leaves (heavy)",
-//             description : "The Envoys AC is 16 plus its Con. mod. and doesn't impose disadvantage on stealth checks.",
-//         }, {
-//             name : "Executioner (1/day)",
-//             description : "When the Envoy reduces a creatures hp to 0, it can immediately move up to half its max speed and take another action."
-//         }],
-//         actions : [{
-//             name : "Multiattack",
-//             description : "The Envoy makes two weapon attacks and can use its Step of Light.",
-//         }, {
-//             name : "Step of Light (bonus action)",
-//             description : "The Envoy steps into the Guide and teleports to an unoccupied space within 30 ft."
-//         }, {
-//             name : "Healing Touch (1/day) (Spring)",
-//             description : "The Envoy touches a creature and regains 3d8 hp and is cured from any curse, disease, poison, blindness, or deafness."
-//         }, {
-//             name : "Ensnaring Smite (Spring)",
-//             description : "On hit, creature must make a DC 15 Strength save or be restrained by vines for 1 min., taking 1d6 piercing dmg at the start of each turn. A creature restrained or within reach can use its action to make a DC 15 Athletics check to escape.",
-//         }, {
-//             name : "Divine Smite (Summer)",
-//             description : "A creature hit by this attack takes the weapons normal dmg plus 3d8 radiant dmg."
-//         }],
-//         notes : [{
-//             name : "Champion of the Four Seasons",
-//             description : desc([
-//                 "\u2022 Summer: " + "The Envoy gains resistance to fire and its weapon attacks deal an additional 1d6 fire damage. Additionally, it can cast Daylight at will requiring only verbal components and can use the Divine Smite action.",
-//                 "\u2022 Autumn: " + "The Envoy can cast the following spells (2/day): Invisibility (self only), Disguise Self, Major Image, and Dimension Door.",
-//                 "\u2022 Winter: " + "The Envoy gains resistance to cold and its weapons attacks deal an additional 1d4 cold damage. It can also cast Ice storm one per day requiring only verbal components.",
-//                 "\u2022 Spring: " + "If the Envoy starts its turn with 50 hp or less, it heals for 8 hp. In addition, it can use the Ensnaring Smite and Healing Touch actions."
-//             ])
-//         }]
-//     }]
-// };
+MagicItemsList["the last moonsilver"] = {
+    name : "The Last Moonsilver",
+    source : [["A:TLB", 20]],
+    rarity : "artifact",
+    type : "wondrous item",
+    description : "see notes",
+    toNotesPage : [{
+        name : "The Last Moonsilver",
+        note : desc([
+            "I gain a +1 to all ability scores, or +2 if the moon is out. My crit range vs aberrations and lycanthropes becomes 17-20, unless its already less in which it increases by 1, and all weapon and unarmed attacks are considered silvered. I also gain the help of the Moonsilver Envoy.",
+            "I can call the envoy as an action and lasts until I recall it or it's killed. If I recall it, I can summon it back with its remaing HP and resources. If it dies, I must finished a long rest before summoning it again. Regardless, it regains all lost HP and spent resources when I finish a long rest.",
+            "The Moonsilver Envoy is a CR 11 legendary celestial, and is friendly with me unless I am collaborating with lycanthropes or aberrations."
+        ])
+    }], 
+    scorestxt : "+1 to all ability scores, or +2 if moon is out",
+    scores : [1, 1, 1, 1, 1, 1],
+    attunement : true,
+    creaturesAdd : [["Moonsilver Envoy", true]],
+    creatureOptions : [{
+        name : "Moonsilver Envoy",
+        source : [["A:TLB", 21]],
+        size : 2,
+        type : "Celestial",
+        alignment : "unaligned",
+        ac : 16,
+        hp : 114,
+        hd : [17, 10],
+        speed : "30 ft, fly 90 ft",
+        scores : [15, 22, 16, 14, 20, 13],
+        damage_resistances : "slashing, bludgeoning, piercing from non-magical attacks",
+        damage_immunities : "radiant, cold",
+        condition_immunities : "",
+        senses : "darkvision 240 ft",
+        passivePerception : 15, 
+        languages : "understands Teng and Primeval, but doesn't speak",
+        challengeRating : "11",
+        proficiencyBonus : 4,
+        attacksAction : 2,
+        attacks : [{
+            name : "Talons",
+            baseWeapon : "unarmed strike",
+            damage : [2,4, "radiant"],
+            ability : 1,
+            range : "Melee (5 ft)",
+            abilitytodamage : true
+        },{
+            name : "Tail Swipe",
+            damage : [2,6, "radiant"],
+            ability : 1,
+            range : "Melee (15 ft)",
+            description : "DC 18 Dexterity save or knocked prone",
+            abilitytodamage : true
+        }, {
+            name : "Moonlight Breath (1/day)",
+            damage : [8,10, "radiant"],
+            description : "Save, 1/2 dmg; Failed, take dmg and lose all resistances; Special",
+            special : true,
+            tooltip : "Special: Lycanthropes and Aberrations have disadvantage on the save, and gain radiant; fire; piercing, slashing, and bludgeoning dmg from silvered weapons on failed save.",
+            range : "30-ft cone",
+            ability : 2,
+        }],
+        traits : [{
+            name : "Hybrid Being",
+            description : "The envoy is considered both a celestial and a dragon, and is affected by abilities that target either creature type."
+        }, {
+            name : "Moon Avatar",
+            description : "If lowered to 0 hp, it returns to the amulet. The wearer must complete a long rest to summon it again."
+        }],
+        saves : ["", 10, 7, "", 9, ""],
+        actions : [{
+            name : "Multiattack",
+            description : "The envoy makes two attacks with its talons and one with its tail swipe."
+        }, {
+            name : "Graceful Evasion",
+            description : "The envoy adds 1d4+6 to its AC, but must see the attacker to do this."
+        }],
+        notes : [{
+            name : "Destroying the Amulet",
+            description : "After the envoy has been reduced to 0 hp, one must deal 114 force damage to the amulet to permanently destroy it."
+        }]
+    }]
+};
