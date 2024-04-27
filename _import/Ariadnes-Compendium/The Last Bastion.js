@@ -447,7 +447,7 @@ AddSubClass("paladin", "oath of eminence", {
             source : [["A:TLB", 36]],
             minlevel : 3,
             description : desc([
-                "As an action for the next minute, I can add my charisma modifier to hit with my weapon attacks.",
+                "For the next minute, I can add my charisma modifier to hit with my weapon attacks.",
                 "When I hit a creature with this weapon, the next attack or saving throw they make is reduced by 1d4.",
                 "This effect does not stack."
             ]),
@@ -457,7 +457,8 @@ AddSubClass("paladin", "oath of eminence", {
                         if( !v.isDC && /eminent/i.text(v.WeaponTextName) ) {
                             fields.Description += (fields.Description ? '; ' : '') + "Crea -1d4 next atk/save"
                         }
-                    }
+                    },
+                    "If I include 'eminent' as part of the weapon's name, the automation will treat it as an 'Eminent Weapon', granting its benefits.",
                 ],
                 atkCalc : [
                     function(fields, v, output) {
@@ -466,12 +467,34 @@ AddSubClass("paladin", "oath of eminence", {
                         }
                     }
                 ]
-            }
+            },
+            spellcastingExtra : ["bane", "protection from evil good", "borrowed knowledge", "hold person", "speak with dead", "hypnotic pattern", "locate creature", "banishment", "arcane hand", "dominate person"]
         },
         "subclassfeature3.1" : {
             name : "Channel Divinity: Regal Presence",
             source : [["A:TLB", 36]],
             minlevel : 3,
+            description : desc([
+                "I can choose up to four allies within 30 ft of me.",
+                "They gain a 1d6 bonus to their next attack or saving throw.",
+                "Additionally, they gain temporary hit points equal to my Prof. Bonus + my Charisma modifier.",
+                "This lasts until the end of my next turn."
+            ]),
+            additional : levels.map(function(n) {
+                if(n < 3) return "";
+                return "+1d6 next attack or saving throw"
+            }),
+        },
+        "subclassfeature7" : {
+            name : "Amaranth Aura",
+            source : [["A:TLB", 36]],
+            minlevel : 7,
+            description : desc([
+                "When a creature within range targets only me with an attack or harmful spell, it must make a Charisma saving throw.",
+                "On a failure, they are incapacitated until the end of their next turn. A creature that succeeds or when the effect ends is immune to this until they finish a long rest.",
+                "This feature isn't triggered by area of effect spells."
+            ]),
+            additional : levels.map(function(n) { return n < 7 ? "" : (n < 18 ? 15 : 30) + "-foot aura"; }),
         }
     }
 })
