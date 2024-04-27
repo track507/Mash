@@ -339,6 +339,11 @@ MagicItemsList["first shard of the crown"] = {
                     fields.Description += (fields.Description ? '; ' : '') + "+1d6 radiant"
                 }
             }
+        ],
+        spellCalc : [
+            function(type, spellcasters, ability) {
+                if(type !== "prepare") return 1;
+            }
         ]
     }
 };
@@ -393,6 +398,13 @@ MagicItemsList["third shard of the emerald crown"] = {
     description : desc([
         "My spell save DC increases by 2 and my Wisdom score cannot be lower than a 20. In addition, I can cast the following spells: daylight, plant growtn, and control water (3/day each), sunbeam, wall of ice, and flame strike (1/day each)."
     ]),
+    calcChanges : {
+        spellCalc : [
+            function(type, spellcasters, ability) {
+                if(type === "dc") return 2;
+            }
+        ]
+    },
     spellcastingBonus : [{
         name : "Emerald Crown (3/day each)",
         spells : ["daylight", "plant growth", "control water"],
@@ -589,6 +601,7 @@ FeatsList["elemental affinity"] = {
     name : "Elemental Affinity",
     source : [["A:TEC", 32]],
     description : "I can choose one of the following elements and my fur color changes to match that element.",
+    allowDuplicates : false,
     prerequisite : "Being a Dryad",
     prereqeval : function(v) {return CurrentRace.known.indexOf("dryad") !== -1}, 
     choices : ["Air", "Water", "Earth", "Fire"],
@@ -640,7 +653,7 @@ FeatsList["darkspawn chosen"] = {
     scores : [0,1,0,0,0,0],
     scoresMax : [0,22,0,0,0,0],
     prerequisite : "Shroud of Obscurity Racial Feat, Being a Dryad",
-    prereqeval : function(v) { return CurrentRace.known.indexOf("dryad") !== -1 && CurrentFeats.known.indexOf("shrorud of obscurity") !== -1 ;},
+    prereqeval : function(v) { return CurrentRace.known.indexOf("dryad") !== -1 && CurrentFeats.known.indexOf("shroud of obscurity") !== -1 ;},
     spellcastingBonus : [{
         name : "Darkspawn Chosen",
         spells : ["darkness", "see invisibility"],
