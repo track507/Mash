@@ -29,19 +29,19 @@ MagicItemsList["sword and gourd"] = {
     usages : 0,
     recovery : "1/2 dmg",
     spellcastingBonus : [{
-        name : "Gourd Spells",
+        name : "Gourd Spells (10)",
         spells : ["healing word", "cure wounds"],
         selection : ["healing word", "cure wounds"],
         times : 2,
         firstCol : 10
     }, {
-        name : "Gourd Spells",
+        name : "Gourd Spells (20)",
         spells : ["aid", "lesser restoration"],
         selection : ["aid", "lesser restoration"],
         times : 2,
         firstCol : 20
     }, {
-        name : "Gourd Spells",
+        name : "Gourd Spells (30)",
         spells : ["mass healing word", "revivify"],
         selection : ["mass healing word", "revivify"],
         times : 2,
@@ -65,7 +65,7 @@ MagicItemsList["grasping death"] = {
     rarity : "very rare",
     type : "wondrous item (consumable)",
     description : desc([
-        "I can throw this against a surface. Creatures within 15ft must make DC 14 Con. and DC 16 Cha. saving throws. Creatures take 4d8 necrotic damage upon failing the Con. save, or half on a success, and possed by an evil spirit for 1 minute upon failing the Cha. save."
+        "I can throw this against a surface. Creatures within 15ft must make DC 14 Con and DC 16 Cha saving throws. Creatures take 4d8 necrotic damage upon failing the Con save, or half on a success, and possed by an evil spirit for 1 minute upon failing the Cha save."
     ]),
     toNotesPage : [{
         name : "Grasping Death: Possession & Death",
