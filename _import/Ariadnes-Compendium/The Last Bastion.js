@@ -378,3 +378,100 @@ MagicItemsList["the last moonsilver"] = {
 };
 
 
+FeatsList["philosopher"] = {
+    name : "Philosopher",
+    source : [["A:TLB", 32]],
+    description : "My Intelligence, Wisdom, or Charisma increases by 1. Additionally, I gain proficiency with Insight and Persuasion, or expertise if already proficient.",
+    scorestxt : "+1 Intelligence, Wisdom, or Charisma",
+    skills : [
+        ["Insight", "increment"],
+        ["Persuasion", "increment"]
+    ]
+}
+
+FeatsList["teng genius"] = {
+    name : "Teng Genius",
+    source : [["A:TLB", 32]],
+    description : "My Intelligence increases by 1 up to a max of 20. I can calulcate trajectories, complex mathematics, and chemical reactions in my head. I have advantage on saving throws vs environmental hazards I can see and ability checks made to use arcane or scientific artifacts that I can inspect.",
+    scores : [0,0,0,1,0,0],
+    savetxt : { adv_vs : ["environmental hazards I can see", "ability checks to use scientific/arcane articats I can inspect"] }
+}
+
+FeatsList["inspired heart"] = {
+    name : "Inspired Heart",
+    source : [["A:TLB", 32]],
+    description : "My Wisdom or Charisma increased by 1. When I witness a work of art for the first time, I can roll a DC 14 Insight check to gain Inspiration, or add 1d10 to an ability check, saving throw, or attack roll if my DM does not use this optional rule, and must use this before gaining another. I gain proficiency with one set of tools and instrument of my choice.",
+    scorestxt : "+1 Wisdom or Charisma",
+    toolProfs : [
+        ["Any Tool or Instrument", 1]
+    ]
+}
+
+FeatsList["improvised casting"] = {
+    name : "Improvised Casting",
+    source : [["A:TLB", 33]],
+    prerequisite : "Being a wizard or artificer",
+    prereqeval : function(v) { return classes.known.wizard || classes.known.artificer ? true : false},
+    description : "My Intelligence increases by 1. When I cast a wizard or artificer spell, I can improve an aspect of the spell with the cost of another; see notes. Once I modify a spell, I cannot do so again until I finish a short or long rest.",
+    usages : 1,
+    recovery : "short rest",
+    toNotesPage : [{
+        name : "Improved Casting",
+        note : desc([
+            "I can improve one of the following aspects of the spell as the cost of another. I can double its range, duration, area of effect, or the amount of targets, but must select one of these categories and divide it by 2. A spell cannot be modified so it targets less than one creature, last for less than instantanous, or has a shorter range than touch.",
+        ])
+    }]
+}
+
+FeatsList["scion of promise"] = {
+    name : "Scion of Promise",
+    source : [["A:TLB", 33]],
+    description : "The promise manifests an Echo as an action on my turn. The effects depends on my character level, and can only use each effect once over my existence. Levels 1-4: Mass Healing Word (+5 ability modifier), Levels 5-13: Planar Ally exists for 10 minutes, Levels 14+: Remake reality (similar to Cleric's Divine Intervention)."
+}
+
+FeatsList["thoughts before action"] = { 
+    name : "Thoughts Before Action",
+    source : [["A:TLB", 33]],
+    prerequisite : "Intelligence 13 or higher",
+	prereqeval : function(v) { return Number(What("Int")) >= 13; },
+    description : "My intelligence increases by 1. Additionally when I take one minute to analyze a course of action, I gain a bonus to the associated check equal to my Intelligence modifier."
+}
+
+AddSubClass("paladin", "oath of eminence", {
+    regExpSearch : /^(?=.*(eminence))(((?=.*paladin)|((?=.*(exalted|sacred|holy|divine))(?=.*(knight|fighter|warrior|warlord|trooper))))).*$/i,
+    subname : "Oath of Eminence",
+    source : [["A:TLB", 36]],
+    features : {
+        "subclassfeature3" : {
+            name : "Channel Divinity: Eminent Weapon",
+            source : [["A:TLB", 36]],
+            minlevel : 3,
+            description : desc([
+                "As an action for the next minute, I can add my charisma modifier to hit with my weapon attacks.",
+                "When I hit a creature with this weapon, the next attack or saving throw they make is reduced by 1d4.",
+                "This effect does not stack."
+            ]),
+            calcChanges : {
+                atkAdd : [
+                    function(fields, v) {
+                        if( !v.isDC && /eminent/i.text(v.WeaponTextName) ) {
+                            fields.Description += (fields.Description ? '; ' : '') + "Crea -1d4 next atk/save"
+                        }
+                    }
+                ],
+                atkCalc : [
+                    function(fields, v, output) {
+                        if( /eminent/i.text(v.WeaponTextName) ) {
+                            output.extraHit += Number(What("Cha Mod")) > 0 ? Number(What("Cha Mod")) : 0;
+                        }
+                    }
+                ]
+            }
+        },
+        "subclassfeature3.1" : {
+            name : "Channel Divinity: Regal Presence",
+            source : [["A:TLB", 36]],
+            minlevel : 3,
+        }
+    }
+})
