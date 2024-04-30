@@ -492,9 +492,31 @@ AddSubClass("paladin", "oath of eminence", {
             description : desc([
                 "When a creature within range targets only me with an attack or harmful spell, it must make a Charisma saving throw.",
                 "On a failure, they are incapacitated until the end of their next turn. A creature that succeeds or when the effect ends is immune to this until they finish a long rest.",
-                "This feature isn't triggered by area of effect spells."
+                "This feature isn't triggered by area of effect spells.",
+                "Additionally at 18th level, a creature that has become immune to my Regal Presence ability, can be affected by it again."
             ]),
             additional : levels.map(function(n) { return n < 7 ? "" : (n < 18 ? 15 : 30) + "-foot aura"; }),
+        },
+        "subclassfeature15" : {
+            name : "Magic Resistance",
+            source : [["A:TLB", 36]],
+            minlevel : 15,
+            description : desc([
+                "I gain advantage on saving throws vs spells and other magical effects."
+            ]),
+            savetxt : { adv_vs : ["spells and other magical effects"]}
+        },
+        "subclassfeature20" : {
+            name : "Eminent Soul",
+            source : [["A:TLB", 36]],
+            minlevel : 20,
+            description : desc([
+                "I can use my action to call upon the power of my ancestry. For the next minute, I gain one of the following benefits:",
+                "\u2022 Limited Magic Immunity: I cannot be affected or detected by spells of 6th level or lower",
+                "\u2022 Eminent Protection: I become resistant to one of the following damage types: fire, cold, thunder, lightning, and poison",
+                "\u2022 Breach Space: Once per turn, I can use my bonus action to teleport to an unoccupied space within 30 ft",
+                "\u2022 Antimagic Smite: Whenever I hit a creature with my Divine Smite, any spells the creature was concentrating on ends, as well as any ongoing magical effects."
+            ])
         }
     }
 })
