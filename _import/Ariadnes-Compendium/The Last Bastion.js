@@ -520,3 +520,55 @@ AddSubClass("paladin", "oath of eminence", {
         }
     }
 })
+
+MagicItemsList["senatorial cloak"] = {
+    name : "Senatorial Cloak",
+    source : [["A:TLB", 38]],
+    type : "wondrous item",
+    rarity : "rare",
+    attunement : true,
+    description : "My AC becomes 13 + Dex. For 10 minutes one per short rest, I gain a hover speed equal to my walk speed. I can also cast the Thaumaturgy cantrip. Additionally, I gain a +2 to Persuasion and Intimidation checks.",
+    armorAdd : ["Senatorial Cloak"],
+    armorOptions : [{
+        regExpSearch : /senatorial cloak/,
+        name : "Senatorial Cloak",
+        source : [["A:TLB", 38]],
+        ac : 13,
+        affectsWildShape : true
+    }]
+}
+
+MagicItemsList["maul of construct turning"] = {
+    name : "Maul of Construct Turning",
+    source : [["A:TLB", 38]],
+    type : "weapon (maul)",
+    rarity : "very rare",
+    attunement : true,
+    description : "I have a +2 to damage and attack rolls made with this maul. When I hit a construct, they take an additional 1d8 lightning damage and must succeed a DC 14 Consitution saving throw or be Incapacitated until the end of their next turn. If I am a Cleric, I can use my Turn Undead to target constructs instead of undead.",
+    weaponsAdd : ["Maul of Construct Turning"],
+    weaponOptions : [{
+        regExpSearch : /^(?=.*maul)(?=.*construct)(?=.*turning).*$/i,
+        name : "Maul of Construct Turning",
+        baseWeapon : "maul",
+        description : "Heavy, two-handed; +1d8 lightning dmg to Constructs",
+        modifiers : [2,2],
+    }]
+}
+
+MagicItemsList["clockwork needle"] = {
+    name : "Clockwork Needle",
+    source : [["A:TLB", 39]],
+    type : "wondrous item",
+    rarity : "common",
+    attunement : false,
+    description : "Three times per day, I can mend damage to a construct within 5 ft of me. The needle restors 2d8+5 to the construct. Additionally, I can make an improvised weapon attack to organic creatures. On a hit, it deals 3d8+5 piercing damage and the needle breaks.",
+    weaponsAdd : ["Clockwork Needle"],
+    weaponOptions : [{
+        regExpSearch : /clockwork needle/i,
+        name : "Clockwork Needle",
+        source : [["A:TLB", 39]],
+        type : "Improvised Weapon",
+        description : "Construct heals 2d8+5; Breaks after attacking a creature",
+        damage : [3, 8, "piercing"]
+    }]
+}
