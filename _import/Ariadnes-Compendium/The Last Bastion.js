@@ -572,3 +572,41 @@ MagicItemsList["clockwork needle"] = {
         damage : [3, 8, "piercing"]
     }]
 }
+
+MagicItemsList["gloves of performance"] = { 
+    name : "Gloves of Performance",
+    source : [["A:TLB", 39]],
+    type : "wondrous item",
+    rarity : "rare",
+    attunement : true,
+    description : "When I speak of imagery, an illusion of it will appear in front of me. I gain advantage on performance, persuasion, and deception checks, and if I am proficient with any of these skills, I gain expertise instead. Additionally, I can cast major image at will.",
+    skills : [
+        ["Performance", "only"],
+        ["Persuasion", "only"],
+        ["Deception", "only"]
+    ],
+    spellcastingBonus : [{
+        name : "Gloves of Performance",
+        spells : ["major image"],
+        selection : ["major image"],
+        firstCol : "atwill"
+    }]
+}
+
+MagicItemsList["mask of the platinum owl"] = {
+    name : "Mask of the Platinum Owl",
+    source : [["A:TLB", 39]],
+    type : "wondrous item",
+    rarity : "legendary",
+    atunement : true,
+    description : "My Wisdom increases by 2 to a max of 23, and I gain truesight with a range of 30 ft. If I am an 11th level druid or higher, I gain additional benefits found on the notes page.",
+    toNotesPage : [{
+        name : "Mask of the Platinum Owl: Druid Option",
+        description : desc([
+            "If I am an 11th level or higher druid, I unlocked the masks power to Wild Shape into a Giant Platinum Owl. This is a greater version of the Giant Owl, and has the following statistics",
+            "\u2022 Ancient Constitution: The Giant Platinum Owl has 77 (9d10+27) hitpoints, an AC of 15, Constitution of 16, Wisdom of 18, Dexterity of 20, and truesight out to a range of 60 ft instead of the Giant Owl's normal statistics.",
+            "\u2022 ",
+            "\u2022 "
+        ])
+    }]
+}
