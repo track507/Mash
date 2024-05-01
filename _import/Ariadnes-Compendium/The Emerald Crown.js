@@ -106,7 +106,7 @@ FeatsList["boons of the fae serpent"] = {
     descriptionFull : "",
     description : "",
     allowDuplicates : true,
-    choices : ["Fae Mind Shielding", "Fae Whispering", "Unknowable Resilience", "Coraphéist’s Heartbless", "Conjuration Circle"],
+    choices : ["Fae Mind Shielding", "Fae Whispering", "Unknowable Resilience", "Corapheist’s Heartbless", "Conjuration Circle"],
     "fae mind shielding" : {
         description : "I have advantage on saving throws against spells and effects that would frighten or charm me.",
         savetxt : { adv_vs : ["charmed", "frightened"] }
