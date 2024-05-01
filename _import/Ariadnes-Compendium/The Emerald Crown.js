@@ -159,7 +159,7 @@ AddSubClass("fighter", "moss knight", {
             name : "Thorn Sprout",
             source : [["A:TEC", 52]],
             minlevel : 3,
-            description : "I can use my bonus action to sprout venomous thorns on my armor and weapons, which lasts for one minute. Attacks deal an additional 1d6 poison damage and when a creature hits me with a melee attack, they take 1d6 poison damage. While the thorns are sprouted, my melee attacks are magical. I can use this again once I finish a short or long rest.",
+            description : "\n   " + "I can use my bonus action to sprout venomous thorns on my armor and weapons, which lasts for one minute. Attacks deal an additional 1d6 poison damage and when a creature hits me with a melee attack, they take 1d6 poison damage. While the thorns are sprouted, my melee attacks are magical. I can use this again once I finish a short or long rest.",
             usages : 1,
             recovery : "short rest",
             actions : ["bonus action", ""]
@@ -175,14 +175,14 @@ AddSubClass("fighter", "moss knight", {
             name : "Sylvan Soul",
             soure : [["A:TEC", 52]],
             minlevel : 7,
-            description : "I can communicate with beasts and plants as though we share a language. They are friendly to me unless they are under the effects of a curse or if I am overly hostile to them. Additionally, I gain resistance to poison damage and moving through nonmagical difficult terrain does not cost me extra movement. I can move through nonmagical plants without being slowed by them and void damage from them if they have thorns, spines, or similar hazards.",
+            description : "\n   " + "I can communicate with beasts and plants as though we share a language. They are friendly to me unless they are under the effects of a curse or if I am overly hostile to them. Additionally, I gain resistance to poison damage and moving through nonmagical difficult terrain does not cost me extra movement. I can move through nonmagical plants without being slowed by them and void damage from them if they have thorns, spines, or similar hazards.",
             dmgres : ["posion"]
         },
         "subclassfeature10" : {
             name : "Permanent Thorns",
             source : [["A:TEC", 52]],
             minlevel : 10,
-            description : "My Thorn Sprout ability is always active unless I choose to dismiss it. Additionally, whenever I hit a creature with a melee attack, they must succeed a Stength saving throw against my spell save DC or be restrained by magical vines until the end of their next turn.",
+            description : "\n   " + "My Thorn Sprout ability is always active unless I choose to dismiss it. Additionally, whenever I hit a creature with a melee attack, they must succeed a Stength saving throw against my spell save DC or be restrained by magical vines until the end of their next turn.",
             calcChanges : {
                 atkAdd : [
                     function(fields, v) {
@@ -197,7 +197,7 @@ AddSubClass("fighter", "moss knight", {
             name : "Dryad Blood",
             source : [["A:TEC", 52]],
             minlevel : 15,
-            description : "I gain immunity to poision damage, and cannot be affected by poison or disease. Additonally, I gain a bonus to all of my saving throws equal to my Wisdom modifier",
+            description : "\n   " + "I gain immunity to poision damage, and cannot be affected by poison or disease. Additonally, I gain a bonus to all of my saving throws equal to my Wisdom modifier",
             addMod : [{ type : "save", field : "all", mod : "Wis", text : "I gain a bonus to all of my saving throws equal to my Wisdom modifier"}],
             savetxt : { immune : ["posion", "disease"]}
         },
@@ -205,7 +205,7 @@ AddSubClass("fighter", "moss knight", {
             name : "Moss Liege",
             source : [["A:TEC", 52]],
             minlevel : 18,
-            description : "Flowers and herbs bloom behind me as I walk, and I can command plants and animals and they are compelled to heed them unless it is harmful to them or nature in general. I regenerate 1d4+1 hit points at the start of each of my turns and stopped aging.",
+            description : "\n   " + "Flowers and herbs bloom behind me as I walk, and I can command plants and animals and they are compelled to heed them unless it is harmful to them or nature in general. I regenerate 1d4+1 hit points at the start of each of my turns and stopped aging.",
             usages : 1,
             recovery : "turn",
         }
