@@ -173,7 +173,7 @@ AddSubClass("fighter", "moss knight", {
         },
         "subclassfeature7" : {
             name : "Sylvan Soul",
-            soure : [["A:TEC", 52]],
+            source : [["A:TEC", 52]],
             minlevel : 7,
             description : "\n   " + "I can communicate with beasts and plants as though we share a language. They are friendly to me unless they are under the effects of a curse or if I am overly hostile to them. Additionally, I gain resistance to poison damage and moving through nonmagical difficult terrain does not cost me extra movement. I can move through nonmagical plants without being slowed by them and void damage from them if they have thorns, spines, or similar hazards.",
             dmgres : ["posion"]
