@@ -10,6 +10,29 @@ SourceList["A:TLB"] = {
     date : "2024/02/14"
 };
 
+CompanionList["ariadne's: the last bastion codex"] = {
+    name : "Ariadne's: The Last Bastion Codex",
+    nameMenu : "Ariadne's: The Last Bastion Codex",
+    source : [["A:TLB", 39]]
+}
+if(!SourceList["A:CoS"]) {
+    SourceList["A:CoS"] = {
+    name : "Ariadne's: Codex of Strings",
+    abbreviation : "A:CoS",
+    abbreviationSpellsheet : "A",
+    group : "Homebrew",
+    url : "https://www.patreon.com/codexofstrings/posts",
+    date : "2024/02/14"
+    };
+}
+if(!CompanionList["ariadne's codex"]) {
+        CompanionList["ariadne's codex"] = {
+        name : "Ariadne's Codex",
+        nameMenu : "Ariadne's Codex",
+        source : [["A:TLB", 39]]
+    }
+}
+
 MagicItemsList["teng arcanocyper"] = {
     name : "Teng Arcanocyper",
     source : [["A:TLB", 6]],
@@ -609,10 +632,48 @@ MagicItemsList["mask of the platinum owl"] = {
             "\u2022 Blessing of Knowledge: The owl can understand and speak all languages, and has advantage on rolls made to understand coded messages and other extraneous script.",
             "\u2022 Paralyzing Breath (Recharge 6): The owl exhales gas in a 15-ft cone. Each creature must make DC 14 Constitution saving throw or be paralyzed for 1 minute. A creature can repeat the saving throw at the end of each of its turns."
         ])
-    }]
+    }],
 }
 
-CompanionList["ariadne's: the last bastion codex"] = {
-    name : "Ariadne's: The Last Bastion Codex",
-    nameMenu : "Ariadne's: The Last Bastion Codex"
+CreatureList["giant platinum owl"] = {
+    name : "Giant Platinum Owl",
+    source : [["A:TLB", 39]],
+    size : 4,
+    type : "Beast",
+    alignment : "Neutral",
+    ac : 15,
+    hp : 77,
+    hd : [9, 10],
+    speed : "5 ft, fly 60 ft",
+    scores : [13, 20, 16, 8, 18, 10],
+    skills : {
+        "perception" : 8,
+        "stealth" : 7
+    },
+    senses : "Darkvision 120ft, Adv. on Wis (Perception) checks using sight/hearing",
+    passivePerception : 23,
+    languages : "Can understand and speak all languages",
+    challengeRating : "1/4",
+    proficiencyBonus : 2,
+    attacksAction : 1,
+    attacks : [{
+		name : "Talons",
+		ability : 1,
+		damage : [2, 6, "slashing"],
+		range : "Melee (5 ft)"
+	}, {
+        name : "Paralyzing Breath (recharge 6)",
+        ability : 3,
+        damage : ["", "", ""],
+        range : "15-ft cone",
+        description : "Save or paralyzed for 1 min; Save again at end of each turn",
+        dc : true,
+    }],
+    traits : [{
+        name : "Flyby",
+        description : "The owl doesn't provoke opportunity attacks when it flies out of an enemy's reach."
+    }, {
+        name : "Blessing of Knowledge",
+        description : "The owl can understand and speak all languages. Additionally, it has advantage on rolls made to understand coded messages and other extraneous script."
+    }],
 }
