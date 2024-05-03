@@ -19,25 +19,25 @@ AddSubClass("barbarian", "path of the challenger", {
             name : "Noble Rage",
             source : [["A:TAFI", 73]],
             minlevel : 3,
-            description : "When raging, I gain a +2 to attack rolls made against enemies that are above half of their maximum hit points, and a +2 to damage rolls against enemies that are at or below half of their maximum hit points."
+            description : "\n   " + "When raging, I gain a +2 to attack rolls made against enemies that are above half of their maximum hit points, and a +2 to damage rolls against enemies that are at or below half of their maximum hit points."
         },
         "subclassfeature3.1" : {
             name : "Challenger's Right",
             source : [["A:TAFI", 73]],
             minlevel : 3,
-            description : "Whenever I hit a creature with a reckless attack or critical hit, they are now under the effects of the compelled duel spell until the end of their next turn."
+            description : "\n   " + "Whenever I hit a creature with a reckless attack or critical hit, they are now under the effects of the compelled duel spell until the end of their next turn."
         },
         "subclassfeature6" : {
             name : "Conquerer of Worthy Foes",
             source : [["A:TAFI", 73]],
             minlevel : 6,
-            description : 'Whenever a creature is affected by the "Challenger\'s Right" feature for the first time, they take 2d6 psychic damage, and an additional 1d6 psychic damage every time I hit it with a melee attack while under its effects.'
+            description : "\n   " + 'Whenever a creature is affected by the "Challenger\'s Right" feature for the first time, they take 2d6 psychic damage, and an additional 1d6 psychic damage every time I hit it with a melee attack while under its effects.'
         },
         "subclassfeature10" : {
             name : "Einherjar Bond", 
             source : [["A:TAFI", 73]],
             minlevel : 10,
-            description : "If I am reduced to 0 hit points, a spirit appears above me. I have advantage on death saving throws, and an 18 or 19 is treated as a critical success. It disappears after I regain consciousness or stabilized. I cannot use this again until I finish a short or long rest.",
+            description : "\n   " + "If I am reduced to 0 hit points, a spirit appears above me. I have advantage on death saving throws, and an 18 or 19 is treated as a critical success. It disappears after I regain consciousness or stabilized. I cannot use this again until I finish a short or long rest.",
             usages : 1,
             recovery : "short rest"
         },
@@ -45,7 +45,7 @@ AddSubClass("barbarian", "path of the challenger", {
             name : "Golden Challenger",
             source : [["A:TAFI", 73]],
             minlevel : 14,
-            description : "While I am raging, my AC cannot be lower than 20, I gain resistance to radiant and necrotic damage, and have advantage on rolls to resist curses and diseases of any kind."
+            description : "\n   " + "While I am raging, my AC cannot be lower than 20, I gain resistance to radiant and necrotic damage, and have advantage on rolls to resist curses and diseases of any kind."
         }
     }
 });

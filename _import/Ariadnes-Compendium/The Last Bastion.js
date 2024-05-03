@@ -600,13 +600,19 @@ MagicItemsList["mask of the platinum owl"] = {
     rarity : "legendary",
     atunement : true,
     description : "My Wisdom increases by 2 to a max of 23, and I gain truesight with a range of 30 ft. If I am an 11th level druid or higher, I gain additional benefits found on the notes page.",
+    vision : [["Truesight", 30]],
     toNotesPage : [{
         name : "Mask of the Platinum Owl: Druid Option",
         description : desc([
             "If I am an 11th level or higher druid, I unlocked the masks power to Wild Shape into a Giant Platinum Owl. This is a greater version of the Giant Owl, and has the following statistics",
-            "\u2022 Ancient Constitution: The Giant Platinum Owl has 77 (9d10+27) hitpoints, an AC of 15, Constitution of 16, Wisdom of 18, Dexterity of 20, and truesight out to a range of 60 ft instead of the Giant Owl's normal statistics.",
-            "\u2022 ",
-            "\u2022 "
+            "\u2022 Ancient Constitution: The owl has 77 (9d10+27) hitpoints, an AC of 15, Constitution of 16, Wisdom of 18, Dexterity of 20, and truesight out to a range of 60 ft instead of the Giant Owl's normal statistics.",
+            "\u2022 Blessing of Knowledge: The owl can understand and speak all languages, and has advantage on rolls made to understand coded messages and other extraneous script.",
+            "\u2022 Paralyzing Breath (Recharge 6): The owl exhales gas in a 15-ft cone. Each creature must make DC 14 Constitution saving throw or be paralyzed for 1 minute. A creature can repeat the saving throw at the end of each of its turns."
         ])
     }]
+}
+
+CompanionList["ariadne's: the last bastion codex"] = {
+    name : "Ariadne's: The Last Bastion Codex",
+    nameMenu : "Ariadne's: The Last Bastion Codex"
 }
