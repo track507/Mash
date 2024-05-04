@@ -1,5 +1,5 @@
 var iFileName = "TheLastBastion";
-RequiredSheetVersion("13.1.12");
+RequiredSheetVersion("13.1.13");
 
 SourceList["A:TLB"] = {
     name : "Ariadne's: The Last Bastion",
@@ -10,9 +10,9 @@ SourceList["A:TLB"] = {
     date : "2024/02/14"
 };
 
-CompanionList["ariadne's: the last bastion codex"] = {
-    name : "Ariadne's: The Last Bastion Codex",
-    nameMenu : "Ariadne's: The Last Bastion Codex",
+CompanionList["ariadne's: the last bastion companion codex"] = {
+    name : "Ariadne's: The Last Bastion Companion Codex",
+    nameMenu : "Ariadne's: The Last Bastion Companion Codex",
     source : [["A:TLB", 39]]
 }
 if(!SourceList["A:CoS"]) {
@@ -26,12 +26,14 @@ if(!SourceList["A:CoS"]) {
     };
 }
 if(!CompanionList["ariadne's codex"]) {
-        CompanionList["ariadne's codex"] = {
-        name : "Ariadne's Codex",
+        CompanionList["ariadne's Companion codex"] = {
+        name : "Ariadne's Companion Codex",
         nameMenu : "Ariadne's Codex",
-        source : [["A:TLB", 39]]
+        source : [["A:CoS", 0]]
     }
 }
+
+spellSchoolList["Omni"] = "omniturgy";
 
 MagicItemsList["teng arcanocyper"] = {
     name : "Teng Arcanocyper",
@@ -636,6 +638,7 @@ MagicItemsList["mask of the platinum owl"] = {
 }
 
 CreatureList["giant platinum owl"] = {
+    companion : ["ariadne's: the last bastion codex", "ariadne's codex"],
     name : "Giant Platinum Owl",
     source : [["A:TLB", 39]],
     size : 4,
@@ -676,4 +679,101 @@ CreatureList["giant platinum owl"] = {
         name : "Blessing of Knowledge",
         description : "The owl can understand and speak all languages. Additionally, it has advantage on rolls made to understand coded messages and other extraneous script."
     }],
+}
+
+SpellsList["activate"] = {
+    name : "Activate",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLB", 40]],
+    level : 2,
+    school : "Trans",
+    time : "1 a",
+    range : "Touch", 
+    duration : "Instantaneous",
+    components : "S,M",
+    compMaterial : "a shard of conductive metal",
+    description : "Spell ability check, DC 13+3/tier above common; Activate for 1 use or spend any amount of charges; +5 DC to do again; DC 30 is impossible",
+    descriptionShorter : "Spell ability check +2/SL bonus, DC 13+3/tier above common; activates for 1 use or expends charges; +5 DC on subsequent attempts (max of 30)"
+}
+
+SpellsList["pragmatism"] = {
+    name : "Pragmatism",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLB", 40]],
+    level : 4,
+    school : "Ench",
+    time : "1 a",
+    range : "Self",
+    duration : "Conc, 1 min",
+    components : "S,M",
+    compMaterial : "a black, tough stone",
+    description : "Immune to charmed/frightened; adv. vs Wisdom/Charisma saves; resistance to Psycic dmg; disadv. vs persuasion, deception, and performance checks"
+}
+
+SpellsList["zephrahim’s purple orb"] = {
+    name : "Zephrahim’s Purple Orb",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLB", 41]],
+    level : 6,
+    school : "Evoc",
+    time : "1 a",
+    range : "60 ft",
+    duration : "Conc, 1 min",
+    components : "V,S,M",
+    compMaterial : "a round carved amethyst",
+    save : "Con",
+    description : "Spell atk 1 crea 2d12 Force dmg; Action on subsequent turns double dice (4d12, 8d12)/SL 9 quadruple dice , up to 3 turns and Con save after dmg or stunned"
+}
+
+SpellsList["tesla field"] = {
+    name : "Tesla Field",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLB", 41]],
+    level : 8,
+    school : "Evoc",
+    time : "1 a",
+    range : "120 ft",
+    duration : "Conc, 1 min",
+    components : "V,S,M",
+    save : "Con",
+    compMaterial : "a fulgurite worth at least 1000 gp",
+    description : "30ft rad sphere; dif. ter. vs crea wear metal; save on enter or start in area, 6d8 lightning and stunned (repeat save at start of turn) or 1/2 dmg and no stunned on save; bon. action move 10ft"
+}
+
+SpellsList["power word: open"] = {
+    name : "Power Word: Open",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLB", 41]],
+    level : 9,
+    school : "Omni",
+    time : "1 a",
+    range : "unlimited",
+    duration : "1 hr",
+    components : "V",
+    description : "Whatever is in my path opens up; seas and rivers part, magical locks dispelled, hills and mountains crack forming tunnels, planar gates open regardless of its owner's wishes, etc."
+}
+
+MagicItemsList["mage breaker weapon"] = {
+    name : "Mage Breaker Weapon",
+    source : [["A:TLB", 63]],
+    type : "weapon (any)",
+    rarity : "legendary",
+    description : "With this, attacks made with this weapon deals an additional 3d6 force damage. If the creature hit with this weapon is concentrating on a spell of 6th level or lower, it automatically loses concentration.",
+    chooseGear : {
+        type : "weapon",
+        prefixOrSuffix : "brackets",
+        descriptionChange : ["replace", "weapon"],
+        itemName1stPage : ["suffix", "Mage Breaker"]
+    },
+    calcChanges : {
+        atkAdd : [
+            function(fields, v) {
+                if(!v.theWea.isMagicWeapon && (/^(?=.*\bmage\b)(?=.*(breaker)).*$/i).test(v.WeaponTextName)) {
+                    v.theWea.isMagicWeapon = true;
+                    fields.Description = fields.Description.replace(/(, |; )?Counts as magical/i, '');
+						fields.Description += (fields.Description ? '; ' : '') + '+3d6 force dmg';
+                }
+            }
+        ]
+    }
 }
