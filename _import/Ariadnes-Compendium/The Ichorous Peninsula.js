@@ -118,5 +118,6 @@ FeatsList["field medic"] = {
 FeatsList["heroic presence"] = {
     name : "Heroic Presence",
     source : [["A:TIP", 4]],
-    description : "During combat, and if I am conscious and not restrained, paralyzed, or incapacitated, allies within 15 ft of me can add 1d4 to any attack or ability check they make."
+    description : "During combat, and if I am conscious and not restrained, paralyzed, or incapacitated, allies within 15 ft of me can add 1d4 to any attack or ability check they make.",
+    additional : ["+1d4 to ability checks and attack rolls"]
 };
