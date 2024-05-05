@@ -1,4 +1,4 @@
-var iFileName = "TheLastBastion";
+var iFileName = "The Last Bastion";
 RequiredSheetVersion("13.1.13");
 
 SourceList["A:TLB"] = {

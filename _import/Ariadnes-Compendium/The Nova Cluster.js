@@ -1,3 +1,6 @@
+var iFileName = "The Nova Cluster";
+RequiredSheetVersion("13.1.13");
+
 //The nova cluster addition
 SourceList["A:TNC"] = {
     name : "Ariadne's: The Nova Cluster",
