@@ -752,25 +752,25 @@ SpellsList["power word: open"] = {
     description : "Whatever is in my path opens up; seas and rivers part, magical locks dispelled, hills and mountains crack forming tunnels, planar gates open regardless of its owner's wishes, etc."
 }
 
-MagicItemsList["mage breaker weapon"] = {
-    name : "Mage Breaker Weapon",
+MagicItemsList["mage breaker"] = {
+    name : "Mage Breaker",
     source : [["A:TLB", 63]],
     type : "weapon (any)",
     rarity : "legendary",
-    description : "With this, attacks made with this weapon deals an additional 3d6 force damage. If the creature hit with this weapon is concentrating on a spell of 6th level or lower, it automatically loses concentration.",
+    attunement : true,
+    description : "Attacks made with this weapon deals an additional 3d6 force damage. If a creature hit with this is concentrating on a spell of 6th level or lower, it automatically loses concentration.",
     chooseGear : {
         type : "weapon",
-        prefixOrSuffix : "brackets",
+        prefixOrSuffix : "suffix",
         descriptionChange : ["replace", "weapon"],
-        itemName1stPage : ["suffix", "Mage Breaker"]
     },
     calcChanges : {
         atkAdd : [
             function(fields, v) {
-                if(!v.theWea.isMagicWeapon && (/^(?=.*\bmage\b)(?=.*(breaker)).*$/i).test(v.WeaponTextName)) {
+                if(!v.theWea.isMagicWeapon && (/mage breaker/i).test(v.WeaponTextName)) {
                     v.theWea.isMagicWeapon = true;
                     fields.Description = fields.Description.replace(/(, |; )?Counts as magical/i, '');
-						fields.Description += (fields.Description ? '; ' : '') + '+3d6 force dmg';
+					fields.Description += (fields.Description ? '; ' : '') + '+3d6 force dmg';
                 }
             }
         ]
