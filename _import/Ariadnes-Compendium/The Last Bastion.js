@@ -119,7 +119,6 @@ AddSubClass("sorcerer", "teng", {
                 'Use the "Choose Feature" to select a spell.'
             ]),
             choices : ["Promise of Balance", "Vow of Law", "Oath of Freedom", "Pledge of Protection", "Assurance of Plight"],
-            choicesNotInMenu : true,
             "promise of balance" : {
                 name : "Promise of Balance",
                 description : desc([
