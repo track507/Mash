@@ -358,7 +358,7 @@ RaceList["cetkar"] = {
         list : "melee",
         isAlwaysProf : true,
     }],
-    improvements : "Cetkar: +1 Strength , +1 Constitution;",
+    scorestxt : "Cetkar: +1 Strength , +1 Constitution;",
     scores : [1, 0, 1, 0, 0, 0],
     abilitySave : 1,
 };
@@ -395,7 +395,7 @@ RaceList["cetkar, quaru"] ={
         list : "melee",
         isAlwaysProf : true,
     }],
-    improvements : "Cetkar, Quaru: +1 Strength , +1 Constitution, and +1 to Strength or Charisma;",
+    scorestxt : "Cetkar, Quaru: +1 Strength , +1 Constitution, and +1 to Strength or Charisma;",
     scores : [1, 0, 1, 0, 0, 0],
     abilitySave : 6,
     spellcastingBonus : [{

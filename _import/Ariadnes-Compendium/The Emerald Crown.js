@@ -1,5 +1,5 @@
 var iFileName = "The Emerald Crown";
-RequiredSheetVersion("13.1.12");
+RequiredSheetVersion("13.1.13");
 
 SourceList["A:TEC"] = {
     name : "Ariadne's: The Emerald Crown",

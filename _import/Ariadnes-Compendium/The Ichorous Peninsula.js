@@ -1,3 +1,6 @@
+var iFileName = "The Ichorous Peninsula"
+RequiredSheetVersion("13.1.13");
+
 SourceList["A:TIP"] = {
     name : "Ariadne's: The Ichorous Peninsula",
     abbreviation : "A:TIP",
