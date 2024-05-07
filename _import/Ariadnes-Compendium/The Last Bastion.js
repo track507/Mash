@@ -776,3 +776,125 @@ MagicItemsList["mage breaker"] = {
         ]
     }
 }
+
+MagicItemsList["red plate of the praetorian"] = {
+    name : "Red Plate of the Praetorian",
+    source : [["A:TLB", 63]],
+    type : "armor (plate)",
+    rarity : "legendary",
+    attunement :  true,
+    description : "While attuned, my AC is 20. I gain additional benefits found on the notes page.",
+    toNotesPage : [{    
+        name : "Red Plate of the Praetorian: Features",
+        note : desc([
+            "While wearing the armor and while its active, I have adv. on saves vs. spells and magical effects, all critical hits become normal hits, I reduce all damage except for psychic by 4, I am always under the effects of the spider climb spell, and I can use my bonus action to perform an assisted jump (see below). Additionally, once per long rest I get a legendary resistance, but once I use it, I lose the benefits of the armor until I finish a long rest.",
+            "\u2022 Assisted Jump: I can use my bonus action to jump up to 45 ft. If I land on a creature that is Large or smaller, the creature must make a DC 18 Dexterity saving throw or be knocked prone and take 3d6+5 bludgeoning damage."
+        ])
+    }],
+    armorAdd : "Red Plate of the Praetorian",
+    armorOptions : [{
+        regExpSearch : /red plate of the praetorian/i,
+        name : "Red Plate of the Praetorian",
+        source : [["A:TLB", 63]],
+        type : "heavy",
+        ac : 20,
+        stealthdis : true,
+        addMod : false,
+        isMagicArmor : true,
+        strReq : 15,
+        weight : 20
+    }],
+    actions : ["bonus action", "Assisted Jump"],
+    limfeaname : "Legendary Resistance",
+    usages : 1,
+    recovery : "long rest"
+}
+
+FeatsList["combat doctrine"] = {
+    name : "Combat Doctrine",
+    source : [["A:TLB", 64]],
+    description : "At the start of each of my turns, I can choose one of the following combat doctrines found on the notes page.",
+    toNotesPage : [{
+        name : "Combat Doctrines",
+        note : desc([
+            "\u2022 Coherency: Choose an ally within 10 ft. While within 10 ft of that ally, we both gain a +1 to our AC's",
+            "\u2022 Press the Attack: I gain advantage on attack rolls against a creature if at least one of my allies is within 5 ft of that creature. Additionally, if an ally and I are within 10 ft of each other are attacking the same creature and we both have advantage on the attack, 19-20 on the attack roll is considered a critical hit.",
+            "\u2022 Leadership: If an ally within 60 ft of me makes a Wisdom saving throw, they can use my Wisdom modifier instead of their own.",
+            "\u2022 Coordinated Fire: When I make a ranged attack against a creature that has been hit with a ranged attack from one of my ally's within the last round, I deal an additional 3 damage on a hit. This can only trigger once per turn.",
+            "\u2022 Tactical Movement: Choose an ally within 10 ft. The ally and I gain 15 ft of movement if we start our turns 10 ft of each other.",
+        ])
+    }]
+}
+
+FeatsList["executioner"] = {
+    name : "Executioner",
+    source : [["A:TLB", 64]],
+    description : "I gain a +1 to Strength or Dexterity. Additionally, when I reduce a creature with a CR of up to half of my character level (rounded down) to 0 hp on my turn, I can immediately take another action. After using this feature, I must finish a long rest before using it again.",
+    scorestxt : "+1 to Str or Dex"
+}
+
+FeatsList["stalwart"] = {
+    name : "Stalwart",
+    source : [["A:TLB", 64]],
+    description : "I gain a +1 to Constitution. As a bonus action, I can enter the Stalwart state for 1 minute in which I reduce all damage except psyhic equal to my Prof. bon. After which all damage I reduced, is dealt to me equally over 10 rounds. I cannot be killed this way, only knocked unconscious. I can use this once per short rest.",
+    usages : 1,
+    recovery : "short rest",
+    scores : [0, 0, 1, 0, 0, 0]
+}
+
+SpellsList["alchemize"] = {
+    name : "Alchemize",
+    source : [["A:TLB", 86]],
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    level : 0,
+    school : "Trans",
+    time : "1 min",
+    range : "Touch",
+    duration : "Instantaneous",
+    components : "S,M",
+    compMaterial : "pouches and vials to store the resulting contents in",
+    description : "1 small non-magical obj revert to its raw material; used to make another obj, must have tool prof. if complex"
+}
+
+SpellsList["fulgurating smite"] = { 
+    name : "Fulgurating Smite",
+    source : [["A:TLB", 86]],
+    classes : ["paladin"],
+    level : 3,
+    school : "Evoc",
+    time : "1 bns",
+    range : "Self",
+    duration : "Conc, 1 min",
+    components : "V,S,M",
+    compMaterial : "a shard of fulgurite",
+    save : "Con",
+    description : "Next weapon attack deals 3d6+1d6/SL lightning dmg; if Crea, save or incapacitated until end of their next turn"
+}
+
+SpellsList["theophrastus' bodily chaos"]= {
+    name : "Theophrastus' Bodily Chaos",
+    source : [["A:TLB", 86]],
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    level : 4,
+    school : "Trans",
+    time : "1 a",
+    range : "Touch",
+    duration : "Conc, 1 min",
+    components : "S,M",
+    compMaterial : "a vial filled with a chaotic chemical reactives, which the spell consumes",
+    descrption : "Melee spell atk against crea, swapping 2 of the targets ability scores"
+}
+
+SpellsList["entropy of teng"] = {
+    name : "Entrop of Teng",
+    source : [["A:TLB", 86]],
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    level : 9,
+    school : "Trans",
+    time : "1 a",
+    range : "Touch",
+    duration : "Instantaneous",
+    components : "V,S,M",
+    compMaterial : "a radioactive ingot worth at least 10,000 gp, which the spell consumes",
+    description : "Melee spell atk against crea or obj; takes 40d10, save halves; reduced to 0 kills instantly"
+}
