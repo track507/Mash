@@ -472,7 +472,7 @@ RaceList["cetkar, fykari"] ={
     savetxt : {
         text : "Adv. vs me being frightened; Crea have disadv. vs being frightened by me"
     },
-    improvements : "Cetkar, Quaru: +1 Strength , +1 Constitution, and +1 to Dexterity or Intelligence;",
+    scorestxt : "Cetkar, Quaru: +1 Strength , +1 Constitution, and +1 to Dexterity or Intelligence;",
     scores : [1, 0, 1, 0, 0, 0],
     abilitySave : 6
 };
