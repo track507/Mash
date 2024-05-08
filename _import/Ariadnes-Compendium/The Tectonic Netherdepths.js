@@ -259,11 +259,55 @@ MagicItemsList["trotters of speedy delivery"] = {
     action : ["bonus action", "Incoming Delivery"]
 }
 
-MagicItemsList["spellbook of brilliant incantations"] = {
-    name : "Spellbook of Brilliant Incantations",
-    source : [["A:TTN", 26]],
-    type : "wondrous item",
-    rarity : "very rare",
-    description : "If I am a wizard, I can add the following spells to my wizard spellbook by spending the required materials or using this as my own spellbook. If I am a cleric, these spells are considered to be always prepared. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
-    spellcastingExtra : ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"]
-}
+// MagicItemsList["spellbook of brilliant incantations"] = {
+//     name : "Spellbook of Brilliant Incantations",
+//     source : [["A:TTN", 26]],
+//     type : "wondrous item",
+//     rarity : "very rare",
+//     description : "If I am a wizard, I can add the following spells to my wizard spellbook by spending the required materials or using this as my own spellbook. If I am a cleric, these spells are considered to be always prepared. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
+//     choices : ["Wizard", "Cleric", "Not a Wizard or a Cleric"],
+//     selfChoosing : function(v) {
+//         return classes.known.wizard ? "wizard" : classes.known.cleric ? "cleric" : "not a wizard or a cleric"
+//     },
+//     "wizard" : {
+//         name : "Spellbook of Brilliant Incantations (Wizard)",
+//         description : "If I am a wizard, I can add the following spells to my wizard spellbook by spending the required materials or using this as my own spellbook. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
+//         spellcastingBonusElsewhere : {
+//             addTo : "wizard",
+//             spellcastingBonus : [{ // not wizard spells
+//                 name : "Spellbook of Brilliant Incantations",
+//                 spells : ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"],
+//                 selection : ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"],
+//                 times : 6
+//             }] 
+//         }
+//     },
+//     "cleric" : {
+//         name : "Spellbook of Brilliant Incantations (Cleric)",
+//         description : "If I am a cleric, these spells are considered to be always prepared. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
+//         eval : function() {
+//             var subclass = classes.known["cleric"].subclass;
+//             var list = ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"];
+//             var SEspells = ClassSubList[subclass].spellcastingExtra;
+//             // Function to check if a spell is already in the spellcastingExtra array
+//             function spellNotAdded(spell) {
+//                 return !SEspells.includes(spell);
+//             }
+
+//             // Add spells from list array to spellcastingExtra array if they are not already present
+//             var spellsToAdd = list.filter(spellNotAdded);
+            
+//             // Push spellsToAdd into the spellcastingExtra array
+//             for (var i = 0; i < spellsToAdd.length; i++) {
+//                 ClassSubList[subclass].spellcastingExtra.push(spellsToAdd[i]);
+//             }
+//         },
+//         removeeval : function() {
+//             var subclass = classes.known["cleric"].subclass;
+//             ClassSubList[subclass].spellcastingExtra = SESpells;
+//         }
+//     }
+// }
+
+// var SEspells;
+
