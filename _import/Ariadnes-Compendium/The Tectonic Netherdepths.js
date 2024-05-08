@@ -361,7 +361,7 @@ MagicItemsList["golden edge"] = {
         additional : ["1d6"],
         recovery : "long rest"
     },
-    "figher" : {
+    "fighter" : {
         name : "Golden Edge (Fighter)",
         additional : "Indomitable and Second Wind",
         description : "I gain a +3 to attack and damage rolls made with this dagger. I gain an additional use of my Indomitable feature. Additionally when I use my Second Wind feature, I gain 10 temp hp and cannot be frightened while they last. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1-2, the dagger breaks and is irreparable.",
