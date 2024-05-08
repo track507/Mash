@@ -218,7 +218,7 @@ MagicItemsList["mysterious teng tablet"] = {
             "\u2022 Arkan enforcers and operatives know the general location of the creature",
             "\u2022 Masked Ones of Arkan know the precise location of the creature and can use their action to cast the Scrying spell once per long rest on the creature",
             "\u2022 After a long rest, the creature must succeed a DC 13 Wisdom saving throw or gain one point of exhaustion",
-            "\u2022 When creautres of Arkan are within 500 ft, the character's eyes begin to glow red.",
+            "\u2022 When creatures of Arkan are within 500 ft, the character's eyes begin to glow red.",
             "The Arkan Group will hunt whoever is in possession of the tablet until they recover the item. "
         ])
     }]
