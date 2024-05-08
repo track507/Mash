@@ -378,3 +378,4 @@ MagicItemsList["golden edge"] = {
         modifiers : [3,3]
     }]
 }
+
