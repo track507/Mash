@@ -33,7 +33,9 @@ MagicItemsList["ring of aberrant reflexes"] = {
             "When I fail a second time, I take 5d6 psychic damage and become unable to remove the ring by normal means. I can remove this ring if the Remove Curse spell is casted at 5th level or higher.",
             "If I fail a third time, an evil alien intelligence takes over my mind, fully controlling me until someone takes the ring off my finger. If the ring is removed, it will refure to attune to me again."
         ])
-    }]
+    }],
+    actions : [["reaction", "Aberrant Reflexes"], ["reaction", "Evasion"]],
+    savetxt : { text : ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"] }
 }
 
 MagicItemsList["crackling gravity bomb"] = {
@@ -224,3 +226,44 @@ MagicItemsList["mysterious teng tablet"] = {
     }]
 }
 
+MagicItemsList["pendant of the star guardian"] = {
+    name : "Pendant of the Star Guardian", 
+    source : [["A:TTN", 25]],
+    rarity : "very rare",
+    type : "wondrous item",
+    attunement : true,
+    spellcastingAbility : "class", // does not specify what type of ability it uses for range spell attack
+    description : "I gain the Guidance cantrip and proficiency in Arcana, or expertise if proficient. As an action, I create 4 motes of starlight that orbit my head, shining (30ft) bright and (30ft) dim light. As a bonus action once per long rest, I can make a ranged spell attack vs. a target within 60ft, dealing 4d6 radiant damage and is revealed until the end of its next turn.",
+    spellcastingBonus : [{
+        name : "Guidance",
+        spells : ["guidance"],
+        selection : ["guidance"],
+        times : 1,
+    }],
+    action : [["action", "Create Starlight (4 motes)"], ["bonus action", "Launch Starlight (60ft)"]],
+    limfeaname : "Launch Starlight",
+    usages : 1,
+    recovery : "long rest",
+    skills : [["Arcana", "increment"]]
+}
+
+MagicItemsList["trotters of speedy delivery"] = {
+    name : "Trotters of Speedy Delivery",
+    source : [["A:TTN", 25]],
+    rarity : "very rare",
+    type : "wondrous item",
+    attunement : true,
+    description : "I can deliver a package to anywhere on the material plane within 24 hours, I know the Message cantrip, and my movement speed increases by 10 ft. As a bonus action once per long rest, I can trace a path to an ally within 120 ft of me. I can use my full movement speed to traverse the distance between us regardless of obstacles. This ends if we are more than 120 ft away from each other.",
+    usages : 1,
+    recovery : "long rest",
+    action : ["bonus action", "Incoming Delivery"]
+}
+
+MagicItemsList["spellbook of brilliant incantations"] = {
+    name : "Spellbook of Brilliant Incantations",
+    source : [["A:TTN", 26]],
+    type : "wondrous item",
+    rarity : "very rare",
+    description : "If I am a wizard, I can add the following spells to my wizard spellbook by spending the required materials or using this as my own spellbook. If I am a cleric, these spells are considered to be always prepared. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
+    spellcastingExtra : ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"]
+}

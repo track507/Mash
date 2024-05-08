@@ -162,7 +162,7 @@ AddSubClass("fighter", "moss knight", {
             description : "\n   " + "I can use my bonus action to sprout venomous thorns on my armor and weapons, which lasts for one minute. Attacks deal an additional 1d6 poison damage and when a creature hits me with a melee attack, they take 1d6 poison damage. While the thorns are sprouted, my melee attacks are magical. I can use this again once I finish a short or long rest.",
             usages : 1,
             recovery : "short rest",
-            actions : ["bonus action", ""]
+            action : ["bonus action", ""]
         },
         "subclassfeature3.1" : {
             name : "Druidic Casting",
@@ -273,7 +273,7 @@ MagicItemsList["diarmuid's warboard"] = {
     attunement : true,
     description : "This is a +1 shield. Upon attuning, and as part of a short or long rest, I can choose which of the effects to activate as if I am under the Enhance Ability spell. Additionally, I can use my reaction to bash a target that missed me with a melee attack. They must succeed a DC 16 Strength saving throw or be knocked prone and restrained until the end of its next turn.",
     shieldAdd : ["Diarmuid's Warboard", 3, 6],
-    actions : ["reaction", ""]
+    action : ["reaction", ""]
 };
 
 MagicItemsList["fragarch, the memory blade"] = {
@@ -322,7 +322,7 @@ MagicItemsList["gregoria's courage"] = {
         }
     },
     shieldAdd : ["Gregoria's Courage", 4, 6],
-    actions : ["action", "Immolate"]
+    action : ["action", "Immolate"]
 };
 
 MagicItemsList["first shard of the crown"] = {
@@ -643,7 +643,7 @@ FeatsList["guiding light"] = {
     }],
     prerequisite : "Chaser of Light Racial Feat, Being a Dryad",
     prereqeval : function(v) { return CurrentRace.known.indexOf("dryad") !== -1 && CurrentFeats.known.indexOf("chaser of light") !== -1 ;},
-    actions : ["action", "Step of Light"]
+    action : ["action", "Step of Light"]
 };
 
 FeatsList["darkspawn chosen"] = {

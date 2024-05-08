@@ -804,7 +804,7 @@ MagicItemsList["red plate of the praetorian"] = {
         strReq : 15,
         weight : 20
     }],
-    actions : ["bonus action", "Assisted Jump"],
+    action : ["bonus action", "Assisted Jump"],
     limfeaname : "Legendary Resistance",
     usages : 1,
     recovery : "long rest"
