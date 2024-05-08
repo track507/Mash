@@ -113,7 +113,7 @@ MagicItemsList["rip's risible reaper"] = { //there is no official "scythe" using
 
 AddWarlockInvocation("Revealing Blast (prereq: Eldritch Blast)", {
     name : "Revealing Blast",
-    description : desc(["When I hit a creature, they are revealed until the end of their next turn. While revealed a creature cannot benefit from being invisible, is returned to its true form if its shapeshifted, and attacks against it hit critically on a 19-20. This condition does not display magic, justs put them on hold until the condition is lost."]),
+    description : desc(["When I hit a creature with my eldritch blast, they are revealed until the end of their next turn. While revealed a creature cannot benefit from being invisible, is returned to its true form if its shapeshifted, and attacks against it hit critically on a 19-20. This condition does not dispel magic, justs put them on hold until the condition is lost."]),
     source : [["A:TTN", 15]],
     prereqeval : function(v) { return isSpellUsed('eldritch blast', true); }
 })
