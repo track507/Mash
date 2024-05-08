@@ -1,5 +1,5 @@
 var iFileName = "The All Father's Ink";
-RequiredSheetVersion("13.1.12");
+RequiredSheetVersion("13.1.13");
 
 SourceList["A:TAFI"] = {
     name : "Ariadne's: The All Father's Ink",
