@@ -171,6 +171,7 @@ AddWarlockInvocation("Greater Telepath (prereq: level 15 warlock, the Great Old 
 FeatsList["sixth sense"] = {
     name : "Sixth Sense",
     source : [["A:TTN", 16]],
+    prerequisite : "requires the Alert feat",
     description : desc([
         "I gain a +1 to Dexterity or Intelligence, I can add my Intelligence mod to Initiative rolls, even if I have another similar ability or feature, and I have a few seconds to prepare when I sense unseen imminent danger."
     ]),
@@ -190,6 +191,7 @@ FeatsList["defensive acrobat"] = {
 FeatsList["light armor master"] = {
     name : "Light Armor Master",
     source : [["A:TTN", 16]],
+    prerequisite : "requires light armor proficiency",
     description : "I gain a +2 to Dexterity saving throws while wearing light armor. When I succeed a Dexterity saving throw or an attack misses me, I can use my reaction to dodge and move up to 15 ft in a direction of my choosing.",
     prereqeval : function(v) { return v.lightArmorProf; },
     actions : ["reaction", "Dodge (move 15 ft)"]
@@ -198,6 +200,8 @@ FeatsList["light armor master"] = {
 FeatsList["crushing might"] = {
     name : "Crushing Might",
     source : [["A:TTN", 16]],
+    prerequisite : "requires heavy armor proficiency",
+    prereqeval : function(v) { return v.heavyArmorProf; },
     description : "Once per turn while I am wearing heavy armor, I can sacrifice 15 ft of movement to turn a melee attack into a crushing strike. Crushing strikes have a bonus to hit and damage rolls equal to half my AC, rounded down. Benefits to AC from shields, spells, and other means are ignored when calculating these bonuses."
 }
 
@@ -210,7 +214,7 @@ MagicItemsList["mysterious teng tablet"] = {
     toNotesPage : [{
         name : "Mysterious Teng Tablet",
         note : desc([
-            "This mysterious tablet hides faint echoes of primal magic within its glowing green runes. A creature attuned to this tablet can transfer ownership to another willing creautre over the course of a short rest. A creature attuned also suffers from the Gaze of Arkan curse found below.",
+            "This mysterious tablet hides faint echoes of primal magic within its glowing green runes. A creature attuned to this tablet can transfer ownership to another willing creature over the course of a short rest. A creature attuned also suffers from the Gaze of Arkan curse found below.",
             "A remove curse spell can momentarily stop the curse for one hour, with an additional hour for each spell slot used above 3rd. If the tablet is kept within a lead container, the Gaze of Arkan becomes less powerful, ignoring the last 2 effects from the Gaze of Arkan curse."
         ])
     }, {
@@ -256,7 +260,14 @@ MagicItemsList["trotters of speedy delivery"] = {
     description : "I can deliver a package to anywhere on the material plane within 24 hours, I know the Message cantrip, and my movement speed increases by 10 ft. As a bonus action once per long rest, I can trace a path to an ally within 120 ft of me. I can use my full movement speed to traverse the distance between us regardless of obstacles. This ends if we are more than 120 ft away from each other.",
     usages : 1,
     recovery : "long rest",
-    action : ["bonus action", "Incoming Delivery"]
+    action : ["bonus action", "Incoming Delivery"],
+    speed : { allModes : "+10"},
+    spellcastingBonus : [{
+        name : "Message",
+        spells : ["message"],
+        selection : ["message"],
+        times : 1,
+    }]
 }
 
 // MagicItemsList["spellbook of brilliant incantations"] = {
@@ -311,3 +322,59 @@ MagicItemsList["trotters of speedy delivery"] = {
 
 // var SEspells;
 
+MagicItemsList["helm of the oathbreaker"] = {
+    name : "Helm of the Oathbreaker",
+    source : [["A:TTN", 26]],
+    type : "armor (helmet)",
+    rarity : "legendary",
+    attunement : true,
+    prerequisite : "requires attunement by a paladin",
+    prereqeval : function(v) { 
+        return classes.known.paladin;
+    },
+    description : "I gain a +1 bonus to my AC and is cursed. When I use a Divine Smite, I gain 5 temp. hp. Additionally, when I reduce a creature to 0 hp with my Divine Smite, they are instantly killed and cannot be brought back to life with spells of 5th level or lower. I gain +1 to my Strength everytime I kill a good-aligned creature (max 24). See notes for curse.",
+    toNotesPage : [{
+        name : "Helm of the Oathbreaker: Curse",
+        note : desc([
+            "Everytime I score a critical hit against a creature, I must make a DC 15 Wisdom saving throw or become charmed by the helmet until the end of my next turn. The helm will attempt to murder the nearest good-aligned creature, and will use Divine Smite on all of its attack if available."
+        ])
+    }],
+    extraAC : [{name : "Helm of the Oathbreaker", mod : 1, magic : true, text : "I gain a +1 bonus to AC while attuned."}],
+}
+
+MagicItemsList["golden edge"] = {
+    name : "Golden Edge",
+    source : [["A:TTN", 27]],
+    type : "weapon (dagger)",
+    rarity : "legendary",
+    attunement : true,
+    description : "I gain a +3 to attack and damage rolls made with this dagger. If I am a Rogue, I gain a +2 to initiative rolls, cannot be surprised, and my sneak attack damage increases by 1d6. If I am a fighter, I gain an additional use of my Indomitable feature. Additionally when I use my Second Wind feature, I gain 10 temp hp and cannot be frightened while they last. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1 or 2, the dagger breaks and is irreparable.",
+    choices : ["Rogue", "Fighter", "Not a Rogue or Fighter"],
+    selfChoosing : function() {
+        return classes.known.rogue ? "Rogue" : classes.known.fighter ? "Fighter" : "Not a Rogue or Fighter";
+    },
+    "rogue" : {
+        name : "Golden Edge (Rogue)",
+        description : "I gain a +3 to attack and damage rolls made with this dagger. I gain a +2 to initiative rolls, cannot be surprised, and my sneak attack damage increases by 1d6. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1-2, the dagger breaks and is irreparable.",
+        addMod : { type : "skill", field : "Init", mod : 2, text : "I have a +2 bonus on initiative rolls." },
+        usages : 1,
+        additional : ["1d6"],
+        recovery : "long rest"
+    },
+    "figher" : {
+        name : "Golden Edge (Fighter)",
+        additional : "Indomitable and Second Wind",
+        description : "I gain a +3 to attack and damage rolls made with this dagger. I gain an additional use of my Indomitable feature. Additionally when I use my Second Wind feature, I gain 10 temp hp and cannot be frightened while they last. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1-2, the dagger breaks and is irreparable.",
+    },
+    "not a rogue or fighter" : {
+        name : "Golden Edge",
+        description : "I gain a +3 to attack and damage rolls made with this dagger. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1-2, the dagger breaks and is irreparable.",
+    },
+    weaponsAdd : ["Golden Edge"],
+    weaponOptions : [{
+        name : "Golden Edge",
+        regExpSearch : /golden edge/i,
+        baseWeapon : "dagger",
+        modifiers : [3,3]
+    }]
+}
