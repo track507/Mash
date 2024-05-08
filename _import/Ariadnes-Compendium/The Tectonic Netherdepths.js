@@ -351,7 +351,7 @@ MagicItemsList["golden edge"] = {
     description : "I gain a +3 to attack and damage rolls made with this dagger. If I am a Rogue, I gain a +2 to initiative rolls, cannot be surprised, and my sneak attack damage increases by 1d6. If I am a fighter, I gain an additional use of my Indomitable feature. Additionally when I use my Second Wind feature, I gain 10 temp hp and cannot be frightened while they last. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1 or 2, the dagger breaks and is irreparable.",
     choices : ["Rogue", "Fighter", "Not a Rogue or Fighter"],
     selfChoosing : function() {
-        return classes.known.rogue ? "Rogue" : classes.known.fighter ? "Fighter" : "Not a Rogue or Fighter";
+        return classes.known.rogue ? "rogue" : classes.known.fighter ? "fighter" : "not a rogue or fighter";
     },
     "rogue" : {
         name : "Golden Edge (Rogue)",
