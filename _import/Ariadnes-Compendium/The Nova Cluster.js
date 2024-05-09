@@ -94,7 +94,7 @@ SpellsList["gravity's favor"] = {
     compMaterial : "a small platinum sphere",
     duration : "Conc, 1 min",
     range : "Self",
-    description : "+force dmg to melee atk equal to spell ability mod; Adv. grapple/shove others; Disadv. grapple/shove me; Jump doubled; +10 ft walking spd",
+    description : "+force dmg to melee atk equal to  spell ability mod; Adv. grapple/shove; Disadv. grapple/shove me; Jump doubled; +10 ft walking spd",
     descriptionFull : "My melee attacks deal additional force damage equal to my spellcasting ability modifier. I have advantage on grapple and shove checks against other creatures, and other creatures have disadvantage on grapple and shove checks against me. My jump distance is doubled and my walking speed increases by 10ft."
 };
 SpellsList["nebula"] = {

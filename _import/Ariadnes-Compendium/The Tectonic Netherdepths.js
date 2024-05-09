@@ -270,57 +270,63 @@ MagicItemsList["trotters of speedy delivery"] = {
     }]
 }
 
-// MagicItemsList["spellbook of brilliant incantations"] = {
-//     name : "Spellbook of Brilliant Incantations",
-//     source : [["A:TTN", 26]],
-//     type : "wondrous item",
-//     rarity : "very rare",
-//     description : "If I am a wizard, I can add the following spells to my wizard spellbook by spending the required materials or using this as my own spellbook. If I am a cleric, these spells are considered to be always prepared. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
-//     choices : ["Wizard", "Cleric", "Not a Wizard or a Cleric"],
-//     selfChoosing : function(v) {
-//         return classes.known.wizard ? "wizard" : classes.known.cleric ? "cleric" : "not a wizard or a cleric"
-//     },
-//     "wizard" : {
-//         name : "Spellbook of Brilliant Incantations (Wizard)",
-//         description : "If I am a wizard, I can add the following spells to my wizard spellbook by spending the required materials or using this as my own spellbook. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
-//         spellcastingBonusElsewhere : {
-//             addTo : "wizard",
-//             spellcastingBonus : [{ // not wizard spells
-//                 name : "Spellbook of Brilliant Incantations",
-//                 spells : ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"],
-//                 selection : ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"],
-//                 times : 6
-//             }] 
-//         }
-//     },
-//     "cleric" : {
-//         name : "Spellbook of Brilliant Incantations (Cleric)",
-//         description : "If I am a cleric, these spells are considered to be always prepared. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
-//         eval : function() {
-//             var subclass = classes.known["cleric"].subclass;
-//             var list = ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"];
-//             var SEspells = ClassSubList[subclass].spellcastingExtra;
-//             // Function to check if a spell is already in the spellcastingExtra array
-//             function spellNotAdded(spell) {
-//                 return !SEspells.includes(spell);
-//             }
+MagicItemsList["spellbook of brilliant incantations"] = {
+    name : "Spellbook of Brilliant Incantations",
+    source : [["A:TTN", 26]],
+    type : "wondrous item",
+    rarity : "very rare",
+    description : "If I am a wizard, I can add the following spells to my wizard spellbook by spending the required materials or using this as my own spellbook. If I am a cleric, these spells are considered to be always prepared. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
+    choices : ["Wizard", "Cleric", "Not a Wizard or Cleric"],
+    selfChoosing : function() {
+        if(classes.known.wizard) return "wizard";
+        if(classes.known.cleric) return "cleric";
+        if(!classes.known.cleric && !classes.known.wizard) return "not a wizard or cleric";
+    },
+    "wizard" : {
+        name : "Spellbook of Brilliant Incantations (Wizard)",
+        description : "I can add the following spells to my wizard spellbook by spending the required materials or using this as my own spellbook. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
+        spellcastingBonusElsewhere : {
+            addTo : "wizard",
+            spellcastingBonus : [{
+                name : "Spellbook of Brilliant Incantations", // these are not wizard spells
+                spells : ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"],
+                selection : ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"],
+                times : 6
+            }] 
+        }
+    },
+    "cleric" : {
+        name : "Spellbook of Brilliant Incantations (Cleric)",
+        description : "These spells are considered to be always prepared on my cleric spell list. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
+        calcChanges : {
+            spellAdd : [
+                function(spellKey, spellObj, spName) {
+                    // these spells are already part of the cleric spell list
+                    var list = ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"];
+                    // return if this is not the cleric spell list or if this is not a spell in the list
+                    if(spName !== "cleric") return;
+                    for(var i = 0; i < list.length; i++) {
+                        if(list[i] === spellKey && spellObj.firstCol !== "markedbox") {
+                            spellObj.firstCol = "markedbox"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "not a wizard or cleric" : {
+        name : "Spellbook of Brilliant Incantations (Not a Wizard or Cleric)",
+        description : "Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
+        spellcastingBonus : [{
+            name : "Spellbook of Brilliant Incantations",
+            spells : ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"],
+            selection : ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"],
+            times : 6,
+            firstCol : 1
+        }] 
+    }
+}
 
-//             // Add spells from list array to spellcastingExtra array if they are not already present
-//             var spellsToAdd = list.filter(spellNotAdded);
-            
-//             // Push spellsToAdd into the spellcastingExtra array
-//             for (var i = 0; i < spellsToAdd.length; i++) {
-//                 ClassSubList[subclass].spellcastingExtra.push(spellsToAdd[i]);
-//             }
-//         },
-//         removeeval : function() {
-//             var subclass = classes.known["cleric"].subclass;
-//             ClassSubList[subclass].spellcastingExtra = SESpells;
-//         }
-//     }
-// }
-
-// var SEspells;
 
 MagicItemsList["helm of the oathbreaker"] = {
     name : "Helm of the Oathbreaker",
@@ -351,14 +357,15 @@ MagicItemsList["golden edge"] = {
     description : "I gain a +3 to attack and damage rolls made with this dagger. If I am a Rogue, I gain a +2 to initiative rolls, cannot be surprised, and my sneak attack damage increases by 1d6. If I am a fighter, I gain an additional use of my Indomitable feature. Additionally when I use my Second Wind feature, I gain 10 temp hp and cannot be frightened while they last. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1 or 2, the dagger breaks and is irreparable.",
     choices : ["Rogue", "Fighter", "Not a Rogue or Fighter"],
     selfChoosing : function() {
-        return classes.known.rogue ? "rogue" : classes.known.fighter ? "fighter" : "not a rogue or fighter";
+        if(classes.known.rogue) return "rogue";
+        if(classes.known.fighter) return "fighter";
+        if(!classes.known.rogue && !classes.known.fighter) return "not a rogue or fighter"
     },
     "rogue" : {
         name : "Golden Edge (Rogue)",
         description : "I gain a +3 to attack and damage rolls made with this dagger. I gain a +2 to initiative rolls, cannot be surprised, and my sneak attack damage increases by 1d6. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1-2, the dagger breaks and is irreparable.",
         addMod : { type : "skill", field : "Init", mod : 2, text : "I have a +2 bonus on initiative rolls." },
         usages : 1,
-        additional : ["1d6"],
         recovery : "long rest"
     },
     "fighter" : {
@@ -367,7 +374,7 @@ MagicItemsList["golden edge"] = {
         description : "I gain a +3 to attack and damage rolls made with this dagger. I gain an additional use of my Indomitable feature. Additionally when I use my Second Wind feature, I gain 10 temp hp and cannot be frightened while they last. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1-2, the dagger breaks and is irreparable.",
     },
     "not a rogue or fighter" : {
-        name : "Golden Edge",
+        name : "Golden Edge (not a rogue or fighter)",
         description : "I gain a +3 to attack and damage rolls made with this dagger. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1-2, the dagger breaks and is irreparable.",
     },
     weaponsAdd : ["Golden Edge"],
@@ -376,6 +383,21 @@ MagicItemsList["golden edge"] = {
         regExpSearch : /golden edge/i,
         baseWeapon : "dagger",
         modifiers : [3,3]
-    }]
+    }],
+    calcChanges : {
+        atkAdd : [
+            function(fields, v) {
+                if(classes.known.rogue && (/sneak attack/i).test(fields.Description)) {
+                    var match = fields.Description.match(/sneak attack (\d+)d(\d+)/i);
+                    var dice = match[0].match(/(\d+)d(\d+)/i);
+                    var nDice = parseInt(dice[1]);
+                    nDice += 1;
+                    fields.Description = fields.Description.replace(/sneak attack (\d+)d(\d+)/i, "Sneak attack " + nDice + "d6");
+                }
+            },
+            'My sneak attack damage increases by 1d6',
+            800
+        ]
+    }
 }
 
