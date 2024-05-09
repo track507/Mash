@@ -397,8 +397,115 @@ MagicItemsList["golden edge"] = {
                 }
             },
             'My sneak attack damage increases by 1d6',
-            800
+            800 // sneak attack is applied at 700, make sure this goes after sneak attack is applied.
         ]
     }
 }
 
+MagicItemsList["void beckoner"] = {
+    name : "Void Beckoner",
+    type : "wand",
+    rarity : "legendary",
+    attunement : true,
+    source : [["A:TTN", 28]],
+    description : "I gain a +2 to my spell attacks and spell save DC. This wand has 10 charges, gaining 1d6+2 at dawn. I can expend a number of charges to cast spells associated with this wand. As an actions I expend 5 charges to use Open Rift (see notes).",
+    toNotesPage : [{
+        name : "Void Beckoner: Open Rift",
+        note : desc([
+            "As an action, I can expend 5 charges to open a rift in an unoccupied space within 60 ft. Each creature within 30 ft of it must make a DC 17 Strength saving throw or take 3d6 force damage and be pulled 15 ft towards the rift. A large or smaller creature that starts its turn within 5 ft of the rift and fails the Strength save takes an additional 10d6 force damage and must succeed on a DC 17 Charisma saving throw or be swallowed by the void. Only a Wish spell can return the creature back.",
+            "This rift remamins open for one minutes, or until I dismiss it. At the start of each of my turns, while the rift remains open, roll 1d10. On a 1, a Karcharis burst open from the rift, its ravenous hunger focused on the wielder of the Void Beckoner."
+        ])
+    }],
+    action : ["action", "Open Rift (5 charges)"],
+    usages : 10,
+    recovery : "dawn",
+    spellcastingBonus : [{
+        name : "Void Beckoner (1 ch)",
+        spells : ["magic missile", "tasha's hideous laughter"],
+        selection : ["magic missile", "tasha's hideous laughter"],
+        times : 2,
+        firstCol : 1
+    }, {
+        name : "Void Beckoner (3 ch)",
+        spells : ["bestow curse", "counterspell"],
+        selection : ["bestow curse", "counterspell"],
+        times : 2,
+        firstCol : 3
+    }, {
+        name : "Void Beckoner (5 ch)",
+        spells : ["planar binding", "telekinesis"],
+        selection : ["planar binding", "telekinesis"],
+        times : 2,
+        firstCol : 5
+    }]
+}
+
+MagicItemsList["ancient teng key"] = {
+    name : "Ancient Teng Key",
+    type : "wondrous item",
+    rarity : "artifact",
+    source : [["A:TTN", 31]],
+    attunement : true,
+    description : "The Teng Tablet has now evolved into this key. Weighing 100 pounds, it cannot be carried by a creature with a Strength score lower than 12. I can increase one of my ability scores by 2, and can cast spells associated with this key with only verbal components. After casting one of these spells, I am affected by the Gaze of Arkans curse until I finish a long rest.",
+    scorestxt : "+2 to one ability score",
+    spellcastingBonus : [{
+        name : "Ancient Teng Key",
+        spells : ["find the path", "find traps", "word of recall"],
+        selection : ["find the path", "find traps", "word of recall"],
+        times : 3,
+        firstCol : ""
+    }],
+    toNotesPage : [{
+        name : "Ancient Teng Key",
+        note : desc([
+            "The Teng Tablet has now evolved into this key. I can use this key to seal Teng control rooms, giving me a safe place to rest, should I need one. A Teng construct or machine that is in contact with the Ancient Key regains 10 hp per round. If it was broken or in a state of disrepair, it bcomes functional only when it is restored to its max hp. Teng Sentinels will not attack you, and their vehicles and machines will respond to your commands as well as their state of disrepair allows."
+        ]),
+        amendTo : "Mysterious Teng Tablet"
+    }]
+}
+
+SpellsList["rock strike"] = {
+    name : "Rock Strike",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TTN", 37]],
+    level : 2,
+    school : "Evoc",
+    time : "1 a",
+    range : "60 ft",
+    components : "V,S,M",
+    compMaterial : "a small rock",
+    duration : "Instantaneous",
+    save : "Str",
+    description : "1 crea, ranged spell attack; 3d10+1d10/SL bludgeoning dmg; Strength save or knocked prone",
+    descriptionFull : "I hurl a small rock at a creature within range. The rock then triples in size before striking the target. On a hit, the target takes 3d10 bludgeoning damage and must make a Strength saving throw or knocked prone if it is a large or smaller creature, it is knocked prone." + AtHigherLevels + "When I cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st."
+}
+
+SpellsList["burial"] = {
+    name : "Burial",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TTN", 37]],
+    level : 4,
+    school : "Necro",
+    time : "1 a",
+    range : "60 ft",
+    components : "V,S,M",
+    compMaterial : "a fistful of soil",
+    duration : "Conc, 1 min",
+    description : "1 crea Strength save or earth swallows, descending 10 ft; Target blinded, restrained, incapacitated, total cover; 3d6 necrotic dmg at start of turn",
+    descriptionFull : "I force a creature standing on earth or rock to sink into the ground. The target must succeed a Strength saving throw or descend 10 ft into the earth as they are swallowed. The target is blinded, restrained, and incapacitated. It has total cover against all attacks and other effects outside the earth, and taks 3d6 necrotic damage at the start of each of its turns. It begins to suffocate if it requires air. A creature can repeat the saving throw at the start of each of its turns. If I am more than 60 ft away from the target or lose concentration, the spell ends and the target can expend 10 ft of movement to crawl out, exiting prone."
+}
+
+SpellsList["protection of stone"] = {
+    name : "Protection of stone",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TTN", 37]],
+    level : 5,
+    school : "Abjur",
+    time : "1 a",
+    range : "Self",
+    components : "V,S,M",
+    compMaterial : "a small piece of granite",
+    duration : "Conc, 1 min",
+    description : "Magic stones orbit in 10 ft sphere around me; 1/2 cover; bns a. hurl stone 60ft, Dex save 3d8+1d8/SL blud., save halves; see full desc.",
+    descriptionFull : "Until this spell ends, magical stones orbit around me in a 10 ft sphere, giving me half-cover against attacks and area effects outside the sphere. As a bonus action on my turn, I can hurl a stone at a target within 60 ft. The target must make a Dexterity saving throw, taking 3d8 bludgeoning damage on a failed save, or half on a success. As a reaction when a creature attempts to pass through the sphere, I can command the stones to form a solid wall, preventing them from reaching me. The target must make a contested Athletics or Acrobatics check against my spell save DC. On a failed save, it cannot move closer to me." + AtHigherLevel + "When I case this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th."
+}
