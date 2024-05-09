@@ -509,3 +509,51 @@ SpellsList["protection of stone"] = {
     description : "Magic stones orbit in 10 ft sphere around me; 1/2 cover; bns a. hurl stone 60ft, Dex save 3d8+1d8/SL blud., save halves; see full desc.",
     descriptionFull : "Until this spell ends, magical stones orbit around me in a 10 ft sphere, giving me half-cover against attacks and area effects outside the sphere. As a bonus action on my turn, I can hurl a stone at a target within 60 ft. The target must make a Dexterity saving throw, taking 3d8 bludgeoning damage on a failed save, or half on a success. As a reaction when a creature attempts to pass through the sphere, I can command the stones to form a solid wall, preventing them from reaching me. The target must make a contested Athletics or Acrobatics check against my spell save DC. On a failed save, it cannot move closer to me." + AtHigherLevel + "When I case this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th."
 }
+
+MagicItemsList["dwarven lantern"] = {
+    name : "Dwarven Lantern",
+    type : "wondrous item",
+    source : [["A:TTN", 42]],
+    rarity : "rare",
+    description : "This lantern sheds bright light in a 30 ft radius and dim light for an additional 30 ft. Creatures with blindsense cannot see anything that is within the bright light. It also has 10 charges, burning one charge per hour and requiring Dwarven Oil to replenish.",
+    usages : 10,
+    recovery : "Oil"
+}
+
+MagicItemsList["the fixer"] = {
+    name : "The Fixer",
+    source : [["A:TTN", 46]],
+    type : "wondrous item",
+    rarity : "rare",
+    attunement : true,
+    description : "I can cast Guidance and Mending. Any medium or smaller broken non-magical item can be fixed with a gentle tap. It has 5 charges, regaining 1d4+1 at dawn. Expending one gives me adv. on any skill check, 5 charges restores 1/2 the max charges of another magical items of Very Rare or lower. +3 bonus to Charisma checks to de-escalate a situtation and avoid battle.",
+    usages : 5,
+    recovery : "dawn",
+}
+
+MagicItemsList["pointy hat of brazen explorers"] = {
+    name : "Pointy Hat of Brazen Explorers",
+    source : [["A:TTN", 46]],
+    type : "wondrous item",
+    rarity : "very rare",
+    attunement : true,
+    description : "I gain a +1 to my spell attack rolls, and ranged spell attacks vs. targets within 5 ft of me are considered melee spell attacks. I can add my spellcasting ability modifier to the damage of melee attack spells. I gain a +1 to my Charisma, or +2 if I am a dwarf.",
+    choices : ["Dwarf", "Not a Dwarf"],
+    selfChoosing : function() {
+        if(CurrentRace.known === "dwarf") return "dwarf";
+        return "not a dwarf";
+    },
+    "dwarf" : {
+        name : "Pointy Hat of Brazen Explorers (Dwarf)",
+        description : "I gain a +1 to my spell attack rolls, and ranged spell attacks vs. targets within 5 ft of me are considered melee spell attacks. I can add my spellcasting ability modifier to the damage of melee attack spells. I gain a +2 to my Charisma.",
+        scores : [0,0,0,0,0,2]
+    },
+    "not a dwarf" : {
+        name : "Pointy Hat of Brazen Explorers (Not a Dwarf)",
+        description : "I gain a +1 to my spell attack rolls, and ranged spell attacks vs. targets within 5 ft of me are considered melee spell attacks. I can add my spellcasting ability modifier to the damage of melee attack spells. I gain a +1 to my Charisma.",
+        scores : [0,0,0,0,0,1]
+    },
+    calcChanges : {
+        
+    }
+}
