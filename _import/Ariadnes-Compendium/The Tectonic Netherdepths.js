@@ -554,6 +554,13 @@ MagicItemsList["pointy hat of brazen explorers"] = {
         scores : [0,0,0,0,0,1]
     },
     calcChanges : {
-        
+        calcChanges : {
+			spellCalc : [
+				function (type, spellcasters, ability) {
+					if (type == "attack") return 1;
+				},
+				"I gain a +1 bonus to spell attack rolls."
+			]
+		}
     }
 }
