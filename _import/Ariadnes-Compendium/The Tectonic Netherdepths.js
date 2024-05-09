@@ -16,7 +16,7 @@ MagicItemsList["irradiated ammunition"] = {
     type : "weapon (ammunition)",
     rarity : "uncommon",
     attunement : false,
-    description : "A creature hit by this bullet must make a DC 13 (+1 to DC per lodged bullet) Constitution saving throw when it finishes a long rest or gain one level of exhaustion and lose 5 hp from its hp max. DC 13 Medicine or Sleight of Hand check to remove the bullet using surgeon's tools. Improvised tools roll with disadv. taking 2d4 slashing on a fail."
+    description : "A hit creature must make a DC 13 (+1 DC per lodged bullet) Constitution saving throw when it finishes a long rest or gain 1 level of exhaustion and lose 5 hp from its hp max. DC 13 Medicine or Sleight of Hand check to remove the bullet using surgeon's tools. Improvised tools roll with disadv. taking 2d4 slashing on a fail."
 }
 
 MagicItemsList["ring of aberrant reflexes"] = {
@@ -237,7 +237,7 @@ MagicItemsList["pendant of the star guardian"] = {
     type : "wondrous item",
     attunement : true,
     spellcastingAbility : "class", // does not specify what type of ability it uses for range spell attack
-    description : "I gain the Guidance cantrip and proficiency in Arcana, or expertise if proficient. As an action, I create 4 motes of starlight that orbit my head, shining (30ft) bright and (30ft) dim light. As a bonus action once per long rest, I can make a ranged spell attack vs. a target within 60ft, dealing 4d6 radiant damage and is revealed until the end of its next turn.",
+    description : "I gain the Guidance cantrip and proficiency in Arcana, or expertise if proficient. As an action, 4 motes of starlight appear to orbit my head, shining (30ft) bright and (30ft) dim light. As a bonus action (1/LR), I make a ranged spell attack vs. a target within 60ft, dealing 4d6 radiant damage and revealed until the end of its next turn.",
     spellcastingBonus : [{
         name : "Guidance",
         spells : ["guidance"],
@@ -257,7 +257,7 @@ MagicItemsList["trotters of speedy delivery"] = {
     rarity : "very rare",
     type : "wondrous item",
     attunement : true,
-    description : "I can deliver a package to anywhere on the material plane within 24 hours, I know the Message cantrip, and my movement speed increases by 10 ft. As a bonus action once per long rest, I can trace a path to an ally within 120 ft of me. I can use my full movement speed to traverse the distance between us regardless of obstacles. This ends if we are more than 120 ft away from each other.",
+    description : "I can deliver a package to anywhere on the material plane within 24 hours, gain the Message cantrip, and my movement speed increases by 10ft. As a bonus action (1/LR), I trace a path to an ally within 120 ft. I can use my full movement to traverse the distance between us regardless of obstacles. This ends if we are more than 120 ft away from each other.",
     usages : 1,
     recovery : "long rest",
     action : ["bonus action", "Incoming Delivery"],
@@ -280,11 +280,11 @@ MagicItemsList["spellbook of brilliant incantations"] = {
     selfChoosing : function() {
         if(classes.known.wizard) return "wizard";
         if(classes.known.cleric) return "cleric";
-        if(!classes.known.cleric && !classes.known.wizard) return "not a wizard or cleric";
+        return "not a wizard or cleric";
     },
     "wizard" : {
         name : "Spellbook of Brilliant Incantations (Wizard)",
-        description : "I can add the following spells to my wizard spellbook by spending the required materials or using this as my own spellbook. Each of these spells from the spellbook can be torn out of the book to be used as spell scrolls. If all pages are torn out, then this spellbook becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
+        description : "I can add the following spells to my wizard spellbook by spending the required materials or using this as my own spellbook. Each page can be torn out to be used as a spell scroll. If all pages are torn out, this book becomes nonmagical. (Command, Shield of Faith, Aid, Prayer of Healing, Revivify, and Death Ward)",
         spellcastingBonusElsewhere : {
             addTo : "wizard",
             spellcastingBonus : [{
@@ -303,9 +303,10 @@ MagicItemsList["spellbook of brilliant incantations"] = {
                 function(spellKey, spellObj, spName) {
                     // these spells are already part of the cleric spell list
                     var list = ["command", "shield of faith", "aid", "prayer of healing", "revivify", "death ward"];
-                    // return if this is not the cleric spell list or if this is not a spell in the list
+                    // return if this is not the cleric spell list
                     if(spName !== "cleric") return;
                     for(var i = 0; i < list.length; i++) {
+                        // only apply this to the listed spells
                         if(list[i] === spellKey && spellObj.firstCol !== "markedbox") {
                             spellObj.firstCol = "markedbox"
                         }

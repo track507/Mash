@@ -692,7 +692,8 @@ SpellsList["activate"] = {
     components : "S,M",
     compMaterial : "a shard of conductive metal",
     description : "Spell ability check, DC 13+3/tier above common; Activate for 1 use or spend any amount of charges; +5 DC to do again; DC 30 is impossible",
-    descriptionShorter : "Spell ability check +2/SL bonus, DC 13+3/tier above common; activates for 1 use or expends charges; +5 DC on subsequent attempts (max of 30)"
+    descriptionShorter : "Spell ability check +2/SL bonus, DC 13+3/tier above common; activates for 1 use or expends charges; +5 DC on subsequent attempts (max of 30)",
+    descriptionFull : "I can use my own prana to fuel the functioning of a depleted magical item or arcane mechanism. I must make a spellcasting ability check with a DC of 10 + 3 for every tier rarity above common in the case of a magical item, or a DC up to the DM's discretion in case of a mechanism. On a success, I momentarily reactivate the item or mechanism, enough to use it once before it goes back to its dormant state. If an item has charges, I can any amount of charges regardless of its actual charge. Once deactivated, any additional attempts on the same object increases the DC by 5. If the DC becomes over 30, it becomes impossible." + AtHigherLevels + "When I cast this spell using a spell slot of 3rd level or higher, I gain a bonus of +2 to the roll for each slot above 2nd, up to a maximum of +6."
 }
 
 SpellsList["pragmatism"] = {
@@ -706,7 +707,8 @@ SpellsList["pragmatism"] = {
     duration : "Conc, 1 min",
     components : "S,M",
     compMaterial : "a black, tough stone",
-    description : "Immune to charmed/frightened; adv. vs Wisdom/Charisma saves; resistance to Psycic dmg; disadv. vs persuasion, deception, and performance checks"
+    description : "Immune to charmed/frightened; adv. vs Wisdom/Charisma saves; resistance to Psycic dmg; disadv. vs pers., decep., and perf. checks",
+    descriptionFull : "I magically temper my mind against the influence of emotion, becoming purely logical. I retain my alignment and principles, but follow my nature with ruthless abandon of feelings and empathy of any sort. I am immune to being charmed or frightened and have advantage on Intelligence, Wisdom, and Charisma saving throws. Additionally, I gain resistance to psychic damage. While under this spells effects, relating to others is not my strong suit. I have disadvantage on persuasion, deception, and performance checks."
 }
 
 SpellsList["zephrahim’s purple orb"] = {
@@ -721,7 +723,8 @@ SpellsList["zephrahim’s purple orb"] = {
     components : "V,S,M",
     compMaterial : "a round carved amethyst",
     save : "Con",
-    description : "Spell atk 1 crea 2d12 Force dmg; Action on subsequent turns double dice (4d12, 8d12)/SL 9 quadruple dice , up to 3 turns and Con save after dmg or stunned"
+    description : "Spell atk 1 crea 2d12 Force dmg; Action on subsequent turns double dice (4d12, 8d12)/SL 9 quadruple dice, up to 3 turns and Con save after dmg or stunned",
+    descriptionFull : "I create an orb of pulsing violet energy and launch it at a creature I can see within range, making a range spell attack. On a hit, the target takes 2d12 force damage and the orb reverberates violently within them. On subsequent turns, I can use my action to deal the damage again, but its double each time: 4d12 the second time it hits, and 8d12 the third time. Once I deal damage with this spell 3 times, the reverberations reach their limit before disapating. After taking this damage, the target must succeed on a Constitution saving throw or be stunned until the end of their next turn." + AtHigherLevels + "When I cast this spell with a spell slot of 9th level, the initial damage is doubled."
 }
 
 SpellsList["tesla field"] = {
@@ -736,7 +739,8 @@ SpellsList["tesla field"] = {
     components : "V,S,M",
     save : "Con",
     compMaterial : "a fulgurite worth at least 1000 gp",
-    description : "30ft rad sphere; dif. ter. vs crea wear metal; save on enter or start in area, 6d8 lightning and stunned (repeat save at start of turn) or 1/2 dmg and no stunned on save; bon. action move 10ft"
+    description : "30ft rad sphere; dif. ter. vs crea wear metal; save on enter or start in area, 6d8 lightning and stunned (repeat save at start of turn); save halves and no stunned; bon. action move 10ft",
+    descriptionFull : "I create a 30ft radius sphere of crackling, fulgurating energy centered on a point I choose within range. This electricity spreads around corners. The area becomes difficult terrain for creatures wearing metallic armor. When the creature enters the spells area for the first time or starts its turn in it, the creature must make a Constitution saving throw taking 6d8 lightning damage and stunned, or taking half as much damage and not stunned on a success. A creature can repeat the saving throw at the start of each of its turns. On subsequent turns, I can use my bonus action to move the field up to 10 ft in a direction I choose."
 }
 
 SpellsList["power word: open"] = {
@@ -749,7 +753,7 @@ SpellsList["power word: open"] = {
     range : "unlimited",
     duration : "1 hr",
     components : "V",
-    description : "Whatever is in my path opens up; seas and rivers part, magical locks dispelled, hills and mountains crack forming tunnels, planar gates open regardless of its owner's wishes, etc."
+    description : "Whatever is in my path opens up, seas and rivers part, magical locks dispelled, hills and mountains crack forming tunnels, planar gates open regardless of its owner's wishes, etc."
 }
 
 MagicItemsList["mage breaker"] = {
@@ -868,7 +872,7 @@ SpellsList["fulgurating smite"] = {
     components : "V,S,M",
     compMaterial : "a shard of fulgurite",
     save : "Con",
-    description : "Next weapon attack deals 3d6+1d6/SL lightning dmg; if Crea, save or incapacitated until end of their next turn"
+    description : "Next weapon attack deals 3d6+1d6/SL lightning dmg; if crea, save or incapacitated until end of their next turn"
 }
 
 SpellsList["theophrastus' bodily chaos"]= {
@@ -882,7 +886,7 @@ SpellsList["theophrastus' bodily chaos"]= {
     duration : "Conc, 1 min",
     components : "S,M",
     compMaterial : "a vial filled with a chaotic chemical reactives, which the spell consumes",
-    descrption : "Melee spell atk against crea, swapping 2 of the targets ability scores"
+    description : "Melee spell atk against crea, swapping 2 of the targets ability scores"
 }
 
 SpellsList["entropy of teng"] = {

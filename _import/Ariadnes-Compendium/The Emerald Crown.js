@@ -372,8 +372,9 @@ SpellsList["mushroom messaging"] = {
     time : "1 a",
     range : "10 miles",
     components : "V,S",
-    duration : "Conc, until dispelled",
-    description : "I and 1 willing crea in terrain able to grow mushrooms, communicate telepathetically"
+    duration : "until dispelled",
+    description : "I and 1 willing crea in terrain able to grow mushrooms, communicate telepathetically",
+    descriptionFull : "I use the long networks of mycelium that hide underground to form a telepathic bond with a creature I am familiar with. If the creature is within 10 miles, standing in terrain hospitable to mushroom growth, and willing to speak to me, I can communicate with it mentall for as long as all three conditions are met."
 }
 
 SpellsList["ironwood tempering"] = { 
