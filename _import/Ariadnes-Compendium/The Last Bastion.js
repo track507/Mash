@@ -13,7 +13,7 @@ SourceList["A:TLB"] = {
 CompanionList["ariadne's: the last bastion companion codex"] = {
     name : "Ariadne's: The Last Bastion Companion Codex",
     nameMenu : "Ariadne's: The Last Bastion Companion Codex",
-    source : [["A:TLB", 39]]
+    source : [["A:TLB", 0], ["A:CoS", 0]]
 }
 if(!SourceList["A:CoS"]) {
     SourceList["A:CoS"] = {
