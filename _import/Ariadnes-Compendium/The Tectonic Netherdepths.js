@@ -1,6 +1,4 @@
-const { describe } = require("node:test");
-
-var iFileName = "The Tectonic Netherdepths";
+var iFileName = "The_Tectonic_Netherdepths";
 RequiredSheetVersion("13.1.13");
 
 SourceList["A:TTN"] = {
@@ -509,7 +507,7 @@ SpellsList["protection of stone"] = {
     compMaterial : "a small piece of granite",
     duration : "Conc, 1 min",
     description : "Magic stones orbit in 10 ft sphere around me; 1/2 cover; bns a. hurl stone 60ft, Dex save 3d8+1d8/SL blud., save halves; see full desc.",
-    descriptionFull : "Until this spell ends, magical stones orbit around me in a 10 ft sphere, giving me half-cover against attacks and area effects outside the sphere. As a bonus action on my turn, I can hurl a stone at a target within 60 ft. The target must make a Dexterity saving throw, taking 3d8 bludgeoning damage on a failed save, or half on a success. As a reaction when a creature attempts to pass through the sphere, I can command the stones to form a solid wall, preventing them from reaching me. The target must make a contested Athletics or Acrobatics check against my spell save DC. On a failed save, it cannot move closer to me." + AtHigherLevel + "When I case this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th."
+    descriptionFull : "Until this spell ends, magical stones orbit around me in a 10 ft sphere, giving me half-cover against attacks and area effects outside the sphere. As a bonus action on my turn, I can hurl a stone at a target within 60 ft. The target must make a Dexterity saving throw, taking 3d8 bludgeoning damage on a failed save, or half on a success. As a reaction when a creature attempts to pass through the sphere, I can command the stones to form a solid wall, preventing them from reaching me. The target must make a contested Athletics or Acrobatics check against my spell save DC. On a failed save, it cannot move closer to me." + AtHigherLevels + "When I case this spell using a spell slot of 6th level or higher, the damage increases by 1d8 for each slot level above 5th."
 }
 
 MagicItemsList["dwarven lantern"] = {
@@ -585,7 +583,8 @@ MagicItemsList["igmar's diamond pickaxe"] = {
     rarity : "legendary",
     attunement : true,
     description : "This +3 pickaxe deals double damage to objects and structures and has an increased critical range, but have a -2 to attack against creatures. Minerals, constructs, and rocks take an additional 2d10 foce damage, and minerals and rocks extracted with this are in perfect condition. 1/LR I can cast Move Earth. I have disadvantage on attacks if my Strength is 14 or lower.",
-    weaponsAdd : ["Igmar's Diamond Pickaxe"] = {
+    weaponsAdd : ["Igmar's Diamond Pickaxe"],
+    weaponOptions : [{
         name : "Igmar's Diamond Pickaxe",
         regExpSearch : /igmar's diamond pickaxe/i,
         source : [["A:TTN", 47]],
@@ -598,7 +597,7 @@ MagicItemsList["igmar's diamond pickaxe"] = {
         tooltip : "Heavy armament: Creatures with a Strength score of 14 or lower have disadvantage on the attack rolls. Destructive: This pickaxe has a -2 to attack creatures and deals double damage vs objects and structures.",
         special : true,
         weight : 44,
-    },
+    }],
     spellcastingBonus : [{
         name : "Igmar's",
         spells : ["move earth"],
@@ -657,14 +656,24 @@ MagicItemsList["dimensional blade"] = {
     type : "weapon (longsword)",
     rarity : "artifact",
     attunement : true,
-    description : "This +3 longsword deals an additional 1d8 Force damage on a hit. If I am a fighter, I can use an action to recover one use of my action surge feature. If I am a Paladin or a Pact of the Blade Warlock, I can cast Cosmic Smite through this weapon 1/LR. Aberrations take an additional 4d8 Force damage. See notes for weapon features.",
+    // there is no such thing as cosmic smite in the PDF
+    // Confirmed with their Patreon that this spell is the watcher's smite spell
+    description : "This +3 longsword deals an additional 1d8 Force damage on a hit. If I am a fighter, I can use an action to recover one use of my action surge feature. If I am a Paladin or a Pact of the Blade Warlock, I can cast Watcher's Smite through this weapon 1/LR. Aberrations take an additional 4d8 Force damage. See notes for weapon features.",
     toNotesPage : [{
         name : "Dimensional Blade",
         note : desc([
             "Curse of Dimensions: When a creature is hit with this blade, they become dimensionally shattered. A creature dimensionally shattered has a -3 to all rolls and disadvantage on Charisma saving throws.",
             "Spells: I can use my action to cast one of the following spells 1/LR (spell save DC 18): Shooting Star, Banishment, Wall of Force.",
-            "Dimensional Passage: While I wield this sword, I can choose a point within 10 ft of me. At any point over the next 8 hours, I can choose another point within 10 ft. When both points are chosen, a portal opens, connecting the two points, even if they're on different planes. The portal does not open if the one point is occupied. They last for an hour or until I dismiss them. The portal cannot do damage nor be destroyed. I can use this once per long rest."
+            "Dimensional Passage: While I wield this sword, I can choose a point within 10 ft of me. At any point over the next 8 hours, I can choose another point within 10 ft of me. When both points are chosen, a portal opens, connecting the two points, even if they're on different planes. The portal does not open if one of the points is occupied. They last for an hour or until I dismiss them. The portal cannot do damage nor be destroyed, and I can use this once per long rest."
         ])
+    }],
+    spellcastingBonus : [{
+        name : "Dimensional Blade",
+        spells : ["shooting star", "banishment", "wall of force"],
+        selection : ["shooting star", "banishment", "wall of force"],
+        times : 3,
+        fixedDC : 18,
+        firstCol : "oncelr"
     }],
     weaponsAdd : ["Dimensional Blade"],
     weaponOptions : [{
@@ -672,11 +681,111 @@ MagicItemsList["dimensional blade"] = {
         regExpSearch : /dimensional blade/i,
         source : [["A:TTN", 53]],
         baseWeapon : "longsword",
-        description : "Finesse, versatile (1d10); +1d8 Force dmg; +4d8 vs Aberr",
+        description : "Finesse, versatile (1d10); +1d8 Force dmg; +4d8 Force dmg vs Aberr",
         modifiers : [3,3]
     }],
     limfeaname : "Dimensional Passage",
     usages : 1,
-    recovery : "long rest"
-    // implement choices and selfchoosing
+    recovery : "long rest",
+    choices : ["Fighter", "Paladin", "Pact of the Blade Warlock", "Other"],
+    selfChoosing : function() {
+        if(classes.known.fighter) return "fighter";
+        if(classes.known.paladin) return "paladin";
+        if(classes.known.warlock && (/hexblade/).test(classes.known.warlock.subclass) && GetFeatureChoice('class', 'warlock', 'pact boon') == 'pact of the blade') return "pact of the blade warlock";
+        return "other";
+    },
+    "fighter" : {
+        name : "Dimensional Blade (Fighter)",
+        description : "This +3 longsword deals an additional 1d8 Force damage on a hit. I can use an action to recover one use of my action surge feature. Aberrations take an additional 4d8 Force damage. See notes for weapon features.",
+        limfeaname : "Fighter's Adrenaline",
+        usages : 1,
+        recovery : "action"
+    },
+    "paladin" : {
+        name : "Dimensional Blade (Paladin)",
+        description : "This +3 longsword deals an additional 1d8 Force damage on a hit. I can cast Watcher's Smite through this weapon 1/LR. Aberrations take an additional 4d8 Force damage. See notes for weapon features.",
+        spellcastingBonus : [{
+            name : "Dimensional Blade (Paladin)",
+            spells : ["watcher's smite"],
+            selection : ["watcher's smite"],
+            times : 1,
+            firstCol : "oncelr"
+        }]
+    },
+    "pact of the blade warlock" : {
+        name : "Dimensional Blade (Pact of the Blade)",
+        description : "This +3 longsword deals an additional 1d8 Force damage on a hit. I can cast Watcher's Smite through this weapon 1/LR. Aberrations take an additional 4d8 Force damage. See notes for weapon features.",
+        spellcastingBonus : [{
+            name : "Dimensional Blade (Paladin)",
+            spells : ["watcher's smite"],
+            selection : ["watcher's smite"],
+            times : 1,
+            firstCol : "oncelr"
+        }]
+    },
+    "other" : {
+        name : "Dimensional Blade (Other)",
+        description : "This +3 longsword deals an additional 1d8 Force damage on a hit. Aberrations take an additional 4d8 Force damage. See notes for weapon features."
+    }
 }
+
+MagicItemsList["crystallized arcanite"] = {
+    name : "Crystallized Arcanite",
+    source : [["A:TTN", 61]],
+    type : "treasure",
+    rarity : "very rare",
+    attunement : false,
+    description : "I can use my reaction to regain a 2d4+2 levels worth of spell slots if I am within 10 ft of this item."
+}
+
+MagicItemsList["teng diving suit"] = {
+    name : "Teng Diving Suit",
+    source : [["A:TTN", 69]],
+    type : "wondrous item",
+    rarity : "legendary",
+    attunement : true,
+    description : "This suit is magically powered unless all 20 of its charges are expended. Each suit is designed to fit a specific size of creature, small, medium or large, with medium being the most common. While wearing this suit, my AC is 20 and I am resistant to bludgeoning, piercing, and slashing damage, and can withstand 1000 atmopheres. See notes for full details.",
+    toNotesPage : [{
+        name : "Teng Diving Suit: Features",
+        note : desc([
+            "I can only attune to this suit if the size of it fits me.",
+            "This suit has a maximum of 20 charges. It consumes 1 charge per hour to power this suit. To recharge it, I can use my action to expend a slot slot. The suit regains a number of charges equal the level of spell slot used.",
+            "My AC becomes 20, and I can survive pressures up to 1000 atmospheres. But my walking speed is reduced to 10 ft, and I gain a swimming speed of 50 ft.",
+            "I can expend a number of charges to cast the following spells:",
+            "\u2022 1 Charge: Shocking Grasp (4d8)",
+            "\u2022 3 Charges: Lightning Bolt",
+            "\u2022 5 Charges: Chain Lightning"
+        ])
+    }],
+    spellcastingBonus : [{
+        name : "Teng Diving Suit (1)",
+        spells : ["shocking grasp"],
+        selection : ["shocking grasp"],
+        times : 1,
+        firctCol : 1
+    }, {
+        name : "Teng Diving Suit (3)",
+        spells : ["lightning bolt"],
+        selection : ["lightning bolt"],
+        times : 1,
+        firctCol : 3
+    }, {
+        name : "Teng Diving Suit (5)",
+        spells : ["chain lightning"],
+        selection : ["chain lightning"],
+        times : 1,
+        firctCol : 5
+    }],
+    spellChanges : {
+        "shocking grasp" : {
+            description : "Spell attack, adv. if metal armor, 4d8 Lightning dmg, no rea 1 turn",
+            descriptionCantripDie : "Spell attack, adv. if metal armor, 4d8 Lightning dmg, no rea 1 turn",
+            descriptionFull : "Lightning springs from your hand to deliver a shock to a creature you try to touch. Make a melee spell attack against the target. You have advantage on the attack roll if the target is wearing armor made of metal. On a hit, the target takes 4d8 lightning damage, and it can't take reactions until the start of its next turn.",
+            changes : "The spells damage is set to 4d8 indicated by the Teng Diving Suit."
+        }
+    },
+    usges : 20,
+    recovery : "SS"
+}
+
+// implement the final item emerald tablet of life.
