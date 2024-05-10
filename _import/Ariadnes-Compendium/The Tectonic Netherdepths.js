@@ -1,3 +1,5 @@
+const { describe } = require("node:test");
+
 var iFileName = "The Tectonic Netherdepths";
 RequiredSheetVersion("13.1.13");
 
@@ -563,4 +565,118 @@ MagicItemsList["pointy hat of brazen explorers"] = {
 			]
 		}
     }
+}
+
+MagicItemsList["backpack of endless supplies"] = {
+    name : "Backpack of Endless Supplies",
+    source : [["A:TTN", 47]],
+    type : "wondrous item",
+    rarity : "very rare",
+    attunement : false,
+    description : "This backpack in indistinguishable from any other backpack. For this item to function, it must carry nothing inside. I can activate it 1/LR, and must lay it flat on the floor and say the command word, Margel. It then sprawls out into a black mahogany table filled with dwarven food and drink. This takes 1 hr to consume, and those who eat are satiated for 24 hrs and gain 24 temp hp. After an hour, it folds back into a backpack.",
+    usages : 1,
+    recovery : "long rest"
+}
+
+MagicItemsList["igmar's diamond pickaxe"] = {
+    name : "Igmar's Diamond Pickaxe",
+    source : [["A:TTN", 47]],
+    type : "weapon (pickaxe)",
+    rarity : "legendary",
+    attunement : true,
+    description : "This +3 pickaxe deals double damage to objects and structures and has an increased critical range, but have a -2 to attack against creatures. Minerals, constructs, and rocks take an additional 2d10 foce damage, and minerals and rocks extracted with this are in perfect condition. 1/LR I can cast Move Earth. I have disadvantage on attacks if my Strength is 14 or lower.",
+    weaponsAdd : ["Igmar's Diamond Pickaxe"] = {
+        name : "Igmar's Diamond Pickaxe",
+        regExpSearch : /igmar's diamond pickaxe/i,
+        source : [["A:TTN", 47]],
+        type : "Martial",
+        ability : 1,
+        abilitytodamage : true,
+        damage : [1,6, "piercing"],
+        range : "Melee",
+        description : "Versatile (1d8), destructive, heavy armament, +1 crit range;",
+        tooltip : "Heavy armament: Creatures with a Strength score of 14 or lower have disadvantage on the attack rolls. Destructive: This pickaxe has a -2 to attack creatures and deals double damage vs objects and structures.",
+        special : true,
+        weight : 44,
+    },
+    spellcastingBonus : [{
+        name : "Igmar's",
+        spells : ["move earth"],
+        selection : ["move earth"],
+        times : 1,
+        firstCol : "oncelr"
+    }]
+}
+
+SpellsList["starlight aura"] = {
+    name : "Starlight Aura",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TTN", 52]],
+    level : 0,
+    school : "Ench",
+    time : "1 bns",
+    range : "Self",
+    components : "V,S",
+    duration : "1 rnd", // rnd = turn
+    description : "30ft rad dim light around me;  my spellcasting ability modifier creas +1 to attack, ability, and saving throws til end of my next turn",
+    descriptionFull : "A scattering of star-like flecks appear around me, illuminating the area with 30 ft of dim light. These motes of starlight remain until the end of my next turn, during which I and a number of allies equal to my spellcasting ability modifier within 30 ft gain +1 to attack rolls, ability checks, and saving throws."
+}
+
+SpellsList["shooting star"] = {
+    name : "Shooting Star",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TTN", 52]],
+    level : 3,
+    school : "Evoc",
+    time : "1 a",
+    range : "120 ft",
+    components : "V,S,M",
+    compMaterial : "a shiny white pearl worth at least 100 gp",
+    duration : "Instantaneous",
+    description : "Spell atk 8d8 force dmg and Revealed until the end of its next turn",
+    descriptionFull : "I hurl a streaking star from the palm of my hand at a creature within range. On a hit, the target takes 8d8 Force damage and is Revealed until the end of its next turn."
+}
+
+SpellsList["watcher's strike"] = {
+    name : "Watcher's Strike",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TTN", 52]],
+    level : 5,
+    school : "Evoc",
+    time : "1 bns",
+    range : "Self",
+    components : "V",
+    duration : "Conc, 1 min",
+    save : "Cha",
+    description : "Next weapon hit +6d10 Force dmg and Revealed until end of next turn; Aberr. Cha saving throw take 10d6 Force, save halves"
+}
+
+MagicItemsList["dimensional blade"] = {
+    name : "Dimensional Blade",
+    source : [["A:TTN", 53]],
+    type : "weapon (longsword)",
+    rarity : "artifact",
+    attunement : true,
+    description : "This +3 longsword deals an additional 1d8 Force damage on a hit. If I am a fighter, I can use an action to recover one use of my action surge feature. If I am a Paladin or a Pact of the Blade Warlock, I can cast Cosmic Smite through this weapon 1/LR. Aberrations take an additional 4d8 Force damage. See notes for weapon features.",
+    toNotesPage : [{
+        name : "Dimensional Blade",
+        note : desc([
+            "Curse of Dimensions: When a creature is hit with this blade, they become dimensionally shattered. A creature dimensionally shattered has a -3 to all rolls and disadvantage on Charisma saving throws.",
+            "Spells: I can use my action to cast one of the following spells 1/LR (spell save DC 18): Shooting Star, Banishment, Wall of Force.",
+            "Dimensional Passage: While I wield this sword, I can choose a point within 10 ft of me. At any point over the next 8 hours, I can choose another point within 10 ft. When both points are chosen, a portal opens, connecting the two points, even if they're on different planes. The portal does not open if the one point is occupied. They last for an hour or until I dismiss them. The portal cannot do damage nor be destroyed. I can use this once per long rest."
+        ])
+    }],
+    weaponsAdd : ["Dimensional Blade"],
+    weaponOptions : [{
+        name : "Dimensional Blade",
+        regExpSearch : /dimensional blade/i,
+        source : [["A:TTN", 53]],
+        baseWeapon : "longsword",
+        description : "Finesse, versatile (1d10); +1d8 Force dmg; +4d8 vs Aberr",
+        modifiers : [3,3]
+    }],
+    limfeaname : "Dimensional Passage",
+    usages : 1,
+    recovery : "long rest"
+    // implement choices and selfchoosing
 }
