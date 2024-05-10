@@ -9,6 +9,31 @@ SourceList["A:TEC"] = {
     url : "https://www.patreon.com/codexofstrings/posts",
     date : "2024/04/11"
 };
+RunFunctionAtEnd( function() {
+    if(!SourceList["A:CoS"]) {
+        SourceList["A:CoS"] = {
+            name : "Ariadne's: Codex of Strings",
+            abbreviation : "A:CoS",
+            abbreviationSpellsheet : "A",
+            group : "Homebrew",
+            url : "https://www.patreon.com/codexofstrings/posts",
+            date : "2024/02/14"
+        };
+    }
+    if(!CompanionList["ariadne's codex of creatures"]) {
+        CompanionList["ariadne's codex of creatures"] = {
+            name : "Ariadne's Codex of Creatures",
+            nameMenu : "Creatures",
+            source : [["A:CoS", 0]]
+        }
+    }
+})
+
+CompanionList["ariadne's: the emerald crown creatures"] = {
+    name : "Ariadne's: The Emerald Crown Creatures",
+    nameMenu : "Creatures",
+    source : [["A:TEC", 0],["A:CoS", 0]]
+}
 
 MagicItemsList["sword and gourd"] = {
     name : "Sword and Gourd",
@@ -16,7 +41,7 @@ MagicItemsList["sword and gourd"] = {
     rarity : "rare",
     type : "wondrous item",
     attunement : true,
-    description : "The sword is a +1 longsword, but deals necrotic damage instead of its normal damage. Whenever I hit a creatur with this weapon, I gain an amount of gourd charges equal to half the damage dealt. This can store up to 30 charges.",
+    description : "The sword is a +1 longsword, but deals necrotic damage instead of its normal damage. Whenever I hit a creature with this weapon, I gain an amount of gourd charges equal to half the damage dealt. This can store up to 30 charges.",
     toNotesPage : [{
         name : "Gourd Charges",
         note : desc([
@@ -26,7 +51,7 @@ MagicItemsList["sword and gourd"] = {
             "30 Charges: mass healing word, revivify."
         ])
     }],
-    usages : 0,
+    usages : 30,
     recovery : "1/2 dmg",
     spellcastingBonus : [{
         name : "Gourd Spells (10)",
@@ -251,7 +276,7 @@ MagicItemsList["pashama's ear"] = {
     rarity : "rare",
     type : "wondrous item",
     attunement : true,
-    description : "I gain the Keen Hearing trait which grants me advantage on Perception and Investigation checks that rely on hearing. Additionally, I have a blindsight range of 30 ft, which ceases to function if I am defeaned.",
+    description : "I gain the Keen Hearing trait which grants me advantage on Perception and Investigation checks that rely on hearing. Additionally, I have a blindsight range of 30 ft, which ceases to function if I am deafened.",
     vision : [["Adv. on Perception and Investigation relying on hearing", 0], ["Blindsight", 30]]
 };
 
@@ -261,8 +286,21 @@ MagicItemsList["greenfeather's mask"] = {
     rarity : "artifact",
     type : "wondrous item",
     attunement : true,
-    description : "I gain a +2 to Con., Dex., and Str., up to a max of 26. If I am a barbarian and I am raging, I heal for 1d8 + my Con. mod at the start of my turn, and gain a fly speed of 60 ft.",
-    scores : [2,2,2,0,0,0]
+    choices : ["Barbarian", "Not a Barbarian"],
+    selfChoosing : function() {
+        if(classes.known.barbarian) return "barbarian";
+        if(!classes.known.barbarian) return "not a barbarian";
+    },
+    "barbarian" : {
+        name : "Greenfeather's Mask (Barbarian)",
+        description : "I gain a +2 to Con., Dex., and Str., up to a max of 26. While I am raging, I heal for 1d8 + my Con. mod at the start of my turn, and gain a fly speed of 60 ft.",
+    },
+    "not a barbarian" : {
+        name : "Greenfeather's Mask (Not a Barbarian)",
+        description : "I gain a +2 to Con., Dex., and Str., up to a max of 26."
+    },
+    scores : ["+2","+2","+2",0,0,0],
+    scoresMaximum : [26,26,26,0,0,0]
 };
 
 MagicItemsList["diarmuid's warboard"] = {
@@ -411,12 +449,15 @@ MagicItemsList["third shard of the emerald crown"] = {
         spells : ["daylight", "plant growth", "control water"],
         selection : ["daylight", "plant growth", "control water"],
         times : 3,
+        firstCol : 3
     }, {
         name : "Emerald Crown (1/day each)",
         spells : ["sunbeam", "wall of ice", "flame strike"],
         selection : ["sunbeam", "wall of ice", "flame strike"],
         times : 3,
-    }]
+        firstCol : 1
+    }],
+    scoresOverride : [0, 0, 0, 20, 0, 0]
 };
 
 RaceList["oberon"] = {
@@ -523,7 +564,8 @@ RaceList["dryad"] = {
             "\u2022 Dryad Ascendance",
             "\u2022 Bulwark of Nature",
             "\u2022 Master of Elements"
-        ])
+        ]),
+        amendTo : "Maiden's Calling" 
     }]
 };
 
@@ -753,6 +795,7 @@ CreatureList["giant mushroom"] = {
     source : [["A:TEC", 60]],
     size : 1,
     type : "Plant",
+    companion : ["ariadne's: the emerald crown creatures", "ariadne's codex of creatures"],
     alignment : "Unaligned",
     ac : 13,
     hp : 89,
@@ -786,7 +829,7 @@ CreatureList["giant mushroom"] = {
     }],
     features : [{
 		name : "False Appearance",
-		description : "While the tree remains motionless, it is indistinguishable from a normal tree.",
+		description : "While the tree remains motionless, it is indistinguishable from a normal giant mushroom.",
 	}],
     notes : [{
         name : "At Higher Levels",
