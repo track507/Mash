@@ -29,12 +29,12 @@ MagicItemsList["ring of aberrant reflexes"] = {
     toNotesPage : [{
         name : "Ring of Aberrant Reflexes: Curse",
         note : desc([
-            "Whenever I use my this rings' reaction to take half damage, I must make a DC 10 Intelligence saving throw. On a failed save, I take 3d6 psyhic damage as the ring burrows deeper and the save DC for subsequent saves is increased by 3.",
+            "Whenever I use my this rings' reaction to take half damage, I must make a DC 10 Intelligence saving throw. On a failed save, I take 3d6 psychic damage as the ring burrows deeper and the save DC for subsequent saves is increased by 3.",
             "When I fail a second time, I take 5d6 psychic damage and become unable to remove the ring by normal means. I can remove this ring if the Remove Curse spell is casted at 5th level or higher.",
-            "If I fail a third time, an evil alien intelligence takes over my mind, fully controlling me until someone takes the ring off my finger. If the ring is removed, it will refure to attune to me again."
+            "If I fail a third time, an evil alien intelligence takes over my mind, fully controlling me until someone takes the ring off my finger. If the ring is removed, it will refuse to attune to me again."
         ])
     }],
-    actions : [["reaction", "Aberrant Reflexes"], ["reaction", "Evasion"]],
+    action : [["reaction", "Aberrant Reflexes"], ["reaction", "Evasion"]],
     savetxt : { text : ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"] }
 }
 
@@ -117,6 +117,7 @@ AddWarlockInvocation("Revealing Blast (prereq: Eldritch Blast)", {
     name : "Revealing Blast",
     description : desc(["When I hit a creature with my eldritch blast, they are revealed until the end of their next turn. While revealed a creature cannot benefit from being invisible, is returned to its true form if its shapeshifted, and attacks against it hit critically on a 19-20. This condition does not dispel magic, justs put them on hold until the condition is lost."]),
     source : [["A:TTN", 15]],
+    submenu : "[improves Eldritch Blast]",
     prereqeval : function(v) { return isSpellUsed('eldritch blast', true); }
 })
 
@@ -185,7 +186,7 @@ FeatsList["defensive acrobat"] = {
     source : [["A:TTN", 16]],
     description : "I gain a +1 to Dexterity. Once per turn when I am hit by an attack, I can use my reaction to roll an Acrobatics check. If my roll is higher than the attack roll, the attack misses.",
     scores : [0, 1, 0, 0, 0, 0],
-    actions : ["reaction", ""]
+    action : ["reaction", ""]
 }
 
 FeatsList["light armor master"] = {
@@ -194,7 +195,7 @@ FeatsList["light armor master"] = {
     prerequisite : "requires light armor proficiency",
     description : "I gain a +2 to Dexterity saving throws while wearing light armor. When I succeed a Dexterity saving throw or an attack misses me, I can use my reaction to dodge and move up to 15 ft in a direction of my choosing.",
     prereqeval : function(v) { return v.lightArmorProf; },
-    actions : ["reaction", "Dodge (move 15 ft)"]
+    action : ["reaction", "Dodge (move 15 ft)"]
 }
 
 FeatsList["crushing might"] = {
@@ -202,7 +203,9 @@ FeatsList["crushing might"] = {
     source : [["A:TTN", 16]],
     prerequisite : "requires heavy armor proficiency",
     prereqeval : function(v) { return v.heavyArmorProf; },
-    description : "Once per turn while I am wearing heavy armor, I can sacrifice 15 ft of movement to turn a melee attack into a crushing strike. Crushing strikes have a bonus to hit and damage rolls equal to half my AC, rounded down. Benefits to AC from shields, spells, and other means are ignored when calculating these bonuses."
+    description : "Once per turn while I am wearing heavy armor, I can sacrifice 15 ft of movement to turn a melee attack into a crushing strike. Crushing strikes have a bonus to hit and damage rolls equal to half my AC, rounded down. Benefits to AC from shields, spells, and other means are ignored when calculating these bonuses.",
+    usages : 1,
+    recovery : "Turn"
 }
 
 MagicItemsList["mysterious teng tablet"] = {
@@ -220,7 +223,7 @@ MagicItemsList["mysterious teng tablet"] = {
     }, {
         name : "Gaze of Arkan Curse",
         note : desc([
-            "The gaze of the Arkan Group is focused on whichever creature holds the Mysterious Teng Tablet. The creature is Revealed and cannot turn invisible by any means nor gain the benefits of the nondetection spell or similar effects. For as long as the creature carries the tablet:",
+            "The gaze of the Arkan Group is focused on whichever creature holds the Mysterious Teng Tablet. The creature is Revealed and cannot turn invisible by any means nor gain the benefits of the Nondetection spell or similar effects. For as long as the creature carries the tablet:",
             "\u2022 Arkan enforcers and operatives know the general location of the creature",
             "\u2022 Masked Ones of Arkan know the precise location of the creature and can use their action to cast the Scrying spell once per long rest on the creature",
             "\u2022 After a long rest, the creature must succeed a DC 13 Wisdom saving throw or gain one point of exhaustion",
@@ -244,6 +247,9 @@ MagicItemsList["pendant of the star guardian"] = {
         selection : ["guidance"],
         times : 1,
     }],
+    skills : [
+        ["Arcana", "increment"]
+    ],
     action : [["action", "Create Starlight (4 motes)"], ["bonus action", "Launch Starlight (60ft)"]],
     limfeaname : "Launch Starlight",
     usages : 1,
@@ -267,7 +273,7 @@ MagicItemsList["trotters of speedy delivery"] = {
         spells : ["message"],
         selection : ["message"],
         times : 1,
-    }]
+    }],
 }
 
 MagicItemsList["spellbook of brilliant incantations"] = {
@@ -339,11 +345,11 @@ MagicItemsList["helm of the oathbreaker"] = {
     prereqeval : function(v) { 
         return classes.known.paladin;
     },
-    description : "I gain a +1 bonus to my AC and is cursed. When I use a Divine Smite, I gain 5 temp. hp. Additionally, when I reduce a creature to 0 hp with my Divine Smite, they are instantly killed and cannot be brought back to life with spells of 5th level or lower. I gain +1 to my Strength everytime I kill a good-aligned creature (max 24). See notes for curse.",
+    description : "I gain a +1 bonus to my AC and is cursed. When I use a Divine Smite, I gain 5 temp. hp. Additionally, when I reduce a creature to 0 hp with my Divine Smite, they are instantly killed and cannot be brought back to life with spells of 5th level or lower. I gain +1 to my Strength every time I kill a good-aligned creature (max 24). See notes for curse.",
     toNotesPage : [{
         name : "Helm of the Oathbreaker: Curse",
         note : desc([
-            "Everytime I score a critical hit against a creature, I must make a DC 15 Wisdom saving throw or become charmed by the helmet until the end of my next turn. The helm will attempt to murder the nearest good-aligned creature, and will use Divine Smite on all of its attack if available."
+            "Every time I score a critical hit against a creature, I must make a DC 15 Wisdom saving throw or become charmed by the helmet until the end of my next turn. The helm will attempt to murder the nearest good-aligned creature, and will use Divine Smite on all of its attack if available."
         ])
     }],
     extraAC : [{name : "Helm of the Oathbreaker", mod : 1, magic : true, text : "I gain a +1 bonus to AC while attuned."}],
@@ -413,9 +419,18 @@ MagicItemsList["void beckoner"] = {
         name : "Void Beckoner: Open Rift",
         note : desc([
             "As an action, I can expend 5 charges to open a rift in an unoccupied space within 60 ft. Each creature within 30 ft of it must make a DC 17 Strength saving throw or take 3d6 force damage and be pulled 15 ft towards the rift. A large or smaller creature that starts its turn within 5 ft of the rift and fails the Strength save takes an additional 10d6 force damage and must succeed on a DC 17 Charisma saving throw or be swallowed by the void. Only a Wish spell can return the creature back.",
-            "This rift remamins open for one minutes, or until I dismiss it. At the start of each of my turns, while the rift remains open, roll 1d10. On a 1, a Karcharis burst open from the rift, its ravenous hunger focused on the wielder of the Void Beckoner."
+            "This rift remains open for one minutes, or until I dismiss it. At the start of each of my turns, while the rift remains open, roll 1d10. On a 1, a Karcharis burst open from the rift, its ravenous hunger focused on the wielder of the Void Beckoner."
         ])
     }],
+    fixedDC : 17,
+    calcChanges : {
+        spellCalc : [
+            function (type, spellcasters, ability) {
+                if (type !== "prepare") return 2;
+            },
+            "I gain a +2 bonus to spell attack rolls and spell save DC."
+        ]
+    },
     action : ["action", "Open Rift (5 charges)"],
     usages : 10,
     recovery : "dawn",
@@ -446,6 +461,10 @@ MagicItemsList["ancient teng key"] = {
     rarity : "artifact",
     source : [["A:TTN", 31]],
     attunement : true,
+    prerequisite : "Mysterious Teng Tablet",
+    prereqeval : function(v) {
+        return (CurrentMagicItems.known.indexOf("mysterious teng tablet") !== -1)
+    },
     description : "The Teng Tablet has now evolved into this key. Weighing 100 pounds, it cannot be carried by a creature with a Strength score lower than 12. I can increase one of my ability scores by 2, and can cast spells associated with this key with only verbal components. After casting one of these spells, I am affected by the Gaze of Arkans curse until I finish a long rest.",
     scorestxt : "+2 to one ability score",
     spellcastingBonus : [{
@@ -458,7 +477,7 @@ MagicItemsList["ancient teng key"] = {
     toNotesPage : [{
         name : "Ancient Teng Key",
         note : desc([
-            "The Teng Tablet has now evolved into this key. I can use this key to seal Teng control rooms, giving me a safe place to rest, should I need one. A Teng construct or machine that is in contact with the Ancient Key regains 10 hp per round. If it was broken or in a state of disrepair, it bcomes functional only when it is restored to its max hp. Teng Sentinels will not attack you, and their vehicles and machines will respond to your commands as well as their state of disrepair allows."
+            "The Teng Tablet has now evolved into this key. I can use this key to seal Teng control rooms, giving me a safe place to rest, should I need one. A Teng construct or machine that is in contact with the Ancient Key regains 10 hp per round. If it was broken or in a state of disrepair, it becomes functional only when it is restored to its max hp. Teng Sentinels will not attack you, and their vehicles and machines will respond to your commands as well as their state of disrepair allows."
         ]),
         amendTo : "Mysterious Teng Tablet"
     }]
@@ -529,6 +548,12 @@ MagicItemsList["the fixer"] = {
     description : "I can cast Guidance and Mending. Any medium or smaller broken non-magical item can be fixed with a gentle tap. It has 5 charges, regaining 1d4+1 at dawn. Expending one gives me adv. on any skill check, 5 charges restores 1/2 the max charges of another magical items of Very Rare or lower. +3 bonus to Charisma checks to de-escalate a situtation and avoid battle.",
     usages : 5,
     recovery : "dawn",
+    spellcastingBonus : [{
+        name : "The Fixer",
+        spells : ["guidance", "mending"],
+        selection : ["guidance", "mending"],
+        times : 2,
+    }]
 }
 
 MagicItemsList["pointy hat of brazen explorers"] = {
@@ -540,8 +565,8 @@ MagicItemsList["pointy hat of brazen explorers"] = {
     description : "I gain a +1 to my spell attack rolls, and ranged spell attacks vs. targets within 5 ft of me are considered melee spell attacks. I can add my spellcasting ability modifier to the damage of melee attack spells. I gain a +1 to my Charisma, or +2 if I am a dwarf.",
     choices : ["Dwarf", "Not a Dwarf"],
     selfChoosing : function() {
-        if(CurrentRace.known === "dwarf") return "dwarf";
-        return "not a dwarf";
+        if((/dwarf/i).test(CurrentRace.known)) return "dwarf";
+        if(!(/dwarf/i).test(CurrentRace.known)) return "not a dwarf";
     },
     "dwarf" : {
         name : "Pointy Hat of Brazen Explorers (Dwarf)",
@@ -554,14 +579,12 @@ MagicItemsList["pointy hat of brazen explorers"] = {
         scores : [0,0,0,0,0,1]
     },
     calcChanges : {
-        calcChanges : {
-			spellCalc : [
-				function (type, spellcasters, ability) {
-					if (type == "attack") return 1;
-				},
-				"I gain a +1 bonus to spell attack rolls."
-			]
-		}
+        spellCalc : [
+            function (type, spellcasters, ability) {
+                if (type == "attack") return 1;
+            },
+            "I gain a +1 bonus to spell attack rolls."
+        ]
     }
 }
 
@@ -582,7 +605,7 @@ MagicItemsList["igmar's diamond pickaxe"] = {
     type : "weapon (pickaxe)",
     rarity : "legendary",
     attunement : true,
-    description : "This +3 pickaxe deals double damage to objects and structures and has an increased critical range, but have a -2 to attack against creatures. Minerals, constructs, and rocks take an additional 2d10 foce damage, and minerals and rocks extracted with this are in perfect condition. 1/LR I can cast Move Earth. I have disadvantage on attacks if my Strength is 14 or lower.",
+    description : "This +3 pickaxe deals double damage to objects and structures and has an increased critical range, but have a -2 to attack against creatures. Minerals, constructs, and rocks take an additional 2d10 force damage, and minerals and rocks extracted with this are in perfect condition. 1/LR I can cast Move Earth. I have disadvantage on attacks if my Strength is 14 or lower.",
     weaponsAdd : ["Igmar's Diamond Pickaxe"],
     weaponOptions : [{
         name : "Igmar's Diamond Pickaxe",
@@ -593,8 +616,8 @@ MagicItemsList["igmar's diamond pickaxe"] = {
         abilitytodamage : true,
         damage : [1,6, "piercing"],
         range : "Melee",
-        description : "Versatile (1d8), destructive, heavy armament, +1 crit range;",
-        tooltip : "Heavy armament: Creatures with a Strength score of 14 or lower have disadvantage on the attack rolls. Destructive: This pickaxe has a -2 to attack creatures and deals double damage vs objects and structures.",
+        description : "Versatile (1d8), destructive, heavy armament, +1 crit range",
+        tooltip : "Heavy armament: Creatures with a Strength score of 14 or lower have disadvantage on the attack rolls.\n Destructive: This pickaxe has a -2 to attack creatures and deals double damage vs objects and structures.",
         special : true,
         weight : 44,
     }],
@@ -636,8 +659,8 @@ SpellsList["shooting star"] = {
     descriptionFull : "I hurl a streaking star from the palm of my hand at a creature within range. On a hit, the target takes 8d8 Force damage and is Revealed until the end of its next turn."
 }
 
-SpellsList["watcher's strike"] = {
-    name : "Watcher's Strike",
+SpellsList["watcher's smite"] = {
+    name : "Watcher's smite",
     classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
     source : [["A:TTN", 52]],
     level : 5,
@@ -681,7 +704,8 @@ MagicItemsList["dimensional blade"] = {
         regExpSearch : /dimensional blade/i,
         source : [["A:TTN", 53]],
         baseWeapon : "longsword",
-        description : "Finesse, versatile (1d10); +1d8 Force dmg; +4d8 Force dmg vs Aberr",
+        description : "Finesse, versatile (1d10); +1d8 Force dmg; +4d8 Force dmg vs Aberr; Special; Heavy",
+        tooltip : "Special: Creatures hit with this weapon are dimensionally shattered. They have a -3 to all rolls and disadvantage on Charisma saving throws.\n Heavy: I have disadvantage on attack rolls if my Stength is 14 or lower.",
         modifiers : [3,3]
     }],
     limfeaname : "Dimensional Passage",
@@ -716,7 +740,7 @@ MagicItemsList["dimensional blade"] = {
         name : "Dimensional Blade (Pact of the Blade)",
         description : "This +3 longsword deals an additional 1d8 Force damage on a hit. I can cast Watcher's Smite through this weapon 1/LR. Aberrations take an additional 4d8 Force damage. See notes for weapon features.",
         spellcastingBonus : [{
-            name : "Dimensional Blade (Paladin)",
+            name : "Dimensional Blade (Pact of the Blade)",
             spells : ["watcher's smite"],
             selection : ["watcher's smite"],
             times : 1,
@@ -735,7 +759,8 @@ MagicItemsList["crystallized arcanite"] = {
     type : "treasure",
     rarity : "very rare",
     attunement : false,
-    description : "I can use my reaction to regain a 2d4+2 levels worth of spell slots if I am within 10 ft of this item."
+    description : "I can use my reaction to regain a 2d4+2 levels worth of spell slots if I am within 10 ft of this item.",
+    action : ["reaction", ""]
 }
 
 MagicItemsList["teng diving suit"] = {
@@ -788,4 +813,41 @@ MagicItemsList["teng diving suit"] = {
     recovery : "SS"
 }
 
-// implement the final item emerald tablet of life.
+MagicItemsList["emerald tablet of life"] = {
+    name : "Emerald Tablet of Life",
+    source : [["A:TTN", 77]],
+    type : "wondrous item",
+    rarity  : "artifact",
+    prerequisite : "Mysterious Teng Tablet and Ancient Teng Key",
+    prereqeval : function(v) {
+        return (CurrentMagicItems.known.indexOf("mysterious teng tablet") !== -1 && CurrentMagicItems.known.indexOf("ancient teng key") !== -1)
+    },
+    attunement : true,
+    description : "The tablet is weightless to me and terribly heavy to everyone else. I gain additional features found on the notes page.",
+    toNotesPage : [{
+        name : "Emerald Tablet of Life",
+        note : desc([
+            "While attuned to this tablet, my Constitution score becomes a 26, unless it is already higher. I gain the following:",
+            "\u2022 One legendary resistance",
+            "\u2022 One damage immunity",
+            "\u2022 One condition immunity",
+            "\u2022 Resistance to all elemental damage (acid, cold, fire, lightning, and thunder)",
+            "\u2022 I can cast True Resurrection once per week without any material components",
+            "Additionally, this artifact gains sentience and new powers over the course of centuries under the possession of brilliant Dwarven and Teng artificers, which it maintains in its awakened form."
+            + " I can use it to seal or unseal Teng control rooms and outposts. A Teng construct or machine that is in contact with this tablet regains 25 hp per round. If it was broken or in a state of disrepair, it becomes functional when it is restored to its max hp.",
+            "Teng Sentinels will act friendly towards me, and their vehicles and machines respond to my commands as well as their state of disrepair allows."
+        ]),
+        amendTo : "Mysterious Teng Tablet"
+    }],
+    limfeaname : "Legendary Resistance",
+    usages : 1,
+    recovery : "long rest",
+    dmgres : ["Acid", "Cold", "Fire", "Lightning", "Thunder"],
+    spellcastingBonus : [{
+        name : "Emerald Tablet of Life",
+        spells : ["true resurrection"],
+        selection : ["true resurrection"],
+        times : 1,
+        firctCol : "1/W"
+    }]
+}
