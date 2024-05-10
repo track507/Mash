@@ -240,7 +240,7 @@ MagicItemsList["nightingale pendants"] = {
     toNotesPage : [{
         name : "Nightingale Pendants",
         page3notes : true,
-        note : "I may expend 1 charge to ignore the verbal and somtic components of a spell."
+        note : desc(["I may expend 1 charge to ignore the verbal and somtic components of a spell."])
     }]
 };
 
@@ -312,11 +312,10 @@ MagicItemsList["circlet of astronomy"] = {
         times : 3,
         firstCol : 1
     }],
-    usages : 0,
+    usages : 1,
     recovery : "dawn"
 }
 
-// change and update this magic item
 MagicItemsList["the last moonsilver"] = {
     name : "The Last Moonsilver",
     source : [["A:TLB", 20]],
@@ -435,7 +434,7 @@ FeatsList["improvised casting"] = {
     name : "Improvised Casting",
     source : [["A:TLB", 33]],
     prerequisite : "Being a wizard or artificer",
-    prereqeval : function(v) { return classes.known.wizard || classes.known.artificer ? true : false},
+    prereqeval : function(v) { return (classes.known.wizard || classes.known.artificer) ? true : false},
     description : "My Intelligence increases by 1. When I cast a wizard or artificer spell, I can improve an aspect of the spell with the cost of another; see notes. Once I modify a spell, I cannot do so again until I finish a short or long rest.",
     usages : 1,
     recovery : "short rest",
@@ -458,7 +457,8 @@ FeatsList["thoughts before action"] = {
     source : [["A:TLB", 33]],
     prerequisite : "Intelligence 13 or higher",
 	prereqeval : function(v) { return Number(What("Int")) >= 13; },
-    description : "My intelligence increases by 1. Additionally when I take one minute to analyze a course of action, I gain a bonus to the associated check equal to my Intelligence modifier."
+    description : "My intelligence increases by 1. Additionally when I take one minute to analyze a course of action, I gain a bonus to the associated check equal to my Intelligence modifier.",
+    scores : [0,0,0,1,0,0]
 }
 
 AddSubClass("paladin", "oath of eminence", {
@@ -472,13 +472,12 @@ AddSubClass("paladin", "oath of eminence", {
             minlevel : 3,
             description : desc([
                 "For the next minute, I can add my charisma modifier to hit with my weapon attacks.",
-                "When I hit a creature with this weapon, the next attack or saving throw they make is reduced by 1d4.",
-                "This effect does not stack."
+                "When I hit a creature with this weapon, the next attack or saving throw they make is reduced by 1d4. This effect does not stack."
             ]),
             calcChanges : {
                 atkAdd : [
                     function(fields, v) {
-                        if( !v.isDC && /eminent/i.text(v.WeaponTextName) ) {
+                        if( !v.isDC && /eminent/i.test(v.WeaponTextName) ) {
                             fields.Description += (fields.Description ? '; ' : '') + "Crea -1d4 next atk/save"
                         }
                     },
@@ -486,7 +485,7 @@ AddSubClass("paladin", "oath of eminence", {
                 ],
                 atkCalc : [
                     function(fields, v, output) {
-                        if( /eminent/i.text(v.WeaponTextName) ) {
+                        if( /eminent/i.test(v.WeaponTextName) ) {
                             output.extraHit += Number(What("Cha Mod")) > 0 ? Number(What("Cha Mod")) : 0;
                         }
                     }
@@ -499,14 +498,12 @@ AddSubClass("paladin", "oath of eminence", {
             source : [["A:TLB", 36]],
             minlevel : 3,
             description : desc([
-                "I can choose up to four allies within 30 ft of me.",
-                "They gain a 1d6 bonus to their next attack or saving throw.",
-                "Additionally, they gain temporary hit points equal to my Prof. Bonus + my Charisma modifier.",
-                "This lasts until the end of my next turn."
+                "I can choose up to four allies within 30 ft of me. They gain a 1d6 bonus to their next attack or saving throw.",
+                "Additionally, they gain temporary hit points equal to my Prof. Bonus + my Charisma modifier. This lasts until the end of my next turn."
             ]),
             additional : levels.map(function(n) {
                 if(n < 3) return "";
-                return "+1d6 next attack or saving throw"
+                return "+1d6"
             }),
         },
         "subclassfeature7" : {
@@ -514,9 +511,7 @@ AddSubClass("paladin", "oath of eminence", {
             source : [["A:TLB", 36]],
             minlevel : 7,
             description : desc([
-                "When a creature within range targets only me with an attack or harmful spell, it must make a Charisma saving throw.",
-                "On a failure, they are incapacitated until the end of their next turn. A creature that succeeds or when the effect ends is immune to this until they finish a long rest.",
-                "This feature isn't triggered by area of effect spells.",
+                "When a creature within range targets only me with an attack or harmful spell, it must make a Charisma saving throw. On a failure, they are incapacitated until the end of their next turn. A creature that succeeds or when the effect ends is immune to this until they finish a long rest. This feature isn't triggered by area of effect spells.",
                 "Additionally at 18th level, a creature that has become immune to my Regal Presence ability, can be affected by it again."
             ]),
             additional : levels.map(function(n) { return n < 7 ? "" : (n < 18 ? 15 : 30) + "-foot aura"; }),
@@ -551,7 +546,7 @@ MagicItemsList["senatorial cloak"] = {
     type : "wondrous item",
     rarity : "rare",
     attunement : true,
-    description : "My AC becomes 13 + Dex. For 10 minutes one per short rest, I gain a hover speed equal to my walk speed. I can also cast the Thaumaturgy cantrip. Additionally, I gain a +2 to Persuasion and Intimidation checks.",
+    description : "My AC becomes 13 + Dex. For 10 minutes once per short rest, I gain a hover speed equal to my walk speed. I can also cast the Thaumaturgy cantrip. Additionally, I gain a +2 to Persuasion and Intimidation checks.",
     armorAdd : ["Senatorial Cloak"],
     armorOptions : [{
         regExpSearch : /senatorial cloak/,
@@ -559,6 +554,14 @@ MagicItemsList["senatorial cloak"] = {
         source : [["A:TLB", 38]],
         ac : 13,
         affectsWildShape : true
+    }],
+    usages : 1,
+    recovery : "short rest",
+    specllcastingBonus : [{
+        name : "Senatorial Cloak",
+        spells : ["thaumaturgy"],
+        selection : ["thaumaturgy"],
+        times : 1
     }]
 }
 
@@ -576,7 +579,20 @@ MagicItemsList["maul of construct turning"] = {
         baseWeapon : "maul",
         description : "Heavy, two-handed; +1d8 lightning dmg to Constructs",
         modifiers : [2,2],
-    }]
+    }],
+    choices : ["Cleric", "Not a Cleric"],
+    selfChoosing : function() {
+        if(classes.known.cleric) return "cleric";
+        if(!classes.known.cleric) return "not a cleric";
+    },
+    "cleric" : {
+        name : "Maul of Construct Turning (Cleric)",
+        description : "I have a +2 to damage and attack rolls made with this maul. When I hit a construct, they take an additional 1d8 lightning damage and must succeed a DC 14 Consitution saving throw or be Incapacitated until the end of their next turn. Additionally, I can use my Turn Undead to target constructs instead of undead."
+    },
+    "not a cleric" : {
+        name : "Maul of Construct Turning (Not a Cleric)",
+        descrtipion : "I have a +2 to damage and attack rolls made with this maul. When I hit a construct, they take an additional 1d8 lightning damage and must succeed a DC 14 Consitution saving throw or be Incapacitated until the end of their next turn."
+    }
 }
 
 MagicItemsList["clockwork needle"] = {
@@ -594,7 +610,9 @@ MagicItemsList["clockwork needle"] = {
         type : "Improvised Weapon",
         description : "Construct heals 2d8+5; Breaks after attacking a creature",
         damage : [3, 8, "piercing"]
-    }]
+    }],
+    usages : 3,
+    recovery : "dawn"
 }
 
 MagicItemsList["gloves of performance"] = { 
@@ -625,15 +643,30 @@ MagicItemsList["mask of the platinum owl"] = {
     atunement : true,
     description : "My Wisdom increases by 2 to a max of 23, and I gain truesight with a range of 30 ft. If I am an 11th level druid or higher, I gain additional benefits found on the notes page.",
     vision : [["Truesight", 30]],
-    toNotesPage : [{
-        name : "Mask of the Platinum Owl: Druid Option",
-        description : desc([
-            "If I am an 11th level or higher druid, I unlocked the masks power to Wild Shape into a Giant Platinum Owl. This is a greater version of the Giant Owl, and has the following statistics",
-            "\u2022 Ancient Constitution: The owl has 77 (9d10+27) hitpoints, an AC of 15, Constitution of 16, Wisdom of 18, Dexterity of 20, and truesight out to a range of 60 ft instead of the Giant Owl's normal statistics.",
-            "\u2022 Blessing of Knowledge: The owl can understand and speak all languages, and has advantage on rolls made to understand coded messages and other extraneous script.",
-            "\u2022 Paralyzing Breath (Recharge 6): The owl exhales gas in a 15-ft cone. Each creature must make DC 14 Constitution saving throw or be paralyzed for 1 minute. A creature can repeat the saving throw at the end of each of its turns."
-        ])
-    }],
+    choices : ["Druid", "Not a Druid"],
+    selfChoosing : function() {
+        if(classes.known.druid) return "druid";
+        if(!classes.known.druid) return "not a druid";
+    },
+    "druid" : {
+        name : "Mask of the Platinum Owl (Druid)",
+        description : "My Wisdom increases by 2 to a max of 23, and I gain truesight with a range of 30 ft. If I am an 11th level druid or higher, I gain additional benefits found on the notes page.",
+        toNotesPage : [{
+            name : "Mask of the Platinum Owl: Druid Option",
+            note : desc([
+                "If I am an 11th level or higher druid, I unlocked the masks power to Wild Shape into a Giant Platinum Owl. This is a greater version of the Giant Owl, and has the following statistics",
+                "\u2022 Ancient Constitution: The owl has 77 (9d10+27) hitpoints, an AC of 15, Constitution of 16, Wisdom of 18, Dexterity of 20, and truesight out to a range of 60 ft instead of the Giant Owl's normal statistics.",
+                "\u2022 Blessing of Knowledge: The owl can understand and speak all languages, and has advantage on rolls made to understand coded messages and other extraneous script.",
+                "\u2022 Paralyzing Breath (Recharge 6): The owl exhales gas in a 15-ft cone. Each creature must make DC 14 Constitution saving throw or be paralyzed for 1 minute. A creature can repeat the saving throw at the end of each of its turns."
+            ])
+        }],
+    },
+    "not a druid" : {
+        name : "Mask of the Platinum Owl (Not a Druid)",
+        description : "My Wisdom increases by 2 to a max of 23, and I gain truesight with a range of 30 ft."
+    },
+    scores : [0,0,0,0,2,0],
+    scoresMaximum : [0,0,0,0,23,0]
 }
 
 CreatureList["giant platinum owl"] = {
