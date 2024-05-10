@@ -9,25 +9,24 @@ SourceList["A:TEC"] = {
     url : "https://www.patreon.com/codexofstrings/posts",
     date : "2024/04/11"
 };
-RunFunctionAtEnd( function() {
-    if(!SourceList["A:CoS"]) {
-        SourceList["A:CoS"] = {
-            name : "Ariadne's: Codex of Strings",
-            abbreviation : "A:CoS",
-            abbreviationSpellsheet : "A",
-            group : "Homebrew",
-            url : "https://www.patreon.com/codexofstrings/posts",
-            date : "2024/02/14"
-        };
+if(!SourceList["A:CoS"]) {
+    SourceList["A:CoS"] = {
+        name : "Ariadne's: Codex of Strings",
+        abbreviation : "A:CoS",
+        abbreviationSpellsheet : "A",
+        group : "Homebrew",
+        url : "https://www.patreon.com/codexofstrings/posts",
+        date : "2024/02/14"
+    };
+}
+if(!CompanionList["ariadne's codex of creatures"]) {
+    CompanionList["ariadne's codex of creatures"] = {
+        name : "Ariadne's Codex of Creatures",
+        nameMenu : "Creatures",
+        source : [["A:CoS", 0]]
     }
-    if(!CompanionList["ariadne's codex of creatures"]) {
-        CompanionList["ariadne's codex of creatures"] = {
-            name : "Ariadne's Codex of Creatures",
-            nameMenu : "Creatures",
-            source : [["A:CoS", 0]]
-        }
-    }
-})
+}
+
 
 CompanionList["ariadne's: the emerald crown creatures"] = {
     name : "Ariadne's: The Emerald Crown Creatures",
