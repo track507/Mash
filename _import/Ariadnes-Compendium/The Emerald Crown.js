@@ -19,10 +19,10 @@ if(!SourceList["A:CoS"]) {
         date : "2024/02/14"
     };
 }
-if(!CompanionList["ariadne's codex of creatures"]) {
-    CompanionList["ariadne's codex of creatures"] = {
-        name : "Ariadne's Codex of Creatures",
-        nameMenu : "Creatures",
+if(!CompanionList["ariadne's codex"]) {
+    CompanionList["ariadne's Companion codex"] = {
+        name : "Ariadne's Companion Codex",
+        nameMenu : "Ariadne's Codex",
         source : [["A:CoS", 0]]
     }
 }
