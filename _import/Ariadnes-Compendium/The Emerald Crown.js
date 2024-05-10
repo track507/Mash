@@ -29,7 +29,7 @@ if(!CompanionList["ariadne's codex"]) {
 
 
 CompanionList["ariadne's: the emerald crown creatures"] = {
-    name : "Ariadne's: The Emerald Crown Creatures",
+    name : "Ariadne's: The Emerald Crown Companion Codex",
     nameMenu : "Creatures",
     source : [["A:TEC", 0],["A:CoS", 0]]
 }
