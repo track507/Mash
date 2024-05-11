@@ -9,6 +9,13 @@ SourceList["A:TEC"] = {
     url : "https://www.patreon.com/codexofstrings/posts",
     date : "2024/04/11"
 };
+
+CompanionList["ariadne's: the emerald crown creatures"] = {
+    name : "Ariadne's: The Emerald Crown Companion Codex",
+    nameMenu : "Creatures",
+    source : [["A:TEC", 0],["A:CoS", 0]]
+}
+
 if(!SourceList["A:CoS"]) {
     SourceList["A:CoS"] = {
         name : "Ariadne's: Codex of Strings",
@@ -19,19 +26,13 @@ if(!SourceList["A:CoS"]) {
         date : "2024/02/14"
     };
 }
+
 if(!CompanionList["ariadne's codex"]) {
     CompanionList["ariadne's Companion codex"] = {
         name : "Ariadne's Companion Codex",
         nameMenu : "Ariadne's Codex",
         source : [["A:CoS", 0]]
     }
-}
-
-
-CompanionList["ariadne's: the emerald crown creatures"] = {
-    name : "Ariadne's: The Emerald Crown Companion Codex",
-    nameMenu : "Creatures",
-    source : [["A:TEC", 0],["A:CoS", 0]]
 }
 
 MagicItemsList["sword and gourd"] = {

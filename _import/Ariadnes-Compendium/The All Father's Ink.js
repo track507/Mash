@@ -62,7 +62,7 @@ AddSubClass("bard", "college of madness", {
             minlevel : 3,
             description : desc([
                 "I learn the vicious mockery cantrip which now deals 1d6 damage instead of 1d4. This increases to 2d6 at 5th level, 3d6 at 11th level, and 4d6 at 17th level.",
-                "Additionally at 7th level, creatures that succeed on a saving throw against this now takes half damage and must subtract 1d4 from the next attack they make before the end of their next turn. A creature that fails this save has disadvantage on all attack rolls they makee until the end of their next turn instead."
+                "Additionally at 7th level, creatures that succeed on a saving throw against this now takes half damage and must subtract 1d4 from the next attack they make before the end of their next turn. A creature that fails this save has disadvantage on all attack rolls they make until the end of their next turn instead."
             ]),
             spellcastingBonus : [{
                 name : "Mad Mockery",
@@ -97,7 +97,8 @@ AddSubClass("bard", "college of madness", {
                 "Additionally, I can use this to cast the Command spell as a bonus action on my turn. I can cast this spell a number of times equal to half my Proficiency bonus rounded down."
             ]),
             usages : "half my prof bonus rounded down",
-            usagescalc : "event.value = Math.floor( Number(How('Proficiency Bonus')) / 2 )"
+            usagescalc : "event.value = Math.floor(Number(How('Proficiency Bonus'))/2);",
+            recovery : "long rest" // this is not explicitly stated, but assuming
         },
         "subclassfeature14" : {
             name : "Madsong",

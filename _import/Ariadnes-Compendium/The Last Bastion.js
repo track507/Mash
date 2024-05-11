@@ -15,18 +15,20 @@ CompanionList["ariadne's: the last bastion companion codex"] = {
     nameMenu : "Ariadne's: The Last Bastion Companion Codex",
     source : [["A:TLB", 0], ["A:CoS", 0]]
 }
+
 if(!SourceList["A:CoS"]) {
     SourceList["A:CoS"] = {
-    name : "Ariadne's: Codex of Strings",
-    abbreviation : "A:CoS",
-    abbreviationSpellsheet : "A",
-    group : "Homebrew",
-    url : "https://www.patreon.com/codexofstrings/posts",
-    date : "2024/02/14"
+        name : "Ariadne's: Codex of Strings",
+        abbreviation : "A:CoS",
+        abbreviationSpellsheet : "A",
+        group : "Homebrew",
+        url : "https://www.patreon.com/codexofstrings/posts",
+        date : "2024/02/14"
     };
 }
+
 if(!CompanionList["ariadne's codex"]) {
-        CompanionList["ariadne's Companion codex"] = {
+    CompanionList["ariadne's Companion codex"] = {
         name : "Ariadne's Companion Codex",
         nameMenu : "Ariadne's Codex",
         source : [["A:CoS", 0]]
@@ -280,7 +282,8 @@ MagicItemsList["time's judgement"] = {
     }, {
         name : "Time's Judgement: Curse",
         page3notes : true,
-        note : "Curse: This item is cursed. When activating this item, there's a 5% chance that I will become the target instead of the designated creature."
+        note : "Curse: This item is cursed. When activating this item, there's a 5% chance that I will become the target instead of the designated creature.",
+        amendTo : "Time's Judgement: Trial"
     }],
     cursed : true,
     usages : 1,
@@ -449,7 +452,8 @@ FeatsList["improvised casting"] = {
 FeatsList["scion of promise"] = {
     name : "Scion of Promise",
     source : [["A:TLB", 33]],
-    description : "The promise manifests an Echo as an action on my turn. The effects depends on my character level, and can only use each effect once over my existence. Levels 1-4: Mass Healing Word (+5 ability modifier), Levels 5-13: Planar Ally exists for 10 minutes, Levels 14+: Remake reality (similar to Cleric's Divine Intervention)."
+    description : "The promise manifests an Echo as an action on my turn. The effects depends on my character level, and can only use each effect once over my existence. Levels 1-4: Mass Healing Word (+5 ability modifier), Levels 5-13: Planar Ally exists for 10 minutes, Levels 14+: Remake reality (similar to Cleric's Divine Intervention).",
+    action : ["action", ""]
 }
 
 FeatsList["thoughts before action"] = { 
@@ -860,14 +864,18 @@ FeatsList["combat doctrine"] = {
             "\u2022 Coordinated Fire: When I make a ranged attack against a creature that has been hit with a ranged attack from one of my ally's within the last round, I deal an additional 3 damage on a hit. This can only trigger once per turn.",
             "\u2022 Tactical Movement: Choose an ally within 10 ft. The ally and I gain 15 ft of movement if we start our turns 10 ft of each other.",
         ])
-    }]
+    }],
+    usages : 1,
+    recovery : "Turn"
 }
 
 FeatsList["executioner"] = {
     name : "Executioner",
     source : [["A:TLB", 64]],
     description : "I gain a +1 to Strength or Dexterity. Additionally, when I reduce a creature with a CR of up to half of my character level (rounded down) to 0 hp on my turn, I can immediately take another action. After using this feature, I must finish a long rest before using it again.",
-    scorestxt : "+1 to Str or Dex"
+    scorestxt : "+1 to Str or Dex",
+    usages : 1,
+    recovery : "long rest",
 }
 
 FeatsList["stalwart"] = {

@@ -661,7 +661,7 @@ SpellsList["shooting star"] = {
 
 SpellsList["watcher's smite"] = {
     name : "Watcher's smite",
-    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    classes : ["paladin"],
     source : [["A:TTN", 52]],
     level : 5,
     school : "Evoc",
