@@ -130,7 +130,7 @@ MagicItemsList["dame eleanors flare"] = {
         abilitytodamage : true,
         damage : [1, 10, "piercing"],
         range : "30/90 ft",
-        description : "Ammunition, loading; Quickdraw (first action must be an attack with this weapon)",
+        description : "Ammunition, loading; Quickdraw",
         tooltip : "Quickdraw: Advantage on Initiative roll, first action must be an attack with this weapon",
         special : true,
         modifiers : [2, 2],
@@ -181,9 +181,9 @@ MagicItemsList["burstfire hoverback"] = {
         name : "Burstfire Hoverback",
         note : desc([
             "This hoverback is imbued with powerful and explosive arcane energy. When worn, it binds seamlessly to your back, with two ethereal flames that spark with blue and purple energy giving a faint hum. However, it does not burn you. This grants me 60ft of fly speed and has 10 charges, which can be expended to create the following effects: ",
-            toUni("Boom Barrage (5 charges): ") + "As an actions, you can unleash a barrage of five arcane missiles from the jetpack. Each missile targets a point with 120 ft. Creatures within 10 ft of where the missile hits must make a DC 20 Dexterity saving throw, taking 4d10 force damage on a fail, or half as much on a success.",
-            toUni("Overclocked Thrusters (3 charges): ") + "As a bonus action, you can activate the jetpack's overdrive, doubling your flying speed to 120 ft for up to 10 minutes.",
-            toUni("Evasive Maneuvers (2 charges): ") + "As a reaction to being targeted by a spell or ranged attack, you can use the jetpack's energy to make a quick evasive maneuver. You gain advantage on the saving throw or a +5 bonus to AC against the triggering attack."
+            "Boom Barrage (5 charges): " + "As an actions, you can unleash a barrage of five arcane missiles from the jetpack. Each missile targets a point with 120 ft. Creatures within 10 ft of where the missile hits must make a DC 20 Dexterity saving throw, taking 4d10 force damage on a fail, or half as much on a success.",
+            "Overclocked Thrusters (3 charges): " + "As a bonus action, you can activate the jetpack's overdrive, doubling your flying speed to 120 ft for up to 10 minutes.",
+            "Evasive Maneuvers (2 charges): " + "As a reaction to being targeted by a spell or ranged attack, you can use the jetpack's energy to make a quick evasive maneuver. You gain advantage on the saving throw or a +5 bonus to AC against the triggering attack."
         ]),
     }],
     action : [["action", "Boom Barrage (5 charges)"], ["bonus action", "Overclocked Thrusters (3 charges)"], ["reaction","Evasive Maneuvers (2 charges) "]],
@@ -199,7 +199,7 @@ MagicItemsList["astral suit"] = {
     type : "armor (half plate)",
     rarity : "uncommon",
     attunement : true,
-    description : "While attuned to this armor, you have advantage to resist cloud-based effects, such as those created by the Slow, Stinking Cloud, or Cloudkill spells. Additionally, every attack that deals fire, lightning, or acid damage is reduced by 3.",
+    description : "While attuned to this armor, I have advantage to resist cloud-based effects, such as those created by the Slow, Stinking Cloud, or Cloudkill spells. Additionally, every attack that deals fire, lightning, or acid damage is reduced by 3.",
     savetxt : { adv_vs : ["cloud-based effects"], text : ["-3 damage per attack dealing lightning, fire, or acid dmg"] },
     armorAdd : "Astral Suit",
     armorOptions : [{
@@ -218,7 +218,7 @@ MagicItemsList["baldric of gravity"] = {
     type : "wondrous item",
     rarity : "rare",
     attunement : true,
-    description : "While you wear this belt, gravity pulls you towards the surface you're standing on. Whenever you switch your gravity to a new surface, you must succeed on a DC 12 Dexterity (Acrobatics) check. Otherwise, you fall prone at the point where you attempted to switch gravity.",
+    description : "While I wear this belt, gravity pulls me towards the surface I am standing on. Whenever I switch your gravity to a new surface, I must succeed on a DC 12 Dexterity (Acrobatics) check. Otherwise, I fall prone at the point where I attempted to switch gravity.",
 };
 MagicItemsList["contrabandist's bracer"] = {
     name : "Contrabandist's Bracer",
@@ -226,7 +226,7 @@ MagicItemsList["contrabandist's bracer"] = {
     type : "wondrous item",
     rarity : "rare",
     attunement : true,
-    description : "This bracer buzzes softly when officers of the law enter a range of 120 ft of it. You can use an action to cast nondetection, requiring no components. Once you do so, you can't do it again until you finish a long rest.",
+    description : "This bracer buzzes softly when officers of the law enter a range of 120 ft of it. I can use an action to cast nondetection, requiring no components. Once I do so, I can't do it again until I finish a long rest.",
     spellcastingBonus : [{
         name : "Contrabandist's Bracer",
         spells : ["nondetection"],
@@ -245,7 +245,7 @@ MagicItemsList["impulse capsule"] = {
     source : [["A:TNC", 16]],
     type : "consumable",
     rarity : "very rare",
-    description : "For the next hour after consuming this capsule, you auto-succeed all Wisdom (History) checks within the last year, advantage on Intelligence-based skill checks and saving throws, and a 1d12 bonus to Dexterity saving throws and initiative rolls. After an hour, you take a level of exhaustion. You ignore exhaustion if you consume more capsules."
+    description : "For the next hour after consuming this capsule, I auto-succeed all Wisdom (History) checks within the last year, advantage on Intelligence-based skill checks and saving throws, and a 1d12 bonus to Dexterity saving throws and initiative rolls. After an hour, I take a level of exhaustion. I ignore exhaustion if I consume more capsules."
 };
 MagicItemsList["lex-i prototype"] = {
     name : "Lex-I Prototype",
@@ -258,7 +258,7 @@ MagicItemsList["lex-i prototype"] = {
         return false;
     },
     fixedDC : 18,
-    description : "You gain the following: immune to diseases, poison dmg, and poisioned condition, ignore the first Impulse Capsule effects you take between long rests, can make a melee weapon attack using Strength dealing 2d12+Str mod+3 force dmg, can make a beam attack 30ft long and 5ft wide DC 18 Dex save taking 16d8 force dmg or half on a save. After firing this beam, the arm goes dormant for 1d4 days. Absorbing an Eminent Wisp awakens the item early.",
+    description : "I gain the following: immune to diseases, poison dmg, and poisioned condition, ignore the first Impulse Capsule effects I take between long rests, can make a melee weapon attack using Strength dealing 2d12+Str mod+3 force dmg, can make a beam attack 30ft long and 5ft wide DC 18 Dex save taking 16d8 force dmg or half on a save. After firing this beam, the arm goes dormant for 1d4 days. Absorbing an Eminent Wisp awakens the item early.",
     savetxt : {immune : ["poison dmg", "disease", "poisioned condition"]},
     weaponsAdd : ["Lex-I Prototype Strike", "Lex-I Prototype Beam"],
     weaponOptions : [{
@@ -307,7 +307,7 @@ MagicItemsList["eminent wisp"] = {
     type : "treasure",
     rarity : "legendary",
     attunement : true,
-    description : "Gain a single level in your main class and an additional attunement slot. You cannot benefit from another wisp. If you want to attune to another wisp, you must renounce your previous wisp. Every 24 hours, you must succeed a DC 20 Consitution saving throw or you lose these benefits for a week. See Notes",
+    description : "Gain a single level in your main class and an additional attunement slot. You cannot benefit from another wisp. If you want to attune to another wisp, you must renounce your previous wisp. Every 24 hours, you must succeed a DC 20 Constitution saving throw or you lose these benefits for a week. See Notes",
     toNotesPage : [{
         name : "Eminent Wisp",
         note : desc(eminent_wisp_toNotes).replace(/>>(.*?)<</g, function(a, match) { return match.toUpperCase(); }).replace(/your/g, "my").replace(/you are /ig, "I am ").replace(/you /ig, "I ").replace(/yourself /ig, "myself ")
@@ -415,6 +415,7 @@ RaceList["cetkar, quaru"] ={
             name : "Born Leader (heroism)",
             minlevel : 3,
             usages : 2,
+            recovery : "long rest",
             spellcastingBonus : [{
                 name : "Born Leader (heroism)",
                 spells : ["heroism"],
@@ -594,7 +595,9 @@ MagicItemsList["malaise"] = {
         description : "Finesse, light, thrown; +3d6 cold dmg; fly, invis, plane shift (ethereal) at will; Special",
         tooltip : "Special: Command and use its features telekinetically up to 60ft",
         range : "Melee, 20/60 ft",
-    }]
+        modifiers : [3,3]
+    }],
+    savetxt : { immune : ["surprised"] }
 };
 FeatsList["magic specialist"] = {
     name : "Magic Specialist",

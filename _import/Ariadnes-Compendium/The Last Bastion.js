@@ -262,8 +262,7 @@ MagicItemsList["monocle of blindsight"] = {
         spells : ["scrying"],
         selection : ["scrying"],
         fixedDC : 15,
-        times : 1,
-        firstCol : "dawn"
+        times : 1
     }]
 }
 
