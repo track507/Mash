@@ -94,18 +94,32 @@ AddSubClass("bard", "college of madness", {
             minlevel : 6,
             description : desc([
                 "I can speak gibberish and have any creature understand me via telepathy. The creature cannot understand me if it cannot understand any language",
-                "Additionally, I can use this to cast the Command spell as a bonus action on my turn. I can cast this spell a number of times equal to half my Proficiency bonus rounded down."
+                "Additionally, I can use this to cast the Command spell as a bonus action on my turn. I can cast this spell a number of times equal to half my Proficiency bonus rounded down per long rest."
             ]),
-            usages : "half my prof bonus rounded down",
+            languageProfs : ["Gibberish"],
+            usages : "1/2 Prof. bonus per ",
             usagescalc : "event.value = Math.floor(Number(How('Proficiency Bonus'))/2);",
-            recovery : "long rest" // this is not explicitly stated, but assuming
+            recovery : "long rest", // this is not explicitly stated, but assuming,
+            spellcastingBonus : [{
+                name : "Command",
+                spells : ["command"],
+                selection : ["command"],
+                firstCol : "Sp",
+                times : 1
+            }],
+            spellChanges : {
+                "command" : {
+                    time : "1 bns",
+                    changes : "I can cast this as a bonus action a number of times equal to half my proficiency bonus rounded down."
+                }
+            }
         },
         "subclassfeature14" : {
             name : "Madsong",
             source : [["A:TAFI", 74]],
             minlevel : 14,
             description : desc([
-                "At 14th level, I can attempt to play a piece of the Madsong. I must make a DC 20 performance check. On a failure, I fall unconscious until I take damage or a creature uses an action to wake me up. On a success, a 30 ft radius sphere centered on me manifests. I can either give allies within range advantage on all Int, Wis, and Cha ability checks and saving throws, or give my enemies within range disadvantage on all saving saving throws. I can use my bonus action on subsequent turns to maintain the Madsong. I can use this feature once per long rest."
+                "At 14th level, I can attempt to play a piece of the Madsong. I must make a DC 20 performance check. On a failure, I fall unconscious until I take damage or a creature uses an action to wake me up. On a success, a 30 ft radius sphere centered on me manifests. I can either give allies within range advantage on all Int, Wis, and Cha ability checks and saving throws, or give my enemies within range disadvantage on all saving throws. I can use my bonus action on subsequent turns to maintain the Madsong. I can use this feature once per long rest."
             ]),
             usages : 1,
             recovery : "long rest"
@@ -174,8 +188,8 @@ RaceList["luminescent veil ink-forged"] = {
             "    I gain the following Born of Ink features. Once I use this ability, I must finish a short or long rest before I can use it again or prepare another." +
             "\n    " + "\u2022 Shadow Step: As a bonus action, I can teleport up to 60 ft to an unoccupied space I can see that is in dim light or darkness." + 
             "\n    " + "\u2022 Fluid Form: When I take damage, I can use my action to gain resistance to bludgeoning, piercing, and slashing damage until the start of my next turn." + 
-            "\n    " + "\u2022 Ethereal Sight: I can see invisibly creatures on the Ethereal plane within 60 ft of my for the next hour.",
-            "\n    " + "\u2022 Blinding Light: As a bonus action, I can shine maddening light. All creatures withint 30 ft of me must succeed a Constitution saving throw or be blinded until the end of their next turn. Charisma is my spellcasting ability for this."
+            "\n    " + "\u2022 Ethereal Sight: I can see invisibly creatures on the Ethereal plane within 60 ft of my for the next hour." +
+            "\n    " + "\u2022 Blinding Flash: As a bonus action, I can shine maddening light. All creatures withint 30 ft of me must succeed a Constitution saving throw or be blinded until the end of their next turn. Charisma is my spellcasting ability for this."
         ]
     }, {
         name : "Eyes of Ink",
@@ -185,7 +199,7 @@ RaceList["luminescent veil ink-forged"] = {
         ]
 
     }],
-    action : [["bonus action", "Shadow Step"], ["reaction", "Fluid Form"], ["bonus action", "Blinding Light"]],
+    action : [["bonus action", "Shadow Step"], ["reaction", "Fluid Form"], ["bonus action", "Blinding Flash"]],
     features : {
         "born of ink" : {
             name : "Born of Ink",
@@ -195,7 +209,7 @@ RaceList["luminescent veil ink-forged"] = {
         }
     },
     spellcastingBonus : [{
-        name : "Blinding Light",
+        name : "Revealing Light",
         spells : ["light"],
         selection : ["light"],
         times : 1
@@ -401,7 +415,7 @@ MagicItemsList["daring buckler"] = {
 MagicItemsList["dart"] = {
     name : "Dart",
     source : [["A:TAFI", 21]],
-    description : "This shortsword grants a +2 to attack and damage rolls. You may also make an additional weapon attack with this sword as part of your Attack action. Rolling an 18-20 on a Large or smaller creature counts as a critical hit.",
+    description : "This shortsword grants a +2 to attack and damage rolls. I may also make an additional weapon attack with this sword as part of your Attack action. Rolling an 18-20 on a Large or smaller creature counts as a critical hit.",
     type : "weapon",
     rarity : "very rare",
     attunement : true,
@@ -448,7 +462,7 @@ MagicItemsList["heart grenade"] = {
         name : "Heart Grenade",
         note : desc([
             "When a creature within 120 ft of me is reduced to 0 hit points, I can expend a charge to make the heart explode. Each creature within 30 ft of the target creature must make DC 16 Constitution saving throw, taking 5d8 necrotic damage, or half on a success.",
-            "I can also expend 3 charges to throw the heirloom at a target within 60 ft of me cause the same effects mentioned above."
+            "I can also expend 3 charges to throw the heirloom at a target within 60 ft of me, causing the same effects mentioned above."
         ])
     }],
     fixedDC : 16,
@@ -489,7 +503,7 @@ MagicItemsList["severed head of the suneater"] = {
     source : [["A:TAFI", 38]],
     type : "wondrous item",
     rarity : "artifact",
-    description : "This severed head craves arcane energies. It's mouth is always opened and whenever the head enters an area where a spell or magical effect of 4th level or lower is currently active, the effect ends, and every level above 4th takes an additional round to devour the effects. While holding this head and targetted by a spell, I may use my reaction to devour the spell of 4th level or lower.",
+    description : "This severed head craves arcane energies. It's mouth is always opened and whenever the head enters an area where a spell or magical effect of 4th level or lower is currently active, the effect ends, and every level above 4th takes an additional round to devour the effects. While holding this head and targeted by a spell, I may use my reaction to devour the spell of 4th level or lower.",
     action : ["reaction", "Devour"]
 };
 
