@@ -62,7 +62,7 @@ MagicItemsList["caustic flame"] = {
     type : "weapon (pistol)",
     rarity : "legendary",
     attunement : true,
-    description : "This +3 pistol deals a base od 1d8 acid plus 1d8 fire damage instead of the normal 1d10 piercing damage. Creatures hit takes this damage again at the start of their next turn as the flaming acid burns through them. It uses no bullets, but instead I must refill its glass chamber with a vial of acid worth at least 25 GP, and has enough to shoot 10 times before reloading again.",
+    description : "This +3 pistol deals a base of 1d8 acid plus 1d8 fire damage instead of the normal 1d10 piercing damage. Creatures hit takes this damage again at the start of their next turn as the flaming acid burns through them. It uses no bullets, but instead I must refill its glass chamber with a vial of acid worth at least 25 GP, and has enough to shoot 10 times before reloading again.",
     weaponsAdd : ["Caustic Flame"],
     weaponOptions : [{
         name : "Caustic Flame",
@@ -72,4 +72,158 @@ MagicItemsList["caustic flame"] = {
         damage : [1, 8, "acid"],
         description : "Vial of Acid, loading; +1d8 fire dmg; Crea hit take dmg start of their next turn",
     }]
+}
+
+FeatsList["counterspell mastery"] = {
+    name : "Counterspell Mastery",
+    source : [["A:TLotU", 17]],
+    prerequisite : "Counterspell",
+    prereqeval : function(v) {
+        return isSpellUsed('counterspell', true)
+    },
+    description : "My range for counterspell is increased to 80 ft. At 11th level, its increased to 100 ft, and at 17th level to 120 ft. I can treat spells casted with a slot level one higher than when I used to cast counterspell to be counterspelled and automatically nullified.",
+    calcChanges : {
+        spellAdd : [
+            function(spellKey, spellObj, spName) {
+                if(spellKey === "counterspell") {
+                    var cLvl = Number(What('Character level'));
+                    spellObj.range = (cLvl < 11 ? "80" : cLvl < 17 ? "100" : "120") + " ft";
+                }
+            }
+        ]
+    }
+}
+
+FeatsList["heroic intervention"] = {
+    name : "Heroic Intervention",
+    source : [["A:TLotU", 17]],
+    description : "I get a +1 to one of my ability scores. As a reaction when an ally within 30 ft of me is knocked unconscious ot killed, I can move up to half my max speed and take an action. I can do so once per long rest.",
+    choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "I gain a +1 to Strength. As a reaction when an ally within 30 ft of me is knocked unconscious ot killed, I can move up to half my max speed and take an action. I can do so once per long rest.",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "I gain a +1 to Dexterity. As a reaction when an ally within 30 ft of me is knocked unconscious ot killed, I can move up to half my max speed and take an action. I can do so once per long rest.",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "I gain a +1 to Constitution. As a reaction when an ally within 30 ft of me is knocked unconscious ot killed, I can move up to half my max speed and take an action. I can do so once per long rest.",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "I gain a +1 to Intelligence. As a reaction when an ally within 30 ft of me is knocked unconscious ot killed, I can move up to half my max speed and take an action. I can do so once per long rest.",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I gain a +1 to Wisdom. As a reaction when an ally within 30 ft of me is knocked unconscious ot killed, I can move up to half my max speed and take an action. I can do so once per long rest.",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I gain a +1 to Charisma. As a reaction when an ally within 30 ft of me is knocked unconscious ot killed, I can move up to half my max speed and take an action. I can do so once per long rest.",
+		scores : [0, 0, 0, 0, 0, 1],
+	},
+    usages : 1,
+    recovery : "long rest"
+}
+
+FeatsList["eldritch killer"] = {
+    name : "Eldritch Killer",
+    source : [["A:TLotU", 17]],
+    description : "I gain a +1 to either Wisdom or Charisma. I have advantage on either Wisdom or Charisma saving throws caused by aberrations and undead creatures. My crit range against aberrations and undead is increased by 1, up to a max of 17.",
+    choices : ["Wisdom", "Charisma"],
+    "wisdom" : {
+        description : "I gain a +1 to Wisdom. I have advantage on Wisdom saving throws caused by aberrations and undead creatures. My crit range against aberrations and undead is increased by 1, up to a max of 17.",
+        scores : [0, 0, 0, 0, 1, 0],
+		saves : ["Wis"],
+        savetxt : { adv_vs : ["Wisdom saves from Aberrations and Undead"] }
+    },
+    "charisma" : {
+        description : "I gain a +1 to Charisma. I have advantage on Charisma saving throws caused by aberrations and undead creatures. My crit range against aberrations and undead is increased by 1, up to a max of 17.",
+        scores : [0, 0, 0, 0, 0, 1],
+		saves : ["Cha"],
+        savetxt : { adv_vs : ["Charisma saves from Aberrations and Undead"] }
+    }
+}
+
+FeatsList["unassailable wit"] = {
+    name : "Unassailable Wit",
+    source : [["A:TLotU", 18]],
+    prerequisite : "15 or higher Intelligence",
+    prereqeval : function(v) {
+        return What('Int') >= 13;
+    },
+    description : "I gain a +1 to Intelligence. Whenever a spell or magical effects subjects me to a Wisdom or Charisma saving throw, I can make it an Intelligence saving throw instead. I can do so my Prof. bonus per long rest (Rounded down).",
+    scores : [0,0,0,1,0,0],
+    usages : "1/2 Prof. bonus per ",
+    usagescalc : "event.value = Math.floor(Number(How('Proficiency Bonus'))/2);",
+    recovery : "long rest"
+}
+
+FeatsList["shield of conjuration"] = {
+    name : "Shield of Conjuration",
+    source : [["A:TLotU", 18]],
+    prerequisite : "Shield spell",
+    prereqeval : function(v) {
+        return isSpellUsed('shield', true);
+    },
+    description : "My Intelligence or Charisma increases by 1. When I have the shield spell active, whenever a magic missle or ranged attack is blocked by it, I can make a ranged spell attack (60/120 ft) against a creature of my choice. On a hit the creature suffers the damage from the original attack.",
+    choices : ["Intelligence", "Charisma"],
+    "intelligence" : {
+        description : "My Intelligence increases by 1. When I have the shield spell active, whenever a magic missle or ranged attack is blocked by it, I can make a ranged spell attack (60/120 ft) against a creature of my choice. On a hit the creature suffers the damage from the original attack.",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+    "charisma" : {
+        description : "My Charisma increases by 1. When I have the shield spell active, whenever a magic missle or ranged attack is blocked by it, I can make a ranged spell attack (60/120 ft) against a creature of my choice. On a hit the creature suffers the damage from the original attack.",
+        scores : [0, 0, 0, 0, 0, 1],
+    },
+    weaponsAdd : ["Shield oF Conjuration"],
+    weaponOptions : [{
+        name : "Shield of Conjuration",
+        regExpSearch : /shield of conjuration/i,
+        source : [["A:TLotU", 18]],
+        damage : ["", "", ""],
+        type : "Spell",
+        abilitytodamage : false,
+        range : "60/120 ft",
+        special : true,
+        isNotWeapon : true,
+        useSpellcastingAbility : true,
+        ability : 4,
+        description : "Reflect missed atks, spell atk vs crea, dmg equals the missed atk"
+    }]
+}
+
+FeatsList["resilient companionship"] = {
+    name : "Resilient Companionship",
+    source : [["A:TLotU", 18]],
+    description : "I gain a +1 to my Charisma, and a +1 bonus to all saving throws for every ally within 10 ft of me that isn't incapacitated up to a max of +3. If an ally and I are within 5 ft of each other are subject to making a Strength or Dexterity saving throw, my ally can use my result instead of theirs. I can use this once per long rest.",
+    scores : [0,0,0,0,0,1],
+    usages : 1,
+    recovery : "long rest"
+}
+
+MagicItemsList["wand of gold and garlic"] = {
+    name : "Wand of Gold and Garlic",
+    source : [["A:TLotU", 21]],
+    type : "wand",
+    rarity : "very rare",
+    attunement : true,
+    description : "This Cursed wand has +2 bonus to spell attacks and spell save DC. When I use this wand, all cloud-based spells smell like garlic and deal double damage to creatures of vampiric origin. This wand can transmute heads of garlic into gold, and nothing else.",
+    descriptionFull : "This Cursed wand has +2 bonus to spell attacks and spell save DC. When I use this wand, all cloud-based spells smell like garlic and deal double damage to creatures of vampiric origin.\n   " + toUni("Curse") + ". For every 100 heads of garlic transmuted into gold, the next time I attempt to transmute, I must succeed on a DC 18 Charisma saving throw or be turned into a mound of golden sand, killing me instantly.",
+    cursed : true,
+    calcChanges : {
+        spellCalc : [
+            function (type, spellcasters, ability) {
+                if (type !== "prepare") return 2;
+            },
+            "while attuned to this wand, I gain a +2 to spell attack and spell save DC."
+        ]
+    }
+}
+// finish this feat and add rest of the book
+FeatsList["tome of primeval and deep speech"] = {
+    name : "tome of primeval and deep speech",
+    source : [["A:TLotU", 18]],
+    description : "",
 }
