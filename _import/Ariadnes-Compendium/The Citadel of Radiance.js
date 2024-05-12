@@ -110,9 +110,10 @@ RaceList["celesari"] = {
         "I gain a +1 bonus to my AC", 
         "Limited Truesight: I have 60 ft of darkvision, but I can focus my eyes a number of seconds equal to 6 times my character level to gain truesight."
     ]),
+    extraAC : [{name : "Celesari Rock Skin", mod : 1, magic : true, text : "I gain a +1 bonus to AC."}],
 }
 
-RaceList["celesari. asterian"] = {
+RaceList["celesari, asterian"] = {
     name : "Celesari, asterian",
     regExpSearch : /^(?=.*celesari)(?=.*asterian).*$/i,
     source : [["A:TCoR", 8]],
@@ -131,6 +132,7 @@ RaceList["celesari. asterian"] = {
         "Limited Truesight: I have 60 ft of darkvision, but I can focus my eyes a number of seconds equal to 6 times my character level to gain truesight.",
         "Gravitational Control: I know the Magic Stone cantrip. When I reach 3rd level, I can cast Feather Fall once per long rest. When I am level 5, I can cast fly once per long rest. Intelligence is my spellcasting ability for this."
     ]),
+    extraAC : [{name : "Celesari Rock Skin", mod : 1, magic : true, text : "I gain a +1 bonus to AC."}],
     spellcastingAbility : 4,
     features : {
         "celesari1" : {
@@ -186,6 +188,7 @@ RaceList["celesari, void-eyed"] = {
     height : " considered medium creatures",
     weight : " thin and angular",
     vision : [["Darkvision", 60], ["Limited Truesight", 60]],
+    extraAC : [{name : "Celesari Rock Skin", mod : 1, magic : true, text : "I gain a +1 bonus to AC."}],
     trait : "Celesari (+2 Intelligence)" + desc([ 
         "I gain a +1 bonus to my AC", 
         "Limited Truesight: I have 60 ft of darkvision, but I can focus my eyes a number of seconds equal to 6 times my character level to gain truesight.",
