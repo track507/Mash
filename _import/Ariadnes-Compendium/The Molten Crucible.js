@@ -72,7 +72,7 @@ RaceList["numarii, of might"] = {
         selection : ["control flames"],
         times : 1
     }],
-    action : ["bonus action", ""]
+    action : [["bonus action", ""], ["bonus action", "Flaming Form"]]
 }
 
 RaceList["numarii, of dusk"] = {
@@ -92,7 +92,7 @@ RaceList["numarii, of dusk"] = {
     trait : "Numarii (+1 Intelligence, +2 Wisdom)" + desc([ 
         "Flaming Form: I know the Control Flames cantrip and immune to fire damage", 
         "As a bonus action, I light my fur and considered Ignited, dealing 1d6 fire damage to creatures around me. Everything that I carry catches fire if I am still Ignited after a full round has passed. I extinguish the flames at any point, no action required.",
-        "A Setting Sun: I gain resistance to necrotic damage. Additionally, I can see through magical darkness, and gain the Cruel Fate feat.", //I dont have access in their patreon for this feat
+        "A Setting Sun: I gain resistance to necrotic damage. Additionally, magical darkness does not impede my vision, and I gain the Cruel Fate feat.", //I dont have access in their patreon for this feat
         "Wielder of Dusk's Artifacts: I gain an additional attunement slot and ignore the alignment requirements for attuning to magical items.",
         "Additionally, I gain proficiency with Smith's Tools and Sleight of Hand skills."
     ]),
@@ -107,5 +107,7 @@ RaceList["numarii, of dusk"] = {
         selection : ["control flames"],
         times : 1
     }],
-    action : ["bonus action", ""]
+    dmgres : ["Necrotic"],
+    vision : [["See through magical darkness"]],
+    action : [["bonus action", "Flaming Form"]]
 }
