@@ -27,8 +27,8 @@ if(!SourceList["A:CoS"]) {
     };
 }
 
-if(!CompanionList["ariadne's codex"]) {
-    CompanionList["ariadne's Companion codex"] = {
+if(!CompanionList["ariadne's companion codex"]) {
+    CompanionList["Ariadne's Companion Codex"] = {
         name : "Ariadne's Companion Codex",
         nameMenu : "Companion",
         source : [["A:CoS", 0]]

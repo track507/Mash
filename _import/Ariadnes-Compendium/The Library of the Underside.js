@@ -1,6 +1,31 @@
 var iFileName = "The_Library_of_the_Underside";
 RequiredSheetVersion("13.1.13");
 
+if(!SourceList["A:CoS"]) {
+    SourceList["A:CoS"] = {
+        name : "Ariadne's: Codex of Strings",
+        abbreviation : "A:CoS",
+        abbreviationSpellsheet : "A",
+        group : "Homebrew",
+        url : "https://www.patreon.com/codexofstrings/posts",
+        date : "2024/02/14"
+    };
+}
+
+if(!CompanionList["ariadne's companion codex"]) {
+    CompanionList["ariadne's companion codex"] = {
+        name : "Ariadne's Companion Codex",
+        nameMenu : "Companion",
+        source : [["A:CoS", 0]]
+    }
+}
+
+CompanionList["ariadne's: the library of the underside companion codex"] = {
+    name : "Ariadne's: The Library of the Underside Companion Codex",
+    nameMenu : "Companion",
+    source : [["A:TLotU", 0]]
+}
+
 SourceList["A:TLotU"] = {
     name : "Ariadne's: The Library of the Underside",
     abbreviation : "A:TLotU",
@@ -222,8 +247,45 @@ MagicItemsList["wand of gold and garlic"] = {
     }
 }
 // finish this feat and add rest of the book
-FeatsList["tome of primeval and deep speech"] = {
+MagicItemsList["tome of primeval and deep speech"] = {
     name : "tome of primeval and deep speech",
     source : [["A:TLotU", 18]],
-    description : "",
+    type : "wondrous item",
+    rarity : "rare",
+    description : "I can spend 40 hours to learn primeval, not to be confused with primordial, the language of elementals. Primeval is accredited to be the first language, and used for most spells and arcanism were first devised. After reading the first part, I can spend another 40 hours learning deep speech.",
+    languageProfs : [["Primeval", 1], ["Deep Speech", 1]],
+}
+
+MagicItemsList["mechanical pseudodragon"] = {
+    name : "Mechanical Psudodragon",
+    source : [["A:TLotU", 22]],
+    type : "wondrous item",
+    rarity : "legendary",
+    attunement : true,
+    description : "I must be authorized by the Aurinoir to keep a Mechanical Pseudodragon as it's seen as a symbol of power and influence within the City of Strings. Only an upcated 9th level Arcane Rescripting can twist this creature against their will, turning them evil and genocidal in nature.",
+    creatuesAdd : [""]
+}
+
+CreatureList["mechanical pseudodragon"] = {
+    companion : ["ariadne's companion codex"],
+    name : "Giant Platinum Owl",
+    source : [["A:TLB", 39]],
+    size : 4,
+    type : "Beast",
+    alignment : "Neutral",
+    ac : 15,
+    hp : 77,
+    hd : [9, 10],
+    speed : "5 ft, fly 60 ft",
+    scores : [13, 20, 16, 8, 18, 10],
+    skills : {
+        "perception" : 8,
+        "stealth" : 7
+    },
+    senses : "Darkvision 120ft, Adv. on Wis (Perception) checks using sight/hearing",
+    passivePerception : 23,
+    languages : "Can understand and speak all languages",
+    challengeRating : "1/4",
+    proficiencyBonus : 2,
+    attacksAction : 1,
 }
