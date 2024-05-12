@@ -3572,30 +3572,6 @@ FeatsList["heroic presence"] = {
     Everything below is not finished or completed.
 */
 
-SourceList["A:TMC"] = {
-    name : "Ariadne's: The Molten Crucible",
-    abbreviation : "A:TMC",
-    abbreviationSpellsheet : "A",
-    group : "Homebrew",
-    date : "2024/02/14"
-};
-MagicItemsList["shard of ember pass"] = { 
-    name : "Shard of Ember Pass",
-    source : [["A:TMC", 3]],
-    type : "treasure",
-    rarity : "rare",
-    description : "A shard does little on its own, but a proficient arcane smith can use this to create magical wonders. I can work with my DM with creating my own magic item using this shard."
-}
-
-//The better spellbook v1.0 addition
-SourceList["A:BS"] = {
-    name : "Ariadne's: Better Spellbook V1.0",
-    abbreviation : "A:BS",
-    abbreviationSpellsheet : "A",
-    group : "Homebrew",
-    date : "2024/02/14"
-};
-
 //The citadel of radiance
 SourceList["A:TCoR"] = {
     name : "Ariadne's: The Citadel of Radiance",
