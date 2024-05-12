@@ -29,7 +29,7 @@ SourceList["A:CoS"] = {
 
 CompanionList["ariadne's companion codex"] = {
     name : "Ariadne's Companion Codex",
-    nameMenu : "Ariadne's Codex",
+    nameMenu : "Companion",
     source : [["A:CoS", 0]]
 }
 
@@ -808,7 +808,7 @@ SourceList["A:TLB"] = {
 
 CompanionList["ariadne's: the last bastion companion codex"] = {
     name : "Ariadne's: The Last Bastion Companion Codex",
-    nameMenu : "Ariadne's: The Last Bastion Companion Codex",
+    nameMenu : "Companion",
     source : [["A:TLB", 0], ["A:CoS", 0]]
 }
 
@@ -2594,7 +2594,7 @@ SourceList["A:TEC"] = {
 
 CompanionList["ariadne's: the emerald crown companion codex"] = {
     name : "Ariadne's: The Emerald Crown Companion Codex",
-    nameMenu : "Companions",
+    nameMenu : "Companion",
     source : [["A:TEC", 0],["A:CoS", 0]]
 }
 

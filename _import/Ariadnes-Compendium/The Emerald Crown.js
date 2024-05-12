@@ -12,7 +12,7 @@ SourceList["A:TEC"] = {
 
 CompanionList["ariadne's: the emerald crown creatures"] = {
     name : "Ariadne's: The Emerald Crown Companion Codex",
-    nameMenu : "Creatures",
+    nameMenu : "Companion",
     source : [["A:TEC", 0],["A:CoS", 0]]
 }
 
@@ -30,7 +30,7 @@ if(!SourceList["A:CoS"]) {
 if(!CompanionList["ariadne's codex"]) {
     CompanionList["ariadne's Companion codex"] = {
         name : "Ariadne's Companion Codex",
-        nameMenu : "Ariadne's Codex",
+        nameMenu : "Companion",
         source : [["A:CoS", 0]]
     }
 }
