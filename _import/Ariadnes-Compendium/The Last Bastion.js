@@ -35,7 +35,9 @@ if(!CompanionList["ariadne's companion codex"]) {
     }
 }
 
-spellSchoolList["Omni"] = "omniturgy";
+if(!spellSchoolList["Omni"]) {
+    spellSchoolList["Omni"] = "omniturgy";
+}
 
 MagicItemsList["teng arcanocyper"] = {
     name : "Teng Arcanocyper",

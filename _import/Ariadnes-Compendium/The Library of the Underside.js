@@ -20,6 +20,10 @@ if(!CompanionList["ariadne's companion codex"]) {
     }
 }
 
+if(!spellSchoolList["Omni"]) {
+    spellSchoolList["Omni"] = "omniturgy";
+}
+
 CompanionList["ariadne's: the library of the underside companion codex"] = {
     name : "Ariadne's: The Library of the Underside Companion Codex",
     nameMenu : "Companion",
@@ -263,29 +267,301 @@ MagicItemsList["mechanical pseudodragon"] = {
     rarity : "legendary",
     attunement : true,
     description : "I must be authorized by the Aurinoir to keep a Mechanical Pseudodragon as it's seen as a symbol of power and influence within the City of Strings. Only an upcated 9th level Arcane Rescripting can twist this creature against their will, turning them evil and genocidal in nature.",
-    creatuesAdd : [""]
+    choices : ["Very Rare (CR 5)", "Legendary (CR 6)", "Artifact (CR 8)"],
+    "very rare (cr 5)" : {
+        name : "Combustion Mechanical Pseudodragon",
+        description : "I must be authorized by the Aurinoir to keep a Combustion Mechanical Pseudodragon as it's seen as a symbol of power and influence within the City of Strings. Only an upcated 9th level Arcane Rescripting can twist this creature against their will, turning them evil and genocidal in nature.",
+        creaturesAdd : [["Combustion Mechnical Dragon"]]
+    },
+    "legendary (cr 6)" : {
+        name : "Mechanical Pseudodragon",
+        description : "I must be authorized by the Aurinoir to keep a Mechanical Pseudodragon as it's seen as a symbol of power and influence within the City of Strings. Only an upcated 9th level Arcane Rescripting can twist this creature against their will, turning them evil and genocidal in nature.",
+        creaturesAdd : [["Mechnical Pseudodragon"]]
+    },
+    "artifact (cr 8)" : {
+        name : "Caustic Mechanical Pseudodragon",
+        description : "I must be authorized by the Aurinoir to keep a Caustic Mechanical Pseudodragon as it's seen as a symbol of power and influence within the City of Strings. Only an upcated 9th level Arcane Rescripting can twist this creature against their will, turning them evil and genocidal in nature.",
+        creaturesAdd : [["Caustic Mechanical Pseudodragon"]]
+    }
 }
 
 CreatureList["mechanical pseudodragon"] = {
-    companion : ["ariadne's companion codex"],
-    name : "Giant Platinum Owl",
-    source : [["A:TLB", 39]],
-    size : 4,
-    type : "Beast",
-    alignment : "Neutral",
+    companion : ["ariadne's: the library of the underside companion codex", "ariadne's companion codex"],
+    name : "Mechanical Psudodragon",
+    source : [["A:TLotU", 23], ["A:CoS", 0]],
+    size : 2,
+    type : "Construct",
+    alignment : "Neutral Evil",
     ac : 15,
-    hp : 77,
-    hd : [9, 10],
-    speed : "5 ft, fly 60 ft",
-    scores : [13, 20, 16, 8, 18, 10],
+    hp : 67,
+    hd : [15, 6],
+    speed : "30 ft, fly 60 ft",
+    scores : [8, 17, 12, 18, 12, 15],
     skills : {
-        "perception" : 8,
-        "stealth" : 7
+        "Deception" : 5
     },
-    senses : "Darkvision 120ft, Adv. on Wis (Perception) checks using sight/hearing",
-    passivePerception : 23,
-    languages : "Can understand and speak all languages",
-    challengeRating : "1/4",
-    proficiencyBonus : 2,
-    attacksAction : 1,
+    senses : "Darkvision 240ft",
+    languages : "Common, primeval, deep speech, draconic",
+    challengeRating : "6",
+    proficiencyBonus : 3,
+    attacksAction : 2,
+    attacks : [{
+        name : "Talons",
+		ability : 2,
+		damage : [1, 4, "slashing"],
+		range : "Melee (5 ft)"
+    }, {
+        name : "Bite",
+        ability : 2,
+        damage : [1, 6, "piercing"],
+        range : "Melee (10 ft)",
+        description : "+1d4 lightning dmg"
+    }, {
+        name : "Electrobolt",
+        ability : 4,
+        damage : [2, 4, "lightning"],
+        range : "60 ft",
+        description : "Ranged Spell Attack",
+    }, {
+        name : "Electrostatic Breath (recharge 5-6)",
+        ability : 4,
+        damage : [6, 4, "lightning"],
+        range : "15-ft cone",
+        description : "Dex save; Save halves; Failed -10 ft movement, no reac. til end of their next turn",
+        dc : true
+    }],
+    traits : [{
+        name : "Overpowering Swarm",
+        description : "When 2 or more allies are within 15 ft of a target, the Mechanical Pseudoragon has advantage on all attack rolls."
+    }, {
+        name : "Duplicitous Activity",
+        description : "The Mechanical Pseudodragon has advantage on Deception checks to hide its true objective."
+    }, {
+        name : "Genocidal Hive",
+        description : "This creature has an overpowering drive to build more of itself and destroy all non-mechnical, non-dragonic life. It will always choose its objective over its friends, allies, and treasure to achieve cosmic domination."
+    },{
+        name : "Lightning Dependence",
+        description : "Whenever this creature takes 10 or more lightning damage, it takes no damage instead and regains a number of hp equal to the damage. It must absorb at least 10 lightning damage from another source other than its own once a day or it goes dormant until its recharged."
+    }]
+}
+
+CreatureList["combustion mechanical pseudodragon"] = {
+    companion : ["ariadne's: the library of the underside companion codex", "ariadne's companion codex"],
+    name : "Combustion Mechanical Psudodragon",
+    source : [["A:TLotU", 23], ["A:CoS", 0]],
+    size : 2,
+    type : "Construct",
+    alignment : "Neutral Evil",
+    ac : 15,
+    hp : 67,
+    hd : [15, 6],
+    speed : "30 ft, fly 60 ft",
+    scores : [8, 17, 12, 18, 12, 15],
+    skills : {
+        "Deception" : 5
+    },
+    senses : "Darkvision 240ft",
+    languages : "Common, primeval, deep speech, draconic",
+    challengeRating : "5",
+    damage_resistances : "fire",
+    proficiencyBonus : 3,
+    attacksAction : 2,
+    attacks : [{
+        name : "Talons",
+		ability : 2,
+		damage : [1, 4, "slashing"],
+		range : "Melee (5 ft)"
+    }, {
+        name : "Bite",
+        ability : 2,
+        damage : [1, 6, "piercing"],
+        range : "Melee (10 ft)",
+        description : "+1d4 lightning dmg"
+    }, {
+        name : "Electrobolt",
+        ability : 4,
+        damage : [2, 4, "lightning"],
+        range : "60 ft",
+        description : "Ranged Spell Attack",
+    }, {
+        name : "Incinerating Breath (recharge 5-6)",
+        ability : 4,
+        damage : [4, 4, "fire"],
+        range : "15-ft cone",
+        description : "Dex save; Save halves; Failed crea(s) incinerated, 2d4 fire dmg start of each turn for 1 min, action to put out",
+        dc : true
+    }],
+    traits : [{
+        name : "Overpowering Swarm",
+        description : "When 2 or more allies are within 15 ft of a target, the Mechanical Pseudoragon has advantage on all attack rolls."
+    }, {
+        name : "Duplicitous Activity",
+        description : "The Mechanical Pseudodragon has advantage on Deception checks to hide its true objective."
+    }, {
+        name : "Genocidal Hive",
+        description : "This creature has an overpowering drive to build more of itself and destroy all non-mechnical, non-dragonic life. It will always choose its objective over its friends, allies, and treasure to achieve cosmic domination."
+    },{
+        name : "Combustion Dependence",
+        description : "This creature is resistance to fire damage, and must consume 4 lbs. of coal per day or fall dormant until its combustion system is reignited."
+    }]
+}
+
+CreatureList["caustic mechanical pseudodragon"] = {
+    companion : ["ariadne's: the library of the underside companion codex", "ariadne's companion codex"],
+    name : "Caustic Mechanical Psudodragon",
+    source : [["A:TLotU", 23], ["A:CoS", 0]],
+    size : 2,
+    type : "Construct",
+    alignment : "Neutral Evil",
+    ac : 15,
+    hp : 112,
+    hd : [25, 6],
+    speed : "30 ft, fly 60 ft",
+    scores : [8, 17, 18, 18, 12, 15],
+    skills : {
+        "Deception" : 5
+    },
+    senses : "Darkvision 240ft",
+    languages : "Common, primeval, deep speech, draconic",
+    challengeRating : "8",
+    damage_resistances : "fire",
+    proficiencyBonus : 3,
+    attacksAction : 2,
+    attacks : [{
+        name : "Talons",
+		ability : 2,
+		damage : [1, 4, "slashing"],
+		range : "Melee (5 ft)"
+    }, {
+        name : "Bite",
+        ability : 2,
+        damage : [1, 6, "piercing"],
+        range : "Melee (10 ft)",
+        description : "+1d4 lightning dmg"
+    }, {
+        name : "Electrobolt",
+        ability : 4,
+        damage : [2, 4, "lightning"],
+        range : "60 ft",
+        description : "Ranged Spell Attack",
+    }, {
+        name : "Electrostatic Breath (recharge 5-6)",
+        ability : 4,
+        damage : [6, 4, "lightning"],
+        range : "15-ft cone",
+        description : "Dex save; Save halves; Failed -10 ft movement, no reac. til end of their next turn",
+        dc : true
+    }, {
+        name : "Caustic Flames (recharge 5-6)",
+        ability : 4,
+        damage : [4, 4, "fire"],
+        range : "15-ft cone",
+        description : "Dex save; +4d4 acid dmg; Save halves; Failed, 2d4 fire + 2d4 acid dmg start of each turn for 1 min, action to put out",
+        dc : true 
+    }],
+    damage_resistances : "acid",
+    traits : [{
+        name : "Overpowering Swarm",
+        description : "When 2 or more allies are within 15 ft of a target, the Mechanical Pseudoragon has advantage on all attack rolls."
+    }, {
+        name : "Duplicitous Activity",
+        description : "The Mechanical Pseudodragon has advantage on Deception checks to hide its true objective."
+    }, {
+        name : "Genocidal Hive",
+        description : "This creature has an overpowering drive to build more of itself and destroy all non-mechnical, non-dragonic life. It will always choose its objective over its friends, allies, and treasure to achieve cosmic domination."
+    },{
+        name : "Energetic Independence",
+        description : "Whenever this creature takes 10 or more lightning damage, it takes no damage instead and regains a number of hp equal to the damage. It must absorb at least 10 lightning damage from another source other than its own once a day or it goes dormant until its recharged. Or, it can consume a vial of acid to sustain itself. It also has resistance to acid damage."
+    }]
+}
+
+SpellsList["arcane cuffs"] = {
+    name : "Arcane Cuffs",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 24]],
+    level : 2,
+    school : "Abjur",
+    time : "1 a",
+    range : "Touch",
+    duration : "1 hr",
+    components : "S,M",
+    compMaterial : "an ingot of polished silver, which the spell consumes",
+    description : "Crea save using its spell ability vs own save DC or cannot cast 2+1/SL level or lower spells; Restrained have Disadv; Incap. auto fail; Dur. 8hr 4/SL, 24hr 6/SL",
+    descriptionFull : "A creature must succeed on a saving throw usings its own spellcasting ability and save DC. On a failed save, the creature cannot cast spells of 2nd level or lower for the duration. A Restrained creature has disadvantage on the save, and an Incapacitated creature automatically fails." + AtHigherLevels + "When I cast this spell using a spell slot of 3rd level or higher, the target is unable to cast spells of the slot's level or lower. Additionally, the duration increases to 8 hours at 4th level or higher and 24 hours at 6th level or higher."
+}
+
+SpellsList["greater identify"] = {
+    name : "Greater Identify",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 24]],
+    level : 3,
+    school : "Div",
+    time : "10 min",
+    range : "Touch",
+    duration : "Instantaneous",
+    components : "V,S,M",
+    compMaterial : "A pearl worth at least 500 gp and an owl feather",
+    description : "magic item/imbued crea/obj; learn properties, use, affecting spells, prev. 3 users and their actions, traps/malicious design, created by spell; Crea, learn 3 highest spells and last spell casted",
+    descriptionFull : "I choose one magical item or magic-imbued object or creature. I learn its properties and how to use them, whether or not it requires attunement, and how many charges it has, if any. I learn the identities of its three previous users, and the most significant actions they took with it. I also learn any hidden compartments, traps, or malicious design concealed within the object. I learn if any spells are affecting the item and what they are. If the item was created by a spell, I learn which spell created it. Additionally, I decipher compatibilities and dissonances of the object with different magical auras, learning if the item would react to planar energies such as chaotic, lawful, good, and evil aura and effects. If it's a creature, I learn what spells or magical effects, if any, are currently affecting it. I also learn the three highest level spells the creature can cast, and the lasat spell it casted."
+}
+
+SpellsList["arcane rescripting"] = {
+    name : "Arcane Rescripting",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 24]],
+    level : 4,
+    school : "Omni",
+    time : "1 min",
+    range : "Touch",
+    duration : "Instantaneous",
+    components : "V,S,M",
+    compMaterial : "A shard of fine opal worth at least 100 gp, which the spell consumes",
+    description : "I give instructions up to 30 words to a Construct; Save if unwilling, or bound to my orders for 24hrs, 7/SL a week, 9/SL permanently"
+}
+
+SpellsList["magisteal"] = {
+    name : "Magisteal",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 25]],
+    level : 5,
+    school : "Omni",
+    time : "1 rea",
+    timeFull : "1 reaction when I see a creature cast a spell or magical effect",
+    range : "30 ft",
+    duration : "8 hr",
+    components : "S,M",
+    compMaterial : "the eye of a hawk",
+    description : "Replicate spell/magical effect 5+1/SL or lower as if I casted it, unless it was also created by another Magisteal",
+    descriptionFull : "I can save an arcane snapshot of a spell or magical effect of 5th level or lower that I witness within range. For the duration, I can consumee the snapshot to replicate the magic as if I were its source, maintaining all its original effects, damage, and DCs, if any. Once I do so, the spell ends. I cannot use this spell to save a snapshot of an effect being replicated by Magisteal. If the magic is a magical effect, it is up to the DM to decide what level the effect is. It's recommended to divide the CR of the creature creating the effect by 2, rounding up." + AtHigherLevels + "When I cast this spell using a spell slot of 6th level or higher, I can copy a spell or magical effect if its level is less or equal to the level of spell slot used."
+}
+
+SpellsList["mantle of bodily safety"] = {
+    name : "Mantle of Bodily Safety",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 25]],
+    level : 5,
+    school : "Abjur",
+    time : "1 a",
+    range : "Touch",
+    duration : "Conc, 10 min",
+    components : "V,S,M",
+    compMaterial : "a purple diamond worth at least 300 gp",
+    description : "1 Crea immune to form altering spell/effect; Crea(s) in 15ft radius adv. on saves vs. altering form spell/effect; Dur. 1hr 6+/SL",
+    descriptionFull : "A creature I touch is wreathed in an ethereal cloak of protective light, rendering them completely immune to spells or magical effects that would alter their form, such as the polymorph spell or a Medusa's petrifying gaze. Creatures within 15 feet of the Creature are also aided by its magic, gaining advantage on saving throws against spells or magical effects that would alter their form." + AtHigherLevels + "When I cast this spell using a spell slot of 6th level or higher, the maximum duration is increased to 1 hour."
+}
+
+SpellsList["confiscate"] = {
+    name : "Confiscate",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 25]],
+    level : 6,
+    school : "Abjur",
+    time : "1 a",
+    range : "30 ft",
+    duration : "Conc, 1 min",
+    components : "S,M",
+    compMaterial : "a platinum magnet",
+    save : "Cha",
+    description : "1 wondrous item; Crea attuned, save or interrupted until I lose conc; Break attune after 1 min, I can instant attune, unless sentient/Artifact or 9/SL; 1 bns pull 30 ft Athletics check vs my spell save DC",
+    descriptionFull : "I target a wondrous item I can see within range. If a creature is attuned to it, they must succeed a Charisma saving throw or have their attunement interrupted for as long as I maintain concentration on the spell. If I concentrate for the full minute, their attunement is broken and I can choose to instantly attune to it in their stead. Sentient items or Artifacts are unaffected, unless I cast this spell using a 9th level spell slot. Additionally, while I concentrate on this spell, I can use my bonus action to magically pull the targeted item 30 feet towards me, catching it if I have a free hand to do so when it reaches me. If a creature is carrying it, it must make a Strength (Athletics) check against my spell save DC to prefvent the item from being torn from their possession."
 }
