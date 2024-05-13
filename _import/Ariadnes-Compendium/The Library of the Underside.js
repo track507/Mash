@@ -569,7 +569,7 @@ SpellsList["confiscate"] = {
 SpellsList["mass modify memory"] = {
     name : "Confiscate",
     classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
-    source : [["A:TLotU", 25]],
+    source : [["A:TLotU", 26]],
     level : 9,
     school : "Ench",
     time : "8 hr",
@@ -582,3 +582,60 @@ SpellsList["mass modify memory"] = {
     descriptionFull : "I can muddle the memories of every creature within a 25 mile radius centered on me, changing their recollection of an event they learned about or witnessed within the past month. I can choose to eliminate all memory of the event, change the details, or create a memory of another event to replace it. A modified memory doesn't affect how a creature behaves, particularly if the memory contradicts the creature's natural inclinations, alignment, or beliefs. An illogical memory might be dismissed as a bad dream. Creatures with a 20 or higher Intelligence score can save to resist these effects, and are aware of the attempt. All stolen memories are transferred to the gem which darkens with the weight of the contained information. Creatures affected by this spell have disadvantage on Intelligence, Wisdom, and Charisma rolls to discern my intentions or resist my spells. If the creature encounters new information that contradicts the modified memory, it can attempt to save to recover them. On a failure, the creature discards it as a mistake or a lie. The gem is a magical object with 100 hp, an AC of 25, and immunity too all damage except force. If the gem is destroyed, all creatures affected by the spell recover their memory and become aware of my manipulation",
 }
 
+SpellsList["kara's neural needle"] = {
+    name : "Kara's Neural Needle",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 27]],
+    level : 9,
+    school : "Evoc",
+    time : "1 a",
+    range : "60 ft",
+    duration : "Instantaneous",
+    components : "S",
+    description : "Choose 1 from B effect crea for 1 week; 12d10 psychic, save halves and no effects; No effect crea psychic immunity",
+    save : "Int",
+    descriptionFull : "I target the mind of a creature within range with a sharp pulse of psychci energy, attempting to destroy its mind. The creature must make an Intelligence saving throw and suffer deep neural damage. On a failure, they take 12d10 psychic damage. On a success, they take half damage and are not affects by the spell's other effects. I can choose one of the following to afflictions to affect the creature for the next week. Creatures with psychic immunity are unaffected by this spell." + "\n    " + toUni("Paraplegia") + ":  Basic motor skills become incredibly difficult. The target's walking speed is reduced to 5 feet, and have disadvantage on Dexterity checks, weapon, and unarmed attacks." + "\n    " + toUni("Time Agnosia") + ": The target's ability to track time start to break down. The target cannot sleep unless induced by medicine or magic, and they are unable to make plans that require projecting actions into the future." + "\n    " + toUni("Retrograde Amnesia") + ": A deep loss of memories affects the target's mind, making them forget their acquaintances, friends, and family. They still instinctively protect their allies, and a natural mistrust of enemies, but can be easily manipulated away from these institutions." + "\n    " + toUni("Anterograde Amnesia") + ": The target can remember its past, but has difficulty in learning new things. They are unable to recall any information learned after the casting of this spell." + "\n    " + toUni("Apathetic Depression") + ": The target loses the capability for feeling emotion, making them deeply unempathetic and cold. They have disadvantage on all Charisma checks and become deeply miserable." + "\n    " + toUni("Sensory Loss") + ": The target's senses are extremely dulled. They lose all special senses (such as darkvision or blindsense), have disadvantage on Perception checks, and cannot see, hear, or smell anything beyond 30 feet." + "\n    " + "A Greater Restoration reduces the duration of the effects by 1d4 days."
+}
+
+MagicItemsList["curseblade"] = {
+    name : "Curseblade",
+    source : [["A:TLotU", 39]],
+    type : "weapon (any melee)",
+    rarity : "artifact",
+    attunement : true,
+    description : "This weapon has a +3 bonus to attack and damage rolls, ignores resistance to its main damage type (a longsword with slashing ignores slashing resistance), and scores a critical hit on a 15-20. See notes for curse.",
+    chooseGear : {
+		type : "weapon",
+		prefixOrSuffix : "suffix",
+		descriptionChange : ["replace", "weapon"],
+        // exclude anything that is not a melee weapon
+		excludeCheck : function (inObjKey, inObj) {
+			return !/\bmelee\b/i.test(inObj.range);
+		}
+	},
+    calcChanges : {
+        atkAdd : [
+            function(fields,v) {
+                if((/curseblade/i).test(v.WeaponTextName)) {
+                    var dmg = fields.Damage_Type ;
+                    fields.Description += (fields.Description ? '; ' : '') + "Crit on 15-20; " + "Ignores " + dmg + " resistance"; 
+                }
+            }
+        ],
+        atkCalc : [
+            function(fields, v, output) {
+                if((/curseblade/i).test(v.WeaponTextName)) {
+                    output.magic += 3;
+                }
+            }
+        ]
+    },
+    toNotesPage : [{
+        name : "Sacrifical Sentience",
+        note : desc([
+            "Detection: When I first grab this waepon, I will experience a violet flash that lasts less than a second. An identify spell reveals this items curse and its specific effects. While using it, it is clear that each critical hit comes easier than the last.",
+            "Activation and Effects: When I attune to this weapon with this curse, I am unable to end the attunement, but have no obligation to keep using it. The weapon will then introduce itself, revealing its sentience and stating its intention to help the user 'find the right mark'.",
+            ""// finisht these notes and add the rest of the curse from the curseblade.
+        ])
+    }]
+}
