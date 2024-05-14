@@ -603,7 +603,7 @@ MagicItemsList["curseblade"] = {
     type : "weapon (any melee)",
     rarity : "artifact",
     attunement : true,
-    description : "This weapon has a +3 bonus to attack and damage rolls, ignores resistance to its main damage type (a longsword with slashing ignores slashing resistance), and scores a critical hit on a 15-20. See notes for curse.",
+    description : "This weapon has a +3 bonus to attack and damage rolls, ignores resistance to its main damage type (a longsword with slashing ignores slashing resistance), and scores a critical hit on a 15-20. See notes for Curseblade's Curse.",
     chooseGear : {
 		type : "weapon",
 		prefixOrSuffix : "suffix",
@@ -635,7 +635,181 @@ MagicItemsList["curseblade"] = {
         note : desc([
             "Detection: When I first grab this waepon, I will experience a violet flash that lasts less than a second. An identify spell reveals this items curse and its specific effects. While using it, it is clear that each critical hit comes easier than the last.",
             "Activation and Effects: When I attune to this weapon with this curse, I am unable to end the attunement, but have no obligation to keep using it. The weapon will then introduce itself, revealing its sentience and stating its intention to help the user 'find the right mark'.",
-            ""// finisht these notes and add the rest of the curse from the curseblade.
+            "In addition to any effects the weapon might have aside from its Sacrifical Sentience, my critical range is increased based on the weapon's rarity. The weapon's cursed properties are empowered by critical strikes. For every critical hit rolled with this weapon, it gains a charge, up to a max of 10 charges. When I roll a natural one on an attack roll with this weapon, it will attempt to take my vitality.",
+            "I must make a Constitution saving throw with a DC of 10 + 3 for every charge the weapon currently has up to a max save DC of 30. On a failure, I take necrotic damage equal to 10 times the amount of charges this weapon holds. On a success, I take only half damage and the weapon loses all of its charges. If I am reduced to 0 hp, I am instantly killed, and the weapon gains an additional +1 to hit and damage rolls.",
+            "Dispelling and Attunement: A curse of Sacrifical Sentience can only be dispelled by destroying the magical item that houses the evil awareness causing it. Depending on the power of the item, this could be a very difficult process, which is why many of these are simply abandoned or locked away.",
+            "If the weapon is abandoned or kept at least 120 feet away from me for a week, the attunement is broken, rendering the blade free to find another wielder."
+        ])
+    }, {
+        name : "Curseblade's Curse",
+        note : desc([
+            "When I drop below half my total hp, I must make a DC 20 Charisma saving throw. On a failure, my soul is absorbed by the weapon and I am instantly killed. On a success, I am immune to the Curseblade's Sacrifical Sentience for the next 24 hours, including on critical failure effects."    
         ])
     }]
+}
+
+SpellsList["omission"] = {
+    name : "Omission",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 44]],
+    level : 2,
+    school : "Omni",
+    time : "1 a",
+    range : "30 ft",
+    duration : "1 hr",
+    save : "Wis",
+    components : "V,S",
+    description : "Choose subject (person, place, or idea), not too broad/ingrained (breathing/running); 1 Crea save or cannot produce thoughts about subject",
+    descriptionFull : "I target a creature within range with a disruptive psychic arcana, carried over by my words. When I cast this spell, I choose a subject to be omitted by the thought process of the creature. This subject can be a person, place, or an idea, as long as it isn't too broad or too ingrained as a basic part of the target's psyche, such as breathing or running. The creature must succeed on a Wisdom saving throw or be unable to autonomously produce any thoughs involving the chosen omission. If an event, such as hearing the name of the barred creature, brings the omission to the forefront of the affected creature's mind, the spell ends."
+}
+
+SpellsList["mindblast"] = {
+    name : "Mindblast",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 44]],
+    level : 2,
+    school : "Evoc",
+    time : "1 a",
+    range : "30 ft",
+    duration : "1 hr",
+    save : "Int",
+    components : "V,S",
+    description : "Crea Int>3 save or 2d10+1d10/SL psychic dmg; Incapacitated til end of next turn; Stunned if failed by 5 or more",
+    descriptionFull : "I launch a powerful burst of disruptive psychic waves at a creature within range. The target must succeed on an Intelligence saving throw or take 2d10 psychic damage and be Incapacitated until the end of their next turn. If they fail by 5 or more, they are Stunned instead. The spell has no effect on creatures with an Intelligence score lower than 3." + AtHigherLevels + "When I cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d10 for each slot level above 2nd."
+}
+
+SpellsList["blindspot"] = {
+    name : "Blindspot",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 44]],
+    level : 3,
+    school : "Ench",
+    time : "1 a",
+    range : "60 ft",
+    duration : "Conc, 1 hr",
+    save : "Wis",
+    components : "V,S,M",
+    compMaterial : "a small vial of black oil",
+    description : "Spell ability mod. Crea(s), save or be blind to 1+1/SL crea/obj < 10ft cube; Crea(s) can touch/smell/hear, all but sight",
+    descriptionFull : "I target a number of creatures up to my spellcasting ability modifier with a visual enchantment, creating a blindspot in their vision for a particular thing. Each creature must succeed a Wisdom saving throw or become blind to a single object or creature of my choice that is no larger than a 10-ft cube. This can be a door, an enemy, a lever, etc. A creature is unaware of this manipulation and its vision fills the missing space with a suitably inconspicuous background. A creature affected by this spell can interact with the blindspot normally in every way except sight; it can touch, smell, and hear it even through it appears to be invisible to the creature for the duration." + AtHigherLevels + "When I cast this spell using a spell slot of 4th level or higher, I can create on additional blindspot for each slot level above 3rd, up to a max of 5."
+}
+
+SpellsList["fate denial"] = {
+    name : "Fate Denial",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 45]],
+    level : 4,
+    school : "Omni",
+    time : "1 rea",
+    timeFull : "1 reaction, which I take when I fail a saving throw",
+    range : "Self",
+    duration : "Instantaneous",
+    components : "V,S,M",
+    compMaterial : "a fractal-shaped crystal",
+    description : "Roll save again and  my spellcasting ability modifier to the roll; Must use the new roll",
+}
+
+SpellsList["greater darkness"] = {
+    name : "Greater Darkness",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 45]],
+    level : 5,
+    school : "Evoc",
+    time : "1 a",
+    range : "60 ft",
+    duration : "Conc, 1 min",
+    components : "V,S,M",
+    compMaterial : "an obsidian shard",
+    description : "60-ft rad fills with darkness;  my spellcasting ability modifier Crea(s) sees through; Light 6/SL< dispelled"
+}
+
+SpellsList["distort timeline"] = {
+    name : "Distort Timeline",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 45]],
+    level : 7,
+    school : "Omni",
+    time : "1 a",
+    range : "120 ft",
+    duration : "1 rnd",
+    components : "V,S,M",
+    compMaterial : "an antique stopwatch worth at least 1000 gp",
+    save : "Cha",
+    description : "Create save point; Use reac. retun to save; recovers all lost resources; Cha save to resist",
+    descriptionFull : "I create a magical snapshot of all that happens within 120 feet of my from the moment I cast this spell until the end of my next turn, creating a save point. During that time period, I can make all objects and willing creatures return to the state of the save point as a reaction, changing to their original position and recovering any lost resources, such as hp and spell slots. An unwilling creature can attempt to resist the reset with a successful Charisma saving throw. All creatures are aware of this change. I can choose not to return to the save point and let time continue by not using my reaction, but the spell slot is still consumed. The spell only affects things within range. If a creature or object is further than 120 feet away from me when I return to the save point, it does not change positions or state, regardless of its circumstances when I started to record the save point."
+}
+
+SpellsList["fumes of insanity"] = {
+    name : "Fumes of Insanity", 
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:TLotU", 45]],
+    level : 8,
+    school : "Omni",
+    time : "1 a",
+    range : "60 ft",
+    duration : "Conc, 1 min",
+    components : "V,S,M",
+    compMaterial : "a purple glass shard",
+    description : "20-ft rad; Crea enter or start turn make Wis, Con, and Cha saves; See B. for fail effects",
+    descriptionFull : "I create a 20-foot radius sphere of swirling, neon-colored fumes centered on a point within range. Creatures that enters the area for the first time or start their turn must make a Wisdom, Constitution, and Charisma saving throw." + "\n    " + toUni("Wisdom fail") + ": the creature is hypnotized by the swirling colors, becoming incapacitated and having their speed reduced to 0. This effect ends for an affected creature if it takes more than 15 points of damage from a single source." + "\n    " + toUni("Constitution fail") + ": the toxicity of the fumes deal 3d8 poison damage to the creature and applies the poisoned condition until they leave the cloud or succeed this saving throw on a subsequent turn." + "\n    " + toUni("Charisma fail") + ": the fumes break something inside the creature's mind, who must roll on the short-term madness table to determine the effect they suffer for the next 1d10 minutes."
+}
+
+MagicItemsList["tincture of red"] = {
+    name : "Tincture of Red",
+    source : [["A:TLotU", 48]],
+    type : "potion",
+    rarity : "rare",
+    description : "This potion has 3 charges. I can use a charge and apply a coat of red oil to a weapon. For the next hour, the weapon is considered magical. When I hit a creature with a coated weapon, it takes an additional 2d6 necrotic damage at the start of its turn."
+}
+
+MagicItemsList["elder lightning draught"] = {
+    name : "Elder Lightning Draught",
+    source : [["A:TLotU", 49]],
+    type : "potion",
+    rarity : "very rare",
+    description : "When I drink this potion, I must make a DC 16 Constitution saving throw, taking 4d8 damage on a failed save and failing to drink the potion. On a success, I only take half damage and become imbued with elder lightning for one minute. I maximize all lightning damage rolls I make. Additionally, I ignore lightning resistance and treat immunity has resistance."
+}
+
+MagicItemsList["darkblood tonic"] = {
+    name : "Elder Lightning Draught",
+    source : [["A:TLotU", 49]],
+    type : "potion",
+    rarity : "very rare",
+    description : "When I drink this potion, I must make a DC 16 Wisdom saving throw taking 4d8 psychic damage on a failed save and vomitting the contents. On a success, I only take half damage and become enraged for one minute. While enraged, I gain an additional attack when I take the attack action on my turn. In addition, I become enlarged as per the Enlarge/Reduce spell and gain a +2 to my Constitution score for the duration. After a minute, I am stunned for 1 round as I painstakingly return to my size."
+}
+
+MagicItemsList["potion of reality fractals"] = {
+    name : "Potion of Reality Fractals",
+    source : [["A:TLotU", 50]],
+    type : "potion",
+    rarity : "legendary",
+    description : "This potion is similar to the Wish spell. These potions can only be found in the deeper down within the primeval chambers of the Gardens of Omniturgy. Immediately after drinking it, I can choose one of the following effects or other effects at the DM's discretion. Harmonize, Replicate, Greater Fabrication, or Arcanomophosis. See notes page.",
+    toNotesPage : [{
+        name : "Effects",
+        note : desc([
+            "Harmonize: I immediately attune to a magic item I can see within 30 ft. If another creature is already attuned, their attunement is broken and transferred to you. You become aware of the item's properties as if I had cast Identify on it.",
+            "Replicate: I cast a perfect copy of a spell or magical effect I've seen before. For any effects created this way, the DC is 22 and my attack bonus is +14.",
+            "Greater Fabrication: I cast the Fabricate spell, ignoring the need for material components. I am considered proficient with all artisan's tools for the purposes of what I can create this way.",
+            "Arcanomorphosis: I permanently gain an additional spell slot of the highest level I can currently cast. A creature can only benefit from this effect once."
+        ])
+    }]
+}
+
+MagicItemsList["ambrotype of the void"] = {
+    name : "Ambrotype of the Void",
+    source : [["A:TLotU", 56]],
+    type : "wondrous item",
+    rarity : "legendary",
+    description : "I can use my action to take a picture I can see within 60 ft, who must succeed on a DC 18 Charisma saving throw or have their likeness stored within the camera. While their picture is saved, the creature has disadvantage on all Wisdon, Intelligence, and Charisma saving throws. It can store up to 3 pictures, and after I finish a long rest, it wipes the memory",
+    action : ["action", ""],
+    usages : 3,
+    recovery : "long rest"
+}
+
+MagicItemsList["outsider's helm"] = {
+    name : "Outsider's Helm",
+    source : [["A:TLotU", 56]],
+    type : "wondrous item",
+    rarity : "very rare",
+    description : "I gain 120 ft of blindsight, but lose any sight based senses. Additionally, I am immune to psychic damage and to effects that would make me roll on a madness table. Its powers also goes to protect somewhat beyong that; body and soul cannot be warped by aberrant powers, rending me immune to an Aboleth's aquatic disease, for example."
 }
