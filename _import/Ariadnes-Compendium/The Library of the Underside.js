@@ -44,7 +44,7 @@ MagicItemsList["writ of safety"] = {
     source : [["A:TLotU", 8]],
     type : "wondrous item",
     rarity : "rare",
-    description : "This doubles as an official document and a magic scoll. It will make the Aurinoir to leave me alone, unless I am doing something obviously dangerous to the security of the City of Strings. It also functions as a Word of Recall that will bring me back to Runo's Shop, and disintegrates after being used this way. I will need to buy another one if I want to go back. See notes for Arcane Tracker.",
+    description : "This doubles as an official document and a magic scroll. It will make the Aurinoir to leave me alone, unless I am doing something obviously dangerous to the security of the City of Strings. It also functions as a Word of Recall that will bring me back to Runo's Shop, and disintegrates after being used this way. I will need to buy another one if I want to go back. See notes for Arcane Tracker.",
     toNotesPage : [{
         name : "Arcane Tracker",
         note : desc([
@@ -58,7 +58,7 @@ MagicItemsList["golem wrecker"] = {
     source : [["A:TLotU", 9]],
     type : "weapon (light hammer)",
     rarity : "very rare",
-    description : "I have a +2 bonus to attack and damge rolls made with this weapon. Additionally, this weapon ignores resistance to bludgeoning and slashing damage, and treats immunity as if it were resistance. The crit range against constructs is increased to 17-20, and when I hit a construct, it must roll a DC 17 Constitution saving throw or fall prone and be stunned, repeating the save at the end of each of its turns.",
+    description : "I have a +2 bonus to attack and damage rolls made with this light hammer. Additionally, this weapon ignores resistance to bludgeoning and slashing damage, and treats immunity as if it were resistance. The crit range against constructs is increased to 17-20, and when I hit a construct, it must roll a DC 17 Constitution saving throw or fall prone and be stunned, repeating the save at the end of each of its turns.",
     weaponsAdd : ["Golem Wrecker"],
     weaponOptions : [{
         name : "Golem Wrecker",
@@ -250,7 +250,7 @@ MagicItemsList["wand of gold and garlic"] = {
         ]
     }
 }
-// finish this feat and add rest of the book
+
 MagicItemsList["tome of primeval and deep speech"] = {
     name : "tome of primeval and deep speech",
     source : [["A:TLotU", 18]],
@@ -490,7 +490,8 @@ MagicItemsList["pauldrons of villainous opulence"] = {
     type : "wondrous item",
     rarity : "legendary",
     attunement : true,
-    description : "These pauldrons turn any suit of armor they are affixed to into a suit of fine plate armor +3." // Finish this
+    cursed : true,
+    description : "These cursed pauldrons turn any suit of armor they are affixed to into a suit of fine plate armor +3. I cannot unattune to these pauldrons, and cannot remove them from the armor. Every sapient creature in a 30-ft sphere perceives me as decadently wealthy, wasteful, and unlikeable. Non-sapient creatures don't trust me and are threatened by my presence. This item is senient and will try to turn my allies, friends, and family against me.",
 }
 
 SpellsList["arcane cuffs"] = {
