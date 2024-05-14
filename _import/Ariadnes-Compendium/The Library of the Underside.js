@@ -853,4 +853,11 @@ MagicItemsList["emerald tablet, volume i"] = {
     }]
 }
 
-MagicItemsList[""]
+MagicItemsList["voidshard"] = {
+    name : "Voidshard",
+    source : [["A:TLotU", 69]],
+    type : "wondrous item",
+    rarity : "rare",
+    attunement : false,
+    description : "When a Void Golem dies, 1d20+10 intact Voidshards are left behind. When a shard takes bludgeon/slash damage, it bursts dealing 1d6 piercing + 1d6 psychic damage to creatures within 5 ft of it. Creatures concentrating on a spell must make a DC 18 concentration check regardless of the damage taken. This item is commonly used with a slingshot/catapult spell to create ranged concentration breaking weapons."
+}
