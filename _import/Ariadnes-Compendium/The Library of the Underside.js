@@ -811,5 +811,46 @@ MagicItemsList["outsider's helm"] = {
     source : [["A:TLotU", 56]],
     type : "wondrous item",
     rarity : "very rare",
-    description : "I gain 120 ft of blindsight, but lose any sight based senses. Additionally, I am immune to psychic damage and to effects that would make me roll on a madness table. Its powers also goes to protect somewhat beyong that; body and soul cannot be warped by aberrant powers, rending me immune to an Aboleth's aquatic disease, for example."
+    description : "I gain 120 ft of blindsight, but lose any sight-based senses. Additionally, I am immune to psychic damage and to effects that would make me roll on a madness table. Its powers also goes to protect somewhat beyong that; body and soul cannot be warped by aberrant powers, rending me immune to an Aboleth's aquatic disease, for example.",
+    vision : [["Blindsight", 60], ["Lose all other sight-based senses", ""]]
 }
+
+MagicItemsList["reality splitter"] = {
+    name : "Reality Splitter",
+    source : [["A:TLotU", 56]],
+    type : "weapon (pistol)",
+    rarity : "legendary",
+    attunement : true,
+    description : "This pistol deals a base of 3d6 lethality damage, and I have a +3 bonus to attack and damage rolls. Additionally, it doesn't need to be reloaded, and deals an additional 3d6 lethality damage on a critical hit.",
+    weaponsAdd : ["Reality Splitter"],
+    weaponOptions : [{
+        name : "Reality Splitter",
+        regExpSearch : /reality splitter/i,
+        baseWeapon : "pistol",
+        damage : [3, 6, "lethality"],
+        modifiers : [3,3],
+        description : "+3d6 lethality dmg on crit",
+    }]
+}
+
+MagicItemsList["emerald tablet, volume i"] = {
+    name : "Emerald Tablet, Volume I",
+    source : [["A:TLotU", 64]],
+    type : "wondrous item",
+    rarity : "artifact",
+    attunement : true,
+    description : "While attuned, I must make a DC 22 Charisma saving throw each dawn or lose the attunement. It becomes weightless to me, but terribly heavy for everyone else, and my Charisma score becomes a 26. I gain one legendary resistance, damage immunity, and condition immunity, and gain resistance to elemental damage (acid, cold, fire, lightning, and thunder). I can cast Wish once per week.",
+    scoresOverride : [0,0,0,0,0,26],
+    dmgres : ["Acid", "Cold", "Fire", "Lightning", "Thunder"],
+    limfeaname : "Legendary Resistance",
+    usages : 1,
+    recovery : "long rest",
+    spellcastingBonus : [{
+        name : "Wish",
+        spells : ["wish"],
+        selection : ["wish"],
+        firstCol : 1
+    }]
+}
+
+MagicItemsList[""]
