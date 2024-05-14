@@ -331,6 +331,9 @@ CreatureList["mechanical pseudodragon"] = {
         dc : true
     }],
     traits : [{
+        name : "Multiattack",
+        description : "This creature makes two attacks: one with its talons, and one with its bite or electrobolt",
+    }, {
         name : "Overpowering Swarm",
         description : "When 2 or more allies are within 15 ft of a target, the Mechanical Pseudoragon has advantage on all attack rolls."
     }, {
@@ -392,6 +395,9 @@ CreatureList["combustion mechanical pseudodragon"] = {
         dc : true
     }],
     traits : [{
+        name : "Multiattack",
+        description : "This creature makes two attacks: one with its talons, and one with its bite or electrobolt",
+    }, {
         name : "Overpowering Swarm",
         description : "When 2 or more allies are within 15 ft of a target, the Mechanical Pseudoragon has advantage on all attack rolls."
     }, {
@@ -461,6 +467,9 @@ CreatureList["caustic mechanical pseudodragon"] = {
     }],
     damage_resistances : "acid",
     traits : [{
+        name : "Multiattack",
+        description : "This creature makes two attacks: one with its talons, and one with its bite or electrobolt",
+    }, {
         name : "Overpowering Swarm",
         description : "When 2 or more allies are within 15 ft of a target, the Mechanical Pseudoragon has advantage on all attack rolls."
     }, {
@@ -473,6 +482,15 @@ CreatureList["caustic mechanical pseudodragon"] = {
         name : "Energetic Independence",
         description : "Whenever this creature takes 10 or more lightning damage, it takes no damage instead and regains a number of hp equal to the damage. It must absorb at least 10 lightning damage from another source other than its own once a day or it goes dormant until its recharged. Or, it can consume a vial of acid to sustain itself. It also has resistance to acid damage."
     }]
+}
+
+MagicItemsList["pauldrons of villainous opulence"] = {
+    name : "Pauldrons of Villainous Opulence",
+    source : [["A:TLotU", 22]],
+    type : "wondrous item",
+    rarity : "legendary",
+    attunement : true,
+    description : "These pauldrons turn any suit of armor they are affixed to into a suit of fine plate armor +3." // Finish this
 }
 
 SpellsList["arcane cuffs"] = {
@@ -771,7 +789,7 @@ MagicItemsList["elder lightning draught"] = {
 }
 
 MagicItemsList["darkblood tonic"] = {
-    name : "Elder Lightning Draught",
+    name : "Darkblood Tonic",
     source : [["A:TLotU", 49]],
     type : "potion",
     rarity : "very rare",
@@ -800,7 +818,7 @@ MagicItemsList["ambrotype of the void"] = {
     source : [["A:TLotU", 56]],
     type : "wondrous item",
     rarity : "legendary",
-    description : "I can use my action to take a picture I can see within 60 ft, who must succeed on a DC 18 Charisma saving throw or have their likeness stored within the camera. While their picture is saved, the creature has disadvantage on all Wisdon, Intelligence, and Charisma saving throws. It can store up to 3 pictures, and after I finish a long rest, it wipes the memory",
+    description : "I can use my action to take a picture I can see within 60 ft, who must succeed on a DC 18 Charisma saving throw or have their likeness stored within the camera. While their picture is saved, the creature has disadvantage on all Wisdom, Intelligence, and Charisma saving throws. It can store up to 3 pictures, and after I finish a long rest, it wipes the memory",
     action : ["action", ""],
     usages : 3,
     recovery : "long rest"
@@ -811,7 +829,8 @@ MagicItemsList["outsider's helm"] = {
     source : [["A:TLotU", 56]],
     type : "wondrous item",
     rarity : "very rare",
-    description : "I gain 120 ft of blindsight, but lose any sight-based senses. Additionally, I am immune to psychic damage and to effects that would make me roll on a madness table. Its powers also goes to protect somewhat beyong that; body and soul cannot be warped by aberrant powers, rending me immune to an Aboleth's aquatic disease, for example.",
+    attunement : true,
+    description : "I gain 120 ft of blindsight, but lose any sight-based senses. Additionally, I am immune to psychic damage and to effects that would make me roll on a madness table. Its powers also goes to protect somewhat beyond that; body and soul cannot be warped by aberrant powers, rending me immune to an Aboleth's aquatic disease, for example.",
     vision : [["Blindsight", 60], ["Lose all other sight-based senses", ""]]
 }
 
