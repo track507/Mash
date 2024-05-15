@@ -20,7 +20,7 @@ AddSubClass("bard", "college of fools", {
             source : [["MG:DoMF", 2]],
             minlevel : 3,
             description : desc([
-                "I can choose an additional background. However, I do not gain items or features from it, such as langauges, contacts, abilities, etc. It is just a performance or facade.",
+                "I can choose an additional background. However, I do not gain items or features from it, such as languages, contacts, abilities, etc. It is just a performance or facade.",
                 "I do gain its proficiencies. I can roll a Charisma (Performance) check vs a creature's Wisdom (Insight) to convince them of my role.",
                 "I can change this background after I finish a long rest. If my DM does not use backgrounds, I can alternatively choose two skill proficiencies and a tool proficiency, and can change these whenever I finish a long rest."
             ]),
@@ -33,7 +33,7 @@ AddSubClass("bard", "college of fools", {
             minlevel : 3,
             description : desc([
                 "I learn the Vicious Mockery cantrip, which doesn't count against the number of cantrips I know, and I can use it on myself.",
-                "When used this way, I do not take damage nor suffer from its effects. Instead, I embarass myself and enemies within 60 ft that I can see and understand are magically convinced of my incompetence and regard me as harmless. Until the end of my next turn, hostile creatures cannot willingly target me with an attack or harmful spell, unless I am the only possible target within 60 ft. This does not protect me from area effects or spells. After using this feature, a creature is immune to this ability for 24 hours." 
+                "When used this way, I do not take damage nor suffer from its effects. Instead, I embarrass myself and enemies within 60 ft that I can see and understand are magically convinced of my incompetence and regard me as harmless. Until the end of my next turn, hostile creatures cannot willingly target me with an attack or harmful spell, unless I am the only possible target within 60 ft. This does not protect me from area effects or spells. After using this feature, a creature is immune to this ability for 24 hours." 
             ]),
             spellcastingBonus : [{
                 name : "Self Mockery",
@@ -64,7 +64,8 @@ AddSubClass("bard", "college of fools", {
             minlevel : 14,
             description : desc([
                 "I cannot be frightened or surprised, and the first ability check or saving throw I make after long rest is considered a critical success. Additionally, when I succeed a skill check or saving throw, I can choose a number of creatures equal to my Charisma modifier within 60 ft of me. For the next minute, they cannot be charmed or frightened. Any charm or fear effects currently on the creature is immediately broken."
-            ])
+            ]),
+            savetxt : { immune : ["surprised", "frightened"] }
         }
     }
 })
