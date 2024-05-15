@@ -4400,6 +4400,7 @@ AddSubClass("monk", "way of strength", {
         "subclassfeature3" : {
             name : "Strength Technique",
             source : [["MG:DoMF", 6]],
+            minlevel : 3,
             description : desc([
                 "I can use my Strength mod instead of my Dexterity mod for the purposes of determining my Unarmored Defense AC. Additionally, I can use my Strength mod instead of my Dexterity mod whenever I use my Deflect Missiles feature."
             ]),
@@ -4415,6 +4416,7 @@ AddSubClass("monk", "way of strength", {
             description : desc([
                 "When I roll Initiative, am targeted by an attack roll, or spend a ki point, I gain 1 charge of Inner Fire. I can store a number of charges equal to my monk level, and expire if I haven't gained any new charges in a minute. I can only gain theses while in combat, and can expend these charges to certain abilities found on the notes page.",
             ]),
+            minlevel : 3,
             toNotesPage : [{
                 name : "Inner Fire Abilities",
                 note : desc([
@@ -4429,6 +4431,7 @@ AddSubClass("monk", "way of strength", {
         "subclassfeature6" : {
             name : "Manifestation of Soul",
             source : [["MG:DoMF", 6]],
+            minlevel : 6,
             description : desc([
                 "As a bonus action, I enter a state of heightened power for a minute. While in this state, I gain an additional fire charge when I am targeted by an attack or spend a ki point. Additionally, my Strength increases by 2, up to a max of 22, and I shed bright light to 30 ft and dim light for an additional 30 ft."
             ]),
@@ -4442,6 +4445,7 @@ AddSubClass("monk", "way of strength", {
             description : desc([
                 "I gain additional abilities to spend my Inner Fire charges on found on the notes page."
             ]),
+            minlevel : 11,
             toNotesPage : [{
                 name : "Additional Inner Fire Abilities",
                 note : desc([
@@ -4458,6 +4462,7 @@ AddSubClass("monk", "way of strength", {
         "subclassfeature17" : {
             name : "Aspect of Strength",
             source : [["MG:DoMF", 6]],
+            minlevel : 17,
             description : desc([
                 "I am always under the effects of my Manifestation of Soul feature."
             ])
