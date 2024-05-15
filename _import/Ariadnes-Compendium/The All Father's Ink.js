@@ -1,6 +1,25 @@
 var iFileName = "The All Father's Ink";
 RequiredSheetVersion("13.1.13");
 
+if(!SourceList["A:CoS"]) {
+    SourceList["A:CoS"] = {
+        name : "Ariadne's: Codex of Strings",
+        abbreviation : "A:CoS",
+        abbreviationSpellsheet : "A",
+        group : "Homebrew",
+        url : "https://www.patreon.com/codexofstrings/posts",
+        date : "2024/02/14"
+    };
+}
+
+if(!CompanionList["ariadne's companion codex"]) {
+    CompanionList["ariadne's companion codex"] = {
+        name : "Ariadne's Companion Codex",
+        nameMenu : "Companion",
+        source : [["A:CoS", 0]]
+    }
+}
+
 SourceList["A:TAFI"] = {
     name : "Ariadne's: The All Father's Ink",
     abbreviation : "A:TAFI",

@@ -1,6 +1,25 @@
 var iFileName = "The_Emerald_Crown";
 RequiredSheetVersion("13.1.13");
 
+if(!SourceList["A:CoS"]) {
+    SourceList["A:CoS"] = {
+        name : "Ariadne's: Codex of Strings",
+        abbreviation : "A:CoS",
+        abbreviationSpellsheet : "A",
+        group : "Homebrew",
+        url : "https://www.patreon.com/codexofstrings/posts",
+        date : "2024/02/14"
+    };
+}
+
+if(!CompanionList["ariadne's companion codex"]) {
+    CompanionList["ariadne's companion codex"] = {
+        name : "Ariadne's Companion Codex",
+        nameMenu : "Companion",
+        source : [["A:CoS", 0]]
+    }
+}
+
 SourceList["A:TEC"] = {
     name : "Ariadne's: The Emerald Crown",
     abbreviation : "A:TEC",
@@ -14,25 +33,6 @@ CompanionList["ariadne's: the emerald crown creatures"] = {
     name : "Ariadne's: The Emerald Crown Companion Codex",
     nameMenu : "Companion",
     source : [["A:TEC", 0],["A:CoS", 0]]
-}
-
-if(!SourceList["A:CoS"]) {
-    SourceList["A:CoS"] = {
-        name : "Ariadne's: Codex of Strings",
-        abbreviation : "A:CoS",
-        abbreviationSpellsheet : "A",
-        group : "Homebrew",
-        url : "https://www.patreon.com/codexofstrings/posts",
-        date : "2024/02/14"
-    };
-}
-
-if(!CompanionList["ariadne's companion codex"]) {
-    CompanionList["Ariadne's Companion Codex"] = {
-        name : "Ariadne's Companion Codex",
-        nameMenu : "Companion",
-        source : [["A:CoS", 0]]
-    }
 }
 
 MagicItemsList["sword and gourd"] = {

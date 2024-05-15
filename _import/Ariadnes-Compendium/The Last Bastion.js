@@ -1,21 +1,6 @@
 var iFileName = "The_Last_Bastion";
 RequiredSheetVersion("13.1.13");
 
-SourceList["A:TLB"] = {
-    name : "Ariadne's: The Last Bastion",
-    abbreviation : "A:TLB",
-    abbreviationSpellsheet : "A",
-    group : "Homebrew",
-    url : "https://www.patreon.com/codexofstrings/posts",
-    date : "2024/02/14"
-};
-
-CompanionList["ariadne's: the last bastion companion codex"] = {
-    name : "Ariadne's: The Last Bastion Companion Codex",
-    nameMenu : "Companion",
-    source : [["A:TLB", 0], ["A:CoS", 0]]
-}
-
 if(!SourceList["A:CoS"]) {
     SourceList["A:CoS"] = {
         name : "Ariadne's: Codex of Strings",
@@ -37,6 +22,21 @@ if(!CompanionList["ariadne's companion codex"]) {
 
 if(!spellSchoolList["Omni"]) {
     spellSchoolList["Omni"] = "omniturgy";
+}
+
+SourceList["A:TLB"] = {
+    name : "Ariadne's: The Last Bastion",
+    abbreviation : "A:TLB",
+    abbreviationSpellsheet : "A",
+    group : "Homebrew",
+    url : "https://www.patreon.com/codexofstrings/posts",
+    date : "2024/02/14"
+};
+
+CompanionList["ariadne's: the last bastion companion codex"] = {
+    name : "Ariadne's: The Last Bastion Companion Codex",
+    nameMenu : "Companion",
+    source : [["A:TLB", 0], ["A:CoS", 0]]
 }
 
 MagicItemsList["teng arcanocyper"] = {

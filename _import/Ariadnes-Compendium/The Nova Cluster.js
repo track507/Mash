@@ -1,6 +1,25 @@
 var iFileName = "The Nova Cluster";
 RequiredSheetVersion("13.1.13");
 
+if(!SourceList["A:CoS"]) {
+    SourceList["A:CoS"] = {
+        name : "Ariadne's: Codex of Strings",
+        abbreviation : "A:CoS",
+        abbreviationSpellsheet : "A",
+        group : "Homebrew",
+        url : "https://www.patreon.com/codexofstrings/posts",
+        date : "2024/02/14"
+    };
+}
+
+if(!CompanionList["ariadne's companion codex"]) {
+    CompanionList["ariadne's companion codex"] = {
+        name : "Ariadne's Companion Codex",
+        nameMenu : "Companion",
+        source : [["A:CoS", 0]]
+    }
+}
+
 //The nova cluster addition
 SourceList["A:TNC"] = {
     name : "Ariadne's: The Nova Cluster",
