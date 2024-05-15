@@ -24,7 +24,7 @@ AddSubClass("monk", "way of strength", {
             extraAC : [{
                 mod : "Str-Dex",
 				text : "I can use my strength instead of Wisdom for determining Unarmed Defense AC",
-                stopeval : function (v) { return v.wearingArmor; }
+                stopeval : function (v) { return v.wearingArmor || Number(What('Dex')) > Number(What('Str')); }
             }]
         },
         "subclassfeature3.1" : {
