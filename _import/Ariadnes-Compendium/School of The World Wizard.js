@@ -63,29 +63,24 @@ AddSubClass("wizard", "the world", {
             }),
             recovery : "long rest"
         },
-        // "subclassfeature6" : function() { // leaving out for now
-        //     var init = levels.map(function(n) {
-        //         return (n < 6 ? 0 : n < 10 ? 1 : n < 14 ? 2 : 3);
-        //     });
-        //     var a = {
-        //         name : "Journeyman of The World",
-        //         source : [["MG:DoMF", 4]],
-        //         minlevel : 6,
-        //         description : desc([
-        //             "My hit point max increases by 4, I gain one additional skill or tool proficiency and learn one additional language, and gain a +1 to my Initiative rolls. I gain these benefits again when I reach 10th and 14th level."
-        //         ]),
-        //         calcChanges : {
-        //             hp : function (totalHD, HDobj, prefix) {
-        //                 var lvl = classes.known.wizard.level
-        //                 return [ (lvl < 6 ? 0 : lvl < 10 ? 4 : lvl < 14 ? 8 : 12), "Journeyman of The World" ]
-        //             }
-        //         },
-        //         additional : levels.map(function(n) {
-        //             return (n < 6 ? 0 : n < 10 ? 1 : n < 14 ? 2 : 3) + " languages, " + (n < 6 ? 0 : n < 10 ? 4 : n < 14 ? 8 : 12) + " hp, " + (n < 6 ? 0 : n < 10 ? 1 : n < 14 ? 2 : 3) + "skill/tools"
-        //         }),
-        //     };
-        //     return a;
-        // }(),
+        "subclassfeature6" : { 
+            name : "Journeyman of The World",
+            source : [["MG:DoMF", 4]],
+            minlevel : 6,
+            description : desc([
+                "My hit point max increases by 4, I gain one additional skill or tool proficiency and learn one additional language, and gain a +1 to my Initiative rolls. I gain these benefits again when I reach 10th and 14th level."
+            ]),
+            calcChanges : {
+                hp : function (totalHD, HDobj, prefix) {
+                    var lvl = classes.known.wizard.level
+                    return [ (lvl < 6 ? 0 : lvl < 10 ? 4 : lvl < 14 ? 8 : 12), "Journeyman of The World" ]
+                }
+            },
+            additional : levels.map(function(n) {
+                return (n < 6 ? 0 : n < 10 ? 1 : n < 14 ? 2 : 3) + " languages, " + (n < 6 ? 0 : n < 10 ? 4 : n < 14 ? 8 : 12) + " hp, " + (n < 6 ? 0 : n < 10 ? 1 : n < 14 ? 2 : 3) + "skill/tools"
+            }),
+            addMod : [{ type : "skill", field : "Init", mod : 1, text : "I add 1 to my Initiative at 6th level." }]
+        },
         "subclassfeature10" : {
             name : "Unbrindled Ambition",
             source : [["MG:DoMF", 4]],
@@ -94,7 +89,8 @@ AddSubClass("wizard", "the world", {
                 "Once per long rest, I can use my action to end one effect on myself causing me to be charmed or frightened."
             ]),
             usages : 1,
-            recovery : "long rest"
+            recovery : "long rest",
+            addMod : [{ type : "skill", field : "Init", mod : 1, text : "I add 2 to my Initiative at 10th level." }]
         },
         "subclassfeature14" : {
             name : "Greater Wordly Magic",
@@ -105,7 +101,8 @@ AddSubClass("wizard", "the world", {
                 "\u2022 Touch to Range: A spell with a range of touch gains a range of 60 ft when I cast it",
                 "\u2022 Power Word: When I cast a spell requiring a saving throw, increase my Spell Save DC by 2 for that spell. Additionally, creatures cannot benefit from advantage against it such as Magic Resistance",
                 "\u2022 Freecast: I can cast a leveled spell on a turn in which I have already casted a leveled spell"
-            ])
+            ]),
+            addMod : [{ type : "skill", field : "Init", mod : 1, text : "I add 3 to my Initiative at 14th level." }]
         }
     }
 })
