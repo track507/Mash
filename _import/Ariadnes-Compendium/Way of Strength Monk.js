@@ -19,7 +19,7 @@ AddSubClass("monk", "way of strength", {
             name : "Strength Technique",
             source : [["MG:DoMF", 6]],
             description : desc([
-                "I can use my Strength mod instead of my Dexterity mod for the purposes of determing my Unarmored Defense AC. Additionally, I can use my Strength mod instead of my Dexterity mod whenever I use my Deflect Missiles feature."
+                "I can use my Strength mod instead of my Dexterity mod for the purposes of determining my Unarmored Defense AC. Additionally, I can use my Strength mod instead of my Dexterity mod whenever I use my Deflect Missiles feature."
             ]),
             extraAC : [{
                 mod : "Str-Dex",
@@ -48,7 +48,7 @@ AddSubClass("monk", "way of strength", {
             name : "Manifestation of Soul",
             source : [["MG:DoMF", 6]],
             description : desc([
-                "As a bonus action, I enter a state of hightened power for a minute. Whilee in this state, I gain an additional fire charge when I am targeted by an attack or spend a ki point. Additionally, my Strength increases by 2, up to a max of 22, and I shed bright light to 30 ft and dim light for an additional 30 ft."
+                "As a bonus action, I enter a state of heightened power for a minute. While in this state, I gain an additional fire charge when I am targeted by an attack or spend a ki point. Additionally, my Strength increases by 2, up to a max of 22, and I shed bright light to 30 ft and dim light for an additional 30 ft."
             ]),
             usages : 1,
             recovery : "long rest",
