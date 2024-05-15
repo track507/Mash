@@ -14,7 +14,6 @@ RequiredSheetVersion("13.1.13");
     
     Since spells doesn't have specified classes, I assume all classes get them.
     
-    Nova Cluster, All Father's
 */
 
 //this is a general source
