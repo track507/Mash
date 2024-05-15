@@ -187,7 +187,8 @@ ClassList["shaper"] = {
                             var eDie = (cLvl < 5 ? 4 : cLvl < 9 ? 6 : cLvl < 13 ? 8 : 10);
                             fields.Description += (fields.Description ? '; ' : '') + "1d" + eDie + " elemental dmg";
                         }
-                    }
+                    },
+                    'If I include the word "Imbued" in a weapon name, it will be treated as my Imbued Weapon.'
                 ]
             },
             limfeaname : "Imbue Element",
