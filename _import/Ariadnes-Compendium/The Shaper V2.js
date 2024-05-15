@@ -69,6 +69,94 @@ ClassList["shaper"] = {
 	},
     attacks : [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
     features : {
+        "commands" : {
+            name : "Commands",
+            source : [["A:TSV2", 7]],
+            minlevel : 1,
+            description : desc([
+                "I gain a single command of my choice, and gain more with my shaper level",
+                "Creatures that have legendary actions or a Wisom score higher than 19 are not affected by commands",
+                "I can use a single Command once per long rest and gain more uses at 9th and 17th level. I do not need to use my movement, action, bonus action, nor reaction to use a command, but I can only use them on my turn",
+                "After using a command, my vocal chords bleed and I suffer 1d6 force damage that cannot be reduced in anyway. This damage increases to 2d6 at 5th, 3d6 at 9th, 4d6 at 13th, and 5d6 at 17th levels. If I cannot speak for any reason, I cannot use commands."
+            ]),
+            usages : levels.map(function(n) {
+                return n < 9 ? 1 : n < 17 ? 2 : 3;
+            }),
+            recovery : "long rest",
+            additional : levels.map(function(n) { 
+                return (n < 5 ? 1 : n < 9 ? 2 : n < 13 ? 3 : n < 17 ? 4 : n < 20 ? 5 : "all") + " commands"
+            }),
+            extrachoices : ["Attack", "Brace", "Change", "Drop", "Endure", "Stop", "Fall", "Jump", "Disappear", "Water", "Wind", "Earth", "Fire", "Break", "Run", "Shift", "Mend"],
+            extraTimes : levels.map(function(n) {
+                return (n < 5 ? 1 : n < 9 ? 2 : n < 13 ? 3 : n < 17 ? 4 : n < 20 ? 5 : 17)
+            }),
+            extraname : "Commands",
+            "attack" : {
+                name : "Attack",
+                source : [["A:TSV2", 17]],
+                description : desc([
+                    "1 crea of choice that can hear me within 30 ft uses its reaction to make an opportunity attack vs a crea of my choice within its range. If no reaction is available, this command has no effect"
+                ])
+            },
+            "brace" : {
+                name : "Brace",
+                source : [["A:TSV2", 17]],
+                description : desc([
+                    "A number of crea(s) equal to my Wisdom mod that can hear me gain resistance to bludgeon., pierce., and slash. damage until end of my next turn"
+                ])
+            },
+            "change" : {
+                name : "Change",
+                source : [["A:TSV2", 17]],
+                description : desc([
+                    "1 medium or smaller, non-magical object not being worn or carried and I am touching changes elements. Change to or from the following elements: fire, smoke, air, stone, sand, wood, water, ice, steel, or iron. A larger object is affected by an area up to a 5 by 5 ft around the surface I touched"
+                ])
+            },
+            "drop" : {
+                name : "Drop",
+                source : [["A:TSV2", 17]],
+                description : desc([
+                    "A number of crea(s) equal to my Wisdom mod that can hear me drops whatever they're carrying in their hands. Items held but also attached, such as a shield with straps, are not dropped"
+                ])
+            },
+            "endure" : {
+                name : "Endure",
+                source : [["A:TSV2", 17]],
+                description : desc([
+                    "1 crea of choice that can hear me within 30 ft automatically succeeds all saving throws until the end of its next turn"
+                ])
+            },
+            "stop" : {
+                name : "Stop",
+                source : [["A:TSV2", 17]],
+                description : desc([
+                    "1 crea of choice that can hear me within 60 ft instantly stops. Their speed is 0 and cannot willingly move until the end of their next turn"
+                ])
+            },
+            "fall" : {
+                name : "Fall",
+                source : [["A:TSV2", 17]],
+                description : desc([
+                    "1 crea of choice that can hear me within 60 ft falls prone. A creature flying falls 30 ft down at great speeds, and if they hit the ground, they take 6d6 bludgeoning and cannot fly again until the end of their next turn"
+                ])
+            },
+            "jump" : {
+                name : "Jump",
+                source : [["A:TSV2", 17]],
+                description : desc([
+                    "I immediately jump 30 ft in a direction of choice. "
+                ])
+            },
+            "disappear" : {
+                name : "disappear",
+                source : [["A:TSV2", 17]],
+                description : desc([
+                    "I silently shift into the Ethereal Plane for 1 min, and can reappear on the Material Plane at the start of any of my turns. I can see/hear out to 60 ft from the plane I came from, but everything looks gray. While on the Ethereal Plane, I move at half my speed and can ony be affected by creatures on that plane. Creatures that aren't on this plane cannot interact/perceive me unless an item/ability allows them to. I ignore all objects and effects not affecting this plane, allowing me to move through objects I perceive on the plane I came from.",
+                    "When this effect ends, I return to the plane I came from in the spot I am currently standing. If I occupy a solid object or creature, I am shunted out to the nearest unoccupied space and take force damage equal to twice the number of ft I was moved."
+                ])
+            },
+            // finish the elemental ones.
+        },
         "fighting style" : {
             name : "Fighting Style",
             source : [["A:TSV2", 8]],
@@ -142,7 +230,7 @@ ClassList["shaper"] = {
                 }),
                 selection : ["druidcraft"]
             }],
-            extraname : "Signs of Poiwer",
+            extraname : "Signs of Power",
 			extrachoices : ["Disturbance", "Elemental Protection", "Force Shift", "Reinforce Body", "Arrest Momentum", "Zone of Power", "Purge Infusion", "Elemental Boon", "Preserve Infusion", "Quicken", "Reinforce Will", "Sharp Winds", "Force Step", "Interruption", "Fire Wake", "Extend Infusion"],	
             extraTimes : leves.map(function(n) {
                 return n < 6 ? 0 : n < 10 ? 1 : n < 14 ? 2 : 3;
@@ -311,11 +399,57 @@ ClassList["shaper"] = {
         "unwavering resolve" : {
             name : "Unwavering Resolve",
             source : [["A:TSV2", 9]],
+            minlevel : 7,
             description : desc([
                 "My Wisdom increases by 1, and my proficiency bonus is double for my Wisdom saving throws. This increases by +2 again at 18th level, to a max of 22"
             ]),
             scorestxt : "+1 Wisdom (max 20), and +2 at 18th level (max 22)",
             addMod : [{ type : "save", field : "Wis", mod : "max(Prof|0)", text : "I double my Proficiency bonus when calculating my Wisdom saving throws." }],
+        },
+        "heightened infusion" : {
+            name : "Heightened Infusion",
+            source : [["A:TSV2", 9]],
+            minlevel : 11,
+            description : desc([
+                "I can now imbue two weapons instead of one when I use my Imbue Weapon feature, and must be holding both weapons when infusing them. Additionally, the infusion is maintained even if I drop the weapon or someone else carries it. If I infuse another weapon while I have two already infused, the oldest one loses its enchantment."
+            ])
+        },
+        "greater recovery" : {
+            name : "Greater Recovery",
+            source : [["A:TSV2", 9]],
+            minlevel : 13,
+            description : desc([
+                "When I finish a long rest, my exhaustion level reduces by 3 instead of 1. Additionally, at dawn, I gain my level in temp hp, and these last until the next dawn."
+            ]),
+            usages : "My level in temp hp ",
+            usagescalc : "event.value = classes.known.shaper.level;",
+            recovery : "dawn"
+        },
+        "breaking point" : {
+            name : "Breaking Point",
+            source : [["A:TSV2", 9]],
+            minlevel : 15,
+            description : desc([
+                "When I am reduced to 0 hp and not killed outright, I can drop to 1 hp instead. If I use this feature, I regain all of my spellslots and can immediately use my reaction to cast a spell with a casting time of 1 action. Once I use this ability, I gain a point of exhaustion, and I cannot use this ability if I already have at least one point of exhaustion."
+            ]),
+            usages : 1,
+            recovery : "long rest"
+        },
+        "timeless body" : {
+            name : "Timeless Body",
+            source : [["A:TSV2", 9]],
+            minlevel : 17,
+            description : desc([
+                "I age more slowly, only 1 year for every 10 years that pass. I cannot be aged by magical means and I do not suffer the frailty of old age."
+            ])
+        },
+        "elemental blessing" : {
+            name : "Elemental Blessing",
+            source : [["A:TSV2", 9]],
+            minlevel : 20,
+            description : desc([
+                "Whenever I roll for Initiative and have no uses of my Imbue Weapon feature, I regain two uses. Additionally, I learn all Signs and Commands available to me as per my Elemental Shape"
+            ])
         }
     }
 }
