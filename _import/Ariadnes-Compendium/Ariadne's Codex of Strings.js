@@ -4383,15 +4383,6 @@ AddSubClass("bard", "college of fools", {
 
 */
 
-SourceList["MG:DoMF"] = {
-    name : "Myriel Genra's: Deck of Many Fates",
-    abbreviation : "MG:DoMF",
-    abbreviationSpellsheet : "MG",
-    group : "Homebrew",
-    url : "https://www.patreon.com/codexofstrings/posts",
-    date : "2024/05/14"
-}
-
 AddSubClass("wizard", "the world", {
     regExpSearch : /the world/i,
 	subname : "School of The World",
@@ -4494,15 +4485,6 @@ AddSubClass("wizard", "the world", {
         WAY OF STRENGTH MONK
 
 */
-
-SourceList["MG:DoMF"] = {
-    name : "Myriel Genra's: Deck of Many Fates",
-    abbreviation : "MG:DoMF",
-    abbreviationSpellsheet : "MG",
-    group : "Homebrew",
-    url : "https://www.patreon.com/codexofstrings/posts",
-    date : "2024/05/14"
-}
 
 AddSubClass("monk", "way of strength", {
     regExpSearch : /strength/i,
