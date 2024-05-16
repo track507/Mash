@@ -327,11 +327,18 @@ ClassList["shaper"] = {
             "disturbance" : {
                 name : "Disturbance",
                 source : [["A:TSV2", 15]],
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Self (15-ft cone)\n"
-                                + "   Components: S\n"
-                                + "   Duration: Instantaneous\n"
-                                + "   Medium or smaller crea(s) Strength save or pushed 5 ft away and take 1d4 force dmg"
+                description : "",
+                toNotesPage : [{
+                    name : "Disturbance",
+                    note : desc([
+                        "Casting Time: 1 bns",
+                        "Range: Self (15-ft cone)",
+                        "Components: S",
+                        "Duration: Instantaneous",
+                        "Medium or smaller crea(s) Strength save or pushed 5 ft away and take 1d4 force dmg",
+                    ]),
+                    amendTo : "Known Signs"
+                }]
             },
             "elemental protection" : {
                 name : "Elemental Protection",
@@ -340,7 +347,14 @@ ClassList["shaper"] = {
                                 + "   Range: Self\n"
                                 + "   Components: S\n"
                                 + "   Duration: 1 rnd\n"
-                                + "   Gain resistance to acid, cold, fire, lightning, or thunder"
+                                + "   Gain resistance to acid, cold, fire, lightning, or thunder",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+
+                    ]),
+                    amendTo : "Known Signs"
+                }]
             },
             "force shift" : {
                 name : "Force Shift",
@@ -349,7 +363,14 @@ ClassList["shaper"] = {
                                 + "   Range: Self\n"
                                 + "   Components: S\n"
                                 + "   Duration: Conc, 1 min\n"
-                                + "   I gain resistance to bludgeon., pierce., and slash. dmg until the start of my next"
+                                + "   I gain resistance to bludgeon., pierce., and slash. dmg until the start of my next",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }]
             },
             "reinforce body" : {
                 name : "Reinforce Body",
@@ -358,7 +379,14 @@ ClassList["shaper"] = {
                                 + "   Range: Touch\n"
                                 + "   Components: S\n"
                                 + "   Duration: Conc, 1 min\n"
-                                + "   1 crea gains advantage on next Str, Dex, or Con save"
+                                + "   1 crea gains advantage on next Str, Dex, or Con save",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }]
             },
             "arrest momentum" : {
                 name : "Arrest Momentum",
@@ -367,7 +395,14 @@ ClassList["shaper"] = {
                                 + "   Range: 30 ft\n"
                                 + "   Components: S\n"
                                 + "   Duration: 1 rnd\n"
-                                + "   Medium or smaller crea/obj momentum nullified (spd 0) and hanging in the air for the duration; target drops to ground when sign fades"
+                                + "   Medium or smaller crea/obj momentum nullified (spd 0) and hanging in the air for the duration; target drops to ground when sign fades",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }]
             },
             "zone of power" : {
                 name : "Zone of Power",
@@ -376,7 +411,14 @@ ClassList["shaper"] = {
                                 + "   Range: Self (10-ft rad)\n"
                                 + "   Components: S\n"
                                 + "   Duration: Conc, 1 min\n"
-                                + "   I gain temp hp equal to my Wis mod at start of each of my turns"
+                                + "   I gain temp hp equal to my Wis mod at start of each of my turns",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }]
             },
             "purge infusion" : {
                 name : "Purge Infusion",
@@ -385,7 +427,14 @@ ClassList["shaper"] = {
                                 + "   Range: Self (30-ft rad)\n"
                                 + "   Components: S\n"
                                 + "   Duration: Instantaneous\n"
-                                + "   All crea(s) Con save or blinded til end of their next turn"
+                                + "   All crea(s) Con save or blinded til end of their next turn",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }]
             },
             "elemental boon" : {
                 name : "Elemental Boon",
@@ -414,6 +463,13 @@ ClassList["shaper"] = {
                                 + "   Components: S\n"
                                 + "   Duration: Conc, 1 hr\n"
                                 + "   If infused weapon over half of its duration left, I interrupt it for the duration. When spell ends, or I end it, infusion resumes with 5 rounds left.",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }],
                 prereqeval : function(v) { return classes.known.shaper.level >= 6 }
             },
             "quicken" : {
@@ -425,6 +481,13 @@ ClassList["shaper"] = {
                                 + "   Components: S\n"
                                 + "   Duration: Instantaneous\n"
                                 + "   I can take the dodge, help, dash, shove, grapple, or disengage as part of this spell's casting",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }],
                 prereqeval : function(v) { return classes.known.shaper.level >= 6 }
             },
             "reinforce will" : {
@@ -436,6 +499,13 @@ ClassList["shaper"] = {
                                 + "   Components: S\n"
                                 + "   Duration: Conc, 1 min\n"
                                 + "   1 crea advantage on next Int, Wis, or Cha save",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }],
                 prereqeval : function(v) { return classes.known.shaper.level >= 6 }
             },
             "sharp winds (prereq: windchaser)" : {
@@ -447,6 +517,13 @@ ClassList["shaper"] = {
                                 + "   Components: S\n"
                                 + "   Duration: Instantaneous\n"
                                 + "   Melee spell atk; 1d8 + Wis mod slashing dmg; +1d8 at CL 5, 11, and 17",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }],
                 prereqeval : function(v) { return classes.known.shaper.level >= 6 && (/\bwindchaser\b/).test(classes.known.shaper.subclass); }
             },
             "force step" : {
@@ -458,6 +535,13 @@ ClassList["shaper"] = {
                                 + "   Components: S\n"
                                 + "   Duration: rnd\n"
                                 + "   Move across vertical/liquid surfaces on my turn without falling",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }],
                 prereqeval : function(v) { return classes.known.shaper.level >= 10 }
             },
             "interruption" : {
@@ -469,6 +553,13 @@ ClassList["shaper"] = {
                                 + "   Components: S\n"
                                 + "   Duration: Instantaneous\n"
                                 + "   Melee spell atk; on hit, Con save or fail to cast; no effect SL>5",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }],
                 prereqeval : function(v) { return classes.known.shaper.level >= 10 }
             },
             "fire wake (prereq: flamecaller)" : {
@@ -480,6 +571,13 @@ ClassList["shaper"] = {
                                 + "   Components: S\n"
                                 + "   Duration: Conc, 1 min\n"
                                 + "   Leave 5ft wide, 60ft long trail behind me; crea(s) within 5ft of trail, Dex save or 2d6 fire dmg; crea(s) crossing the trail take 2d6 fire dmg",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }],
                 prereqeval : function(v) { return classes.known.shaper.level >= 10 && (/\bflamecaller\b/).test(classes.known.shaper.subclass)}
             },
             "extend infusion" : {
@@ -491,6 +589,13 @@ ClassList["shaper"] = {
                                 + "   Components: S\n"
                                 + "   Duration: Instantaneous\n"
                                 + "   Infusion extended to 10 min; can only be used once per infusion",
+                toNotesPage : [{
+                    name : "",
+                    note : desc([
+                        
+                    ]),
+                    amendTo : "Known Signs"
+                }],
                 prereqeval : function(v) { return classes.known.shaper.level >= 14 }
             },
         },
