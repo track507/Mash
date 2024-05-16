@@ -73,9 +73,8 @@ ClassList["shaper"] = {
             source : [["A:TSV2", 7]],
             minlevel : 1,
             description : desc([
-                "I gain a single command of my choice, and gain more with my shaper level. Creatures that have legendary actions or a Wisdom score higher than 19 are not affected by commands",
-                "I can use a single Command once per long rest and gain more uses at 9th and 17th level. I can use a command only on my turn, no action required.",
-                "After using a command, my vocal chords bleed and I suffer 1d6 force damage that cannot be reduced in anyway. This damage increases to 2d6 at 5th, 3d6 at 9th, 4d6 at 13th, and 5d6 at 17th levels. If I cannot speak for any reason, I cannot use commands."
+                "I learn a command of my choice, and gain more with my shaper level, and can use a command only on my turn, no action required. Creatures that have legendary actions or a Wisdom score higher than 19 are not affected by commands",
+                "After using a command, my vocal chords bleed and I take 1d6 force damage that cannot be reduced in anyway. This damage increases by 1d6 at CL 5, 9, 13, and 17. I cannot use a command if I cannot speak"
             ]),
             usages : levels.map(function(n) {
                 return n < 9 ? 1 : n < 17 ? 2 : 3;
@@ -349,8 +348,8 @@ ClassList["shaper"] = {
             source : [["A:TSV2", 8]],
             minlevel : 2,
             description : desc([
-                "I can use my bonus action to imbue a weapon I am carrying. If the weapon is not in my hand at the start of my next turn, the imbue weapon is dispelled. An imbued weapon is very important; not having one means that I cannot cast spells nor use some class features. I can add 'Imbued' or 'Infused' and an element to my weapon name and the sheet will treat it as my Imbued weapon.",
-                "Additionally, I can choose an elemental damage: acid, cold, fire, lightning, or thunder. For one minute, the weapon deals an additional 1d4 damage of that chosen type. This damage increases to 1d6 at 5th level, 1d8 at 9th level, and 1d10 at 13th level. I can use this feature a number of times equal to my proficiency bonus, and regain all uses after I finish a long rest."
+                "I can use my bonus action to imbue a weapon I am carrying. If the weapon is not in my hand at the start of my next turn, the imbue weapon is dispelled. An imbued weapon is very important; not having one means that I cannot cast spells nor use some class features.",
+                "Additionally, my Prof. bonus per long rest, I can choose an elemental damage: acid, cold, fire, lightning, or thunder. For one minute, the weapon deals an additional 1d4 damage of that chosen type. The die size increases by 1 at CL 5, 9, and 13."
             ]),
             action : ["bonus action", ""],
             limfeaname : "Imbue Element",
@@ -393,8 +392,8 @@ ClassList["shaper"] = {
             source : [["A:TSV2", 9]],
             minlevel : 3,
             description : desc([
-                "I learn the Druidcraft cantrip, and learn additional druid cantrips at 6th, 10th, and 14th level. ",
-                "Instead of learning another druid cantrip, I can choose one from several signs, and gain additional signs at 6th, 10th, and 14th level. Signs are not cantrips, and after casting a Sign, I must wait one minute before casting the same Sign again."
+                "I learn the Druidcraft cantrip, and learn additional druid cantrips at 6th, 10th, and 14th level.",
+                "Instead of learning another druid cantrip, I can choose to learn a Sign. Signs are not cantrips, and after casting a Sign, I must wait one minute before casting the same Sign again."
             ]),
             spellcastingBonus : [{
                 name : "Signs of Power (cantrip)",
@@ -681,7 +680,7 @@ ClassList["shaper"] = {
             source : [["A:TSV2", 9]],
             minlevel : 11,
             description : desc([
-                "I can now imbue two weapons instead of one when I use my Imbue Weapon feature, and must be holding both weapons when infusing them. Additionally, the infusion is maintained even if I drop the weapon or someone else carries it. If I infuse another weapon while I have two already infused, the oldest one loses its enchantment."
+                "I can now imbue two weapons instead of one, but must be holding both when I do so. The infusion is kept even if I drop it or someone else is carring it. Infusing another weapon will cause the oldest one to lose its infusion."
             ])
         },
         "greater recovery" : {
@@ -700,7 +699,7 @@ ClassList["shaper"] = {
             source : [["A:TSV2", 9]],
             minlevel : 15,
             description : desc([
-                "When I am reduced to 0 hp and not killed outright, I can drop to 1 hp instead. If I use this feature, I regain all of my spell slots and can immediately use my reaction to cast a spell with a casting time of 1 action. Once I use this ability, I gain a point of exhaustion, and I cannot use this ability if I already have at least one point of exhaustion."
+                "When I am reduced to 0 hp and not killed outright, and I don't have any exhaustion, I can drop to 1 hp instead. I then regain all spells slots and can use my reaction to cast a spell with a casting time of 1 action. After doing this, I gain 1 point of exhaustion"
             ]),
             usages : 1,
             recovery : "long rest"
@@ -949,8 +948,8 @@ AddSubClass("shaper", "flamecaller", {
             source : [["A:TSV2", 10]],
             minlevel : 3,
             description : desc([
-                "Living Fire: I gain resistance to fire damage, and when I hit a creature with a fire infusion using my Imbued Weapon, I set them ablaze, unless they can't be set on fire. They take 1d4 at the start of each of their turns for a minute, until doused, or use their action to put out the flames.",
-                "Fire Control: I also gain the Control Flames cantrip.",
+                "Living Fire: I gain resistance to fire damage, and when I hit a creature with a Fire Imbued Weapon, I set them ablaze, unless they can't be set on fire. They take fire damage at the start of each of their turns for a minute, until doused, or use their action to put out the flames.",
+                "Fire Control: I also learn the Control Flames cantrip.",
             ]),
             spellcastingBonus : [{
                 name : "Fire Control",
@@ -963,7 +962,7 @@ AddSubClass("shaper", "flamecaller", {
                 atkAdd : [
                     function(fields, v) { 
                         if(/(imbued|infused)/i.test(v.WeaponTextName) && (/fire/i).test(v.WeaponTextName)) {
-                            fields.Description += (fields.Description ? '; ' : '' ) + "Set Ablaze"
+                            fields.Description += (fields.Description ? '; ' : '' ) + "Living Fire"
                         }
                     },
                     "When I have a fire infused weapon, I set creatures I hit ablaze."
@@ -1002,6 +1001,16 @@ AddSubClass("shaper", "flamecaller", {
             description : desc([
                 "If my weapon is infused with fire, it deals extra damage equal to my Wisdom mod once per turn"
             ]),
+            calcChanges : {
+                atkAdd : [
+                    function(fields, v) {
+                        if(/(imbued|infused)/i.test(v.WeaponTextName) && (/fire/i).test(v.WeaponTextName)) {
+                            fields.Description += (fields.Description ? '; ' : '' ) + "Once per turn +" + What('Wis Mod') + " fire dmg";
+                        }
+                    },
+                    "When I have a fire infused weapon, I set creatures I hit ablaze."
+                ]
+            },
             usages : 1,
             recovery : "Turn"
         },
