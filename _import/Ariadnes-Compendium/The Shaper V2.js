@@ -1,7 +1,6 @@
 var iFileName = "Ariadne's:_Shaper_V2";
 RequiredSheetVersion("13.1.13");
 
-//The better spellbook v1.0 addition
 SourceList["A:TSV2"] = {
     name : "Ariadne's: The Shaper V2",
     abbreviation : "A:TSV2",
@@ -60,7 +59,7 @@ ClassList["shaper"] = {
         [4,3,3,3,3,0,0,0,0], // 20
     ],
     spellcastingKnown : {
-        cantrips : [0],
+        cantrips : [0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,3,3,16],
 		spells : [0,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11]
     },
 	spellcastingList : {
@@ -74,9 +73,8 @@ ClassList["shaper"] = {
             source : [["A:TSV2", 7]],
             minlevel : 1,
             description : desc([
-                "I gain a single command of my choice, and gain more with my shaper level",
-                "Creatures that have legendary actions or a Wisdom score higher than 19 are not affected by commands",
-                "I can use a single Command once per long rest and gain more uses at 9th and 17th level. I do not need to use my movement, action, bonus action, nor reaction to use a command, but I can only use them on my turn",
+                "I gain a single command of my choice, and gain more with my shaper level. Creatures that have legendary actions or a Wisdom score higher than 19 are not affected by commands",
+                "I can use a single Command once per long rest and gain more uses at 9th and 17th level. I can use a command only on my turn, no action required.",
                 "After using a command, my vocal chords bleed and I suffer 1d6 force damage that cannot be reduced in anyway. This damage increases to 2d6 at 5th, 3d6 at 9th, 4d6 at 13th, and 5d6 at 17th levels. If I cannot speak for any reason, I cannot use commands."
             ]),
             usages : levels.map(function(n) {
@@ -93,72 +91,116 @@ ClassList["shaper"] = {
             extraname : "Commands",
             toNotesPage : [{
                 name : "Known Commands",
-                note : "I learn additional commands based on my shaper level. All known commands will be shown below."
+                note : desc(["I learn additional commands based on my shaper level. All known commands will be shown below."])
             }],
-            // add these to the notes page
-            "attack" : {
-                name : "Attack",
-                source : [["A:TSV2", 17]],
-                description : desc([
-                    "1 crea of choice that can hear me within 30 ft uses its reaction to make an opportunity attack vs a crea of my choice within its range. If no reaction is available, this command has no effect"
-                ])
+            "attack": {
+                name: "Attack",
+                source: [["A:TSV2", 17]],
+                description: "I learn the Attack command",
+                toNotesPage: [{
+                    name: "Attack",
+                    note: desc([
+                        "1 crea of choice that can hear me within 30 ft uses its reaction to make an opportunity attack vs a crea of my choice within its range. If no reaction is available, this command has no effect"
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
-            "brace" : {
-                name : "Brace",
-                source : [["A:TSV2", 17]],
-                description : desc([
-                    "A number of crea(s) equal to my Wisdom mod that can hear me gain resistance to bludgeon., pierce., and slash. damage until end of my next turn"
-                ])
+            "brace": {
+                name: "Brace",
+                source: [["A:TSV2", 17]],
+                description: "I learn the Brace command",
+                toNotesPage: [{
+                    name: "Brace",
+                    note: desc([
+                        "A number of crea(s) equal to my Wisdom mod that can hear me gain resistance to bludgeon., pierce., and slash. damage until end of my next turn"
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
-            "change" : {
-                name : "Change",
-                source : [["A:TSV2", 17]],
-                description : desc([
-                    "1 medium or smaller, non-magical object not being worn or carried and I am touching changes elements. Change to or from the following elements: fire, smoke, air, stone, sand, wood, water, ice, steel, or iron. A larger object is affected by an area up to a 5 by 5 ft around the surface I touched"
-                ])
+            "change": {
+                name: "Change",
+                source: [["A:TSV2", 17]],
+                description: "I learn the Change command",
+                toNotesPage: [{
+                    name: "Change",
+                    note: desc([
+                        "1 medium or smaller, non-magical object not being worn or carried and I am touching changes elements. Change to or from the following elements: fire, smoke, air, stone, sand, wood, water, ice, steel, or iron. A larger object is affected by an area up to a 5 by 5 ft around the surface I touched"
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
-            "drop" : {
-                name : "Drop",
-                source : [["A:TSV2", 17]],
-                description : desc([
-                    "A number of crea(s) equal to my Wisdom mod that can hear me drops whatever they're carrying in their hands. Items held but also attached, such as a shield with straps, are not dropped"
-                ])
+            "drop": {
+                name: "Drop",
+                source: [["A:TSV2", 17]],
+                description: "I learn the Drop command",
+                toNotesPage: [{
+                    name: "Drop",
+                    note: desc([
+                        "A number of crea(s) equal to my Wisdom mod that can hear me drops whatever they're carrying in their hands. Items held but also attached, such as a shield with straps, are not dropped"
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
-            "endure" : {
-                name : "Endure",
-                source : [["A:TSV2", 17]],
-                description : desc([
-                    "1 crea of choice that can hear me within 30 ft automatically succeeds all saving throws until the end of its next turn"
-                ])
+            "endure": {
+                name: "Endure",
+                source: [["A:TSV2", 17]],
+                description: "I learn the Endure command",
+                toNotesPage: [{
+                    name: "Endure",
+                    note: desc([
+                        "1 crea of choice that can hear me within 30 ft automatically succeeds all saving throws until the end of its next turn"
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
-            "stop" : {
-                name : "Stop",
-                source : [["A:TSV2", 17]],
-                description : desc([
-                    "1 crea of choice that can hear me within 60 ft instantly stops. Their speed is 0 and cannot willingly move until the end of their next turn"
-                ])
+            "stop": {
+                name: "Stop",
+                source: [["A:TSV2", 17]],
+                description: "I learn the Stop command",
+                toNotesPage: [{
+                    name: "Stop",
+                    note: desc([
+                        "1 crea of choice that can hear me within 60 ft instantly stops. Their speed is 0 and cannot willingly move until the end of their next turn"
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
-            "fall" : {
-                name : "Fall",
-                source : [["A:TSV2", 17]],
-                description : desc([
-                    "1 crea of choice that can hear me within 60 ft falls prone. A creature flying falls 30 ft down at great speeds, and if they hit the ground, they take 6d6 bludgeoning and cannot fly again until the end of their next turn"
-                ])
+            "fall": {
+                name: "Fall",
+                source: [["A:TSV2", 17]],
+                description: "I learn the Fall command",
+                toNotesPage: [{
+                    name: "Fall",
+                    note: desc([
+                        "1 crea of choice that can hear me within 60 ft falls prone. A creature flying falls 30 ft down at great speeds, and if they hit the ground, they take 6d6 bludgeoning and cannot fly again until the end of their next turn"
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
-            "jump" : {
-                name : "Jump",
-                source : [["A:TSV2", 17]],
-                description : desc([
-                    "I immediately jump 30 ft in a direction of choice."
-                ])
+            "jump": {
+                name: "Jump",
+                source: [["A:TSV2", 17]],
+                description: "I learn the Jump command",
+                toNotesPage: [{
+                    name: "Jump",
+                    note: desc([
+                        "I immediately jump 30 ft in a direction of choice."
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
-            "disappear" : {
-                name : "disappear",
-                source : [["A:TSV2", 17]],
-                description : desc([
-                    "I silently shift into the Ethereal Plane for 1 min, and can reappear on the Material Plane at the start of any of my turns. I can see/hear out to 60 ft from the plane I came from, but everything looks gray. While on the Ethereal Plane, I move at half my speed and can ony be affected by creatures on that plane. Creatures that aren't on this plane cannot interact/perceive me unless an item/ability allows them to. I ignore all objects and effects not affecting this plane, allowing me to move through objects I perceive on the plane I came from.",
-                    "When this effect ends, I return to the plane I came from in the spot I am currently standing. If I occupy a solid object or creature, I am shunted out to the nearest unoccupied space and take force damage equal to twice the number of ft I was moved."
-                ])
+            "disappear": {
+                name: "Disappear",
+                source: [["A:TSV2", 17]],
+                description: "I learn the Disappear command",
+                toNotesPage: [{
+                    name: "Disappear",
+                    note: desc([
+                        "I silently shift into the Ethereal Plane for 1 min, and can reappear on the Material Plane at the start of any of my turns. I can see/hear out to 60 ft from the plane I came from, but everything looks gray. While on the Ethereal Plane, I move at half my speed and can ony be affected by creatures on that plane. Creatures that aren't on this plane cannot interact/perceive me unless an item/ability allows them to. I ignore all objects and effects not affecting this plane, allowing me to move through objects I perceive on the plane I came from.",
+                        "When this effect ends, I return to the plane I came from in the spot I am currently standing. If I occupy a solid object or creature, I am shunted out to the nearest unoccupied space and take force damage equal to twice the number of ft I was moved."
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
             "water (prereq: waterdancer)" : {
                 name : "Water",
@@ -167,9 +209,14 @@ ClassList["shaper"] = {
                 prereqeval : function(v) {
                     return classes.known.shaper.level >= 6 && (/\bwaterdancer\b/).test(classes.known.shaper.subclass)
                 },
-                description : desc([
-                    "I create a passage between two stretches of land no more than 1 mile apart separated by water. The passage can be up to 15ft wide and can take any form I want."
-                ])
+                description: "I learn the Water command",
+                toNotesPage: [{
+                    name: "Water",
+                    note: desc([
+                        "I create a passage between two stretches of land no more than 1 mile apart separated by water. The passage can be up to 15ft wide and can take any form I want."
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
             "wind (prereq: windchaser)" : {
                 name : "Wind",
@@ -178,9 +225,14 @@ ClassList["shaper"] = {
                 prereqeval : function(v) {
                     return classes.known.shaper.level >= 6 && (/\bwindchaser\b/).test(classes.known.shaper.subclass)
                 },
-                description : desc([
-                    "A number of medium crea(s) equal to my Wisdom mod, or 1 large crea, within 60 ft Strength save or knocked prone."
-                ])
+                description: "I learn the Wind command",
+                toNotesPage: [{
+                    name: "Wind",
+                    note: desc([
+                        "A number of medium crea(s) equal to my Wisdom mod, or 1 large crea, within 60 ft Strength save or knocked prone."
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
             "earth (prereq: earthbreaker)" : {
                 name : "Earth",
@@ -189,9 +241,14 @@ ClassList["shaper"] = {
                 prereqeval : function(v) {
                     return classes.known.shaper.level >= 6 && (/\bearthbreaker\b/).test(classes.known.shaper.subclass)
                 },
-                description : desc([
-                    "If my Earthly Barrier ability is active, a number of crea(s) equal to my Wisdom mod gain its benefits."
-                ])
+                description: "I learn the Earth command",
+                toNotesPage: [{
+                    name: "Earth",
+                    note: desc([
+                        "If my Earthly Barrier ability is active, a number of crea(s) equal to my Wisdom mod gain its benefits."
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
             "fire (prereq: flamecaller)" : {
                 name : "Fire",
@@ -200,9 +257,14 @@ ClassList["shaper"] = {
                 prereqeval : function(v) {
                     return classes.known.shaper.level >= 6 && (/\bflamecaller\b/).test(classes.known.shaper.subclass)
                 },
-                description : desc([
-                    "Crea(s), up to twice my Prof. bonus, of choice that I can see within 60 ft burst into flames. Each crea takes fire dmg equal to twice the damage I took from using this command, and catch fire as per my Living Fire ability."
-                ])
+                description: "I learn the Fire command",
+                toNotesPage: [{
+                    name: "Fire",
+                    note: desc([
+                        "Crea(s), up to twice my Prof. bonus, of choice that I can see within 60 ft burst into flames. Each crea takes fire dmg equal to twice the damage I took from using this command, and catch fire as per my Living Fire ability."
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
             "break (prereq: wordbearer)" : {
                 name : "Break",
@@ -211,9 +273,14 @@ ClassList["shaper"] = {
                 prereqeval : function(v) {
                     return (/\bwordbearer\b/).test(classes.known.shaper.subclass)
                 },
-                description : desc([
-                    "1 obj medium or smaller within 30 ft breaks irreparably."
-                ])
+                description: "I learn the Break command",
+                toNotesPage: [{
+                    name: "Break",
+                    note: desc([
+                        "1 obj medium or smaller within 30 ft breaks irreparably."
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
             "run (prereq: wordbearer)" : {
                 name : "Run",
@@ -222,9 +289,14 @@ ClassList["shaper"] = {
                 prereqeval : function(v) {
                     return (/\bwordbearer\b/).test(classes.known.shaper.subclass)
                 },
-                description : desc([
-                    "A number of crea(s) equal to my Wisdom mod, within 30 ft that can hear me use their rea to move half their speed away from me. If they have no rea, nothing happens."
-                ])
+                description: "I learn the Run command",
+                toNotesPage: [{
+                    name: "Run",
+                    note: desc([
+                        "A number of crea(s) equal to my Wisdom mod, within 30 ft that can hear me use their rea to move half their speed away from me. If they have no rea, nothing happens."
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
             "shift (prereq: wordbearer)" : {
                 name : "Shift",
@@ -233,9 +305,14 @@ ClassList["shaper"] = {
                 prereqeval : function(v) {
                     return (/\bwordbearer\b/).test(classes.known.shaper.subclass)
                 },
-                description : desc([
-                    "I teleport to an unoccupied space that I can see within 120 ft. I can take a willing, medium crea."
-                ])
+                description: "I learn the Shift command",
+                toNotesPage: [{
+                    name: "Shift",
+                    note: desc([
+                        "I teleport to an unoccupied space that I can see within 120 ft. I can take a willing, medium crea."
+                    ]),
+                    amendTo: "Known Commands"
+                }]
             },
             "mend (prereq: wordbearer)" : {
                 name : "Mend",
@@ -244,10 +321,15 @@ ClassList["shaper"] = {
                 prereqeval : function(v) {
                     return (/\bwordbearer\b/).test(classes.known.shaper.subclass)
                 },
-                description : desc([
-                    "A medium or smaller obj within 30 ft returns to previous version of itself. A book recovers lost pages, eaten apple is made whole, etc."
-                ])
-            },
+                description: "I learn the Mend command",
+                toNotesPage: [{
+                    name: "Mend",
+                    note: desc([
+                        "A medium or smaller obj within 30 ft returns to previous version of itself. A book recovers lost pages, eaten apple is made whole, etc."
+                    ]),
+                    amendTo: "Known Commands"
+                }]
+            }            
         },
         "fighting style" : {
             name : "Fighting Style",
@@ -285,9 +367,18 @@ ClassList["shaper"] = {
             minlevel : 2,
             description : desc([
                 "I can cast shaper spells that I know, using Wisdom as my spellcasting ability",
-				"I have to use an Imbued Weapon to cast my spells, and must be wielding it in one hand",
-                "I cannot cast spells if a weapon is not imbued, or if its not in my hand"
-            ])
+                "I cannot cast spells if a weapon is not an Imbued Weapon, or if its not in my hand"
+            ]),
+            calcChanges : {
+                spellList :[
+                    function(spList, spName, spType) {
+                        if(spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                        if (!spList.notspells) spList.notspells = [];
+                        var dCantrips = CreateSpellList({"class" : "druid", level : [0,0]}, false, false, false);
+                        spList.notspells = spList.notspells.concat(dCantrips);
+                    }
+                ]
+            }
         },
         "elemental shape" : {
             name : "Elemental shape",
@@ -302,7 +393,7 @@ ClassList["shaper"] = {
             source : [["A:TSV2", 9]],
             minlevel : 3,
             description : desc([
-                "I learn the Druidcraft cantrip, and learn additional druid cantrips at 6th, 10th, and 14th level.",
+                "I learn the Druidcraft cantrip, and learn additional druid cantrips at 6th, 10th, and 14th level. ",
                 "Instead of learning another druid cantrip, I can choose one from several signs, and gain additional signs at 6th, 10th, and 14th level. Signs are not cantrips, and after casting a Sign, I must wait one minute before casting the same Sign again."
             ]),
             spellcastingBonus : [{
@@ -315,289 +406,265 @@ ClassList["shaper"] = {
                 selection : ["druidcraft"]
             }],
             extraname : "Signs of Power",
-			extrachoices : ["Disturbance", "Elemental Protection", "Force Shift", "Reinforce Body", "Arrest Momentum", "Zone of Power", "Purge Infusion", "Elemental Boon", "Preserve Infusion", "Quicken", "Reinforce Will", "Sharp Winds (prereq: windchaser)", "Force Step", "Interruption", "Fire Wake (prereq: flamecaller)", "Extend Infusion"],	
+			extrachoices : ["Disturbance", "Elemental Protection", "Force Shift", "Reinforce Body", "Arrest Momentum", "Zone of Power", "Purge Infusion", "Elemental Boon", "Preserve Infusion", "Quicken", "Reinforce Will", "Sharp Winds (prereq: windchaser)", "Force Step", "Interruption", "Fire Wake (prereq: flamecaller)", "Extend Infusion", "All"],	
             extraTimes : levels.map(function(n) {
                 return n < 6 ? 0 : n < 10 ? 1 : n < 14 ? 2 : 3;
             }),
-            toNotesPage : [{
-                name : "Known Signs",
-                note : "I can choose to learn signs instead of learning additional cantrips. Any chosen signs will be shown below."
-            }],
-            // CHANGE these to add to the notes page
             "disturbance" : {
                 name : "Disturbance",
                 source : [["A:TSV2", 15]],
-                description : "",
-                toNotesPage : [{
-                    name : "Disturbance",
-                    note : desc([
-                        "Casting Time: 1 bns",
-                        "Range: Self (15-ft cone)",
-                        "Components: S",
-                        "Duration: Instantaneous",
-                        "Medium or smaller crea(s) Strength save or pushed 5 ft away and take 1d4 force dmg",
-                    ]),
-                    amendTo : "Known Signs"
-                }]
+                description : desc(["I learn the Disturbance sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["disturbance"]);
+                        }
+                    ]
+                }
             },
             "elemental protection" : {
                 name : "Elemental Protection",
                 source : [["A:TSV2", 15]],
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Self\n"
-                                + "   Components: S\n"
-                                + "   Duration: 1 rnd\n"
-                                + "   Gain resistance to acid, cold, fire, lightning, or thunder",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-
-                    ]),
-                    amendTo : "Known Signs"
-                }]
+                description : desc(["I learn the Elemental Protection sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["elemental protection"]);
+                        }
+                    ]
+                }
             },
             "force shift" : {
                 name : "Force Shift",
                 source : [["A:TSV2", 15]],
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Self\n"
-                                + "   Components: S\n"
-                                + "   Duration: Conc, 1 min\n"
-                                + "   I gain resistance to bludgeon., pierce., and slash. dmg until the start of my next",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }]
+                description : desc(["I learn the Force Shift"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["force shift"]);
+                        }
+                    ]
+                }
             },
             "reinforce body" : {
                 name : "Reinforce Body",
                 source : [["A:TSV2", 15]],
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Touch\n"
-                                + "   Components: S\n"
-                                + "   Duration: Conc, 1 min\n"
-                                + "   1 crea gains advantage on next Str, Dex, or Con save",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }]
+                description : desc(["I learn the Reinforce Body sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["reinforce body"]);
+                        }
+                    ]
+                }
             },
             "arrest momentum" : {
                 name : "Arrest Momentum",
                 source : [["A:TSV2", 15]],
-                description :   "\n   Casting Time: 1 rea when crea/obj in motion is about to crash\n"
-                                + "   Range: 30 ft\n"
-                                + "   Components: S\n"
-                                + "   Duration: 1 rnd\n"
-                                + "   Medium or smaller crea/obj momentum nullified (spd 0) and hanging in the air for the duration; target drops to ground when sign fades",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }]
+                description : desc(["I learn the Arrest Momentum sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["arrest momentum"]);
+                        }
+                    ]
+                }
             },
             "zone of power" : {
                 name : "Zone of Power",
                 source : [["A:TSV2", 15]],
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Self (10-ft rad)\n"
-                                + "   Components: S\n"
-                                + "   Duration: Conc, 1 min\n"
-                                + "   I gain temp hp equal to my Wis mod at start of each of my turns",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }]
+                description : desc(["I learn the Zone of Power sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["zone of power"]);
+                        }
+                    ]
+                }
             },
             "purge infusion" : {
                 name : "Purge Infusion",
                 source : [["A:TSV2", 15]],
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Self (30-ft rad)\n"
-                                + "   Components: S\n"
-                                + "   Duration: Instantaneous\n"
-                                + "   All crea(s) Con save or blinded til end of their next turn",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }]
+                description : desc(["I learn the Purge Infusion sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["purge infusion"]);
+                        }
+                    ]
+                }
             },
             "elemental boon" : {
                 name : "Elemental Boon",
                 source : [["A:TSV2", 15]],
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: 30 ft\n"
-                                + "   Components: S\n"
-                                + "   Duration: Conc, 1 min\n"
-                                + "   Harness fire, earth, water, air; see notes",
-                toNotesPage : [{
-                    name : "Harness Elemental Boon",
-                    note : desc([
-                        "Fire: I gain an additional 1d6 fire damage on my next weapon attack",
-                        "Earth: I gain resistance to bludgeon., pierce., and slash. damage dealt by the next attack that hit me",
-                        "Water: If I am below half my max hp, I heal 1d6 hp",
-                        "Air: My next ranged weapon attack doubles its range"
-                    ])
-                }]
+                description : desc(["I learn the Elemental Boon sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["elemental boon"]);
+                        }
+                    ]
+                }
             },
             "preserve infusion" : {
                 name : "Preserve Infusion",
                 source : [["A:TSV2", 16]],
                 submenu : "[shaper level 6+]",
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Self\n"
-                                + "   Components: S\n"
-                                + "   Duration: Conc, 1 hr\n"
-                                + "   If infused weapon over half of its duration left, I interrupt it for the duration. When spell ends, or I end it, infusion resumes with 5 rounds left.",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }],
+                description : desc(["I learn the Preserve Infusion sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["preserve infusion"]);
+                        }
+                    ]
+                },
                 prereqeval : function(v) { return classes.known.shaper.level >= 6 }
             },
             "quicken" : {
                 name : "Quicken",
                 source : [["A:TSV2", 16]],
                 submenu : "[shaper level 6+]",
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Self\n"
-                                + "   Components: S\n"
-                                + "   Duration: Instantaneous\n"
-                                + "   I can take the dodge, help, dash, shove, grapple, or disengage as part of this spell's casting",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }],
+                description : desc(["I learn the Quicken sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["quicken"]);
+                        }
+                    ]
+                },
                 prereqeval : function(v) { return classes.known.shaper.level >= 6 }
             },
             "reinforce will" : {
                 name : "Reinforce Will",
                 source : [["A:TSV2", 16]],
                 submenu : "[shaper level 6+]",
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Touch\n"
-                                + "   Components: S\n"
-                                + "   Duration: Conc, 1 min\n"
-                                + "   1 crea advantage on next Int, Wis, or Cha save",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }],
+                description : desc(["I learn the Reinforce Will sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["reinforce will"]);
+                        }
+                    ]
+                },
                 prereqeval : function(v) { return classes.known.shaper.level >= 6 }
             },
             "sharp winds (prereq: windchaser)" : {
                 name : "Sharp Winds",
                 source : [["A:TSV2", 16]],
                 submenu : "[shaper level 6+]",
-                description :   "\n   Casting Time: 1 rea when crea misses me with a melee attack\n"
-                                + "   Range: Touch\n"
-                                + "   Components: S\n"
-                                + "   Duration: Instantaneous\n"
-                                + "   Melee spell atk; 1d8 + Wis mod slashing dmg; +1d8 at CL 5, 11, and 17",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }],
+                description : desc(["I learn the Sharp Winds sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["sharp winds"]);
+                        }
+                    ]
+                },
                 prereqeval : function(v) { return classes.known.shaper.level >= 6 && (/\bwindchaser\b/).test(classes.known.shaper.subclass); }
             },
             "force step" : {
                 name : "Force Step",
                 source : [["A:TSV2", 16]],
                 submenu : "[shaper level 10+]",
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Self\n"
-                                + "   Components: S\n"
-                                + "   Duration: rnd\n"
-                                + "   Move across vertical/liquid surfaces on my turn without falling",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }],
+                description : desc(["I learn the Force Step sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["force step"]);
+                        }
+                    ]
+                },
                 prereqeval : function(v) { return classes.known.shaper.level >= 10 }
             },
             "interruption" : {
                 name : "Interruption",
                 source : [["A:TSV2", 16]],
                 submenu : "[shaper level 10+]",
-                description :   "\n   Casting Time: 1 rea when crea casts 5th level or lower spell\n"
-                                + "   Range: Touch\n"
-                                + "   Components: S\n"
-                                + "   Duration: Instantaneous\n"
-                                + "   Melee spell atk; on hit, Con save or fail to cast; no effect SL>5",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }],
+                description : desc(["I learn the Interruption sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["interruption"]);
+                        }
+                    ]
+                },
                 prereqeval : function(v) { return classes.known.shaper.level >= 10 }
             },
             "fire wake (prereq: flamecaller)" : {
                 name : "Fire Wake",
                 source : [["A:TSV2", 16]],
                 submenu : "[shaper level 10+]",
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Self\n"
-                                + "   Components: S\n"
-                                + "   Duration: Conc, 1 min\n"
-                                + "   Leave 5ft wide, 60ft long trail behind me; crea(s) within 5ft of trail, Dex save or 2d6 fire dmg; crea(s) crossing the trail take 2d6 fire dmg",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }],
+                description : desc(["I learn the Fire Wake sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["fire wake"]);
+                        }
+                    ]
+                },
                 prereqeval : function(v) { return classes.known.shaper.level >= 10 && (/\bflamecaller\b/).test(classes.known.shaper.subclass)}
             },
             "extend infusion" : {
                 name : "Extend Infusion",
                 source : [["A:TSV2", 16]],
                 submenu : "[shaper level 14+]",
-                description :   "\n   Casting Time: 1 bns\n"
-                                + "   Range: Self\n"
-                                + "   Components: S\n"
-                                + "   Duration: Instantaneous\n"
-                                + "   Infusion extended to 10 min; can only be used once per infusion",
-                toNotesPage : [{
-                    name : "",
-                    note : desc([
-                        
-                    ]),
-                    amendTo : "Known Signs"
-                }],
+                description : desc(["I learn the Extend Infusion sign"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["extend infusion"]);
+                        }
+                    ]
+                },
                 prereqeval : function(v) { return classes.known.shaper.level >= 14 }
             },
+            "all" : {
+                name : "All",
+                source : [["A:TSV2", 9]],
+                submenu : "[shaper level 20]",
+                description : desc(["I learn All signs at level 20"]),
+                calcChanges : {
+                    spellList : [
+                        function(spList, spName, spType) {
+                            // Stop this is not the class' spell list or if this is for a bonus spell entry
+                            if (spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                            spList.extraspells = spList.extraspells.concat(["disturbance", "elemental protection", "force shift", "reinforce body", "arrest momentum", "zone of power", "purge infusion", "elemental boon", "preserve infusion", "quicken", "reinforce will", "sharp winds", "force step", "interruption", "fire wake", "extend infusion"]);
+                        }
+                    ]
+                },
+            }
         },
         "unwavering resolve" : {
             name : "Unwavering Resolve",
@@ -657,6 +724,221 @@ ClassList["shaper"] = {
     }
 }
 
+spellSchoolList["Sign"] = "signs of power"
+
+SpellsList["disturbance"] = {
+    name : "Disturance",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "S:15-ft cone",
+	components : "S",
+	duration : "Instantaneous",
+    description : "Medium or smaller crea(s) in area Strength save or pushed 5 ft away and take 1d4 force dmg"
+}
+
+SpellsList["elemental protection"] = {
+    name : "Elemental Protection",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Self",
+	components : "S",
+	duration : "1 rnd",
+    description : "Gain resistance to acid, cold, fire, lightning, or thunder"
+}
+
+SpellsList["force shift"] = {
+    name : "Force Fhift",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Self",
+	components : "S",
+	duration : "Conc, 1 min",
+    description : "I gain resistance to bludgeon., pierce., and slash. dmg until the start of my next"
+}
+
+SpellsList["reinforce body"] = {
+    name : "Reinforce Body",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Touch",
+	components : "S",
+	duration : "Conc, 1 min",
+    description : "1 crea gains advantage on next Str, Dex, or Con save"
+}
+
+SpellsList["arrest momentum"] = {
+    name : "Arrest Momentum",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 rea",
+    timeFull : "1 reaction when a creature or object is about to crash",
+	range : "30 ft",
+	components : "S",
+	duration : "1 rnd",
+    description : "Medium or smaller crea/obj stops (spd 0) and hangs in the airs; target drops to ground when sign fades"
+}
+
+SpellsList["zone of power"] = {
+    name : "Zone of Power",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "S:10-ft rad",
+	components : "S",
+	duration : "Conc, 1 min",
+    description : "I gain temp hp equal to my Wis mod at start of each of my turns"
+}
+
+SpellsList["purge infusion"] = {
+    name : "Purge Infusion",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "S:30-ft rad",
+	components : "S",
+	duration : "Instantaneous",
+    description : "All crea(s) Con save or blinded til end of their next turn"
+}
+
+SpellsList["elemental boon"] = {
+    name : "Elemental Boon",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "30 ft",
+	components : "S",
+	duration : "Conc, 1 min",
+    description : "Harness fire, earth, water, air; see B",
+    descriptionFull  : "I harness the powers of an element. Choose from one of the following, which after the effect triggers, this spell ends" + "\n   " + toUni("Fire") + ": I gain an additional 1d6 fire damage on my next weapon attack" + "\n   " + toUni("Earth") + ": I gain resistance to bludgeon., pierce., and slash. damage dealt by the next attack that hit me" + "\n   " + toUni("Water") + ": If I am below half my max hp, I heal 1d6 hp" + "\n   " + toUni("Air") + ": My next ranged weapon attack doubles its range"
+}
+
+SpellsList["preserve infusion"] = {
+    name : "Preserve Infusion",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Self",
+	components : "S",
+	duration : "Conc, 1 hr",
+    description : "If imbued weap. over half duration, I pause it. When spell ends, or I end it, resumes with 5 rounds left"
+}
+
+SpellsList["quicken"] = {
+    name : "Quicken",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Self",
+	components : "S",
+	duration : "Instantaneous",
+    description : "I can take the dodge, help, dash, shove, grapple, or disengage as part of this spell's casting"
+}
+
+SpellsList["reinforce will"] = {
+    name : "Reinforce Will",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Touch",
+	components : "S",
+	duration : "Conc, 1 min",
+    description : "1 crea advantage on next Int, Wis, or Cha save"
+}
+
+SpellsList["sharp winds"] = {
+    name : "Sharp Winds",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 rea",
+    timeFull : "1 reaction when a creature misses me with a melee attack",
+	range : "Touch",
+	components : "S",
+	duration : "Instantaneous",
+    description : "Melee spell atk; 1d8 + Wis mod slashing dmg; +1d8 at CL 5, 11, and 17"
+}
+
+SpellsList["force step"] = {
+    name : "Force Step",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Self",
+	components : "S",
+	duration : "1 rnd",
+    description : " Move across vertical/liquid surfaces on my turn without falling"
+}
+
+SpellsList["interruption"] = {
+    name : "Interruption",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 rea",
+    timeFull : "1 reaction when creature casts a 5th level or lower spell",
+	range : "Touch",
+	components : "S",
+	duration : "Instantaneous",
+    description : "Melee spell atk; on hit, Con save or fail to cast; no effect SL>5"
+}
+
+SpellsList["fire wake"] = {
+    name : "Fire Wake",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Self",
+	components : "S",
+	duration : "Conc, 1 min",
+    save : "Dex",
+    description : "5ft wide, 60ft long trail behind me; crea within 5ft, save or 2d6 fire dmg; crea crosses take 2d6 fire dmg"
+}
+
+SpellsList["extend infusion"] = {
+    name : "Extend Infusion",
+    source : [["A:TSV2", 15]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Self",
+	components : "S",
+	duration : "Instantaneous",
+    description : "Infusion extended to 10 min; can only be used once per infusion"
+}
+
 AddSubClass("shaper", "flamecaller", {
     regExpSearch : /flamecaller/i,
 	subname : "Flamecaller",
@@ -696,16 +978,13 @@ AddSubClass("shaper", "flamecaller", {
             source : [["A:TSV2", 10]],
             minlevel : 3,
             description : desc([
-                "I learn the Fire Punch sign found on page 3 notes."
+                "I learn the Fire Punch sign."
             ]),
-            toNotesPage : [{
+            spellcastingBonus : [{
                 name : "Fire Punch",
-                page3notes : true,
-                note : "\n   Casting Time: 1 bns\n"
-                       + "   Range: Touch\n"
-                       + "   Components: S\n"
-                       + "   Duration: Instantaneous\n"
-                       + "   1 crea melee spell atk; 1d6 + Str mod; flammable obj ignie, not worn or carried; +1d6 at CL 5, 11, and 17",
+                spells : ["fire punch"],
+                selection : ["fire punch"],
+                times : 1
             }]
         },
         "subclassfeature6" : {
@@ -737,3 +1016,16 @@ AddSubClass("shaper", "flamecaller", {
         }
     }
 })
+
+SpellsList["fire punch"] = {
+    name : "Fire Punch",
+    source : [["A:TSV2", 10]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Touch",
+	components : "S",
+	duration : "Instantaneous",
+    description : "Melee spell atk; 1d6 + Str mod; flammable obj ignite, not worn or carried; +1d6 at CL 5, 11, and 17"
+}
