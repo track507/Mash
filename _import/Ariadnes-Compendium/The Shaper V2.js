@@ -144,7 +144,7 @@ ClassList["shaper"] = {
                 name : "Jump",
                 source : [["A:TSV2", 17]],
                 description : desc([
-                    "I immediately jump 30 ft in a direction of choice. "
+                    "I immediately jump 30 ft in a direction of choice."
                 ])
             },
             "disappear" : {
@@ -155,7 +155,86 @@ ClassList["shaper"] = {
                     "When this effect ends, I return to the plane I came from in the spot I am currently standing. If I occupy a solid object or creature, I am shunted out to the nearest unoccupied space and take force damage equal to twice the number of ft I was moved."
                 ])
             },
-            // finish the elemental ones.
+            "water" : {
+                name : "Water",
+                source : [["A:TSV2", 18]],
+                prereqeval : function(v) {
+                    return classes.known.shaper.level >= 6 && (/\bwaterdancer\b/).test(classes.known.shaper.subclass)
+                },
+                description : desc([
+                    "I create a passage between two stretches of land no more than 1 mile apart separated by water. The passage can be up to 15ft wide and can take any form I want."
+                ])
+            },
+            "wind" : {
+                name : "Wind",
+                source : [["A:TSV2", 18]],
+                prereqeval : function(v) {
+                    return classes.known.shaper.level >= 6 && (/\bwindcaller\b/).test(classes.known.shaper.subclass)
+                },
+                description : desc([
+                    "A number of medium crea(s) equal to my Wisdom mod, or 1 large crea, within 60 ft Strength save or knocked prone."
+                ])
+            },
+            "earth" : {
+                name : "Earth",
+                source : [["A:TSV2", 18]],
+                prereqeval : function(v) {
+                    return classes.known.shaper.level >= 6 && (/\bearthbreaker\b/).test(classes.known.shaper.subclass)
+                },
+                description : desc([
+                    "If my Earthly Barrier ability is active, a number of crea(s) equal to my Wisdom mod gain its benefits."
+                ])
+            },
+            "fire" : {
+                name : "Fire",
+                source : [["A:TSV2", 18]],
+                prereqeval : function(v) {
+                    return classes.known.shaper.level >= 6 && (/\bflamecaller\b/).test(classes.known.shaper.subclass)
+                },
+                description : desc([
+                    "Crea(s), up to twice my Prof. bonus, of choice that I can see within 60 ft burst into flames. Each crea takes fire dmg equal to twice the damage I took from using this command, and catch fire as per my Living Fire ability."
+                ])
+            },
+            "break" : {
+                name : "Break",
+                source : [["A:TSV2", 18]],
+                prereqeval : function(v) {
+                    return (/\bwordbearer\b/).test(classes.known.shaper.subclass)
+                },
+                description : desc([
+                    "1 obj medium or smaller within 30 ft breaks irreparably."
+                ])
+            },
+            "run" : {
+                name : "Run",
+                source : [["A:TSV2", 18]],
+                prereqeval : function(v) {
+                    return (/\bwordbearer\b/).test(classes.known.shaper.subclass)
+                },
+                description : desc([
+                    "A number of crea(s) equal to my Wisdom mod, within 30 ft that can hear me use their rea to move half their speed away from me. If they have no rea, nothing happens."
+                ])
+            },
+            "shift" : {
+                name : "Shift",
+                source : [["A:TSV2", 18]],
+                prereqeval : function(v) {
+                    return (/\bwordbearer\b/).test(classes.known.shaper.subclass)
+                },
+                description : desc([
+                    "I teleport to an unoccupied space that I can see within 120 ft. I can take a willing, medium crea."
+                ])
+            },
+            "mend" : {
+                name : "Mend",
+                source : [["A:TSV2", 18]],
+                prereqeval : function(v) {
+                    return (/\bwordbearer\b/).test(classes.known.shaper.subclass)
+                },
+                description : desc([
+                    "A medium or smaller obj within 30 ft returns to previous version of itself. A book recovers lost pages, eaten apple is made whole, etc."
+                ])
+            },
         },
         "fighting style" : {
             name : "Fighting Style",
