@@ -77,7 +77,7 @@ AddSubClass("wizard", "the world", {
                 }
             },
             additional : levels.map(function(n) {
-                return (n < 6 ? 0 : n < 10 ? 1 : n < 14 ? 2 : 3) + " languages, " + (n < 6 ? 0 : n < 10 ? 4 : n < 14 ? 8 : 12) + " hp, " + (n < 6 ? 0 : n < 10 ? 1 : n < 14 ? 2 : 3) + "skill/tools"
+                return (n < 6 ? 0 : n < 10 ? 1 : n < 14 ? 2 : 3) + " lang., " + (n < 6 ? 0 : n < 10 ? 4 : n < 14 ? 8 : 12) + " hp, " + (n < 6 ? 0 : n < 10 ? 1 : n < 14 ? 2 : 3) + " skill/tools"
             }),
             addMod : [{ type : "skill", field : "Init", mod : 1, text : "I add 1 to my Initiative at 6th level." }]
         },
