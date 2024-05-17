@@ -13,6 +13,13 @@ RequiredSheetVersion("13.1.13");
     IMPORTANT
     
     Since spells doesn't have specified classes, I assume all classes get them.
+
+    FINISHED:
+    Books: TAFI, TNC, TLotU, TLB, TEC, TCoR, TMC, TTN
+    Misc.: Way of Strength, Collge of Fools, School of The World Wizard
+
+    WIP:
+    The Shaper V2 and TBS
     
 */
 
