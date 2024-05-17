@@ -1,4 +1,4 @@
-var iFileName = "The Ichorous Peninsula"
+var iFileName = "The Ichorous Peninsula";
 RequiredSheetVersion("13.1.13");
 
 if(!SourceList["A:CoS"]) {
