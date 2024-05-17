@@ -659,7 +659,7 @@ ClassList["shaper"] = {
             source : [["A:TSV2", 9]],
             minlevel : 11,
             description : desc([
-                "I can now imbue two weapons instead of one, but must be holding both when I do so. The infusion is kept even if I drop it or someone else is carring it. Infusing another weapon will cause the oldest one to lose its infusion."
+                "I can now imbue two weapons instead of one, but must be holding both when I do so. The infusion is kept even if I drop it or someone else is carrying it. Infusing another weapon will cause the oldest one to lose its infusion."
             ])
         },
         "greater recovery" : {
@@ -725,7 +725,8 @@ AddSubClass("shaper", "flamecaller", {
             calcChanges : {
                 atkAdd : [
                     function(fields, v) { 
-                        if(/(imbued|infused)/i.test(v.WeaponTextName) && (/fire/i).test(v.WeaponTextName)) {
+                        // Must be melee, imbued/infused and fire, cannot be a thrown weapon or a spell
+                        if(v.isMeleeWeapon && /(imbued|infused)/i.test(v.WeaponTextName) && (/fire/i).test(v.WeaponTextName) && !v.isThrownWeapon && !v.isSpell) {
                             fields.Description += (fields.Description ? '; ' : '' ) + "Living Fire"
                         }
                     },
@@ -768,7 +769,7 @@ AddSubClass("shaper", "flamecaller", {
             calcChanges : {
                 atkAdd : [
                     function(fields, v) {
-                        if(/(imbued|infused)/i.test(v.WeaponTextName) && (/fire/i).test(v.WeaponTextName)) {
+                        if(v.isMeleeWeapon && /(imbued|infused)/i.test(v.WeaponTextName) && (/fire/i).test(v.WeaponTextName) && !v.isThrownWeapon && !v.isSpell) {
                             fields.Description += (fields.Description ? '; ' : '' ) + "Once per turn +" + What('Wis Mod') + " fire dmg";
                         }
                     },
@@ -786,6 +787,87 @@ AddSubClass("shaper", "flamecaller", {
                 "My Living Fire damage is increased to 1d6, I gain immunity to fire damage, and I treat fire immunity as if it were resistance"
             ]),
             savetxt : { immune : ["fire"] }
+        }
+    }
+})
+
+AddSubClass("shaper", "windchaser", {
+    regExpSearch : /windchaser/i,
+    subname : "Windchaser",
+    source : [["A:TSV2", 11]],
+    features : {
+        "subclassfeature3" : {
+            name : "Shape of Wind",
+            source : [["A:TSV2", 11]],
+            minlevel : 3,
+            description : desc("Without armor and no shield, my AC is 10 + Dexterity modifier + Wisdom modifier. Additionally, my speed is increases by 10 ft, and moving 20 ft on my turn gives me a +2 bonus to AC. This bonus lasts until I end a turn not moving at least 20 ft."),
+            armorOptions : [{
+                regExpSearch : /justToAddToDropDown/,
+                name : "Unarmored Defense (Wis)",
+                source : [["SRD", 26], ["P", 78]],
+                ac : "10+Wis",
+                affectsWildShape : true
+            }],
+            armorAdd : "Unarmored Defense (Wis)",
+            speed : {
+                walk : { spd : "+10", enc : "+10" },
+            }
+        },
+        "subclassfeature3.1" : {
+            name : "Shape Sign: Wind Thrust",
+            source : [["A:TSV2", 11]],
+            minlevel : 3,
+            description : desc([
+                "I learn the Wind Thrust sign."
+            ]),
+            spellcastingBonus : [{
+                name: "Wind Thrust",
+                spells : ["wind thrust"],
+                selection : ["wind thrust"],
+                times : 1
+            }]
+        },
+        "subclassfeature6" : {
+            name : "Twinned Infusion",
+            source : [["A:TSV2", 11]],
+            minlevel : 6,
+            description : desc([
+                "When I am wielding two finesse weapons, I can infuse both of them which counts as a single infused weapon for the purposes of my Heightened Infusion. I can use this to infuse throwing weapons and ammunition"
+            ]),
+            calcChanges : {
+                atkAdd : [
+                    function(fields, v) { 
+                        // Must be melee, thrown weapon, "ammunition", and imbued/infused and fire, and not a spell
+                        // I'm treating firearms as ammunition for the purpose of this feature
+                        if((v.isMeleeWeapon || v.isThrownWeapon || v.theWea.list === "firearm") && /(imbued|infused)/i.test(v.WeaponTextName) && (/wind/i).test(v.WeaponTextName) && !v.isSpell) {
+                            fields.Description += (fields.Description ? '; ' : '' ) + "Infused"
+                        }
+                    },
+                    "I can treat a melee, thrown weapon, or ammunition as my Imbued Weapon if I include Wind and Imbued or Infused as part of the name."
+                ]
+            },
+        },
+        "subclassfeature10" : {
+            name : "Wind's Fury",
+            source : [["A:TSV2", 11]],
+            minlevel : 10,
+            description : desc([
+                "When I take the Attack action on my turn, I can make an additional attack with my off-hand weapon."
+            ]),
+            additional : levels.map(function(n) {
+                return n < 10 ? "" : "1 Additional Attack"
+            })
+        },
+        "subclassfeature14" : {
+            name : "Like a Breeze",
+            source : [["A:TSV2", 11]],
+            minlevel : 14,
+            description : desc([
+                "I gain a 60 ft fly speed"
+            ]),
+            speed : {
+                fly : { spd : "fixed60", enc : "fixed50" }
+            }
         }
     }
 })
@@ -1004,7 +1086,7 @@ SpellsList["extend infusion"] = {
 	duration : "Instantaneous",
     description : "Infusion extended to 10 min; can only be used once per infusion"
 }
-
+// Flamecaller's Sign
 SpellsList["fire punch"] = {
     name : "Fire Punch",
     source : [["A:TSV2", 10]],
@@ -1016,4 +1098,18 @@ SpellsList["fire punch"] = {
 	components : "S",
 	duration : "Instantaneous",
     description : "Melee spell atk; 1d6 + Str mod; flammable obj ignite, not worn or carried; +1d6 at CL 5, 11, and 17"
+}
+// Windchasers Sign
+SpellsList["wind thrust"] = {
+    name : "Wind Thrust",
+    source : [["A:TSV2", 11]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "30 ft",
+	components : "S",
+	duration : "Instantaneous",
+    save : "Str",
+    description : "30ft long, 5ft wide line; first crea save or push 10ft; medium < obj push 10ft; can push myself 10ft back"
 }
