@@ -872,6 +872,79 @@ AddSubClass("shaper", "windchaser", {
     }
 })
 
+AddSubClass("shaper", "waterdancer", {
+    regExpSearch : /waterdancer/i,
+    subname : "Waterdancer",
+    source : [["A:TSV2", 12]],
+    features : {
+        "subclassfeature3" : {
+            name : "Shape of Water",
+            source : [["A:TSV2", 12]],
+            minlevel : 3,
+            description : desc([
+                "\u2022 Flowing Water: I can move through creatures and object as if they were difficult terrain as long as there is at least 5 ft of open space beside them.",
+                "\u2022 Killer Dance: While moving through a creature, my first attack against it has advantage and deals an additional 1d8 cold damage. I have to wait one minute before using this ability on the same creature again."
+            ])
+        },
+        "sublcassfeature3.1" : {
+            name : "Shape Sign: Water Bolt",
+            source : [["A:TSV2", 12]],
+            minlevel : 3,
+            description : desc([
+                "I learn the Water Bolt sign."
+            ]),
+            spellcastingBonus : [{
+                name : "Water Bolt",
+                spells : ["water bolt"],
+                selection : ["water bolt"],
+                times : 1
+            }]
+        },
+        "subclassfeature6" : {
+            name : "Water Affinity",
+            source : [["A:TSV2", 12]],
+            minlevel : 6,
+            description : desc([
+                "I gain resistance to cold damage, a swim speed equal to twice my walking speed, and can breathe underwater."
+            ]),
+            dmgres : ["Cold"],
+            speed : {
+                swim : { spd : "walk", enc : "walk"}
+            }
+        },
+        "subclassfeature6.1" : {
+            name : "Water Affinity: Swim Speed",
+            source : [["A:TSV2", 12]],
+            minlevel : 6,
+            speed : {
+                swim : { spd : "*2", enc : "*2"}
+            }
+        },
+        "subclassfeature10" : {
+            name : "Liquid Form",
+            source : [["A:TSV2", 12]],
+            minlevel : 10,
+            description : desc([
+                "Once per turn, I can use my reaction to phase through an attack, dealing no slashing, piercing, or bludgeoning damage."
+            ]),
+            usages : 1,
+            recovery : "Turn",
+            action : ["reaction", ""]
+        },
+        "subclassfeature14" : {
+            name : "Flow Unbound",
+            source : [["A:TSV2", 12]],
+            minlevel : 14,
+            description : desc([
+                "I am immune to cold damage and the grappled, prone, and restrained conditions. While moving, I can hover 5 ft above the ground, and become water capable of fitting through 1-inch spaces without squeezing."
+            ]),
+            savetxt : {
+                immune : ["cold", "grappled", "prone", "restrained"]
+            }
+        }
+    }
+})
+
 spellSchoolList["Sign"] = "signs of power"
 
 SpellsList["disturbance"] = {
@@ -1030,7 +1103,8 @@ SpellsList["sharp winds"] = {
 	range : "Touch",
 	components : "S",
 	duration : "Instantaneous",
-    description : "Melee spell atk; 1d8 + Wis mod slashing dmg; +1d8 at CL 5, 11, and 17"
+    description : "Melee spell atk; 1d8 + Wis mod slashing dmg; +1d8 at CL 5, 11, and 17",
+    descriptionCantripDie : "Melee spell atk; `CD`d8 + Wis mod slashing dmg"
 }
 
 SpellsList["force step"] = {
@@ -1097,7 +1171,8 @@ SpellsList["fire punch"] = {
 	range : "Touch",
 	components : "S",
 	duration : "Instantaneous",
-    description : "Melee spell atk; 1d6 + Str mod; flammable obj ignite, not worn or carried; +1d6 at CL 5, 11, and 17"
+    description : "Melee spell atk; 1d6 + Str mod; flammable obj ignite, not worn or carried; +1d6 at CL 5, 11, and 17",
+    descriptionCantripDie : "Melee spell atk; `CD`d6 + Str mod; flammable obj ignite, not worn or carried"
 }
 // Windchasers Sign
 SpellsList["wind thrust"] = {
@@ -1112,4 +1187,18 @@ SpellsList["wind thrust"] = {
 	duration : "Instantaneous",
     save : "Str",
     description : "30ft long, 5ft wide line; first crea save or push 10ft; medium < obj push 10ft; can push myself 10ft back"
+}
+// Waterdancers Sign
+SpellsList["water bolt"] = {
+    name : "Water Bolt",
+    source : [["A:TSV2", 12]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "60 ft",
+	components : "S",
+	duration : "Instantaneous",
+    description : "1 crea I can see within range, melee spell atk, takes 1d8 cold dmg; +1d8 at CL 5, 11, 17",
+    descriptionCantripDie : "1 crea I can see within range, melee spell atk, takes `CD`d8 cold dmg"
 }
