@@ -88,10 +88,6 @@ ClassList["shaper"] = {
                 return (n < 5 ? 1 : n < 9 ? 2 : n < 13 ? 3 : n < 17 ? 4 : n < 20 ? 5 : 17)
             }),
             extraname : "Commands",
-            toNotesPage : [{
-                name : "Known Commands",
-                note : desc(["I learn additional commands based on my shaper level. All known commands will be shown below."])
-            }],
             "attack": {
                 name: "Attack",
                 source: [["A:TSV2", 17]],
@@ -100,8 +96,7 @@ ClassList["shaper"] = {
                     name: "Attack",
                     note: desc([
                         "1 crea of choice that can hear me within 30 ft uses its reaction to make an opportunity attack vs a crea of my choice within its range. If no reaction is available, this command has no effect"
-                    ]),
-                    amendTo: "Known Commands"
+                    ]) 
                 }]
             },
             "brace": {
@@ -112,8 +107,7 @@ ClassList["shaper"] = {
                     name: "Brace",
                     note: desc([
                         "A number of crea(s) equal to my Wisdom mod that can hear me gain resistance to bludgeon., pierce., and slash. damage until end of my next turn"
-                    ]),
-                    amendTo: "Known Commands"
+                    ]) 
                 }]
             },
             "change": {
@@ -124,8 +118,7 @@ ClassList["shaper"] = {
                     name: "Change",
                     note: desc([
                         "1 medium or smaller, non-magical object not being worn or carried and I am touching changes elements. Change to or from the following elements: fire, smoke, air, stone, sand, wood, water, ice, steel, or iron. A larger object is affected by an area up to a 5 by 5 ft around the surface I touched"
-                    ]),
-                    amendTo: "Known Commands"
+                    ])
                 }]
             },
             "drop": {
@@ -136,8 +129,7 @@ ClassList["shaper"] = {
                     name: "Drop",
                     note: desc([
                         "A number of crea(s) equal to my Wisdom mod that can hear me drops whatever they're carrying in their hands. Items held but also attached, such as a shield with straps, are not dropped"
-                    ]),
-                    amendTo: "Known Commands"
+                    ])
                 }]
             },
             "endure": {
@@ -148,8 +140,7 @@ ClassList["shaper"] = {
                     name: "Endure",
                     note: desc([
                         "1 crea of choice that can hear me within 30 ft automatically succeeds all saving throws until the end of its next turn"
-                    ]),
-                    amendTo: "Known Commands"
+                    ])
                 }]
             },
             "stop": {
@@ -160,8 +151,7 @@ ClassList["shaper"] = {
                     name: "Stop",
                     note: desc([
                         "1 crea of choice that can hear me within 60 ft instantly stops. Their speed is 0 and cannot willingly move until the end of their next turn"
-                    ]),
-                    amendTo: "Known Commands"
+                    ])
                 }]
             },
             "fall": {
@@ -172,8 +162,7 @@ ClassList["shaper"] = {
                     name: "Fall",
                     note: desc([
                         "1 crea of choice that can hear me within 60 ft falls prone. A creature flying falls 30 ft down at great speeds, and if they hit the ground, they take 6d6 bludgeoning and cannot fly again until the end of their next turn"
-                    ]),
-                    amendTo: "Known Commands"
+                    ]) 
                 }]
             },
             "jump": {
@@ -184,8 +173,7 @@ ClassList["shaper"] = {
                     name: "Jump",
                     note: desc([
                         "I immediately jump 30 ft in a direction of choice."
-                    ]),
-                    amendTo: "Known Commands"
+                    ])  
                 }]
             },
             "disappear": {
@@ -197,8 +185,7 @@ ClassList["shaper"] = {
                     note: desc([
                         "I silently shift into the Ethereal Plane for 1 min, and can reappear on the Material Plane at the start of any of my turns. I can see/hear out to 60 ft from the plane I came from, but everything looks gray. While on the Ethereal Plane, I move at half my speed and can ony be affected by creatures on that plane. Creatures that aren't on this plane cannot interact/perceive me unless an item/ability allows them to. I ignore all objects and effects not affecting this plane, allowing me to move through objects I perceive on the plane I came from.",
                         "When this effect ends, I return to the plane I came from in the spot I am currently standing. If I occupy a solid object or creature, I am shunted out to the nearest unoccupied space and take force damage equal to twice the number of ft I was moved."
-                    ]),
-                    amendTo: "Known Commands"
+                    ])     
                 }]
             },
             "water (prereq: waterdancer)" : {
@@ -213,8 +200,7 @@ ClassList["shaper"] = {
                     name: "Water",
                     note: desc([
                         "I create a passage between two stretches of land no more than 1 mile apart separated by water. The passage can be up to 15ft wide and can take any form I want."
-                    ]),
-                    amendTo: "Known Commands"
+                    ])
                 }]
             },
             "wind (prereq: windchaser)" : {
@@ -229,8 +215,7 @@ ClassList["shaper"] = {
                     name: "Wind",
                     note: desc([
                         "A number of medium crea(s) equal to my Wisdom mod, or 1 large crea, within 60 ft Strength save or knocked prone."
-                    ]),
-                    amendTo: "Known Commands"
+                    ])
                 }]
             },
             "earth (prereq: earthbreaker)" : {
@@ -245,8 +230,7 @@ ClassList["shaper"] = {
                     name: "Earth",
                     note: desc([
                         "If my Earthly Barrier ability is active, a number of crea(s) equal to my Wisdom mod gain its benefits."
-                    ]),
-                    amendTo: "Known Commands"
+                    ])
                 }]
             },
             "fire (prereq: flamecaller)" : {
@@ -261,8 +245,7 @@ ClassList["shaper"] = {
                     name: "Fire",
                     note: desc([
                         "Crea(s), up to twice my Prof. bonus, of choice that I can see within 60 ft burst into flames. Each crea takes fire dmg equal to twice the damage I took from using this command, and catch fire as per my Living Fire ability."
-                    ]),
-                    amendTo: "Known Commands"
+                    ])
                 }]
             },
             "break (prereq: wordbearer)" : {
@@ -277,8 +260,7 @@ ClassList["shaper"] = {
                     name: "Break",
                     note: desc([
                         "1 obj medium or smaller within 30 ft breaks irreparably."
-                    ]),
-                    amendTo: "Known Commands"
+                    ])
                 }]
             },
             "run (prereq: wordbearer)" : {
@@ -293,8 +275,7 @@ ClassList["shaper"] = {
                     name: "Run",
                     note: desc([
                         "A number of crea(s) equal to my Wisdom mod, within 30 ft that can hear me use their rea to move half their speed away from me. If they have no rea, nothing happens."
-                    ]),
-                    amendTo: "Known Commands"
+                    ])
                 }]
             },
             "shift (prereq: wordbearer)" : {
@@ -309,8 +290,7 @@ ClassList["shaper"] = {
                     name: "Shift",
                     note: desc([
                         "I teleport to an unoccupied space that I can see within 120 ft. I can take a willing, medium crea."
-                    ]),
-                    amendTo: "Known Commands"
+                    ])
                 }]
             },
             "mend (prereq: wordbearer)" : {
@@ -325,8 +305,7 @@ ClassList["shaper"] = {
                     name: "Mend",
                     note: desc([
                         "A medium or smaller obj within 30 ft returns to previous version of itself. A book recovers lost pages, eaten apple is made whole, etc."
-                    ]),
-                    amendTo: "Known Commands"
+                    ])          
                 }]
             }            
         },
@@ -723,6 +702,94 @@ ClassList["shaper"] = {
     }
 }
 
+AddSubClass("shaper", "flamecaller", {
+    regExpSearch : /flamecaller/i,
+	subname : "Flamecaller",
+    source : [["A:TSV2", 10]],
+    features : {
+        "subclassfeature3" : {
+            name : "Shape of Fire",
+            source : [["A:TSV2", 10]],
+            minlevel : 3,
+            description : desc([
+                "Living Fire: I gain resistance to fire damage, and when I hit a creature with a Fire Imbued Weapon, I set them ablaze, unless they can't be set on fire. They take fire damage at the start of each of their turns for a minute, until doused, or use their action to put out the flames.",
+                "Fire Control: I also learn the Control Flames cantrip.",
+            ]),
+            spellcastingBonus : [{
+                name : "Fire Control",
+                spells : ["control flames"],
+                selection : ["control flames"],
+                times : 1
+            }],
+            dmgres : ["Fire"],
+            calcChanges : {
+                atkAdd : [
+                    function(fields, v) { 
+                        if(/(imbued|infused)/i.test(v.WeaponTextName) && (/fire/i).test(v.WeaponTextName)) {
+                            fields.Description += (fields.Description ? '; ' : '' ) + "Living Fire"
+                        }
+                    },
+                    "When I have a fire infused weapon, I set creatures I hit ablaze."
+                ]
+            },
+            additional : levels.map(function(n) {
+                return n < 14 ? "1d4" : "1d6"
+            })
+        },
+        "subclassfeature3.1" : {
+            name : "Shape Sign: Fire Punch",
+            source : [["A:TSV2", 10]],
+            minlevel : 3,
+            description : desc([
+                "I learn the Fire Punch sign."
+            ]),
+            spellcastingBonus : [{
+                name : "Fire Punch",
+                spells : ["fire punch"],
+                selection : ["fire punch"],
+                times : 1
+            }]
+        },
+        "subclassfeature6" : {
+            name : "Chaotic Ignition",
+            source : [["A:TSV2", 10]],
+            minlevel : 6,
+            description : desc([
+                "I ignore fire resistance, but not immunity"
+            ])
+        },
+        "subclassfeature10" : {
+            name : "Flame of Determination",
+            source : [["A:TSV2", 10]],
+            minlevel : 10,
+            description : desc([
+                "If my weapon is infused with fire, it deals extra damage equal to my Wisdom mod once per turn"
+            ]),
+            calcChanges : {
+                atkAdd : [
+                    function(fields, v) {
+                        if(/(imbued|infused)/i.test(v.WeaponTextName) && (/fire/i).test(v.WeaponTextName)) {
+                            fields.Description += (fields.Description ? '; ' : '' ) + "Once per turn +" + What('Wis Mod') + " fire dmg";
+                        }
+                    },
+                    "When I have a fire infused weapon, I set creatures I hit ablaze."
+                ]
+            },
+            usages : 1,
+            recovery : "Turn"
+        },
+        "subclassfeature14" : {
+            name : "Blazing Soul",
+            source : [["A:TSV2", 10]],
+            minlevel : 14,
+            description : desc([
+                "My Living Fire damage is increased to 1d6, I gain immunity to fire damage, and I treat fire immunity as if it were resistance"
+            ]),
+            savetxt : { immune : ["fire"] }
+        }
+    }
+})
+
 spellSchoolList["Sign"] = "signs of power"
 
 SpellsList["disturbance"] = {
@@ -937,94 +1004,6 @@ SpellsList["extend infusion"] = {
 	duration : "Instantaneous",
     description : "Infusion extended to 10 min; can only be used once per infusion"
 }
-
-AddSubClass("shaper", "flamecaller", {
-    regExpSearch : /flamecaller/i,
-	subname : "Flamecaller",
-    source : [["A:TSV2", 10]],
-    features : {
-        "subclassfeature3" : {
-            name : "Shape of Fire",
-            source : [["A:TSV2", 10]],
-            minlevel : 3,
-            description : desc([
-                "Living Fire: I gain resistance to fire damage, and when I hit a creature with a Fire Imbued Weapon, I set them ablaze, unless they can't be set on fire. They take fire damage at the start of each of their turns for a minute, until doused, or use their action to put out the flames.",
-                "Fire Control: I also learn the Control Flames cantrip.",
-            ]),
-            spellcastingBonus : [{
-                name : "Fire Control",
-                spells : ["control flames"],
-                selection : ["control flames"],
-                times : 1
-            }],
-            dmgres : ["Fire"],
-            calcChanges : {
-                atkAdd : [
-                    function(fields, v) { 
-                        if(/(imbued|infused)/i.test(v.WeaponTextName) && (/fire/i).test(v.WeaponTextName)) {
-                            fields.Description += (fields.Description ? '; ' : '' ) + "Living Fire"
-                        }
-                    },
-                    "When I have a fire infused weapon, I set creatures I hit ablaze."
-                ]
-            },
-            additional : levels.map(function(n) {
-                return n < 14 ? "1d4" : "1d6"
-            })
-        },
-        "subclassfeature3.1" : {
-            name : "Shape Sign: Fire Punch",
-            source : [["A:TSV2", 10]],
-            minlevel : 3,
-            description : desc([
-                "I learn the Fire Punch sign."
-            ]),
-            spellcastingBonus : [{
-                name : "Fire Punch",
-                spells : ["fire punch"],
-                selection : ["fire punch"],
-                times : 1
-            }]
-        },
-        "subclassfeature6" : {
-            name : "Chaotic Ignition",
-            source : [["A:TSV2", 10]],
-            minlevel : 6,
-            description : desc([
-                "I ignore fire resistance, but not immunity"
-            ])
-        },
-        "subclassfeature10" : {
-            name : "Flame of Determination",
-            source : [["A:TSV2", 10]],
-            minlevel : 10,
-            description : desc([
-                "If my weapon is infused with fire, it deals extra damage equal to my Wisdom mod once per turn"
-            ]),
-            calcChanges : {
-                atkAdd : [
-                    function(fields, v) {
-                        if(/(imbued|infused)/i.test(v.WeaponTextName) && (/fire/i).test(v.WeaponTextName)) {
-                            fields.Description += (fields.Description ? '; ' : '' ) + "Once per turn +" + What('Wis Mod') + " fire dmg";
-                        }
-                    },
-                    "When I have a fire infused weapon, I set creatures I hit ablaze."
-                ]
-            },
-            usages : 1,
-            recovery : "Turn"
-        },
-        "subclassfeature14" : {
-            name : "Blazing Soul",
-            source : [["A:TSV2", 10]],
-            minlevel : 14,
-            description : desc([
-                "My Living Fire damage is increased to 1d6, I gain immunity to fire damage, and I treat fire immunity as if it were resistance"
-            ]),
-            savetxt : { immune : ["fire"] }
-        }
-    }
-})
 
 SpellsList["fire punch"] = {
     name : "Fire Punch",
