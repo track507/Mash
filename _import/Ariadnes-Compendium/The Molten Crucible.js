@@ -12,14 +12,6 @@ if(!SourceList["A:CoS"]) {
     };
 }
 
-if(!CompanionList["ariadne's companion codex"]) {
-    CompanionList["ariadne's companion codex"] = {
-        name : "Ariadne's Companion Codex",
-        nameMenu : "Companion",
-        source : [["A:CoS", 0]]
-    }
-}
-
 SourceList["A:TMC"] = {
     name : "Ariadne's: The Molten Crucible",
     abbreviation : "A:TMC",
