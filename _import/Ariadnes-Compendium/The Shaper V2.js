@@ -945,6 +945,89 @@ AddSubClass("shaper", "waterdancer", {
     }
 })
 
+AddSubClass("shaper", "earthbreaker", {
+    regExpSearch : /earthbreaker/i,
+    subname : "Earthbreaker",
+    source : [["A:TSV2", 13]],
+    features : {
+        "subclassfeature3" : {
+            name : "Shape of Earth",
+            source : [["A:TSV2", 13]],
+            minlevel : 3,
+            description : desc([
+                "\u2022 Earthly Barrier: I gain 10 temp hp as my skin hardens, creating a barrier. Once broken, the barrier regrows after one minute of not taking damage.",
+                "\u2022 Immovable: I gain a +1 to AC and advantage on Strength saving throws if I didn't move on my last turn."
+            ]),
+            extraLimitedFeatures : [{
+                name : "Earthly Barrier",
+                usages : 1,
+                recovery : "min",
+                additional : "no damage within last minute"
+            }, {
+                name : "Immovable",
+                usages : 1,
+                recovery : "turn",
+                additional : "did not move last turn"
+            }],
+        },
+        "subclassfeature3.1" : {
+            name : "Shape Sign: Blessing of Stone",
+            source : [["A:TSV2", 13]],
+            minlevel : 3,
+            description : desc([
+                "I learn the Blessing of Stone sign."
+            ]),
+            spellcastingBonus : [{
+                name : "Blessing of Stone",
+                spells : ["blessing of stone"],
+                selection : ["blessing of stone"],
+                times : 1
+            }]
+        },
+        "subclassfeature6" : {
+            name : "Shattering Strike",
+            source : [["A:TSV2", 13]],
+            minlevel : 6,
+            description : desc([
+                "When my Earthly Barrier is broken, I can use my reaction to make an opportunity attack against a creature within my melee range. This attack does additional force damage equal to my Earthly Barrier to all creatures in a 15 ft cone in front of me. A creature hit by this attack must succeed a Strength saving throw or be knocked prone."
+            ]),
+            action : ["reaction", ""]
+        },
+        "subclassfeature10" : {
+            name : "Greater Barrier",
+            source : [["A:TSV2", 13]],
+            minlevel : 10,
+            description : desc([
+                "My Earthly Barrier now grants me 15 temp hp, and when it is broken, I gain a +2 to my Strength until the end of my next turn."
+            ])
+        },
+        "subclassfeature14" : {
+            name : "Earthbreaker Boulder Throw",
+            source : [["A:TSV2", 13]],
+            minlevel : 14,
+            description : desc([
+                "Once per long rest, I can use my action to hit the ground and heave a great boulder. I then magically launch it at a point within 120 ft of me. Each creature must make a Dexterity saving throw, taking 5d12 bludgeoning damage, or half a on success."
+            ]),
+            action : ["action", ""],
+            usages : 1,
+            recovery : "long rest",
+            weaponsAdd : ["Earthbreaker Boulder Throw"],
+            weaponOptions : [{
+                regExpSearch : /earthbreaker boulder throw/i,
+                name : "Earthbreaker Boulder Throw",
+                source : [["A:TSV2", 13]],
+                type : "AlwaysProf",
+                ability : 5,
+                abilitytodamage : false,
+                damage : [5, 12, "bludgeoning"],
+                range : "120 ft",
+                description : "Success halves",
+                dc : true
+            }]
+        }
+    }
+})
+
 spellSchoolList["Sign"] = "signs of power"
 
 SpellsList["disturbance"] = {
@@ -1201,4 +1284,17 @@ SpellsList["water bolt"] = {
 	duration : "Instantaneous",
     description : "1 crea I can see within range, melee spell atk, takes 1d8 cold dmg; +1d8 at CL 5, 11, 17",
     descriptionCantripDie : "1 crea I can see within range, melee spell atk, takes `CD`d8 cold dmg"
+}
+// Earthbreakers Sign
+SpellsList["blessing of stone"] = {
+    name : "Blessing of Stone",
+    source : [["A:TSV2", 12]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Self",
+	components : "S",
+	duration : "1 min",
+    description : "slash, blud, or pierce resistance; Earthly Barrier regrow immediately below half max hp",
 }
