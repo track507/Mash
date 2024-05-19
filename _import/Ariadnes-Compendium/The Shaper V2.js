@@ -74,7 +74,7 @@ ClassList["shaper"] = {
             minlevel : 1,
             description : desc([
                 "I learn a command of my choice, and gain more with my shaper level, and can use a command only on my turn, no action required. Creatures that have legendary actions or a Wisdom score higher than 19 are not affected by commands",
-                "After using a command, my vocal chords bleed and I take 1d6 force damage that cannot be reduced in anyway. This damage increases by 1d6 at CL 5, 9, 13, and 17. I cannot use a command if I cannot speak"
+                "After using a command, my vocal chords bleed and I take 1d6 force damage that cannot be reduced in anyway, and I cannot speak for a round after I use it. This damage increases by 1d6 at CL 5, 9, 13, and 17. I cannot use a command if I cannot speak"
             ]),
             usages : levels.map(function(n) {
                 return n < 9 ? 1 : n < 17 ? 2 : 3;
@@ -1028,6 +1028,73 @@ AddSubClass("shaper", "earthbreaker", {
     }
 })
 
+AddSubClass("shaper", "wordbearer", {
+    regExpSearch : /wordbearer/i,
+    subname : "Wordbearer",
+    source : [["A:TSV2", 14]],
+    spellcastingList : {
+		class : "any",
+		level : [1, 5],
+	},
+    features : {
+        "subclassfeature3" : {
+            name : "Shape of Wind",
+            source : [["A:TSV2", 14]],
+            minlevel : 3,
+            description : desc([
+                "\u2022 Improved Commands: I gain an additional of my Command feature.",
+                "\u2022 Expanded Spellbook: I can learn spells from any class's spell list, not just the druid's."
+            ]),
+            extraLimitedFeatures : [{
+                name : "Commands",
+                usages : 1,
+                recovery : "long rest",
+                addToExisting : true
+            }]
+        },
+        "subclassfeature" : {
+            name : "Shape Sign: Soothe Mind",
+            source : [["A:TSV2", 14]],
+            minlevel : 3,
+            description : desc([
+                "I learn the Soothe Mind sign."
+            ]),
+            spellcastingBonus : [{
+                name : "Smoothe Wind",
+                spells : ["soothe mind"],
+                selection : ["soothe mind"],
+                times : 1
+            }]
+        },
+        "subclassfeature6" : {
+            name : "Greater Arcana",
+            source : [["A:TSV2", 14]],
+            minlevel : 6,
+            description : desc([
+                "I no longer need an Imbued Weapon or any spellcasting focus to cast spells. Additionally, I can cast a 2nd level or lower spell without expending a spell slot by expending a use of my Imbue Weapon feature."
+            ])
+        },
+        "subclassfeature10" : {
+            name : "Tenacious Voice",
+            source : [["A:TSV2", 14]],
+            minlevel : 10,
+            description : desc([
+                "I no longer damage myself using Commands and no longer silenced afterwards."
+            ])
+        },
+        "subclassfeature14" : {
+            name : "Ascended Will",
+            source : [["A:TSV2", 14]],
+            minlevel : 14,
+            description : desc([
+                "Once per long rest, I can use my action to choose a number of creatures equal to my Proficiency bonus within 60 ft to make a Wisdom saving throw against my spell save DC. On a fail, they are stunned until the end of their next turn, and if they are CR 4 or lower, they fall unconscious."
+            ]),
+            usages : 1,
+            recovery : "long rest"
+        }
+    }
+})
+
 spellSchoolList["Sign"] = "signs of power"
 
 SpellsList["disturbance"] = {
@@ -1288,7 +1355,7 @@ SpellsList["water bolt"] = {
 // Earthbreakers Sign
 SpellsList["blessing of stone"] = {
     name : "Blessing of Stone",
-    source : [["A:TSV2", 12]],
+    source : [["A:TSV2", 13]],
     classes : ["shaper"],
     level : 0,
 	school : "Sign",
@@ -1297,4 +1364,18 @@ SpellsList["blessing of stone"] = {
 	components : "S",
 	duration : "1 min",
     description : "slash, blud, or pierce resistance; Earthly Barrier regrow immediately below half max hp",
+}
+// Wordbearer's Sign
+SpellsList["soothe mind"] = {
+    name : "Soothe mind",
+    source : [["A:TSV2", 14]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "60 ft",
+	components : "S",
+	duration : "1 rnd",
+    save : "Wis",
+    description : "1 crea save or disadv. on next roll; crea not aware they are the target of this spell",
 }
