@@ -14,6 +14,8 @@ SourceList["A:BS"] = {
 
     ANY SPELLS THAT ARE ON OTHER PDFS OR COMPENDIUMS WILL BE LISTED HERE AND COMMENTED OUT TO PREVENT OVERLAPPING SPELLS
 
+    This is a backburner project. These spells are mostly from released PDF's and posts, but some are not in the corresponding PDF's or posts.
+
 */
 
 SpellsList["dark tides"] = {
