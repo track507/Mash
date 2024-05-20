@@ -63,7 +63,7 @@ ClassList["shaper"] = {
 		spells : [0,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11]
     },
 	spellcastingList : {
-		class : ["druid"],
+		"class" : "druid",
 		level : [1, 5],
 	},
     attacks : [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
@@ -352,9 +352,7 @@ ClassList["shaper"] = {
                     function(spList, spName, spType) {
                         if(spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
                         if (!spList.notspells) spList.notspells = [];
-                        // changed to any since this class does not get access to cantrips.
-                        // Also helps with Wordbearer
-                        var dCantrips = CreateSpellList({"class" : "any", level : [0,0]}, false, false, false);
+                        var dCantrips = CreateSpellList({"class" : "druid", level : [0,0]}, false, false, false);
                         spList.notspells = spList.notspells.concat(dCantrips);
                     }
                 ]
@@ -1034,10 +1032,6 @@ AddSubClass("shaper", "wordbearer", {
     regExpSearch : /wordbearer/i,
     subname : "Wordbearer",
     source : [["A:TSV2", 14]],
-    spellcastingList : {
-		class : "any",
-		level : [1, 5],
-	},
     features : {
         "subclassfeature3" : {
             name : "Shape of Wind",
@@ -1052,9 +1046,18 @@ AddSubClass("shaper", "wordbearer", {
                 usages : 1,
                 recovery : "long rest",
                 addToExisting : true
-            }]
+            }],
+            calcChanges : {
+                spellList :[
+                    function(spList, spName, spType) {
+                        if(spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                        var aSpells = CreateSpellList({"class" : "any", level : [1,5]}, false, false, false);
+                        spList.extraspells = spList.extraspells.concat(aSpells);
+                    }
+                ]
+            }
         },
-        "subclassfeature" : {
+        "subclassfeature3.1" : {
             name : "Shape Sign: Soothe Mind",
             source : [["A:TSV2", 14]],
             minlevel : 3,
@@ -1126,7 +1129,7 @@ SpellsList["elemental protection"] = {
 }
 
 SpellsList["force shift"] = {
-    name : "Force Fhift",
+    name : "Force Shift",
     source : [["A:TSV2", 15]],
     classes : ["shaper"],
     level : 0,
