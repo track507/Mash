@@ -352,7 +352,9 @@ ClassList["shaper"] = {
                     function(spList, spName, spType) {
                         if(spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
                         if (!spList.notspells) spList.notspells = [];
-                        var dCantrips = CreateSpellList({"class" : "druid", level : [0,0]}, false, false, false);
+                        // changed to any since this class does not get access to cantrips.
+                        // Also helps with Wordbearer
+                        var dCantrips = CreateSpellList({"class" : "any", level : [0,0]}, false, false, false);
                         spList.notspells = spList.notspells.concat(dCantrips);
                     }
                 ]
@@ -1060,7 +1062,7 @@ AddSubClass("shaper", "wordbearer", {
                 "I learn the Soothe Mind sign."
             ]),
             spellcastingBonus : [{
-                name : "Smoothe Wind",
+                name : "Soothe Mind",
                 spells : ["soothe mind"],
                 selection : ["soothe mind"],
                 times : 1
@@ -1367,7 +1369,7 @@ SpellsList["blessing of stone"] = {
 }
 // Wordbearer's Sign
 SpellsList["soothe mind"] = {
-    name : "Soothe mind",
+    name : "Soothe Mind",
     source : [["A:TSV2", 14]],
     classes : ["shaper"],
     level : 0,
