@@ -677,8 +677,8 @@ SpellsList["radiant weapon"] = {
     descriptionFull : "You conjure any weapon that you are proficient with. This weapon has a +2 to attack and damage rolls and deals radiant damage instead of its usual damage type. Additionally, you can use Charisma instead of Strength or Dexterity for the attack and damage rolls."  + AtHigherLevels + "When you cast this spell using a spell slot of 4th level or higher, the spell no longer requires concentration."
 };
 
-SpellsList["prayers of war"] = {
-    name : "Prayers of War",
+SpellsList["hymn of honor"] = {
+    name : "Hymn or Honor",
     regExpSearch : /\+? ?(my )?spell(casting)? (ability )?mod(ifier)?/i,
     source : [["A:TAFI", 30]],
     level : 4,
@@ -689,7 +689,7 @@ SpellsList["prayers of war"] = {
     components : "V,S",
     duration : "Conc, 1 min",
     description : "my spell mod crea in 30+10/SL ft; +15 ft speed, +2 to AC, +3 to atk and dmg rolls; action to concentrate",
-    descriptionFull : "You can choose number of creatures within 30 ft equal to my spell casting ability modifier. These creatures have their speed increased by 15 ft, +2 to their AC, and gain a +3 to their attack and damage rolls, but you must use your action on each of your turns to maintain concentration." + AtHigherLevels + "When you cast this spel using a spell slot of 5th level or higher, the hymn's range increases by 10ft"
+    descriptionFull : "You can choose number of creatures within 30 ft equal to my spell casting ability modifier. These creatures have their speed increased by 15 ft, +2 to their AC, and gain a +3 to their attack and damage rolls, but you must use your action on each of your turns to maintain concentration." + AtHigherLevels + "When you cast this spell using a spell slot of 5th level or higher, the hymn's range increases by 10ft"
 };
 
 SpellsList["divine judgement"] = {
