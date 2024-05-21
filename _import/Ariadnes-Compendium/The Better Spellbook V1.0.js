@@ -91,22 +91,22 @@ SpellsList["eldritch oblation"] = {
     description : "Gain a Gift; can't regain a gift unless it's servitude; DM's Discretion; see B.",
     descriptionFull : "You can sacrifice a number of creatures up to your spellcasting ability modifier. Under the discretion of the DM, you may ask for a great boon from the beyond in proportion to your sacrifice; not all souls are weighted equal. These eldritch blessings can take froms of the following. Gift of Form: You can use your action to shapechange into a creature you sacrified. You use the creature's statistics and abilities, but keep your Intelligence. Your HP is whichever is greater. Gift of Servitude: You gain a feat chosen by the DM, can cast this spell at 6th level, and this boon turns you into a Harbringer Shaman (or even Harbringer Queen depending on the value of the sacrifices). Gift of Eyes: You can now cast Foresight once per day without expending a spell slot. Gift of Blood: You gain half your current max HP as temp. HP after every long rest, one fourth after every short rest. These HP do not stack after a rest, the max you can have is half of your max HP. These boons are just examples. You cannot gain the benefits of a boon twice unless it's servitude. After casting this spell, you gain an unexplainable affliction; bad luck, forgetting loved ones, or always feeling euphoric. The DM chooses your affliction"
 };
-if(!SpellsList["thunderous crimson"]) {
-    SpellsList["thunderous crimson"] = {
-        name : "Thunderous Crimson",
-        source : [["A:BS", 6]],
-        level : 1,
-        school : "Evoc",
-        classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
-        time : "1 a",
-        range : "S:30-ft cone",
-        components : "V,S",
-        duration : "Instantaneous",
-        save : "Dex",
-        description : "4d4+2d4/SL Lightning dmg, dazzled until end of their next turn; save no dmg, not dazzled",
-        descriptionFull : "You summon a wave of crackling red lightning that travels in a 30 foot cone in front of you. Each crea in that area must succeed a Dexterity save or suffer 4d4 lightning damage and be dazzled until the end of their next turn" + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 2d4 for each slot about 1st level."
-    };
-}
+
+SpellsList["thunderous crimson"] = {
+    name : "Thunderous Crimson",
+    source : [["A:BS", 6]],
+    level : 1,
+    school : "Evoc",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "S:30-ft cone",
+    components : "V,S",
+    duration : "Instantaneous",
+    save : "Dex",
+    description : "4d4+2d4/SL Lightning dmg, dazzled until end of their next turn; save no dmg, not dazzled",
+    descriptionFull : "You summon a wave of crackling red lightning that travels in a 30 foot cone in front of you. Each crea in that area must succeed a Dexterity save or suffer 4d4 lightning damage and be dazzled until the end of their next turn" + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 2d4 for each slot about 1st level."
+};
+
 SpellsList["ariadne's mimicry"] = {
     name : "Ariadne's Mimicry",
     source : [["A:BS", 6]],
@@ -122,22 +122,22 @@ SpellsList["ariadne's mimicry"] = {
     description : "Save or transform crea with at least 1 HP into object; Transforms back as bns or 10 damage dealt",
     descriptionFull : "A creature that you can see within range with at least 1HP makes a Wisdom saving throw or transforms into a common object, large or smaller. A shapechanger automatically succeeds on the save. This transformation lasts for the duration or until the creature takes 10 damage. The creatures statistsics are replaced with the chosen object, but it retains it alignment and personality. You can use your bonus action to transform the creature back to its original form and have it act immediately. This creature is also unable to speak, cast spells, or take any action that requires hands or speech. Their gear also melds into the chosen object, and can't activate, use, wield, or otherwise benefit from any of its equipment. While in object form, the creature can move up to half its speed by magical means."
 };
-if(!SpellsList["death and despair"]) {
-    SpellsList["death and despair"] = {
-        name : "Death and Despair",
-        source : [["A:BS", 6]],
-        level : 8,
-        school : "Necro",
-        classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
-        time : "1 a",
-        range : "90 ft",
-        components : "V,S",
-        duration : "Conc, 1 min",
-        save : "Con",
-        description : "30ft wide, 10ft tall cylinder; all crea 12d6 Necrotic dmg and demoralized; save halves and not demoralized; see desc.",
-        descriptionFull : "Choose a 30 ft radius surface you can see within range. All creatures that are within 10 ft high of the surface must make a Constitution saving throw taking 12d6 Necrotic damage, or half as much on a save. A creature must make a save when it enters the spells area for the first time or ends its turn there. Nonmagical plants with and die, while magical plants receive double damage. All creatures damaged by this spell at least twice must make a Wisdom saving throw or become demoralized. A demoralized creature has its speed reduced to 0 and falls to its knees in absolute despair."
-    };
-}
+
+SpellsList["death and despair"] = {
+    name : "Death and Despair",
+    source : [["A:BS", 6]],
+    level : 8,
+    school : "Necro",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "90 ft",
+    components : "V,S",
+    duration : "Conc, 1 min",
+    save : "Con",
+    description : "30ft wide, 10ft tall cylinder; all crea 12d6 Necrotic dmg and demoralized; save halves and not demoralized; see B.",
+    descriptionFull : "Choose a 30 ft radius surface you can see within range. All creatures that are within 10 ft high of the surface must make a Constitution saving throw taking 12d6 Necrotic damage, or half as much on a save. A creature must make a save when it enters the spells area for the first time or ends its turn there. Nonmagical plants with and die, while magical plants receive double damage. All creatures damaged by this spell at least twice must make a Wisdom saving throw or become demoralized. A demoralized creature has its speed reduced to 0 and falls to its knees in absolute despair."
+};
+
 SpellsList["runo's coin throw"] = {
     name : "Runo's Coin Throw",
     source : [["A:BS", 7]],
@@ -231,7 +231,8 @@ SpellsList["astrologist's reading"] = {
     level : 1,
     school : "Div",
     classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
-    time : "0.5 min", //this might cause issues as normally there aren't spells with a casting time of 'seconds'
+    time : "5 rnd",
+    //time : "0.5 min", //this might cause issues as normally there aren't spells with a casting time of 'seconds'
     timeFull : "This spell has a casting time of 30 seconds",
     range: "10 ft",
     components : "S",
@@ -358,7 +359,7 @@ SpellsList["greater identify"] = {
     duration : "Instantaneous",
     components : "V,S,M",
     compMaterial : "A pearl worth at least 500 gp and an owl feather",
-    description : "magic item/imbued crea/obj; learn properties, use, affecting spells, prev. 3 users and their actions, traps/malicious design, created by spell; Crea, learn 3 highest spells and last spell casted",
+    description : "magic item/imbued crea/obj; learn properties, use, affecting spells, prev. 3 users and their actions; see B.",
     descriptionFull : "I choose one magical item or magic-imbued object or creature. I learn its properties and how to use them, whether or not it requires attunement, and how many charges it has, if any. I learn the identities of its three previous users, and the most significant actions they took with it. I also learn any hidden compartments, traps, or malicious design concealed within the object. I learn if any spells are affecting the item and what they are. If the item was created by a spell, I learn which spell created it. Additionally, I decipher compatibilities and dissonances of the object with different magical auras, learning if the item would react to planar energies such as chaotic, lawful, good, and evil aura and effects. If it's a creature, I learn what spells or magical effects, if any, are currently affecting it. I also learn the three highest level spells the creature can cast, and the lasat spell it casted."
 }
 
@@ -419,7 +420,7 @@ SpellsList["confiscate"] = {
     components : "S,M",
     compMaterial : "a platinum magnet",
     save : "Cha",
-    description : "1 wondrous item; Crea attuned, save or interrupted until I lose conc; Break attune after 1 min, I can instant attune, unless sentient/Artifact or 9/SL; 1 bns pull 30 ft Athletics check vs my spell save DC",
+    description : "1 wondrous item; Crea attuned, save or interrupted until I lose conc; see B.",
     descriptionFull : "I target a wondrous item I can see within range. If a creature is attuned to it, they must succeed a Charisma saving throw or have their attunement interrupted for as long as I maintain concentration on the spell. If I concentrate for the full minute, their attunement is broken and I can choose to instantly attune to it in their stead. Sentient items or Artifacts are unaffected, unless I cast this spell using a 9th level spell slot. Additionally, while I concentrate on this spell, I can use my bonus action to magically pull the targeted item 30 feet towards me, catching it if I have a free hand to do so when it reaches me. If a creature is carrying it, it must make a Strength (Athletics) check against my spell save DC to prefvent the item from being torn from their possession."
 }
 
@@ -584,7 +585,7 @@ SpellsList["radiant weapon"] = {
     components : "V,S,M",
     compMaterial : "a holy symbol worth at least 50 gp, which the spell consumes",
     duration : "Conc, 1 hr",
-    description : "Create +2 weapon I am proficient with, dealing radiant dmg; uses Cha instead of Str or Dex; see full desc",
+    description : "Create +2 weapon I am proficient with, dealing radiant dmg; uses Cha instead of Str or Dex; see B.",
     descriptionFull : "You conjure any weapon that you are proficient with. This weapon has a +2 to attack and damage rolls and deals radiant damage instead of its usual damage type. Additionally, you can use Charisma instead of Strength or Dexterity for the attack and damage rolls."  + AtHigherLevels + "When you cast this spell using a spell slot of 4th level or higher, the spell no longer requires concentration."
 };
 
