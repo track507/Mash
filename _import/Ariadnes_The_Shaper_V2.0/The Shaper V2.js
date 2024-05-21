@@ -1,4 +1,4 @@
-var iFileName = "Ariadne's:_Shaper_V2";
+var iFileName = "Ariadne's:The_Shaper_V2";
 RequiredSheetVersion("13.1.13");
 
 SourceList["A:TSV2"] = {
@@ -63,7 +63,7 @@ ClassList["shaper"] = {
 		spells : [0,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11]
     },
 	spellcastingList : {
-		class : ["druid"],
+		"class" : "druid",
 		level : [1, 5],
 	},
     attacks : [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
@@ -74,7 +74,7 @@ ClassList["shaper"] = {
             minlevel : 1,
             description : desc([
                 "I learn a command of my choice, and gain more with my shaper level, and can use a command only on my turn, no action required. Creatures that have legendary actions or a Wisdom score higher than 19 are not affected by commands",
-                "After using a command, my vocal chords bleed and I take 1d6 force damage that cannot be reduced in anyway. This damage increases by 1d6 at CL 5, 9, 13, and 17. I cannot use a command if I cannot speak"
+                "After using a command, my vocal chords bleed and I take 1d6 force damage that cannot be reduced in anyway, and I cannot speak for a round after I use it. This damage increases by 1d6 at CL 5, 9, 13, and 17. I cannot use a command if I cannot speak"
             ]),
             usages : levels.map(function(n) {
                 return n < 9 ? 1 : n < 17 ? 2 : 3;
@@ -945,6 +945,161 @@ AddSubClass("shaper", "waterdancer", {
     }
 })
 
+AddSubClass("shaper", "earthbreaker", {
+    regExpSearch : /earthbreaker/i,
+    subname : "Earthbreaker",
+    source : [["A:TSV2", 13]],
+    features : {
+        "subclassfeature3" : {
+            name : "Shape of Earth",
+            source : [["A:TSV2", 13]],
+            minlevel : 3,
+            description : desc([
+                "\u2022 Earthly Barrier: I gain 10 temp hp as my skin hardens, creating a barrier. Once broken, the barrier regrows after one minute of not taking damage.",
+                "\u2022 Immovable: I gain a +1 to AC and advantage on Strength saving throws if I didn't move on my last turn."
+            ]),
+            extraLimitedFeatures : [{
+                name : "Earthly Barrier",
+                usages : 1,
+                recovery : "min",
+                additional : "no damage within last minute"
+            }, {
+                name : "Immovable",
+                usages : 1,
+                recovery : "turn",
+                additional : "did not move last turn"
+            }],
+        },
+        "subclassfeature3.1" : {
+            name : "Shape Sign: Blessing of Stone",
+            source : [["A:TSV2", 13]],
+            minlevel : 3,
+            description : desc([
+                "I learn the Blessing of Stone sign."
+            ]),
+            spellcastingBonus : [{
+                name : "Blessing of Stone",
+                spells : ["blessing of stone"],
+                selection : ["blessing of stone"],
+                times : 1
+            }]
+        },
+        "subclassfeature6" : {
+            name : "Shattering Strike",
+            source : [["A:TSV2", 13]],
+            minlevel : 6,
+            description : desc([
+                "When my Earthly Barrier is broken, I can use my reaction to make an opportunity attack against a creature within my melee range. This attack does additional force damage equal to my Earthly Barrier to all creatures in a 15 ft cone in front of me. A creature hit by this attack must succeed a Strength saving throw or be knocked prone."
+            ]),
+            action : ["reaction", ""]
+        },
+        "subclassfeature10" : {
+            name : "Greater Barrier",
+            source : [["A:TSV2", 13]],
+            minlevel : 10,
+            description : desc([
+                "My Earthly Barrier now grants me 15 temp hp, and when it is broken, I gain a +2 to my Strength until the end of my next turn."
+            ])
+        },
+        "subclassfeature14" : {
+            name : "Earthbreaker Boulder Throw",
+            source : [["A:TSV2", 13]],
+            minlevel : 14,
+            description : desc([
+                "Once per long rest, I can use my action to hit the ground and heave a great boulder. I then magically launch it at a point within 120 ft of me. Each creature must make a Dexterity saving throw, taking 5d12 bludgeoning damage, or half a on success."
+            ]),
+            action : ["action", ""],
+            usages : 1,
+            recovery : "long rest",
+            weaponsAdd : ["Earthbreaker Boulder Throw"],
+            weaponOptions : [{
+                regExpSearch : /earthbreaker boulder throw/i,
+                name : "Earthbreaker Boulder Throw",
+                source : [["A:TSV2", 13]],
+                type : "AlwaysProf",
+                ability : 5,
+                abilitytodamage : false,
+                damage : [5, 12, "bludgeoning"],
+                range : "120 ft",
+                description : "Success halves",
+                dc : true
+            }]
+        }
+    }
+})
+
+AddSubClass("shaper", "wordbearer", {
+    regExpSearch : /wordbearer/i,
+    subname : "Wordbearer",
+    source : [["A:TSV2", 14]],
+    features : {
+        "subclassfeature3" : {
+            name : "Shape of Wind",
+            source : [["A:TSV2", 14]],
+            minlevel : 3,
+            description : desc([
+                "\u2022 Improved Commands: I gain an additional of my Command feature.",
+                "\u2022 Expanded Spellbook: I can learn spells from any class's spell list, not just the druid's."
+            ]),
+            extraLimitedFeatures : [{
+                name : "Commands",
+                usages : 1,
+                recovery : "long rest",
+                addToExisting : true
+            }],
+            calcChanges : {
+                spellList :[
+                    function(spList, spName, spType) {
+                        if(spName !== "shaper" || spType.indexOf("bonus") !== -1) return;
+                        var aSpells = CreateSpellList({"class" : "any", level : [1,5]}, false, false, false);
+                        spList.extraspells = spList.extraspells.concat(aSpells);
+                    }
+                ]
+            }
+        },
+        "subclassfeature3.1" : {
+            name : "Shape Sign: Soothe Mind",
+            source : [["A:TSV2", 14]],
+            minlevel : 3,
+            description : desc([
+                "I learn the Soothe Mind sign."
+            ]),
+            spellcastingBonus : [{
+                name : "Soothe Mind",
+                spells : ["soothe mind"],
+                selection : ["soothe mind"],
+                times : 1
+            }]
+        },
+        "subclassfeature6" : {
+            name : "Greater Arcana",
+            source : [["A:TSV2", 14]],
+            minlevel : 6,
+            description : desc([
+                "I no longer need an Imbued Weapon or any spellcasting focus to cast spells. Additionally, I can cast a 2nd level or lower spell without expending a spell slot by expending a use of my Imbue Weapon feature."
+            ])
+        },
+        "subclassfeature10" : {
+            name : "Tenacious Voice",
+            source : [["A:TSV2", 14]],
+            minlevel : 10,
+            description : desc([
+                "I no longer damage myself using Commands and no longer silenced afterwards."
+            ])
+        },
+        "subclassfeature14" : {
+            name : "Ascended Will",
+            source : [["A:TSV2", 14]],
+            minlevel : 14,
+            description : desc([
+                "Once per long rest, I can use my action to choose a number of creatures equal to my Proficiency bonus within 60 ft to make a Wisdom saving throw against my spell save DC. On a fail, they are stunned until the end of their next turn, and if they are CR 4 or lower, they fall unconscious."
+            ]),
+            usages : 1,
+            recovery : "long rest"
+        }
+    }
+})
+
 spellSchoolList["Sign"] = "signs of power"
 
 SpellsList["disturbance"] = {
@@ -974,7 +1129,7 @@ SpellsList["elemental protection"] = {
 }
 
 SpellsList["force shift"] = {
-    name : "Force Fhift",
+    name : "Force Shift",
     source : [["A:TSV2", 15]],
     classes : ["shaper"],
     level : 0,
@@ -1201,4 +1356,31 @@ SpellsList["water bolt"] = {
 	duration : "Instantaneous",
     description : "1 crea I can see within range, melee spell atk, takes 1d8 cold dmg; +1d8 at CL 5, 11, 17",
     descriptionCantripDie : "1 crea I can see within range, melee spell atk, takes `CD`d8 cold dmg"
+}
+// Earthbreakers Sign
+SpellsList["blessing of stone"] = {
+    name : "Blessing of Stone",
+    source : [["A:TSV2", 13]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "Self",
+	components : "S",
+	duration : "1 min",
+    description : "slash, blud, or pierce resistance; Earthly Barrier regrow immediately below half max hp",
+}
+// Wordbearer's Sign
+SpellsList["soothe mind"] = {
+    name : "Soothe Mind",
+    source : [["A:TSV2", 14]],
+    classes : ["shaper"],
+    level : 0,
+	school : "Sign",
+	time : "1 bns",
+	range : "60 ft",
+	components : "S",
+	duration : "1 rnd",
+    save : "Wis",
+    description : "1 crea save or disadv. on next roll; crea not aware they are the target of this spell",
 }
