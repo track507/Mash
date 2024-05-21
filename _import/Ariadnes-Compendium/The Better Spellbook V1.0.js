@@ -12,8 +12,6 @@ SourceList["A:BS"] = {
 
 /*
 
-    ANY SPELLS THAT ARE ON OTHER PDFS OR COMPENDIUMS WILL BE LISTED HERE AND COMMENTED OUT TO PREVENT OVERLAPPING SPELLS
-
     This is a backburner project. These spells are mostly from released PDF's and posts, but some are not in the corresponding PDF's or posts.
 
 */
@@ -332,6 +330,120 @@ SpellsList["nebula"] = {
     description : "30ft rad sphere; Choose one of the following (see full desc.); Action to move it 10ft",
     descriptionFull : "Gold: Orion's Chains. Creatures within the area must make a Wisdom saving throw or be paralyzed. At the end of each of their turns, they can attempt the save again. Red: Burning Core. Creatures within the area must make a Strength saving throw or be pulled to the center of the sphere, taking 6d10 radiant damage and 6d10 fire damage, before being spit out by a flare, landing in a place of the caster's choice 20ft away from the center of the Nebula's area. Blue: Particle Accelerator. Creatures within the area must make a Dexterity saving throw, taking 10d12 force on a failed save, or half on a success. Creatures killed this way are molecularly destroyed. Purple: Unendurable Eminence. Creatures within the area must make a DC 10 Charisma saving throw or take 150 force damage that cannot be prevented in any way. Creatures killed this way disappears without leaving behind a body. The DC increases by 2 each time a creature has to roll it between long rests. I can use an action on my turn to move the center of the sphere up to 10ft."
 };
+
+
+
+
+
+
+SpellsList["twin fangs"] = {
+    name : "Twin Fangs",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:BS", 14]],
+    level : 2,
+    school : "Necro",
+    time : "1 bns",
+    range : "30 ft",
+    duration : "Instantaneous",
+    components : "S",
+    save : "Con",
+    description : "Ranged spell atk, 3d6+1d6/SL poison dmg and save or poisoned for 1 min; if poisoned, no SS consumed",
+    descriptionFull : "I summon twin spectral fangs from my outstretched hand, targeting a single creature within range. On a hit, the target takes 3d6 poison damage and must succeed on a Constitution saving throw or be poisoned for one minute. If the target is already poisoned when the attack hits, this spell does not consume a spell slot." + AtHigherLevels + "When I cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d6 for eahc slot level above 2nd."
+}
+
+SpellsList["bad morale"] = {
+    name : "Bad Morale",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:BS", 14]],
+    level : 2,
+    school : "Ench",
+    time : "1 a",
+    range : "120 ft",
+    duration : "Conc, 10 min",
+    components : "S,M",
+    compMaterial : "a small symbol of an iron eagle with its wings down",
+    save : "Cha",
+    description : "Crea equal to  my spell mod save or demoralized; see B. for demoralized",
+    descriptionFull : "I choose a number of creatures equal to my spellcasting ability modifier within range. Each creature must succeed on a Charisma saving throw or be demoralized. While demoralized, a target is unable to roll with advantage, use inspiration, and any similar effects. Additionally, a demoralized creature must roll a d6 at the start of each of their turns. On a 1, they don't use their action on that turn."
+}
+
+SpellsList["heartsteal"] = {
+    name : "Heartsteal",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:BS", 14]],
+    level : 4,
+    school : "Necro",
+    time : "1 a",
+    range : "60 ft",
+    duration : "Instantaneous",
+    components : "V,S,M",
+    compMaterial : "a vial of blood",
+    save : "Con",
+    description : "1 crea save taking 10d4 necrotic dmg; save halves; Every 4 rolled on the dmg die, heal 4 hp",
+    descriptionFull : "I choose a creature within range. The target must make a Constitution saving throw, taking 10d4 necrotic damage on a failed save, or half as much damage on a successful one. For every 4 rolled on the damage dice, I regain 4 hp."
+}
+
+SpellsList["water drake"] = {
+    name : "Water Drake",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:BS", 15]],
+    level : 0,
+    school : "Conj",
+    time : "1 a",
+    range : "30 ft",
+    duration : "Conc, 1 min",
+    components : "V,S,M",
+    compMaterial : "a gallon of water",
+    save : "Dex",
+    description : "Conjure dragon from water used to cast this; 15 ft line save, taking 1d4 fire dmg, save halves; bns to do it again",
+    descriptionCantripDie : "Conjure dragon from water used to cast this; 15 ft line save, taking `CD`d4 fire dmg, save halves; bns to do it again",
+    descriptionFull : "I raise a semi-spectral aquatic dragon from the water used to cast this spell at a point within range. It immediately breathes scalding steam in a 15 ft line in a direction of my choosing. Creatures within that area must make a Dexterity saving throw, taking 1d4 fire damage or half on a save. On subsequent turns while I concentrate on this spell, I can use my bonus action to make the water drake breathe steam again."
+}
+
+SpellsList["serpentine swipe"] = {
+    name : "Serpentine Swipe",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:BS", 15]],
+    level : 2,
+    school : "Evoc",
+    time : "1 a",
+    range : "S:20-ft rad",
+    duration : "Instantaneous",
+    components : "S",
+    save : "Dex",
+    description : "Creatures in a 20 ft rad around me save or 3d8+1d8/SL force dmg and knocked prone",
+    descriptionFull : "I performe a quick swirl, and a spectral draconic tail follows my movement, bludgeoning and tripping those around me. Creatures within a 20 ft circle around me must succeed a Dexterity saving throw or take 3d8 force damage and be knocked prone." + AtHigherLevels + "When I cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd."
+}
+
+SpellsList["echo of leung"] = {
+    name : "Echo of Leung",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:BS", 15]],
+    level : 5,
+    school : "Ench",
+    time : "1 a",
+    range : "S:40-ft rad",
+    duration : "Conc, 1 min",
+    components : "S",
+    save : "Wis",
+    description : "Crea(s) that hear me save or unable to atk me and follow mental order; must target me with dmg spells",
+    descriptionFull : "All creatures that can hear me within range must make a Wisdom saving throw or be unable to attack me and purposefully target me with damaging spells for as long as I maintain concentration. Additionally, I can issue a short mental order that must be followed by creatures that failed the save on their next turn."
+}
+
+SpellsList["reflective scales"] = { 
+    name : "Reflective Scales",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:BS", 15]],
+    level : 8,
+    school : "Trans",
+    time : "1 a",
+    range : "Touch",
+    duration : "Conc, 10 min",
+    components : "S",
+    save : "Wis",
+    description : "Crea large or smaller; +3 AC; see B. for additional benefits",
+    descriptionFull : "I touch a large or smaller creature which goes diving transformation. The creature gains a +3 bonus to AC. Additionally when they are targeted by a magic missile, line spell, or ranged attack roll spell, roll a d6. On a 1-5 the creature is unaffected. On a 6, they are unaffected, and the effect is reflected back at the caster as though it originated from the target of this spell, turning the caster into a target." + AtHigherLevels + "When I cast this spell using a 9th level spell slot, the maximum duration I can contrate on this spell increases to 1 hour."
+}
 
 SpellsList["arcane cuffs"] = {
     name : "Arcane Cuffs",

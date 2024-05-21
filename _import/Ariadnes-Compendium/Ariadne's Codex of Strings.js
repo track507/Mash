@@ -1680,7 +1680,7 @@ SpellsList["alchemize"] = {
     duration : "Instantaneous",
     components : "S,M",
     compMaterial : "pouches and vials to store the resulting contents in",
-    description : "1 small non-magical obj revert to its raw material; used to make another obj, must have tool prof. if complex"
+    description : "1 small non-magical obj revert to raw material; used to make other obj, must have tool prof. if complex"
 }
 
 SpellsList["fulgurating smite"] = { 
