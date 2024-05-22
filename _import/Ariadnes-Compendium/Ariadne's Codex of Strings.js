@@ -150,7 +150,7 @@ SpellsList["nebula"] = {
     duration : "Conc, 1 min",
     range : "120 ft",
     save : "Varies",
-    description : "30ft rad sphere; Choose one of the following (see full desc.); Action to move it 10ft",
+    description : "30ft rad sphere; Choose one of the following from B.; Action to move it 10ft",
     descriptionFull : "Gold: Orion's Chains. Creatures within the area must make a Wisdom saving throw or be paralyzed. At the end of each of their turns, they can attempt the save again. Red: Burning Core. Creatures within the area must make a Strength saving throw or be pulled to the center of the sphere, taking 6d10 radiant damage and 6d10 fire damage, before being spit out by a flare, landing in a place of the caster's choice 20ft away from the center of the Nebula's area. Blue: Particle Accelerator. Creatures within the area must make a Dexterity saving throw, taking 10d12 force on a failed save, or half on a success. Creatures killed this way are molecularly destroyed. Purple: Unendurable Eminence. Creatures within the area must make a DC 10 Charisma saving throw or take 150 force damage that cannot be prevented in any way. Creatures killed this way disappears without leaving behind a body. The DC increases by 2 each time a creature has to roll it between long rests. I can use an action on my turn to move the center of the sphere up to 10ft."
 };
 MagicItemsList["dame eleanors flare"] = {
