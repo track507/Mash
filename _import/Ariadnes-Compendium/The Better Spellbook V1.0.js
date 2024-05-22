@@ -223,6 +223,81 @@ SpellsList["pulverizing radiance"] = {
     description : "Make ranged spell akt; 6d6+20 Radiant dmg and target gains 3 stacks of irradiated"
 };
 
+SpellsList["frozen brume"] = {
+    name : "Frozen Brume", 
+    source : [["A:BS", 10]],
+    level : 6,
+    school : "Trans",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 rea",
+    timeFull : "1 rea which I take when I am hit by an attack",
+    range : "30 ft",
+    components : "V,S",
+    duration : "1 rnd",
+    description : "Immune to physical dmg, single target or spell atk cannot hit me; 2d6 cold dmg crea pass through me",
+    descriptionCantripDie : "I turn into a cloud of icy mist until the start of my next turn. I am immune to bludgeoning, piercing, and slashing damage while transformed, and cannot be targeted by spell attacks nor single target spells. These protections work against the triggering attack. Additionally, a creature that passes through my space while I am transformed takes 2d6 cold damage and are chillden until the end of their next turn."  
+}
+
+SpellsList["prana drain"] = {
+    name : "Prana Drain",
+    source : [["A:BS", 11]],
+    level : 7,
+    school : "Necro",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "Touch",
+    components : "V,S",
+    duration : "Instantaneous",
+    save : "Cha",
+    description : "Melee spell atk; On hit, 8d10 force dmg and save or mute and cannot cast spells for 1 week",
+    descriptionFull : "I inhibit a creature's ability to cast spells, blocking their prana and stealing their voice. I make a melee spell attack against a creature within range. On a hit, the creature takes 8d10 force damage and must succeed on a Charisma saving throw. On a failure, they are rendered mute and cannot cast spells for 1 week. Only a 7th level upcast of Remove Curse or Greater Restoration can end this effect early."
+}
+
+SpellsList["infernal word"] = {
+    name : "Infernal Word",
+    source : [["A:BS", 11]],
+    level : 5,
+    school : "Ench",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "30 ft",
+    components : "V,S",
+    duration : "Instantaneous",
+    save : "Cha",
+    description : "1 crea that can hear me save or 8d6 psychic and stunned; save again at end of each turn",
+    descriptionFull : "I emit a gutteral whisper, a primordial blasphemy forged in the fiery pits of hell. A creature of my choice within range that can hear me must make a Charisma saving throw or take 8d6 psychic damage and be stunned. At the end of each of the creature's turns, they can attempt the save again, ending the effect on themselves on a success."
+}
+
+SpellsList["immolate"] = {
+    name : "Immolate",
+    source : [["A:BS", 11]],
+    level : 3,
+    school : "Evoc",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "60 ft",
+    components : "V,S,M",
+    compMaterial : "a handful of ash",
+    duration : "Conc, 1 min",
+    save : "Con",
+    description : "1 crea save or 4d6 fire dmg, 1d6 fire dmg start of each turn; +1d6 as bns; water, cold dmg, 1 a to douse",
+    descriptionFull : "I conjure a flame that consumes my enemies from the inside. A creature within range must succeed on a Constitution saving throw or take 4d6 fire damage. A creature that fails the save catches fire for the durtion, taking 1d6 fire damage at the start of each of turn until the flames are doused with water, cold damage, or by using an action. On subsequent turns, I can use my bonus action to increase the damage by 1d6."
+}
+
+SpellsList["vow of hatred"] = {
+    name : "Vow of Hatred",
+    source : [["A:BS", 11]],
+    level : 0,
+    school : "Evoc",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "30 ft",
+    components : "V",
+    duration : "1 rnd",
+    description : "Next turn, my first atk has adv. and +1d10 fire dmg; spell ends if target further than 30 ft; +1d10 at CL 5, 11, and 17",
+    descriptionCantripDie : "Next turn, my first atk has adv. and +`CD`d10 fire dmg; spell ends if target further than 30 ft"
+}
+
 SpellsList["astrologist's reading"] = {
     name : "Astrologist's Reading",
     source : [["A:BS", 12]],
@@ -327,14 +402,9 @@ SpellsList["nebula"] = {
     duration : "Conc, 1 min",
     range : "120 ft",
     save : "Varies",
-    description : "30ft rad sphere; Choose one of the following (see full desc.); Action to move it 10ft",
+    description : "30ft rad sphere; Choose one of the following from B.; Action to move it 10ft",
     descriptionFull : "Gold: Orion's Chains. Creatures within the area must make a Wisdom saving throw or be paralyzed. At the end of each of their turns, they can attempt the save again. Red: Burning Core. Creatures within the area must make a Strength saving throw or be pulled to the center of the sphere, taking 6d10 radiant damage and 6d10 fire damage, before being spit out by a flare, landing in a place of the caster's choice 20ft away from the center of the Nebula's area. Blue: Particle Accelerator. Creatures within the area must make a Dexterity saving throw, taking 10d12 force on a failed save, or half on a success. Creatures killed this way are molecularly destroyed. Purple: Unendurable Eminence. Creatures within the area must make a DC 10 Charisma saving throw or take 150 force damage that cannot be prevented in any way. Creatures killed this way disappears without leaving behind a body. The DC increases by 2 each time a creature has to roll it between long rests. I can use an action on my turn to move the center of the sphere up to 10ft."
 };
-
-
-
-
-
 
 SpellsList["twin fangs"] = {
     name : "Twin Fangs",
@@ -381,6 +451,20 @@ SpellsList["heartsteal"] = {
     save : "Con",
     description : "1 crea save taking 10d4 necrotic dmg; save halves; Every 4 rolled on the dmg die, heal 4 hp",
     descriptionFull : "I choose a creature within range. The target must make a Constitution saving throw, taking 10d4 necrotic damage on a failed save, or half as much damage on a successful one. For every 4 rolled on the damage dice, I regain 4 hp."
+}
+
+SpellsList["greater sleep"] = {
+    name : "Greater Sleep",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    source : [["A:BS", 14]],
+    level : 5,
+    school : "Conj",
+    time : "1 a",
+    range : "120 ft",
+    duration : "Instantaneous",
+    components : "V,S",
+    save : "Wis",
+    description : "All crea 20ft rad save or sleep, no affect vs. charm immunity; wake if condition met, 10 dmg, or after 1 hr",
 }
 
 SpellsList["water drake"] = {
