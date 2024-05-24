@@ -1,13 +1,15 @@
 var iFileName = "School_of_The_World_Wizard";
 RequiredSheetVersion("13.1.13");
 
-SourceList["MG:DoMF"] = {
-    name : "Myriel Genra's: Deck of Many Fates",
-    abbreviation : "MG:DoMF",
-    abbreviationSpellsheet : "MG",
-    group : "Homebrew",
-    url : "https://www.patreon.com/codexofstrings/posts",
-    date : "2024/05/14"
+if(!SourceList["MG:DoMF"]) {
+    SourceList["MG:DoMF"] = {
+        name : "Myriel Genra's: Deck of Many Fates",
+        abbreviation : "MG:DoMF",
+        abbreviationSpellsheet : "MG",
+        group : "Homebrew",
+        url : "https://www.patreon.com/codexofstrings/posts",
+        date : "2024/05/14"
+    }
 }
 
 AddSubClass("wizard", "the world", {
