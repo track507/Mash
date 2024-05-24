@@ -13,6 +13,7 @@ SourceList["A:BS"] = {
 /*
 
     This is a backburner project. These spells are mostly from released PDF's and posts, but some are not in the corresponding PDF's or posts.
+    I will have to go through and sort out which spells have already been added to Ariadne's Codex of Strings.js to prevent duplicate entries
 
 */
 
