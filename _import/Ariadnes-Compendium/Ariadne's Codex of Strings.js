@@ -6,7 +6,7 @@ RequiredSheetVersion("13.1.13");
     
     This adds content from Ariadne's Codex of Strings' Patreon
     The deluxe versions take priority over their initiate counterparts, this also applies to other posts released
-    This is not for public use and not to be redistributed.
+
 */
 
 /*
@@ -15,11 +15,12 @@ RequiredSheetVersion("13.1.13");
     Since spells doesn't have specified classes, I assume all classes get them.
 
     FINISHED:
-    Books: TAFI, TNC, TLotU, TLB, TEC, TCoR, TMC, TTN
-    Misc.: Way of Strength, Collge of Fools, School of The World Wizard
+    Deluxe Books: TAFI, TNC, TLotU, TLB, TEC, TTN
+    Initiate Books: TMC, TCoR, TIP, 
+    Misc.: Way of Strength, Collge of Fools, School of The World Wizard, Shaper V2
 
     WIP:
-    The Shaper V2 and TBS
+    TBS, CoS (City of Strings)
     
 */
 
