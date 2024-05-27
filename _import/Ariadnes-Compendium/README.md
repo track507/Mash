@@ -2,7 +2,9 @@ These are scripts for MPMB's Character Creation sheet.
 
 They add items, subclasses, classes, and more to the sheet from Ariadne's Codex of Strings found here [Ariadne's Codex of Strings](https://www.patreon.com/codexofstrings/posts).
 
-The "Ariadne's Codex of Strings.js" contains ALL content posted or made by them. It is not meant to be used with the other scripts and will cause errors. These files are separated to keep track of what I have finished and what needs to be done. Since spells don't have specified classes, I assume all classes get them.
+The "Ariadne's Codex of Strings.js" contains ALL content posted or made by them. It is not meant to be used with the other scripts and will cause errors. These files are separated to keep track of what I have finished and what needs to be done.
+
+Note: Since spells don't have specified classes, I assume all classes get them.
 
 FINISHED:
 - Deluxe Books: TAFI, TNC, TLotU, TLB, TEC, TTN
