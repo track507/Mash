@@ -723,7 +723,7 @@ SpellsList["confiscate"] = {
 }
 
 SpellsList["mass modify memory"] = {
-    name : "Confiscate",
+    name : "Mass Modify Memory",
     classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
     source : [["A:BS", 18]],
     level : 9,
