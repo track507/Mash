@@ -211,6 +211,21 @@ SpellsList["order's judgement"] = {
     descriptionCantripDie : "Save or take `CD`d4 radiant dmg and I know one of its dmg vulnerabilities if any"
 } 
 
+SpellsList["cause arrhythmia"] = {
+    name : "Cause Arrhythmia",
+    source : [["A:BS", 8]],
+    level : 3,
+    school : "Necro",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "60 ft",
+    components : "V,S,M",
+    compMaterial : "a dried bloot clot",
+    duration : "Conc, 1 min",
+    description : "1 crea with a heart save or suffer one of the following: Bradycardia or Tachycardia; see B.",
+    descriptionFull : "I cause a nearby creature's heart to beat irregularly, making them partially lose control of their bodies as their pulse falters. Creatures that don't have a heart or similar organ aren't affected by this spell. A target must succeed on a Consitution saving throw or be affected by on of the following conditions." + "\n   " + toUni("Bradycardia") + ": the creature's heart beats too slow, causing disadvantage on Strength saving throws and ability checks, and dealing 1d8 necrotic damage at the start of each of their turns." + "\n   " + toUni("Tachycardia") + ": the creature's heart beats too fast, causing disadvantage on all Dexterity based ability checks. When the effect ends for the creature, they must roll a Constitution saving throw with a DC of 5 + the number of turns they were affected for. On a failure, they suffer 8d8+10 necrotic damage as their heart fails."
+}
+
 SpellsList["pulverizing radiance"] = {
     name : "Pulverizing Radiance",
     source : [["A:BS", 8]],
@@ -221,8 +236,21 @@ SpellsList["pulverizing radiance"] = {
     range : "30 ft",
     components : "V,S",
     duration : "Instantaneous",
-    description : "Make ranged spell akt; 6d6+20 Radiant dmg and target gains 3 stacks of irradiated"
+    description : "Make ranged spell atk; 6d6+20 Radiant dmg and target gains 3 stacks of irradiated for 1 min"
 };
+
+SpellsList["power word: penance"] = {
+    name : "Power Word: Penance",
+    source : [["A:BS", 8]],
+    level : 7,
+    school : "Ench",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "60 ft",
+    components : "V",
+    duration : "Instantaneous",
+    description : "1 crea I can see, if crea dealt 50 \u00BD dmg within last min, they take 40 force dmg or no effect"
+}
 
 SpellsList["frostbolt"] = {
     name : "Frostbolt",
@@ -280,8 +308,8 @@ SpellsList["glacial ward"] = {
     components : "S,M",
     compMaterial : "a shard of everfrost worth at least 100 GP, which the spell consumes",
     duration : "Conc, 10 min",
-    description : "1 crea in range blud, pierce, slash, and cold resistance; +2 to AC, -10 ft movement; +1d6 cold dmg melee atk"
-    // add full
+    description : "1 crea blud, pierce, slash, cold resist; +2+1/SL AC, -10/-5ft 7/SL \u00BD spd; 1d6+1d6/SL cold dmg melee atk",
+    descriptionFull : "A buildup of sturdy ice covers a creature within range, granting them resistance to piercing, bludgeoning, slashing, and cold damage, and increasing their AC by 2, but lowering their movement speed by 10 feet. Additionally, their melee attacks deal an extra 1d6 cold damage." + AtHigherLevels + "When I cast this spell using a 7th level spell slot or higher, the movement penalty becomes 5ft, and the AC increases by 1 and the attacks deal an extra 1d6 cold damage for each slot level above 6th."
 }
 
 SpellsList["frozen brume"] = {
