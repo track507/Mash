@@ -13,3 +13,6 @@ FINISHED:
 
 WIP:
 - CoS (City of Strings)
+
+TBD:
+- TRE, TMC (Deluxe), TCoR (Deluxe), TIP (Deluxe), PotM (I & II)
