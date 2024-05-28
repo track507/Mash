@@ -195,8 +195,6 @@ SpellsList["energy feedback"] = {
     descriptionFull : "I make a melee spell attack against a creature within my reach. On a hit, the target takes 4d6 force dmg and must make a Charisma saving or take an additional 4d6 force damage. A spellcaster that fails this saving throw loses a 3rd level spell slot, and is unable to cast spells from a school of my choice until the end of their next turn." + AtHigherLevels + "When I cast this spell using a spell slot of 5th level or higher, my attack increased by 1d6 for each slot level above 4th. In addition, spellcasters who fail the saving throw are drained of a spell slot one level below the spell slot that was used to cast this spell."
 }
 
-//add rest
-
 SpellsList["order's judgement"] = {
     name : "Order's Judgement",
     source : [["A:BS", 8]],
