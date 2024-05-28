@@ -9,7 +9,7 @@ Note: Since spells don't have specified classes, I assume all classes get them.
 FINISHED:
 - Deluxe Books: TAFI, TNC, TLotU, TLB, TEC, TTN
 - Initiate Books: TMC, TCoR, TIP
-- Misc.: Way of Strength, College of Fools, School of The World Wizard, Shaper V2, College of Madness V2 (already included in TAFI)
+- Misc.: Way of Strength, College of Fools, School of The World Wizard, Shaper V2, College of Madness V2 (already included in TAFI), TBS
 
 WIP:
-- TBS, CoS (City of Strings)
+- CoS (City of Strings)
