@@ -224,6 +224,66 @@ SpellsList["pulverizing radiance"] = {
     description : "Make ranged spell akt; 6d6+20 Radiant dmg and target gains 3 stacks of irradiated"
 };
 
+SpellsList["frostbolt"] = {
+    name : "Frostbolt",
+    source : [["A:BS", 9]],
+    level : 1,
+    school : "Evoc",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "120 ft",
+    components : "V,S",
+    duration : "Instantaneous",
+    description : "Ranged spell atk 2d10+1d10/SL cold dmg and chilled for 1 min",
+    descriptionFull : "You hurl a snowball imbued with energy to attack a target within range. Make a ranged spell attack against the target. On a hit, the target takes 2d10 cold damage and is chilled for a minute." + AtHigherLevels + "When I cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d10 for each slot level above 1st."
+}
+
+SpellsList["ice gale"] = {
+    name : "Ice Gale",
+    source : [["A:BS", 9]],
+    level : 2,
+    school : "Evoc",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "60 ft",
+    components : "S",
+    duration : "Instantaneous",
+    save : "Con",
+    description : "10 ft rad point within range save or 4d6+1d6/SL cold dmg and -15ft movement til end of their next turn",
+    descriptionFull : "Choose a point within range. Each creature in a 10 ft radius sphere centered on that point must make a Constitution saving throw or take 4d6 cold damage and suffer a 15 feet to their movement until the end of their next turn." + AtHigherLevels + "When I cast this spell using a spell slot of 3rd level or higher, the damage inicreases by 1d6 for each slot level above 2nd."
+}
+
+SpellsList["frozen stride"] = {
+    name : "Frozen Stride",
+    source : [["A:BS", 9]],
+    level : 3,
+    school : "Trans",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "90 ft",
+    components : "V,S,M",
+    compMaterial : "a small shard of dry ice or cryolite",
+    duration : "1 min", // It says instant but it lasts for 1 minute.
+    save : "Dex",
+    description : "30 ft rad no rea til end of turn while in area; \u2265 \u00BD move save or prone;  my spell mod crea \xD72 move, no effects", 
+    descriptionFull : "You  summon a great frost that spreads from a point within range, covering the ground in a 30 ft radius with a thin layer of elemental ice. Any patch of water or other liquids become frozen, and anyone trying to move more than half their maximum speed must make a Dexterity saving throw or be knocked prone. Creatures on the ice cannot take reactions until the end of their next turn. Additionally, you can choose a number of creatures equal to your spellcasting ability modifier to glide across the ice, doubling their movement and ignoring all the negative effects of the spell."
+}
+
+SpellsList["glacial ward"] = {
+    name : "Glacial Ward",
+    source : [["A:BS", 9]],
+    level : 5,
+    school : "Trans",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "1 a",
+    range : "Touch",
+    components : "S,M",
+    compMaterial : "a shard of everfrost worth at least 100 GP, which the spell consumes",
+    duration : "Conc, 10 min",
+    description : "1 crea in range blud, pierce, slash, and cold resistance; +2 to AC, -10 ft movement; +1d6 cold dmg melee atk"
+    // add full
+}
+
 SpellsList["frozen brume"] = {
     name : "Frozen Brume", 
     source : [["A:BS", 10]],
@@ -237,6 +297,21 @@ SpellsList["frozen brume"] = {
     duration : "1 rnd",
     description : "Immune to physical dmg, single target or spell atk cannot hit me; 2d6 cold dmg crea pass through me",
     descriptionCantripDie : "I turn into a cloud of icy mist until the start of my next turn. I am immune to bludgeoning, piercing, and slashing damage while transformed, and cannot be targeted by spell attacks nor single target spells. These protections work against the triggering attack. Additionally, a creature that passes through my space while I am transformed takes 2d6 cold damage and are chillden until the end of their next turn."  
+}
+
+SpellsList["stasis storm"] = {
+    name : "Stasis Storm",
+    source : [["A:BS", 10]],
+    level : 9,
+    school : "Conj",
+    classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+    time : "10 min",
+    range : "Touch",
+    components : "S,M",
+    compMaterial : "cryolite dust worth at least 2000 GP, which the spell consumes",
+    duration : "3 hr",
+    description : "2000 ft rad centered where spell was cast; 50 fire dmg to center ends spell; see B.",
+    descriptionFull : "I fill a 5 ft square with primordial runes of frost, stasis, and death drawn in cryolite dust. When casting is complete, a killing frost envelops everythin in a 2000 ft radius centered on the point where the spell was cast. For the duration, a magical blizzard slowly rises and intensifies. If the runes that empower the spell take 50 fire damage, the spell immediately ends." + "\n   " + toUni("Hour 1") + ": The area is covered with powdered snow and hail making the entire area lightly obscured. Nonmagical flames can't be maintained. Creatures without heavy winter clothes or magical protection are instantly chilled, and become frostbitten after 10 minutes." + "\n   " + toUni("Hour 2") + ": Nonmagical clothes no longer protect creatures, and the frostbitten condition is applied instantly instead of chilled. After 10 minutes, creatures become frozen instead. Minor structures are pierced by the storm and can no longer protect creatures from the storm." +"\n   " + toUni("Hour 3") + ": Spells of 5th level or lower are disrupted by the storm and become impossible to cast within the area of the storm. In additiona, creatures become Soul Chilled after 10 minutes. Only the sturdiest of buildings can resist these effects: castles, underground bunkers, etc." + "\n\n   " + "If the spell lasts for the full duration, every creature affected by an effect within the area is death frosted."
 }
 
 SpellsList["prana drain"] = {
