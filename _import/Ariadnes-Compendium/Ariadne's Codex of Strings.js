@@ -5728,14 +5728,11 @@ SpellsList["pulverizing radiance"] = {
 };
 
 /*
-    Everything below is not finished or completed.
-*/
-
-/*
 
         THE BETTER SPELLBOOK V1.0
 
         EVERYTHING COMMENTED OUT ARE SPELLS THAT HAVE ALREADY BEEN ADDED BY ANOTHER PDF
+        
 */
 
 //The better spellbook v1.0 addition
