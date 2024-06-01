@@ -492,6 +492,16 @@ MagicItemsList["pauldrons of villainous opulence"] = {
     attunement : true,
     cursed : true,
     description : "These cursed pauldrons turn any suit of armor they are affixed to into a suit of fine plate armor +3. I cannot unattune to these pauldrons, and cannot remove them from the armor. Every sapient creature in a 30-ft sphere perceives me as decadently wealthy, wasteful, and unlikeable. Non-sapient creatures don't trust me and are threatened by my presence. This item is senient and will try to turn my allies, friends, and family against me.",
+    armorAdd : "Pauldrons",
+	armorOptions : [{
+		regExpSearch : /^(?=.*pauldrons).*$/i,
+		name : "Pauldrons",
+		source : [["A:TLotU", 22]],
+		type : "heavy",
+		ac : 18,
+		stealthdis : true,
+		weight : 40
+	}]
 }
 
 SpellsList["arcane cuffs"] = {
