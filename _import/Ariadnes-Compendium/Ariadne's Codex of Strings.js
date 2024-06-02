@@ -5247,7 +5247,6 @@ SpellsList["radiant weapon"] = {
 
 SpellsList["hymn of honor"] = {
     name : "Hymn of Honor",
-    regExpSearch : /\+? ?(my )?spell(casting)? (ability )?mod(ifier)?/i,
     source : [["A:TAFI", 30]],
     level : 4,
     school : "Ench",
@@ -5276,8 +5275,7 @@ SpellsList["divine judgement"] = {
 };
 
 SpellsList["barrier of gold"] = {
-    name : "Barrier of Gold",
-    regExpSearch : /\+? ?(my )?spell(casting)? (ability )?mod(ifier)?/i,
+    name : "Barrier of Gold",  
     source : [["A:TAFI", 31]],
     level : 5,
     school : "Abjur",
@@ -6626,7 +6624,6 @@ SpellsList["reflective scales"] = {
 
 // SpellsList["hymn of honor"] = {
 //     name : "Hymn of Honor",
-//     regExpSearch : /\+? ?(my )?spell(casting)? (ability )?mod(ifier)?/i,
 //     source : [["A:BS", 22]],
 //     level : 4,
 //     school : "Ench",
@@ -6656,7 +6653,6 @@ SpellsList["divine judgement"] = {
 
 SpellsList["barrier of gold"] = {
     name : "Barrier of Gold",
-    regExpSearch : /\+? ?(my )?spell(casting)? (ability )?mod(ifier)?/i,
     source : [["A:BS", 23]],
     level : 5,
     school : "Abjur",
