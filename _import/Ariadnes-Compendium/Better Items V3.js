@@ -551,3 +551,152 @@ MagicItemsList["mirror of things great and terrible"] = {
     scores : [0, 0, 0, 0, 0, 2],
     scoresMaximum : [0, 0, 0, 0, 0, 24]
 };
+
+var AriadnesLostGrimoireNotes = [
+    "The first page of this spellbook read \"If you ever find this, please return it to 66 Stringweaver Avenue, City of Strings, Astral Sea. I would be most grateful, love!.\" The book shimmers expectantly, yearning to be used. I won't get in trouble for casting a couple of spells, right? Ariadne can wait.",
+    "For me to use this spellbook, I must be able to cast 6th level spells or higher and have an Intelligence score of at least 15. For anyone that does not meet the requirements, its scripture seems nonsensical.",
+    "When using this spellbook, I can cast the following spells as rituals: teleport, magic circle, and glyph of warding. It also has 10 charges that can be used to cast the following spells (save DC 18): fallow's theorem (1 charge), slow (2 charges), pulverizing radiance (3 charges), disintegrate (4 charges), power word: penance (5 charges), plane shift (7 charges), time stop (9 charges), or wish (12 charges).",
+    "The book regains 1d4+3 charges at dawn. Each time I cast a spell from this spellbook, there is a 5% chance of Threadmaster Guilliam Fallow noticing me and teleporting the book away from my hands and back to the City of Strings. This happens automatically if I use this book to cast Wish.",
+    ">>Overcharge<< I can give the book additional charges by infusing it with spell slots. The spellbook regains an amount of charges equal to half the level of the spell slot I use on it, rounded down. Spells of 7th level or higher may overcharge the spellbook, allowing it to gain temporary charges above its maximum of 10. These additional charges last for an hour and expire if not used."
+];
+
+MagicItemsList["ariadne's lost grimoire"] = {
+    name : "Ariadne's Lost Grimoire",
+    source : [["A:BI", 9]],
+    type : "wondrous item",
+    rarity : "artifact",
+    attunement : false,
+    description : "This spellbook can cast certain spells as rituals. It also has 10 charges which can be used to cast spells. It regains 1d4+3 charges at dawn. Everytime it is used to cast a spell, there is a 5% chance of Threadmaster Guilliam Fallow noticing and teleporting the book away, or automatically if Wish is casted. I can also overcharge the book. All spells and Overcharge can be found on the notes page.",
+    toNotesPage : [{
+        name : "Ariadne's Lost Grimoire: Features",
+        note : desc(AriadnesLostGrimoireNotes).replace(/>>(.*?)<</g, function(a, match) { return match.toUpperCase(); })
+    }],
+    usages : 10,
+    recovery : "dawn",
+    spellcastingBonus : [{
+        name : "Aridane's Lost Grimoire (R)",
+        spells : ["teleport", "glyph of warding", " magic circle"],
+        selection : ["teleport", "glyph of warding", " magic circle"],
+        times : 3,
+        firstCol : "(R)"
+    }, {
+        name : "Aridane's Lost Grimoire (1 Ch)",
+        spells : ["fallow's theorem"],
+        selection : ["fallow's theorem"],
+        times : 1,
+        firstCol : 1
+    }, {
+        name : "Aridane's Lost Grimoire (2 Ch)",
+        spells : ["slow"],
+        selection : ["slow"],
+        times : 1,
+        firstCol : 2
+    }, {
+        name : "Aridane's Lost Grimoire (3 Ch)",
+        spells : ["pulverizing radiance"],
+        selection : ["pulverizing radiance"],
+        times : 1,
+        firstCol : 3
+    }, {
+        name : "Aridane's Lost Grimoire (4 Ch)",
+        spells : ["disintegrate"],
+        selection : ["disintegrate"],
+        times : 1,
+        firstCol : 4
+    }, {
+        name : "Aridane's Lost Grimoire (5 Ch)",
+        spells : ["power word: penance"],
+        selection : ["power word: penance"],
+        times : 1,
+        firstCol : 5
+    }, {
+        name : "Aridane's Lost Grimoire (7 Ch)",
+        spells : ["plane shift"],
+        selection : ["plane shift"],
+        times : 1,
+        firstCol : 7
+    }, {
+        name : "Aridane's Lost Grimoire (9 Ch)",
+        spells : ["time stop"],
+        selection : ["time stop"],
+        times : 1,
+        firstCol : 9
+    }, {
+        name : "Aridane's Lost Grimoire (12 Ch)",
+        spells : ["wish"],
+        selection : ["wish"],
+        times : 1,
+        firstCol : 12
+    }]
+}
+
+MagicItemsList["aeryn's starplate"] = {
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// only add these if the better spellbook is not available.
+if(!SourceList["A:BS"]) {
+    SourceList["A:BS"] = {
+        name : "Ariadne's: Better Spellbook V1.0",
+        abbreviation : "A:BS",
+        abbreviationSpellsheet : "A",
+        group : "Homebrew",
+        date : "2024/02/14"
+    };
+
+    SpellsList["power word: penance"] = {
+        name : "Power Word: Penance",
+        source : [["A:BS", 8]],
+        level : 7,
+        school : "Ench",
+        classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+        time : "1 a",
+        range : "60 ft",
+        components : "V",
+        duration : "Instantaneous",
+        description : "1 crea I can see, if crea dealt 50 \u00BD dmg within last min, they take 40 force dmg or no effect"
+    }
+    // this is included in the ichorous peninsula book, not the BS. prevents copies.
+    if(!SpellsList["pulverizing radiance"] || !SourceList["A:TCoR"]) {
+        SpellsList["pulverizing radiance"] = {
+            name : "Pulverizing Radiance",
+            source : [["A:BS", 8]],
+            level : 5,
+            school : "Evoc",
+            classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+            time : "1 a",
+            range : "30 ft",
+            components : "V,S",
+            duration : "Instantaneous",
+            description : "Make ranged spell atk; 6d6+20 Radiant dmg and target gains 3 stacks of irradiated for 1 min"
+        };
+    }
+
+    SpellsList["fallow's theorem"] = {
+        name : "Fallow's Theorem",
+        source : [["A:BS", 7]],
+        level : 1,
+        school : "Div",
+        classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
+        time : "1 bns",
+        range : "Self",
+        components : "V,S",
+        duration : "Conc, 5 min",
+        description : "See up to 5 min of consequences for a 1 action I take in next hr; Adv on seen saves; cannot be suprised",
+        descriptionFull : "I summon a crystal shard of arcane divination, which I can utilize to peer into possible futures. I may envision the consequecnes of a single action I could take in the next hour, witnessing up to 5 minute's worth of likely consequences before the shard crumbles. If I witnessed any effects that would cause me to make a saving throw in my vision and decide to go through with the action, I gain advantage on the roll. Additionally, I cannot be surprised by creatures whose actions I witnessed inside the shard."
+    }
+}
