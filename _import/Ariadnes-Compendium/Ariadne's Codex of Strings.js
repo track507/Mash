@@ -530,7 +530,7 @@ MagicItemsList["assistant drone v-38"] = {
     vision : [
         ["Darkvision (drone helmet on)", 120]
     ],
-    savetxt : {text : "I can breath underwater while wearing the helmet as a drone"},
+    savetxt : {text : "I can breath underwater while wearing the drone as a helmet"},
     creaturesAdd : [["Assistant Drone V-38"]],
     creatureOptions : [{
         name : "Assistant Drone V-38",
