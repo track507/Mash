@@ -566,6 +566,8 @@ MagicItemsList["ariadne's lost grimoire"] = {
     type : "wondrous item",
     rarity : "artifact",
     attunement : false,
+    prerequisite : "Being able to cast 6th level spells or higher",
+    prereqeval : function() { return What("SpellSlots.CheckboxesSet.lvl6") > 0; },
     description : "This spellbook can cast certain spells as rituals. It also has 10 charges which can be used to cast spells. It regains 1d4+3 charges at dawn. Everytime it is used to cast a spell, there is a 5% chance of Threadmaster Guilliam Fallow noticing and teleporting the book away, or automatically if Wish is casted. I can also overcharge the book. All spells and Overcharge can be found on the notes page.",
     toNotesPage : [{
         name : "Ariadne's Lost Grimoire: Features",
@@ -631,13 +633,277 @@ MagicItemsList["ariadne's lost grimoire"] = {
 }
 
 MagicItemsList["aeryn's starplate"] = {
-    
+    name : "Aeryn's Starplate",
+    source : [["A:BI", 10]],
+    type : "armor (plate)",
+    rarity : "legendary",
+    attunement : true,
+    description : "I have an AC of 22 while wearing this armor, and gain resistance to slashing and piercing damage and immunity to radiant damage. Additionally, I cannot be blinded as result from light such as that with the Sunbeam spell. See notes for Celestial Graviturgy, Arcane Bulwark, and Extraplanar Hold.",
+    toNotesPage : [{
+        name : "Aeryn's Starplate: Features",
+        note : desc([
+            "\u2022 Celestial Graviturgy: I can cast levitate and feather fall at will",
+            "\u2022 Arcane Bulwark: I have advantage on saving throws vs. spells and other magical effects. In addition, I immune to the irradiated condition. As a reaction once per long rest, I can absorb a single 6th level or lower spell that I can see being cast within 60 ft of me. The caster must succeed a DC 20 Charisma saving throw, or the spell fails and I gain temporary hp equal to five times the level of the spell",
+            "\u2022 Extraplanar Hold: I can don on or off this armor as a bonus action. When not worn, it is stored in an extraplanar space and cannot be reached. If the I die, it appears in an occupied space within 15 ft of me"
+        ])
+    }],
+    action : [["bonus action", "don (on/off)"], ["reaction", "Arcane Bulwark (DC 20)"]],
+    savetxt : {
+        adv_vs : ["saving throws against spells and other magical effects"],
+        immune : ["irradiated", "blinded from source of light"]
+    },
+    dmgres : ["Slashing", "Piercing", "Radiant"],
+    armorAdd : "Aeryn's Starplate",
+	armorOptions : [{
+		regExpSearch : /^(?=.*aeryn's)(?=.*starplate).*$/i,
+		name : "Aeryn's Starplate",
+		source : [["A:BI", 10]],
+		type : "heavy",
+        ac : 22
+	}],
+    spellcastingBonus : [{
+        name : "Celestial Graviturgy",
+        spells : ["levitate", "feather fall"],
+        selection : ["levitate", "feather fall"],
+        times : 2,
+        firstCol : "atwill"
+    }],
+    usages : 1,
+    recovery : "long rest"
 }
 
+MagicItemsList["fallow's mauve relic"] = {
+    name : "Fallow's Mauve Relic",
+    source : [["A:BI", 11]],
+    type : "wondrous item",
+    rarity : "artifact",
+    attunement : true,
+    description : "This relic has 7 charges, which can be used by a spellcaster as spell slots. A charge equals a slot level, and I can use my action to transmute charges into spell slots, regaining 1d4+1 charges at dawn. If there are no charges left, I can keep drawing but take 1d6 psychic damage and cannot be prevented in anyway. This doubles for each charge spent (1d6, 2d6, 4d6...)",
+    usages : 7,
+    recovery : "dawn"
+}
 
+MagicItemsList["may's orange brewski"] = {
+    name : "May's Orange Brewski",
+    source : [["A:BI", 12]],
+    type : "consumable",
+    rarity : "legendary",
+    description : "This brew has 5 charges, which can only be refilled by May. A creature can consume this brew as a bonus action, which lasts an hour. The effects can be found on the notes page.",
+    toNotesPage : [{
+        name : "May's Orange Brewski: Effects",
+        note : desc([
+            "\u2022 Brain Goes Brrr: My Intelligence and Constitution increase by 2, but my Wisdom decreases by 2. I gain an additional bonus action on my turn, and gain resistance to poison and psychic damage.",
+            "\u2022 Anti-Eminence: I cannot benefit from Eminent Energy nor does Impulse Capsules have any affect on me, and Eminent Wisps do not attune to me. If I am attuned to one, it painfully leaves my body when I drink this brew.",
+            "This unnatural liquid acts as a kind of antidote; a creature that ingests this is relieved from the effects of Eminence overdose and other similar effects."
+        ])
+    }]
+}
 
+MagicItemsList["chief sentinel's garb"] = {
+    name : "Chief Sentinel's Garb",
+    source : [["A:BI", 13]],
+    type : "armor (studded leather)",
+    rarity : "rare",
+    description : "The Chief Sentinel's Garb is a +2 studded leather armor that gives an additional +1 bonus to AC while in dim light or darkness. Additionally, I am resistant to acid damage and have advantage on stealth checks in dim light or darkness.",
+    armorAdd : ["Chief Sentinel's Garb"],
+    armorOptions : [{
+        regExpSearch : /chief sentinel's garb/i,
+        name : "Chief Sentinel's Garb",
+        source : [["A:TAFI", 53]],
+        type : "light",
+        ac : "12+2",
+        weight : 13
+    }],
+    extraAC : [{ 
+        mod : 0,
+        name : "Dim Light/Darkness (+1 to AC)",
+        magic : true,
+        text : "I gain a +1 bonus to AC while in dim light or darkness",
+    }],
+    dmgres : ["Acid"],
+    savetx : { adv_vs : ["Stealth checks in dim light/darkness"] }
+};
 
+MagicItemsList["hunter's edge"] = {
+    name : "Hunter's Edge",
+    source : [["A:BI", 13]],
+    type : "weapon (dagger)",
+    rarity : "legendary",
+    weaponsAdd : ["Hunter's Edge"],
+    weaponOptions : [{
+        regExpSearch : /hunter's edge/i,
+        name : "Hunter's Edge",
+        source : [["A:TAFI", 53]],
+        baseWeapon : "dagger",
+        modifiers : [3, 3]
+    }],
+    description : "This dagger has a +3 bonus to attack and damage rolls. Additionally, the dagger deals an extra 1d12 bonus damage to aberrations, fiends, and celestials. If the creature I am attacking is at least one size larger than me, on an 18-20 on the attack roll, it is considered to be a critical hit."
+};
 
+MagicItemsList["dame eleanors flare"] = {
+    name : "Dame Eleanors Flare",
+    source : [["A:BI", 14]],
+    type : "weapon (pistol)",
+    rarity : "rare",
+    advantages : [["Initiative", true]],
+    description : "This pistol has a +2 to damage and attack rolls. Additionally, I can choose to quickdraw, giving myself advantage on Initiative rolls. Doing so, I must make an attack with this weapon as my first action in combat.",
+    attunement : true,
+    weaponsAdd : ["Dame Eleanors Flare"],
+    weaponOptions : [{
+        regExpSearch : /^(?=.*(dame|eleanor?s))(?=.*flare).*$/i,
+        name : "Dame Eleanors Flare",
+        source : [["A:TNC", 56]],
+        type : "Martial",
+        ability : 2,
+        list : "firearm",
+        abilitytodamage : true,
+        damage : [1, 10, "piercing"],
+        range : "30/90 ft",
+        description : "Ammunition, loading; Quickdraw",
+        tooltip : "Quickdraw: Advantage on Initiative roll, first action must be an attack with this weapon",
+        special : true,
+        modifiers : [2, 2],
+        isMagicWeapon : true,
+    }],
+};
+
+MagicItemsList["parchment of the wayfarer"] = {
+    name : "Parchment of the Wayferer",
+    source : [["A:BI", 14]],
+    type : "wondrous item",
+    rarity : "very rare",
+    attunement : true,
+    description : "This parchment appears to be a normal piece of parchment. Saying 'Ahrym Eleian' will make the parchment instantly redraw itself to represent an area 50 miles around its current position. Once per long rest, you may choose a point on the map to create an arcane eye. Places shrouded by divination appear as blank space and cannot be targeted by the arcane eye.",
+    spellcastingBonus : [{
+        name : "Parchment's Arcane Eye",
+        spells : ["arcane eye"],
+        selection : ["arcane eye"],
+        firstCol : "oncelr"
+    }],
+    extraLimitedFeatures : [{
+        name : "Arcane Eye (Parchment)",
+        usages : 1,
+        recovery : "long rest"
+    }]
+};
+
+MagicItemsList["burstfire hoverback"] = {
+    name : "Burstfire Hoverback",
+    source : [["A:BI", 14]],
+    type : "wondrous item",
+    rarity : "lengedary",
+    attunement : true,
+    description : "This hoverback grants a flying speed of 60ft. Additionally, it has 10 charges which can be used for Boom Barrage (5 charges), Overclocked Thrusters (3 charges), or Evasive Maneuvers (2 charges). See notes page.",
+    toNotesPage : [{
+        name : "Burstfire Hoverback",
+        note : desc([
+            "This hoverback is imbued with powerful and explosive arcane energy. When worn, it binds seamlessly to your back, with two ethereal flames that spark with blue and purple energy giving a faint hum. However, it does not burn you. This grants me 60ft of fly speed and has 10 charges, which can be expended to create the following effects: ",
+            "Boom Barrage (5 charges): " + "As an actions, you can unleash a barrage of five arcane missiles from the jetpack. Each missile targets a point with 120 ft. Creatures within 10 ft of where the missile hits must make a DC 20 Dexterity saving throw, taking 4d10 force damage on a fail, or half as much on a success.",
+            "Overclocked Thrusters (3 charges): " + "As a bonus action, you can activate the jetpack's overdrive, doubling your flying speed to 120 ft for up to 10 minutes.",
+            "Evasive Maneuvers (2 charges): " + "As a reaction to being targeted by a spell or ranged attack, you can use the jetpack's energy to make a quick evasive maneuver. You gain advantage on the saving throw or a +5 bonus to AC against the triggering attack."
+        ]),
+    }],
+    action : [["action", "Boom Barrage (5 charges)"], ["bonus action", "Overclocked Thrusters (3 charges)"], ["reaction","Evasive Maneuvers (2 charges) "]],
+    extraLimitedFeatures : [{
+        name : "Burstfire Charges",
+        usages : 10,
+        recovery : "long rest" //doesn't explicitly state the recovery time 
+    }]
+};
+
+MagicItemsList["assistant drone v-38"] = {
+    name : "Assistant Drone V-38",
+    source : [["A:BI", 15]],
+    type : "wondrous item",
+    rarity : "legendary",
+    attunement : true,
+    description : "This drone can only be commanded by me. If reduced to 0 HP and if I'm proficient with tinker's tools, I can repair it over the course of a short rest. I may also transform the drone into a helmet giving me 120 ft of darkvision, I can breathe underwater, and my AC increases by 2. The drone cannot use any of its features or any of its actions (includes bns. and reactions) while like this. However, it can still talk.",
+    vision : [
+        ["Darkvision (drone helmet on)", 120]
+    ],
+    savetxt : {text : "I can breath underwater while wearing the drone as a helmet"},
+    creaturesAdd : [["Assistant Drone V-38"]],
+    creatureOptions : [{
+        name : "Assistant Drone V-38",
+        source : [["A:BI", 15]],
+        size : 4,
+        type : "Construct",
+        alignment : "Unaligned",
+        ac : 15,
+        hp : 34,
+        hd : [8,6],
+        speed : "fly 50 ft (hover)",
+        proficiencyBonus : 2,
+        challengeRating : "1",
+        scores : [12, 14, 13, 8, 12, 14],
+        senses : "Darkvision 120 ft",
+        attacksAction : 1,
+        passivePerception : 13,
+        damage_immunities : "poison, psychic",
+        condition_immunities : "blinded, charmed, deafened, frightened, paralyzed, petrified, poisoned",
+        languages : "Languages of its creator",
+        attacks : [{
+            name : "Bump",
+            ability : 1,
+            damage : [1,6,"bludgeoning"],
+            range : "Melee (5 ft)",
+            description : "Bumps into a target as a melee weapon attack.",
+        }, {
+            name : "Beam",
+            ability : 6,
+            damage : [1,6,"radiant"],
+            range : "Ranged spell attack (60 ft)",
+            description : "Fires a beam at a target as a ranged spell attack."
+        }],
+        traits : [{
+            name : "Advice",
+            description : "If asked, the drone gives advice about any given situation. Sometimes without being prompted too. It likes to talk, but it's not very smart."
+        },{
+            name : "Sturdy Flyer",
+            description : "The drone has handles underneath. A medium or smaller creature can grab onto the handles and be carried at half the drone's fly speed.",
+        },{
+            name : "Skillful Helper (3/day)",
+            description : "This drone can add its proficiency bonus (+2) to an ability check, attack roll, or saving throw made by the creature it is attuned to, if said creature is within 30ft."
+        }],
+        actions : [{
+            name : "Intercept",
+            description : "As a reaction, the drone can block an attack that targets a creature within 5 ft of it, making itself the target of the attack instead."
+        }]
+    }]
+};
+
+//finish these
+MagicItemsList["wyrm stew"] = {
+    name : "Wyrm Stew",
+    source : [["A:BI", 16]],
+    type : "consumable",
+    rarity : "uncommon",
+    description : "This tough and bitter draconoid meat from the Fafniri",
+}
+
+MagicItemsList[""] = {
+    name : "",
+    source : [["A:BI", 16]],
+    type : "consumable",
+    rarity : "",
+    description : "",
+}
+
+MagicItemsList[""] = {
+    name : "",
+    source : [["A:BI", 16]],
+    type : "consumable",
+    rarity : "",
+    description : "",
+}
+
+MagicItemsList[""] = {
+    name : "",
+    source : [["A:BI", 16]],
+    type : "consumable",
+    rarity : "",
+    description : "",
+}
 
 
 
