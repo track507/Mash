@@ -13,6 +13,7 @@ FINISHED:
 
 WIP:
 - CoS (City of Strings)
+- BI (Better Items V3)
 
 TBD:
 - TRE, TMC (Deluxe), TCoR (Deluxe), TIP (Deluxe), PotM (I & II)
