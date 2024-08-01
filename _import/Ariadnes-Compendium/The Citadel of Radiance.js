@@ -57,12 +57,12 @@ MagicItemsList["spellbane dagger"] = {
     type : "weapon (dagger)",
     rarity : "very rare",
     description : "This dagger has a +2 bonus to attack and damge rolls. On a hit, creatures that can cast spells suffer a -1 penalty to their spell save DC and spell attacks for the next 10 minuts. This can stack up to 3 times, and every time you hit a creature with the max penalty renews the debuff timer. A remove curse or similar effect can end this early.",
-    weaponsAdd : ["Spellbane Dagger"],
     weaponOptions : [{
         name : "Spellbane Dagger",
         regExpSearch : /spellbane dagger/i,
         baseWeapon : "dagger",
-        modifiers : [2,2]
+        modifiers : [2,2],
+        selectNow : true
     }]
 }
 
@@ -203,5 +203,5 @@ SpellsList["pulverizing radiance"] = {
     range : "30 ft",
     components : "V,S",
     duration : "Instantaneous",
-    description : "Make ranged spell akt; 6d6+20 Radiant dmg and target gains 3 stacks of irradiated"
+    description : "Make ranged spell akt; 6d6+20 Radiant dmg and target gains 3 stacks of irradiated for 1 min"
 };
