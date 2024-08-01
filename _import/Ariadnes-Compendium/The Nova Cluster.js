@@ -127,7 +127,7 @@ SpellsList["nebula"] = {
     duration : "Conc, 1 min",
     range : "120 ft",
     save : "Varies",
-    description : "30ft rad sphere; Choose one of the following (see full desc.); Action to move it 10ft",
+    description : "30ft rad sphere; Choose one of the following from B.; Action to move it 10ft",
     descriptionFull : "Gold: Orion's Chains. Creatures within the area must make a Wisdom saving throw or be paralyzed. At the end of each of their turns, they can attempt the save again. Red: Burning Core. Creatures within the area must make a Strength saving throw or be pulled to the center of the sphere, taking 6d10 radiant damage and 6d10 fire damage, before being spit out by a flare, landing in a place of the caster's choice 20ft away from the center of the Nebula's area. Blue: Particle Accelerator. Creatures within the area must make a Dexterity saving throw, taking 10d12 force on a failed save, or half on a success. Creatures killed this way are molecularly destroyed. Purple: Unendurable Eminence. Creatures within the area must make a DC 10 Charisma saving throw or take 150 force damage that cannot be prevented in any way. Creatures killed this way disappears without leaving behind a body. The DC increases by 2 each time a creature has to roll it between long rests. I can use an action on my turn to move the center of the sphere up to 10ft."
 };
 MagicItemsList["dame eleanors flare"] = {
@@ -138,7 +138,6 @@ MagicItemsList["dame eleanors flare"] = {
     advantages : [["Initiative", true]],
     description : "This pistol has a +2 to damage and attack rolls. Additionally, I can choose to quickdraw, giving myself advantage on Initiative rolls. Doing so, I must make an attack with this weapon as my first action in combat.",
     attunement : true,
-    weaponsAdd : ["Dame Eleanors Flare"],
     weaponOptions : [{
         regExpSearch : /^(?=.*(dame|eleanor?s))(?=.*flare).*$/i,
         name : "Dame Eleanors Flare",
@@ -154,6 +153,7 @@ MagicItemsList["dame eleanors flare"] = {
         special : true,
         modifiers : [2, 2],
         isMagicWeapon : true,
+        selectNow : true
     }],
 };
 MagicItemsList["quartermaster's beret"] = {
@@ -279,7 +279,6 @@ MagicItemsList["lex-i prototype"] = {
     fixedDC : 18,
     description : "I gain the following: immune to diseases, poison dmg, and poisioned condition, ignore the first Impulse Capsule effects I take between long rests, can make a melee weapon attack using Strength dealing 2d12+Str mod+3 force dmg, can make a beam attack 30ft long and 5ft wide DC 18 Dex save taking 16d8 force dmg or half on a save. After firing this beam, the arm goes dormant for 1d4 days. Absorbing an Eminent Wisp awakens the item early.",
     savetxt : {immune : ["poison dmg", "disease", "poisioned condition"]},
-    weaponsAdd : ["Lex-I Prototype Strike", "Lex-I Prototype Beam"],
     weaponOptions : [{
         regExpSearch : /lex-i prototype strike/i,
         name : "Lex-I Prototype Strike",
@@ -293,7 +292,8 @@ MagicItemsList["lex-i prototype"] = {
         special : true,
         isMagicWeapon : true,
         isAlwaysProf : true,
-        modifiers : [0, 3] 
+        modifiers : [0, 3],
+        selectNow : true
     }, {
         regExpSearch : /lex-i prototype beam/i,
         name : "Lex-I Prototype Beam",
@@ -311,7 +311,8 @@ MagicItemsList["lex-i prototype"] = {
         isAlwaysProf : true,
         isMagicWeapon : false, //prevents attack calculations 
         isNotWeapon : true,
-        dc : true
+        dc : true,
+        selectNow : true
     }]
 };
 var eminent_wisp_toNotes = [
@@ -363,7 +364,6 @@ RaceList["cetkar"] = {
         "Cetkari Jaws: My jaws are natural weapons dealing 1d8 + my Strength modifier piercing damage. On a hit and if the creature is medium or smaller, I can grapple it. The DC for my grapple check is 8 + prof bonus + Strength modifier.",
         "Threatening Presence: I gain proficiency with Intimidation. Additionally, I have advantage on the check against creatures that have seen me attack with my Cetkari Jaws.",
     ]),
-    weaponsAdd : ["Cetkari Jaws"],
     weaponOptions : [{
         regExpSearch : /^(?=.*cetkari)(?=.*jaws).*$/i,
         name : "Cetkari Jaws",
@@ -376,6 +376,7 @@ RaceList["cetkar"] = {
         description : "Natural; On hit, choose to grapple",
         list : "melee",
         isAlwaysProf : true,
+        selectNow : true
     }],
     scorestxt : "Cetkar: +1 Strength , +1 Constitution;",
     scores : [1, 0, 1, 0, 0, 0],
@@ -400,7 +401,6 @@ RaceList["cetkar, quaru"] ={
         "Deadly Strength: I have a +2 bonus to damage rolls made against creatures below half their max hp; temp HP does not count against this condition.",
         "Born Leader: I can cast friends at will requiring no components. When I reach 3rd level, I can cast heroism twice per long rest. Charisma is my spellcasting ability for this."
     ]),
-    weaponsAdd : ["Cetkari Jaws"],
     weaponOptions : [{
         regExpSearch : /^(?=.*cetkari)(?=.*jaws).*$/i,
         name : "Cetkari Jaws",
@@ -413,6 +413,7 @@ RaceList["cetkar, quaru"] ={
         description : "Natural; On hit, choose to grapple",
         list : "melee",
         isAlwaysProf : true,
+        selectNow : true
     }],
     scorestxt : "Cetkar, Quaru: +1 Strength , +1 Constitution, and +1 to Strength or Charisma;",
     scores : [1, 0, 1, 0, 0, 0],
@@ -463,7 +464,6 @@ RaceList["cetkar, fykari"] ={
     age : " same age rate and lifespan as humans",
     height : " stand between 6 to 7 feet tall",
     weight : " weighs around 200 to 300 pounds",
-    weaponsAdd : ["Cetkari Jaws"],
     weaponOptions : [{
         regExpSearch : /^(?=.*cetkari)(?=.*jaws).*$/i,
         name : "Cetkari Jaws",
@@ -476,6 +476,7 @@ RaceList["cetkar, fykari"] ={
         description : "Natural; On hit, choose to grapple; Versatile (1d12 if grappled by me)",
         list : "melee",
         isAlwaysProf : true,
+        selectNow : true
     }],
     spellcastingBonus : [{
         name : "Artificer's Psyche",
@@ -506,7 +507,7 @@ MagicItemsList["assistant drone v-38"] = {
     vision : [
         ["Darkvision (drone helmet on)", 120]
     ],
-    savetxt : {text : "I can breath underwater while wearing the helmet as a drone"},
+    savetxt : {text : "I can breath underwater while wearing the drone as a helmet"},
     creaturesAdd : [["Assistant Drone V-38"]],
     creatureOptions : [{
         name : "Assistant Drone V-38",
@@ -563,7 +564,6 @@ MagicItemsList["hellspitter"] = {
     rarity : "artifact",
     attunement : true,
     description : "This pistol has a +3 to attack and damage rolls, doesn't require ammunition, doesn't need to be reloaded, and fires shards of molten mithril dealing 2d6 piercing and 2d6 fire damage on a hit. This ignores resistances, not immunities, and reduces the target's HP for an hour. Critical hits deal an additional 4d6 fire damage. I can also cast fireball at will requiring no components.",
-    weaponsAdd : ["Hellspitter"],
     weaponOptions : [{
         name : "Hellspitter",
         source : [["A:TNC", 49]],
@@ -579,6 +579,7 @@ MagicItemsList["hellspitter"] = {
         special : true,
         modifiers : [3, 3],
         isMagicWeapon : true,
+        selectNow : true
     }],
     spellcastingBonus : [{
         name : "Hellspitter (Fireball)",
@@ -605,7 +606,6 @@ MagicItemsList["malaise"] = {
         Doesn't say whether or not it still functions as a normal dagger (melee 20/60ft) and if we can (at will) make it fly 60ft and attack someone
         Assuming it has a fly speed of 60ft and takes an action to attack
     */
-    weaponsAdd : ["Malaise"],
     weaponOptions : [{ 
         regExpSearch : /malaise/i,
         name : "Malaise",
@@ -614,7 +614,8 @@ MagicItemsList["malaise"] = {
         description : "Finesse, light, thrown; +3d6 cold dmg; fly, invis, plane shift (ethereal) at will; Special",
         tooltip : "Special: Command and use its features telekinetically up to 60ft",
         range : "Melee, 20/60 ft",
-        modifiers : [3,3]
+        modifiers : [3,3],
+        selectNow : true
     }],
     savetxt : { immune : ["surprised"] }
 };
