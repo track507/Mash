@@ -16,4 +16,4 @@ WIP:
 - BI (Better Items V3)
 
 TBD:
-- TRE, TMC (Deluxe), TCoR (Deluxe), TIP (Deluxe), PotM (I & II)
+- TRE, TMC (Deluxe), TCoR (Deluxe), TIP (Deluxe), PotM (I & II), Ariadne's SRD v1.1, The Court of the Afterlife, Cousins of Dragonkind, DoMF (subclasses)
