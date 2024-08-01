@@ -29,7 +29,7 @@ SourceList["A:TEC"] = {
     date : "2024/04/11"
 };
 
-CompanionList["ariadne's: the emerald crown creatures"] = {
+CompanionList["ariadne's: the emerald crown companion codex"] = {
     name : "Ariadne's: The Emerald Crown Companion Codex",
     nameMenu : "Companion",
     source : [["A:TEC", 0],["A:CoS", 0]]
@@ -72,7 +72,6 @@ MagicItemsList["sword and gourd"] = {
         times : 2,
         firstCol : 30
     }],
-    weaponsAdd : ["Sword and Gourd"],
     weaponOptions : [{
         regExpSearch : /sword and gourd/i,
         name : "Sword and Gourd",
@@ -81,6 +80,7 @@ MagicItemsList["sword and gourd"] = {
         damage : [1, 8, "necrotic"],
         description : "Versatile (1d10)",
         modifiers : [1,1],
+        selectNow : true
     }]
 };
 
@@ -328,13 +328,13 @@ MagicItemsList["fragarch, the memory blade"] = {
         selection : ["modify memory"],
         times : 1
     }],
-    weaponsAdd : ["Fragarch, the Memory Blade"],
     weaponOptions : [{
         regExpSearch : /fragarch, the memory blade/i,
         name : "Fragarch, the Memory Blade",
         baseWeapon : "longsword",
         description : "Versatile (1d10); +1d8 psychic",
-        modifiers : [3,3]
+        modifiers : [3,3],
+        selectNow : true
     }]
 };
 
@@ -795,7 +795,7 @@ CreatureList["giant mushroom"] = {
     source : [["A:TEC", 60]],
     size : 1,
     type : "Plant",
-    companion : ["ariadne's: the emerald crown creatures", "ariadne's codex of creatures"],
+    companion : ["ariadne's: the emerald crown creatures", "ariadne's companion codex"],
     alignment : "Unaligned",
     ac : 13,
     hp : 89,
@@ -864,13 +864,13 @@ MagicItemsList["ixion's greataxe"] = {
         name : "Removing Ixion's Curse",
         note : desc(["If I remove this curse with a remove curse spell at 9th level, I lose the additional 2d8 damage and instead gain life transference. This allows me to heal half the amount of hit points it deals on a successful attack against a creature. Alternatively, I can choose to redirect the healing to an ally with 30 ft of me"])
     }],
-    weaponsAdd : ["Ixion's Greataxe"],
     weaponOptions : [{
         baseWeapon : "greataxe",
         regExpSearch : /ixion's/i,
         name : "Ixion's Greataxe",
         source : [["A:TEC", 88]],
         description : "Heavy, two-handed; +2d8 dark dmg or heal 1/2 dmg dealt if curse removed; Crit range +2",
-        modifiers : [3,3]
+        modifiers : [3,3],
+        selectNow : true
     }]
 }
