@@ -386,7 +386,6 @@ MagicItemsList["reality splitter"] = {
     rarity : "legendary",
     attunement : true,
     description : "This pistol deals a base of 3d6 lethality damage, and I have a +3 bonus to attack and damage rolls. Additionally, it doesn't need to be reloaded, and deals an additional 3d6 lethality damage on a critical hit.",
-    weaponsAdd : ["Reality Splitter"],
     weaponOptions : [{
         name : "Reality Splitter",
         regExpSearch : /reality splitter/i,
@@ -394,6 +393,7 @@ MagicItemsList["reality splitter"] = {
         damage : [3, 6, "lethality"],
         modifiers : [3,3],
         description : "+3d6 lethality dmg on crit",
+        selectNow : true
     }]
 }
 
@@ -729,13 +729,13 @@ MagicItemsList["hunter's edge"] = {
     source : [["A:BI", 13]],
     type : "weapon (dagger)",
     rarity : "legendary",
-    weaponsAdd : ["Hunter's Edge"],
     weaponOptions : [{
         regExpSearch : /hunter's edge/i,
         name : "Hunter's Edge",
         source : [["A:TAFI", 53]],
         baseWeapon : "dagger",
-        modifiers : [3, 3]
+        modifiers : [3, 3],
+        selectNow : true
     }],
     description : "This dagger has a +3 bonus to attack and damage rolls. Additionally, the dagger deals an extra 1d12 bonus damage to aberrations, fiends, and celestials. If the creature I am attacking is at least one size larger than me, on an 18-20 on the attack roll, it is considered to be a critical hit."
 };
@@ -748,7 +748,6 @@ MagicItemsList["dame eleanors flare"] = {
     advantages : [["Initiative", true]],
     description : "This pistol has a +2 to damage and attack rolls. Additionally, I can choose to quickdraw, giving myself advantage on Initiative rolls. Doing so, I must make an attack with this weapon as my first action in combat.",
     attunement : true,
-    weaponsAdd : ["Dame Eleanors Flare"],
     weaponOptions : [{
         regExpSearch : /^(?=.*(dame|eleanor?s))(?=.*flare).*$/i,
         name : "Dame Eleanors Flare",
@@ -764,6 +763,7 @@ MagicItemsList["dame eleanors flare"] = {
         special : true,
         modifiers : [2, 2],
         isMagicWeapon : true,
+        selectNow : true
     }],
 };
 
