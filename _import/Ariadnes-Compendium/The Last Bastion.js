@@ -577,13 +577,13 @@ MagicItemsList["maul of construct turning"] = {
     rarity : "very rare",
     attunement : true,
     description : "I have a +2 to damage and attack rolls made with this maul. When I hit a construct, they take an additional 1d8 lightning damage and must succeed a DC 14 Consitution saving throw or be Incapacitated until the end of their next turn. If I am a Cleric, I can use my Turn Undead to target constructs instead of undead.",
-    weaponsAdd : ["Maul of Construct Turning"],
     weaponOptions : [{
         regExpSearch : /^(?=.*maul)(?=.*construct)(?=.*turning).*$/i,
         name : "Maul of Construct Turning",
         baseWeapon : "maul",
         description : "Heavy, two-handed; +1d8 lightning dmg to Constructs",
         modifiers : [2,2],
+        selectNow : true
     }],
     choices : ["Cleric", "Not a Cleric"],
     selfChoosing : function() {
@@ -607,14 +607,14 @@ MagicItemsList["clockwork needle"] = {
     rarity : "common",
     attunement : false,
     description : "Three times per day, I can mend damage to a construct within 5 ft of me. The needle restors 2d8+5 to the construct. Additionally, I can make an improvised weapon attack to organic creatures. On a hit, it deals 3d8+5 piercing damage and the needle breaks.",
-    weaponsAdd : ["Clockwork Needle"],
     weaponOptions : [{
         regExpSearch : /clockwork needle/i,
         name : "Clockwork Needle",
         source : [["A:TLB", 39]],
         type : "Improvised Weapon",
         description : "Construct heals 2d8+5; Breaks after attacking a creature",
-        damage : [3, 8, "piercing"]
+        damage : [3, 8, "piercing"],
+        selectNow : true
     }],
     usages : 3,
     recovery : "dawn"
@@ -675,7 +675,7 @@ MagicItemsList["mask of the platinum owl"] = {
 }
 
 CreatureList["giant platinum owl"] = {
-    companion : ["ariadne's: the last bastion codex", "ariadne's codex"],
+    companion : ["ariadne's: the last bastion codex", "ariadne's companion codex"],
     name : "Giant Platinum Owl",
     source : [["A:TLB", 39]],
     size : 4,
@@ -899,7 +899,7 @@ SpellsList["alchemize"] = {
     duration : "Instantaneous",
     components : "S,M",
     compMaterial : "pouches and vials to store the resulting contents in",
-    description : "1 small non-magical obj revert to its raw material; used to make another obj, must have tool prof. if complex"
+    description : "1 small non-magical obj revert to raw material; used to make other obj, must have tool prof. if complex"
 }
 
 SpellsList["fulgurating smite"] = { 
