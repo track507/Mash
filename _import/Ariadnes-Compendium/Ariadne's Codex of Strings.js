@@ -162,7 +162,6 @@ MagicItemsList["dame eleanors flare"] = {
     advantages : [["Initiative", true]],
     description : "This pistol has a +2 to damage and attack rolls. Additionally, I can choose to quickdraw, giving myself advantage on Initiative rolls. Doing so, I must make an attack with this weapon as my first action in combat.",
     attunement : true,
-    weaponsAdd : ["Dame Eleanors Flare"],
     weaponOptions : [{
         regExpSearch : /^(?=.*(dame|eleanor?s))(?=.*flare).*$/i,
         name : "Dame Eleanors Flare",
@@ -178,6 +177,7 @@ MagicItemsList["dame eleanors flare"] = {
         special : true,
         modifiers : [2, 2],
         isMagicWeapon : true,
+        selectNow : true
     }],
 };
 MagicItemsList["quartermaster's beret"] = {
@@ -303,7 +303,6 @@ MagicItemsList["lex-i prototype"] = {
     fixedDC : 18,
     description : "I gain the following: immune to diseases, poison dmg, and poisioned condition, ignore the first Impulse Capsule effects I take between long rests, can make a melee weapon attack using Strength dealing 2d12+Str mod+3 force dmg, can make a beam attack 30ft long and 5ft wide DC 18 Dex save taking 16d8 force dmg or half on a save. After firing this beam, the arm goes dormant for 1d4 days. Absorbing an Eminent Wisp awakens the item early.",
     savetxt : {immune : ["poison dmg", "disease", "poisioned condition"]},
-    weaponsAdd : ["Lex-I Prototype Strike", "Lex-I Prototype Beam"],
     weaponOptions : [{
         regExpSearch : /lex-i prototype strike/i,
         name : "Lex-I Prototype Strike",
@@ -317,7 +316,8 @@ MagicItemsList["lex-i prototype"] = {
         special : true,
         isMagicWeapon : true,
         isAlwaysProf : true,
-        modifiers : [0, 3] 
+        modifiers : [0, 3],
+        selectNow : true
     }, {
         regExpSearch : /lex-i prototype beam/i,
         name : "Lex-I Prototype Beam",
@@ -335,7 +335,8 @@ MagicItemsList["lex-i prototype"] = {
         isAlwaysProf : true,
         isMagicWeapon : false, //prevents attack calculations 
         isNotWeapon : true,
-        dc : true
+        dc : true,
+        selectNow : true
     }]
 };
 var eminent_wisp_toNotes = [
@@ -387,7 +388,6 @@ RaceList["cetkar"] = {
         "Cetkari Jaws: My jaws are natural weapons dealing 1d8 + my Strength modifier piercing damage. On a hit and if the creature is medium or smaller, I can grapple it. The DC for my grapple check is 8 + prof bonus + Strength modifier.",
         "Threatening Presence: I gain proficiency with Intimidation. Additionally, I have advantage on the check against creatures that have seen me attack with my Cetkari Jaws.",
     ]),
-    weaponsAdd : ["Cetkari Jaws"],
     weaponOptions : [{
         regExpSearch : /^(?=.*cetkari)(?=.*jaws).*$/i,
         name : "Cetkari Jaws",
@@ -400,6 +400,7 @@ RaceList["cetkar"] = {
         description : "Natural; On hit, choose to grapple",
         list : "melee",
         isAlwaysProf : true,
+        selectNow : true
     }],
     scorestxt : "Cetkar: +1 Strength , +1 Constitution;",
     scores : [1, 0, 1, 0, 0, 0],
@@ -424,7 +425,6 @@ RaceList["cetkar, quaru"] ={
         "Deadly Strength: I have a +2 bonus to damage rolls made against creatures below half their max hp; temp HP does not count against this condition.",
         "Born Leader: I can cast friends at will requiring no components. When I reach 3rd level, I can cast heroism twice per long rest. Charisma is my spellcasting ability for this."
     ]),
-    weaponsAdd : ["Cetkari Jaws"],
     weaponOptions : [{
         regExpSearch : /^(?=.*cetkari)(?=.*jaws).*$/i,
         name : "Cetkari Jaws",
@@ -437,6 +437,7 @@ RaceList["cetkar, quaru"] ={
         description : "Natural; On hit, choose to grapple",
         list : "melee",
         isAlwaysProf : true,
+        selectNow : true
     }],
     scorestxt : "Cetkar, Quaru: +1 Strength , +1 Constitution, and +1 to Strength or Charisma;",
     scores : [1, 0, 1, 0, 0, 0],
@@ -487,7 +488,6 @@ RaceList["cetkar, fykari"] ={
     age : " same age rate and lifespan as humans",
     height : " stand between 6 to 7 feet tall",
     weight : " weighs around 200 to 300 pounds",
-    weaponsAdd : ["Cetkari Jaws"],
     weaponOptions : [{
         regExpSearch : /^(?=.*cetkari)(?=.*jaws).*$/i,
         name : "Cetkari Jaws",
@@ -500,6 +500,7 @@ RaceList["cetkar, fykari"] ={
         description : "Natural; On hit, choose to grapple; Versatile (1d12 if grappled by me)",
         list : "melee",
         isAlwaysProf : true,
+        selectNow : true
     }],
     spellcastingBonus : [{
         name : "Artificer's Psyche",
@@ -587,7 +588,6 @@ MagicItemsList["hellspitter"] = {
     rarity : "artifact",
     attunement : true,
     description : "This pistol has a +3 to attack and damage rolls, doesn't require ammunition, doesn't need to be reloaded, and fires shards of molten mithril dealing 2d6 piercing and 2d6 fire damage on a hit. This ignores resistances, not immunities, and reduces the target's HP for an hour. Critical hits deal an additional 4d6 fire damage. I can also cast fireball at will requiring no components.",
-    weaponsAdd : ["Hellspitter"],
     weaponOptions : [{
         name : "Hellspitter",
         source : [["A:TNC", 49]],
@@ -603,6 +603,7 @@ MagicItemsList["hellspitter"] = {
         special : true,
         modifiers : [3, 3],
         isMagicWeapon : true,
+        selectNow : true
     }],
     spellcastingBonus : [{
         name : "Hellspitter (Fireball)",
@@ -629,7 +630,6 @@ MagicItemsList["malaise"] = {
         Doesn't say whether or not it still functions as a normal dagger (melee 20/60ft) and if we can (at will) make it fly 60ft and attack someone
         Assuming it has a fly speed of 60ft and takes an action to attack
     */
-    weaponsAdd : ["Malaise"],
     weaponOptions : [{ 
         regExpSearch : /malaise/i,
         name : "Malaise",
@@ -638,7 +638,8 @@ MagicItemsList["malaise"] = {
         description : "Finesse, light, thrown; +3d6 cold dmg; fly, invis, plane shift (ethereal) at will; Special",
         tooltip : "Special: Command and use its features telekinetically up to 60ft",
         range : "Melee, 20/60 ft",
-        modifiers : [3,3]
+        modifiers : [3,3],
+        selectNow : true
     }],
     savetxt : { immune : ["surprised"] }
 };
@@ -1359,13 +1360,13 @@ MagicItemsList["maul of construct turning"] = {
     rarity : "very rare",
     attunement : true,
     description : "I have a +2 to damage and attack rolls made with this maul. When I hit a construct, they take an additional 1d8 lightning damage and must succeed a DC 14 Consitution saving throw or be Incapacitated until the end of their next turn. If I am a Cleric, I can use my Turn Undead to target constructs instead of undead.",
-    weaponsAdd : ["Maul of Construct Turning"],
     weaponOptions : [{
         regExpSearch : /^(?=.*maul)(?=.*construct)(?=.*turning).*$/i,
         name : "Maul of Construct Turning",
         baseWeapon : "maul",
         description : "Heavy, two-handed; +1d8 lightning dmg to Constructs",
         modifiers : [2,2],
+        selectNow : true
     }],
     choices : ["Cleric", "Not a Cleric"],
     selfChoosing : function() {
@@ -1389,14 +1390,14 @@ MagicItemsList["clockwork needle"] = {
     rarity : "common",
     attunement : false,
     description : "Three times per day, I can mend damage to a construct within 5 ft of me. The needle restors 2d8+5 to the construct. Additionally, I can make an improvised weapon attack to organic creatures. On a hit, it deals 3d8+5 piercing damage and the needle breaks.",
-    weaponsAdd : ["Clockwork Needle"],
     weaponOptions : [{
         regExpSearch : /clockwork needle/i,
         name : "Clockwork Needle",
         source : [["A:TLB", 39]],
         type : "Improvised Weapon",
         description : "Construct heals 2d8+5; Breaks after attacking a creature",
-        damage : [3, 8, "piercing"]
+        damage : [3, 8, "piercing"],
+        selectNow : true
     }],
     usages : 3,
     recovery : "dawn"
@@ -1835,13 +1836,13 @@ MagicItemsList["rip's risible reaper"] = { //there is no official "scythe" using
     description : "I have a +2 to hit and damage rolls made with this sickle. Additionally it has 5 charges, regaining 1d4+1 at dawn. When I hit a creature, I can expend a charge and they must succeed a DC 15 Wisdom saving throw or take 2d6 psychic damage and be under the effects of the Hideous Laughter spell until the end of their next turn.",
     usages : 5,
     recovery : "dawn",
-    weaponsAdd : ["Rip's Risible Reaper"],
     weaponOptions : [{
         name : "Rip's Risible Reaper",
         regExpSearch : /rip's risible reaper/i,
         source : [["A:TTN", 12]],
         baseWeapon : "sickle",
-        modifiers : [2,2]
+        modifiers : [2,2],
+        selectNow : true
     }]
 }
 
@@ -2116,12 +2117,12 @@ MagicItemsList["golden edge"] = {
         name : "Golden Edge (not a rogue or fighter)",
         description : "I gain a +3 to attack and damage rolls made with this dagger. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1-2, the dagger breaks and is irreparable.",
     },
-    weaponsAdd : ["Golden Edge"],
     weaponOptions : [{
         name : "Golden Edge",
         regExpSearch : /golden edge/i,
         baseWeapon : "dagger",
-        modifiers : [3,3]
+        modifiers : [3,3],
+        selectNow : true
     }],
     calcChanges : {
         atkAdd : [
@@ -2338,7 +2339,6 @@ MagicItemsList["igmar's diamond pickaxe"] = {
     rarity : "legendary",
     attunement : true,
     description : "This +3 pickaxe deals double damage to objects and structures and has an increased critical range, but have a -2 to attack against creatures. Minerals, constructs, and rocks take an additional 2d10 force damage, and minerals and rocks extracted with this are in perfect condition. 1/LR I can cast Move Earth. I have disadvantage on attacks if my Strength is 14 or lower.",
-    weaponsAdd : ["Igmar's Diamond Pickaxe"],
     weaponOptions : [{
         name : "Igmar's Diamond Pickaxe",
         regExpSearch : /igmar's diamond pickaxe/i,
@@ -2352,6 +2352,7 @@ MagicItemsList["igmar's diamond pickaxe"] = {
         tooltip : "Heavy armament: Creatures with a Strength score of 14 or lower have disadvantage on the attack rolls.\n Destructive: This pickaxe has a -2 to attack creatures and deals double damage vs objects and structures.",
         special : true,
         weight : 44,
+        selectNow : true
     }],
     spellcastingBonus : [{
         name : "Igmar's",
@@ -2430,7 +2431,6 @@ MagicItemsList["dimensional blade"] = {
         fixedDC : 18,
         firstCol : "oncelr"
     }],
-    weaponsAdd : ["Dimensional Blade"],
     weaponOptions : [{
         name : "Dimensional Blade",
         regExpSearch : /dimensional blade/i,
@@ -2438,7 +2438,8 @@ MagicItemsList["dimensional blade"] = {
         baseWeapon : "longsword",
         description : "Finesse, versatile (1d10); +1d8 Force dmg; +4d8 Force dmg vs Aberr; Special; Heavy",
         tooltip : "Special: Creatures hit with this weapon are dimensionally shattered. They have a -3 to all rolls and disadvantage on Charisma saving throws.\n Heavy: I have disadvantage on attack rolls if my Stength is 14 or lower.",
-        modifiers : [3,3]
+        modifiers : [3,3],
+        selectNow : true
     }],
     limfeaname : "Dimensional Passage",
     usages : 1,
@@ -2642,7 +2643,6 @@ MagicItemsList["sword and gourd"] = {
         times : 2,
         firstCol : 30
     }],
-    weaponsAdd : ["Sword and Gourd"],
     weaponOptions : [{
         regExpSearch : /sword and gourd/i,
         name : "Sword and Gourd",
@@ -2651,6 +2651,7 @@ MagicItemsList["sword and gourd"] = {
         damage : [1, 8, "necrotic"],
         description : "Versatile (1d10)",
         modifiers : [1,1],
+        selectNow : true
     }]
 };
 
@@ -2898,13 +2899,13 @@ MagicItemsList["fragarch, the memory blade"] = {
         selection : ["modify memory"],
         times : 1
     }],
-    weaponsAdd : ["Fragarch, the Memory Blade"],
     weaponOptions : [{
         regExpSearch : /fragarch, the memory blade/i,
         name : "Fragarch, the Memory Blade",
         baseWeapon : "longsword",
         description : "Versatile (1d10); +1d8 psychic",
-        modifiers : [3,3]
+        modifiers : [3,3],
+        selectNow : true
     }]
 };
 
@@ -3434,14 +3435,14 @@ MagicItemsList["ixion's greataxe"] = {
         name : "Removing Ixion's Curse",
         note : desc(["If I remove this curse with a remove curse spell at 9th level, I lose the additional 2d8 damage and instead gain life transference. This allows me to heal half the amount of hit points it deals on a successful attack against a creature. Alternatively, I can choose to redirect the healing to an ally with 30 ft of me"])
     }],
-    weaponsAdd : ["Ixion's Greataxe"],
     weaponOptions : [{
         baseWeapon : "greataxe",
         regExpSearch : /ixion's/i,
         name : "Ixion's Greataxe",
         source : [["A:TEC", 88]],
         description : "Heavy, two-handed; +2d8 dark dmg or heal 1/2 dmg dealt if curse removed; Crit range +2",
-        modifiers : [3,3]
+        modifiers : [3,3],
+        selectNow : true
     }]
 }
 
@@ -3486,13 +3487,13 @@ MagicItemsList["golem wrecker"] = {
     type : "weapon (light hammer)",
     rarity : "very rare",
     description : "I have a +2 bonus to attack and damage rolls made with this light hammer. Additionally, this weapon ignores resistance to bludgeoning and slashing damage, and treats immunity as if it were resistance. The crit range against constructs is increased to 17-20, and when I hit a construct, it must roll a DC 17 Constitution saving throw or fall prone and be stunned, repeating the save at the end of each of its turns.",
-    weaponsAdd : ["Golem Wrecker"],
     weaponOptions : [{
         name : "Golem Wrecker",
         regExpSearch : /golem wrecker/i,
         baseWeapon : "light hammer",
         modifiers : [2,2],
-        description : "Light, thrown; Crit range 17-20 vs. Constructs; On hit vs. Construct, Con save or fall prone and stunned"
+        description : "Light, thrown; Crit range 17-20 vs. Constructs; On hit vs. Construct, Con save or fall prone and stunned",
+        selectNow : true
     }]
 }
 
@@ -3519,7 +3520,6 @@ MagicItemsList["caustic flame"] = {
     rarity : "legendary",
     attunement : true,
     description : "This +3 pistol deals a base of 1d8 acid plus 1d8 fire damage instead of the normal 1d10 piercing damage. Creatures hit takes this damage again at the start of their next turn as the flaming acid burns through them. It uses no bullets, but instead I must refill its glass chamber with a vial of acid worth at least 25 GP, and has enough to shoot 10 times before reloading again.",
-    weaponsAdd : ["Caustic Flame"],
     weaponOptions : [{
         name : "Caustic Flame",
         regExpSearch : /caustic flame/i,
@@ -3527,6 +3527,7 @@ MagicItemsList["caustic flame"] = {
         modifiers : [2,2],
         damage : [1, 8, "acid"],
         description : "Vial of Acid, loading; +1d8 fire dmg; Crea hit take dmg start of their next turn",
+        selectNow : true
     }]
 }
 
@@ -3633,7 +3634,6 @@ FeatsList["shield of conjuration"] = {
         description : "My Charisma increases by 1. When I have the shield spell active, whenever a magic missle or ranged attack is blocked by it, I can make a ranged spell attack (60/120 ft) against a creature of my choice. On a hit the creature suffers the damage from the original attack.",
         scores : [0, 0, 0, 0, 0, 1],
     },
-    weaponsAdd : ["Shield oF Conjuration"],
     weaponOptions : [{
         name : "Shield of Conjuration",
         regExpSearch : /shield of conjuration/i,
@@ -3646,7 +3646,8 @@ FeatsList["shield of conjuration"] = {
         isNotWeapon : true,
         useSpellcastingAbility : true,
         ability : 4,
-        description : "Reflect missed atks, spell atk vs crea, dmg equals the missed atk"
+        description : "Reflect missed atks, spell atk vs crea, dmg equals the missed atk",
+        selectNow : true
     }]
 }
 
@@ -4279,7 +4280,6 @@ MagicItemsList["reality splitter"] = {
     rarity : "legendary",
     attunement : true,
     description : "This pistol deals a base of 3d6 lethality damage, and I have a +3 bonus to attack and damage rolls. Additionally, it doesn't need to be reloaded, and deals an additional 3d6 lethality damage on a critical hit.",
-    weaponsAdd : ["Reality Splitter"],
     weaponOptions : [{
         name : "Reality Splitter",
         regExpSearch : /reality splitter/i,
@@ -4287,6 +4287,7 @@ MagicItemsList["reality splitter"] = {
         damage : [3, 6, "lethality"],
         modifiers : [3,3],
         description : "+3d6 lethality dmg on crit",
+        selectNow : true
     }]
 }
 
@@ -4968,12 +4969,12 @@ MagicItemsList["shefus' lucky spear"] = {
     type : "weapon (spear)",
     rarity : "uncommon",
     attunement : false,
-    weaponsAdd : ["Shefus' Lucky Spear"],
     weaponOptions : [{
         regExpSearch : /shefus' lucky spear/i,
         name : "Lucky Spear",
         baseWeapon : "spear",
-        modifiers : [2, 2]
+        modifiers : [2, 2],
+        selectNow : true
     }]
 };
 
@@ -5006,12 +5007,12 @@ MagicItemsList["dart"] = {
     type : "weapon",
     rarity : "very rare",
     attunement : true,
-    weaponsAdd : ["Dart"],
     weaponOptions : [{
         regExpSearch : /dart/i,
         name : "Dart",
         baseWeapon : "shortsword",
-        modifiers : [2, 2]
+        modifiers : [2, 2],
+        selectNow : true
     }]
 };
 
@@ -5021,7 +5022,6 @@ MagicItemsList["blackbox blaster"] = {
     description : "This blaster counts as a firearm dealing 1d10 piercing damage plus 1d10 of fire damage on a hit. It has the loading property (6 rounds) and uses Black Box ammunition.",
     type : "firearm",
     rarity : "uncommon",
-    weaponsAdd : ["Blackbox Blaster"],
     weaponOptions : [{
         regExpSearch : /blackbox blaster/i,
         name : "Blackbox Blaster",
@@ -5034,7 +5034,8 @@ MagicItemsList["blackbox blaster"] = {
         weight : 3, // official pistol is 3 lb and does same damage
         description : "Ammunition, loading, +1d10 fire damage",
 	    abilitytodamage : true,
-        ammo : "black box ammo"
+        ammo : "black box ammo",
+        selectNow : true
     }]
 };
 
@@ -5099,13 +5100,13 @@ MagicItemsList["hunter's edge"] = {
     source : [["A:TAFI", 53]],
     type : "weapon (dagger)",
     rarity : "legendary",
-    weaponsAdd : ["Hunter's Edge"],
     weaponOptions : [{
         regExpSearch : /hunter's edge/i,
         name : "Hunter's Edge",
         source : [["A:TAFI", 53]],
         baseWeapon : "dagger",
-        modifiers : [3, 3]
+        modifiers : [3, 3],
+        selectNow : true
     }],
     description : "This dagger has a +3 bonus to attack and damage rolls. Additionally, the dagger deals an extra 1d12 bonus damage to aberrations, fiends, and celestials. If the creature I am attacking is at least one size larger than me, on an 18-20 on the attack roll, it is considered to be a critical hit."
 };
@@ -5586,12 +5587,12 @@ MagicItemsList["spellbane dagger"] = {
     type : "weapon (dagger)",
     rarity : "very rare",
     description : "This dagger has a +2 bonus to attack and damge rolls. On a hit, creatures that can cast spells suffer a -1 penalty to their spell save DC and spell attacks for the next 10 minuts. This can stack up to 3 times, and every time you hit a creature with the max penalty renews the debuff timer. A remove curse or similar effect can end this early.",
-    weaponsAdd : ["Spellbane Dagger"],
     weaponOptions : [{
         name : "Spellbane Dagger",
         regExpSearch : /spellbane dagger/i,
         baseWeapon : "dagger",
-        modifiers : [2,2]
+        modifiers : [2,2],
+        selectNow : true
     }]
 }
 
