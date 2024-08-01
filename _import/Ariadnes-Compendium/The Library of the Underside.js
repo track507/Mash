@@ -59,13 +59,13 @@ MagicItemsList["golem wrecker"] = {
     type : "weapon (light hammer)",
     rarity : "very rare",
     description : "I have a +2 bonus to attack and damage rolls made with this light hammer. Additionally, this weapon ignores resistance to bludgeoning and slashing damage, and treats immunity as if it were resistance. The crit range against constructs is increased to 17-20, and when I hit a construct, it must roll a DC 17 Constitution saving throw or fall prone and be stunned, repeating the save at the end of each of its turns.",
-    weaponsAdd : ["Golem Wrecker"],
     weaponOptions : [{
         name : "Golem Wrecker",
         regExpSearch : /golem wrecker/i,
         baseWeapon : "light hammer",
         modifiers : [2,2],
-        description : "Light, thrown; Crit range 17-20 vs. Constructs; On hit vs. Construct, Con save or fall prone and stunned"
+        description : "Light, thrown; Crit range 17-20 vs. Constructs; On hit vs. Construct, Con save or fall prone and stunned",
+        selectNow : true
     }]
 }
 
@@ -92,7 +92,6 @@ MagicItemsList["caustic flame"] = {
     rarity : "legendary",
     attunement : true,
     description : "This +3 pistol deals a base of 1d8 acid plus 1d8 fire damage instead of the normal 1d10 piercing damage. Creatures hit takes this damage again at the start of their next turn as the flaming acid burns through them. It uses no bullets, but instead I must refill its glass chamber with a vial of acid worth at least 25 GP, and has enough to shoot 10 times before reloading again.",
-    weaponsAdd : ["Caustic Flame"],
     weaponOptions : [{
         name : "Caustic Flame",
         regExpSearch : /caustic flame/i,
@@ -100,6 +99,7 @@ MagicItemsList["caustic flame"] = {
         modifiers : [2,2],
         damage : [1, 8, "acid"],
         description : "Vial of Acid, loading; +1d8 fire dmg; Crea hit take dmg start of their next turn",
+        selectNow : true
     }]
 }
 
@@ -206,7 +206,6 @@ FeatsList["shield of conjuration"] = {
         description : "My Charisma increases by 1. When I have the shield spell active, whenever a magic missle or ranged attack is blocked by it, I can make a ranged spell attack (60/120 ft) against a creature of my choice. On a hit the creature suffers the damage from the original attack.",
         scores : [0, 0, 0, 0, 0, 1],
     },
-    weaponsAdd : ["Shield oF Conjuration"],
     weaponOptions : [{
         name : "Shield of Conjuration",
         regExpSearch : /shield of conjuration/i,
@@ -219,7 +218,8 @@ FeatsList["shield of conjuration"] = {
         isNotWeapon : true,
         useSpellcastingAbility : true,
         ability : 4,
-        description : "Reflect missed atks, spell atk vs crea, dmg equals the missed atk"
+        description : "Reflect missed atks, spell atk vs crea, dmg equals the missed atk",
+        selectNow : true
     }]
 }
 
@@ -596,7 +596,7 @@ SpellsList["confiscate"] = {
 }
 
 SpellsList["mass modify memory"] = {
-    name : "Confiscate",
+    name : "Mass Modify Memory",
     classes : ["bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "warlock", "wizard"],
     source : [["A:TLotU", 26]],
     level : 9,
@@ -607,7 +607,7 @@ SpellsList["mass modify memory"] = {
     components : "V,S,M",
     compMaterial : "an opalescent gem worth at least 10,000 gp",
     save : "Int",
-    description : "Crea Int>19 save or forget event; Gem stores forgotten memories (AC 25, 100hp, immune all but force); Contradict info allow Crea(s) save; Crea(s) disadv. on Int, Wis, Cha rolls vs my spells; See B",
+    description : "Crea(s) Int>19 save or forget event; Gem stores forgotten memories (AC 25, 100hp, immune all but force); Contradict info allow Crea(s) save; Crea(s) disadv. on Int, Wis, Cha rolls vs my spells; See B",
     descriptionFull : "I can muddle the memories of every creature within a 25 mile radius centered on me, changing their recollection of an event they learned about or witnessed within the past month. I can choose to eliminate all memory of the event, change the details, or create a memory of another event to replace it. A modified memory doesn't affect how a creature behaves, particularly if the memory contradicts the creature's natural inclinations, alignment, or beliefs. An illogical memory might be dismissed as a bad dream. Creatures with a 20 or higher Intelligence score can save to resist these effects, and are aware of the attempt. All stolen memories are transferred to the gem which darkens with the weight of the contained information. Creatures affected by this spell have disadvantage on Intelligence, Wisdom, and Charisma rolls to discern my intentions or resist my spells. If the creature encounters new information that contradicts the modified memory, it can attempt to save to recover them. On a failure, the creature discards it as a mistake or a lie. The gem is a magical object with 100 hp, an AC of 25, and immunity too all damage except force. If the gem is destroyed, all creatures affected by the spell recover their memory and become aware of my manipulation",
 }
 
@@ -621,7 +621,7 @@ SpellsList["kara's neural needle"] = {
     range : "60 ft",
     duration : "Instantaneous",
     components : "S",
-    description : "Choose 1 from B effect crea for 1 week; 12d10 psychic, save halves and no effects; No effect crea psychic immunity",
+    description : "Choose 1 from B. effect crea for 1 week; 12d10 psychic, save halves and no effects; No effect crea psychic immunity",
     save : "Int",
     descriptionFull : "I target the mind of a creature within range with a sharp pulse of psychci energy, attempting to destroy its mind. The creature must make an Intelligence saving throw and suffer deep neural damage. On a failure, they take 12d10 psychic damage. On a success, they take half damage and are not affects by the spell's other effects. I can choose one of the following to afflictions to affect the creature for the next week. Creatures with psychic immunity are unaffected by this spell." + "\n    " + toUni("Paraplegia") + ":  Basic motor skills become incredibly difficult. The target's walking speed is reduced to 5 feet, and have disadvantage on Dexterity checks, weapon, and unarmed attacks." + "\n    " + toUni("Time Agnosia") + ": The target's ability to track time start to break down. The target cannot sleep unless induced by medicine or magic, and they are unable to make plans that require projecting actions into the future." + "\n    " + toUni("Retrograde Amnesia") + ": A deep loss of memories affects the target's mind, making them forget their acquaintances, friends, and family. They still instinctively protect their allies, and a natural mistrust of enemies, but can be easily manipulated away from these institutions." + "\n    " + toUni("Anterograde Amnesia") + ": The target can remember its past, but has difficulty in learning new things. They are unable to recall any information learned after the casting of this spell." + "\n    " + toUni("Apathetic Depression") + ": The target loses the capability for feeling emotion, making them deeply unempathetic and cold. They have disadvantage on all Charisma checks and become deeply miserable." + "\n    " + toUni("Sensory Loss") + ": The target's senses are extremely dulled. They lose all special senses (such as darkvision or blindsense), have disadvantage on Perception checks, and cannot see, hear, or smell anything beyond 30 feet." + "\n    " + "A Greater Restoration reduces the duration of the effects by 1d4 days."
 }
@@ -852,7 +852,6 @@ MagicItemsList["reality splitter"] = {
     rarity : "legendary",
     attunement : true,
     description : "This pistol deals a base of 3d6 lethality damage, and I have a +3 bonus to attack and damage rolls. Additionally, it doesn't need to be reloaded, and deals an additional 3d6 lethality damage on a critical hit.",
-    weaponsAdd : ["Reality Splitter"],
     weaponOptions : [{
         name : "Reality Splitter",
         regExpSearch : /reality splitter/i,
@@ -860,6 +859,7 @@ MagicItemsList["reality splitter"] = {
         damage : [3, 6, "lethality"],
         modifiers : [3,3],
         description : "+3d6 lethality dmg on crit",
+        selectNow : true
     }]
 }
 
