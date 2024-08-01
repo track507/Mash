@@ -1011,7 +1011,6 @@ AddSubClass("shaper", "earthbreaker", {
             action : ["action", ""],
             usages : 1,
             recovery : "long rest",
-            weaponsAdd : ["Earthbreaker Boulder Throw"],
             weaponOptions : [{
                 regExpSearch : /earthbreaker boulder throw/i,
                 name : "Earthbreaker Boulder Throw",
@@ -1022,7 +1021,8 @@ AddSubClass("shaper", "earthbreaker", {
                 damage : [5, 12, "bludgeoning"],
                 range : "120 ft",
                 description : "Success halves",
-                dc : true
+                dc : true,
+                selectNow : true
             }]
         }
     }
