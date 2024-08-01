@@ -122,13 +122,13 @@ MagicItemsList["rip's risible reaper"] = { //there is no official "scythe" using
     description : "I have a +2 to hit and damage rolls made with this sickle. Additionally it has 5 charges, regaining 1d4+1 at dawn. When I hit a creature, I can expend a charge and they must succeed a DC 15 Wisdom saving throw or take 2d6 psychic damage and be under the effects of the Hideous Laughter spell until the end of their next turn.",
     usages : 5,
     recovery : "dawn",
-    weaponsAdd : ["Rip's Risible Reaper"],
     weaponOptions : [{
         name : "Rip's Risible Reaper",
         regExpSearch : /rip's risible reaper/i,
         source : [["A:TTN", 12]],
         baseWeapon : "sickle",
-        modifiers : [2,2]
+        modifiers : [2,2],
+        selectNow : true
     }]
 }
 
@@ -403,12 +403,12 @@ MagicItemsList["golden edge"] = {
         name : "Golden Edge (not a rogue or fighter)",
         description : "I gain a +3 to attack and damage rolls made with this dagger. Once per long rest, I can increase one of my ability scores to a 22 for an hour. After doing so, I must roll 1d8. On a 1, the dagger breaks and is irreparable. If I roll a 1 on an attack roll, I must roll 1d4. On a 1-2, the dagger breaks and is irreparable.",
     },
-    weaponsAdd : ["Golden Edge"],
     weaponOptions : [{
         name : "Golden Edge",
         regExpSearch : /golden edge/i,
         baseWeapon : "dagger",
-        modifiers : [3,3]
+        modifiers : [3,3],
+        selectNow : true
     }],
     calcChanges : {
         atkAdd : [
@@ -625,7 +625,6 @@ MagicItemsList["igmar's diamond pickaxe"] = {
     rarity : "legendary",
     attunement : true,
     description : "This +3 pickaxe deals double damage to objects and structures and has an increased critical range, but have a -2 to attack against creatures. Minerals, constructs, and rocks take an additional 2d10 force damage, and minerals and rocks extracted with this are in perfect condition. 1/LR I can cast Move Earth. I have disadvantage on attacks if my Strength is 14 or lower.",
-    weaponsAdd : ["Igmar's Diamond Pickaxe"],
     weaponOptions : [{
         name : "Igmar's Diamond Pickaxe",
         regExpSearch : /igmar's diamond pickaxe/i,
@@ -639,6 +638,7 @@ MagicItemsList["igmar's diamond pickaxe"] = {
         tooltip : "Heavy armament: Creatures with a Strength score of 14 or lower have disadvantage on the attack rolls.\n Destructive: This pickaxe has a -2 to attack creatures and deals double damage vs objects and structures.",
         special : true,
         weight : 44,
+        selectNow : true
     }],
     spellcastingBonus : [{
         name : "Igmar's",
@@ -717,7 +717,6 @@ MagicItemsList["dimensional blade"] = {
         fixedDC : 18,
         firstCol : "oncelr"
     }],
-    weaponsAdd : ["Dimensional Blade"],
     weaponOptions : [{
         name : "Dimensional Blade",
         regExpSearch : /dimensional blade/i,
@@ -725,7 +724,8 @@ MagicItemsList["dimensional blade"] = {
         baseWeapon : "longsword",
         description : "Finesse, versatile (1d10); +1d8 Force dmg; +4d8 Force dmg vs Aberr; Special; Heavy",
         tooltip : "Special: Creatures hit with this weapon are dimensionally shattered. They have a -3 to all rolls and disadvantage on Charisma saving throws.\n Heavy: I have disadvantage on attack rolls if my Stength is 14 or lower.",
-        modifiers : [3,3]
+        modifiers : [3,3],
+        selectNow : true
     }],
     limfeaname : "Dimensional Passage",
     usages : 1,
