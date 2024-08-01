@@ -400,12 +400,12 @@ MagicItemsList["shefus' lucky spear"] = {
     type : "weapon (spear)",
     rarity : "uncommon",
     attunement : false,
-    weaponsAdd : ["Shefus' Lucky Spear"],
     weaponOptions : [{
         regExpSearch : /shefus' lucky spear/i,
         name : "Lucky Spear",
         baseWeapon : "spear",
-        modifiers : [2, 2]
+        modifiers : [2, 2],
+        selectNow : true
     }]
 };
 
@@ -438,12 +438,12 @@ MagicItemsList["dart"] = {
     type : "weapon",
     rarity : "very rare",
     attunement : true,
-    weaponsAdd : ["Dart"],
     weaponOptions : [{
         regExpSearch : /dart/i,
         name : "Dart",
         baseWeapon : "shortsword",
-        modifiers : [2, 2]
+        modifiers : [2, 2],
+        selectNow : true
     }]
 };
 
@@ -453,7 +453,6 @@ MagicItemsList["blackbox blaster"] = {
     description : "This blaster counts as a firearm dealing 1d10 piercing damage plus 1d10 of fire damage on a hit. It has the loading property (6 rounds) and uses Black Box ammunition.",
     type : "firearm",
     rarity : "uncommon",
-    weaponsAdd : ["Blackbox Blaster"],
     weaponOptions : [{
         regExpSearch : /blackbox blaster/i,
         name : "Blackbox Blaster",
@@ -466,7 +465,8 @@ MagicItemsList["blackbox blaster"] = {
         weight : 3, // official pistol is 3 lb and does same damage
         description : "Ammunition, loading, +1d10 fire damage",
 	    abilitytodamage : true,
-        ammo : "black box ammo"
+        ammo : "black box ammo",
+        selectNow : true
     }]
 };
 
@@ -531,13 +531,13 @@ MagicItemsList["hunter's edge"] = {
     source : [["A:TAFI", 53]],
     type : "weapon (dagger)",
     rarity : "legendary",
-    weaponsAdd : ["Hunter's Edge"],
     weaponOptions : [{
         regExpSearch : /hunter's edge/i,
         name : "Hunter's Edge",
         source : [["A:TAFI", 53]],
         baseWeapon : "dagger",
-        modifiers : [3, 3]
+        modifiers : [3, 3],
+        selectNow : true
     }],
     description : "This dagger has a +3 bonus to attack and damage rolls. Additionally, the dagger deals an extra 1d12 bonus damage to aberrations, fiends, and celestials. If the creature I am attacking is at least one size larger than me, on an 18-20 on the attack roll, it is considered to be a critical hit."
 };
@@ -678,8 +678,7 @@ SpellsList["radiant weapon"] = {
 };
 
 SpellsList["hymn of honor"] = {
-    name : "Hymn or Honor",
-    regExpSearch : /\+? ?(my )?spell(casting)? (ability )?mod(ifier)?/i,
+    name : "Hymn of Honor",
     source : [["A:TAFI", 30]],
     level : 4,
     school : "Ench",
@@ -708,8 +707,7 @@ SpellsList["divine judgement"] = {
 };
 
 SpellsList["barrier of gold"] = {
-    name : "Barrier of Gold",
-    regExpSearch : /\+? ?(my )?spell(casting)? (ability )?mod(ifier)?/i,
+    name : "Barrier of Gold",  
     source : [["A:TAFI", 31]],
     level : 5,
     school : "Abjur",
