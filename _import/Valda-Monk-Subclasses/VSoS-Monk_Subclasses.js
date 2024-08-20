@@ -224,3 +224,64 @@ AddSubClass("monk", "way of the mask", {
         }
     }
 })
+
+AddSubClass("monk", "way of the rose", {
+    regExpSearch : /^(?=.*Rose?)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
+    subname : "Way of the Rose",
+    source : [["VSoS", 226]],
+    features : {
+        "subclassfeature3" : {
+            name : "Sweet Aroma",
+            source : [["VSoS", 226]],
+            minlevel : 3,
+            description : desc([
+                "I have advantage on Persuasion checks related to love and romance, and creatures with the Keen Sense trait have disadvantage on ability checks made to track me."
+            ])
+        },
+        "subclassfeature3.1" : {
+            name : "Blossom Burst",
+            source : [["VSoS", 226]],
+            minlevel : 3,
+            description : desc([
+                "I can spend 1 ki point to produce a vibrant eruption of flower petals to obscure a target's vision. Until the end of its next turn, it can see out to a range of 5 ft but is blind beyond that. The petals follow the target unless the target moves more than 40 ft on its turn or take the dash action."
+            ]),
+            additional : "1 ki point"
+        },
+        "subclassfeature6" : {
+            name : "Falling Petal Fury",
+            source : [["VSoS", 226]],
+            minlevel : 6,
+            description : desc([
+                "Whenever I use Flurry of Blows, I can spend 1 additional ki point to teleport up to 10 ft in any direction. This movement can happen before, during, or after the attacks, but can't be split into two moves."
+            ]),
+            additional : "1 ki point"
+        },
+        "subclassfeature11" : {
+            name : "Colors of Love",
+            source : [["VSoS", 226]],
+            minlevel : 11,
+            description : desc([
+                "When I finish a long rest, I can choose one of the following auras which lasts until I choose a different one and radiates to a range of 5 ft (see page 3 notes)."
+            ]),
+            toNotesPage : [{
+                name : "Colors of Love: Auras",
+                note : desc([
+                    "\u2022 Pink: I can use the help action as a bonus action to assist an ally within my aura",
+                    "\u2022 Red: Whenever a friendly creature within my aura hits an attack, they can use its bonus action with the attack to deal an extra 1d6 damage",
+                    "\u2022 White: When a friendly creature other than me ends its turn within my aura, it gains temp hp equal to my Wisdom mod"
+                ]),
+                page3notes : true
+            }]
+        },
+        "subclassfeature17" : {
+            name : "Wreathed in Thorns",
+            source : [["VSoS", 226]],
+            minlevel : 17,
+            description : desc([
+                "When I take damage from a creature that I can see within 5 ft of me, I can spend 1 ki point as a reaction to make an unarmed strike against that creature."
+            ]),
+            additional : "1 ki point",
+            action : [["reaction", "Wreathed in Thorns (1 ki)"]]
+        }
+    }
+})
