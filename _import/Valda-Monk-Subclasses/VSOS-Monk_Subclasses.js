@@ -57,9 +57,10 @@ AddSubClass("monk", "way of the flagellant", {
             source : [["VSoS", 223]],
             minlevel : 6,
             description : desc([
-                "I gain the abilities Branding Palm and Electroshock Strike:",
+                "I gain the abilities Branding Palm, Electroshock Strike, and Scissorhand Technique:",
                 "\u2022 Branding Palm: When I hit a creature with an unarmed strike, I can spend a bonus action and 1 ki point to brand them. The next attack that hits a branded creature within the next minute deals an extra 2d8 fire damage. This becomes 3d8 at 11th and 4d8 at 17th level.",
-                "\u2022 Electroshock Strike: After I take the attack action on my turn, I can spend 1 ki point to cast shocking grasp as a bonus action. Wisdom is my spellcasting ability for this."
+                "\u2022 Electroshock Strike: After I take the attack action on my turn, I can spend 1 ki point to cast shocking grasp as a bonus action. Wisdom is my spellcasting ability for this.",
+                "\u2022 Scissorhand Technique: If I deal slashing damage using a monk weapon to a creature, I can spend 1 ki point to make the target bleed. Constructs, oozes, and undead aren't affected. A creature with bleeding loses 1d6 hp at the start of each of their turns for each of its bleeding wounds it has unless it uses it action to stop all of its wounds from bleeding. A bleeding target cannot regain hp and can have a number of wounds up to my Proficiency bonus.",
             ]),
             additional : "1 ki point",
             action : [["bonus action", "Branding Palm (1 ki)"], ["bonus action", "Electroshock (1 ki)"]],
@@ -72,17 +73,19 @@ AddSubClass("monk", "way of the flagellant", {
             }]
         },
         "subclassfeature11" : {
-            name : "Uncanny Dodge",
-            source : [["VSoS", 224]],
+            name : "Purity Through Pain",
+            source : [["VSoS", 223]],
             minlevel : 11,
-            description : "As a reaction, I halve the damage of an attack from an attacker that I can see",
+            description : desc(["Whenever I take damage that exceeds my character level, I can use my reaction to regain 1d4 ki points. I can do this a number of times equal to Wisdom mod (min 1) per long rest."]),
+            usages : "Wisdom modifier per ",
+            usagescalc : "event.value = Math.max(1, What('Wis Mod'));",
             action : [["reaction", ""]]
         },
         "subclassfeature17" : {
-            name : "Flurry of Limbs",
-            source : [["VSoS", 224]],
+            name : "Exsanguinate",
+            source : [["VSoS", 223]],
             minlevel : 17,
-            description : "Whenever I use \"Flurry of Blows\" on my turn, I can make 3 unarmed strikes rather than 2."
+            description : desc(["When I use Pentient Lash, I can choose to increase the damage to 6d4. If I do so, I gain all the benefits of Pentient Lash, and all unarmed strikes deal an extra 1d4 slashing damage until the end of my turn."])
         }
     }
 })
