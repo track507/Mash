@@ -30,23 +30,46 @@ AddSubClass("monk", "way of the flagellant", {
             name : "Ascetic Implements",
             source : [["VSoS", 223]],
             minlevel : 3,
-            description : "I gain proficiency with flails and whips which count as monk weapons. Additionally, I can choose to deal slashing instead of bludgeoning damage with my unarmed strikes.",
-            
+            description : desc(["I gain proficiency with flails and whips which count as monk weapons. Additionally, I can choose to deal slashing instead of bludgeoning damage with my unarmed strikes."]),
+            weaponProfs : [true, false, ["shortswords, flails, whips"]],
+            calcChanges : {
+                atkAdd : [
+                    function(fields, v) {
+                        if((/flails?|whips?/i).test(v.baseWeaponName) && !v.isSpell && !v.theWea.monkweapon && !v.theWea.special) {
+                            v.theWea.monkweapon = true;
+                            fields.Proficiency = true;
+                        } 
+                    },
+                    "I gain proficiency with flails and whips which count as monk weapons.",
+                    1
+                ]
+            }
         },
         "subclassesfeature3.1" : {
             name : "Penitent Lash",
             source : [["VSoS", 223]],
             minlevel : 3,
-            description : "On my turn, I can spend 1 ki point to deal 2d4 slashing damage and gain advantage on the first monk weapon or unarmed strike made on my turn. I can choose to take 4d4 slashing damage instead to gain advantage on all my attacks made on my turn. If I reduce or avoid the slashing damage, this ability has no effect.",
+            description : desc(["On my turn, I can spend 1 ki point to deal 2d4 slashing damage and gain advantage on the first monk weapon or unarmed strike made on my turn. I can choose to take 4d4 slashing damage instead to gain advantage on all my attacks made on my turn. If I reduce or avoid the slashing damage, this ability has no effect."]),
             additional : "1 ki point"
         },
         "subclassfeature6" : {
-            name : "Nimbus",
-            source : [["VSoS", 224]],
+            name : "Art of Punishment",
+            source : [["VSoS", 223]],
             minlevel : 6,
-            description : "As a bonus action, I can summon a cloud to ride on. Until the start of my next turn, I have a flying speed equal to my walking speed, and can maintain this effect by spending 1 ki point on my turn. Otherwise, I begin to fall if there is nothing to hold onto or keep my aloft.",
+            description : desc([
+                "I gain the abilities Branding Palm and Electroshock Strike:",
+                "\u2022 Branding Palm: When I hit a creature with an unarmed strike, I can spend a bonus action and 1 ki point to brand them. The next attack that hits a branded creature within the next minute deals an extra 2d8 fire damage. This becomes 3d8 at 11th and 4d8 at 17th level.",
+                "\u2022 Electroshock Strike: After I take the attack action on my turn, I can spend 1 ki point to cast shocking grasp as a bonus action. Wisdom is my spellcasting ability for this."
+            ]),
             additional : "1 ki point",
-            action : [["bonus action", ""]]
+            action : [["bonus action", "Branding Palm (1 ki)"], ["bonus action", "Electroshock (1 ki)"]],
+            spellcastingBonus : [{
+                spellcastingAbility : 5,
+                name : "Electroshock",
+                spells : ["shocking grasp"],
+                selection : ["shocking grasp"],
+                firstCol : "1 ki"
+            }]
         },
         "subclassfeature11" : {
             name : "Uncanny Dodge",
@@ -73,7 +96,7 @@ AddSubClass("monk", "way of the four fists", {
             name : "Grasp of the Monkey",
             source : [["VSoS", 224]],
             minlevel : 3,
-            description : "I gain a climbing speed equal to my walking speed, my jump distance is doubled, and I have advantage on ability checks and saving throws made to climb, maintain balance, and grip objects such as ledges and ropes. I can manipulate objects with my hands, feet, or tail, but cannot attack with an object held by my tail.",
+            description : desc(["I gain a climbing speed equal to my walking speed, my jump distance is doubled, and I have advantage on ability checks and saving throws made to climb, maintain balance, and grip objects such as ledges and ropes. I can manipulate objects with my hands, feet, or tail, but cannot attack with an object held by my tail."]),
             speed : { climb : { spd : "walk", enc : "walk" } },
             savetxt : { text : ["Adv. on saves and checks made to climb, balance, and grip"] }
         },
@@ -81,14 +104,14 @@ AddSubClass("monk", "way of the four fists", {
             name : "Simian Swift",
             source : [["VSoS", 224]],
             minlevel : 3,
-            description : "Whenever I roll initiative and not surprised, I can spend 1 ki point to move up to half my speed or jump into the air and make an unarmed strike.",
+            description : desc(["Whenever I roll initiative and not surprised, I can spend 1 ki point to move up to half my speed or jump into the air and make an unarmed strike."]),
             additional : "1 ki point"
         },
         "subclassfeature6" : {
             name : "Nimbus",
             source : [["VSoS", 224]],
             minlevel : 6,
-            description : "As a bonus action, I can summon a cloud to ride on. Until the start of my next turn, I have a flying speed equal to my walking speed, and can maintain this effect by spending 1 ki point on my turn. Otherwise, I begin to fall if there is nothing to hold onto or keep my aloft.",
+            description : desc(["As a bonus action, I can summon a cloud to ride on. Until the start of my next turn, I have a flying speed equal to my walking speed, and can maintain this effect by spending 1 ki point on my turn. Otherwise, I begin to fall if there is nothing to hold onto or keep my aloft."]),
             additional : "1 ki point",
             action : [["bonus action", ""]]
         },
@@ -96,14 +119,14 @@ AddSubClass("monk", "way of the four fists", {
             name : "Uncanny Dodge",
             source : [["VSoS", 224]],
             minlevel : 11,
-            description : "As a reaction, I halve the damage of an attack from an attacker that I can see",
+            description : desc(["As a reaction, I halve the damage of an attack from an attacker that I can see"]),
             action : [["reaction", ""]]
         },
         "subclassfeature17" : {
             name : "Flurry of Limbs",
             source : [["VSoS", 224]],
             minlevel : 17,
-            description : "Whenever I use \"Flurry of Blows\" on my turn, I can make 3 unarmed strikes rather than 2."
+            description : desc(["Whenever I use \"Flurry of Blows\" on my turn, I can make 3 unarmed strikes rather than 2."])
         }
     }
 })
