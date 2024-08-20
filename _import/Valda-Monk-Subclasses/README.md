@@ -1,6 +1,6 @@
 # Valda-Monk-Subclasses
 
-This file adds the Monk subclasses from Valda's Spire of Secrets to MPMB's Character Creation sheet. This can be used as is or can be added to the main VSoS script found [here](https://pastebin.com/0CdaqJs5)
+This file adds the Monk subclasses from Valda's Spire of Secrets to MPMB's Character Creation sheet. This can be used as is or can be added to the main VSoS script found [here](https://pastebin.com/0CdaqJs5).
 If you wanting to use this script along with the main script, please do the following:
 - Remove the "SourceList" entry from this script
 
