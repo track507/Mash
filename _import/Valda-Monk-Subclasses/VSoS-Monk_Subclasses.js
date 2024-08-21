@@ -1,5 +1,5 @@
 var iFileName = "Monk_Subclasses_VSoS.js"
-
+RequiredSheetVersion("13.1.14");
 /*
 
     This script adds the subclasses from Valda's Spire of Secret to MPMB's Character Creation Sheet.
@@ -25,10 +25,11 @@ AddSubClass("monk", "way of the bow", {
     regExpSearch : /^(?=.*bow)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
     subname : "Way of the Bow",
     source : [["VSoS", 222]],
-    feeatures : {
+    features : {
         "subclassfeature3" : {
             name : "Archery Fighting Style",
             description : desc("+2 bonus to attack rolls I make with ranged weapons"),
+            source : [["VSoS", 222]],
             calcChanges : {
                 atkCalc : [
                     function (fields, v, output) {
@@ -61,6 +62,7 @@ AddSubClass("monk", "way of the bow", {
             },
             additional : "1 ki point",
             toNotesPage : [{
+                page3notes : true,
                 name : "Bow Arts: Flurry of Arrows and Soul Arrow",
                 note : desc([
                     "\u2022 Flurry of Arrows: Immediately after I take the attack action on my turn to make a ranged weapon attack or unarmed strike, I can spend 1 ki point to make an additional ranged weapon attack as a bonus action",
@@ -73,7 +75,7 @@ AddSubClass("monk", "way of the bow", {
             source : [["VSoS", 222]],
             minlevel : 6,
             description : desc([
-                "When an attacker that I can see makes an attack against me, I can make a ranged attack roll as a reaction to interrupt the attack. If the result of my roll is greater than the result of the attacker's, I can reduce the attack roll targetting me by 5, to a min of 1."
+                "When an attacker that I can see makes an attack against me, I can make a ranged attack roll as a reaction to interrupt the attack. If the result of my roll is greater than the result of the attacker's, I can reduce the attack roll targeting me by 5, to a min of 1."
             ]),
             action : [["reaction", ""]]
         },
@@ -85,7 +87,8 @@ AddSubClass("monk", "way of the bow", {
                 "As a bonus action, I can spend 1 ki point to gain blindsight with a range of 120 ft until the end of my next turn.",
                 "At 17th level, I always have blindsight out to a range of 30 ft"
             ]),
-            additional : "1 ki point"
+            additional : "1 ki point",
+            action : [["bonus action", "Serenity of the Wind (1 ki)"]]
         },
         "subclassfeature17" : {
             name : "Serenity of the Wind: Blindsight",
@@ -295,7 +298,9 @@ AddSubClass("monk", "way of the mask", {
             name : "Off the Top Rope",
             source : [["VSoS",225]],
             minlevel : 11,
-            description : desc(["Once per turn when I fall 5 ft or more immediately before making an unarmed strike, I can choose to either make it a stunning strike without expending any ki or knock the target prone and automatically grapple the target on a hit."])
+            description : desc(["Once per turn when I fall 5 ft or more immediately before making an unarmed strike, I can choose to either make it a stunning strike without expending any ki or knock the target prone and automatically grapple the target on a hit."]),
+            usages : 1,
+            recovery : "turn"
         },
         "subclassfeature17" : {
             name : "Choked Out",
@@ -366,6 +371,83 @@ AddSubClass("monk", "way of the rose", {
             ]),
             additional : "1 ki point",
             action : [["reaction", "Wreathed in Thorns (1 ki)"]]
+        }
+    }
+})
+
+AddSubClass("monk", "way of street fighting", {
+    regExpSearch : /^(?=.*street)(?=.*fighting)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
+    subname : "Way of Street Fighting",
+    source : [["VSoS", 226]],
+    features : {
+        "subclassfeature3" : {
+            name : "Combo",
+            source : [["VSoS", 227]],
+            minlevel : 3,
+            description : desc([
+                "On my turn, I gain a +2 bonus to attack rolls of my unarmed strikes for each hit that I have made on that target on my turn, to a max of +6. This bonus resets to 0 if I take damage on my turn."
+            ])
+        },
+        "subclassfeature6" : {
+            name : "Iron Fist",
+            source : [["VSoS", 227]],
+            minlevel : 6,
+            description : desc([
+                "My unarmed strikes ignore the damage threshold of objects and deal maximum damage to them."
+            ])
+        },
+        "subclassfeature11" : {
+            name : "Special Moves",
+            source : [["VSoS", 227]],
+            minlevel : 11,
+            description : desc([
+                "I can use ki points to perform the special moves found on the page 3 notes."
+            ]),
+            action : [["action", "Ki Blast (2 ki)"]],
+            toNotesPage : [{
+                name : "Special Moves",
+                note : desc([
+                    "\u2022 Ki Blast: As an action, I can spend 2 ki points to make a ranged spell attack using Wisdom as the spellcasting ability modifier against a creature I can see within 120 ft of me. On a hit, the target takes 6d8 + \u00BD my monk level in force damage",
+                    "\u2022 Uppercut: Immediately after I take the attack action on my turn, I can spend 1 ki point to make an unarmed strike as a bonus action. On a hit, if the creature is Large or smaller and doesn't have all of its hp, it takes damage as normal and is then knocked prone",
+                    "\u2022 Whirlwind Strike: Whenever I make a melee attack on my turn against a creature I can see, I can spend 1 ki point to lunge up to 15 ft toward the target before making the attack. This movement doesn't provoke opportunity attacks. I can peform this movement even if it causes me to travel through the air, thought I fall if I do not land on solid ground after making the attack."
+                ])
+            }],
+            weaponOptions : [{
+				regExpSearch : /ki blast/i,
+				name : "Ki Blast",
+				source : [["VSoS", 227]],
+				ability : 5,
+				range : "120 ft",
+				damage : [6, 8, "Force"],
+				description : "",
+                type : "AlwaysProf", // This is not a weapon or a spell
+                isNotWeapon : true, 
+                isAlwaysProf : true,
+                special : true, // prevents calculations with other features
+                abilitytodamage : false, // do not add our wisdom mod
+				selectNow : true
+            }],
+            calcChanges : {
+				atkCalc : [
+					function (fields, v, output) {
+						if ((/ki blast/i).test(v.WeaponTextName)) {
+							output.extraDmg += Math.floor(classes.known.monk.level/2);
+						};
+					},
+					'',
+					1
+				]
+			}
+        },
+        "subclassfeature17" : {
+            name : "K.O.",
+            source : [["VSoS", 227]],
+            minlevel : 17,
+            description : desc([
+                "Once per long rest, I can use my action and 3 ki points to make an unarmed strike against a creature within my reach. On a hit, the target takes damage as normal, and if it has 100 hp or fewer, it is reduced to 0 hp, knocked unconscious, and becomes stable."
+            ]),
+            usages : 1,
+            recovery : "long rest"          
         }
     }
 })
