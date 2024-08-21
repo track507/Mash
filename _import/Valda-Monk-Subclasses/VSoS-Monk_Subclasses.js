@@ -31,7 +31,7 @@ AddSubClass("monk", "way of the flagellant", {
             source : [["VSoS", 223]],
             minlevel : 3,
             description : desc(["I gain proficiency with flails and whips which count as monk weapons. Additionally, I can choose to deal slashing instead of bludgeoning damage with my unarmed strikes."]),
-            weaponProfs : [true, false, ["shortswords, flails, whips"]],
+            weaponProfs : [true, false, ["Flail, Whip"]],
             calcChanges : {
                 atkAdd : [
                     function(fields, v) {
@@ -85,7 +85,7 @@ AddSubClass("monk", "way of the flagellant", {
             name : "Exsanguinate",
             source : [["VSoS", 223]],
             minlevel : 17,
-            description : desc(["When I use Pentient Lash, I can choose to increase the damage to 6d4. If I do so, I gain all the benefits of Pentient Lash, and all unarmed strikes deal an extra 1d4 slashing damage until the end of my turn."])
+            description : desc(["When I use Penitent Lash, I can choose to increase the damage to 6d4. If I do so, I gain all the benefits of Penitent Lash, and all unarmed strikes deal an extra 1d4 slashing damage until the end of my turn."])
         }
     }
 })
@@ -143,16 +143,16 @@ AddSubClass("monk", "way of the mask", {
             name : "Crowd Favorite",
             source : [["VSoS", 225]],
             minlevel : 3,
-            description : desc(["I can choose to add my Charisma mod instead of my Wisdom mod when determing ki save DC. Additionally, while wearing no armor and not wielding a shield, my AC is calculated as 10 + Strength mod + Charisma mod."]),
+            description : desc(["I can choose to add my Charisma mod instead of my Wisdom mod when determining ki save DC. Additionally, while wearing no armor and not wielding a shield, my AC is calculated as 10 + Strength mod + Charisma mod."]),
             abilitySaveAlt : 6,
             armorOptions : [{
-                regExpSearch : /justToAddToDropDownAndEffectWildShape/,
+                regExpSearch : /unarmored defense \(cha\)/i,
                 name : "Unarmored Defense (Cha)",
                 source : [["VSoS", 225]],
                 ac : "10+Str+Cha",
+                dex : -10, //do not add our dex mod
                 affectsWildShape : true,
-                selectNow : true,
-                dex : -10 //do not add our dex mod
+                selectNow : true
             }]
         },
         "subclassfeature3.1" : {
@@ -165,7 +165,7 @@ AddSubClass("monk", "way of the mask", {
                 "\u2022 I can use an action to pin a creature grappled by me. I make another grapple check, and if I succeed, we're both restrained until the grapple ends",
                 "\u2022 If I have the Grappler feat, I can choose whether a target grappled by me must make a Athletics or Acrobatics check to escape"
             ]),
-            action : [["action", "Pin Creature"]]
+            action : [["action", "Pin Creature (if grappled)"]]
         },
         "subclassfeature6" : {
             name : "Signature Move",
@@ -175,7 +175,7 @@ AddSubClass("monk", "way of the mask", {
                 "I gain a signature move (Foreign Obect, Headbutt of Justice, or Infinity Suplex) using the \"Choose Feature\" button."
             ]),
             choices : ["Foreign Object", "Headbutt of Justice", "Infinity Suplex"],
-            "foreigh object" : {
+            "foreign object" : {
                 name : "Foreign Object",
                 source : [["VSoS", 225]],
                 description : desc(["I am proficient with improvised weapons, which count as monk weapons for me. Once on each of my turns, I can spend 1 ki point to add half of my monk level to the damage of an improvised weapon."]),
@@ -226,7 +226,7 @@ AddSubClass("monk", "way of the mask", {
 })
 
 AddSubClass("monk", "way of the rose", {
-    regExpSearch : /^(?=.*Rose?)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
+    regExpSearch : /^(?=.*rose)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
     subname : "Way of the Rose",
     source : [["VSoS", 226]],
     features : {
