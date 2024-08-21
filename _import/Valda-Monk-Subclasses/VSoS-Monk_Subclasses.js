@@ -21,8 +21,91 @@ SourceList["VSoS"] = {
     date : "2024/08/19"
 };
 
+AddSubClass("monk", "way of the bow", {
+    regExpSearch : /^(?=.*bow)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
+    subname : "Way of the Bow",
+    source : [["VSoS", 222]],
+    feeatures : {
+        "subclassfeature3" : {
+            name : "Archery Fighting Style",
+            description : desc("+2 bonus to attack rolls I make with ranged weapons"),
+            calcChanges : {
+                atkCalc : [
+                    function (fields, v, output) {
+                        if (v.isRangedWeapon && !v.isNaturalWeapon && !v.isDC) output.extraHit += 2;
+                    },
+                    "My ranged weapons get a +2 bonus on the To Hit."
+                ]
+            }
+        },
+        "subclassfeature3.1" : {
+            name : "Bow Arts",
+            source : [["VSoS", 222]],
+            minlevel : 3,
+            description : desc([
+                "I gain proficiency with longbows and shortbows, which are considered monk weapons. Any ranged attacks I make while within 5 ft of a hostile creature do not have disadvantage. I can spend ki points to use the Flurry of Arrows and Soul Arrow features (see page 3 notes).",
+                "At 6th level, I can make a ranged weapon attack to deliver a Stunning Strike."
+            ]),
+            weaponProfs : [true, false, ["Longbow, Shortbow"]],
+            calcChanges : {
+                atkAdd : [
+                    function(fields, v) {
+                        if((/longbow|shortbow/i).test(v.baseWeaponName) && !v.isSpell && !v.theWea.monkweapon && !v.theWea.special) {
+                            v.theWea.monkweapon = true;
+                            fields.Proficiency = true;
+                        } 
+                    },
+                    "I gain proficiency with longbows and shortbows which count as monk weapons.",
+                    1
+                ]
+            },
+            additional : "1 ki point",
+            toNotesPage : [{
+                name : "Bow Arts: Flurry of Arrows and Soul Arrow",
+                note : desc([
+                    "\u2022 Flurry of Arrows: Immediately after I take the attack action on my turn to make a ranged weapon attack or unarmed strike, I can spend 1 ki point to make an additional ranged weapon attack as a bonus action",
+                    "\u2022 Soul Arrow: When I take the attack action on my turn to make a ranged weapon attack, I can spend 1 ki point to fire a soul arrow for the first attack. This arrow ignores partial cover and deals extra damage equal to my Wisdom mod. This arrow does not consume ammunition."
+                ])
+            }]
+        },
+        "subclassfeature6" : {
+            name : "Intercepting Shot",
+            source : [["VSoS", 222]],
+            minlevel : 6,
+            description : desc([
+                "When an attacker that I can see makes an attack against me, I can make a ranged attack roll as a reaction to interrupt the attack. If the result of my roll is greater than the result of the attacker's, I can reduce the attack roll targetting me by 5, to a min of 1."
+            ]),
+            action : [["reaction", ""]]
+        },
+        "subclassfeature11" : {
+            name : "Serenity of the Wind",
+            source : [["VSoS", 222]],
+            minlevel : 11,
+            description : desc([
+                "As a bonus action, I can spend 1 ki point to gain blindsight with a range of 120 ft until the end of my next turn.",
+                "At 17th level, I always have blindsight out to a range of 30 ft"
+            ]),
+            additional : "1 ki point"
+        },
+        "subclassfeature17" : {
+            name : "Serenity of the Wind: Blindsight",
+            source : [["VSoS", 222]],
+            minlevel : 17,
+            vision : [["blindsight", 30]]
+        },
+        "subclassfeature17" : {
+            name : "Zen Archery",
+            source : [["VSoS", 222]],
+            minlevel : 17,
+            description : desc([
+                "If I make a ranged weapon attack on my turn and miss, I can immediately make another ranged attack against the same target. I can only gain one additional attack during my turn with this ability"
+            ])
+        }
+    }
+})
+
 AddSubClass("monk", "way of the flagellant", {
-    regExpSearch : /^(?=.*flagellant?)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
+    regExpSearch : /^(?=.*flagellant)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
     subname : "Way of the Flagellant",
     source : [["VSoS", 223]],
     features : {
@@ -35,7 +118,7 @@ AddSubClass("monk", "way of the flagellant", {
             calcChanges : {
                 atkAdd : [
                     function(fields, v) {
-                        if((/flails?|whips?/i).test(v.baseWeaponName) && !v.isSpell && !v.theWea.monkweapon && !v.theWea.special) {
+                        if((/flail|whip/i).test(v.baseWeaponName) && !v.isSpell && !v.theWea.monkweapon && !v.theWea.special) {
                             v.theWea.monkweapon = true;
                             fields.Proficiency = true;
                         } 
@@ -135,16 +218,17 @@ AddSubClass("monk", "way of the four fists", {
 })
 
 AddSubClass("monk", "way of the mask", {
-    regExpSearch : /^(?=.*mask?)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
+    regExpSearch : /^(?=.*mask)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
     subname : "Way of the Mask",
     source : [["VSoS", 225]],
+    abilitySave : 5,
+	abilitySaveAlt : 6,
     features : {
         "subclassfeature3" : {
             name : "Crowd Favorite",
             source : [["VSoS", 225]],
             minlevel : 3,
             description : desc(["I can choose to add my Charisma mod instead of my Wisdom mod when determining ki save DC. Additionally, while wearing no armor and not wielding a shield, my AC is calculated as 10 + Strength mod + Charisma mod."]),
-            abilitySaveAlt : 6,
             armorOptions : [{
                 regExpSearch : /unarmored defense \(cha\)/i,
                 name : "Unarmored Defense (Cha)",
