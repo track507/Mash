@@ -10,13 +10,15 @@ RequiredSheetVersion("13.2.0");
     
     ! NOTE
     *   - This script adds everything according to version 1.4 of Valda's Spire of Secrets
-    *   - The previous script written by u/Anasurimborlnnrilatas found here https://pastebin.com/GwU8JnCM are from 2 years ago. (version unknown)
+    *   - The previous script written by u/Anasurimborlnnrilatas found here https://pastebin.com/GwU8JnCM are from 2 years ago. (version unknown, but most likely 1.0)
     *   - Seaworld also made changes to the script to fix some issues with firearms
     *   - The reason for using ! and * etc is due to a VS Code extension that is used for comments
     
     TODO 
     *   - Basically everything currently since I still have school/work priorities
 */
+
+// ! UPDATING AS OF 8/31/2024
 
 SourceList["VSoS"]={
 	name : "Valda's Spire of Secrets",
