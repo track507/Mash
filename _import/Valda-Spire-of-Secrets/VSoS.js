@@ -689,7 +689,7 @@ FeatsList["aquanaut"] = {
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "One of your parents is a merfolk, or you are distantly descended from the Elemental Plane of Water; consequently, you have aquatic features like gills, webbed fingers and toes, and fishlike scales, which grant you the following racial traits:\n \2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You can breathe water as well as air.\n \u2022 You have a swimming speed equal to your walking speed.",
+	descriptionFull : "One of your parents is a merfolk, or you are distantly descended from the Elemental Plane of Water; consequently, you have aquatic features like gills, webbed fingers and toes, and fishlike scales, which grant you the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You can breathe water as well as air.\n \u2022 You have a swimming speed equal to your walking speed.",
 	description : "I can breathe water and air. I have a swimming speed equal to my walking speed. [+1 to any ability score.]",
 	speed : {
 		swim : { spd : "walk", enc : "walk" },
@@ -788,7 +788,7 @@ FeatsList["beastman"] = {
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "With a short tail, coarse fur covering your face, and long teeth and claws, you appear more like a ferocious beast than a man. Perhaps your parentage includes a werecreature or an intelligent beast, granting you the following racial traits:\n \2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \2022 You have advantage on Wisdom (Perception) checks made to smell.\n \2022 You possess sharp claws, which are natural weapons that you can use to make unarmed strikes. On a hit with them, you deal slashing damage equal to 1d6 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike.",
+	descriptionFull : "With a short tail, coarse fur covering your face, and long teeth and claws, you appear more like a ferocious beast than a man. Perhaps your parentage includes a werecreature or an intelligent beast, granting you the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have advantage on Wisdom (Perception) checks made to smell.\n \u2022 You possess sharp claws, which are natural weapons that you can use to make unarmed strikes. On a hit with them, you deal slashing damage equal to 1d6 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike.",
 	description : "I have advantage on Wisdom (Perception) checks made to smell. I can use my claws as natural weapons to make unarmed strikes, dealing 1d6 + Strength in slashing damage on a hit. [+1 to any ability score.]",
 	weaponOptions : [{
 		baseWeapon : "unarmed strike",
@@ -1096,7 +1096,7 @@ FeatsList["immortal"] = {
 	name : "Immortal",
 	source : ["VSoS", 16],
 	prerequisite : "1st level only, Near-Human variant",
-		prereqeval : function(v) {
+	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
 	descriptionFull : "According to legend, a human can achieve immortality by replacing their heart with a mote of celestial radiance. The secret to immortality, including the elixirs and rituals needed to achieve it, is protected by a small, clandestine sect of immortal mystics, each of who only know one component of the process. There are perhaps only a dozen true immortals in the world, but as many as hundreds if every tale can be believed.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You don’t age, can’t be aged magically, and suffer none of the frailty of old age. You can’t die of old age.\n \u2022 You have advantage on saving throws you make to avoid or end diseases and the poisoned condition yourself. You also have resistance to poison damage.",
