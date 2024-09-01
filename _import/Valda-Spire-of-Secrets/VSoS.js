@@ -520,3 +520,58 @@ RaceList["winter mandrake"] = {
 		])
 	}]
 };
+
+// Mousefolk "Subraces"
+RaceList["mouseling"] = {
+	regExpSearch : /^(?=.*mouseling).*$/i,
+	name : "Mouseling",
+	sortname : "Mousefolk, Mouseling",
+	source : ["VSoS",12],
+	plural : "Mouselings",
+	size : 4,
+	speed : {
+		walk : { spd : 30, enc : 20 }
+	},
+	languageProfs : ["Common", 1],
+	age : " mature in their teens and live around 80 years.",
+	height : " stand around 3 feet tall, appearing slightly taller with their large ears",
+	heightMetric : " stand around 90 centimeters tall, appearing slightly taller with their large ears",
+	weight : " normally weigh no more than 40 pounds.",
+	weightMetric : " normally weigh no more than 18 kilograms.",
+	vision : [["Darkvision", 60]],
+	skills : ["Stealth"],
+	trait : "Mouseling (+2 and +1, or +1 to three different scores)" + desc([
+		"\u2022 Scurry: Move through hostile creatures' spaces as difficult terrain",
+		"\u2022 Squeeze: No penalty for squeezing into a space one size smaller",
+		"\u2022 Sidestep: When a creature I can see makes an opportunity attack against me and I'm not wearing medium or heavy armor, I can use my reaction to impose disadvantage on the attack roll."
+	]),
+	scorestxt : "+2 to an ability score of my choice and +1 to a different ability score, or +1 to three different ability scores",
+	reaction : [["reaction", "Sidestep"]]
+};
+
+RaceList["ratling"] = {
+	regExpSearch : /^(?=.*ratling).*$/i,
+	name : "Ratling",
+	sortname : "Mousefolk, Ratling",
+	source : ["VSoS",12],
+	plural : "Ratlings",
+	size : 4,
+	speed : {
+		walk : { spd : 30, enc : 20 }
+	},
+	languageProfs : ["Common", 1],
+	age : " mature in their teens and live around 80 years.",
+	height : " stand around 3 feet tall, appearing slightly taller with their large ears",
+	heightMetric : " stand around 90 centimeters tall, appearing slightly taller with their large ears",
+	weight : " normally weigh no more than 40 pounds.",
+	weightMetric : " normally weigh no more than 18 kilograms.",
+	vision : [["Darkvision", 60]],
+	skills : ["Stealth"],
+	trait : "Ratling (+2 and +1, or +1 to three different scores)" + desc([
+		"\u2022 Scurry: Move through hostile creatures' spaces as difficult terrain",
+		"\u2022 Squeeze: No penalty for squeezing into a space one size smaller",
+		"\u2022 Gnaw: I can use my action to chew through a small nonmagical object that isn't being worn or carried. I can spend 1 minute chewing a Tiny hole through a wooden wall or floor. I can't chew through metal, stone, etc"
+	]),
+	scorestxt : "+2 to an ability score of my choice and +1 to a different ability score, or +1 to three different ability scores",
+	reaction : [["action", "Gnaw"]]
+};
