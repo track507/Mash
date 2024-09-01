@@ -627,7 +627,7 @@ AddRacialVariant("human", "near-human", {
 	scorestxt : "+1 to two different ability scores of my choice",
 	trait : "Near-Human (+1 to two different ability scores of my choice)" + desc([
 		"\u2022 Skills: I gain proficiency in one skill of my choice",
-		"\u2022 I gain one Near-Humant feat of my choice."
+		"\u2022 I gain one Near-Humant feat of my choice, that must be picked at first level."
 	]),
 	eval : function() { AddString('Feat Note 1', 'Near-Human feat', '; '); },
 	removeeval : function() { RemoveString('Feat Note 1', 'Near-Human feat'); }
@@ -637,7 +637,7 @@ AddRacialVariant("human", "near-human", {
 FeatsList["aberrant spawn"] = {
 	name : "Aberrant Spawn",
 	source : ["VSoS", 14],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
@@ -685,7 +685,7 @@ FeatsList["aberrant spawn"] = {
 FeatsList["aquanaut"] = {
 	name : "Aquanaut",
 	source : ["VSoS", 14],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
@@ -724,7 +724,7 @@ FeatsList["aquanaut"] = {
 FeatsList["arachne"] = {
 	name : "Arachne",
 	source : ["VSoS", 14],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
@@ -784,7 +784,7 @@ FeatsList["arachne"] = {
 FeatsList["beastman"] = {
 	name : "Beastman",
 	source : ["VSoS", 14],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
@@ -798,6 +798,7 @@ FeatsList["beastman"] = {
 		damage : [1, 6, "slashing"],
 		selectNow : true
 	}],
+	vision : [["Keen Smell", 0]],
 	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
 	"strength" : {
 		description : "I have advantage on Wisdom (Perception) checks made to smell. I can use my claws as natural weapons to make unarmed strikes, dealing 1d6 + Strength in slashing damage on a hit. [+1 Strength]",
@@ -828,11 +829,11 @@ FeatsList["beastman"] = {
 FeatsList["firebrand"] = {
 	name : "Firebrand",
 	source : ["VSoS", 15],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "Born, imbued with, or later marked by the powers of Elemental Fire, these near-humans have an affinity for fire magic. Their heritage makes them dangerous adversaries in combat, as does the volatile nature of their innate powers. Firebrands are human in shape, but have deep red skin and flames behind their eyes. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have resistance to fire damage.\n \u2022 You know the produce flame cantrip. Starting at 3rd level, you can cast the burning hands spell with this trait. Starting at 5th level, you can also cast the flaming sphere spell with this trait, without requiring a material component. Once you cast burning hands or flaming sphere with this trait, you can’t cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n   Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).",
+	descriptionFull : "Born, imbued with, or later marked by the powers of Elemental Fire, these near-humans have an affinity for fire magic. Their heritage makes them dangerous adversaries in combat, as does the volatile nature of their innate powers. Firebrands are human in shape, but have deep red skin and flames behind their eyes. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have resistance to fire damage.\n \u2022 You know the produce flame cantrip. Starting at 3rd level, you can cast the burning hands spell with this trait. Starting at 5th level, you can also cast the flaming sphere spell with this trait, without requiring a material component. Once you cast burning hands or flaming sphere with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n   Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).",
 	description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Burning Hands or Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 to any ability score.]",
 	dmgres : ["Fire"],
 	spellcastingAbility : [4,5,6],
@@ -858,6 +859,13 @@ FeatsList["firebrand"] = {
 			return n < 5 ? 0 : 1;
 		})
     }],
+	spellChanges : {
+		"flaming sphere" : {
+			components : "V,S",
+			compMaterial : "",
+			changes : "Casting flaming sphere no longer requires material components"
+		}
+	},
 	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
 	"strength" : {
 		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Burning Hands or Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Strength]",
@@ -888,11 +896,11 @@ FeatsList["firebrand"] = {
 FeatsList["green skin"] = {
 	name : "Green Skin",
 	source : ["VSoS", 15],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 	return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "Your people metabolize by basking in the sunlight. Aided by your tough, photosynthetic skin, you gain the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have advantage on saving throws you make to avoid or end the poisoned condition on yourself. You also have resistance to poison damage.\n \u2022 While you aren’t wearing armor, your AC equals 12 + your Dexterity modifier.",
+	descriptionFull : "Your people metabolize by basking in the sunlight. Aided by your tough, photosynthetic skin, you gain the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have advantage on saving throws you make to avoid or end the poisoned condition on yourself. You also have resistance to poison damage.\n \u2022 While you aren't wearing armor, your AC equals 12 + your Dexterity modifier.",
 	description : "I have advantage on saving throws against being poisoned, and resistance to poison damage. While not wearing armor, my AC is 12 + Dexterity. [+1 to any ability score.]",
 	armorOptions : {
 		regExpSearch : /^(?=.*green)(?=.*skin).*$/i,
@@ -936,11 +944,11 @@ FeatsList["green skin"] = {
 FeatsList["grendel medium"] = {
 	name : "Grendel (medium)",
 	source : ["VSoS", 15],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "The children of goblins, hobgoblins, and bugbears with humans are known as grendels. Despite their varied heritage, grendels don't quite resemble either of their parents, with green- or orange-tanned skin, coarse hair, and three knuckles on each finger.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 Unlike other humans, you are Medium or Small, depending on your heritage.\n \u2022 You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.\n \u2022 You have advantage on saving throws you make to avoid or end the charmed condition on yourself.\n \u2022 On your first turn in combat, you can add your proficiency bonus to your attack rolls, ability checks, and saving throws.",
+	descriptionFull : "The children of goblins, hobgoblins, and bugbears with humans are known as grendels. Despite their varied heritage, grendels don't quite resemble either of their parents, with green- or orange-tanned skin, coarse hair, and three knuckles on each finger.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 Unlike other humans, you are Medium or Small, depending on your heritage.\n \u2022 You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n \u2022 You have advantage on saving throws you make to avoid or end the charmed condition on yourself.\n \u2022 On your first turn in combat, you can add your proficiency bonus to your attack rolls, ability checks, and saving throws.",
 	vision : ["Darkvision", 60],
 	savetxt : {
 		adv_vs : ["charmed"],
@@ -976,11 +984,11 @@ FeatsList["grendel medium"] = {
 FeatsList["grendel small"] = {
 	name : "Grendel (Small)",
 	source : ["VSoS", 15],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "The children of goblins, hobgoblins, and bugbears with humans are known as grendels. Despite their varied heritage, grendels don’t quite resemble either of their parents, with green- or orange-tanned skin, coarse hair, and three knuckles on each finger.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 Unlike other humans, you are Medium or Small, depending on your heritage.\n \u2022 You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.\n \u2022 You have advantage on saving throws you make to avoid or end the charmed condition on yourself.\n \u2022 On your first turn in combat, you can add your proficiency bonus to your attack rolls, ability checks, and saving throws.",
+	descriptionFull : "The children of goblins, hobgoblins, and bugbears with humans are known as grendels. Despite their varied heritage, grendels don't quite resemble either of their parents, with green- or orange-tanned skin, coarse hair, and three knuckles on each finger.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 Unlike other humans, you are Medium or Small, depending on your heritage.\n \u2022 You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n \u2022 You have advantage on saving throws you make to avoid or end the charmed condition on yourself.\n \u2022 On your first turn in combat, you can add your proficiency bonus to your attack rolls, ability checks, and saving throws.",
 	vision : ["Darkvision", 60],
 	eval: function() { PickDropdown("Size Category", 4); },
 	removeeval: function(n) { PickDropdown("Size Category", 3); },
@@ -1018,36 +1026,36 @@ FeatsList["grendel small"] = {
 FeatsList["grue"] = {
 	name : "Grue",
 	source : ["VSoS", 15],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "One of your parents was a creature of darkness, such as a shadow or a native of the Plane of Shadow. Grues, such as yourself, have blackened skin and cast a shadow in all directions, even when directly in light. In shadows, you are nearly invisible. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have darkvision, the ability to see in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.\n \u2022 When you are hidden and a creature discovers you with a successful Wisdom (Perception) check, you can reattempt your Dexterity (Stealth) check to hide. On a success, you silently reposition yourself and the creature doesn’t notice you. Once you use this trait, you can’t use it again until you finish a short or long rest.",
+	descriptionFull : "One of your parents was a creature of darkness, such as a shadow or a native of the Plane of Shadow. Grues, such as yourself, have blackened skin and cast a shadow in all directions, even when directly in light. In shadows, you are nearly invisible. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have darkvision, the ability to see in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n \u2022 When you are hidden and a creature discovers you with a successful Wisdom (Perception) check, you can reattempt your Dexterity (Stealth) check to hide. On a success, you silently reposition yourself and the creature doesn't notice you. Once you use this trait, you can't use it again until you finish a short or long rest.",
 	description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom(Perception) check, I can make a Dexterity(Stealth) check. On a success, I remain hidden. [+1 to any ability score.]",
 	vision : ["Darkvision", 60],
 	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
 	"strength" : {
-		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity(Stealth) check. On a success, I remain hidden. [+1 Strength]",
+		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity (Stealth) check. On a success, I remain hidden. [+1 Strength]",
 		scores : [1, 0, 0, 0, 0, 0],
 	},
 	"dexterity" : {
-		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity(Stealth) check. On a success, I remain hidden. [+1 Dexterity]",
+		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity (Stealth) check. On a success, I remain hidden. [+1 Dexterity]",
 		scores : [0, 1, 0, 0, 0, 0],
 	},
 	"constitution" : {
-		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity(Stealth) check. On a success, I remain hidden. [+1 Constitution]",
+		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity (Stealth) check. On a success, I remain hidden. [+1 Constitution]",
 		scores : [0, 0, 1, 0, 0, 0],
 	},
 	"intelligence" : {
-		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity(Stealth) check. On a success, I remain hidden. [+1 Intelligence]",
+		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity (Stealth) check. On a success, I remain hidden. [+1 Intelligence]",
 		scores : [0, 0, 0, 1, 0, 0],
 	},
 	"wisdom" : {
-		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity(Stealth) check. On a success, I remain hidden. [+1 Wisdom]",
+		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity (Stealth) check. On a success, I remain hidden. [+1 Wisdom]",
 		scores : [0, 0, 0, 0, 1, 0],
 	},
 	"charisma" : {
-		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity(Stealth) check. On a success, I remain hidden. [+1 Charisma]",
+		description : "I have darkvision out to 60 feet. Once per short rest I can use covert. When I am hidden and detected by a creature's successful Wisdom (Perception) check, I can make a Dexterity (Stealth) check. On a success, I remain hidden. [+1 Charisma]",
 		scores : [0, 0, 0, 0, 0, 1],
 	},
 	usages : 1,
@@ -1058,11 +1066,11 @@ FeatsList["grue"] = {
 FeatsList["insectoid"] = {
 	name : "Insectoid",
 	source : ["VSoS", 15],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "Insectoids bear one or two insectlike features, such as prominent compound eyes or chitinous plates, but almost always have a pair of sensitive antennae atop their heads.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 Due to your antennae, you have blindsight with a range of 10 feet. Within that range, you can effectively see anything that isn't behind total cover, even if you're blinded or in darkness. Moreover, you can see an invisible creature within that range, unless the creature successfully hides from you.\n \u2022 If any part of your body is amputated, but its amputation doesn’t kill you, you can fully regrow that part of your body in 24 hours.",
+	descriptionFull : "Insectoids bear one or two insectlike features, such as prominent compound eyes or chitinous plates, but almost always have a pair of sensitive antennae atop their heads.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 Due to your antennae, you have blindsight with a range of 10 feet. Within that range, you can effectively see anything that isn't behind total cover, even if you're blinded or in darkness. Moreover, you can see an invisible creature within that range, unless the creature successfully hides from you.\n \u2022 If any part of your body is amputated, but its amputation doesn't kill you, you can fully regrow that part of your body in 24 hours.",
 	description : "I have blindsight to 10 ft. I can fully regrow any amputated body part in 24 hours, as long as the amputation doesn't kill me. [+1 to any ability score.]",
 	vision : ["Blindsight", 10],
 	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
@@ -1095,11 +1103,11 @@ FeatsList["insectoid"] = {
 FeatsList["immortal"] = {
 	name : "Immortal",
 	source : ["VSoS", 16],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "According to legend, a human can achieve immortality by replacing their heart with a mote of celestial radiance. The secret to immortality, including the elixirs and rituals needed to achieve it, is protected by a small, clandestine sect of immortal mystics, each of who only know one component of the process. There are perhaps only a dozen true immortals in the world, but as many as hundreds if every tale can be believed.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You don’t age, can’t be aged magically, and suffer none of the frailty of old age. You can’t die of old age.\n \u2022 You have advantage on saving throws you make to avoid or end diseases and the poisoned condition yourself. You also have resistance to poison damage.",
+	descriptionFull : "According to legend, a human can achieve immortality by replacing their heart with a mote of celestial radiance. The secret to immortality, including the elixirs and rituals needed to achieve it, is protected by a small, clandestine sect of immortal mystics, each of who only know one component of the process. There are perhaps only a dozen true immortals in the world, but as many as hundreds if every tale can be believed.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You don't age, can't be aged magically, and suffer none of the frailty of old age. You can't die of old age.\n \u2022 You have advantage on saving throws you make to avoid or end diseases and the poisoned condition yourself. You also have resistance to poison damage.",
 	savetxt : {
 		adv_vs : ["poisoned"],
 	},
@@ -1128,6 +1136,410 @@ FeatsList["immortal"] = {
 	},
 	"charisma" : {
 		description : "I don't age, can't be aged magically, and can't die of old age. I have advantage on saves against the poisoned condition, and resistance to poison damage. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["mul"] = {
+	name : "Mul",
+	source : ["VSoS", 16],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "One of your parents was a human and the other was a dwarf. Such a pairing is unlikely to have produced offspring, but you have defied the odds to join the ranks of the sturdy and resilient muls. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have darkvision, the ability to see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n \u2022 Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.\n \u2022 Your speed is not reduced by wearing heavy armor and you never have disadvantage on Dexterity (Stealth) checks as a result of wearing heavy armor.",
+	description : "I have darkvision out to 60 feet. My hit point maximum increases by 1 for every level. Heavy armor doesn't reduce my speed or impose disadvantage on stealth. [+1 to any ability score.]",
+	vision : ["Darkvision", 60],
+	calcChanges : {
+		hp : function (totalHD) { return [totalHD, "Dwarven Toughness"]; }
+	},
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "I have darkvision out to 60 feet. My hit point maximum increases by 1 for every level. Heavy armor doesn't reduce my speed or impose disadvantage on stealth. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "I have darkvision out to 60 feet. My hit point maximum increases by 1 for every level. Heavy armor doesn't reduce my speed or impose disadvantage on stealth. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "I have darkvision out to 60 feet. My hit point maximum increases by 1 for every level. Heavy armor doesn't reduce my speed or impose disadvantage on stealth. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "I have darkvision out to 60 feet. My hit point maximum increases by 1 for every level. Heavy armor doesn't reduce my speed or impose disadvantage on stealth. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I have darkvision out to 60 feet. My hit point maximum increases by 1 for every level. Heavy armor doesn't reduce my speed or impose disadvantage on stealth. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I have darkvision out to 60 feet. My hit point maximum increases by 1 for every level. Heavy armor doesn't reduce my speed or impose disadvantage on stealth. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["ogre-blooded"] = {
+	name : "Ogre-Blooded",
+	source : ["VSoS", 16],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "Your coarse features and monstrous build betray that one of your parents is an ogre. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.\n \u2022 You gain proficiency in the Athletics skill. Additionally, when you make a Strength (Athletics) check, you can treat the result as a 10, or your level plus your Strength modifier, whichever is higher.\n \u2022 You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift.",
+	description : "I have darkvision. I gain proficiency in Athletics, and can treat the result of Str (Ath) checks as 10 or Level + Strength, whichever is higher. I count as one size larger for carry/push/drag/lift capacity. [+1 to any ability score.]",
+	vision : ["Darkvision", 60],
+	skills : ["Athletics"],
+	carryingCapacity : 2,
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "I have darkvision. I gain proficiency in Athletics, and can treat the result of Str(Ath) checks as 10 or Level + Strength, whichever is higher. I count as one size larger for carry/push/drag/lift capacity. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "I have darkvision. I gain proficiency in Athletics, and can treat the result of Str(Ath) checks as 10 or Level + Strength, whichever is higher. I count as one size larger for carry/push/drag/lift capacity. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "I have darkvision. I gain proficiency in Athletics, and can treat the result of Str(Ath) checks as 10 or Level + Strength, whichever is higher. I count as one size larger for carry/push/drag/lift capacity. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "I have darkvision. I gain proficiency in Athletics, and can treat the result of Str(Ath) checks as 10 or Level + Strength, whichever is higher. I count as one size larger for carry/push/drag/lift capacity. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I have darkvision. I gain proficiency in Athletics, and can treat the result of Str(Ath) checks as 10 or Level + Strength, whichever is higher. I count as one size larger for carry/push/drag/lift capacity. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I have darkvision. I gain proficiency in Athletics, and can treat the result of Str(Ath) checks as 10 or Level + Strength, whichever is higher. I count as one size larger for carry/push/drag/lift capacity. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["owlbearman"] = {
+	name : "Owlbearman",
+	source : ["VSoS", 16],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "You are a hulking thing of feathers, flesh, and fur; half-man, half-bear, and half-owl. None can say for sure what you are, other than the result of some mad wizard meddling in the gods' domain. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You can attempt to grapple creatures two size categories larger than yourself, and you have advantage on grappling checks you make on your turn against creatures that are at least one size category smaller than you.\n \u2022 You have a long, hooked beak that you can use to make unarmed strikes. On a hit with it, you deal piercing damage equal to 1d6 + your Strength modifier instead of the bludgeoning damage normal for an unarmed strike.",
+	description : "I can attempt to grapple creatures up to two sizes larger, and I have advantage on checks to grapple smaller creatures. I have a hooked beak I can use to make unarmed strikes, dealing 1d6 + Strength in piercing damage on a hit. [+1 to any ability score.]",
+	weaponOptions : [{
+		baseWeapon : "unarmed strike",
+		regExpSearch : /^(?=.*owlbearman)(?=.*beak).*$/i,
+		name : "Owlbearman Beak",
+		source : ["VSoS", 18],
+		damage : [1, 6, "piercing"],
+		selectNow : true
+	}],
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "I can attempt to grapple creatures up to two sizes larger, and I have advantage on checks to grapple smaller creatures. I have a hooked beak I can use to make unarmed strikes, dealing 1d6 + Strength in piercing damage on a hit. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "I can attempt to grapple creatures up to two sizes larger, and I have advantage on checks to grapple smaller creatures. I have a hooked beak I can use to make unarmed strikes, dealing 1d6 + Strength in piercing damage on a hit. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "I can attempt to grapple creatures up to two sizes larger, and I have advantage on checks to grapple smaller creatures. I have a hooked beak I can use to make unarmed strikes, dealing 1d6 + Strength in piercing damage on a hit. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "I can attempt to grapple creatures up to two sizes larger, and I have advantage on checks to grapple smaller creatures. I have a hooked beak I can use to make unarmed strikes, dealing 1d6 + Strength in piercing damage on a hit. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I can attempt to grapple creatures up to two sizes larger, and I have advantage on checks to grapple smaller creatures. I have a hooked beak I can use to make unarmed strikes, dealing 1d6 + Strength in piercing damage on a hit. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I can attempt to grapple creatures up to two sizes larger, and I have advantage on checks to grapple smaller creatures. I have a hooked beak I can use to make unarmed strikes, dealing 1d6 + Strength in piercing damage on a hit. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["porterling"] = {
+	name : "Porterling",
+	source : ["VSoS", 16],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "You are a porterling, parented both by a human and either a gnome or a halfling. You stand about as tall as a dwarf, but are far leaner—and if fathered by a gnome, also somewhat top-heavy. Though they are often confused for dwarves, porterlings can only rarely grow large or thick beards. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have advantage on checks you make to escape grapple or to slip bindings.\n \u2022 You suffer no penalty for squeezing into a space that is only large enough for a creature that is one size smaller than you.\n \u2022 You can roll a d8 whenever you make a long or high jump, adding the number rolled to the number of feet you cover, even when making a standing jump. This extra distance costs movement as normal.",
+	description : "I have advantage on checks to escape grapples and slip bindings. I can squeeze into a space one size smaller without penalty. I can add 1d8 to my long and high jump distance. [+1 to any ability score.]",
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "I have advantage on checks to escape grapples and slip bindings. I can squeeze into a space one size smaller without penalty. I can add 1d8 to my long and high jump distance. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "I have advantage on checks to escape grapples and slip bindings. I can squeeze into a space one size smaller without penalty. I can add 1d8 to my long and high jump distance. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "I have advantage on checks to escape grapples and slip bindings. I can squeeze into a space one size smaller without penalty. I can add 1d8 to my long and high jump distance. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "I have advantage on checks to escape grapples and slip bindings. I can squeeze into a space one size smaller without penalty. I can add 1d8 to my long and high jump distance. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I have advantage on checks to escape grapples and slip bindings. I can squeeze into a space one size smaller without penalty. I can add 1d8 to my long and high jump distance. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I have advantage on checks to escape grapples and slip bindings. I can squeeze into a space one size smaller without penalty. I can add 1d8 to my long and high jump distance. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["psionic"] = {
+	name : "Psionic",
+	source : ["VSoS", 17],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "Most humans possess some dull psionic potential, but those who unlock their psionic spark transcend their peers. Sometimes, these humans are indistinguishable from ordinary folks, but other times their psionic awakening leaves a tell-tale mark: stark white hair, glowing pupils, or hair and clothing that float and drift around them. \n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You can use your action to probe the surface level of a creature's emotions. You must be able to see the creature and it must be within 30 feet and have an Intelligence of 3 or higher. You learn the creature's emotional state and, at the GM's discretion, one of the creature's Bonds.\n \u2022 You know the mage hand cantrip, and the hand is invisible when you cast the cantrip with this trait.\n   Starting at 3rd level, you can cast the unseen servant spell with this trait. Starting at 5th level, you can also cast the levitate spell with this trait. Once you cast unseen servant or levitate with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n   Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).",
+	description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 to any ability score.]",
+	features : {
+		"empathy" : {
+			name : "Empathy",
+			minlevel : 1,
+			action : [["action", ""]],
+		}
+	},
+	spellcastingAbility : [4,5,6],
+	spellcastingBonus : [{
+        name : "Psionic (level 1)",
+        spells : ["mage hand"],
+        selection : ["mage hand"],
+        firstCol : "atwill"
+    }, {
+        name : "Psionic (level 3)",
+        spells : ["unseen servant"],
+        selection : ["unseen servant"],
+        firstCol : "oncelr",
+        times : levels.map( function(n) {
+			return n < 3 ? 0 : 1;
+		})
+    }, {
+        name : "Psionic (level 5)",
+        spells : ["levitate"],
+        selection : ["levitate"],
+        firstCol : "oncelr",
+		times : levels.map( function(n) {
+			return n < 5 ? 0 : 1;
+		})
+    }],
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["proto-man"] = {
+	name : "Proto-Man",
+	source : ["VSoS", 17],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "You come from a place of massive flora and ancient creatures; your people are hearty and robust, much like very early humans. You gain the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You advantage vs. saving throws against being frightened.\n \u2022 When you take a short rest, you can automatically regain 1 hit die and can choose to spend it immediately. You can't use the ability again until you finish a long rest.",
+	description : "I have adv. in saving throws against being frightened. Once per long rest, when I take a short rest, I can regain 1 hit die and can spend it immediately. [+1 to any ability score.]",
+	savetxt : {
+		adv_vs : ["Frightened"],
+	},
+	usages : 1,
+	recovery : "long rest",
+	limfeaname : "Recover 1 HD on SR",
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "I have adv. in saving throws against being frightened. Once per long rest, when I take a short rest, I can regain 1 hit die and can spend it immediately. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "I have adv. in saving throws against being frightened. Once per long rest, when I take a short rest, I can regain 1 hit die and can spend it immediately. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "I have adv. in saving throws against being frightened. Once per long rest, when I take a short rest, I can regain 1 hit die and can spend it immediately. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "I have adv. in saving throws against being frightened. Once per long rest, when I take a short rest, I can regain 1 hit die and can spend it immediately. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I have adv. in saving throws against being frightened. Once per long rest, when I take a short rest, I can regain 1 hit die and can spend it immediately. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I have adv. in saving throws against being frightened. Once per long rest, when I take a short rest, I can regain 1 hit die and can spend it immediately. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["reptiloid"] = {
+	name : "Reptiloid",
+	source : ["VSoS", 18],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "You bear the abrasive skin, slitted eyes, and split tongue of a reptile—perhaps due to a dragonborn or kobold parent—which grant you the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 When you take the Attack action on your turn, you can replace one of your attacks with a lob of acid from your mouth. This is a special ranged attack with a range of 30 feet. You are proficient with it, and you add your Dexterity modifier to its attack and damage rolls. On a hit, the target takes 1d10 acid damage. This damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).\n   You can use your Acid Spit a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+	description : "Prof. times per long rest with the Attack action, I can replace an attack by spitting acid. Ranged attack 30 ft, hit: 1d10+Dex acid damage. +1d10 CL5/11/17 [+1 to any ability score.]",
+	usages : "Prof bonus times per",
+	recovery : "long rest",
+	usagescalc : "event.value = What('Proficiency Bonus');",
+	limfeaname : "Acid Spit",
+	additional : levels.map( function(n) {
+		return n < 5 ? "1d10" : n < 11 ? "2d10" : n < 17 ? "3d10" : "4d10";
+	}),
+	weaponOptions : [{
+		regExpSearch : /^(?=.*acid)(?=.*spit).*$/i,
+		name : "Acid Spit",
+		source : ["VSoS", 18],
+		ability : 2,
+		type : "Natural",
+		damage : ["C", 10, "acid"],
+		range : "30 ft",
+		description : "Replaces an attack during Attack action; prof. times per long rest",
+		selectNow : true
+	}],
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "Prof. times per long rest with the Attack action, I can replace an attack by spitting acid. Ranged attack 30 ft, hit: 1d10+Dex acid damage. +1d10 CL5/11/17 [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "Prof. times per long rest with the Attack action, I can replace an attack by spitting acid. Ranged attack 30 ft, hit: 1d10+Dex acid damage. +1d10 CL5/11/17 [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "Prof. times per long rest with the Attack action, I can replace an attack by spitting acid. Ranged attack 30 ft, hit: 1d10+Dex acid damage. +1d10 CL5/11/17 [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "Prof. times per long rest with the Attack action, I can replace an attack by spitting acid. Ranged attack 30 ft, hit: 1d10+Dex acid damage. +1d10 CL5/11/17 [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "Prof. times per long rest with the Attack action, I can replace an attack by spitting acid. Ranged attack 30 ft, hit: 1d10+Dex acid damage. +1d10 CL5/11/17 [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "Prof. times per long rest with the Attack action, I can replace an attack by spitting acid. Ranged attack 30 ft, hit: 1d10+Dex acid damage. +1d10 CL5/11/17 [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["roguean"] = {
+	name : "Roguean",
+	source : ["VSoS", 18],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "You hail from an icy, desolate land, prone to dramatic swings in temperature. Surviving the interminable harshness of your home gives you the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have resistance to cold damage.\n \u2022 You can tolerate temperatures as low as −100 degrees Fahrenheit and as high as 300 degrees Fahrenheit.\n \u2022 You have darkvision, the ability to see in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.",
+	description : "I have resistance to cold damage and can tolerate temperatures from -100 to 300 Fahrenheit. I have darkvision out to 60 feet. [+1 to any ability score.]",
+	vision : ["Darkvision", 60],
+	dmgres : ["Cold"],
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "I have resistance to cold damage and can tolerate temperatures from -100 to 300 Fahrenheit. I have darkvision out to 60 feet. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "I have resistance to cold damage and can tolerate temperatures from -100 to 300 Fahrenheit. I have darkvision out to 60 feet. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "I have resistance to cold damage and can tolerate temperatures from -100 to 300 Fahrenheit. I have darkvision out to 60 feet. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "I have resistance to cold damage and can tolerate temperatures from -100 to 300 Fahrenheit. I have darkvision out to 60 feet. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I have resistance to cold damage and can tolerate temperatures from -100 to 300 Fahrenheit. I have darkvision out to 60 feet. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I have resistance to cold damage and can tolerate temperatures from -100 to 300 Fahrenheit. I have darkvision out to 60 feet. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["stoneborn"] = {
+	name : "Stoneborn",
+	source : ["VSoS", 18],
+	prerequisite : "1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "With cracked and abrasive skin, stoneborn appear as if they were roughly hewn from granite and have similarly rigid personalities. These near-humans are proud of their connection to Elemental Earth and believe themselves conquerors, fated to rule over every stone. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 Your Armor Class increases by 1.\n \u2022 You have advantage on ability checks and saving throws you make to resist being knocked prone or moved against you will.\n \u2022 By placing your hand on natural stone and using your action to focus, you can feel the presence of any natural gems or metals within 100 feet of you.", 
+	description : "My AC increases by 1. I have advantage on checks and saving throws to avoid being knocked down or moved. I can touch natural stone and use my action sense natural gems/metals within 100 feet. [+1 to any ability score.]",
+	limfeaname : "Sense minerals",
+	action: ["action", ""],
+	extraAC : [{
+		mod : 1,
+		text : "I gain a +1 bonus to AC when using my action to sense minerals",
+	}],
+	savetxt : {
+		adv_vs : ["being knocked prone or moved"],
+	},
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "My AC increases by 1. I have advantage on checks and saving throws to avoid being knocked down or moved. I can touch natural stone and use my action sense natural gems/metals within 100 feet. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "My AC increases by 1. I have advantage on checks and saving throws to avoid being knocked down or moved. I can touch natural stone and use my action sense natural gems/metals within 100 feet. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "My AC increases by 1. I have advantage on checks and saving throws to avoid being knocked down or moved. I can touch natural stone and use my action sense natural gems/metals within 100 feet. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "My AC increases by 1. I have advantage on checks and saving throws to avoid being knocked down or moved. I can touch natural stone and use my action sense natural gems/metals within 100 feet. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "My AC increases by 1. I have advantage on checks and saving throws to avoid being knocked down or moved. I can touch natural stone and use my action sense natural gems/metals within 100 feet. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "My AC increases by 1. I have advantage on checks and saving throws to avoid being knocked down or moved. I can touch natural stone and use my action sense natural gems/metals within 100 feet. [+1 Charisma]",
 		scores : [0, 0, 0, 0, 0, 1],
 	}
 };
