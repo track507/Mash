@@ -21,7 +21,7 @@ I am going page by page and adding/updating content. I will be providing updates
 
 Everything up to "Alchemist Bomb Formulae" has been added and updated to v13.2.0 for MPMB's Sheet and 1.4 of the PDF.
 
-### Current Fixes
+### Current Alchemist Fixes and Changes
   - Fixed `weaponsAdd` in "Bombs" feature
   - All bombs now use Int as the modifier to show the DC.
   - Primed Bombs now correctly adds which mod to use for damage: Str, Dex, or Int, whichever one is higher.
