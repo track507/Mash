@@ -31,3 +31,11 @@ Current Fixes
 WIP: 
   - Alchemist "Bomb Formulae"
   - Removing `weaponsAdd` automation in "Bomb Formulae" and now appears in the attack drop down. This is to prevent having up to 11 attack entries automatically added to 1st page attacks. User can pick from the attack drop down instead.
+
+TODO: 
+  - Finish Alchemist class update and revisions
+  - Add the rest of the classes and update
+  - Add the rest of the subclasses and update
+  - Add all spells and update
+  - Add all magic items and update
+  - Add all equipment and update
