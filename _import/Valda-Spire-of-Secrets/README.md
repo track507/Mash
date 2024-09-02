@@ -17,7 +17,7 @@ I am going page by page and adding/updating content. I will be providing updates
 
 ## Important
 
-*Due to recent weaponsAdd bug, I am adding the bomb as "Bomb (Alchemist)" in weaponOptions instead of using `weaponsAdd : { select : ["Bomb"] }`*
+*Due to recent `weaponsAdd` bug, I am adding the bomb as "Bomb (Alchemist)" in `weaponOptions` instead of using `weaponsAdd : { select : ["Bomb"] }`*
 
 WIP: Alchemist
   - Fixed `weaponsAdd` in "Bombs" feature
