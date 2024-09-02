@@ -24,7 +24,7 @@ SourceList["VSoS"]={
 	name : "Valda's Spire of Secrets",
 	abbreviation : "VSoS",
 	abbreviationSpellsheet : "V",
-	date : "2022/08/28"
+	date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
 };
 
 // ! This section adds races from Valda's Spire of Secrets
@@ -608,12 +608,19 @@ RaceList["spirithost"] = {
 			minlevel : 1,
 			usages : 1,
 			recovery : "long rest",
-			spellcastingBonus : {
+			spellcastingBonus : [{
 				name : "Spirit Speech (level 1)",
 				spells : ["speak with dead"],
 				selection : ["speak with dead"],
 				firstCol : "oncelr"
-			}
+			}],
+			spellChanges : {
+				"speak with dead" : {
+					components : "V,S",
+					compMaterial : "",
+					changes : "Casting speak with dead no longer requires material components"
+				}
+			},
 		}
 	}
 };
@@ -728,8 +735,8 @@ FeatsList["arachne"] = {
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "Much like drow, humans can be corrupted by the magic of the drow goddess, becoming arachne—humans with eight eyes and coarse, black hair. Sometimes these humans are the offspring of driders or drow priestesses, while other times they bear the marks of a ritual sacrifice gone terribly awry.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You can see in dim light within 120 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n \u2022 You know the poison spray cantrip. Starting at 3rd level, you can cast the bane spell with this trait. Starting at 5th level, you can also cast the spider climb spell with this trait. Once you cast bane or spider climb with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n   Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).",
-	description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Bane or Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 to any ability score.]",
+	descriptionFull : "Much like drow, humans can be corrupted by the magic of the drow goddess, becoming arachne—humans with eight eyes and coarse, black hair. Sometimes these humans are the offspring of driders or drow priestesses, while other times they bear the marks of a ritual sacrifice gone terribly awry.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You can see in dim light within 120 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n \u2022 You know the poison spray cantrip. Starting at 3rd level, you can cast the bane spell with this trait. Starting at 5th level, you can also cast the spider climb spell with this trait. Once you cast spider climb with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n   Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).",
+	description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 to any ability score.]",
 	vision : ["Darkvision", 120],
 	spellcastingAbility : [4,5,6],
 	spellcastingBonus : [{
@@ -756,27 +763,27 @@ FeatsList["arachne"] = {
     }],
 	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
 	"strength" : {
-		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Bane or Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Strength]",
+		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Strength]",
 		scores : [1, 0, 0, 0, 0, 0],
 	},
 	"dexterity" : {
-		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Bane or Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Dexterity]",
+		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Dexterity]",
 		scores : [0, 1, 0, 0, 0, 0],
 	},
 	"constitution" : {
-		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Bane or Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Constitution]",
+		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Constitution]",
 		scores : [0, 0, 1, 0, 0, 0],
 	},
 	"intelligence" : {
-		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Bane or Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Intelligence]",
+		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Intelligence]",
 		scores : [0, 0, 0, 1, 0, 0],
 	},
 	"wisdom" : {
-		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Bane or Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Wisdom]",
+		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Wisdom]",
 		scores : [0, 0, 0, 0, 1, 0],
 	},
 	"charisma" : {
-		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Bane or Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Charisma]",
+		description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Charisma]",
 		scores : [0, 0, 0, 0, 0, 1],
 	}
 };
@@ -833,8 +840,8 @@ FeatsList["firebrand"] = {
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "Born, imbued with, or later marked by the powers of Elemental Fire, these near-humans have an affinity for fire magic. Their heritage makes them dangerous adversaries in combat, as does the volatile nature of their innate powers. Firebrands are human in shape, but have deep red skin and flames behind their eyes. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have resistance to fire damage.\n \u2022 You know the produce flame cantrip. Starting at 3rd level, you can cast the burning hands spell with this trait. Starting at 5th level, you can also cast the flaming sphere spell with this trait, without requiring a material component. Once you cast burning hands or flaming sphere with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n   Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).",
-	description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Burning Hands or Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 to any ability score.]",
+	descriptionFull : "Born, imbued with, or later marked by the powers of Elemental Fire, these near-humans have an affinity for fire magic. Their heritage makes them dangerous adversaries in combat, as does the volatile nature of their innate powers. Firebrands are human in shape, but have deep red skin and flames behind their eyes. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have resistance to fire damage.\n \u2022 You know the produce flame cantrip. Starting at 3rd level, you can cast the burning hands spell with this trait. Starting at 5th level, you can also cast the flaming sphere spell with this trait, without requiring a material component. Once you cast flaming sphere with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n   Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).",
+	description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 to any ability score.]",
 	dmgres : ["Fire"],
 	spellcastingAbility : [4,5,6],
 	spellcastingBonus : [{
@@ -868,27 +875,27 @@ FeatsList["firebrand"] = {
 	},
 	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
 	"strength" : {
-		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Burning Hands or Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Strength]",
+		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Strength]",
 		scores : [1, 0, 0, 0, 0, 0],
 	},
 	"dexterity" : {
-		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Burning Hands or Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Dexterity]",
+		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Dexterity]",
 		scores : [0, 1, 0, 0, 0, 0],
 	},
 	"constitution" : {
-		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Burning Hands or Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Constitution]",
+		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Constitution]",
 		scores : [0, 0, 1, 0, 0, 0],
 	},
 	"intelligence" : {
-		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Burning Hands or Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Intelligence]",
+		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Intelligence]",
 		scores : [0, 0, 0, 1, 0, 0],
 	},
 	"wisdom" : {
-		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Burning Hands or Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Wisdom]",
+		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Wisdom]",
 		scores : [0, 0, 0, 0, 1, 0],
 	},
 	"charisma" : {
-		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Burning Hands or Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Charisma]",
+		description : "I have resistance to fire damage. I know the Produce Flame cantrip. At 3rd level, I can cast Burning Hands 1/LR. At 5th, I can cast Flaming Sphere 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Charisma]",
 		scores : [0, 0, 0, 0, 0, 1],
 	}
 };
@@ -1306,8 +1313,8 @@ FeatsList["psionic"] = {
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "Most humans possess some dull psionic potential, but those who unlock their psionic spark transcend their peers. Sometimes, these humans are indistinguishable from ordinary folks, but other times their psionic awakening leaves a tell-tale mark: stark white hair, glowing pupils, or hair and clothing that float and drift around them. \n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You can use your action to probe the surface level of a creature's emotions. You must be able to see the creature and it must be within 30 feet and have an Intelligence of 3 or higher. You learn the creature's emotional state and, at the GM's discretion, one of the creature's Bonds.\n \u2022 You know the mage hand cantrip, and the hand is invisible when you cast the cantrip with this trait.\n   Starting at 3rd level, you can cast the unseen servant spell with this trait. Starting at 5th level, you can also cast the levitate spell with this trait. Once you cast unseen servant or levitate with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n   Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).",
-	description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 to any ability score.]",
+	descriptionFull : "Most humans possess some dull psionic potential, but those who unlock their psionic spark transcend their peers. Sometimes, these humans are indistinguishable from ordinary folks, but other times their psionic awakening leaves a tell-tale mark: stark white hair, glowing pupils, or hair and clothing that float and drift around them. \n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You can use your action to probe the surface level of a creature's emotions. You must be able to see the creature and it must be within 30 feet and have an Intelligence of 3 or higher. You learn the creature's emotional state and, at the GM's discretion, one of the creature's Bonds.\n \u2022 You know the mage hand cantrip, and the hand is invisible when you cast the cantrip with this trait.\n   Starting at 3rd level, you can cast the unseen servant spell with this trait. Starting at 5th level, you can also cast the levitate spell with this trait. Once you cast levitate with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n   Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).",
+	description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 to any ability score.]",
 	features : {
 		"empathy" : {
 			name : "Empathy",
@@ -1340,27 +1347,27 @@ FeatsList["psionic"] = {
     }],
 	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
 	"strength" : {
-		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Strength]",
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Strength]",
 		scores : [1, 0, 0, 0, 0, 0],
 	},
 	"dexterity" : {
-		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Dexterity]",
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Dexterity]",
 		scores : [0, 1, 0, 0, 0, 0],
 	},
 	"constitution" : {
-		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Constitution]",
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Constitution]",
 		scores : [0, 0, 1, 0, 0, 0],
 	},
 	"intelligence" : {
-		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Intelligence]",
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Intelligence]",
 		scores : [0, 0, 0, 1, 0, 0],
 	},
 	"wisdom" : {
-		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Wisdom]",
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Wisdom]",
 		scores : [0, 0, 0, 0, 1, 0],
 	},
 	"charisma" : {
-		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Unseen Servant or Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Charisma]",
+		description : "As an action, choose 1 crea within 30 feet and Int 3 or higher to read surface level emotions. I know the Mage Hand cantrip and the hand is invis. At 3rd level, cast Unseen Servant 1/LR. At 5th, cast Levitate 1/LR. Spells use Int, Wis, or Cha and can also be cast with spell slots. [+1 Charisma]",
 		scores : [0, 0, 0, 0, 0, 1],
 	}
 };
@@ -1468,7 +1475,7 @@ FeatsList["roguean"] = {
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "You hail from an icy, desolate land, prone to dramatic swings in temperature. Surviving the interminable harshness of your home gives you the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have resistance to cold damage.\n \u2022 You can tolerate temperatures as low as −100 degrees Fahrenheit and as high as 300 degrees Fahrenheit.\n \u2022 You have darkvision, the ability to see in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.",
+	descriptionFull : "You hail from an icy, desolate land, prone to dramatic swings in temperature. Surviving the interminable harshness of your home gives you the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have resistance to cold damage.\n \u2022 You can tolerate temperatures as low as −100 degrees Fahrenheit and as high as 300 degrees Fahrenheit.\n \u2022 You have darkvision, the ability to see in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
 	description : "I have resistance to cold damage and can tolerate temperatures from -100 to 300 Fahrenheit. I have darkvision out to 60 feet. [+1 to any ability score.]",
 	vision : ["Darkvision", 60],
 	dmgres : ["Cold"],
@@ -1502,7 +1509,7 @@ FeatsList["roguean"] = {
 FeatsList["stoneborn"] = {
 	name : "Stoneborn",
 	source : ["VSoS", 18],
-	prerequisite : "1st level only, Near-Human variant",
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
@@ -1542,4 +1549,1462 @@ FeatsList["stoneborn"] = {
 		description : "My AC increases by 1. I have advantage on checks and saving throws to avoid being knocked down or moved. I can touch natural stone and use my action sense natural gems/metals within 100 feet. [+1 Charisma]",
 		scores : [0, 0, 0, 0, 0, 1],
 	}
+};
+
+FeatsList["stheno"] = {
+	name : "Stheno",
+	source : ["VSoS", 18],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "The offspring of medusas—named sthenos—are usually conceived before the mother begins their transformation. With sharp features and a nest of snakes for hair, sthenos can be easily mistaken for their monstrous parent, but possess a gaze that falls short of turning people into stone.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 When you take the Attack action on your turn, you can replace one of your attacks with an immobilizing gaze. Choose a creature you can see within 60 feet of you that can see you to make a Constitution saving throw (DC = 8 + your Constitution modifier + your proficiency bonus). A creature that is immune to being restrained automatically succeeds this saving throw. On a failed save, the creature is incapacitated and its speed becomes 0 until the start of your next turn.\n   You can use your Immobilizing Gaze a number of times equal to your proficiency bonus, and you regain all expended uses when you finish a long rest.",
+	description : "Prof. times per LR, with Attack action, I can replace an attack: A creature within 60 feet that can see me (immune to restrained: auto success) makes a Con save, fail: incapacitated and speed reduced to 0 until my next turn. [+1 to any ability score.]",
+	usages : "Prof bonus times per",
+	recovery : "long rest",
+	usagescalc : "event.value = What('Proficiency Bonus');",
+	limfeaname : "Immobilizing Gaze",
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		calculate : "event.value = Number(What('Proficiency Bonus')) + ' (prof bonus) times per LR, with Attack action, I can replace an attack: A creature within 60 feet that can see me (immune to restrained: auto success) makes a DC ' + (8 + Number(What('Proficiency Bonus')) + Number(What('Con Mod'))) + ' Con save (DC = 8 + prof bonus + Con mod), fail: incap. and speed 0 until my next turn. [+1 Strength.]';",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		calculate : "event.value = Number(What('Proficiency Bonus')) + ' (prof bonus) times per LR, with Attack action, I can replace an attack: A creature within 60 feet that can see me (immune to restrained: auto success) makes a DC ' + (8 + Number(What('Proficiency Bonus')) + Number(What('Con Mod'))) + ' Con save (DC = 8 + prof bonus + Con mod), fail: incap. and speed 0 until my next turn. [+1 Dexterity.]';",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		calculate : "event.value = Number(What('Proficiency Bonus')) + ' (prof bonus) times per LR, with Attack action, I can replace an attack: A creature within 60 feet that can see me (immune to restrained: auto success) makes a DC ' + (8 + Number(What('Proficiency Bonus')) + Number(What('Con Mod'))) + ' Con save (DC = 8 + prof bonus + Con mod), fail: incap. and speed 0 until my next turn. [+1 Constitution.]';",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		calculate : "event.value = Number(What('Proficiency Bonus')) + ' (prof bonus) times per LR, with Attack action, I can replace an attack: A creature within 60 feet that can see me (immune to restrained: auto success) makes a DC ' + (8 + Number(What('Proficiency Bonus')) + Number(What('Con Mod'))) + ' Con save (DC = 8 + prof bonus + Con mod), fail: incap. and speed 0 until my next turn. [+1 Intelligence.]';",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		calculate : "event.value = Number(What('Proficiency Bonus')) + ' (prof bonus) times per LR, with Attack action, I can replace an attack: A creature within 60 feet that can see me (immune to restrained: auto success) makes a DC ' + (8 + Number(What('Proficiency Bonus')) + Number(What('Con Mod'))) + ' Con save (DC = 8 + prof bonus + Con mod), fail: incap. and speed 0 until my next turn. [+1 Wisdom.]';",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		calculate : "event.value = Number(What('Proficiency Bonus')) + ' (prof bonus) times per LR, with Attack action, I can replace an attack: A creature within 60 feet that can see me (immune to restrained: auto success) makes a DC ' + (8 + Number(What('Proficiency Bonus')) + Number(What('Con Mod'))) + ' Con save (DC = 8 + prof bonus + Con mod), fail: incap. and speed 0 until my next turn. [+1 Charisma.]';",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["tauran"] = {
+	name : "Tauran",
+	source : ["VSoS", 19],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "Your large nose, strong jaw, and wide head do much to reveal your distantly bovine nature, but the prominent bull-horns atop your head reveal to all that you are half-minotaur. Taurans tower over most people and can solve mazes with ease, but typically possess only a shadow of their minotaur parent's might. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You always know which direction is north, and you have advantage on any Wisdom(Survival) check you make to navigate or track.\n \u2022 On any turn in which you only move in a straight line, your speed increases by 10 feet.\n \u2022 You have two horns that you can use to effectively gore your enemies. The horns are a natural melee weapon that you can use to make unarmed strikes. On a hit with them, you deal piercing damage equal to 1d6 + your Strength modifier, instead of the bludgeoning damage normal for an unarmed strike.", 
+	description : "I always know which way is north, and have adv. on Wis(Sur) checks to navigate or track. If I move only in a straight line on my turn, my speed increases by 10 ft for that turn. I can use my horns to make unarmed attacks, dealing 1d6 + Strength in piercing damage on a hit. [+1 to any ability score.]",
+	weaponOptions : [{
+		baseWeapon : "unarmed strike",
+		regExpSearch : /^(?=.*tauran)(?=.*horns).*$/i,
+		name : "Tauran Horns",
+		source : ["VSoS", 19],
+		damage : [1, 6, "piercing"],
+		selectNow : true
+	}],
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "I always know which way is north, and have adv. on Wisdom (Survival) checks to navigate or track. If I move only in a straight line on my turn, my speed increases by 10 ft for that turn. I can use my horns to make unarmed attacks, dealing 1d6 + Strength in piercing damage on a hit. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "I always know which way is north, and have adv. on Wisdom (Survival) checks to navigate or track. If I move only in a straight line on my turn, my speed increases by 10 ft for that turn. I can use my horns to make unarmed attacks, dealing 1d6 + Strength in piercing damage on a hit. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "I always know which way is north, and have adv. on Wisdom (Survival) checks to navigate or track. If I move only in a straight line on my turn, my speed increases by 10 ft for that turn. I can use my horns to make unarmed attacks, dealing 1d6 + Strength in piercing damage on a hit. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "I always know which way is north, and have adv. on Wisdom (Survival) checks to navigate or track. If I move only in a straight line on my turn, my speed increases by 10 ft for that turn. I can use my horns to make unarmed attacks, dealing 1d6 + Strength in piercing damage on a hit. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I always know which way is north, and have adv. on Wisdom (Survival) checks to navigate or track. If I move only in a straight line on my turn, my speed increases by 10 ft for that turn. I can use my horns to make unarmed attacks, dealing 1d6 + Strength in piercing damage on a hit. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I always know which way is north, and have adv. on Wisdom (Survival) checks to navigate or track. If I move only in a straight line on my turn, my speed increases by 10 ft for that turn. I can use my horns to make unarmed attacks, dealing 1d6 + Strength in piercing damage on a hit. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["troll-blooded"] = {
+	name : "Troll-Blooded",
+	source : ["VSoS", 19],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "With their green-tinted and boil-ridden skin, spindly fingers, and pointed teeth, few people will mark troll-blooded individuals as half-human. These half-humans exclusively favor the look of their troll parentage and have immense difficulty in human society. You have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You retain some of the regenerative properties of your troll parentage. Whenever you have no more than one-fourth of your maximum hit points (rounded down), you regain 1 hit point each minute. You can't use this trait if you have 0 hit points.",
+	description : "Whenever I have more than zero but fewer than one-fourth of my maximum hit points (rounded down), I regain 1 hit point each minute. [+1 to any ability score.]",
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "Whenever I have more than zero but fewer than one-fourth of my maximum hit points (rounded down), I regain 1 hit point each minute. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "Whenever I have more than zero but fewer than one-fourth of my maximum hit points (rounded down), I regain 1 hit point each minute. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "Whenever I have more than zero but fewer than one-fourth of my maximum hit points (rounded down), I regain 1 hit point each minute. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "Whenever I have more than zero but fewer than one-fourth of my maximum hit points (rounded down), I regain 1 hit point each minute. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "Whenever I have more than zero but fewer than one-fourth of my maximum hit points (rounded down), I regain 1 hit point each minute. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "Whenever I have more than zero but fewer than one-fourth of my maximum hit points (rounded down), I regain 1 hit point each minute. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["two-headed"] = {
+	name : "Two-Headed",
+	source : ["VSoS", 19],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "Like ettins, you have two heads with differing personalities that jointly control your body.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have advantage on saving throws you make to avoid or end the following conditions on yourself: blinded, charmed, deafened, frightened.\n \u2022 Because one of your heads is always awake, you retain consciousness when you take a long rest.",
+	description : "I can retain consciousness while taking a long rest. I have advantage against blinded, charmed, deafened, and frightened. [+1 to any ability score.]",
+	savetxt : {
+		adv_vs : ["blinded", "charmed", "deafened", "frightened"],
+	},
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "I can retain consciousness while taking a long rest. I have advantage against blinded, charmed, deafened, and frightened. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "I can retain consciousness while taking a long rest. I have advantage against blinded, charmed, deafened, and frightened. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "I can retain consciousness while taking a long rest. I have advantage against blinded, charmed, deafened, and frightened. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "I can retain consciousness while taking a long rest. I have advantage against blinded, charmed, deafened, and frightened. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I can retain consciousness while taking a long rest. I have advantage against blinded, charmed, deafened, and frightened. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I can retain consciousness while taking a long rest. I have advantage against blinded, charmed, deafened, and frightened. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["windswept"] = {
+	name : "Windswept",
+	source : ["VSoS", 19],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "Carefree and constantly possessed of wanderlust, the extraordinarily pale windswept embody their connection to Elemental Air. Windswept humans are never likely to sleep in the same bed for two nights in a row; they are always moving, always exploring, and always following the wind. You are lighter than a normal human, capable of floating gently on the breeze, and have faint inborn power over the winds, which grant you have the following racial traits:\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You have resistance to lightning damage.\n \u2022 You know the message cantrip. Starting at 3rd level, you can cast the feather fall spell with this trait. Starting at 5th level, you can also cast the gust of wind spell with this trait, without requiring a material component. Once you cast gust of wind with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n \u2022 Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).", 
+	description : "I resist lightning damage and I know the Message cantrip. At 3rd level, I can cast Feather Fall 1/LR. At 5th, I can cast Gust of Wind 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 to any ability score.]",
+	dmgres: ["Lightning"],
+	spellcastingAbility : [4,5,6],
+	spellcastingBonus : [{
+        name : "Windswept (level 1)",
+        spells : ["message"],
+        selection : ["message"],
+        firstCol : "atwill"
+    }, {
+        name : "Windswept (level 3)",
+        spells : ["feather fall"],
+        selection : ["feather fall"],
+        firstCol : "oncelr",
+        times : levels.map( function(n) {
+			return n < 3 ? 0 : 1;
+		})
+    }, {
+        name : "Windswept (level 5)",
+        spells : ["gust of wind"],
+        selection : ["gust of wind"],
+        firstCol : "oncelr",
+		times : levels.map( function(n) {
+			return n < 5 ? 0 : 1;
+		})
+    }],
+	spellChanges : {
+		"gust of wind" : {
+			components : "V,S",
+			compMaterial : "",
+			changes : "Casting gust of wind no longer requires material components"
+		}
+	},
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "I resist lightning damage and I know the Message cantrip. At 3rd level, I can cast Feather Fall 1/LR. At 5th, I can cast Gust of Wind 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "I resist lightning damage and I know the Message cantrip. At 3rd level, I can cast Feather Fall 1/LR. At 5th, I can cast Gust of Wind 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "I resist lightning damage and I know the Message cantrip. At 3rd level, I can cast Feather Fall 1/LR. At 5th, I can cast Gust of Wind 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "I resist lightning damage and I know the Message cantrip. At 3rd level, I can cast Feather Fall 1/LR. At 5th, I can cast Gust of Wind 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I resist lightning damage and I know the Message cantrip. At 3rd level, I can cast Feather Fall 1/LR. At 5th, I can cast Gust of Wind 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I resist lightning damage and I know the Message cantrip. At 3rd level, I can cast Feather Fall 1/LR. At 5th, I can cast Gust of Wind 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+FeatsList["winged"] = {
+	name : "Winged",
+	source : ["VSoS", 19],
+	prerequisite : "Chosen at 1st level only, Near-Human variant",
+	prereqeval : function(v) {
+		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
+	},
+	descriptionFull : "Winged humans, sometimes called Icarusians, are the offspring of aarakocra, harpies, or birdfolk. Depending on their parentage, these humans might possess feathers, talons, or beaks.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 Because of your wings, you have a flying speed equal to your walking speed. You can't use this flying speed if you're wearing medium or heavy armor.", 
+	description : "I have a flying speed equal to my walking speed. I can't use my flying speed while wearing medium or heavy armor. [+1 to any ability score.]",
+	speed : {
+		fly : { spd : "walk", enc : "walk" },
+	},
+	choices : ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"],
+	"strength" : {
+		description : "I have a flying speed equal to my walking speed. I can't use my flying speed while wearing medium or heavy armor. [+1 Strength]",
+		scores : [1, 0, 0, 0, 0, 0],
+	},
+	"dexterity" : {
+		description : "I have a flying speed equal to my walking speed. I can't use my flying speed while wearing medium or heavy armor. [+1 Dexterity]",
+		scores : [0, 1, 0, 0, 0, 0],
+	},
+	"constitution" : {
+		description : "I have a flying speed equal to my walking speed. I can't use my flying speed while wearing medium or heavy armor. [+1 Constitution]",
+		scores : [0, 0, 1, 0, 0, 0],
+	},
+	"intelligence" : {
+		description : "I have a flying speed equal to my walking speed. I can't use my flying speed while wearing medium or heavy armor. [+1 Intelligence]",
+		scores : [0, 0, 0, 1, 0, 0],
+	},
+	"wisdom" : {
+		description : "I have a flying speed equal to my walking speed. I can't use my flying speed while wearing medium or heavy armor. [+1 Wisdom]",
+		scores : [0, 0, 0, 0, 1, 0],
+	},
+	"charisma" : {
+		description : "I have a flying speed equal to my walking speed. I can't use my flying speed while wearing medium or heavy armor. [+1 Charisma]",
+		scores : [0, 0, 0, 0, 0, 1],
+	}
+};
+
+// * Add Classes 
+
+// * Alchemist class
+ClassList["alchemist"] = {
+    name: "Alchemist",
+    regExpSearch: /alchemist/i,
+    source: ["VSoS", 28],
+    primaryAbility: "Intelligence or Dexterity",
+    prereqs: "Intelligence 13",
+    die: 6,
+    improvements: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 5, 5],
+    saves: ["Dex", "Int"],
+    abilitySave: 4,
+    skillstxt: {
+        primary: "Choose three from Arcana, History, Insight, Medicine, Nature, Perception, Sleight of Hand, Survival",
+    },
+    toolProfs: {
+        primary: ["Alchemist's supplies", "herbalism kit"],
+        secondary: ["Alchemist's supplies"]
+    },
+    armorProfs: {
+        primary: [true, false, false, false],
+        secondary: [true, false, false, false]
+    },
+    weaponProfs: {
+        primary: [true, false, ["bombs"]],
+        secondary: [false, false, ["bombs"]]
+    },
+    equipment: "Alchemist starting equipment: " +
+        "\n \u2022 light crossbow and 20 bolts or any simple weapon;" +
+        "\n \u2022 An explorer's pack or a scholar's pack;" +
+        "\n \u2022 Alchemist's supplies;" +
+        "\n \u2022 A vial of acid or a flask of alchemist's fire or a vial of basic poison;" +
+        "\n \u2022 Leather armor and a dagger",
+    subclasses: ["Field of Study", []],
+    attacks: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    features: {
+        "natural philosopher": {
+            name: "Natural Philosopher",
+            source: ["VSoS", 28],
+            minlevel: 1,
+            description: desc([
+                "I can add half my prof. bonus rounded up to any ability check to identify herbs, potions,",
+                "poisons, or other alchemical substances, on top of any normal prof. bonus."
+            ])
+        },
+        "bombs": {
+            name: "Bombs",
+            source: ["VSoS", 29],
+            minlevel: 1,
+            description: desc([
+                "On short or long rest, create bombs with necessary materials that go inert after 24 hours.",
+                "My bomb save DC is 8 + prof. bonus + my Int mod. Once per turn I can take the Use an",
+                "Object action to prime and throw a bomb. This bomb can use Int mod for the damage roll.",
+                "Primed bomb damage increases to 2d10 at 5th, 3d10 at 11th, and 4d10 at 17th."
+            ]),
+			weaponOptions : [{
+				name : "Primed Bomb",
+				regExpSearch : /primed bomb/i,
+				source : ["VSoS", 29],
+				baseWeapon : "bomb",
+				damage : ["C", 10, "fire"],
+				description : "Finesse, special, half dmg to all in 7.5 ft, \u00BD dmg on save; See tool tip",
+				tooltip : "Special: Once per turn, I can use the \"Use an Object\" action to prime and throw a bomb. When priming a bomb, I get to add my Intelligence modifier instead of my Dexterity to the bomb's damage roll." + "\n   Additionally, I can use a bonus action to empty some of the bomb's explosive material to permanently remove the blast radius from this bomb, dealing damage only to the bomb's target.",
+				selectNow : true
+			}, {
+				name : "Bomb (Alchemist)",
+				regExpSearch : /bomb \(alchemist\)/i,
+				source : ["VSoS", 29],
+				baseWeapon : "bomb",
+				selectNow : true
+			}],
+            calcChanges: {
+				atkAdd : [
+					function(fields, v) { 
+						if((/bomb/i).test(v.WeaponTextName)) {
+							fields.Proficiency = true;
+							fields.Mod = 4
+						};
+					}
+				],
+                atkCalc: [
+                    function (fields, v, output) {
+                        if ((/bomb/i).test(v.WeaponTextName) && (/\bprimed\b/i).test(v.WeaponTextName)) { // * Only applies to primed bombs
+							/* 
+								* Since this only applies to primed bombs, abilitytodamage is set to true 
+								* But we changed the ability to 4 and used dc true to show the Save DC of 8 + PB + Int mod
+								* So currently primed bombs are adding int mod to the damage instead of dex from the original
+								* We need to change it back to Dex if it is higher than Int
+							*/
+							var mod = What("Str Mod") > What("Dex Mod") ? What("Str Mod") : What("Dex Mod");
+							if(What("Int Mod") > mod) {
+								output.extraDmg = Math.max(mod - What("Int Mod"), 0);
+							};
+                        };
+						if((/bomb/i).test(v.WeaponTextName) && !(/\bprimed\b/i).test(v.WeaponTextName)) {
+							output.extraDmg = (What("Str Mod") > What("Dex Mod") ? What("Str Mod") : What("Dex Mod")) - Math.max(What("Int Mod"), 0);
+						}
+                    },
+                    "I can add my Dextery modifier instead of my Intelligence to the bomb's damage roll."
+                ]
+            },
+			usages : "10 + 2\xD7 my alchemist level of Bombs per ",
+			usagescalc : "event.value = 2 * classes.known.alchemist.level + 10;",
+			recovery : "short rest",
+            action: [["action", "Prime & Throw a Bomb"], ["bonus action", "Remove Some of the Bomb's Material"]],
+			extraLimitedFeatures : [{
+				name : "Prime a Bomb",
+				usages : 1,
+				recovery : "Turn"
+			}]
+        },
+        "bomb formulae": {
+            name: "Bomb Formulae",
+            source: ["VSoS", 29],
+            minlevel: 2,
+            additional: levels.map(function (n) {
+                return n < 2 ? "" : (n < 5 ? "3" : n < 7 ? "4" : n < 9 ? "5" : n < 11 ? "6" : n < 13 ? "7" : n < 15 ? "8" : n < 17 ? "9" : n < 19 ? "10" : "11") + " bomb formulae known";
+            }),
+            description: desc([
+                "I learn bomb formulae I can use once per turn to modify my bombs when I prime them.",
+                "Use the \"Choose Feature\" button above to add Bomb Formulae to the notes pages." ,
+                "When I gain a level in this class, I can replace a bomb formula I know with another."
+            ]),
+            toNotesPage : [{
+                name: "Known Bomb Formulae",
+                source: ["VSoS", 29],
+                note: ["I know these formulae and can apply them once per turn when I prime a bomb.",
+                       "Known Bomb formulae are written here as follows:\n◆ Bomb Formula [Damage Die, Type - Saving Throw]\nDescription of additional effects written here.",
+                ]
+            }],
+            extraname: "Bomb Formulae",
+            extrachoices: ["Acid Bomb", "Bramble Bomb", "Cryo Bomb", "Holy Bomb", "Impact Bomb", "Incendiary Bomb", "Laughing Gas Bomb", "Lightning Bomb", "Nonlethal Bomb", "Oil Bomb", "Prismatic Bomb", "Psionic Bomb", "Quiet Bomb", "Seeking Bomb", "Smoke Bomb", "Sonic Bomb", "Stink Bomb", "Teleportation Bomb", "Thermobaric Bomb", "Withering Bomb"],
+            extraTimes: levels.map(function (n) {
+                return n < 2 ? 0 : (n < 5 ? 3 : n < 7 ? 4 : n < 9 ? 5 : n < 11 ? 6 : n < 13 ? 7 : n < 15 ? 8 : n < 17 ? 9 : n < 19 ? 10 : 11);
+            }),
+            "acid bomb": {
+                name: "Acid Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Acid Bomb [d6 Acid - Dexterity]",
+                    note: "\nAll affected take the same amount of damage again at the end of their next turn",
+                    amendTo: "Known Bomb Formulae"
+                }],
+				weaponOptions : [{
+					name : "Acid Bomb",
+					source : ["VSoS", 31],
+					regExpSearch : /acid bomb/i,
+					baseWeapon : "bomb",
+					damage :  ["C", 4, "acid"],
+					description : "Finesse, special, half dmg to all in 7.5 ft, \u00BD dmg on save; See tool tip",
+
+				}],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bacid\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Description += "; Crea(s) takes same dmg at end of their next turn";
+                            }
+                        },
+                        "When the word 'Acid' is added to the title one of my Bomb attacks, the attack is treated as one of my Acid Bombs."
+                    ]
+                }
+            },
+			// ! TODO Everything Below
+            "bramble bomb": {
+                name: "Bramble Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Bramble Bomb [No Damage - No Save]",
+                    note: "\nBlast radius becomes difficult terrain for 1 minute; prone creatures must Str save before it can move or stand",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                action: ["action", "Throw Bramble Bomb"],
+            },
+            "cryo bomb": {
+                name: "Cryo Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Cryo Bomb [d8 Cold - Constitution]",
+                    note: "\nAll affected get -10 ft move speed until the end of their next turn",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Cryo Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bcryo\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
+                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless CON save, speed -10 ft for all affected";
+                                fields.Damage_Type = "Cold";
+                            }
+                        },
+                        "When the word 'Cryo' is added to the title one of my Bomb attacks, the attack is treated as one of my Cryo Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bcryo\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            },
+            "holy bomb": {
+                name: "Holy Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Holy Bomb [d8 Radiant - Dexterity]",
+                    note: "\nThis bomb's damage dice are d6s vs Celestials, or d12s vs Fiends/Undead",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Holy Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bholy\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
+                                fields.Description += ", d6 vs Celestials; d12 vs Fiends/Undead";
+                                fields.Damage_Type = "Radiant";
+                            }
+                        },
+                        "When the word 'Holy' is added to the title one of my Bomb attacks, the attack is treated as one of my Holy Bombs"
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bholy\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            },
+            "impact bomb": {
+                name: "Impact Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Impact Bomb [d8 Force - Dexterity]",
+                    note: "\nAll affected are pushed 5 feet away from the blast",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Impact Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bimpact\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
+                                fields.Description += ", all affected pushed 5 ft away from blast";
+                                fields.Damage_Type = "Force";
+                            }
+                        },
+                        "When the word 'Impact' is added to the title one of my Bomb attacks, the attack is treated as one of my Impact Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bimpact\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            },
+            "incendiary bomb": {
+                name: "Incendiary Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Incendiary Bomb [d6 Fire - Dexterity]",
+                    note: "\nUntil start of my next turn, creatures that end turn in blast radius take half damage."+
+                           " Flammable objects that aren't being worn or carried ignite",
+                    amendTo: "Known Bomb Formulae"
+                }],                
+                weaponsAdd: ["Incendiary Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bincendiary\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
+                                fields.Description += ", crea starting turn in blast radius take half dmg";
+                            }
+                        },
+                        "When the word 'Incendiary' is added to the title one of my Bomb attacks, the attack is treated as one of my Incendiary Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bincendiary\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            },
+            "laughing gas bomb": {
+                name: "Laughing Gas Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Laughing Gas Bomb [d6 Poison - Constitution]",
+                    note: "\nAll affected fall prone and are immune to this effect for 24 hours",
+                    amendTo: "Known Bomb Formulae"
+                }],  
+                weaponsAdd: ["Laughing Gas Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\blaughing gas\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
+                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless CON save, all affected fall prone";
+                                fields.Damage_Type = "Poison";
+                            }
+                        },
+                        "When the word 'Laughing Gas' is added to the title one of my Bomb attacks, the attack is treated as one of my Laughing Gas Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\blaughing gas\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            },
+            "lightning bomb": {
+                name: "Lightning Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Lightning Bomb [d8 Lightning - Dexterity]",
+                    note: "\nAll affected can't take reactions until the end of their next turn",
+                    amendTo: "Known Bomb Formulae"
+                }],  
+                weaponsAdd: ["Lightning Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\blightning\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
+                                fields.Description += ", all affected can't take reactions";
+                                fields.Damage_Type = "Lightning";
+                            }
+                        },
+                        "When the word 'Lightning' is added to the title one of my Bomb attacks, the attack is treated as one of my Lightning Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\blightning\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            },
+            "nonlethal bomb": {
+                name: "Nonlethal Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Nonlethal Bomb [d8 Bludgeoning - Dexterity]",
+                    note: "\nBlast radius ignores 1/2 & 3/4 cover. Creatures dropped to 0 hp are K.O'd, stable.",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Nonlethal Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bnonlethal\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
+                                fields.Description += ", AoE ignores all cover but full";
+                                fields.Damage_Type = "Bludgeoning";
+                            }
+                        },
+                        "When the word 'Nonlethal' is added to the title one of my Bomb attacks, the attack is treated as one of my Nonlethal Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bnonlethal\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            },
+            "oil bomb": {
+                name: "Oil Bomb Formula",
+                description: " See notes",
+                additional: levels.map(function(n) { return "Max oil damage: " + Math.ceil(n/2) + "d6"}),
+                toNotesPage: [{
+                    name: "Oil Bomb [d8 Bludgeoning - Dexterity]",
+                    note: "\nBlast radius coats creatures in oil. Oil can be removed with a gallon of water."+
+                          "\nThe next fire damage to coated creature deals +1d6 fire damage per damage die rolled. Extra fire damage dice added cannot exceed half my alchemist level, rounded up",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                action: ["action", "Throw Oil Bomb"]
+            },
+            "prismatic bomb": {
+                name: "Prismatic Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Prismatic Bomb [d8 damage dice]",
+                    note: "\nDamage type and save ability are determined by rolling on the below tables."+
+                        "\nd6    Damage Type        d6    Saving Throw"+
+                        "\n1      Acid                      1-2    Dexterity"+
+                        "\n2      Cold                      3-4    Constitution"+
+                        "\n3      Fire                        5-6   Wisdom"+
+                        "\n4      Lightning"+
+                        "\n5      Poison"+
+                        "\n6      Radiant",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Prismatic Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bprismatic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
+                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless save, see table for dmg & save type";
+                                fields.Damage_Type = "See Table";
+                            }
+                        },
+                        "When the word 'Prismatic' is added to the title one of my Bomb attacks, the attack is treated as one of my Prismatic Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bprismatic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                output.extraDmg += Math.min((What('Int Mod') - output.extraDmg), 0);
+                        }
+                    ]
+                }
+            },
+            "psionic bomb": {
+                name: "Psionic Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Psionic Bomb [d6 Psychic - Wisdom]",
+                    note: "\nAll affected have disadv. on concentration saves until the end of their next turn",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Psionic Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bpsionic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
+                                fields.Description = "Finesse, Special, half dmg to all in 15 ft of target unless WIS save, all affected gain disadv. vs concentration";
+                                fields.Damage_Type = "Psychic";
+                            }
+                        },
+                        "When the word 'Psionic' is added to the title one of my Bomb attacks, the attack is treated as one of my Psionic Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bpsionic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            },
+            "quiet bomb": {
+                name: "Quiet Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Quiet Bomb [d6 Fire - Dexterity]",
+                    note: "\nOnly audible out 10 ft, makes no light. Disadv. on ability checks to detect blast",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Quiet Bomb"],
+                calcChanges: {
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bquiet\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                output.die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                            }
+                        },
+                        "When the word 'Quiet' is added to the title one of my Bomb attacks, the attack is treated as one of my Quiet Bombs."
+                    ]
+                }
+            },
+            "seeking bomb": {
+                name: "Seeking Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Seeking Bomb [d6 Fire - Dexterity]",
+                    note: "\nRanged attack rolls with this bomb don't get disadv. when within 5 ft of a hostile",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Seeking Bomb"],
+                calcChanges: {
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bseeking\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                output.die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                            }
+                        },
+                        "When the word 'Seeking' is added to the title one of my Bomb attacks, the attack is treated as one of my Seeking Bombs."
+                    ]
+                }
+            },
+            "smoke bomb": {
+                name: "Smoke Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Smoke Bomb [No Damage - No Save]",
+                    note: "\nFills a 10 ft rad. sphere with heavily-obscuring smoke that lasts (Int mod min 1) rounds. Wind speeds of at least 10 miles/hour disperses it. The smoke spreads around corners. Once thrown, I cannot throw another smoke bomb for 1 minute",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                action: ["action", "Throw Smoke Bomb"],
+                additional: "Smoke duration: " + Math.max(What('Int Mod'), 1) + " rounds",
+            },
+            "sonic bomb": {
+                name: "Sonic Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Sonic Bomb [d6 Thunder - Constitution]",
+                    note: "\nCreatures affected by this bomb are deafened until the end of their next turn",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Sonic Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bsonic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
+                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless CON save, all affected are deaf";
+                                fields.Damage_Type = "Thunder";
+                            }
+                        },
+                        "When the word 'Sonic' is added to the title one of my Bomb attacks, the attack is treated as one of my Sonic Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bsonic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            },
+            "stink bomb": {
+                name: "Stink Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Stink Bomb [d8 Poison - Constitution]",
+                    note: "\nAffected have disadv. on ability checks they make until the end of their next turn",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Stink Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bstink\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
+                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless CON save, all affected gain disadv. on ability checks";
+                                fields.Damage_Type = "Poison";
+                            }
+                        },
+                        "When the word 'Stink' is added to the title one of my Bomb attacks, the attack is treated as one of my Stink Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bstink\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            },
+            "teleportation bomb": {
+                name: "Teleportation Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Teleportation Bomb [No Damage - No Save]",
+                    note: "\nInstantly teleports me to where it explodes. Fails if it explodes over 30 ft away",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                action: ["action", "Throw Teleportation Bomb"]
+            },
+            "thermobaric bomb": {
+                name: "Thermobaric Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Thermobaric Bomb [d6 Fire - Dexterity]",
+                    note: "\nThis bomb's blast radius is 10 feet instead of 15 feet",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Thermobaric Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bthermobaric\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
+                                fields.Description = "Finesse, Special, half dmg to all in 10 ft of target unless Dex save";
+                            }
+                        },
+                        "When the word 'Thermobaric' is added to the title one of my Bomb attacks, the attack is treated as one of my Thermobaric Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bthermobaric\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            },
+            "withering bomb": {
+                name: "Withering Bomb Formula",
+                description: " See notes",
+                toNotesPage: [{
+                    name: "Withering Bomb [d8 Necrotic - Constitution]",
+                    note: "\nAll affected by this bomb cannot regain hit points until the end of their next turn",
+                    amendTo: "Known Bomb Formulae"
+                }],
+                weaponsAdd: ["Withering Bomb"],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bwithering\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
+                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless CON save, all affected can't regain hit points";
+                                fields.Damage_Type = "Necrotic";
+                            }
+                        },
+                        "When the word 'Withering' is added to the title one of my Bomb attacks, the attack is treated as one of my Withering Bombs."
+                    ],
+                    atkCalc: [
+                        function (fields, v, output) {
+                            if (/\bwithering\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
+                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
+                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+                        }
+                    ]
+                }
+            }
+        },
+        "subclassfeature2": {
+            name: "Field of Study",
+            source: ["VSoS", 29],
+            minlevel: 2,
+            description: "\n    " + "Choose a Field of Study in the \"Class\" field."
+        },
+        "reagent": {
+            name: "Reagent",
+            source: ["VSoS", 29],
+            minlevel: 3,
+            description: desc([
+                "I gain a pool of Reagent dice. I can expend reagent dice to:",
+                "- add them to the damage of a primed bomb (number added can't exceed proficiency bonus).",
+                "- Spend 10 min to brew potions that use my bomb save DC & retain potency for 24 hours.",
+                "(1/long rest) after a short rest, I can regain spent reagent dice I didn't use to brew potions."
+            ]),
+            toNotesPage: [{
+                name: "Reagent Potions Table",
+                note: [
+                    "I can brew these potions by expending reagent dice, as long as I meet the Alchemist level requirement.",
+                    "Potion                                     Cost        Alchemist Level",
+                    "Potion of Climbing                 1 die           3rd",
+                    "Potion of Growth                    1 die           3rd",
+                    "Potion of Healing                    1 die           3rd",
+                    "Potion of Water Breathing      1 die           3rd",
+                    "Universal Solvent                    1 die           3rd",
+                    "Cure-All                                  2 dice          7th",
+                    "Potion of Greater Healing       2 dice          7th",
+                    "Potion of Heroism                   2 dice          7th",
+                    "Potion of Resistance               2 dice          7th",
+                    "Sovereign Glue (1 ounce)        2 dice          7th",
+                    "Potion of Dimunition               3 dice         14th",
+                    "Potion of Flying                       4 dice          14th",
+                    "Potion of Hill Giant Strength    4 dice         14th",
+                    "Potion of Invisibility                 4 dice          14th",
+                    "Potion of Superior Healing       4 dice         14th"
+                ],
+                popupName: "Alchemist's Reagent Potions Table",
+                amendTo: "Poisoner's Poisons Table",
+            }],
+            limfeaname: "Reagent Dice",
+            usages: levels.map(function (n) {
+                return n < 3 ? 0 : n;
+            }),
+            limfeaAddToExisting: false,
+            recovery: "long rest",
+            extraLimitedFeatures: [{
+                name: "Spent Non-Potion Reagent Dice",
+                usages: "",
+                recovery: "",
+            }, {
+                name: "Reagent Synthesis",
+                usages: 1,
+                recovery: "long rest",
+            }]
+        },
+        "discoveries": {
+            name: "Discoveries",
+            source: ["VSoS", 30],
+            minlevel: 4,
+            additional: levels.map(function (n) {
+                return n < 4 ? "" : (n < 6 ? "2" : n < 9 ? "3" : n < 13 ? "4" : n < 17 ? "5" : "6") + " discoveries known";
+            }),
+            description: desc([
+                "Choose discoveries to learn by clicking the \"Choose Feature\" button above.",
+                "When I gain a level in this class, I may replace a discovery I know with another."
+            ]),
+            extraname: "Discoveries",
+            extrachoices: ["Advanced Poisoner (prereq: 13th level Venomsmith)", "Alchemy of Ascendancy (prereq: 17th level Alchemist)", "Alchemy of Influence (prereq: 13th level Alchemist)", "Alchemy of Transformation (prereq: 13th level Alchemist)", "Arcane Study", "Ballistics Research", "Battle Training", "Beguiling Haze (prereq: 13th level Amorist)", "Buffered Metabolism (prereq: 13th level Xenoalchemist)", "Clotting Agent", "Craft Homonculus", "Demolition Spree (prereq: 13th level Mad Bomber)", "Explosive Missile", "Fire Brand", "Fire Eater", "Fire in The Hole (prereq: 9th level Alchemist)", "Fortified Serum (prereq: 13th level Apothecary)", "Grenadier", "Dynamo Charger (prereq: 13th level Dynamo Engineer)", "Hemoreagent (prereq: 17th level Alchemist)", "Lazarus Bolt (prereq: 9th level Alchemist)", "Magnified Blast (prereq: 17th level Alchemist)", "Ooze Cowboy (prereq: 13th level Ooze Rancher)", "Poisoner", "Precision Explosives", "Reactionary Gulp (prereq: 17th level Alchemist)", "Recycled Potions", "Syringe", "Tri-Mutation (prereq: 13th level Mutagenist)"],
+            extraTimes: [0, 0, 0, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6],
+            "advanced poisoner (prereq: 13th level venomsmith)": {
+                name: "Advanced Poisoner",
+                source: ["VSoS", 34],
+                submenu: "[13th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("venomsmith") !== -1 },
+                description: "\n   " + "I can brew the poisons found on the notes page using reagent dice.",
+                toNotesPage: [{
+                    name: "Advanced Poisons Table",
+                    note: [
+                        "I can brew these poisons by expending reagent dice.",
+                        "Poison                                 Cost",
+                        "Burnt Othur Fumes            3 dice",
+                        "Crawler Mucus                   3 dice,",
+                        "Drow Poison                      3 dice",
+                        "Pale Tinture                       4 dice",
+                        "Midnight Tears                  5 dice",
+                        "Wyvern Poison                  6 dice",
+                    ],
+                    popupName: "Advanced Poisoner's Poisons Table",
+                    amendTo: "Reagent Potions Table",
+                }]
+            },
+            "alchemy of ascendancy (prereq: 17th level alchemist)": {
+                name: "Alchemy of Ascendancy",
+                source: ["VSoS", 34],
+                submenu: "[17th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 17 },
+                description: "\n   " + "I can brew new potions found on the notes page using reagent dice.",
+                toNotesPage: [{
+                    name: "Alchemy of Ascendancy Potions Table",
+                    note: [
+                        "I can brew these potions by expending reagent dice.",
+                        "Potion                                             Cost",
+                        "Necromantic Draught                    4 dice",
+                        "Oil of Etherealness                          4 dice,",
+                        "Potion of Speed                              4 dice",
+                        "Potion of Stone Giant Strength       4 dice",
+                    ],
+                    amendTo: "Reagent Potions Table",
+                    popupName: "Alchemy of Ascendancy Potions Table",
+                }]
+            },
+            "alchemy of influence (prereq: 13th level alchemist)": {
+                name: "Alchemy of Influence",
+                source: ["VSoS", 34],
+                submenu: "[13th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 13 },
+                description: "\n   " + "I can brew new potions found on the notes page using reagent dice.",
+                toNotesPage: [{
+                    name: "Alchemy of Influence Potions Table",
+                    note: [
+                        "I can brew these potions by expending reagent dice.",
+                        "Potion                                             Cost",
+                        "Potion of Animal Friendship           1 die",
+                        "Philter of Love                                2 dice",
+                        "Potion of Clairvoyance                   3 dice",
+                        "Potion of Mind Reading                  3 dice",
+                    ],
+                    amendTo: "Reagent Potions Table",
+                    popupName: "Alchemy of Influence Potions Table",
+                }]
+            },
+            "alchemy of transformation (prereq: 13th level alchemist)": {
+                name: "Alchemy of Transformation",
+                source: ["VSoS", 34],
+                submenu: "[13th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 13 },
+                description: "\n   " + "I can brew new potions found on the notes page using reagent dice.",
+                toNotesPage: [{
+                    name: "Alchemy of Transformation Potions Table",
+                    note: [
+                        "I can brew these potions by expending reagent dice.",
+                        "Potion                                    Cost",
+                        "Potion of Slipperiness            2 die",
+                        "Sandstone Solution               2 dice",
+                        "Aqua Fortis                            3 dice",
+                        "Chameleon Concoction         3 dice",
+                        "Potion of Gaseous Form        3 dice",
+                    ],
+                    popupName: "Alchemy of Transformation Potions Table",
+                    amendTo: "Reagent Potions Table",
+                }]
+            },
+            "arcane study": {
+                name: "Arcane Study",
+                source: ["VSoS", 34],
+                submenu: "[1st Level]",
+                description: "\n   I learn 3 wizard cantrips. Intelligence is my Spellcasting ability for these cantrips.",
+                times: 3,
+                spellcastingBonus: [{
+                    name: "Arcane Study",
+                    spellcastingAbility: 4,
+                    "class": ["wizard"],
+                    level: [0, 0],
+                }, {
+                    name: "Arcane Study",
+                    spellcastingAbility: 4,
+                    "class": ["wizard"],
+                    level: [0, 0],
+                },
+                {
+                    name: "Arcane Study",
+                    spellcastingAbility: 4,
+                    "class": ["wizard"],
+                    level: [0, 0],
+                }]
+            },
+            "ballistics research": {
+                name: "Ballistics Research",
+                source: ["VSoS", 34],
+                submenu: "[1st Level]",
+                description: " I learn 2 additional bomb formulae.",
+                bonusClassExtrachoices: [{
+                    'class': "alchemist",
+                    feature: "bomb formulae",
+                    bonus: 2
+                }]
+            },
+            "battle training": {
+                name: "Battle Training",
+                source: ["VSoS", 34],
+                submenu: "[1st Level]",
+                description: " I gain proficiency with martial weapons and shields.",
+                weaponProfs: [true, true],
+                armorProfs: [true, false, false, true],
+            },
+            "beguiling haze (prereq: 13th level amorist)": {
+                name: "Beguiling Haze",
+                source: ["VSoS", 34],
+                submenu: "[13th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("amorist") !== -1},
+                description: "\n   When I charm a creature, I can choose to place it in a dreamy state."+
+                             "\n   While charmed, it is nonhostile and acts as if it is charmed by everyone it sees equally.",
+                usages: 1,
+                recovery: "short rest",
+            },
+            "buffered metabolism (prereq: 13th level xenoalchemist)": {
+                name: "Buffered Metabolism",
+                source: ["VSoS", 35],
+                submenu: "[13th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("xenoalchemist") !== -1},
+                description: "\n   When I take damage, I can use my reaction and reagent dice (max prof. bonus)."+
+                             "\n   This reduces the amount of damage taken by the total rolled.",
+                action: ["reaction", "Buffered Metabolism"],
+            },
+            "clotting agent": {
+                name: "Clotting Agent",
+                source: ["VSoS", 35],
+                submenu: "[1st Level]",
+                description: " My hit point max is increased by my alchemist level.",
+                calcChanges: {
+                    hp: function (totalHD, HDObj, prefix) {
+                        return [classes.known.alchemist.level, "Clotting Agent (Alchemist)"];
+                    },
+                    hpForceRecalc: true
+                }
+            },
+            "craft homonculus": {
+                name: "Craft Homunculus",
+                source: ["VSoS", 35],
+                submenu: "[1st Level]",
+                description: "\n    With 8 hours of work, I can create a homunculus. See its companion page for more info.",
+                creaturesAdd: [["Cat", true, false, "alchemist_homunculus"]]
+            },
+            "demolition spree (prereq: 13th level mad bomber)": {
+                name: "Demolition Spree",
+                source: ["VSoS", 35],
+                submenu: "[13th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("mad bomber") !== -1},
+                description: "\n   When priming a bomb, I can throw bombs equal to the # of damage dice of the original"+
+                             "\n   bomb. Each bomb deals (1d10 + Int mod) damage, & can't target the same creature/space. I"+
+                             "\n   can spend reagent dice seperately on these bombs and can apply a bomb formula to only 1.",
+                action: ["action", ""],
+            },
+            "explosive missile": {
+                name: "Explosive Missile",
+                source: ["VSoS", 35],
+                submenu: "[1st Level]",
+                description: "\n   As a bonus action, I can load a bomb (max 1) onto the head of a crossbow bolt."+
+                             "\n   This bolt deals primed bomb damage, but has no blast radius."+ 
+                             "\n   I can't fire a bomb bolt on the same turn I throw a bomb.",
+                action: ["bonus action", ""],
+            },
+            "fire brand": {
+                name: "Fire Brand",
+                source: ["VSoS", 35],
+                submenu: "[1st Level]",
+                description: "\n   As a bonus action, until the end of my turn, one of my melee weapons deals an extra 1d6 fire"+ 
+                             "\n   damage on hit. This extra damage increases by 1d6 at 5th, 11th, and 17th level.",
+                additional: levels.map(function (n) {
+                    return (n < 5 ? "1" : n < 11 ? "2" : n < 17 ? "3" : "4") + "d6 additional fire damage";
+                }),
+                action: ["bonus action", ""],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (v.isMeleeWeapon && /fire\s*brand/i.test(v.WeaponTextName)) {
+                                var n = classes.known.alchemist.level;
+                                fields.Description += "; deal extra " + (n < 5 ? "1" : n < 11 ? "2" : n < 17 ? "3" : "4") + "d6 fire damage";
+                            }
+                        },
+                        "If the phrase 'Fire Brand' is included in the title of a weapon attack, it is treated as a weapon coated in one of my bomb's contents, as per my Fire Brand discovery.",
+                    ]
+                }
+            },
+            "fire eater": {
+                name: "Fire Eater",
+                source: ["VSoS", 35],
+                submenu: "[1st Level]",
+                description: "\n   As an action, I can use a bomb to make each creature in a 15 ft cone from me Dex save vs my"+
+                             "\n   bomb save DC, taking primed bomb fire damage, or half on a success. When I use this ability,"+
+                             "\n   I take 1d4 fire damage for each of my bomb's damage dice.",
+                weaponsAdd: ["Fire Eater"],
+                weaponOptions: [{
+                    name: "Fire Eater",
+                    source: ["VSoS", 35],
+                    regExpSearch: /\bfire eater\b/i,
+                    type: "AlwaysProf",
+                    ability: 4,
+                    abilitytodamage: true,
+                    damage: [1, 10, "fire"],
+                    range: "15 ft cone",
+                    description: "1d4 damage to self for each of this attack's damage dice",
+                    dc: true,
+                    isNotWeapon: true,
+                }],
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/fire\s*eater/i.test(v.WeaponTextName)) {
+                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d10" : classes.known.alchemist.level < 11 ? "2d10" : classes.known.alchemist.level < 17 ? "3d10" : "4d10";
+                            }
+                        }
+                    ]
+                }
+            },
+            // todo: is there another way to showcase this dc?
+            "fire in the hole (prereq: 9th level alchemist)": {
+                name: "Fire in The Hole",
+                source: ["VSoS", 35],
+                submenu: "[9th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 9 },
+                description: "\n   My bomb save DC increases by half of my proficiency bonus, rounded down.",
+                calcChanges : {
+                    spellCalc: [
+                        function (type, spellcasters, ability) {
+                            if (type == "dc" && spellcasters.indexOf("alchemist") != -1) return classes.known.alchemist.level < 17 ? 2 : 3;
+                        },
+                        "My bomb save DC increases by half of my proficiency bonus, rounded down.",
+                    ]
+                }
+            },
+            "fortified serum (prereq: 13th level apothecary)": {
+                name: "Fortified Serum",
+                source: ["VSoS", 35],
+                submenu: "[13th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("apothecary") !== -1},
+                description: "\n   When a creature regains hit points by drinking my potions, they gain resistance to"+ 
+                             "\n   nonmagical bludgeoning/piercing/slashing damage until the end of their next turn",
+            },
+            "grenadier": {
+                name: "Grenadier",
+                source: ["VSoS", 35],
+                submenu: "[1st Level]",
+                description: "\n   When I prime & throw a bomb, I can use my bonus action to make an attack with a weapon"+
+                             "\n   that isn't two handed.",
+                action: ["bonus action", "Grenadier"],
+            },
+            "dynamo charger (prereq: 13th level dynamo engineer)": {
+                name: "Dynamo Charger",
+                source: ["VSoS", 35],
+                submenu: "[13th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("dynamo engineer") !== -1},
+                description: "\n   When I finish a short rest, I can regain 2 expended spell slots stored in dynamos."+
+                             "\n   I can configure these dynamos immediately.",
+                usages: 1,
+                recovery: "day",
+            },
+            "hemoreagent (prereq: 17th level alchemist)": {
+                name: "Hemoreagent",
+                source: ["VSoS", 36],
+                submenu: "[17th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 17 },
+                description: "\n   When I prime and throw a bomb, I can add 5 or fewer reagent die to the bomb's damage"+
+                             "\n   without expending them, losing 1d6 hp that can't be reduced/prevented for each die added.",
+            },
+            "lazarus bolt (prereq: 9th level alchemist)": {
+                name: "Lazarus Bolt",
+                source: ["VSoS", 36],
+                submenu: "[9th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 9 },
+                description: "\n   As an action, I can revive a creature that died within the last min within 5 feet of me. That"+
+                             "\n   creature regains 1 hp, unless they lack a heart, died of old age, or are missing vital organs.",
+                usages: 1,
+                recovery: "short rest",
+                action: ["action", "Lazarus Bolt"]
+            },
+            "magnified blast (prereq: 17th level alchemist)": {
+                name: "Magnified Blast",
+                source: ["VSoS", 36],
+                submenu: "[17th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 17 },
+                description: "\n   Whenever I add reagent dice to a bomb's damage, I can also expand the blast radius by 5 ft"+ 
+                             "\n   per 2 reagent dice spent.",
+            },
+            "ooze cowboy (prereq: 13th level ooze rancher)": {
+                name: "Ooze Cowboy",
+                source: ["VSoS", 36],
+                submenu: "[13th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("ooze rancher") !== -1},
+                description: "\n   Slimes I make have a minimum speed of 30 ft. I can ride any Medium or larger Ooze as a"+
+                             "\n   mount. My equipment and I suffer no ill effect from touching my Oozes. My Oozes add my"+ 
+                             "\n   proficiency bonus to their damage and initiative rolls.",
+                calcChanges: {
+                    creatureCallback: [
+                        function(prefix, oCrea, bAdd) {
+                            if (!(/ooze/i).test(oCrea.type + What(prefix + "Comp.Desc.MonsterType"))) return;
+                            Value(prefix + "Comp.Use.Combat.Init.Bonus", "oProf");
+                            for (var i = 1; i < 3; ++i) {
+                                Value(prefix + "BlueText.Comp.Use.Attack." + i + ".Damage Bonus", "oProf");
+                            }
+                            Value(prefix + "Comp.Use.Speed", "30 ft,\nclimb 30 ft");
+                        },
+                        "Oozes I create add my proficiency bonus to their damage and initiative rolls."
+                    ]
+                }
+            },
+            "poisoner": {
+                name: "Poisoner",
+                source: ["VSoS", 36],
+                submenu: "[1st Level]",
+                description: "\n   I gain proficiency with the poisoner's kit. I can also brew new poisons using my reagent dice."+
+                             "\n   My poisons also use my bomb save DC instead of their normal save DCs.",
+                toolProfs: ["Poisoner's kit"],
+                toNotesPage: [{
+                    name: "Poisoner's Poisons Table",
+                    note: [
+                        "I can brew these poisons by expending reagent dice.",
+                        "Poison                                 Cost",
+                        "2 x Antitoxin                        1 die",
+                        "2 x Basic Poison                   1 die,",
+                        "Oil of Taggit                        2 dice",
+                        "Potion of Poison                  2 dice",
+                        "Serpent Venom                    2 dice",
+                        "Truth Serum                         2 dice",
+                    ],
+                    popupName: "Poisoner's Poisons Table",
+                    amendTo: "Reagent Potions Table",
+                }]
+            },
+            "precision explosives": {
+                name: "Precision Explosives",
+                source: ["VSoS", 36],
+                submenu: "[1st Level]",
+                description: "\n   I can choose 1 creature in the blast radius other than the target to automatically"+
+                             "\n   succeed on its saving throw and take no damage from it.",
+            },
+            "reactionary gulp (prereq: 17th level alchemist)": {
+                name: "Reactionary Gulp",
+                source: ["VSoS", 36],
+                submenu: "[17th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 17 },
+                description: "\n   " + "Immediately after taking damage, I can use my reaction to drink a potion.",
+                action: ["reaction", "Reactionary Gulp"],
+            },
+            "recycled potions": {
+                name: "Recycled Potions",
+                source: ["VSoS", 36],
+                submenu: "[1st Level]",
+                description: "\n   When I brew potions, I can destroy previously brewed potions, regaining the reagent dice"+
+                             "\n   used to brew them. I can't gain more than my max number of reagent dice using this ability.",
+            },
+            "syringe": {
+                name: "Syringe",
+                source: ["VSoS", 36],
+                submenu: "[1st Level]",
+                description: "\n   As a bonus action, I can inject a potion into myself or another creature within 5 feet of me,"+
+                             "\n   granting the benefits of the potion. I must make a melee attack against unwilling creatures,"+
+                             "\n   treating the syringe as a finesse weapon.",
+                action: ["bonus action", "Syringe"],
+                weaponsAdd: ["Syringe"],
+                weaponOptions: [{
+                    name: "Syringe",
+                    source: ["VSoS", 36],
+                    regExpSearch: /\bsyringe\b/i,
+                    type: "Improvised Weapons",
+                    ability: 1,
+                    abilitytodamage: false,
+                    damage: [0, 0, ""],
+                    range: "Melee",
+                    description: "Finesse; on hit, administer potion or poison to target",
+                    list: "melee",
+                }]
+            },
+            "tri-mutation (prereq: 13th level mutagenist)": {
+                name: "Tri-Mutation",
+                source: ["VSoS", 36],
+                submenu: "[13th Level]",
+                prereqeval: function (v) { return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("mutagenist") !== -1},
+                description: "\n   I can inject myself with a tri-mutagen, which grants me the benefit of all mutagens at once"+
+                             "\n   for 1 minute, or until I inject myself with a different mutagen.",
+                usages: 1,
+                recovery: "long rest",
+            }
+        },
+        "flashbang": {
+            name: "Flashbang",
+            source: ["VSoS", 30],
+            minlevel: 5,
+            description: desc([
+                "As a bonus action, each large or smaller creature within 5 feet of me can't take reactions until",
+                "the start of their next turn."
+            ]),
+            action: ["bonus action", ""],
+        },
+        "evasion": {
+            name: "Evasion",
+            source: ["VSoS", 30],
+            minlevel: 11,
+            description: desc("My Dexterity saves vs. areas of effect negate damage on success and halve it on failure"),
+            savetxt: { text: ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"] }
+        },
+        "blast coating": {
+            name: "Blast Coating",
+            source: ["VSoS", 30],
+            minlevel: 15,
+            description: desc("I automatically succeed on saves against my own bombs and never take damage from them."),
+            savetxt: {
+                immune: ["my own bombs"],
+            }
+        },
+        "philosopher's stone": {
+            name: "Philosopher's Stone",
+            source: ["VSoS", 30],
+            minlevel: 20,
+            description: desc([
+                "I can make a philosopher's stone using my alchemist's supplies, 1000 gp of materials, and",
+                "7 days of work. I can only have 1 stone at a time. I also gain a new bomb formula. When I",
+                "create the stone, select the Philosopher's Stone from the \"Magic Item\" dropdown menus."
+            ]),
+            toNotesPage: [{
+                name: "Nuclear Bomb [10d10 Force - Dexterity]",
+                note: "\nBlast radius is 1 mile, and destroys my philosopher's stone. Each creature in radius takes full bomb damage rolled, or half on a save. Creatures within 60 feet of the blast gain no benefit from Evasion or similar features",
+                amendTo: "Known Bomb Formulae"
+            }],
+            weaponsAdd: ["Nuclear Bomb"],
+            calcChanges: {
+                atkAdd: [
+                    function (fields, v) {
+                        if (/\bnuclear\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                            fields.Damage_Die = "10d10";
+                            fields.Damage_Bonus = "100";
+                            fields.Description = "Finesse, Dex save for all in 1 mile of target, save half, 60 feet range ignores Evasion";
+                            fields.Damage_Type = "Force";
+ 
+                        }
+                    },
+                    "When the word 'Nuclear' is added to the title one of my Bomb attacks, the attack is treated as one of my Nuclear Bombs."
+                ],
+                atkCalc: [
+                    function (fields, v, output){
+                        if (/\bnuclear\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+                            output.modToDmg = false;
+                        }
+                    }
+                ]
+            }
+        }
+    }
+};
+
+WeaponsList["bomb"] = {
+	regExpSearch : /^(?!.*renaissance)(?=.*bomb).*$/i,
+	name : "Bomb",
+	source : [["VSoS", 294], ["VSoS", 29]],
+	list : "ranged",
+	ability : 1,
+	dc : true,
+	type : "Exotic",
+	damage : [1, 10, "fire"],
+	range : "30/90 ft",
+	weight : 1,
+	description : "Finesse, special, half dmg to all in 7.5 ft, \u00BD dmg on save (DC 11 Dex save); See tool tip",
+	tooltip : "   Special: When a bomb hits a target, it explodes in a 5-foot radius and is destroyed. The bomb can be thrown at an unoccupied space within its range. Each creature other than the target within the blast radius must succeed on a DC 11 Dexterity saving throw, taking half the damage rolled on a failed save or no damage on a successful one.\n   Additionally, as a bonus action, you can empty some of the bomb's explosive material to permanently remove the blast radius from this bomb, dealing damage only to the bomb's target.",
+	special : true,
+	abilitytodamage : true,
 };
