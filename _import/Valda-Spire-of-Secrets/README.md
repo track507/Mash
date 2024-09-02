@@ -19,6 +19,8 @@ I am going page by page and adding/updating content. I will be providing updates
 
 *Due to recent `weaponsAdd` bug, I am adding the bomb as "Bomb (Alchemist)" in `weaponOptions` instead of using `weaponsAdd : { select : ["Bomb"] }`*
 
+Everything up to "Alchemist Bomb Formulae" has been added and updated to v13.2.0 for MPMB's Sheet and 1.4 of the PDF.
+
 Current Fixes
   - Fixed `weaponsAdd` in "Bombs" feature
   - All bombs now use Int as the modifier to show the DC.
