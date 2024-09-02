@@ -1877,8 +1877,7 @@ ClassList["alchemist"] = {
 				regExpSearch : /primed bomb/i,
 				source : ["VSoS", 29],
 				baseWeapon : "bomb",
-				damage : ["C", 10, "fire"],
-				description : "Finesse, special, half dmg to all in 7.5 ft, \u00BD dmg on save; See tool tip",
+				damage : ["C", 10, "Fire"],	
 				tooltip : "Special: Once per turn, I can use the \"Use an Object\" action to prime and throw a bomb. When priming a bomb, I get to add my Intelligence modifier instead of my Dexterity to the bomb's damage roll." + "\n   Additionally, I can use a bonus action to empty some of the bomb's explosive material to permanently remove the blast radius from this bomb, dealing damage only to the bomb's target.",
 				selectNow : true
 			}, {
@@ -1891,9 +1890,12 @@ ClassList["alchemist"] = {
             calcChanges: {
 				atkAdd : [
 					function(fields, v) { 
-						if((/bomb/i).test(v.WeaponTextName)) {
+						if((/bomb/i).test(v.WeaponTextName)) { // * Proficient in all bombs
+							// * This replaces the bombs normal Dex save to an Int save
+							fields.Description = fields.Description.replace(/dc \d+ dex save/i, "Int save");
+							fields.Description_Tooltip = fields.Description_Tooltip.replace(/on a DC 11 Dexterity/i, "an Intelligence");
 							fields.Proficiency = true;
-							fields.Mod = 4
+							fields.Mod = 4;
 						};
 					}
 				],
@@ -1911,11 +1913,11 @@ ClassList["alchemist"] = {
 								output.extraDmg = Math.max(mod - What("Int Mod"), 0);
 							};
                         };
-						if((/bomb/i).test(v.WeaponTextName) && !(/\bprimed\b/i).test(v.WeaponTextName)) {
+						if((/bomb/i).test(v.WeaponTextName) && !(/\bprimed\b/i).test(v.WeaponTextName)) { // * Only applies to non-primed bombs
 							output.extraDmg = (What("Str Mod") > What("Dex Mod") ? What("Str Mod") : What("Dex Mod")) - Math.max(What("Int Mod"), 0);
 						}
                     },
-                    "I can add my Dextery modifier instead of my Intelligence to the bomb's damage roll."
+                    "When priming a bomb, I can add my Intelligence modifier instead of my Dexterity to the bomb's damage roll."
                 ]
             },
 			usages : "10 + 2\xD7 my alchemist level of Bombs per ",
@@ -1930,7 +1932,7 @@ ClassList["alchemist"] = {
         },
         "bomb formulae": {
             name: "Bomb Formulae",
-            source: ["VSoS", 29],
+            source: [["VSoS", 29], ["VSoS", 31]],
             minlevel: 2,
             additional: levels.map(function (n) {
                 return n < 2 ? "" : (n < 5 ? "3" : n < 7 ? "4" : n < 9 ? "5" : n < 11 ? "6" : n < 13 ? "7" : n < 15 ? "8" : n < 17 ? "9" : n < 19 ? "10" : "11") + " bomb formulae known";
@@ -1944,7 +1946,9 @@ ClassList["alchemist"] = {
                 name: "Known Bomb Formulae",
                 source: ["VSoS", 29],
                 note: ["I know these formulae and can apply them once per turn when I prime a bomb.",
-                       "Known Bomb formulae are written here as follows:\n◆ Bomb Formula [Damage Die, Type - Saving Throw]\nDescription of additional effects written here.",
+                       "Known Bomb formulae are written here as follows:", 
+					   "\u25C6 Bomb Formula [Damage Die, Type - Saving Throw]",
+					   "Description of additional effects written here."
                 ]
             }],
             extraname: "Bomb Formulae",
@@ -1957,7 +1961,7 @@ ClassList["alchemist"] = {
                 description: " See notes",
                 toNotesPage: [{
                     name: "Acid Bomb [d6 Acid - Dexterity]",
-                    note: "\nAll affected take the same amount of damage again at the end of their next turn",
+                    note: "All affected take the same amount of damage again at the end of their next turn",
                     amendTo: "Known Bomb Formulae"
                 }],
 				weaponOptions : [{
@@ -1965,22 +1969,19 @@ ClassList["alchemist"] = {
 					source : ["VSoS", 31],
 					regExpSearch : /acid bomb/i,
 					baseWeapon : "bomb",
-					damage :  ["C", 4, "acid"],
-					description : "Finesse, special, half dmg to all in 7.5 ft, \u00BD dmg on save; See tool tip",
-
+					damage :  ["C", 4, "Acid"],
 				}],
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bacid\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Description += "; Crea(s) takes same dmg at end of their next turn";
+                                fields.Description += (fields.Description ? '; ' : '') + "Crea(s) take same dmg at end of next turn";
                             }
                         },
                         "When the word 'Acid' is added to the title one of my Bomb attacks, the attack is treated as one of my Acid Bombs."
                     ]
                 }
             },
-			// ! TODO Everything Below
             "bramble bomb": {
                 name: "Bramble Bomb Formula",
                 description: " See notes",
@@ -1989,7 +1990,23 @@ ClassList["alchemist"] = {
                     note: "\nBlast radius becomes difficult terrain for 1 minute; prone creatures must Str save before it can move or stand",
                     amendTo: "Known Bomb Formulae"
                 }],
-                action: ["action", "Throw Bramble Bomb"],
+				weaponOptions : [{
+					name : "bramble Bomb",
+					source : ["VSoS", 31],
+					regExpSearch : /bramble bomb/i,
+					baseWeapon : "bomb",
+					damage :  ["", "", ""]
+				}],
+				calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\bbramble\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/int save or \u00BD dmg to all in 7\.5 ft/i, "Diff. terrain in 7.5 ft for 1 min, if prone on detonate, Str save to move or stand");
+                            }
+                        },
+                        "When the word 'Bramble' is added to the title one of my Bomb attacks, the attack is treated as one of my Bramble Bombs."
+                    ]
+                }
             },
             "cryo bomb": {
                 name: "Cryo Bomb Formula",
@@ -1999,27 +2016,27 @@ ClassList["alchemist"] = {
                     note: "\nAll affected get -10 ft move speed until the end of their next turn",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Cryo Bomb"],
+				weaponOptions : [{
+					name : "Cryo Bomb",
+					source : ["VSoS", 31],
+					regExpSearch : /cryo bomb/i,
+					baseWeapon : "bomb",
+					damage :  ["C", 8, "Cold"]
+				}],
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bcryo\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
-                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless CON save, speed -10 ft for all affected";
-                                fields.Damage_Type = "Cold";
+								fields.Description = fields.Description.replace(/int save/i, "Con save").replace(/dmg to all/i, "dmg and -10 ft speed to all");
+								fields.Description_Tooltip = fields.Description_Tooltip.replace(/an intelligence/i, "on a Constitution");
+								fields.Damage_Die = fields.Damage_Die.replace(/d\d+/ig, 'd8');
                             }
                         },
                         "When the word 'Cryo' is added to the title one of my Bomb attacks, the attack is treated as one of my Cryo Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\bcryo\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
                 }
             },
+			// ! TODO Everything Below
             "holy bomb": {
                 name: "Holy Bomb Formula",
                 description: " See notes",
@@ -3003,7 +3020,7 @@ WeaponsList["bomb"] = {
 	damage : [1, 10, "fire"],
 	range : "30/90 ft",
 	weight : 1,
-	description : "Finesse, special, half dmg to all in 7.5 ft, \u00BD dmg on save (DC 11 Dex save); See tool tip",
+	description : "Finesse, special, DC 11 Dex save or \u00BD dmg to all in 7.5 ft; See tool tip",
 	tooltip : "   Special: When a bomb hits a target, it explodes in a 5-foot radius and is destroyed. The bomb can be thrown at an unoccupied space within its range. Each creature other than the target within the blast radius must succeed on a DC 11 Dexterity saving throw, taking half the damage rolled on a failed save or no damage on a successful one.\n   Additionally, as a bonus action, you can empty some of the bomb's explosive material to permanently remove the blast radius from this bomb, dealing damage only to the bomb's target.",
 	special : true,
 	abilitytodamage : true,
