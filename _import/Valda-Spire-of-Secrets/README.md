@@ -19,7 +19,13 @@ I am going page by page and adding/updating content. I will be providing updates
 
 *Due to recent `weaponsAdd` bug, I am adding the bomb as "Bomb (Alchemist)" in `weaponOptions` instead of using `weaponsAdd : { select : ["Bomb"] }`*
 
-WIP: Alchemist
+Current Fixes
   - Fixed `weaponsAdd` in "Bombs" feature
-  - Removed `weaponsAdd` automation in "Bomb Formulae" and now appears in the attack drop down
-  - 
+  - All bombs now use Int as the modifier to show the DC.
+  - Primed Bombs now correctly adds which mod to use for damage: Str, Dex, or Int, whichever one is higher.
+  - Non-primed bombs now correctly adds Str/Dex to use for damage.
+  - Acid, Bramble, and Cryo bombs now updated and fixed. 
+
+WIP: 
+  - Alchemist "Bomb Formulae"
+  - Removing `weaponsAdd` automation in "Bomb Formulae" and now appears in the attack drop down. This is to prevent having up to 11 attack entries automatically added to 1st page attacks. User can pick from the attack drop down instead.
