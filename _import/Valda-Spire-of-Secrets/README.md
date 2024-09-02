@@ -12,3 +12,14 @@ The latest version of the PDF is 1.4 and was published 12/30/2022 (3 months afte
 For the most part, most of version 1.4 is the same, but it has minor fixes and reworks that are different from the original 1.0.
 Recent contributions from Seaworld and I have been adding both classes and subclasses from VSoS to MPMB's Character sheet. 
 I am also going to go through the process of adding each class/subclass and ensuring that it's v13.2.0 compatible
+
+I am going page by page and adding/updating content. I will be providing updates through the README.md 
+
+## Important
+
+*Due to recent weaponsAdd bug, I am adding the bomb as "Bomb (Alchemist)" in weaponOptions instead of using `weaponsAdd : { select : ["Bomb"] }`*
+
+WIP: Alchemist
+  - Fixed `weaponsAdd` in "Bombs" feature
+  - Removed `weaponsAdd` automation in "Bomb Formulae" and now appears in the attack drop down
+  - 
