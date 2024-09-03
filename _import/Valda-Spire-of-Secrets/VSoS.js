@@ -27,7 +27,7 @@ SourceList["VSoS"]={
 	date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
 };
 
-// ! This section adds races from Valda's Spire of Secrets
+// ! This section adds races
 
 // * Geppettin
 
@@ -640,6 +640,8 @@ AddRacialVariant("human", "near-human", {
 	removeeval : function() { RemoveString('Feat Note 1', 'Near-Human feat'); }
 });
 
+// ! This section adds feats
+
 // * Near-Human feats
 FeatsList["aberrant spawn"] = {
 	name : "Aberrant Spawn",
@@ -735,7 +737,7 @@ FeatsList["arachne"] = {
 	prereqeval : function(v) {
 		return classes.totallevel === 1 && CurrentRace.known === 'human' && CurrentRace.variant;
 	},
-	descriptionFull : "Much like drow, humans can be corrupted by the magic of the drow goddess, becoming arachne—humans with eight eyes and coarse, black hair. Sometimes these humans are the offspring of driders or drow priestesses, while other times they bear the marks of a ritual sacrifice gone terribly awry.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You can see in dim light within 120 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n \u2022 You know the poison spray cantrip. Starting at 3rd level, you can cast the bane spell with this trait. Starting at 5th level, you can also cast the spider climb spell with this trait. Once you cast spider climb with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n   Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).",
+	descriptionFull : "Much like drow, humans can be corrupted by the magic of the drow goddess, becoming arachne—humans with eight eyes and coarse, black hair. Sometimes these humans are the offspring of driders or drow priestesses, while other times they bear the marks of a ritual sacrifice gone terribly awry.\n \u2022 Increase one ability score of your choice by 1, to a maximum of 20.\n \u2022 You can see in dim light within 120 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that darkness only as shades of gray.\n \u2022 You know the poison spray cantrip. Stng at 3rd level, you can cast the bane spell with this trait. Starting at 5th level, you can also cast the spider climb spell with this trait. Once you cast spider climb with this trait, you can't cast that spell with it again until you finish a long rest. You can also cast either of those spells using any spell slots you have of the appropriate level.\n   Intelligence, Wisdom, or Charisma is your spellcasting ability for these spells when you cast them with this trait (choose when you select this race).",
 	description : "I have darkvision to 120 ft and I know the Poison Spray cantrip. At 3rd level, I can cast Bane 1/LR. At 5th, I can cast Spider Climb 1/LR. Spells use Intelligence, Wisdom, or Charisma and can also be cast with spell slots. [+1 to any ability score.]",
 	vision : ["Darkvision", 120],
 	spellcastingAbility : [4,5,6],
@@ -1816,7 +1818,7 @@ FeatsList["winged"] = {
 	}
 };
 
-// * Add Classes 
+// ! This section adds classes
 
 // * Alchemist class
 ClassList["alchemist"] = {
@@ -1885,6 +1887,8 @@ ClassList["alchemist"] = {
 				regExpSearch : /bomb \(alchemist\)/i,
 				source : ["VSoS", 29],
 				baseWeapon : "bomb",
+				description : "Finesse, special, Dex save or \u00BD dmg to all in 7.5 ft; See tool tip",
+				tooltip : "   Special: When a bomb hits a target, it explodes in a 5-foot radius and is destroyed. The bomb can be thrown at an unoccupied space within its range. Each creature other than the target within the blast radius must succeed on an Intelligence saving throw, taking half the damage rolled on a failed save or no damage on a successful one.\n   Additionally, as a bonus action, you can empty some of the bomb's explosive material to permanently remove the blast radius from this bomb, dealing damage only to the bomb's target.",			
 				damage : ["C", 10, "Fire"],	
 				selectNow : true
 			}],
@@ -2489,7 +2493,6 @@ ClassList["alchemist"] = {
                 }
             }
         },
-		// ! TODO Everything below
         "subclassfeature2": {
             name: "Field of Study",
             source: ["VSoS", 29],
@@ -2502,9 +2505,9 @@ ClassList["alchemist"] = {
             minlevel: 3,
             description: desc([
                 "I gain a pool of Reagent dice. I can expend reagent dice to:",
-                "- add them to the damage of a primed bomb (number added can't exceed proficiency bonus).",
-                "- Spend 10 min to brew potions that use my bomb save DC & retain potency for 24 hours.",
-                "(1/long rest) after a short rest, I can regain spent reagent dice I didn't use to brew potions."
+                "\u2022 add them to the damage of a primed bomb (number added can't exceed proficiency bonus).",
+                "\u2022 Spend 10 min to brew potions that use my bomb save DC & retain potency for 24 hours.",
+                "1/LR after a short rest, I can regain spent reagent dice I didn't use to brew potions."
             ]),
             toNotesPage: [{
                 name: "Reagent Potions Table",
@@ -2530,21 +2533,19 @@ ClassList["alchemist"] = {
                 popupName: "Alchemist's Reagent Potions Table",
                 amendTo: "Poisoner's Poisons Table",
             }],
-            limfeaname: "Reagent Dice",
-            usages: levels.map(function (n) {
-                return n < 3 ? 0 : n;
-            }),
-            limfeaAddToExisting: false,
-            recovery: "long rest",
+            additional : levels.map( function(n) {
+				return n + " reagent dice";
+			}),
             extraLimitedFeatures: [{
-                name: "Spent Non-Potion Reagent Dice",
-                usages: "",
-                recovery: "",
-            }, {
                 name: "Reagent Synthesis",
                 usages: 1,
                 recovery: "long rest",
-            }]
+            }, {
+				name : "Reagent Dice (d10)",
+				usages: "Alchemist level",
+				usagescalc : "event.value = classes.known.alchemist.level < 3 ? 0 : classes.known.alchemist.level;",
+				recovery: "long rest",
+			}]
         },
         "discoveries": {
             name: "Discoveries",
@@ -2558,9 +2559,9 @@ ClassList["alchemist"] = {
                 "When I gain a level in this class, I may replace a discovery I know with another."
             ]),
             extraname: "Discoveries",
-            extrachoices: ["Advanced Poisoner (prereq: 13th level Venomsmith)", "Alchemy of Ascendancy (prereq: 17th level Alchemist)", "Alchemy of Influence (prereq: 13th level Alchemist)", "Alchemy of Transformation (prereq: 13th level Alchemist)", "Arcane Study", "Ballistics Research", "Battle Training", "Beguiling Haze (prereq: 13th level Amorist)", "Buffered Metabolism (prereq: 13th level Xenoalchemist)", "Clotting Agent", "Craft Homonculus", "Demolition Spree (prereq: 13th level Mad Bomber)", "Explosive Missile", "Fire Brand", "Fire Eater", "Fire in The Hole (prereq: 9th level Alchemist)", "Fortified Serum (prereq: 13th level Apothecary)", "Grenadier", "Dynamo Charger (prereq: 13th level Dynamo Engineer)", "Hemoreagent (prereq: 17th level Alchemist)", "Lazarus Bolt (prereq: 9th level Alchemist)", "Magnified Blast (prereq: 17th level Alchemist)", "Ooze Cowboy (prereq: 13th level Ooze Rancher)", "Poisoner", "Precision Explosives", "Reactionary Gulp (prereq: 17th level Alchemist)", "Recycled Potions", "Syringe", "Tri-Mutation (prereq: 13th level Mutagenist)"],
+            extrachoices: ["Fire in The Hole (prereq: 9th level Alchemist)", "Advanced Poisoner (prereq: 13th level Venomsmith)", "Alchemy of Ascendancy (prereq: 17th level Alchemist)", "Alchemy of Influence (prereq: 13th level Alchemist)", "Alchemy of Transformation (prereq: 13th level Alchemist)", "Arcane Study", "Ballistics Research", "Battle Training", "Beguiling Haze (prereq: 13th level Amorist)", "Buffered Metabolism (prereq: 13th level Xenoalchemist)", "Clotting Agent", "Craft Homonculus", "Demolition Spree (prereq: 13th level Mad Bomber)", "Explosive Missile", "Fire Brand", "Fire Eater", "Fortified Serum (prereq: 13th level Apothecary)", "Grenadier", "Dynamo Charger (prereq: 13th level Dynamo Engineer)", "Hemoreagent (prereq: 17th level Alchemist)", "Lazarus Bolt (prereq: 9th level Alchemist)", "Magnified Blast (prereq: 17th level Alchemist)", "Ooze Cowboy (prereq: 13th level Ooze Rancher)", "Poisoner", "Precision Explosives", "Reactionary Gulp (prereq: 17th level Alchemist)", "Recycled Potions", "Syringe", "Tri-Mutation (prereq: 13th level Mutagenist)"],
             extraTimes: [0, 0, 0, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6],
-            "advanced poisoner (prereq: 13th level venomsmith)": {
+			"advanced poisoner (prereq: 13th level venomsmith)": {
                 name: "Advanced Poisoner",
                 source: ["VSoS", 34],
                 submenu: "[13th Level]",
@@ -2643,34 +2644,23 @@ ClassList["alchemist"] = {
                     amendTo: "Reagent Potions Table",
                 }]
             },
-            "arcane study": {
+			"arcane study": {
                 name: "Arcane Study",
                 source: ["VSoS", 34],
-                submenu: "[1st Level]",
                 description: "\n   I learn 3 wizard cantrips. Intelligence is my Spellcasting ability for these cantrips.",
-                times: 3,
                 spellcastingBonus: [{
                     name: "Arcane Study",
                     spellcastingAbility: 4,
                     "class": ["wizard"],
-                    level: [0, 0],
-                }, {
-                    name: "Arcane Study",
-                    spellcastingAbility: 4,
-                    "class": ["wizard"],
-                    level: [0, 0],
-                },
-                {
-                    name: "Arcane Study",
-                    spellcastingAbility: 4,
-                    "class": ["wizard"],
-                    level: [0, 0],
+					times : levels.map(function (n) {
+						return n < 3 ? 0 : 3;
+					}),
+                    level: [0, 0]
                 }]
             },
             "ballistics research": {
                 name: "Ballistics Research",
                 source: ["VSoS", 34],
-                submenu: "[1st Level]",
                 description: " I learn 2 additional bomb formulae.",
                 bonusClassExtrachoices: [{
                     'class': "alchemist",
@@ -2681,7 +2671,6 @@ ClassList["alchemist"] = {
             "battle training": {
                 name: "Battle Training",
                 source: ["VSoS", 34],
-                submenu: "[1st Level]",
                 description: " I gain proficiency with martial weapons and shields.",
                 weaponProfs: [true, true],
                 armorProfs: [true, false, false, true],
@@ -2703,26 +2692,25 @@ ClassList["alchemist"] = {
                 prereqeval: function (v) { return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("xenoalchemist") !== -1},
                 description: "\n   When I take damage, I can use my reaction and reagent dice (max prof. bonus)."+
                              "\n   This reduces the amount of damage taken by the total rolled.",
-                action: ["reaction", "Buffered Metabolism"],
+                action: ["reaction", ""],
             },
             "clotting agent": {
                 name: "Clotting Agent",
-                source: ["VSoS", 35],
-                submenu: "[1st Level]",
+                source: ["VSoS", 35],    
                 description: " My hit point max is increased by my alchemist level.",
                 calcChanges: {
-                    hp: function (totalHD, HDObj, prefix) {
-                        return [classes.known.alchemist.level, "Clotting Agent (Alchemist)"];
-                    },
+					hp : function (totalHD) {
+						return [classes.known.alchemist.level * 2 + What("Con Mod"), '\n + ' + classes.known.alchemist.level + ' \xD7 2 from the Clotting Agent (' + (classes.known.alchemist.level * 2) + What("Con Mod") + ')', true];
+					},
                     hpForceRecalc: true
                 }
             },
+			// ! TODO Everything below	
             "craft homonculus": {
                 name: "Craft Homunculus",
                 source: ["VSoS", 35],
-                submenu: "[1st Level]",
-                description: "\n    With 8 hours of work, I can create a homunculus. See its companion page for more info.",
-                creaturesAdd: [["Cat", true, false, "alchemist_homunculus"]]
+                description: "\n    With 8 hours of work, I can create a homunculus. Use the \"Companion Options\"" + 
+							 "\n    menu on the companion page to select your homunculus.",
             },
             "demolition spree (prereq: 13th level mad bomber)": {
                 name: "Demolition Spree",
@@ -2737,7 +2725,6 @@ ClassList["alchemist"] = {
             "explosive missile": {
                 name: "Explosive Missile",
                 source: ["VSoS", 35],
-                submenu: "[1st Level]",
                 description: "\n   As a bonus action, I can load a bomb (max 1) onto the head of a crossbow bolt."+
                              "\n   This bolt deals primed bomb damage, but has no blast radius."+ 
                              "\n   I can't fire a bomb bolt on the same turn I throw a bomb.",
@@ -2746,7 +2733,6 @@ ClassList["alchemist"] = {
             "fire brand": {
                 name: "Fire Brand",
                 source: ["VSoS", 35],
-                submenu: "[1st Level]",
                 description: "\n   As a bonus action, until the end of my turn, one of my melee weapons deals an extra 1d6 fire"+ 
                              "\n   damage on hit. This extra damage increases by 1d6 at 5th, 11th, and 17th level.",
                 additional: levels.map(function (n) {
@@ -2768,7 +2754,6 @@ ClassList["alchemist"] = {
             "fire eater": {
                 name: "Fire Eater",
                 source: ["VSoS", 35],
-                submenu: "[1st Level]",
                 description: "\n   As an action, I can use a bomb to make each creature in a 15 ft cone from me Dex save vs my"+
                              "\n   bomb save DC, taking primed bomb fire damage, or half on a success. When I use this ability,"+
                              "\n   I take 1d4 fire damage for each of my bomb's damage dice.",
@@ -2796,22 +2781,25 @@ ClassList["alchemist"] = {
                     ]
                 }
             },
-            // todo: is there another way to showcase this dc?
-            "fire in the hole (prereq: 9th level alchemist)": {
-                name: "Fire in The Hole",
-                source: ["VSoS", 35],
-                submenu: "[9th Level]",
-                prereqeval: function (v) { return classes.known.alchemist.level >= 9 },
-                description: "\n   My bomb save DC increases by half of my proficiency bonus, rounded down.",
-                calcChanges : {
-                    spellCalc: [
-                        function (type, spellcasters, ability) {
-                            if (type == "dc" && spellcasters.indexOf("alchemist") != -1) return classes.known.alchemist.level < 17 ? 2 : 3;
-                        },
-                        "My bomb save DC increases by half of my proficiency bonus, rounded down.",
-                    ]
-                }
-            },
+			"fire in the hole (prereq: 9th level alchemist)": {
+				name: "Fire in The Hole",
+				source: ["VSoS", 35],
+				submenu: "[9th Level]",
+				prereqeval: function (v) { return classes.known.alchemist.level >= 9 },
+				description: "\n   My bomb save DC increases by half of my proficiency bonus, rounded down.",
+				addMod : [
+					{ type : "dc", field : "Int", mod : "Prof/2", text : "My bomb save DC increases by half of my proficiency bonus, rounded down."}
+				],
+				calcChanges : {
+					spellCalc: [
+						function (type, spellcasters, ability) {
+							if (type == "dc" && spellcasters.indexOf('alchemist') !== -1) return Math.floor(Number(How("Proficiency Bonus") / 2));
+						},
+						"My bomb save DC increases by half of my proficiency bonus, rounded down.",
+						750
+					]
+				}
+			},
             "fortified serum (prereq: 13th level apothecary)": {
                 name: "Fortified Serum",
                 source: ["VSoS", 35],
@@ -2823,7 +2811,6 @@ ClassList["alchemist"] = {
             "grenadier": {
                 name: "Grenadier",
                 source: ["VSoS", 35],
-                submenu: "[1st Level]",
                 description: "\n   When I prime & throw a bomb, I can use my bonus action to make an attack with a weapon"+
                              "\n   that isn't two handed.",
                 action: ["bonus action", "Grenadier"],
@@ -2890,7 +2877,6 @@ ClassList["alchemist"] = {
             "poisoner": {
                 name: "Poisoner",
                 source: ["VSoS", 36],
-                submenu: "[1st Level]",
                 description: "\n   I gain proficiency with the poisoner's kit. I can also brew new poisons using my reagent dice."+
                              "\n   My poisons also use my bomb save DC instead of their normal save DCs.",
                 toolProfs: ["Poisoner's kit"],
@@ -2913,7 +2899,6 @@ ClassList["alchemist"] = {
             "precision explosives": {
                 name: "Precision Explosives",
                 source: ["VSoS", 36],
-                submenu: "[1st Level]",
                 description: "\n   I can choose 1 creature in the blast radius other than the target to automatically"+
                              "\n   succeed on its saving throw and take no damage from it.",
             },
@@ -2928,14 +2913,12 @@ ClassList["alchemist"] = {
             "recycled potions": {
                 name: "Recycled Potions",
                 source: ["VSoS", 36],
-                submenu: "[1st Level]",
                 description: "\n   When I brew potions, I can destroy previously brewed potions, regaining the reagent dice"+
                              "\n   used to brew them. I can't gain more than my max number of reagent dice using this ability.",
             },
             "syringe": {
                 name: "Syringe",
                 source: ["VSoS", 36],
-                submenu: "[1st Level]",
                 description: "\n   As a bonus action, I can inject a potion into myself or another creature within 5 feet of me,"+
                              "\n   granting the benefits of the potion. I must make a melee attack against unwilling creatures,"+
                              "\n   treating the syringe as a finesse weapon.",
@@ -3031,8 +3014,71 @@ ClassList["alchemist"] = {
     }
 };
 
+// ! Companion list for alchemist
 
-// * Weapons
+CompanionList.alchemist_homunculus = {
+	name : "Alchemist Homunculus",
+	nameMenu : "Familiar (Homunculus)",
+	source : [["VSoS", 35]],
+	includeCheck : function(sCrea, objCrea, iCreaCR, bIsAL) {
+		return objCrea.companion && (/familiar/i.test(objCrea.companion) || (Array.isArray(objCrea.companion) && objCrea.companion.some(function (n) { return /familiar/i.test(n) }))) ? true : false;
+	},
+	notes : [{
+		name : "Create a construct that serves as a familiar",
+		description : [
+			"appearing in an unoccupied space within 10 ft",
+			"It assumes a chosen form (can change at every casting): bat, cat, crab, frog (toad), hawk,",
+			"lizard, octopus, owl, poisonous snake, fish (quipper), rat, raven, sea horse, spider, or weasel.",
+			"It has the chosen form's statistics, but its type changes to a construct",
+			"When the homunculus drops to 0 hit points, its body remains, and can be",
+			"reanimate over the course of an hour."
+		].join("\n   "),
+		joinString : ", "
+	}, {
+		name : "The homunculus acts independently of me",
+		description : [
+			"but it always obeys my commands",
+			"In combat, it rolls its own initiative and acts on its own turn.",
+			"It can also take the attack action only on its turn."
+		].join("\n   "),
+		joinString : ", "
+	}, {
+		name : "While it is on the same plane of existence of me",
+		description : "I can communicate with it telepathically",
+		joinString : ", "
+	}, {
+		name : "As an action, I see/hear what it does",
+		description : " (but not with my senses) until the start of my next turn",
+		joinString : ""
+	}, {
+		name : "I can't have more than one homonculus at a time",
+		description : "",
+		joinString : ""
+	}, {
+		name : "When I cast a spell with a range of touch",
+		description : [
+			"my homunculus can deliver the spell",
+			"It must be within 100 ft of me and it must use its reaction to deliver the spell when I cast it",
+			"It acts as if it cast the spell, but it can use my modifiers for any attack rolls the spell requires"
+		].join("\n   "),
+		joinString : ", "
+	}],
+	attributesAdd : {
+		header : "Homunculus",
+		features : [{
+			name : "Find Familiar (Homunculus)",
+			description : "If dropped to 0 HP, the homunculus remains there. The homunculus must obey all commands of its master."
+		}]
+	},
+	attributesChange: function (sCrea, objCrea) {
+		if (objCrea.type.toLowerCase() != "construct") {
+			objCrea.type = "Construct";
+			objCrea.subtype = "";
+		}
+	}
+}
+
+// ! Weapons
 
 WeaponsList["bomb"] = {
 	regExpSearch : /^(?!.*renaissance)(?=.*bomb).*$/i,
