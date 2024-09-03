@@ -1885,6 +1885,7 @@ ClassList["alchemist"] = {
 				regExpSearch : /bomb \(alchemist\)/i,
 				source : ["VSoS", 29],
 				baseWeapon : "bomb",
+				damage : ["C", 10, "Fire"],	
 				selectNow : true
 			}],
             calcChanges: {
@@ -1909,12 +1910,12 @@ ClassList["alchemist"] = {
 								* We need to change it back to Dex if it is higher than Int
 							*/
 							var mod = What("Str Mod") > What("Dex Mod") ? What("Str Mod") : What("Dex Mod");
-							if(What("Int Mod") > mod) {
+							if(What("Int Mod") < mod) {
 								output.extraDmg = Math.max(mod - What("Int Mod"), 0);
 							};
                         };
 						if((/bomb/i).test(v.WeaponTextName) && !(/\bprimed\b/i).test(v.WeaponTextName)) { // * Only applies to non-primed bombs
-							output.extraDmg = (What("Str Mod") > What("Dex Mod") ? What("Str Mod") : What("Dex Mod")) - Math.max(What("Int Mod"), 0);
+							output.extraDmg = (What("Str Mod") > What("Dex Mod") ? What("Str Mod") : What("Dex Mod")) - What("Int Mod");
 						}
                     },
                     "When priming a bomb, I can add my Intelligence modifier instead of my Dexterity to the bomb's damage roll."
@@ -1946,8 +1947,7 @@ ClassList["alchemist"] = {
                 name: "Known Bomb Formulae",
                 source: ["VSoS", 29],
                 note: ["I know these formulae and can apply them once per turn when I prime a bomb.",
-                       "Known Bomb formulae are written here as follows:", 
-					   "\u25C6 Bomb Formula [Damage Die, Type - Saving Throw]",
+                       "Known Bomb formulae are written here as follows:\n" + "\u25C6Bomb Formula [Damage Die, Type - Saving Throw]",
 					   "Description of additional effects written here."
                 ]
             }],
@@ -1976,7 +1976,7 @@ ClassList["alchemist"] = {
                         function (fields, v) {
                             if (/\bacid\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
                                 fields.Description += (fields.Description ? '; ' : '') + "Crea(s) take same dmg at end of next turn";
-                            }
+							}
                         },
                         "When the word 'Acid' is added to the title one of my Bomb attacks, the attack is treated as one of my Acid Bombs."
                     ]
@@ -2029,14 +2029,12 @@ ClassList["alchemist"] = {
                             if (/\bcryo\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
 								fields.Description = fields.Description.replace(/int save/i, "Con save").replace(/dmg to all/i, "dmg and -10 ft speed to all");
 								fields.Description_Tooltip = fields.Description_Tooltip.replace(/an intelligence/i, "on a Constitution");
-								fields.Damage_Die = fields.Damage_Die.replace(/d\d+/ig, 'd8');
                             }
                         },
                         "When the word 'Cryo' is added to the title one of my Bomb attacks, the attack is treated as one of my Cryo Bombs."
                     ]
                 }
             },
-			// ! TODO Everything Below
             "holy bomb": {
                 name: "Holy Bomb Formula",
                 description: " See notes",
@@ -2045,24 +2043,21 @@ ClassList["alchemist"] = {
                     note: "\nThis bomb's damage dice are d6s vs Celestials, or d12s vs Fiends/Undead",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Holy Bomb"],
+				weaponOptions : [{
+					name : "Holy Bomb",
+					source : ["VSoS", 31],
+					regExpSearch : /holy bomb/i,
+					baseWeapon : "bomb",
+					damage :  ["C", 10, "Radiant"]
+				}],
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bholy\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
-                                fields.Description += ", d6 vs Celestials; d12 vs Fiends/Undead";
-                                fields.Damage_Type = "Radiant";
+                                fields.Description +=  (fields.Description ? '; ' : '') + "d6 vs Celestials; d12 vs Fiends/Undead";
                             }
                         },
                         "When the word 'Holy' is added to the title one of my Bomb attacks, the attack is treated as one of my Holy Bombs"
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\bholy\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
                 }
             },
@@ -2074,24 +2069,21 @@ ClassList["alchemist"] = {
                     note: "\nAll affected are pushed 5 feet away from the blast",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Impact Bomb"],
+				weaponOptions : [{
+					name : "Impact Bomb",
+					source : ["VSoS", 31],
+					regExpSearch : /impact bomb/i,
+					baseWeapon : "bomb",
+					damage :  ["C", 8, "Force"]
+				}],
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bimpact\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
-                                fields.Description += ", all affected pushed 5 ft away from blast";
-                                fields.Damage_Type = "Force";
+								fields.Description = fields.Description.replace(/dmg to all/i, "dmg and pushed 5 ft away to all");
                             }
                         },
                         "When the word 'Impact' is added to the title one of my Bomb attacks, the attack is treated as one of my Impact Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\bimpact\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
                 }
             },
@@ -2103,24 +2095,22 @@ ClassList["alchemist"] = {
                     note: "\nUntil start of my next turn, creatures that end turn in blast radius take half damage."+
                            " Flammable objects that aren't being worn or carried ignite",
                     amendTo: "Known Bomb Formulae"
-                }],                
-                weaponsAdd: ["Incendiary Bomb"],
+                }],
+				weaponOptions : [{
+					name : "Incendiary Bomb",
+					source : ["VSoS", 32],
+					regExpSearch : /incendiary bomb/i,
+					baseWeapon : "bomb",
+					damage :  ["C", 6, "Force"]
+				}],                
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
-                            if (/\bincendiary\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
-                                fields.Description += ", crea starting turn in blast radius take half dmg";
+                            if (/\bincendiary\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {								
+                                fields.Description += (fields.Description ? '; ' : '') + "Crea(s) still in rad. next turn take \u00BD dmg";
                             }
                         },
                         "When the word 'Incendiary' is added to the title one of my Bomb attacks, the attack is treated as one of my Incendiary Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\bincendiary\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
                 }
             },
@@ -2132,24 +2122,21 @@ ClassList["alchemist"] = {
                     note: "\nAll affected fall prone and are immune to this effect for 24 hours",
                     amendTo: "Known Bomb Formulae"
                 }],  
-                weaponsAdd: ["Laughing Gas Bomb"],
+				weaponOptions : [{
+					name : "Laughing Gas Bomb",
+					source : ["VSoS", 32],
+					regExpSearch : /laughing gas bomb/i,
+					baseWeapon : "bomb",
+					damage :  ["C", 6, "Poison"]
+				}], 
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\blaughing gas\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
-                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless CON save, all affected fall prone";
-                                fields.Damage_Type = "Poison";
+								fields.Description = fields.Description.replace(/int save/i, "Con save").replace(/dmg to all/i, "dmg and fall prone to all");
                             }
                         },
                         "When the word 'Laughing Gas' is added to the title one of my Bomb attacks, the attack is treated as one of my Laughing Gas Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\blaughing gas\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
                 }
             },
@@ -2160,25 +2147,22 @@ ClassList["alchemist"] = {
                     name: "Lightning Bomb [d8 Lightning - Dexterity]",
                     note: "\nAll affected can't take reactions until the end of their next turn",
                     amendTo: "Known Bomb Formulae"
-                }],  
-                weaponsAdd: ["Lightning Bomb"],
+                }],
+				weaponOptions : [{
+					name : "Lightning Bomb",
+					source : ["VSoS", 32],
+					regExpSearch : /lightning bomb/i,
+					baseWeapon : "bomb",
+					damage :  ["C", 8, "Lightning"]
+				}],  
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\blightning\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
-                                fields.Description += ", all affected can't take reactions";
-                                fields.Damage_Type = "Lightning";
+								fields.Description = fields.Description.replace(/in 7\.5 ft/i, "in 7.5 ft and no rea. til end of next turn");
                             }
                         },
                         "When the word 'Lightning' is added to the title one of my Bomb attacks, the attack is treated as one of my Lightning Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\blightning\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
                 }
             },
@@ -2190,24 +2174,21 @@ ClassList["alchemist"] = {
                     note: "\nBlast radius ignores 1/2 & 3/4 cover. Creatures dropped to 0 hp are K.O'd, stable.",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Nonlethal Bomb"],
+                weaponOptions : [{
+					name : "Nonlethal Bomb",
+					source : ["VSoS", 32],
+					regExpSearch : /nonlethal bomb/i,
+					baseWeapon : "bomb",
+					damage :  ["C", 8, "Bludgeoning"]
+				}],
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bnonlethal\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
-                                fields.Description += ", AoE ignores all cover but full";
-                                fields.Damage_Type = "Bludgeoning";
+								fields.Description += (fields.Description ? '; ' : '') + "Blast ignores all but full cover";
                             }
                         },
                         "When the word 'Nonlethal' is added to the title one of my Bomb attacks, the attack is treated as one of my Nonlethal Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\bnonlethal\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
                 }
             },
@@ -2221,7 +2202,23 @@ ClassList["alchemist"] = {
                           "\nThe next fire damage to coated creature deals +1d6 fire damage per damage die rolled. Extra fire damage dice added cannot exceed half my alchemist level, rounded up",
                     amendTo: "Known Bomb Formulae"
                 }],
-                action: ["action", "Throw Oil Bomb"]
+				weaponOptions : [{
+					name : "Oil Bomb",
+					source : ["VSoS", 32],
+					regExpSearch : /oil bomb/i,
+					baseWeapon : "bomb",
+					damage : ["", "", ""]
+				}],
+				calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if (/\boil\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/int save or \u00BD dmg to all in 7\.5 ft/i, "Int save or covered in oil to all in 7.5 ft");
+                            }
+                        },
+                        "When the word 'Oil' is added to the title one of my Bomb attacks, the attack is treated as one of my Oil Bombs."
+                    ]
+                }
             },
             "prismatic bomb": {
                 name: "Prismatic Bomb Formula",
@@ -2238,23 +2235,22 @@ ClassList["alchemist"] = {
                         "\n6      Radiant",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Prismatic Bomb"],
+				weaponOptions : [{
+					name : "Prismatic Bomb",
+					source : ["VSoS", 32],
+					regExpSearch : /prismatic bomb/i,
+					baseWeapon : "bomb",
+					damage : ["C", 8, ""]
+				}],
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bprismatic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
-                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless save, see table for dmg & save type";
-                                fields.Damage_Type = "See Table";
+								fields.Description = fields.Description.replace(/int save/i, "Save");
+								fields.Description += (fields.Description ? '; ' : '') + "See Table for dmg & save type";
                             }
                         },
                         "When the word 'Prismatic' is added to the title one of my Bomb attacks, the attack is treated as one of my Prismatic Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\bprismatic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                output.extraDmg += Math.min((What('Int Mod') - output.extraDmg), 0);
-                        }
                     ]
                 }
             },
@@ -2263,27 +2259,24 @@ ClassList["alchemist"] = {
                 description: " See notes",
                 toNotesPage: [{
                     name: "Psionic Bomb [d6 Psychic - Wisdom]",
-                    note: "\nAll affected have disadv. on concentration saves until the end of their next turn",
+                    note: "\nAll affected have disadv. on concentration saves until the end of their next turn, including against this bomb's damage.",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Psionic Bomb"],
+                weaponOptions : [{
+					name : "Psionic Bomb",
+					source : ["VSoS", 33],
+					regExpSearch : /psionic bomb/i,
+					baseWeapon : "bomb",
+					damage : ["C", 6, "Psychic"]
+				}],
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bpsionic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
-                                fields.Description = "Finesse, Special, half dmg to all in 15 ft of target unless WIS save, all affected gain disadv. vs concentration";
-                                fields.Damage_Type = "Psychic";
+								fields.Description = fields.Description.replace(/int save/i, "Wis save").replace(/dmg to all/i, "dmg and disadv. on Conc. saves til end of next turn to all");
                             }
                         },
                         "When the word 'Psionic' is added to the title one of my Bomb attacks, the attack is treated as one of my Psionic Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\bpsionic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
                 }
             },
@@ -2295,14 +2288,18 @@ ClassList["alchemist"] = {
                     note: "\nOnly audible out 10 ft, makes no light. Disadv. on ability checks to detect blast",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Quiet Bomb"],
+				weaponOptions : [{
+					name : "Quiet Bomb",
+					source : ["VSoS", 33],
+					regExpSearch : /quiet bomb/i,
+					baseWeapon : "bomb",
+					damage : ["C", 8, "Fire"]
+				}],
                 calcChanges: {
-                    atkCalc: [
-                        function (fields, v, output) {
+                    atkAdd : [
+                        function (fields, v) {
                             if (/\bquiet\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                output.die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+								fields.Description += (fields.Description ? '; ' : '') + "Disadv. on ability checks to detect blast";
                             }
                         },
                         "When the word 'Quiet' is added to the title one of my Bomb attacks, the attack is treated as one of my Quiet Bombs."
@@ -2317,14 +2314,18 @@ ClassList["alchemist"] = {
                     note: "\nRanged attack rolls with this bomb don't get disadv. when within 5 ft of a hostile",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Seeking Bomb"],
+                weaponOptions : [{
+					name : "Seeking Bomb",
+					source : ["VSoS", 33],
+					regExpSearch : /seeking bomb/i,
+					baseWeapon : "bomb",
+					damage : ["C", 6, "Fire"]
+				}],
                 calcChanges: {
-                    atkCalc: [
-                        function (fields, v, output) {
+                    atkAdd : [
+                        function (fields, v) {
                             if (/\bseeking\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                output.die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
+								fields.Description += (fields.Description ? '; ' : '') + "No disadv. when within 5 ft of a hostile";
                             }
                         },
                         "When the word 'Seeking' is added to the title one of my Bomb attacks, the attack is treated as one of my Seeking Bombs."
@@ -2339,8 +2340,22 @@ ClassList["alchemist"] = {
                     note: "\nFills a 10 ft rad. sphere with heavily-obscuring smoke that lasts (Int mod min 1) rounds. Wind speeds of at least 10 miles/hour disperses it. The smoke spreads around corners. Once thrown, I cannot throw another smoke bomb for 1 minute",
                     amendTo: "Known Bomb Formulae"
                 }],
-                action: ["action", "Throw Smoke Bomb"],
-                additional: "Smoke duration: " + Math.max(What('Int Mod'), 1) + " rounds",
+                weaponOptions : [{
+					name : "Smoke Bomb",
+					source : ["VSoS", 33],
+					regExpSearch : /smoke bomb/i,
+					baseWeapon : "bomb",
+					damage : ["", "", ""]
+				}],
+				calcChanges: {
+					atkAdd : [
+						function (fields, v) { // * "Finesse, special, Int save or \u00BD dmg to all in 7.5 ft; See tool tip"
+							if (/\bsmoke\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/int save or \u00BD dmg to all in 7\.5 ft/i, "Smoke fills 10 ft rad. sphere") + (fields.Description ? '; ' : '') + "Lasts " + Math.max(What("Int Mod"), 1) + " round(s)";
+							}
+						}
+					]
+				}
             },
             "sonic bomb": {
                 name: "Sonic Bomb Formula",
@@ -2350,24 +2365,21 @@ ClassList["alchemist"] = {
                     note: "\nCreatures affected by this bomb are deafened until the end of their next turn",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Sonic Bomb"],
+				weaponOptions : [{
+					name : "Sonic Bomb",
+					source : ["VSoS", 33],
+					regExpSearch : /sonic bomb/i,
+					baseWeapon : "bomb",
+					damage : ["C", 6, "Thunder"]
+				}],
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bsonic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
-                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless CON save, all affected are deaf";
-                                fields.Damage_Type = "Thunder";
+								fields.Description = fields.Description.replace(/int save/i, "Con save").replace(/dmg to all/i, "dmg and deaf til end of next turn to all");
                             }
                         },
                         "When the word 'Sonic' is added to the title one of my Bomb attacks, the attack is treated as one of my Sonic Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\bsonic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
                 }
             },
@@ -2379,27 +2391,25 @@ ClassList["alchemist"] = {
                     note: "\nAffected have disadv. on ability checks they make until the end of their next turn",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Stink Bomb"],
+                weaponOptions : [{
+					name : "Stink Bomb",
+					source : ["VSoS", 33],
+					regExpSearch : /stink bomb/i,
+					baseWeapon : "bomb",
+					damage : ["C", 8, "Poison"]
+				}],
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bstink\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
-                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless CON save, all affected gain disadv. on ability checks";
-                                fields.Damage_Type = "Poison";
+								fields.Description = fields.Description.replace(/int save/i, "Con save").replace(/dmg to all/i, "dmg and disadv. on ability checks til end of next turn to all");
                             }
                         },
                         "When the word 'Stink' is added to the title one of my Bomb attacks, the attack is treated as one of my Stink Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\bstink\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
                 }
             },
+			// ! TODO Everything below
             "teleportation bomb": {
                 name: "Teleportation Bomb Formula",
                 description: " See notes",
