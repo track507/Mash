@@ -26,11 +26,10 @@ Everything up to "Alchemist Bomb Formulae" has been added and updated to v13.2.0
   - All bombs now use Int as the modifier to show the DC.
   - Primed Bombs now correctly adds which mod to use for damage: Str, Dex, or Int, whichever one is higher.
   - Non-primed bombs now correctly adds Str/Dex to use for damage.
-  - Acid, Bramble, and Cryo bombs now updated and fixed. 
+  - All Bomb Formulae have have been updated and removed `weaponsAdd` from each and now using `weaponOptions` without `selectNow` to prevent up to 11 weapons bein automatcally added and instead appear at the top of the attack drop down.
 
 ### WIP: 
-  - Alchemist "Bomb Formulae"
-  - Removing the `weaponsAdd` automation and the `selectNow` attribute in `weaponOptions` in "Bomb Formulae" and now appears in the attack drop down. This is to prevent having up to 11 attack entries automatically added to 1st page attacks. User can pick from the attack drop down instead.
+  - Alchemist Fields of Study and down.
 
 ### TODO: 
   - Finish Alchemist class update and revisions
