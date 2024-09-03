@@ -2409,7 +2409,6 @@ ClassList["alchemist"] = {
                     ]
                 }
             },
-			// ! TODO Everything below
             "teleportation bomb": {
                 name: "Teleportation Bomb Formula",
                 description: " See notes",
@@ -2490,6 +2489,7 @@ ClassList["alchemist"] = {
                 }
             }
         },
+		// ! TODO Everything below
         "subclassfeature2": {
             name: "Field of Study",
             source: ["VSoS", 29],
@@ -3030,6 +3030,9 @@ ClassList["alchemist"] = {
         }
     }
 };
+
+
+// * Weapons
 
 WeaponsList["bomb"] = {
 	regExpSearch : /^(?!.*renaissance)(?=.*bomb).*$/i,
