@@ -2471,24 +2471,21 @@ ClassList["alchemist"] = {
                     note: "\nAll affected by this bomb cannot regain hit points until the end of their next turn",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Withering Bomb"],
+				weaponOptions : [{
+					name : "Withering Bomb",
+					source : ["VSoS", 33],
+					regExpSearch : /withering bomb/i,
+					baseWeapon : "bomb",
+					damage : ["C", 8, "Necrotic"]
+				}],
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bwithering\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d8" : classes.known.alchemist.level < 11 ? "2d8" : classes.known.alchemist.level < 17 ? "3d8" : "4d8";
-                                fields.Description = "Finesse, Special, half dmg to all in 7.5 ft of target unless CON save, all affected can't regain hit points";
-                                fields.Damage_Type = "Necrotic";
+								fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(/dmg to all/i, "dmg and can't regain HP til end of next turn to all");
                             }
                         },
                         "When the word 'Withering' is added to the title one of my Bomb attacks, the attack is treated as one of my Withering Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\bwithering\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
                 }
             }
