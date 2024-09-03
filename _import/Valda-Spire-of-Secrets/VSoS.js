@@ -1893,7 +1893,7 @@ ClassList["alchemist"] = {
 					function(fields, v) { 
 						if((/bomb/i).test(v.WeaponTextName)) { // * Proficient in all bombs
 							// * This replaces the bombs normal Dex save to an Int save
-							fields.Description = fields.Description.replace(/dc \d+ dex save/i, "Int save");
+							fields.Description = fields.Description.replace(/dc \d+ dex save/i, "Dex save");
 							fields.Description_Tooltip = fields.Description_Tooltip.replace(/on a DC 11 Dexterity/i, "an Intelligence");
 							fields.Proficiency = true;
 							fields.Mod = 4;
@@ -2001,7 +2001,7 @@ ClassList["alchemist"] = {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bbramble\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-								fields.Description = fields.Description.replace(/int save or \u00BD dmg to all in 7\.5 ft/i, "Diff. terrain in 7.5 ft for 1 min, if prone on detonate, Str save to move or stand");
+								fields.Description = fields.Description.replace(/dex save or \u00BD dmg to all in 7\.5 ft/i, "Diff. terrain in 7.5 ft for 1 min, if prone on detonate, Str save to move or stand");
                             }
                         },
                         "When the word 'Bramble' is added to the title one of my Bomb attacks, the attack is treated as one of my Bramble Bombs."
@@ -2027,7 +2027,7 @@ ClassList["alchemist"] = {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bcryo\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-								fields.Description = fields.Description.replace(/int save/i, "Con save").replace(/dmg to all/i, "dmg and -10 ft speed to all");
+								fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(/dmg to all/i, "dmg and -10 ft speed to all");
 								fields.Description_Tooltip = fields.Description_Tooltip.replace(/an intelligence/i, "on a Constitution");
                             }
                         },
@@ -2133,7 +2133,7 @@ ClassList["alchemist"] = {
                     atkAdd: [
                         function (fields, v) {
                             if (/\blaughing gas\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-								fields.Description = fields.Description.replace(/int save/i, "Con save").replace(/dmg to all/i, "dmg and fall prone to all");
+								fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(/dmg to all/i, "dmg and fall prone to all");
                             }
                         },
                         "When the word 'Laughing Gas' is added to the title one of my Bomb attacks, the attack is treated as one of my Laughing Gas Bombs."
@@ -2213,7 +2213,7 @@ ClassList["alchemist"] = {
                     atkAdd: [
                         function (fields, v) {
                             if (/\boil\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-								fields.Description = fields.Description.replace(/int save or \u00BD dmg to all in 7\.5 ft/i, "Int save or covered in oil to all in 7.5 ft");
+								fields.Description = fields.Description.replace(/dex save or \u00BD dmg to all in 7\.5 ft/i, "Dex save or covered in oil to all in 7.5 ft");
                             }
                         },
                         "When the word 'Oil' is added to the title one of my Bomb attacks, the attack is treated as one of my Oil Bombs."
@@ -2246,8 +2246,7 @@ ClassList["alchemist"] = {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bprismatic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-								fields.Description = fields.Description.replace(/int save/i, "Save");
-								fields.Description += (fields.Description ? '; ' : '') + "See Table for dmg & save type";
+								fields.Description = fields.Description.replace(/dex save/i, "Save") + (fields.Description ? '; ' : '') + "See Table for dmg & save type" ;
                             }
                         },
                         "When the word 'Prismatic' is added to the title one of my Bomb attacks, the attack is treated as one of my Prismatic Bombs."
@@ -2273,7 +2272,7 @@ ClassList["alchemist"] = {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bpsionic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-								fields.Description = fields.Description.replace(/int save/i, "Wis save").replace(/dmg to all/i, "dmg and disadv. on Conc. saves til end of next turn to all");
+								fields.Description = fields.Description.replace(/dex save/i, "Wis save").replace(/dmg to all/i, "dmg and disadv. on Conc. saves til end of next turn to all");
                             }
                         },
                         "When the word 'Psionic' is added to the title one of my Bomb attacks, the attack is treated as one of my Psionic Bombs."
@@ -2349,11 +2348,12 @@ ClassList["alchemist"] = {
 				}],
 				calcChanges: {
 					atkAdd : [
-						function (fields, v) { // * "Finesse, special, Int save or \u00BD dmg to all in 7.5 ft; See tool tip"
+						function (fields, v) { 
 							if (/\bsmoke\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-								fields.Description = fields.Description.replace(/int save or \u00BD dmg to all in 7\.5 ft/i, "Smoke fills 10 ft rad. sphere") + (fields.Description ? '; ' : '') + "Lasts " + Math.max(What("Int Mod"), 1) + " round(s)";
+								fields.Description = fields.Description.replace(/dex save or \u00BD dmg to all in 7\.5 ft/i, "Smoke fills 10 ft rad. sphere") + (fields.Description ? '; ' : '') + "Lasts " + Math.max(What("Int Mod"), 1) + " round(s)";
 							}
-						}
+						},
+						"When the word 'Smoke' is added to the title one of my Bomb attacks, the attack is treated as one of my Sonic Bombs."
 					]
 				}
             },
@@ -2376,7 +2376,7 @@ ClassList["alchemist"] = {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bsonic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-								fields.Description = fields.Description.replace(/int save/i, "Con save").replace(/dmg to all/i, "dmg and deaf til end of next turn to all");
+								fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(/dmg to all/i, "dmg and deaf til end of next turn to all");
                             }
                         },
                         "When the word 'Sonic' is added to the title one of my Bomb attacks, the attack is treated as one of my Sonic Bombs."
@@ -2402,7 +2402,7 @@ ClassList["alchemist"] = {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bstink\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-								fields.Description = fields.Description.replace(/int save/i, "Con save").replace(/dmg to all/i, "dmg and disadv. on ability checks til end of next turn to all");
+								fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(/dmg to all/i, "dmg and disadv. on ability checks til end of next turn to all");
                             }
                         },
                         "When the word 'Stink' is added to the title one of my Bomb attacks, the attack is treated as one of my Stink Bombs."
@@ -2418,7 +2418,24 @@ ClassList["alchemist"] = {
                     note: "\nInstantly teleports me to where it explodes. Fails if it explodes over 30 ft away",
                     amendTo: "Known Bomb Formulae"
                 }],
-                action: ["action", "Throw Teleportation Bomb"]
+				weaponOptions : [{
+					name : "Teleportation Bomb",
+					source : ["VSoS", 33],
+					regExpSearch : /teleportation bomb/i,
+					baseWeapon : "bomb",
+					damage : ["", "", ""]
+				}],
+				calcChanges : {
+					atkAdd : [
+						function(fields, v) { 
+							if(/\bteleportation\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/dex save or \u00BD dmg to all in 7\.5 ft/i, "Teleport to where it explodes");
+								fields.Range = "30 ft";
+							}
+						},
+						"When the word 'Teleportation' is added to the title one of my Bomb attacks, the attack is treated as one of my Thermobaric Bombs."
+					]
+				}
             },
             "thermobaric bomb": {
                 name: "Thermobaric Bomb Formula",
@@ -2428,25 +2445,23 @@ ClassList["alchemist"] = {
                     note: "\nThis bomb's blast radius is 10 feet instead of 15 feet",
                     amendTo: "Known Bomb Formulae"
                 }],
-                weaponsAdd: ["Thermobaric Bomb"],
+				weaponOptions : [{
+					name : "Thermobaric Bomb",
+					source : ["VSoS", 33],
+					regExpSearch : /thermobaric bomb/i,
+					baseWeapon : "bomb",
+					damage : ["C", 6, "Fire"]
+				}],
                 calcChanges: {
                     atkAdd: [
                         function (fields, v) {
                             if (/\bthermobaric\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d6" : classes.known.alchemist.level < 11 ? "2d6" : classes.known.alchemist.level < 17 ? "3d6" : "4d6";
-                                fields.Description = "Finesse, Special, half dmg to all in 10 ft of target unless Dex save";
+								fields.Description = fields.Description.replace(/7\.5 ft/i, "10 ft");
                             }
                         },
                         "When the word 'Thermobaric' is added to the title one of my Bomb attacks, the attack is treated as one of my Thermobaric Bombs."
-                    ],
-                    atkCalc: [
-                        function (fields, v, output) {
-                            if (/\bthermobaric\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName))
-                                var mod = v.StrDex == 1 ? What('Str Mod') : What('Dex Mod');
-                                output.extraDmg = Math.max((What('Int Mod') - mod), 0);
-                        }
                     ]
-                }
+				}
             },
             "withering bomb": {
                 name: "Withering Bomb Formula",
