@@ -3022,7 +3022,7 @@ ClassList["alchemist"] = {
 
 // ! Alchemist Subclasses
 
-// Amorist Alchemist subclass
+// * Amorist Alchemist subclass
 AddSubClass("alchemist", "amorist", {
 	regExpSearch : /\bamorist\b/i,
 	subname : "Amorist",
@@ -3043,7 +3043,7 @@ AddSubClass("alchemist", "amorist", {
 			}],
 			weaponOptions: [{
 				name: "Pheromone Bomb",
-				source: ["VSoS", 35],
+				source: ["VSoS", 37],
 				regExpSearch: /\bpheromone\b/i,
 				baseWeapon : "bomb",
 				ability : 0,
@@ -3113,7 +3113,7 @@ AddSubClass("alchemist","apothecary", {
 			}],
 			weaponOptions: [{
 				name: "Painkiller Bomb",
-				source: ["VSoS", 35],
+				source: ["VSoS", 38],
 				regExpSearch: /\bpainkiller\b/i,
 				baseWeapon : "bomb",
 				selectNow : true
@@ -3151,6 +3151,259 @@ AddSubClass("alchemist","apothecary", {
 				"of raise dead. Select this potion from the \"Magic Item\" dropdown menus."
 			]),
 			magicitemsAdd: ["Potion of Raise Dead"]
+		}
+	}
+})
+
+// * Dynamo Engineer alchemist subclass
+AddSubClass("alchemist","dynamo engineer",{
+	regExpSearch : /\bdynamo engineer\b/i,
+	subname : "Dynamo Engineer",
+	source: ["VSoS", 38],
+	fullname: "Dynamo Engineer",
+	spellcastingKnown : {
+		cantrips : 0,
+		spells : [0,2,2,3,3,3,4,4,4,5,6,6,7,7,7,8,8,8,9,9],
+	},
+	spellcastingList: {
+		"class": "wizard",
+		school: ["Evoc", "Trans"],
+		level: [1,4],           
+	},
+	spellcastingAbility: 4,
+	spellcastingFactor: "warlock1",
+	spellcastingTable: [
+		[0,0,0,0,0,0,0,0,0],
+		[0,0,0,0,0,0,0,0,0],
+		[2,0,0,0,0,0,0,0,0],
+		[2,0,0,0,0,0,0,0,0],
+		[3,0,0,0,0,0,0,0,0],
+		[3,0,0,0,0,0,0,0,0],
+		[3,0,0,0,0,0,0,0,0],
+		[0,4,0,0,0,0,0,0,0],
+		[0,4,0,0,0,0,0,0,0],
+		[0,4,0,0,0,0,0,0,0],
+		[0,5,0,0,0,0,0,0,0],
+		[0,5,0,0,0,0,0,0,0],
+		[0,5,0,0,0,0,0,0,0],
+		[0,0,5,0,0,0,0,0,0],
+		[0,0,5,0,0,0,0,0,0],
+		[0,0,5,0,0,0,0,0,0],
+		[0,0,6,0,0,0,0,0,0],
+		[0,0,6,0,0,0,0,0,0],
+		[0,0,6,0,0,0,0,0,0],
+		[0,0,0,7,0,0,0,0,0],
+		[0,0,0,7,0,0,0,0,0]
+	],
+	spellFirstColTitle: "DY",
+	features: {
+		"subclassfeature2" : {
+			name: "Spectrum Analyzer",
+			source: ["VSoS", 39],
+			minlevel: 2,
+			description: desc("Once per short or long rest, I can cast detect magic at will."),
+			spellcastingBonus: {
+				spells: ["detect magic"],
+				name: "Spectrum Analyzer",
+				selection: ["detect magic"],
+				firstCol: "oncesr",
+				magicItemComponents: false,
+			},
+			action: ["action", ""],
+			usages: 1,
+			recovery: "short rest"
+		},
+		"subclassfeature2.1": {
+			name : "Spellcasting",
+			source: ["VSoS", 39],
+			minlevel: 2,
+			description: desc([
+				"I have spell dynamos which each hold a wizard spell slot and 1 spell that I know. Int is my",
+				"spellcasting ability. I use my bomb save DC for spell saves. Dynamo slots are spent when I",
+				"cast the spell & regained on long rest. Switch the spells inside my dynamos on a short rest."
+			]),
+			limfeaname : "Spell Dynamos",
+			usages : levels.map(function (n) { n < 2 ? "" : (n < 4 ? 2 : n < 7 ? 3 : n < 10 ? 4 : n < 16 ? 5 : n < 19 ? 6 : 7) }),
+			recovery : "short rest",
+			additional : levels.map(function(n){
+				return n < 2 ? "" : (n < 4 ? "2" : n < 7 ? "3" : n < 10 ? "4" : n < 16 ? "5" : n < 19 ? "6" : "7") + " total spell dynamos";
+			}),
+			spellcastingBonus : { // the spells gained at level 2, 8, 14, 20
+				name : "From any school",
+				"class" : "wizard",
+				times : [0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4],
+				level : [1, 4]
+			},
+			extraLimitedFeatures: [{
+				name : "Spell Dynamos",
+				usagescalc: "event.value = classes.known.alchemist.level < 2 ? 0 : classes.known.alchemist.level < 4 ? 2 : classes.known.alchemist.level < 7 ? 3 : classes.known.alchemist.level < 10 ? 4 : classes.known.alchemist.level < 16 ? 5 : classes.known.alchemist.level < 19 ? 6 : 7",
+				recovery: "long rest",
+			}],
+		},
+		"subclassfeature6": {
+			name : "Arcano Bomb Formula",
+			source: ["VSoS", 39],
+			minlevel: 6,
+			description: " I gain a new bomb formula. See notes",
+			toNotesPage : [{
+				name: "Arcano Bomb Formula [d12 Force - Dexterity]",
+				note: "\nI use a spell dynamo slot to prime this bomb. It deals 1 extra die of damage.",
+				amendTo: "Known Bomb Formulae"
+			}],
+			weaponOptions: [{
+				name: "Arcano Bomb (SS)",
+				source: ["VSoS", 39],
+				regExpSearch: /\barcano\b/i,
+				baseWeapon : "bomb",
+				damage : ["Q", 12, "Force"],
+				selectNow : true
+			}]
+		},
+		"subclassfeature10" : {
+			name : "Counter-Discharge",
+			source: ["VSoS", 39],
+			minlevel: 10,
+			description: desc([
+				"As a reaction to a creature I can see casting a spell that affects me, I can use a spell dynamo",
+				"to gain adv. on the spell's saving throw & resistance to the spell's damage."
+			]),
+			action: ["reaction", ""],
+			usages: 1,
+			recovery: "long rest",
+		},
+		"subclassfeature18": {
+			name: "Arcane Recycler",
+			source: ["VSoS", 40],
+			minlevel: 18,
+			description: desc("When I miss with an arcano bomb, I reuse the spell slot, transferring it to an empty dynamo."),
+		}
+	}
+})
+
+// * Mad Bomber alchemist subclass
+AddSubClass("alchemist","mad bomber",{
+	regExpSearch : /\bmad bomber\b/i,
+	subname : "Mad Bomber",
+	source: ["VSoS", 40],
+	fullname: "Mad Bomber",
+	features: {
+		"subclassfeature2" : {
+			name : "Blasting Specialty",
+			source: ["VSoS", 40],
+			minlevel: 2,
+			description: desc("My bombs deal double damage to objects and structures."),
+		},
+		"subclassfeature2.1" : {
+			name : "Shrapnel Bomb Formula",
+			source: ["VSoS", 40],
+			minlevel: 2,
+			description: desc("I gain a new bomb formula. See notes."),
+			toNotesPage : [{
+				name: "Shrapnel Bomb Formula [d8 Piercing - Dexterity]",
+				note: "\nThis bomb has a blast radius of 10 feet.",
+				amendTo: "Known Bomb Formulae"
+			}],
+			weaponOptions: [{
+				name: "Shrapnel Bomb",
+				source: ["VSoS", 40],
+				regExpSearch: /\bshrapnel\b/i,
+				baseWeapon : "bomb",
+				damage : ["C", 8, "Piercing"],
+				selectNow : true,
+			}],
+			calcChanges: {
+				atkAdd: [
+					function (fields, v) {
+						if (/\bshrapnel\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+							fields.Description = fields.Description.replace(/in 7\.5 ft/, "in 10 ft") + (fields.Description ? '; ' : '') + "\xD72 damage against obj/structures";
+						}
+					},
+					"When the word 'Shrapnel' is added to the title one of my Bomb attacks, the attack is treated as one of my Shrapnel Bombs."
+				]
+			}
+		},
+		"subclassfeature6" : {
+			name : "Timed Demolition",
+			source: ["VSoS", 40],
+			minlevel: 6,
+			description: desc([
+				"When I prime and throw a bomb, I can delay the detonation a number rounds up to 1",
+				"minute. A creature can only be affected by one bomb blast radius at a time."
+			])
+		},
+		"subclassfeature10" : {
+			name : "Blast Shield",
+			source: ["VSoS", 40],
+			minlevel: 10,
+			description: desc([
+				"I gain resistance to my choice of acid/cold/fire/lightning/thunder damage.",
+				"I can change my selection when I finish a long rest."
+			]),
+			choices: ["Acid", "Cold", "Fire", "Lightning", "Thunder"],
+			"acid" : {
+				name : "Acid Blast Shield",
+				description: desc([
+					"I gain resistance to acid damage.",
+					"I can change my resistance to cold/fire/lightning/thunder when I finish a long rest."
+				]),
+				dmgres:["Acid"]
+			},
+			"cold" : {
+				name : "Cold Blast Shield",
+				description: desc([
+					"I gain resistance to cold damage.",
+					"I can change my resistance to acid/fire/lightning/thunder when I finish a long rest."
+				]),
+				dmgres:["Cold"]
+
+			},
+			"fire" : {
+				name : "Fire Blast Shield",
+				description: desc([
+					"I gain resistance to fire damage.",
+					"I can change my resistance to acid/cold/lightning/thunder when I finish a long rest."
+				]),
+				dmgres:["Fire"]
+
+			},
+			"lightning" : {
+				name : "Lightning Blast Shield",
+				description: desc([
+					"I gain resistance to lightning damage.",
+					"I can change my resistance to acid/cold/fire/thunder when I finish a long rest."
+				]),
+				dmgres:["Lightning"]
+
+			},
+			"thunder" : {
+				name : "Thunder Blast Shield",
+				description: desc([
+					"I gain resistance to thunder damage.",
+					"I can change my resistance to acid/cold/fire/lightning when I finish a long rest."
+				]),
+				dmgres:["Thunder"]
+			},
+			usages : 1,
+			recovery : "long rest"
+		},
+		"subclassfeature18" : {
+			name : "Formula: Black Powder Bomb",
+			source: ["VSoS", 40],
+			minlevel: 18,
+			description: desc("I gain a new bomb formula. See notes."),
+			toNotesPage : [{
+				name: "Black Powder Bomb Formula [d12 Fire - Dexterity]",
+				note: "\nNo additional effects.",
+				amendTo: "Known Bomb Formulae"
+			}],
+			weaponOptions: [{
+				name: "Black Powder Bomb",
+				source: ["VSoS", 40],
+				regExpSearch: /\bblack powder\b/i,
+				baseWeapon : "bomb",
+				damage : ["C", 12, "Fire"], 
+				selectNow : true
+			}]
 		}
 	}
 })
