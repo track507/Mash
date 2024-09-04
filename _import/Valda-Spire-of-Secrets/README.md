@@ -34,6 +34,8 @@ Everything up to "Mad Bomber" has been added and updated to v13.2.0 for MPMB's S
     - Amorist Subclass
     - Apothercary Subclass
     - Mad Bomber Subclass
+    - Mutagenist Subclass
+    - Ooze Rancher Subclass
 
 ### WIP: 
   - Alchemist Subclasses
