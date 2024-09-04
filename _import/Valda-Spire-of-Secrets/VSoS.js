@@ -3408,8 +3408,352 @@ AddSubClass("alchemist","mad bomber",{
 	}
 })
 
-// ! Companion list for alchemist
+// * Mutagenist Subclass
+AddSubClass("alchemist","mutagenist",{
+	regExpSearch : /\bmutagenist\b/i,
+	subname : "Mutagenist",
+	source: ["VSoS", 40],
+	fullname: "Mutagenist",
+	features: {
+		"subclassfeature2" : {
+		name : "Bonus Proficiencies",
+			source: ["VSoS", 40],
+			minlevel: 2,
+			description: desc([
+			"Gain a proficiency in either Acrobatics or Athletics, and shields.",
+			]),
+			skillstxt: "Choose either Acrobatics or Athletics",
+			armorProfs : [true, false, false, true]
+		},
+		"subclassfeature2.1" : {
+			name : "Mutagen",
+			source: ["VSoS", 40],
+			minlevel: 2,
+			description: desc([
+				"As a bonus action, inject a mutagen, gaining its effects for one minute.",
+				"When injecting, select \"Mutagen\" in the \"Magic Items\" section."
+			]),
+			action: ["bonus action", "Inject Mutagen"],
+		},
+		"subclassfeature6" : {
+			name: "Shared Mutagen",
+			source: ["VSoS", 40],
+			minlevel: 6,
+			description: desc([
+				"As an action, inject a willing creature with one mutagen. A creature can only be injected by",
+				"one mutagen at a time, & I cannot inject another creature until the original mutagen ends."
+			]),
+			action: ["action", "Share Mutagen"],
+		},
+		"subclassfeature10" : {
+			name: "Advanced Mutation",
+			source: ["VSoS", 41],
+			minlevel: 10,
+			description: desc([
+				"When I inject myself with a mutagen, I can choose 1 of the following additional benefits:",
+				"Hyperelastic, Mucilaginous, Polybrachia. Select \"Advanced Mutagen\" in \"Magic Items\" section."
+			])
+		},
+		"subclassfeature18" : {
+		name: "Mutated Blood",
+			source: ["VSoS", 41],
+			minlevel: 18,
+			description: "\n   Choose Strength, Dexterity, or Constitution in the \"Choose Feature\" button."+
+				"\n   The chosen score increases by 2, and its maximum becomes 22.",
+			choices: ["Strength", "Dexterity", "Constitution"],
+			"strength" : {
+			name : "Mutated Blood: Strength",
+				description: "\n   My Strength score increases by 2, and my maximum Strength score increases to 22.",
+				scoresMaximum: [22, 0,0,0,0,0],
+				scores: [2,0,0,0,0,0],
+			},
+			"dexterity" : {
+			name : "Mutated Blood: Dexterity",
+				description: "\n   My Dexterity score increases by 2, and my maximum Dexterity score increases to 22.",
+				scoresMaximum: [0, 22, 0, 0, 0, 0],
+				scores: [0, 2, 0, 0, 0, 0],
+			},
+			"constitution" : {
+			name : "Mutated Blood: Constitution",
+				description: "\n   My Constitution score increases by 2, and my maximum Constitution score increases to 22.",
+				scoresMaximum: [0, 0, 22, 0, 0, 0],
+				scores: [0, 0, 2, 0, 0, 0],
+			}
+		}
+	}
+})
 
+// Ooze Rancher alchemist subclass
+AddSubClass("alchemist","ooze rancher", {      
+	regExpSearch : /\booze rancher\b/i,
+	subname : "Ooze Rancher",
+	source: ["VSoS", 40],
+	fullname: "Ooze Rancher",		
+	features: {	
+		"subclassfeature2" : {
+        	name : "Ooze Sympathy",
+            source: ["VSoS", 41],
+            minlevel: 2,
+            description: desc([
+            	"Oozes attacking me must succeed a Wis save vs my bomb save DC or miss. On a",
+            	"success, the ooze is immune to this effect for 24 hours."
+            ])
+		},
+		"subclassfeature2.1" : {
+            name : "Slime Bomb Formula",
+            source: ["VSoS", 41],
+            minlevel: 2,
+            description: " I gain a new bomb formula. See notes.",
+            toNotesPage : [{
+                name: "Slime Bomb Formula [No Damage - No Save]",
+                note: "\nCoats all creatures in slime. Slime can be removed with a gallon of water or an action. Creatures coated in slime can't take the Dash or Disengage actions.",
+                amendTo: "Known Bomb Formulae"
+            }],
+            weaponOptions : [{
+				name : "Slime Bomb",
+				source : ["VSoS", 41],
+				regExpSearch : /slime bomb/i,
+				baseWeapon : "bomb",
+				ability : 0,
+				abilitytodamage : false,
+				excludeBombDamage : true,
+				damage :  ["", "", ""],
+				selectNow : true
+			}],
+			calcChanges : {
+				atkAdd : [
+					function(fields, v) {
+						if(/\bslime\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+							fields.Description = fields.Description.replace(/dex save or \u00BD dmg to all/i, "Dex save or coat all in slime and no Dash/Disengage"); 
+						}
+					}
+				]
+			}
+	    },
+	    "subclassfeature6" : {
+            name : "Bottled Oozes",
+            source: ["VSoS", 41],
+            minlevel: 6,
+            description: desc([
+                "When I brew potions, I may spend 2 reagent die to create an ooze bottle. My Oozes use my",
+                "Int mod + my prof. bonus for their attack rolls, and my bomb save DC for their save DCs.",
+                "Ooze statistics can be found in the companion pages."
+            ]),
+            magicitemsAdd: ["Ooze Bottle"],
+            creaturesAdd: ["Gray Ooze"],
+            creatureOptions: [{
+                name: "Gray Ooze",
+                source: ["SRD", 338],
+                size: 3,
+                type: "Ooze",
+                alignment: "unaligned",
+                ac : 8,
+                hp: 22,
+                hd: [3, 8],
+                speed: "10 ft, climb 10 ft",
+                scores: [12,6,16,1,6,2],
+                damage_resistances: "acid, cold, fire",
+                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
+                senses: "blindsight 60 ft (blind beyond this radius)",
+                passivePerception : 8,
+                challengeRating: "1/2",
+                proficiencyBonus: 2,
+                attacksAction: 1,
+                attacks: [{
+                    name: "Pseudopod",
+                    ability: 1,
+                    damage: [1, 6, "bludgeoning"],
+                    range: "Melee (5 ft)",
+                    description: "Deals +2d6 acid damage, permanent -1 AC cumulatively to nonmagical metal armors",
+                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
+                    abilitytodamage: true,
+                    tooltip: "If the target is wearing nonmagical metal armor, its armor is partly corroded and takes a permanent and cumulative −1 penalty to the AC it offers. The armor is destroyed if the penalty reduces its AC to 10.",
+                }],
+                skills: { "Stealth" : 2 },
+                traits: [{
+                    name : "Amorphous",
+                    description: "The ooze can move through a space as narrow as 1 inch wide without squeezing.",
+                }, {
+                    name : "Corrode Metal",
+                    description: "Any nonmagical weapon made of metal that hits the ooze corrodes. After dealing damage, the weapon takes a permanent and cumulative −1 penalty to damage rolls. If its penalty drops to −5, the weapon is destroyed. Nonmagical ammunition made of metal that hits the ooze is destroyed after dealing damage. The ooze can eat through 2-inch-thick, nonmagical metal in 1 round.",
+                }, {
+                    name : "False Appearance",
+                    description : "While the ooze remains motionless, it is indistinguishable from an oily pool or wet rock.",
+                }],
+                eval: function(prefix, lvl){
+                    AddString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                },
+                removeeval: function(prefix, lvl){
+                    RemoveString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                }
+            }]
+	    },
+	    "subclassfeature10" : {
+            name : "Liquid Anatomy",
+            source: ["VSoS", 41],
+            minlevel: 10,
+            description: "\n   I can now move through any space as narrow as 1 inch wide without squeezing."+
+                         "\n   Equipment does not compress with me. Critical hits against me become normal hits.",
+	    },
+	    "subclassfeature18" : {
+            name : "Ooze Jug",
+            source: ["VSoS", 41],
+            minlevel: 18,
+            description: desc("I have new options for creating an ooze bottle. May only have 1 ooze jug at a time. See notes."),
+            toNotesPage: [{
+                name: "Ooze Rancher's Oozes Table",
+                note: [
+                        "I can brew these oozes by expending reagent dice.",
+                        "Ooze Type                                Cost",
+                        "Gray Ooze                               2 dice",
+                        "Ochre Jelly                              4 dice",
+                        "Gelatinous Cube                     8 dice",
+                        "Black Pudding                        10 dice",
+                    ],
+                    amendTo: "Reagent Potions Table",
+            }],
+            creatureOptions: [{
+                name: "Ochre Jelly",
+                source: ["SRD", 146],
+                size: 4,
+                type: "Ooze",
+                alignment: "unaligned",
+                ac : 8,
+                hp: 45,
+                hd: [6, 10],
+                speed: "10 ft, climb 10 ft",
+                scores: [15,6,14,2,6,1],
+                damage_resistances: "acid",
+                damage_immunities: "lightning, slashing",
+                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
+                senses: "blindsight 60 ft (blind beyond this radius)",
+                passivePerception : 8,
+                challengeRating: "2",
+                proficiencyBonus: 2,
+                attacksAction: 1,
+                attacks: [{
+                    name: "Pseudopod",
+                    ability: 1,
+                    damage: [2, 6, "bludgeoning"],
+                    range: "Melee (5 ft)",
+                    description: "Deals +1d6 acid damage",
+                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
+                    abilitytodamage: true,
+                }],
+                traits: [{
+                    name : "Amorphous",
+                    description: "The jelly can move through a space as narrow as 1 inch wide without squeezing.,"
+                }, {
+                    name : "Spider Climb",
+                    description : "The jelly can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.",
+                }],
+                actions: [{
+                    name: "Reaction: Split",
+                    description: "When a jelly that is Medium or larger is subjected to lightning or slashing damage, it splits into two new jellies if it has at least 10 hit points. Each new jelly has hit points equal to half the original jelly's, rounded down. New jellies are one size smaller than the original jelly.", 
+                }],
+                eval: function(prefix, lvl){
+                    AddString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                },
+                removeeval: function(prefix, lvl){
+                    RemoveString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                }
+            }, {
+                name: "Gelatinous Cube",
+                source: ["SRD", 337],
+                size: 4,
+                type: "Ooze",
+                alignment: "unaligned",
+                ac : 6,
+                hp: 84,
+                hd: [8, 10],
+                speed: "15 ft",
+                scores: [14,3,20,1,6,1],
+                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
+                senses: "blindsight 60 ft (blind beyond this radius)",
+                passivePerception : 8,
+                challengeRating: "2",
+                proficiencyBonus: 2,
+                attacksAction: 1,
+                attacks: [{
+                    name: "Pseudopod",
+                    ability: 1,
+                    damage: [3, 6, "acid"],
+                    range: "Melee (5 ft)",
+                    description: "",
+                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
+                    abilitytodamage: false,
+                }],
+                traits: [{
+                    name : "Ooze Cube",
+                    description: "The cube takes up its entire space. Other creatures can enter the space, but a creature that does so is subjected to the cube's Engulf and has disadvantage on the saving throw. Creatures inside the cube can be seen but have total cover. A creature within 5 feet of the cube can take an action to pull a creature or object out of the cube. Doing so requires a successful DC 12 Strength check, and the creature making the attempt takes 10 (3d6) acid damage. The cube can hold only one Large creature or up to four Medium or smaller creatures inside it at a time.",
+                }, {
+                    name : "Transparent",
+                    description: "Even when the cube is in plain sight, it takes a successful DC 15 Wisdom (Perception) check to spot a cube that has neither moved nor attacked. A creature that tries to enter the cube's space while unaware of the cube is surprised by the cube.",
+                }],
+                eval: function(prefix, lvl){
+                    AddString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                    AddString(prefix + 'Cnote.Left', "◆ Engulf: As an action, the cube moves up to its speed. While doing so, it can enter Large or smaller creatures' spaces. Whenever the cube enters a creature's space, the creature must make a  Dexterity saving throw equal to its master's bomb save DC. On a successful save, the creature can choose to be pushed 5 feet back or to the side of the cube. A creature that chooses not to be pushed suffers the consequences of a failed saving throw. On a failed save, the cube enters the creature's space, and the creature takes 10 (3d6) acid damage and is engulfed. The engulfed creature can't breathe, is restrained, and takes 21 (6d6) acid damage at the start of each of the cube's turns. When the cube moves, the engulfed creature moves with it. An engulfed creature can try to escape by taking an action to make a DC 12 Strength check. On a success, the creature escapes and enters a space of its choice within 5 feet of the cube.");
+                },
+                removeeval: function(prefix, lvl){
+                    RemoveString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                    RemoveString(prefix + 'Cnote.Left', "◆ Engulf: As an action, the cube moves up to its speed. While doing so, it can enter Large or smaller creatures' spaces. Whenever the cube enters a creature's space, the creature must make a  Dexterity saving throw equal to its master's bomb save DC. On a successful save, the creature can choose to be pushed 5 feet back or to the side of the cube. A creature that chooses not to be pushed suffers the consequences of a failed saving throw. On a failed save, the cube enters the creature's space, and the creature takes 10 (3d6) acid damage and is engulfed. The engulfed creature can't breathe, is restrained, and takes 21 (6d6) acid damage at the start of each of the cube's turns. When the cube moves, the engulfed creature moves with it. An engulfed creature can try to escape by taking an action to make a DC 12 Strength check. On a success, the creature escapes and enters a space of its choice within 5 feet of the cube.");
+                }
+            }, {
+                name: "Black Pudding",
+                source: ["SRD", 337],
+                size: 3,
+                type: "Ooze",
+                alignment: "unaligned",
+                ac : 7,
+                hp: 85,
+                hd: [10, 10],
+                speed: "20 ft, climb 20 ft",
+                scores: [16,5,16,1,6,1],
+                damage_resistances: "acid, cold, lightning, slashing",
+                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
+                senses: "blindsight 60 ft (blind beyond this radius)",
+                passivePerception : 8,
+                challengeRating: "4",
+                proficiencyBonus: 2,
+                attacksAction: 1,
+                attacks: [{
+                    name: "Pseudopod",
+                    ability: 1,
+                    damage: [1, 6, "bludgeoning"],
+                    range: "Melee (5 ft)",
+                    description: "Deals +4d8 acid damage, permanent -1 AC cumulatively to nonmagical metal armors",
+                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
+                    abilitytodamage: true,
+                    tooltip: "If the target is wearing nonmagical metal armor, its armor is partly dissolved and takes a permanent and cumulative −1 penalty to the AC it offers. The armor is destroyed if the penalty reduces its AC to 10.",
+                }],
+                skills: { "Stealth" : 2 },
+                traits: [ {
+                    name : "Corrosive Form",
+                    description: "A creature that touches the pudding or hits it with a melee attack while within 5 feet of it takes 4 (1d8) acid damage. Any nonmagical weapon made of metal or wood that hits the pudding corrodes. After dealing damage, the weapon takes a permanent and cumulative −1 penalty to damage rolls. If its penalty drops to −5, the weapon is destroyed. Nonmagical ammunition made of metal or wood that hits the pudding is destroyed after dealing damage. The pudding can eat through 2-inch-thick, nonmagical wood or metal in 1 round.",
+                }, ],
+                actions: [{
+                    name: "Split",
+                    description: "When a pudding that is Medium or larger is subjected to lightning or slashing damage, it splits into two new puddings if it has at least 10 hit points. Each new pudding has hit points equal to half the original pudding's, rounded down. New puddings are one size smaller than the original jelly.", 
+                }],
+                features: [{
+                    name : "Spider Climb",
+                    description : "The pudding can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.",
+                }, {
+                    name : "Amorphous",
+                    description: "The pudding can move through a space as narrow as 1 inch wide without squeezing.",
+                }],
+                eval: function(prefix, lvl){
+                    AddString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                },
+                removeeval: function(prefix, lvl){
+                    RemoveString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                }
+            }]
+	    }
+	}
+})
+
+// * Companion list for alchemist
 CompanionList.alchemist_homunculus = {
 	name : "Alchemist Homunculus",
 	nameMenu : "Familiar (Homunculus)",
@@ -3486,8 +3830,125 @@ MagicItemsList["potion of true love"] = {
     prereqeval: function (v) { return classes.known.alchemist.level >= 18 && classes.known.alchemist.subclass.indexOf("amorist") !== -1; },
     allowDuplicates: false,
     description: "When creating, choose a target. A creature who knows/meets the target within 24 hrs of drinking this is charmed by the target until I make a new potion of true love or the effect ends via remove curse/similar magic. On effect end, the creature is disgusted by the target & can never love them again.",
-    descriptionLong: "Costs 4 reagent dice to create. When you make the potion, you choose the creature the target regards as its true love, provided the target knows the creature or meets it within 24 hours of consuming the potion. Additionally, this effect lasts indefinitely, ended only when you make a new potion of true love, or the effect is removed with a remove curse spell or similar magic. When this potion’s effects are ended on a target, it regards the creature it once loved with total disgust, and can never love that creature again.",
-    descriptionFull: "Starting at 18th level, during a long rest, you can spend 4 reagent dice to make an extremely potent potion of true love. This potion acts much like a philter of love, except that when you make the potion, you choose the creature the target regards as its true love, provided the target knows the creature or meets it within 24 hours of consuming the potion.\nAdditionally, this effect lasts indefinitely, ended only when you make a new potion of true love, or the effect is removed with a remove curse spell or similar magic. When this potion’s effects are ended on a target, it regards the creature it once loved with total disgust, and can never love that creature again.",
+    descriptionLong: "Costs 4 reagent dice to create. When you make the potion, you choose the creature the target regards as its true love, provided the target knows the creature or meets it within 24 hours of consuming the potion. Additionally, this effect lasts indefinitely, ended only when you make a new potion of true love, or the effect is removed with a remove curse spell or similar magic. When this potion's effects are ended on a target, it regards the creature it once loved with total disgust, and can never love that creature again.",
+    descriptionFull: "Starting at 18th level, during a long rest, you can spend 4 reagent dice to make an extremely potent potion of true love. This potion acts much like a philter of love, except that when you make the potion, you choose the creature the target regards as its true love, provided the target knows the creature or meets it within 24 hours of consuming the potion.\nAdditionally, this effect lasts indefinitely, ended only when you make a new potion of true love, or the effect is removed with a remove curse spell or similar magic. When this potion's effects are ended on a target, it regards the creature it once loved with total disgust, and can never love that creature again.",
+}
+
+// * Mutagenist's Only
+MagicItemsList["mutagen"] = {
+	name: "Mutagen",
+	sortname: "Mutagen",
+	source: ["VSoS", 40],
+	type: "mutagen",
+	rarity: "",
+	prerequisite: "Can only be used by Mutagenists",
+	prereqeval: function (v) { return classes.known.alchemist.level >= 2 && classes.known.alchemist.subclass.indexOf("mutagenist") !== -1; },
+	allowDuplicates: false,
+	choices: ['Strength', 'Dexterity', 'Constitution'],
+	description: "Your Strength score increases by 3, to a maximum of 20. You sprout a natural weapon of your choice that you can make unarmed strikes with. This natural weapon deals 1d6 + Strength modifier damage, of type bludgeoning, piercing, or slashing.",
+	"strength": {
+		name: "Strength Mutagen",
+		description: "Your Strength score increases by 3, to a maximum of 20. You sprout a natural weapon of your choice that you can make unarmed strikes with. This natural weapon deals 1d6 + Strength modifier damage, of type bludgeoning, piercing, or slashing.",
+		descriptionLong: "Your Strength score increases by 3, to a maximum of 20. Additionally, you sprout claws, fangs, spines, horns, or a different natural weapon of your choice. You can use this natural weapon to make unarmed strikes. If you hit with it, you deal damage equal to 1d6 + your Strength modifier instead of the bludgeoning damage normal for an unarmed strike. The damage of this attack is bludgeoning, piercing, or slashing, as appropriate for the natural weapon.",
+		descriptionFull: "Your Strength score increases by 3, to a maximum of 20. Additionally, you sprout claws, fangs, spines, horns, or a different natural weapon of your choice. You can use this natural weapon to make unarmed strikes. If you hit with it, you deal damage equal to 1d6 + your Strength modifier instead of the bludgeoning damage normal for an unarmed strike. The damage of this attack is bludgeoning, piercing, or slashing, as appropriate for the natural weapon.",
+		scores: [3,0,0,0,0,0],
+		weaponOptions : [{
+			name : "Unarmed Strike (Strength Mutagen)",
+			regExpSearch : /unarmed strike \(strength mutagen\)/i,
+			source : [["VSoS", 40]],
+			ability : 1,
+			damage : [1, 6, "Choose"],
+			type : "Natural",
+			range : "Melee",
+			abilitytodamage : true,
+			baseWeapon : "unarmed strike",
+			selectNow : true
+		}]
+	},
+	"dexterity": {
+		name: "Dexterity Mutagen",
+		description: "Your Dexterity score increases by 3, to a maximum of 20. Additionally, your walking speed increases by 5 feet.",
+		descriptionLong: "Your Dexterity score increases by 3, to a maximum of 20. Additionally, your walking speed increases by 5 feet.",
+		descriptionFull: "Your Dexterity score increases by 3, to a maximum of 20. Additionally, your walking speed increases by 5 feet.",
+		scores: [0,3,0,0,0,0],
+		speed : {
+			walk : {spd: "+5", enc : 0}
+		}
+	},
+	"constitution": {
+		name: "Constitution Mutagen",
+		description: "Your Constitution score increases by 3, to a maximum of 20. As a result, your current and maximum hit points increase accordingly with your new Constitution score, but when this effect ends, both your current and maximum hit points decrease by the same amount.",
+		descriptionLong: "Your Constitution score increases by 3, to a maximum of 20. As a result, your current and maximum hit points increase accordingly with your new Constitution score, but when this effect ends, both your current and maximum hit points decrease by the same amount.",
+		descriptionFull: "Your Constitution score increases by 3, to a maximum of 20. As a result, your current and maximum hit points increase accordingly with your new Constitution score, but when this effect ends, both your current and maximum hit points decrease by the same amount.",
+		scores: [0,0,3,0,0,0]
+	}
+}
+
+// * Tri-mutagen as a magic item
+MagicItemsList["trimutagen"] = {
+	name: "Tri-Mutagen",
+	sortname: "Tri-Mutagen",
+	source: ["VSoS", 40],
+	type: "mutagen",
+	rarity: "",
+	prerequisite: "Can only be used by Mutagenists with the Tri-Mutation discovery",
+	prereqeval: function (v) { return classes.known.alchemist.subclass.indexOf("mutagenist") !== -1 && classes.known.alchemist.level >= 13},
+	allowDuplicates: false,
+	description: "Your Strength, Dexterity, and Constitution scores increase by 3, to a maximum of 20. Your walking speed increases by 5 feet, you sprout natural weapons that deal (1d6 + Str mod) damage of type bludgeoning/piercing/slashing damage. Your current and maximum hit points increase/decrease accordingly.",
+	descriptionLong: "Your Strength, Dexterity, and Constitution scores increase by 3, to a maximum of 20. Your walking speed increases by 5 feet, you sprout natural weapons that deal (1d6 + Str mod) damage of type bludgeoning/piercing/slashing damage. Your current and maximum hit points increase/decrease accordingly.",
+	descriptionFull: "Your Strength, Dexterity, and Constitution scores increase by 3, to a maximum of 20. Your walking speed increases by 5 feet, you sprout natural weapons that deal (1d6 + Str mod) damage of type bludgeoning/piercing/slashing damage. Your current and maximum hit points increase/decrease accordingly.",
+	scores: [3,3,3,0,0,0],
+	speed : {
+		walk : {spd: "+5", enc : 0}
+	}
+}
+
+// * Mutagenist's advanced mutagen effects
+MagicItemsList["advanced mutation"] = {
+	name: "Advanced Mutation",
+	sortname: "Mutation, Advanced",
+	source: ["VSoS", 41],
+	type: "mutagen",
+	rarity: "",
+	prerequisite: "Can only be gained by 10th level Mutagenists",
+	prereqeval: function (v) { return classes.known.alchemist.level >= 10 && classes.known.alchemist.subclass.indexOf("mutagenist") !== -1; },
+	allowDuplicates: false,
+	choices: ['Hyperelastic', 'Mucilaginous', 'Polybrachia'],
+	description: "",
+	"hyperelastic": {
+		name: "Hyperelastic Mutation",
+		description: "Melee weapons you use are considered to have the Reach property, if they didn't have it already. Additionally, you have advantage on ability checks you make to escape grapple or slip binds.",
+		descriptionLong: "Your flesh takes on a rubbery quality, allowing you to bend and stretch with ease. Melee weapons you use are considered to have the Reach property, if they didn't have it already. Additionally, you have advantage on ability checks you make to escape grapple or slip binds.",
+		descriptionFull: "Your flesh takes on a rubbery quality, allowing you to bend and stretch with ease. Melee weapons you use are considered to have the Reach property, if they didn't have it already. Additionally, you have advantage on ability checks you make to escape grapple or slip binds.",
+		savetxt: {
+			text: ["Adv. on checks to escape grapples or binds"]
+		},
+		calcChanges: {
+			atkAdd : [
+				function (fields, v){
+					if (v.isMeleeWeapon && !/reach/i.test(v.WeaponTextName)) {
+						fields.Description += (fields.Description ? "; " : "") + "Reach";
+					}
+				},
+				"While under the effects of a Hyperelastic mutation, melee weapons I wield have Reach, if they didn't already."
+			]
+		}
+	},
+	"mucilaginous": {
+		name: "Mucilaginous Mutation",
+		description: "You can move up, down, and across vertical surfaces and upside down along ceilings, while leaving your hands free. You also have a climbing speed equal to your walking speed. Additionally, creatures have disadvantage on ability checks made to escape your grapples.",
+		descriptionLong: "Your skin secretes a thick, extremely sticky substance that helps you adhere to objects. You can move up, down, and across vertical surfaces and upside down along ceilings, while leaving your hands free. You also have a climbing speed equal to your walking speed. Additionally, creatures have disadvantage on ability checks made to escape your grapples.",
+		descriptionFull: "Your skin secretes a thick, extremely sticky substance that helps you adhere to objects. You can move up, down, and across vertical surfaces and upside down along ceilings, while leaving your hands free. You also have a climbing speed equal to your walking speed. Additionally, creatures have disadvantage on ability checks made to escape your grapples.",
+		speed: {
+			climb: {spd: "walk", enc: "walk"}
+		}
+	},
+	"polybrachia": {
+		name: "Polybrachia Mutation",
+		description: "You grow a pair of extra arms. These arms are fully functional and can be used to hold weapons and shields (allowing you to hold 2 two-handed weapons, or 4 one-handed weapons), perform somatic components of spells, & perform other actions. The arms themselves don't grant you any additional actions.",
+		descriptionLong: "You grow a pair of additional arms. These arms are fully functional and can be used to hold weapons and shields (allowing you to hold 2 two-handed weapons, or 4 one-handed weapons), perform somatic components of spells, and perform other actions, though the arms themselves don't grant you any additional actions.",
+		descriptionFull: "You grow a pair of additional arms. These arms are fully functional and can be used to hold weapons and shields (allowing you to hold 2 two-handed weapons, or 4 one-handed weapons), perform somatic components of spells, and perform other actions, though the arms themselves don't grant you any additional actions.",
+	}
 }
 
 // ! Weapons
