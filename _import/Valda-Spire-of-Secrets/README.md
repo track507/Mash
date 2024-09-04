@@ -33,6 +33,7 @@ Everything up to "Dynamo Engineer" has been added and updated to v13.2.0 for MPM
   - Alchemist Base Class
     - Amorist Subclass
     - Apothercary Subclass
+    - Mad Bomber Subclass
 
 ### WIP: 
   - Alchemist Subclasses
