@@ -1819,6 +1819,7 @@ FeatsList["winged"] = {
 };
 
 // ! This section adds classes
+// ! Will need to be checked after subclasses has been added for required discorveries
 
 // * Alchemist class
 ClassList["alchemist"] = {
@@ -1906,7 +1907,7 @@ ClassList["alchemist"] = {
 				],
                 atkCalc: [
                     function (fields, v, output) {
-                        if ((/bomb/i).test(v.WeaponTextName) && (/\bprimed\b/i).test(v.WeaponTextName)) { // * Only applies to primed bombs
+                        if ((/bomb/i).test(v.WeaponTextName) && (/primed/i).test(v.WeaponTextName)) { // * Only applies to primed bombs
 							/* 
 								* Since this only applies to primed bombs, abilitytodamage is set to true 
 								* But we changed the ability to 4 and used dc true to show the Save DC of 8 + PB + Int mod
@@ -1918,7 +1919,7 @@ ClassList["alchemist"] = {
 								output.extraDmg = Math.max(mod - What("Int Mod"), 0);
 							};
                         };
-						if((/bomb/i).test(v.WeaponTextName) && !(/\bprimed\b/i).test(v.WeaponTextName)) { // * Only applies to non-primed bombs
+						if((/bomb/i).test(v.WeaponTextName) && !(/(primed|nuclear)/i).test(v.WeaponTextName)) { // * Only applies to non-primed bombs
 							output.extraDmg = (What("Str Mod") > What("Dex Mod") ? What("Str Mod") : What("Dex Mod")) - What("Int Mod");
 						}
                     },
@@ -2705,7 +2706,6 @@ ClassList["alchemist"] = {
                     hpForceRecalc: true
                 }
             },
-			// ! TODO Everything below	
             "craft homonculus": {
                 name: "Craft Homunculus",
                 source: ["VSoS", 35],
@@ -2728,6 +2728,22 @@ ClassList["alchemist"] = {
                 description: "\n   As a bonus action, I can load a bomb (max 1) onto the head of a crossbow bolt."+
                              "\n   This bolt deals primed bomb damage, but has no blast radius."+ 
                              "\n   I can't fire a bomb bolt on the same turn I throw a bomb.",
+				weaponOptions : [{
+					name : "Explosive Missile (Primed Bomb)",
+					source : ["VSoS", 33],
+					regExpSearch : /explosive missile \(primed\)/i,
+					baseWeapon : "bomb"
+				}],
+				calcChanges: {
+					atkAdd: [
+						function (fields, v) {
+							if (/\bexplosive\b/i.test(v.WeaponTextName) && /\bmissile\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/dmg to all in 7\.5 ft/i, "dmg");
+							}
+						},
+						"When the word 'Explosive' is added to the title one of my Bomb attacks, the attack is treated as one of my Explosive missile."
+					]
+				},
                 action: ["bonus action", ""],
             },
             "fire brand": {
@@ -2744,7 +2760,7 @@ ClassList["alchemist"] = {
                         function (fields, v) {
                             if (v.isMeleeWeapon && /fire\s*brand/i.test(v.WeaponTextName)) {
                                 var n = classes.known.alchemist.level;
-                                fields.Description += "; deal extra " + (n < 5 ? "1" : n < 11 ? "2" : n < 17 ? "3" : "4") + "d6 fire damage";
+                                fields.Description += "; +" + (n < 5 ? "1" : n < 11 ? "2" : n < 17 ? "3" : "4") + "d6 fire dmg";
                             }
                         },
                         "If the phrase 'Fire Brand' is included in the title of a weapon attack, it is treated as a weapon coated in one of my bomb's contents, as per my Fire Brand discovery.",
@@ -2757,29 +2773,14 @@ ClassList["alchemist"] = {
                 description: "\n   As an action, I can use a bomb to make each creature in a 15 ft cone from me Dex save vs my"+
                              "\n   bomb save DC, taking primed bomb fire damage, or half on a success. When I use this ability,"+
                              "\n   I take 1d4 fire damage for each of my bomb's damage dice.",
-                weaponsAdd: ["Fire Eater"],
                 weaponOptions: [{
-                    name: "Fire Eater",
+                    name: "Fire Eater (Primed Bomb)",
                     source: ["VSoS", 35],
-                    regExpSearch: /\bfire eater\b/i,
-                    type: "AlwaysProf",
-                    ability: 4,
-                    abilitytodamage: true,
-                    damage: [1, 10, "fire"],
+                    regExpSearch: /fire eater \(primed bomb\)/i,
+					baseWeapon : "bomb",
                     range: "15 ft cone",
-                    description: "1d4 damage to self for each of this attack's damage dice",
-                    dc: true,
-                    isNotWeapon: true,
-                }],
-                calcChanges: {
-                    atkAdd: [
-                        function (fields, v) {
-                            if (/fire\s*eater/i.test(v.WeaponTextName)) {
-                                fields.Damage_Die = classes.known.alchemist.level < 5 ? "1d10" : classes.known.alchemist.level < 11 ? "2d10" : classes.known.alchemist.level < 17 ? "3d10" : "4d10";
-                            }
-                        }
-                    ]
-                }
+                    description: "Finesse, special, \u00BD on Dex save, or full on fail; See tool tip; I take 1d4 fire dmg per dmg die"
+                }]
             },
 			"fire in the hole (prereq: 9th level alchemist)": {
 				name: "Fire in The Hole",
@@ -2813,7 +2814,7 @@ ClassList["alchemist"] = {
                 source: ["VSoS", 35],
                 description: "\n   When I prime & throw a bomb, I can use my bonus action to make an attack with a weapon"+
                              "\n   that isn't two handed.",
-                action: ["bonus action", "Grenadier"],
+                action: ["bonus action", "Grenadier (Non Two-Handed)"],
             },
             "dynamo charger (prereq: 13th level dynamo engineer)": {
                 name: "Dynamo Charger",
@@ -2842,7 +2843,7 @@ ClassList["alchemist"] = {
                              "\n   creature regains 1 hp, unless they lack a heart, died of old age, or are missing vital organs.",
                 usages: 1,
                 recovery: "short rest",
-                action: ["action", "Lazarus Bolt"]
+                action: ["action", ""]
             },
             "magnified blast (prereq: 17th level alchemist)": {
                 name: "Magnified Blast",
@@ -2908,7 +2909,7 @@ ClassList["alchemist"] = {
                 submenu: "[17th Level]",
                 prereqeval: function (v) { return classes.known.alchemist.level >= 17 },
                 description: "\n   " + "Immediately after taking damage, I can use my reaction to drink a potion.",
-                action: ["reaction", "Reactionary Gulp"],
+                action: ["reaction", ""]
             },
             "recycled potions": {
                 name: "Recycled Potions",
@@ -2923,7 +2924,6 @@ ClassList["alchemist"] = {
                              "\n   granting the benefits of the potion. I must make a melee attack against unwilling creatures,"+
                              "\n   treating the syringe as a finesse weapon.",
                 action: ["bonus action", "Syringe"],
-                weaponsAdd: ["Syringe"],
                 weaponOptions: [{
                     name: "Syringe",
                     source: ["VSoS", 36],
@@ -2971,7 +2971,7 @@ ClassList["alchemist"] = {
             minlevel: 15,
             description: desc("I automatically succeed on saves against my own bombs and never take damage from them."),
             savetxt: {
-                immune: ["my own bombs"],
+                text : ["Saves vs. my own bombs"],
             }
         },
         "philosopher's stone": {
@@ -2988,31 +2988,22 @@ ClassList["alchemist"] = {
                 note: "\nBlast radius is 1 mile, and destroys my philosopher's stone. Each creature in radius takes full bomb damage rolled, or half on a save. Creatures within 60 feet of the blast gain no benefit from Evasion or similar features",
                 amendTo: "Known Bomb Formulae"
             }],
-            weaponsAdd: ["Nuclear Bomb"],
-            calcChanges: {
-                atkAdd: [
-                    function (fields, v) {
-                        if (/\bnuclear\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                            fields.Damage_Die = "10d10";
-                            fields.Damage_Bonus = "100";
-                            fields.Description = "Finesse, Dex save for all in 1 mile of target, save half, 60 feet range ignores Evasion";
-                            fields.Damage_Type = "Force";
- 
-                        }
-                    },
-                    "When the word 'Nuclear' is added to the title one of my Bomb attacks, the attack is treated as one of my Nuclear Bombs."
-                ],
-                atkCalc: [
-                    function (fields, v, output){
-                        if (/\bnuclear\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
-                            output.modToDmg = false;
-                        }
-                    }
-                ]
-            }
+            weaponOptions : [{
+				name : "Nuclear Bomb",
+				source : ["VSoS", 30],
+				regExpSearch : /nuclear bomb/i,
+				baseWeapon : "bomb",
+				range : "1 mile",
+				damage : [10, 100, "Force"],
+				abilitytodamage : false,
+				description : "Finesse, \u00BD on Dex save, or full on fail to all; Can't evade for Crea(s) in 60 ft",
+				selectNow : true
+			}]
         }
     }
 };
+
+// ! TODO Everything below	
 
 // ! Companion list for alchemist
 
