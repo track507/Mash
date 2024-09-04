@@ -1907,7 +1907,7 @@ ClassList["alchemist"] = {
 				],
                 atkCalc: [
                     function (fields, v, output) {
-                        if ((/bomb/i).test(v.WeaponTextName) && (/primed/i).test(v.WeaponTextName)) { // * Only applies to primed bombs
+                        if (((/bomb/i).test(v.WeaponTextName) || v.baseWeapon == "bomb") && (/\(?primed\)?/i).test(v.WeaponTextName)) { // * Only applies to primed bombs
 							/* 
 								* Since this only applies to primed bombs, abilitytodamage is set to true 
 								* But we changed the ability to 4 and used dc true to show the Save DC of 8 + PB + Int mod
@@ -1919,12 +1919,12 @@ ClassList["alchemist"] = {
 								output.extraDmg = Math.max(mod - What("Int Mod"), 0);
 							};
                         };
-						if((/bomb/i).test(v.WeaponTextName) && !(/(primed|nuclear)/i).test(v.WeaponTextName)) { // * Only applies to non-primed bombs
+						if((/bomb/i).test(v.WeaponTextName) && !(/\(?primed\)?/i).test(v.WeaponTextName) && !v.theWea.excludeBombDamage) { // * Only applies to non-primed bombs that CAN do damage
 							output.extraDmg = (What("Str Mod") > What("Dex Mod") ? What("Str Mod") : What("Dex Mod")) - What("Int Mod");
 						}
                     },
                     "When priming a bomb, I can add my Intelligence modifier instead of my Dexterity to the bomb's damage roll."
-                ]
+                ],
             },
 			usages : "10 + 2\xD7 my alchemist level of Bombs per ",
 			usagescalc : "event.value = 2 * classes.known.alchemist.level + 10;",
@@ -1996,10 +1996,13 @@ ClassList["alchemist"] = {
                     amendTo: "Known Bomb Formulae"
                 }],
 				weaponOptions : [{
-					name : "bramble Bomb",
+					name : "Bramble Bomb",
 					source : ["VSoS", 31],
 					regExpSearch : /bramble bomb/i,
 					baseWeapon : "bomb",
+					ability : 0,
+					abilitytodamage : false,
+					excludeBombDamage : true,
 					damage :  ["", "", ""]
 				}],
 				calcChanges: {
@@ -2212,6 +2215,9 @@ ClassList["alchemist"] = {
 					source : ["VSoS", 32],
 					regExpSearch : /oil bomb/i,
 					baseWeapon : "bomb",
+					ability : 0,
+					abilitytodamage : false,
+					excludeBombDamage : true,
 					damage : ["", "", ""]
 				}],
 				calcChanges: {
@@ -2349,6 +2355,9 @@ ClassList["alchemist"] = {
 					source : ["VSoS", 33],
 					regExpSearch : /smoke bomb/i,
 					baseWeapon : "bomb",
+					ability : 0,
+					abilitytodamage : false,
+					excludeBombDamage : true,
 					damage : ["", "", ""]
 				}],
 				calcChanges: {
@@ -2427,6 +2436,9 @@ ClassList["alchemist"] = {
 					source : ["VSoS", 33],
 					regExpSearch : /teleportation bomb/i,
 					baseWeapon : "bomb",
+					ability : 0,
+					abilitytodamage : false,
+					excludeBombDamage : true,
 					damage : ["", "", ""]
 				}],
 				calcChanges : {
@@ -2729,7 +2741,7 @@ ClassList["alchemist"] = {
                              "\n   This bolt deals primed bomb damage, but has no blast radius."+ 
                              "\n   I can't fire a bomb bolt on the same turn I throw a bomb.",
 				weaponOptions : [{
-					name : "Explosive Missile (Primed Bomb)",
+					name : "Explosive Missile (Primed)",
 					source : ["VSoS", 33],
 					regExpSearch : /explosive missile \(primed\)/i,
 					baseWeapon : "bomb"
@@ -2774,9 +2786,9 @@ ClassList["alchemist"] = {
                              "\n   bomb save DC, taking primed bomb fire damage, or half on a success. When I use this ability,"+
                              "\n   I take 1d4 fire damage for each of my bomb's damage dice.",
                 weaponOptions: [{
-                    name: "Fire Eater (Primed Bomb)",
+                    name: "Fire Eater (Primed)",
                     source: ["VSoS", 35],
-                    regExpSearch: /fire eater \(primed bomb\)/i,
+                    regExpSearch: /fire eater \(primed\)/i,
 					baseWeapon : "bomb",
                     range: "15 ft cone",
                     description: "Finesse, special, \u00BD on Dex save, or full on fail; See tool tip; I take 1d4 fire dmg per dmg die"
@@ -2993,9 +3005,12 @@ ClassList["alchemist"] = {
 				source : ["VSoS", 30],
 				regExpSearch : /nuclear bomb/i,
 				baseWeapon : "bomb",
+				ability : 0,
 				range : "1 mile",
 				damage : [10, 100, "Force"],
+				ability : 0,
 				abilitytodamage : false,
+				excludeBombDamage : true,
 				description : "Finesse, \u00BD on Dex save, or full on fail to all; Can't evade for Crea(s) in 60 ft",
 				selectNow : true
 			}]
@@ -3004,6 +3019,141 @@ ClassList["alchemist"] = {
 };
 
 // ! TODO Everything below	
+
+// ! Alchemist Subclasses
+
+// Amorist Alchemist subclass
+AddSubClass("alchemist", "amorist", {
+	regExpSearch : /\bamorist\b/i,
+	subname : "Amorist",
+	source: ["VSoS", 37],
+	fullname: "Amorist",
+	skills: ["Deception", "Persuasion"],
+	features: {
+		"subclassfeature2" : {
+			name: "Pheromone Bomb Formula",
+			source: ["VSoS", 37],
+			skills: ["Persuasion"],
+			minlevel: 2,
+			description: " I gain a new bomb formula. See notes",
+			toNotesPage: [{
+				name: "Pheromone Bomb Formula [No Damage - Wisdom]",
+				note: "\nAll affected are charmed by me until the end of its next turn or it takes damage.",
+				amendTo: "Known Bomb Formulae"
+			}],
+			weaponOptions: [{
+				name: "Pheromone Bomb",
+				source: ["VSoS", 35],
+				regExpSearch: /\bpheromone\b/i,
+				baseWeapon : "bomb",
+				ability : 0,
+				abilitytodamage : false,
+				excludeBombDamage : true,
+				damage : ["", "", ""],
+				selectNow : true
+			}],
+			calcChanges: {
+				atkAdd : [
+					function (fields, v) { 
+						if (/\bpheromone\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+							fields.Description = fields.Description.replace(/dex save or \u00BD dmg to all in 7\.5 ft/i, "Wis save to all in 7.5 ft or charmed til end of next turn or dmg taken");
+						}
+					},
+					"When the word 'Pheromone' is added to the title one of my Bomb attacks, the attack is treated as one of my Pheromone Bombs."
+				]
+			}
+		},
+		"subclassfeature6" : {
+			name : "Magnetic Personality",
+			source: ["VSoS", 38],
+			minlevel: 6,
+			description: desc("I can add my Int mod to Charisma ability checks."),
+			addMod : ["Deception", "Intimidation", "Performance", "Persuasion"].map(function(skill){return {type : "skill", field : skill, mod : "Int", text : "I add my Intelligence modifier to my Charisma checks"};}),
+		},
+		"subclassfeature10" : {
+			name: "Alchemical Perfume",
+			source: ["VSoS", 38],
+			minlevel: 10,
+			description: desc([
+				"When a hostile creature within 5 ft of me makes an attack against me, it must succeed on a",
+				"Wis save or gain disadv. on the attack roll. If a creature succeeds on this save, it is immune",
+				"to this effect for 24 hours. Creatures that can't be charmed are immune to this effect."
+			])
+		},
+		"subclassfeature18" : {
+			name: "Alchemical Romance",
+			source: ["VSoS", 38],
+			minlevel: 18,
+			description: desc([
+				"During a long rest, I can spend 4 reagent dice to make a potion of true love. Select this ",
+				"potion from the \"Magic Item\" dropdown menus."
+			]),
+			magicitemsAdd: ["Potion of True Love"]              
+		}
+	}
+})
+
+// Apothecary Alchemist subclass
+AddSubClass("alchemist","apothecary", {
+	regExpSearch : /\bapothecary\b/i,
+	subname : "Apothecary",
+	source: ["VSoS", 38],
+	fullname: "Apothecary",
+	skills: ["Medicine"],
+	features: {
+		"subclassfeature2" : {
+			name: "Painkiller Bomb Formula",
+			source: ["VSoS", 38],
+			minlevel: 2,
+			description: desc("I gain a new bomb formula. See notes"),
+			toNotesPage: [{
+				name: "Painkiller Bomb Formula [No Damage - No Save]",
+				note: "\nOn hit, instead of damage, the target gains temporary hp for 1 min equal to the damage roll. Willing creatures don't require an attack roll. Once thrown, I cannot throw another for 1 min.",
+				amendTo: "Known Bomb Formulae"
+			}],
+			weaponOptions: [{
+				name: "Painkiller Bomb",
+				source: ["VSoS", 35],
+				regExpSearch: /\bpainkiller\b/i,
+				baseWeapon : "bomb",
+				selectNow : true
+			}],
+			calcChanges: {
+				atkAdd : [
+					function (fields, v) { 
+						if (/\bpainkiller\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+							fields.Description = fields.Description.replace(/dex save or \u00BD dmg to all in 7\.5 ft/i, "Target heals for dmg rolled");
+						}
+					},
+					"When the word 'Painkiller' is added to the title one of my Bomb attacks, the attack is treated as one of my Painkiller Bombs."
+				]
+			}
+		},
+		"subclassfeature6" : {
+			name : "Potion Toss",
+			source: ["VSoS", 38],
+			minlevel: 6,
+			description: desc("As an action, administer a potion to a willing/unconscious creature within 20 ft of me."),
+			action: ["action", ""],
+		},
+		"subclassfeature10" : {
+			name : "Self-Medication",
+			source: ["VSoS", 38],
+			minlevel: 10,
+			description: desc("When I drink a potion that restores hp, I gain adv. on saves until the end of my next turn."),
+		},
+		"subclassfeature18" : {
+			name : "Alchemical Resurrection",
+			source: ["VSoS", 38],
+			minlevel: 18,
+			description: desc([
+				"If I mix 500 gp of diamond dust into a potion of superior/supreme healing, I create a potion",
+				"of raise dead. Select this potion from the \"Magic Item\" dropdown menus."
+			]),
+			magicitemsAdd: ["Potion of Raise Dead"]
+		}
+	}
+})
 
 // ! Companion list for alchemist
 
@@ -3069,10 +3219,28 @@ CompanionList.alchemist_homunculus = {
 	}
 }
 
+// ! Magic Items
+
+// * Amorist Only
+MagicItemsList["potion of true love"] = {
+    name: "Potion of True Love",
+    sortname: "Potion, True Love",
+    source: ["VSoS", 38],
+    type: "potion",
+    rarity: "",
+    weight: 0.5,
+    prerequisite: "Can only be made by 18th level Amorists",
+    prereqeval: function (v) { return classes.known.alchemist.level >= 18 && classes.known.alchemist.subclass.indexOf("amorist") !== -1; },
+    allowDuplicates: false,
+    description: "When creating, choose a target. A creature who knows/meets the target within 24 hrs of drinking this is charmed by the target until I make a new potion of true love or the effect ends via remove curse/similar magic. On effect end, the creature is disgusted by the target & can never love them again.",
+    descriptionLong: "Costs 4 reagent dice to create. When you make the potion, you choose the creature the target regards as its true love, provided the target knows the creature or meets it within 24 hours of consuming the potion. Additionally, this effect lasts indefinitely, ended only when you make a new potion of true love, or the effect is removed with a remove curse spell or similar magic. When this potion’s effects are ended on a target, it regards the creature it once loved with total disgust, and can never love that creature again.",
+    descriptionFull: "Starting at 18th level, during a long rest, you can spend 4 reagent dice to make an extremely potent potion of true love. This potion acts much like a philter of love, except that when you make the potion, you choose the creature the target regards as its true love, provided the target knows the creature or meets it within 24 hours of consuming the potion.\nAdditionally, this effect lasts indefinitely, ended only when you make a new potion of true love, or the effect is removed with a remove curse spell or similar magic. When this potion’s effects are ended on a target, it regards the creature it once loved with total disgust, and can never love that creature again.",
+}
+
 // ! Weapons
 
 WeaponsList["bomb"] = {
-	regExpSearch : /^(?!.*renaissance)(?=.*bomb).*$/i,
+	regExpSearch : /^(?!.*renaissance)(?=.*\bbomb\b).*$/i,
 	name : "Bomb",
 	source : [["VSoS", 294], ["VSoS", 29]],
 	list : "ranged",
