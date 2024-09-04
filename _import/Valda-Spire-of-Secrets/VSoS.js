@@ -3483,7 +3483,7 @@ AddSubClass("alchemist","mutagenist",{
 	}
 })
 
-// Ooze Rancher alchemist subclass
+// * Ooze Rancher alchemist subclass
 AddSubClass("alchemist","ooze rancher", {      
 	regExpSearch : /\booze rancher\b/i,
 	subname : "Ooze Rancher",
@@ -3505,9 +3505,9 @@ AddSubClass("alchemist","ooze rancher", {
             minlevel: 2,
             description: " I gain a new bomb formula. See notes.",
             toNotesPage : [{
-                name: "Slime Bomb Formula [No Damage - No Save]",
-                note: "\nCoats all creatures in slime. Slime can be removed with a gallon of water or an action. Creatures coated in slime can't take the Dash or Disengage actions.",
-                amendTo: "Known Bomb Formulae"
+				name: "Slime Bomb Formula [No Damage - No Save]",
+				note: "\nCoats all creatures in slime. Slime can be removed with a gallon of water or an action. Creatures coated in slime can't take the Dash or Disengage actions.",
+				amendTo: "Known Bomb Formulae"
             }],
             weaponOptions : [{
 				name : "Slime Bomb",
@@ -3529,227 +3529,333 @@ AddSubClass("alchemist","ooze rancher", {
 					}
 				]
 			}
-	    },
-	    "subclassfeature6" : {
+		},
+		"subclassfeature6" : {
             name : "Bottled Oozes",
             source: ["VSoS", 41],
             minlevel: 6,
             description: desc([
-                "When I brew potions, I may spend 2 reagent die to create an ooze bottle. My Oozes use my",
-                "Int mod + my prof. bonus for their attack rolls, and my bomb save DC for their save DCs.",
-                "Ooze statistics can be found in the companion pages."
+            	"When I brew potions, I may spend 2 reagent die to create an ooze bottle. My Oozes use my",
+            	"Int mod + my prof. bonus for their attack rolls, and my bomb save DC for their save DCs.",
+            	"Ooze statistics can be found in the companion pages."
             ]),
             magicitemsAdd: ["Ooze Bottle"],
             creaturesAdd: ["Gray Ooze"],
             creatureOptions: [{
-                name: "Gray Ooze",
-                source: ["SRD", 338],
-                size: 3,
-                type: "Ooze",
-                alignment: "unaligned",
-                ac : 8,
-                hp: 22,
-                hd: [3, 8],
-                speed: "10 ft, climb 10 ft",
-                scores: [12,6,16,1,6,2],
-                damage_resistances: "acid, cold, fire",
-                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
-                senses: "blindsight 60 ft (blind beyond this radius)",
-                passivePerception : 8,
-                challengeRating: "1/2",
-                proficiencyBonus: 2,
-                attacksAction: 1,
-                attacks: [{
-                    name: "Pseudopod",
-                    ability: 1,
-                    damage: [1, 6, "bludgeoning"],
-                    range: "Melee (5 ft)",
-                    description: "Deals +2d6 acid damage, permanent -1 AC cumulatively to nonmagical metal armors",
-                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
-                    abilitytodamage: true,
-                    tooltip: "If the target is wearing nonmagical metal armor, its armor is partly corroded and takes a permanent and cumulative −1 penalty to the AC it offers. The armor is destroyed if the penalty reduces its AC to 10.",
-                }],
-                skills: { "Stealth" : 2 },
-                traits: [{
-                    name : "Amorphous",
-                    description: "The ooze can move through a space as narrow as 1 inch wide without squeezing.",
-                }, {
-                    name : "Corrode Metal",
-                    description: "Any nonmagical weapon made of metal that hits the ooze corrodes. After dealing damage, the weapon takes a permanent and cumulative −1 penalty to damage rolls. If its penalty drops to −5, the weapon is destroyed. Nonmagical ammunition made of metal that hits the ooze is destroyed after dealing damage. The ooze can eat through 2-inch-thick, nonmagical metal in 1 round.",
-                }, {
-                    name : "False Appearance",
-                    description : "While the ooze remains motionless, it is indistinguishable from an oily pool or wet rock.",
-                }],
-                eval: function(prefix, lvl){
-                    AddString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
-                },
-                removeeval: function(prefix, lvl){
-                    RemoveString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
-                }
-            }]
-	    },
-	    "subclassfeature10" : {
+            	name: "Gray Ooze",
+            	source: ["SRD", 338],
+            	size: 3,
+                type: "Ooze",
+                alignment: "unaligned",
+                ac : 8,
+                hp: 22,
+                hd: [3, 8],
+                speed: "10 ft, climb 10 ft",
+                scores: [12,6,16,1,6,2],
+                damage_resistances: "acid, cold, fire",
+                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
+                senses: "blindsight 60 ft (blind beyond this radius)",
+                passivePerception : 8,
+                challengeRating: "1/2",
+                proficiencyBonus: 2,
+                attacksAction: 1,
+                attacks: [{
+                    name: "Pseudopod",
+                    ability: 1,
+                    damage: [1, 6, "bludgeoning"],
+                    range: "Melee (5 ft)",
+                    description: "Deals +2d6 acid damage, permanent -1 AC cumulatively to nonmagical metal armors",
+                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
+                    abilitytodamage: true,
+                    tooltip: "If the target is wearing nonmagical metal armor, its armor is partly corroded and takes a permanent and cumulative −1 penalty to the AC it offers. The armor is destroyed if the penalty reduces its AC to 10.",
+                }],
+                skills: { "Stealth" : 2 },
+                traits: [{
+                    name : "Amorphous",
+                    description: "The ooze can move through a space as narrow as 1 inch wide without squeezing.",
+                }, {
+                    name : "Corrode Metal",
+                    description: "Any nonmagical weapon made of metal that hits the ooze corrodes. After dealing damage, the weapon takes a permanent and cumulative −1 penalty to damage rolls. If its penalty drops to −5, the weapon is destroyed. Nonmagical ammunition made of metal that hits the ooze is destroyed after dealing damage. The ooze can eat through 2-inch-thick, nonmagical metal in 1 round.",
+                }, {
+                    name : "False Appearance",
+                    description : "While the ooze remains motionless, it is indistinguishable from an oily pool or wet rock.",
+                }],
+                eval : function(prefix, lvl){
+                    AddString(prefix + 'Cnote.Left', "\u25C6 Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                },
+                removeeval : function(prefix, lvl){
+                    RemoveString(prefix + 'Cnote.Left', "\u25C6 Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                }
+			}]
+	    },
+	    "subclassfeature10" : {
             name : "Liquid Anatomy",
             source: ["VSoS", 41],
             minlevel: 10,
-            description: "\n   I can now move through any space as narrow as 1 inch wide without squeezing."+
-                         "\n   Equipment does not compress with me. Critical hits against me become normal hits.",
-	    },
-	    "subclassfeature18" : {
+            description: "\n   I can now move through any space as narrow as 1 inch wide without squeezing."+
+                         "\n   Equipment does not compress with me. Critical hits against me become normal hits.",
+	    },
+	    "subclassfeature18" : {
             name : "Ooze Jug",
             source: ["VSoS", 41],
             minlevel: 18,
             description: desc("I have new options for creating an ooze bottle. May only have 1 ooze jug at a time. See notes."),
             toNotesPage: [{
-                name: "Ooze Rancher's Oozes Table",
-                note: [
-                        "I can brew these oozes by expending reagent dice.",
-                        "Ooze Type                                Cost",
-                        "Gray Ooze                               2 dice",
-                        "Ochre Jelly                              4 dice",
-                        "Gelatinous Cube                     8 dice",
-                        "Black Pudding                        10 dice",
-                    ],
-                    amendTo: "Reagent Potions Table",
+                name: "Ooze Rancher's Oozes Table",
+                note: [
+                        "I can brew these oozes by expending reagent dice.",
+                        "Ooze Type                                Cost",
+                        "Gray Ooze                               2 dice",
+                        "Ochre Jelly                              4 dice",
+                        "Gelatinous Cube                     8 dice",
+                        "Black Pudding                        10 dice",
+                    ],
+                    amendTo: "Reagent Potions Table",
             }],
             creatureOptions: [{
-                name: "Ochre Jelly",
-                source: ["SRD", 146],
-                size: 4,
-                type: "Ooze",
-                alignment: "unaligned",
-                ac : 8,
-                hp: 45,
-                hd: [6, 10],
-                speed: "10 ft, climb 10 ft",
-                scores: [15,6,14,2,6,1],
-                damage_resistances: "acid",
-                damage_immunities: "lightning, slashing",
-                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
-                senses: "blindsight 60 ft (blind beyond this radius)",
-                passivePerception : 8,
-                challengeRating: "2",
-                proficiencyBonus: 2,
-                attacksAction: 1,
-                attacks: [{
-                    name: "Pseudopod",
-                    ability: 1,
-                    damage: [2, 6, "bludgeoning"],
-                    range: "Melee (5 ft)",
-                    description: "Deals +1d6 acid damage",
-                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
-                    abilitytodamage: true,
-                }],
-                traits: [{
-                    name : "Amorphous",
-                    description: "The jelly can move through a space as narrow as 1 inch wide without squeezing.,"
-                }, {
-                    name : "Spider Climb",
-                    description : "The jelly can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.",
-                }],
-                actions: [{
-                    name: "Reaction: Split",
-                    description: "When a jelly that is Medium or larger is subjected to lightning or slashing damage, it splits into two new jellies if it has at least 10 hit points. Each new jelly has hit points equal to half the original jelly's, rounded down. New jellies are one size smaller than the original jelly.", 
-                }],
-                eval: function(prefix, lvl){
-                    AddString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
-                },
-                removeeval: function(prefix, lvl){
-                    RemoveString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
-                }
+                name: "Ochre Jelly",
+                source: ["SRD", 146],
+                size: 4,
+                type: "Ooze",
+                alignment: "unaligned",
+                ac : 8,
+                hp: 45,
+                hd: [6, 10],
+                speed: "10 ft, climb 10 ft",
+                scores: [15,6,14,2,6,1],
+                damage_resistances: "acid",
+                damage_immunities: "lightning, slashing",
+                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
+                senses: "blindsight 60 ft (blind beyond this radius)",
+                passivePerception : 8,
+                challengeRating: "2",
+                proficiencyBonus: 2,
+                attacksAction: 1,
+                attacks: [{
+                    name: "Pseudopod",
+                    ability: 1,
+                    damage: [2, 6, "bludgeoning"],
+                    range: "Melee (5 ft)",
+                    description: "Deals +1d6 acid damage",
+                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
+                    abilitytodamage: true,
+                }],
+                traits: [{
+                    name : "Amorphous",
+                    description: "The jelly can move through a space as narrow as 1 inch wide without squeezing.,"
+                }, {
+                    name : "Spider Climb",
+                    description : "The jelly can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.",
+                }],
+                actions: [{
+                    name: "Reaction: Split",
+                    description: "When a jelly that is Medium or larger is subjected to lightning or slashing damage, it splits into two new jellies if it has at least 10 hit points. Each new jelly has hit points equal to half the original jelly's, rounded down. New jellies are one size smaller than the original jelly.", 
+                }],
+                eval: function(prefix, lvl){
+                    AddString(prefix + 'Cnote.Left', "\u25C6 Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                },
+                removeeval: function(prefix, lvl){
+                    RemoveString(prefix + 'Cnote.Left', "\u25C6 Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                }
             }, {
-                name: "Gelatinous Cube",
-                source: ["SRD", 337],
-                size: 4,
-                type: "Ooze",
-                alignment: "unaligned",
-                ac : 6,
-                hp: 84,
-                hd: [8, 10],
-                speed: "15 ft",
-                scores: [14,3,20,1,6,1],
-                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
-                senses: "blindsight 60 ft (blind beyond this radius)",
-                passivePerception : 8,
-                challengeRating: "2",
-                proficiencyBonus: 2,
-                attacksAction: 1,
-                attacks: [{
-                    name: "Pseudopod",
-                    ability: 1,
-                    damage: [3, 6, "acid"],
-                    range: "Melee (5 ft)",
-                    description: "",
-                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
-                    abilitytodamage: false,
-                }],
-                traits: [{
-                    name : "Ooze Cube",
-                    description: "The cube takes up its entire space. Other creatures can enter the space, but a creature that does so is subjected to the cube's Engulf and has disadvantage on the saving throw. Creatures inside the cube can be seen but have total cover. A creature within 5 feet of the cube can take an action to pull a creature or object out of the cube. Doing so requires a successful DC 12 Strength check, and the creature making the attempt takes 10 (3d6) acid damage. The cube can hold only one Large creature or up to four Medium or smaller creatures inside it at a time.",
-                }, {
-                    name : "Transparent",
-                    description: "Even when the cube is in plain sight, it takes a successful DC 15 Wisdom (Perception) check to spot a cube that has neither moved nor attacked. A creature that tries to enter the cube's space while unaware of the cube is surprised by the cube.",
-                }],
-                eval: function(prefix, lvl){
-                    AddString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
-                    AddString(prefix + 'Cnote.Left', "◆ Engulf: As an action, the cube moves up to its speed. While doing so, it can enter Large or smaller creatures' spaces. Whenever the cube enters a creature's space, the creature must make a  Dexterity saving throw equal to its master's bomb save DC. On a successful save, the creature can choose to be pushed 5 feet back or to the side of the cube. A creature that chooses not to be pushed suffers the consequences of a failed saving throw. On a failed save, the cube enters the creature's space, and the creature takes 10 (3d6) acid damage and is engulfed. The engulfed creature can't breathe, is restrained, and takes 21 (6d6) acid damage at the start of each of the cube's turns. When the cube moves, the engulfed creature moves with it. An engulfed creature can try to escape by taking an action to make a DC 12 Strength check. On a success, the creature escapes and enters a space of its choice within 5 feet of the cube.");
-                },
-                removeeval: function(prefix, lvl){
-                    RemoveString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
-                    RemoveString(prefix + 'Cnote.Left', "◆ Engulf: As an action, the cube moves up to its speed. While doing so, it can enter Large or smaller creatures' spaces. Whenever the cube enters a creature's space, the creature must make a  Dexterity saving throw equal to its master's bomb save DC. On a successful save, the creature can choose to be pushed 5 feet back or to the side of the cube. A creature that chooses not to be pushed suffers the consequences of a failed saving throw. On a failed save, the cube enters the creature's space, and the creature takes 10 (3d6) acid damage and is engulfed. The engulfed creature can't breathe, is restrained, and takes 21 (6d6) acid damage at the start of each of the cube's turns. When the cube moves, the engulfed creature moves with it. An engulfed creature can try to escape by taking an action to make a DC 12 Strength check. On a success, the creature escapes and enters a space of its choice within 5 feet of the cube.");
-                }
+                name: "Gelatinous Cube",
+                source: ["SRD", 337],
+                size: 4,
+                type: "Ooze",
+                alignment: "unaligned",
+                ac : 6,
+                hp: 84,
+                hd: [8, 10],
+                speed: "15 ft",
+                scores: [14,3,20,1,6,1],
+                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
+                senses: "blindsight 60 ft (blind beyond this radius)",
+                passivePerception : 8,
+                challengeRating: "2",
+                proficiencyBonus: 2,
+                attacksAction: 1,
+                attacks: [{
+                    name: "Pseudopod",
+                    ability: 1,
+                    damage: [3, 6, "acid"],
+                    range: "Melee (5 ft)",
+                    description: "",
+                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
+                    abilitytodamage: false,
+                }],
+                traits: [{
+                    name : "Ooze Cube",
+                    description: "The cube takes up its entire space. Other creatures can enter the space, but a creature that does so is subjected to the cube's Engulf and has disadvantage on the saving throw. Creatures inside the cube can be seen but have total cover. A creature within 5 feet of the cube can take an action to pull a creature or object out of the cube. Doing so requires a successful DC 12 Strength check, and the creature making the attempt takes 10 (3d6) acid damage. The cube can hold only one Large creature or up to four Medium or smaller creatures inside it at a time.",
+                }, {
+                    name : "Transparent",
+                    description: "Even when the cube is in plain sight, it takes a successful DC 15 Wisdom (Perception) check to spot a cube that has neither moved nor attacked. A creature that tries to enter the cube's space while unaware of the cube is surprised by the cube.",
+                }],
+                eval: function(prefix, lvl){
+                    AddString(prefix + 'Cnote.Left', "\u25C6 Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                    AddString(prefix + 'Cnote.Left', "\u25C6 Engulf: As an action, the cube moves up to its speed. While doing so, it can enter Large or smaller creatures' spaces. Whenever the cube enters a creature's space, the creature must make a  Dexterity saving throw equal to its master's bomb save DC. On a successful save, the creature can choose to be pushed 5 feet back or to the side of the cube. A creature that chooses not to be pushed suffers the consequences of a failed saving throw. On a failed save, the cube enters the creature's space, and the creature takes 10 (3d6) acid damage and is engulfed. The engulfed creature can't breathe, is restrained, and takes 21 (6d6) acid damage at the start of each of the cube's turns. When the cube moves, the engulfed creature moves with it. An engulfed creature can try to escape by taking an action to make a DC 12 Strength check. On a success, the creature escapes and enters a space of its choice within 5 feet of the cube.");
+                },
+                removeeval: function(prefix, lvl){
+                    RemoveString(prefix + 'Cnote.Left', "\u25C6 Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                    RemoveString(prefix + 'Cnote.Left', "\u25C6 Engulf: As an action, the cube moves up to its speed. While doing so, it can enter Large or smaller creatures' spaces. Whenever the cube enters a creature's space, the creature must make a Dexterity saving throw equal to its master's bomb save DC. On a successful save, the creature can choose to be pushed 5 feet back or to the side of the cube. A creature that chooses not to be pushed suffers the consequences of a failed saving throw. On a failed save, the cube enters the creature's space, and the creature takes 10 (3d6) acid damage and is engulfed. The engulfed creature can't breathe, is restrained, and takes 21 (6d6) acid damage at the start of each of the cube's turns. When the cube moves, the engulfed creature moves with it. An engulfed creature can try to escape by taking an action to make a DC 12 Strength check. On a success, the creature escapes and enters a space of its choice within 5 feet of the cube.");
+                }
             }, {
-                name: "Black Pudding",
-                source: ["SRD", 337],
-                size: 3,
-                type: "Ooze",
-                alignment: "unaligned",
-                ac : 7,
-                hp: 85,
-                hd: [10, 10],
-                speed: "20 ft, climb 20 ft",
-                scores: [16,5,16,1,6,1],
-                damage_resistances: "acid, cold, lightning, slashing",
-                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
-                senses: "blindsight 60 ft (blind beyond this radius)",
-                passivePerception : 8,
-                challengeRating: "4",
-                proficiencyBonus: 2,
-                attacksAction: 1,
-                attacks: [{
-                    name: "Pseudopod",
-                    ability: 1,
-                    damage: [1, 6, "bludgeoning"],
-                    range: "Melee (5 ft)",
-                    description: "Deals +4d8 acid damage, permanent -1 AC cumulatively to nonmagical metal armors",
-                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
-                    abilitytodamage: true,
-                    tooltip: "If the target is wearing nonmagical metal armor, its armor is partly dissolved and takes a permanent and cumulative −1 penalty to the AC it offers. The armor is destroyed if the penalty reduces its AC to 10.",
-                }],
-                skills: { "Stealth" : 2 },
-                traits: [ {
-                    name : "Corrosive Form",
-                    description: "A creature that touches the pudding or hits it with a melee attack while within 5 feet of it takes 4 (1d8) acid damage. Any nonmagical weapon made of metal or wood that hits the pudding corrodes. After dealing damage, the weapon takes a permanent and cumulative −1 penalty to damage rolls. If its penalty drops to −5, the weapon is destroyed. Nonmagical ammunition made of metal or wood that hits the pudding is destroyed after dealing damage. The pudding can eat through 2-inch-thick, nonmagical wood or metal in 1 round.",
-                }, ],
-                actions: [{
-                    name: "Split",
-                    description: "When a pudding that is Medium or larger is subjected to lightning or slashing damage, it splits into two new puddings if it has at least 10 hit points. Each new pudding has hit points equal to half the original pudding's, rounded down. New puddings are one size smaller than the original jelly.", 
-                }],
-                features: [{
-                    name : "Spider Climb",
-                    description : "The pudding can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.",
-                }, {
-                    name : "Amorphous",
-                    description: "The pudding can move through a space as narrow as 1 inch wide without squeezing.",
-                }],
-                eval: function(prefix, lvl){
-                    AddString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
-                },
-                removeeval: function(prefix, lvl){
-                    RemoveString(prefix + 'Cnote.Left', "◆ Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
-                }
+                name: "Black Pudding",
+                source: ["SRD", 337],
+                size: 3,
+                type: "Ooze",
+                alignment: "unaligned",
+                ac : 7,
+                hp: 85,
+                hd: [10, 10],
+                speed: "20 ft, climb 20 ft",
+                scores: [16,5,16,1,6,1],
+                damage_resistances: "acid, cold, lightning, slashing",
+                condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
+                senses: "blindsight 60 ft (blind beyond this radius)",
+                passivePerception : 8,
+                challengeRating: "4",
+                proficiencyBonus: 2,
+                attacksAction: 1,
+                attacks: [{
+                    name: "Pseudopod",
+                    ability: 1,
+                    damage: [1, 6, "bludgeoning"],
+                    range: "Melee (5 ft)",
+                    description: "Deals +4d8 acid damage, permanent -1 AC cumulatively to nonmagical metal armors",
+                    modifiers : ["(oInt+oProf)-(Str+Prof)", ""],
+                    abilitytodamage: true,
+                    tooltip: "If the target is wearing nonmagical metal armor, its armor is partly dissolved and takes a permanent and cumulative -1 penalty to the AC it offers. The armor is destroyed if the penalty reduces its AC to 10.",
+                }],
+                skills: { "Stealth" : 2 },
+                traits: [ {
+                    name : "Corrosive Form",
+                    description: "A creature that touches the pudding or hits it with a melee attack while within 5 feet of it takes 4 (1d8) acid damage. Any nonmagical weapon made of metal or wood that hits the pudding corrodes. After dealing damage, the weapon takes a permanent and cumulative -1 penalty to damage rolls. If its penalty drops to -5, the weapon is destroyed. Nonmagical ammunition made of metal or wood that hits the pudding is destroyed after dealing damage. The pudding can eat through 2-inch-thick, nonmagical wood or metal in 1 round.",
+                }, ],
+                actions: [{
+                    name: "Split",
+                    description: "When a pudding that is Medium or larger is subjected to lightning or slashing damage, it splits into two new puddings if it has at least 10 hit points. Each new pudding has hit points equal to half the original pudding's, rounded down. New puddings are one size smaller than the original jelly.", 
+                }],
+                features: [{
+                    name : "Spider Climb",
+                    description : "The pudding can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.",
+                }, {
+                    name : "Amorphous",
+                    description: "The pudding can move through a space as narrow as 1 inch wide without squeezing.",
+                }],
+                eval: function(prefix, lvl){
+                    AddString(prefix + 'Cnote.Left', "\u25C6 Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                },
+                removeeval: function(prefix, lvl){
+                    RemoveString(prefix + 'Cnote.Left', "\u25C6 Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
+                }
             }]
-	    }
+	    }
+	}
+})
+
+// * Venomsmith alchemist subclass
+AddSubClass("alchemist","venomsmith",{
+	regExpSearch : /\bvenomsmith\b/i,
+	subname : "Venomsmith",
+	source: ["VSoS", 41],
+	fullname: "Venomsmith",
+	features: {
+		"subclassfeature2" : {
+			name: "Poisoner",
+			source: ["VSoS", 42],
+			minlevel: 2,
+			limfeaname: "Reagent Dice (d10)",
+			usages: levels.map(function(n){ return n < 3 ? 2 : 0}),
+			recovery: "long rest",
+			limfeaAddToExisting: true,
+			description: desc([
+				"I gain the Poisoner discovery. I can't replace this discovery. Until 3rd level in this class, I gain 2",
+				"reagent dice I can only brew poisons with. When I deal poison damage, I ignore resistance",
+				"and I treat immunity as resistance."
+			]),
+			"venomsmith poisoner": {
+				name: "Poisoner",
+				source: ["VSoS", 36],
+				description: "\n    I gain proficiency with the poisoner's kit. I can also brew new poisons using my reagent dice."+
+								"\n    My poisons also use my bomb save DC instead of their normal save DCs.",
+				toolProfs: ["Poisoner's kit"],
+				toNotesPage: [{
+					name: "Poisoner's Poisons Table",
+					note: [
+							"I can brew these poisons by expending reagent dice.",
+							"Poison                                 Cost",
+							"2 x Antitoxin                        1 die",
+							"2 x Basic Poison                   1 die,",
+							"Oil of Taggit                        2 dice",
+							"Potion of Poison                  2 dice",
+							"Serpent Venom                    2 dice",
+							"Truth Serum                         2 dice",
+						],
+						popupName: "Poisoner's Poisons Table",
+						amendTo: "Reagent Potions Table",
+					}]
+				},     
+				autoSelectExtrachoices : [{
+					extrachoice: "venomsmith poisoner",
+				}],                 
+		},
+		"subclassfeature2.1" : {
+			name: "Venom Bomb Formula",
+			source: ["VSoS", 42],
+			minlevel: 2,
+			description : " I gain a new bomb formula. See notes",
+			toNotesPage: [{
+				name: "Venom Bomb Formula [d8 Poison - Constitution]",
+				note: "\nAll affected have disadv vs next Str/Dex/Con save before end of their next turn",
+				amendTo: "Known Bomb Formulae"
+			}],
+			weaponOptions : [{
+				name : "Venom Bomb",
+				source : ["VSoS", 42],
+				regExpSearch : /venom bomb/i,
+				baseWeapon : "bomb",
+				damage : ["C", 8, "Poison"],
+			}],
+			calcChanges: {
+				atkAdd: [
+					function (fields, v) {
+						if (/\bvenom\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+							fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(/dmg to all/i, "dmg to all and disadv. on next Str/Dex/Con save til end of next turn");
+						}
+					},
+					"When the word 'Venom' is added to the title one of my Bomb attacks, the attack is treated as one of my Venom Bombs."
+				]
+			}
+		},
+		"subclassfeature6" : {
+			name: "Alchemical Assassin",
+			source: ["VSoS", 42],
+			minlevel: 6,
+			description: desc([
+				"Adv. on Dex (Sleight of Hand) checks to add ingested poison to food/drink, apply poison to a",
+				"held weapon without being seen, or place a poison vial on a creature without them noticing."
+			])
+		},
+		"subclassfeature10": {
+			name: "Mithridatism",
+			source: ["VSoS", 42],
+			minlevel: 10,
+			description: desc("I gain immunity to poison & the poisoned condition."),
+			savetxt: {
+				immune: ["poison", "poisoned condition"],
+			}
+		},
+		"subclassfeature18": {
+			name: "Toxic Recompense",
+			source: ["VSoS", 42],
+			minlevel: 18,
+			description: desc([
+				"As a reaction to a creature within 5 ft hitting me with a melee attack, the creature makes a",
+				"Con save vs my bomb save DC or is poisoned for 1 min, taking 1d10 poison damage &",
+				"repeating the save at the start of each of its turns."
+			]), 
+			action: ["reaction", ""]
+		}
 	}
 })
 
@@ -3949,6 +4055,18 @@ MagicItemsList["advanced mutation"] = {
 		descriptionLong: "You grow a pair of additional arms. These arms are fully functional and can be used to hold weapons and shields (allowing you to hold 2 two-handed weapons, or 4 one-handed weapons), perform somatic components of spells, and perform other actions, though the arms themselves don't grant you any additional actions.",
 		descriptionFull: "You grow a pair of additional arms. These arms are fully functional and can be used to hold weapons and shields (allowing you to hold 2 two-handed weapons, or 4 one-handed weapons), perform somatic components of spells, and perform other actions, though the arms themselves don't grant you any additional actions.",
 	}
+}
+
+// Ooze bottle magic item for Ooze rancher subclass
+MagicItemsList["ooze bottle"] = {
+	name: "Ooze Bottle",
+	sortname: "Bottle, Ooze",
+	source: ["VSoS", 313],
+	type: "potion",
+	rarity: "rare",
+	description: "As an action, you can throw this vial up to 20 feet, releasing a gray ooze. This ooze is friendly to you and your allies, and will attack the nearest creature it can detect. If there is no creature to attack, the ooze will follow you. The ooze dissolves into a lifeless sludge after 1 hour.",
+	descriptionLong: "As an action, you can throw this vial up to 20 feet, shattering it on impact and releasing a gray ooze. This ooze is friendly to you and your allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, the ooze will follow you. However, the biochemistry of this ooze is unstable, and the ooze dissolves into a lifeless sludge after 1 hour. The charcoal-colored liquid inside this bottle seems to lunge about with unnatural momentum.",
+    descriptionFull: "As an action, you can throw this vial up to 20 feet, shattering it on impact and releasing a gray ooze. This ooze is friendly to you and your allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, the ooze will follow you. However, the biochemistry of this ooze is unstable, and the ooze dissolves into a lifeless sludge after 1 hour. The charcoal-colored liquid inside this bottle seems to lunge about with unnatural momentum.",
 }
 
 // ! Weapons
