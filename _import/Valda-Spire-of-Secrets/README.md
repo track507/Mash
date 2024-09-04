@@ -19,7 +19,7 @@ I am going page by page and adding/updating content. I will be providing updates
 
 *Due to a recent `weaponsAdd` bug, I am adding the bomb as "Bomb (Alchemist)" in `weaponOptions` instead of using `weaponsAdd : { select : ["Bomb"] }`*
 
-Everything up to "Dynamo Engineer" has been added and updated to v13.2.0 for MPMB's Sheet and 1.4 of the PDF.
+Everything up to "Mad Bomber" has been added and updated to v13.2.0 for MPMB's Sheet and 1.4 of the PDF.
 
 ### Current Alchemist Fixes and Changes
   - Updated and removed `weaponsAdd` to prevent up to 13 attacks being automatically added to the sheet. It now appears in the attack drop down
