@@ -19,17 +19,23 @@ I am going page by page and adding/updating content. I will be providing updates
 
 *Due to a recent `weaponsAdd` bug, I am adding the bomb as "Bomb (Alchemist)" in `weaponOptions` instead of using `weaponsAdd : { select : ["Bomb"] }`*
 
-Everything up to "Alchemist Bomb Formulae" has been added and updated to v13.2.0 for MPMB's Sheet and 1.4 of the PDF.
+Everything up to "Dynamo Engineer" has been added and updated to v13.2.0 for MPMB's Sheet and 1.4 of the PDF.
 
 ### Current Alchemist Fixes and Changes
-  - Fixed `weaponsAdd` in "Bombs" feature
-  - All bombs now use Int as the modifier to show the DC.
-  - Primed Bombs now correctly adds which mod to use for damage: Str, Dex, or Int, whichever one is higher.
-  - Non-primed bombs now correctly adds Str/Dex to use for damage.
-  - All Bomb Formulae have have been updated and removed `weaponsAdd` from each and now using `weaponOptions` without `selectNow` to prevent up to 11 weapons bein automatcally added and instead appear at the top of the attack drop down.
+  - Updated and removed `weaponsAdd` to prevent up to 13 attacks being automatically added to the sheet. It now appears in the attack drop down
+  - All bombs now use Int as the modifier to show the DC. 
+    - Primed bombs can now choose between Str, Dex, or Int, whichever is higher
+    - Non-primed bombs will now use Str/Dex instead of Int to determine damage bonus
+  - Non-damaging bombs now use `ability : 0` and `abilitytodamage : false` to stop the sheet from adding damage
+    - Added `excludeBombDamage` to prevent Int being added to damage bonus. If this is true, no calculation is done and it will use whatever is in the `damage` array.
+
+### Added
+  - Alchemist Base Class
+    - Amorist Subclass
+    - Apothercary Subclass
 
 ### WIP: 
-  - Alchemist Fields of Study and down.
+  - Alchemist Subclasses
 
 ### TODO: 
   - Finish Alchemist class update and revisions
