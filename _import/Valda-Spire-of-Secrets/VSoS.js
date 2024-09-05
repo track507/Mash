@@ -3861,7 +3861,6 @@ AddSubClass("alchemist","venomsmith",{
 })
 
 // * Xenoalchemist Subclass
-// Xenoalchemist alchemist subclass
 AddSubClass("alchemist","xenoalchemist",{
 	regExpSearch : /\bxenoalchemist\b/i,
 	subname : "Xenoalchemist",
@@ -4453,6 +4452,57 @@ AddSubClass("alchemist","xenoalchemist",{
 					name : "Multiattack",
 					description : "The golem can make two melee weapon attacks"
 				}],
+				commoneval : function(prefix, oCrea,bAdd) {
+					var aFnc = bAdd ? AddString : RemoveString;
+					for(var i = 1; i <= 3; i++) {
+						// * The base field name
+						var baseField = prefix + "Comp.Use.Attack." + i;
+
+						// * Range and Description as fields
+						var range = baseField + ".Range";
+						var description = baseField + ".Description";
+
+						// * Range and Description as strings
+						var strRange = What(range);
+						var strDescription = What(description);
+
+						if((/^\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange) && !(/reach/).test(strDescription)) {
+							var rNum = strRange.match(/\d+\s?(ft|m)/i);
+							var unit = rNum[1];
+							var curRange = parseInt(rNum[0], 10);
+
+							Value(range, strRange.replace(/\d+\s?(ft|m)/i, (curRange + 5) + " " + unit));
+							AddString(description, "Reach", "; ");
+						}
+						if(!(/^\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange) && !(/reach/).test(strDescription)) {
+							Value(range, "Melee (10 ft)");
+							AddString(description, "Reach", "; ");
+						}
+					}
+				},
+				commonremoveeval : function(prefix, oCrea,bAdd) {
+					for(var i = 1; i <= 3; i++){
+						// * The base field name
+						var baseField = prefix + "Comp.Use.Attack." + i;
+
+						// * Range and Description as fields
+						var range = baseField + ".Range";
+						var description = baseField + ".Description";
+
+						// * Range and Description as strings
+						var strRange = What(range);
+						var strDescription = What(description);
+
+						if((/\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange) && !(/tentacles?/i).test(What(baseField + ".Weapon Selection"))) {
+							var rNum = strRange.match(/\d+\s?(ft|m)/i); 
+							var unit = rNum[1];
+							var curRange = parseInt(rNum[0], 10);
+
+							Value(range, strRange.replace(/\d+\s?(ft|m)/i, Math.max(curRange - 5, 5) + " " + unit));
+							Value(description, strDescription.replace(/(,|;)? ?reach/i, ''));
+						}
+					}
+				},
 				eval: function(prefix, lvl){
 					AddString(prefix + 'Cnote.Left', "\u25C6 It's Alive!: The golem acts independently on its own turn, but always obeys your commands. On each of your turns, you can use a bonus action to mentally command the golem if it is within 60 feet of you. You decide what actions the golem will take and where it will move during its next turn, or you can issue a general command. If you issue no commands, the golem only defends itself against hostile creatures. Once given an order, the golem continues to follow it until its task its complete. The golem can use your Intelligence modifier + your proficiency bonus for its attack rolls. If the golem drops to 0 hit points, it dies. You can restore the golem's hit points and reanimate it over the course of a long rest.");
 					AddString(prefix + 'Cnote.Left', "\n\u25C6 Monsterous Grafts: The golem may have up to three Monstrous Grafts attached to it by its creator. The golem's weapon attacks, including monsterous grafts added by its creator, are magical. Monsterous grafts have a +6 attack bonus, deal twice the normal number of damage dice, and have a +5 bonus to their damage rolls. The golem can only have 1 graft in each slot.");
@@ -4555,7 +4605,17 @@ AddSubClass("alchemist","xenoalchemist",{
 				calcChanges: {
 					creatureCallback: [function(prefix, oCrea, bAdd) {
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
-						if (bAdd) { AddWeapon("Bestial Weapon: Claws", "", prefix); }
+						if (bAdd) { 
+							AddWeapon("Bestial Weapon: Claws", "", prefix);
+							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
+							for (var i = 0; i < creatureOptions.length; i++) {
+								var creature = creatureOptions[i];
+								if (creature.name.toLowerCase() === "alchemy golem") {
+									creature.commoneval(prefix, oCrea, bAdd);
+									break; 
+								}
+							}
+						 }
 						else {
 							for (i = 1; i < 3; ++i){
 								if (/bestial weapon: claws/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
@@ -4575,7 +4635,17 @@ AddSubClass("alchemist","xenoalchemist",{
 				calcChanges: {
 					creatureCallback: [function(prefix, oCrea, bAdd) {
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
-						if (bAdd) { AddWeapon("Bestial Weapon: Teeth", "", prefix); }
+						if (bAdd) { 
+							AddWeapon("Bestial Weapon: Teeth", "", prefix); 
+							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
+							for (var i = 0; i < creatureOptions.length; i++) {
+								var creature = creatureOptions[i];
+								if (creature.name.toLowerCase() === "alchemy golem") {
+									creature.commoneval(prefix, oCrea, bAdd);
+									break; 
+								}
+							}
+						}
 						else {
 							for (i = 1; i < 3; ++i){
 								if (/bestial weapon: teeth/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
@@ -4635,7 +4705,17 @@ AddSubClass("alchemist","xenoalchemist",{
 				calcChanges: {
 				creatureCallback: [function(prefix, oCrea, bAdd) {
 					if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
-					if (bAdd) { AddWeapon("Draconis Fundamentum", "", prefix); }
+					if (bAdd) { 
+						AddWeapon("Draconis Fundamentum", "", prefix); 
+						var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
+							for (var i = 0; i < creatureOptions.length; i++) {
+								var creature = creatureOptions[i];
+								if (creature.name.toLowerCase() === "alchemy golem") {
+									creature.commoneval(prefix, oCrea, bAdd);
+									break; 
+								}
+							}
+					}
 					else {
 						for (i = 1; i < 3; ++i){
 							if (/Draconis Fundamentum/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
@@ -4761,6 +4841,14 @@ AddSubClass("alchemist","xenoalchemist",{
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;            
 						if (bAdd) { 
 							AddWeapon("Horns", "", prefix);
+							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
+							for (var i = 0; i < creatureOptions.length; i++) {
+								var creature = creatureOptions[i];
+								if (creature.name.toLowerCase() === "alchemy golem") {
+									creature.commoneval(prefix, oCrea, bAdd);
+									break; 
+								}
+							}
 						}
 						else {
 							for (i = 1; i < 3; ++i){
@@ -4819,48 +4907,28 @@ AddSubClass("alchemist","xenoalchemist",{
 				description: "",
 				calcChanges: {
 					creatureCallback: [function(prefix, oCrea,bAdd) {
-						// if( GetFeatureChoice("classes", "alchemist", "subclassfeature2.1", true).indexOf("oversized arms (donor: giant)") !== -1) {
-						// 	ClassSubList["alchemist-xenoalchemist"].features["subclassfeature2.1"]["oversized arms (donor: giant)"].calcChanges.creatureCallback[0](prefix, oCrea, bAdd);
-						// }  
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
-						var aFnc = bAdd ? AddString : RemoveString;
-						for(var i = 1; i <= 3; i++){
-							// * The base field name
-							var baseField = prefix + "Comp.Use.Attack." + i;
-
-							// * Range and Description as fields
-							var range = baseField + ".Range";
-							var description = baseField + ".Description";
-
-							// * Range and Description as strings
-							var strRange = What(range);
-							var strDescription = What(description);
-
-							if(bAdd){
-								if((/\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange) && !(/reach/).test(strDescription)) {
-									var rNum = strRange.match(/\d+\s?(ft|m)/i);
-									var unit = rNum[1];
-									var curRange = parseInt(rNum[0], 10);
-
-									Value(range, strRange.replace(/\d+\s?(ft|m)/i, (curRange + 5) + " " + unit));
-									AddString(description, "Reach", "; ");
-								}
-								if(!(/\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange) && !(/reach/).test(strDescription)) {
-									Value(range, "Melee (10 ft)");
-									AddString(description, "Reach", "; ");
-								}
-							}
-							if(!bAdd) {
-								if((/\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange)) {
-									var rNum = strRange.match(/\d+\s?(ft|m)/i); 
-									var unit = rNum[1];
-									var curRange = parseInt(rNum[0], 10);
-
-									Value(range, strRange.replace(/\d+\s?(ft|m)/i, Math.max(curRange - 5, 5) + " " + unit));
-									Value(description, strDescription.replace(/(,|;)? ?reach/i, ''));
+						if(bAdd) {
+							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
+							for (var i = 0; i < creatureOptions.length; i++) {
+								var creature = creatureOptions[i];
+								if (creature.name.toLowerCase() === "alchemy golem") {
+									creature.commoneval(prefix, oCrea, bAdd);
+									break; 
 								}
 							}
 						}
+						if(!bAdd) {
+							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
+							for (var i = 0; i < creatureOptions.length; i++) {
+								var creature = creatureOptions[i];
+								if (creature.name.toLowerCase() === "alchemy golem") {
+									creature.commonremoveeval(prefix, oCrea, bAdd);
+									break; 
+								}
+							}
+						}
+						var aFnc = bAdd ? AddString : RemoveString;
 						aFnc(prefix + "Comp.Use.Traits.", "\n\u25C6 Oversized Arms: The golem's reach increases by 5 ft, unless the weapon used has Reach. It has advantage on saves made to maintain grip on objects.")
 					},
 					"My golem's reach increases by 5 ft, unless the weapon it is using has Reach.", 1000]	
@@ -4877,6 +4945,14 @@ AddSubClass("alchemist","xenoalchemist",{
 						if (bAdd) { 
 							AddWeapon("Prehensile Tail", "", prefix);
 							AddString(prefix + "Comp.Use.Features", "\n\u25C6 Prehensile Tail: The golem's tail can hold and manipulate objects, but cannot use weapons/shields");
+							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
+							for (var i = 0; i < creatureOptions.length; i++) {
+								var creature = creatureOptions[i];
+								if (creature.name.toLowerCase() === "alchemy golem") {
+									creature.commoneval(prefix, oCrea, bAdd);
+									break; 
+								}
+							}
 						}
 						else {
 							for (i = 1; i < 3; ++i){
@@ -4937,7 +5013,7 @@ AddSubClass("alchemist","xenoalchemist",{
 				calcChanges : {
 					creatureCallback: [function(prefix, oCrea, bAdd) {
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
-						if (bAdd) { AddWeapon("Tentacles", "", prefix); }
+						if (bAdd) { AddWeapon("Tentacles", "", prefix); } // * no need to call commoneval
 						else {
 							for (i = 1; i < 3; ++i){
 								if (/tentacles/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
