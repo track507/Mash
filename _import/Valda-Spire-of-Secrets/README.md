@@ -35,7 +35,7 @@ Everything up to "Mad Bomber" has been added and updated to v13.2.0 for MPMB's S
   - Alchemist Class and Subclass Finished
 
 ### WIP: 
-
+  - Captain Class/Subclasses
 ### TODO: 
   - Finish Alchemist class update and revisions
   - Add the rest of the classes and update
