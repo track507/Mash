@@ -21,7 +21,7 @@ I am going page by page and adding/updating content. I will be providing updates
 
 Everything up to "Mad Bomber" has been added and updated to v13.2.0 for MPMB's Sheet and 1.4 of the PDF.
 
-### Current Alchemist Fixes and Changes
+### All Current Fixes and Changes
   - Updated and removed `weaponsAdd` to prevent up to 13 attacks being automatically added to the sheet. It now appears in the attack drop down
   - All bombs now use Int as the modifier to show the DC. 
     - Primed bombs can now choose between Str, Dex, or Int, whichever is higher
@@ -30,17 +30,15 @@ Everything up to "Mad Bomber" has been added and updated to v13.2.0 for MPMB's S
     - Added `excludeBombDamage` to prevent Int being added to damage bonus. If this is true, no calculation is done and it will use whatever is in the `damage` array.
   - Fixed Xenoalchemist "Oversized Arms" for "Alchemy Golem" not changing newly added weapons' range correctly.
     - Each choice that adds a weapon now calls on a `commoneval` and "Oversized Arms" now calls on a `commonremoveeval` to reset ranges with the exception of "Tentacles"
+  - Removed `weaponsAdd` from "Underbarrel Grenade Launcher"
 
 ### Added
-  - Alchemist Class and Subclass Finished
-  - Captain Class
-    - Dragon Banner Subclass
-    - Eagle Banner Subclass
-    - Jolly Roger
-    - Captain Cohorts
+  - Alchemist Class and Subclasses Finished (written by seaworld)
+  - Captain Class and Subclasses Finished (written by seaworld)
+  - Craftsman Class and Subclasses Finished (originally written by aelartheelfrogue, updated by seaworld)
 
 ### WIP: 
-  - Captain Subclasses
+  - Gunslinger Class and Subclasses
 
 ### TODO: 
   - Finish Alchemist class update and revisions
