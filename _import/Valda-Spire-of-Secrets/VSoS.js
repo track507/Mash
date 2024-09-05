@@ -2525,7 +2525,8 @@ ClassList["alchemist"] = {
             toNotesPage: [{
                 name: "Reagent Potions Table",
                 note: [
-                    "I can brew these potions by expending reagent dice, as long as I meet the Alchemist level requirement.",
+                    "I can brew these potions by expending reagent dice, as long as I meet",
+					"the Alchemist level requirement.",
                     "Potion                                     Cost        Alchemist Level",
                     "Potion of Climbing                 1 die           3rd",
                     "Potion of Growth                    1 die           3rd",
@@ -3790,14 +3791,14 @@ AddSubClass("alchemist","venomsmith",{
 							"Potion of Poison                  2 dice",
 							"Serpent Venom                    2 dice",
 							"Truth Serum                         2 dice",
-						],
-						popupName: "Poisoner's Poisons Table",
-						amendTo: "Reagent Potions Table",
-					}]
-				},     
-				autoSelectExtrachoices : [{
-					extrachoice: "venomsmith poisoner",
-				}],                 
+					],
+					popupName: "Poisoner's Poisons Table",
+					amendTo: "Reagent Potions Table",
+				}]
+			},     
+			autoSelectExtrachoices : [{
+				extrachoice: "venomsmith poisoner",
+			}],                 
 		},
 		"subclassfeature2.1" : {
 			name: "Venom Bomb Formula",
@@ -3856,6 +3857,1146 @@ AddSubClass("alchemist","venomsmith",{
 			]), 
 			action: ["reaction", ""]
 		}
+	}
+})
+
+// * Xenoalchemist Subclass
+// Xenoalchemist alchemist subclass
+AddSubClass("alchemist","xenoalchemist",{
+	regExpSearch : /\bxenoalchemist\b/i,
+	subname : "Xenoalchemist",
+	source: ["VSoS", 41],
+	fullname: "Xenoalchemist",
+	features: {
+		"subclassfeature2" : {
+			name: "Xenobiology",
+			source: ["VSoS", 42],
+			minlevel: 2,
+			description: desc("I have advantage on all ability checks I make to identify/research monsters.")
+		},
+		"subclassfeature2.1" : {
+			name: "Mad Scientist",
+			source: ["VSoS", 42],
+			minlevel: 2,
+			description: desc([
+				"Gain 2 monsterous grafts. Select grafts from the \"Choose Feature\" button. I don't lose hp or",
+				"hit dice adding/removing grafts; I take no time for to recover after the attachment of a graft."
+			]),
+			extraname: "Monsterous Grafts",
+			extrachoices: ["Amphibious Adaptation (Donor: has Amphibious trait)", 
+							"Arcane Synapses (Donor: has Spellcasting/Innate Spellcasting)", 
+							"Beast's Hide (Donor: Large or larger Beast)", 
+							"Bestial Weapons (Arms) (Donor: Bst/Drgn/Mons with Claw attack)", 
+							"Bestial Weapons (Head) (Donor: Bst/Drgn/Mons with Bite attack)", 
+							"Charging Hooves (Donor: has Charge trait or Gore/Hooves attack)", 
+							"Climbing Apparatus (Donor: Bst/Humn/Mons with climb speed)", 
+							"Darkvision (Donor: has Darkvision)", 
+							"Doppel-Blooded (Donor: has shapechanger tag)", 
+							"Draconis Fundamentum (Donor: Drgn/Humn/Mons with a Breath Weapon)", 
+							"Dragon's Hide (Donor: Large or larger Dragon)", 
+							"Energetic Suture (Acid) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to acid damage)",
+							"Energetic Suture (Cold) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to cold damage)",
+							"Energetic Suture (Fire) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to fire damage)",
+							"Energetic Suture (Lightning) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to lightning damage)",
+							"Energetic Suture (Poison) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to poison damage)",
+							"Energetic Suture (Thunder) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to thunder damage)",    
+							"Fiend's Hide (Donor: Medium or larger Fiend)", 
+							"Heart of Steel (Donor: Construct)", 
+							"Horns (Donor: has Gore/Horns/Ram/Tusk attack)", 
+							"Indiscernible Anatomy (Donor: Medium or larger Aberration)", 
+							"Leaping Legs (Donor: has the Pounce/Standing Leap trait)", 
+							"Olfactory Implants (Donor: has Keen Smell/Keen Hearing and Smell trait)", 
+							"Oversized Arms (Donor: Giant)", 
+							"Prehensile Tail (Donor: has a Tail attack)", 
+							"Regenerating Marrow (Donor: has the Regeneration trait)", 
+							"Replacement (Donor: any creature)", 
+							"Stench (Donor: has the Stench trait)", 
+							"Tentacles (Donor: has a Tentacles/Tendrils attack)", 
+							"Venom Sac (Donor: has a natural weapon/trait that deals poison/poisoned condition)", 
+							"Voice Box (Donor: has the Mimicry trait)", 
+							"Webspinner Apparatus (Donor: has a Web action)"],
+			extraTimes: [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+			"amphibious adaptation (donor: has amphibious trait)" : {
+				name: "Amphibious Adaptation",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "\n   I can breathe both air and water. I gain a swim speed equal to my walking speed.",
+				speed : {
+					swim : { spd : "walk", enc : "walk" }
+				}
+			},
+			"arcane synapses (donor: has spellcasting/innate spellcasting)" : {
+				name: "Arcane Synapses",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "\n   I learn 1 wizard cantrip of my choice. Int is my spellcasting ability for this cantrip."+
+								"\n   I can harvest a second creature to learn 1 more wizard cantrip.",
+				spellcastingBonus: [{
+					name: "Arcane Synapses",
+					firstCol: "atwill",
+					times: levels.map(function(n) {return n < 2 ? 0 : 1; }),
+					spellcastingAbility: 4,
+					"class": ["wizard"],
+					level: [0,0],
+				}]
+			},
+			"beast's hide (donor: large or larger beast)" : {
+				name: "Beast's Hide",
+				source: ["VSoS", 370],
+				submenu: "[External Grafts]",
+				description: "\n   My AC is 13 + Dex mod, if higher than the armor I am wearing. Shields may still apply.",
+				armorAdd: "Beast's Hide",
+				armorOptions: [{
+					name : "Beast's Hide",
+					source: ["VSoS", 370],
+					regExpSearch: /\bbeast's hide\b/i,
+					ac: "13",
+					selectNow : true
+				}]
+			},
+			"bestial weapons (arms) (donor: bst/drgn/mons with claw attack)" : {
+				name: "Bestial Weapons (Arms)",
+				source: ["VSoS", 370],
+				submenu: "[Arms Grafts]",
+				description: desc("I gain claws I can use to make unarmed strikes: Finesse, 1d6+Str/Dex slashing damage."),
+				weaponOptions: [{
+					name: "Claws",
+					source: ["VSoS", 370],
+					regExpSearch: /\bclaws\b/i,
+					type: "Natural",
+					ability: 1,
+					abilitytodamage: true,
+					damage: [1, 6, "slashing"],
+					range: "Melee",
+					description: "Finesse",
+					list: "melee",
+					selectNow : true
+				}]
+			},
+			"bestial weapons (head) (donor: bst/drgn/mons with bite attack)" : {
+				name: "Bestial Weapons (Head)",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "\n   I gain teeth I can use to make unarmed strikes: Finesse, 1d6+Str/Dex piercing damage.",
+				weaponOptions: [{
+					name: "Teest",
+					source: ["VSoS", 370],
+					regExpSearch: /\bteeth\b/i,
+					type: "Natural",
+					ability: 1,
+					abilitytodamage: true,
+					damage: [1, 6, "slashing"],
+					range: "Melee",
+					description: "Finesse",
+					list: "melee",
+					selectNow : true
+				}]
+			},
+			"charging hooves (donor: has charge trait or gore/hooves attack)" : {
+				name: "Charging Hooves",
+				source: ["VSoS", 370],
+				submenu: "[Legs Grafts]",
+				description: "\n   Once on each of my turns, if I move 15 ft in straight line, I can move +10 ft in that direction.",
+			},
+			"climbing apparatus (donor: bst/humn/mons with climb speed)" : {
+				name: "Climbing Apparatus",
+				source: ["VSoS", 370],
+				submenu: "[Legs Grafts]",
+				description: "\n    I gain a climb speed equal to my walking speed.",
+				speed : {
+					climb : { spd : "walk", enc : "walk" }
+				}
+			},
+			"darkvision (donor: has darkvision)" : {
+				name: "Darkvision",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: " I gain 60 ft darkvision.",
+				vision: [["Darkvision", 60]]
+			},
+			"doppel-blooded (donor: has shapechanger tag)" : {
+				name: "Doppel-Blooded",
+				source: ["VSoS", 370],
+				submenu: "[Internal Grafts]",
+				additional: "1 x long rest",
+				description: "\n   I can transform my appearance for 1 hr. I can change my height, weight, face, voice, "+
+								"\n   hair, & race. I cannot become a different size, and my basic shape remains.",
+				extraLimitedFeatures: [{
+					name: "Shape Change",
+					usages: 1,
+					recovery: "long rest",
+				}]
+			},
+			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)" : {
+				name: "Draconis Fundamentum",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n   As an action, each creature in a 15 ft cone makes a Dex save against 8+Con+Prof."+
+								"\n   Each creature takes (Prof)d6 damage or half on save, same damage type as donor's.",
+				weaponOptions: [{
+					name: "Draconis Fundamentum",
+					source: ["VSoS", 371],
+					regExpSearch: /\bdraconis fundamentum\b/i,
+					type: "Natural",
+					ability: 3,
+					abilitytodamage: false,
+					damage: [1, 6, ""],
+					range: "15 ft cone",
+					description: "\u00BD on Dex save",
+					dc: true
+				}],
+				calcChanges: {
+					atkAdd : [function (fields, v) {
+						if (/\bdraconis fundamentum\b/i.test(v.WeaponTextName)){
+							fields.Damage_Die = How("Proficiency Bonus") + "d6";
+						}
+					},
+					"My Draconis Fundamentum attack deals 1d6 damage for each point of my proficiency bonus."
+				]},
+				action: ["action", "Draconis Fundamentum"],
+				extraLimitedFeatures: {
+					name: "Draconis Fundamentum",
+					usages: 1,
+					recovery: "short rest",
+				}
+			},
+			"dragon's hide (donor: large or larger dragon)" : {
+				name: "Dragon's Hide",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "\n   My AC is 17, if higher than the armor I am wearing. Shields may still apply."+
+							 "\n   I gain resistance to acid/cold/fire/lightning/poison damage if the"+
+							 "\n   donor was immune to it. I only gain resistance if I am proficient with"+
+							 "\n   heavy armor.",
+				armorOptions: [{
+					name : "Dragon's Hide",
+					source: ["VSoS", 31],
+					regExpSearch: /\bdragon's hide\b/i,
+					dex: -10,
+					ac: "17",
+					selectNow : true
+				}]
+			},
+			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to acid damage.",
+				dmgres: ["Acid"],                    
+			},
+			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to cold damage.",
+				dmgres: ["Cold"],                    
+			},
+			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to fire damage.",
+				dmgres: ["Fire"],                    
+			},
+			"energetic suture (lightning) (donor: clst/drgn/elem/fey/fnd with imm/res to lightning damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to lightning damage.",
+				dmgres: ["Lightning"],                    
+			},
+			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to poison damage.",
+				dmgres: ["Poison"],                    
+			},
+			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to thunder damage.",
+				dmgres: ["Thunder"],                    
+			},
+			"fiend's hide (donor: medium or larger fiend)" : {
+				name: "Fiend's Hide",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "\n   My AC is 15 + Dex (max 2) if higher than the armor I am wearing. Shields may still apply.",
+				armorOptions: [{
+					name : "Fiend's Hide",
+					source: ["VSoS", 31],
+					regExpSearch: /\bfiend's hide\b/i,
+					dex: 2,
+					ac: "15",
+					selectNow : true
+				}]
+			},
+			"heart of steel (donor: construct)" : {
+				name: "Heart of Steel",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				description: "\n    I may ignore the effects of 1 level of exhaustion & finish a long rest in 4 hours.",
+				savetxt: {
+					immune: ["1st level exhaustion"]
+				}
+			},
+			"horns (donor: has gore/horns/ram/tusk attack)" : {
+				name: "Horns",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "\n   I gain horns I can use to make unarmed strikes: 1d6+Str damage of same type as donor."+
+								"\n   If I move in a straight line for 10 ft immediately before making a horn attack, I can force "+
+								"\n   the target into a Strength contest to knock them prone.",
+				weaponOptions: [{
+					name: "Horns",
+					source: ["VSoS", 372],
+					regExpSearch: /\bHorns\b/i,
+					type: "Natural",
+					ability: 1,
+					abilitytodamage: true,
+					damage: [1, 6, "Bludgeoning"],
+					range: "Melee",
+					selectNow : true
+				}],             
+			},
+			"indiscernible anatomy (donor: medium or larger aberration)" : {
+				name: "Indiscernible Anatomy",
+				source: ["VSoS", 372],
+				submenu: "[Internal Grafts]",
+				description: "\n    Critical hits against me become normal hits.",
+			},
+			"leaping legs (donor: has the pounce/standing leap trait)" : {
+				name: "Leaping Legs",
+				source: ["VSoS", 372],
+				submenu: "[Legs Grafts]",
+				description: "\n    My jump distance doubles. I can jump my full distance without a running start.",
+			},
+			"olfactory implants (donor: has keen smell/keen hearing and smell trait)" : {
+				name: "Olfactory Implants",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "\n   I gain advantage on Wisdom (Perception) checks that rely on smell.",
+				vision : [["Keen Smell", 0]]
+			},
+			"oversized arms (donor: giant)" : {
+				name: "Oversized Arms",
+				source: ["VSoS", 372],
+				submenu: "[Arms Grafts]",
+				description: desc([
+					"+5 ft Melee reach, unless the weapon used has Reach. If Small, I can use heavy weapons",
+					"without penalty. I have adv. on Str checks and saves I make to maintain my grip on objects."
+				]),
+				savetxt: {
+					adv_vs: ["keeping grip on an object"]
+				},
+				calcChanges: {
+					atkAdd: [ 
+						function (fields, v) 	{
+							if(v.isMeleeWeapon && (/\d+\s?(ft|m)/i).test(fields.Range) && !/reach/i.test(fields.Description)) { // * Checks for "Melee (x ft)"
+								var rNum = fields.Range.match(/\d+\s?(ft|m)/i);
+								var unit = rNum[2];
+								var curRange = parseInt(rNum[1], 10);
+								fields.Range = fields.Range.replace(/\d+\s?(ft|m)/i, (curRange + 5) + " " + unit);
+							}
+							if(v.isMeleeWeapon && !(/\(\d+\s?(ft|m)\)/i).test(fields.Range) && !/reach/i.test(fields.Description)) {
+								fields.Range = "Melee (10 ft)";
+								fields.Description += (fields.Description ? "; " : "") + "Reach"
+							}
+						},
+						"My melee reach increases by 5 ft, unless the weapon I am using has Reach."
+					]
+				}
+			},
+			"prehensile tail (donor: has a tail attack)" : {
+				name: "Prehensile Tail",
+				source: ["VSoS", 372],
+				submenu: "[External Grafts]",
+				description: "\n   I gain a tail I can use to make unarmed strikes: Finesse, 1d6+Str/Dex bludgeoning damage."+
+								"\n   I can hold and manipulate objects with the tail, but it cannot use weapons/shields.",
+				weaponOptions: [{
+					name: "Tail",
+					source: ["VSoS", 372],
+					regExpSearch: /\btail\b/i,
+					type: "Natural",
+					ability: 1,
+					abilitytodamage: true,
+					damage: [1, 6, "Bludgeoning"],
+					range: "Melee",
+					description: "Finesse",
+					selectNow : true
+				}],    
+			},
+			"regenerating marrow (donor: has the regeneration trait)" : {
+				name: "Regenerating Marrow",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n    I can use a bonus action to regain hit points equal to 1d10 + Constitution modifier.",
+				action: ["bonus action", ""],
+				extraLimitedFeatures: [{
+					name: "Regenerating Marrow",
+					usages: 1,
+					recovery: "short rest"
+				}]
+			},
+			"replacement (donor: any creature)" : {
+				name: "Replacement",
+				source: ["VSoS", 373],
+				submenu: "[Any Grafts]",
+				description: desc("A replacement limb/organ functions identically. It takes up the most relevant body slot.")
+			},
+			"stench (donor: has the stench trait)" : {
+				name: "Stench",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n    As a bonus action, each creature within 10 ft of me must Con save, DC (8+Prof+Con)"+
+								"\n    or be poisoned until the end of their next turn.",
+				action: ["bonus action", ""],
+				extraLimitedFeatures: [{
+					name: "Stench",
+					usages: 1,
+					recovery: "short rest"
+				}]
+			},
+			"tentacles (donor: has a tentacles/tendrils attack)" : {
+				name: "Tentacles",
+				source: ["VSoS", 373],
+				submenu: "[Arms Grafts]",
+				description: desc([
+					"I gain a tentacle I can use to make unarmed strikes: Finesse, 10 ft, 1d6+Str/Dex bludgeoning.",
+					"When I hit with this attack, I may use my bonus action to attempt to grapple the target."
+				]),
+				weaponOptions: [{
+					name: "Tentacle",
+					source: ["VSoS", 373],
+					regExpSearch: /\btentacle\b/i,
+					type: "Natural",
+					ability: 1,
+					abilitytodamage: true,
+					damage: [1, 6, "Bludgeoning"],
+					range: "Melee (10 ft)",
+					description: "Finesse, Reach, on hit, may use bonus action to attempt a grapple on target",
+					selectNow : true
+				}],    
+			},
+			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)" : {
+				name: "Venom Sac",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n    As a bonus action, I can coat a weapon in basic poison. the save DC = 8+Prof+Con mod.",
+				action: ["bonus action", ""],
+				extraLimitedFeatures: [{
+					name: "Venom Sac",
+					usages: 1,
+					recovery: "short rest"
+				}]
+			},
+			"voice box (donor: has the mimicry trait)" : {
+				name: "Voice Box",
+				source: ["VSoS", 373],
+				submenu: "[Head Grafts]",
+				description: "\n   I can mimic any sound I have heard, including voices. Creatures can tell they are mimicries"+
+								"\n   if they succeed on an Insight check contested by my Deception check.",
+			},
+			"webspinner apparatus (donor: has a web action)" : {
+				name: "Webspinner Apparatus",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n    I can cast the web spell without using a spell slot or components: DC 8+Prof+Con mod.",
+				extraLimitedFeatures: [{
+					name: "Webspinner Apparatus",
+					usages: 1,
+					recovery: "short rest"
+				}],
+				spellcastingBonus : [{
+					spells: ["web"],
+					name: "Webspinner Apparatus",
+					selection: ["web"],
+					firstCol: "oncesr",
+					spellcastingAbility: 3,
+					allowUpCasting: false,
+				}]
+			}
+		},
+		"subclassfeature6": {
+			name: "Surgical Attack",
+			source: ["VSoS", 42],
+			minlevel: 6,
+			description: desc([
+				"When I take the attack action/prime & throw a bomb, I can make an unarmed strike as part of",
+				"that action, as long as I use a monsterous graft for the unarmed strike."
+			])
+		},
+		"subclassfeature10": {
+			name: "Necromantic Organs",
+			source: ["VSoS", 42],
+			minlevel: 10,
+			description: desc("When I am reduced to 0 hit points but not killed, I can drop to 1 hit point instead."),
+			usages: 1,
+			recovery: "long rest"
+		},
+		"subclassfeature18": {
+			name: "It's Alive!",
+			source: ["VSoS", 42],
+			minlevel: 18,
+			description: "\n    I can create an alchemy golem with 8 hrs, a healer's kit, alchemist's supplies, a knife, and 3"+
+							"\n    recently deceased Humanoid corpses. I can only have 1 golem at a time. See companion pg.",
+			action: ["bonus action", "Command Alchemy Golem"],
+			creaturesAdd: [["Alchemy Golem", true]],
+			creatureOptions: [{
+				name: "Alchemy Golem",
+				source: ["VSoS", 43],
+				size: 3,
+				type: "Construct",
+				alignment: "unaligned",
+				ac : 13,
+				hp: 76,
+				hd: [9, 8],
+				speed: "30 ft",
+				scores: [17,9,18,6,10,5],
+				damage_resistances: "bludgeoning, piercing and slashing from nonmagical attacks that aren't adamantine",
+				damage_immunities: "lightning",
+				condition_immunities: "charm, exhaustion, fright, paralysis, petrify, poison",
+				proficiencyBonus: 3,
+				languages: "same as creator (can't speak)",
+				senses: "Darkvision 60 ft",
+				passivePerception : 13,
+				challengeRating: "5",
+				proficiencyBonus: 3,
+				attacksAction: 2,
+				attacks: [{
+					name: "Slam",
+					ability: 1,
+					damage: [2, 8, "Bludgeoning"],
+					range: "Melee (5 ft)",
+					abilitytodamage: true,
+					description: "Counts as magical"
+				}, {
+					name: "Bestial Weapon: Claws",
+					ability: 1,
+					damage: [2, 6, "Slashing"],
+					range: "Melee (5 ft)",
+					abilitytodamage: false,
+					modifiers: ["(oInt+oProf)-(Str+Prof)", "5"],
+					description: "Counts as magical"
+				}, {
+					name: "Bestial Weapon: Teeth",
+					ability: 1,
+					damage: [2, 6, "Piercing"],
+					range: "Melee (5 ft)",
+					abilitytodamage: false,
+					modifiers: ["(oInt+oProf)-(Str+Prof)", "5"],
+					description: "Counts as magical"
+				}, {
+					name: "Draconis Fundamentum",
+					ability: 3,
+					damage: [6, 6, ""],
+					range: "15 ft cone",
+					abilitytodamage: false,
+					dc: true,
+					modifiers: ["", "5"],
+					tooltip: "Each creature in a 15-foot cone must make a Dexterity saving throw (DC equals 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes 1d6 damage for each point of your proficiency bonus, or half as much damage on a successful one. The breath weapon’s damage type is the same as the donor’s breath weapon. Once you use this ability, you can’t use it again until you finish a short or long rest.",
+					description: "Dex save, save halves damage",
+				}, {
+					name: "Horns",
+					ability: 1,
+					damage: [2, 6, "Bludgeoning"],
+					range: "Melee (5 ft)",
+					abilitytodamage: false,
+					modifiers: ["(oInt+oProf)-(Str+Prof)", "5"],
+					description: "Counts as magical; if moved 10 ft in a straight line before attacking, may attempt to knock prone",
+					tooltip: "Horns are a natural weapon that you can use to make unarmed strikes. If you move in a straight line for 10 feet immediately before hitting a creature with your horns, that creature must make a Strength check contested by your Strength check. If you succeed, the creature is knocked prone."
+				}, {
+					name: "Horns",
+					ability: 1,
+					damage: [2, 6, "Bludgeoning"],
+					range: "Melee (5 ft)",
+					abilitytodamage: false,
+					modifiers: ["(oInt+oProf)-(Str+Prof)", "5"],
+					description: "Counts as magical; if moved 10 ft in a straight line, may STR contest to knock prone",
+				}, {
+					name: "Prehensile Tail",
+					ability: 1,
+					damage: [2, 6, "Bludgeoning"],
+					range: "Melee (5 ft)",
+					abilitytodamage: false,
+					modifiers: ["(oInt+oProf)-(Str+Prof)", "5"],
+					description: "Counts as magical",
+				},{
+					name: "Tentacles",
+					ability: 1,
+					damage: [2, 6, "Bludgeoning"],
+					range: "Melee (10 ft)",
+					abilitytodamage: false,
+					modifiers: ["(oInt+oProf)-(Str+Prof)", "5"],
+					description: "Finesse, Reach; Counts as magical; may use bonus action to attempt grapple",
+				}],
+				traits: [{
+					name : "Aversion to Fire",
+					description: "If the golem takes fire damage, it has disadv. on ability checks and attack rolls until the end of its next turn.",
+				}, {
+					name: "Immutable Form",
+					description: "The golem is immune to any spell or effect that would alter its form.", 
+				}, {
+					name: "Lightning Absorption",
+					description: "Whenever the golem is subjected to lightning damage, it instead regains hitpoints equal to half the lightning damage dealt.", 
+				}, {
+					name : "Magic Resistance",
+					description: "The golem has advantage on saves vs spells and other magical effects.",
+				}, {
+					name : "Multiattack",
+					description : "The golem can make two melee weapon attacks"
+				}],
+				eval: function(prefix, lvl){
+					AddString(prefix + 'Cnote.Left', "\u25C6 It's Alive!: The golem acts independently on its own turn, but always obeys your commands. On each of your turns, you can use a bonus action to mentally command the golem if it is within 60 feet of you. You decide what actions the golem will take and where it will move during its next turn, or you can issue a general command. If you issue no commands, the golem only defends itself against hostile creatures. Once given an order, the golem continues to follow it until its task its complete. The golem can use your Intelligence modifier + your proficiency bonus for its attack rolls. If the golem drops to 0 hit points, it dies. You can restore the golem's hit points and reanimate it over the course of a long rest.");
+					AddString(prefix + 'Cnote.Left', "\n\u25C6 Monsterous Grafts: The golem may have up to three Monstrous Grafts attached to it by its creator. The golem's weapon attacks, including monsterous grafts added by its creator, are magical. Monsterous grafts have a +6 attack bonus, deal twice the normal number of damage dice, and have a +5 bonus to their damage rolls. The golem can only have 1 graft in each slot.");
+					Value(prefix + "Comp.Use.Attack.2.Weapon Selection", "");
+					Value(prefix + "Comp.Use.Attack.3.Weapon Selection", "");
+				},
+				removeeval: function(prefix, lvl){
+					RemoveString(prefix + 'Cnote.Left', "\u25C6 It's Alive!: The golem acts independently on its own turn, but always obeys your commands. On each of your turns, you can use a bonus action to mentally command the golem if it is within 60 feet of you. You decide what actions the golem will take and where it will move during its next turn, or you can issue a general command. If you issue no commands, the golem only defends itself against hostile creatures. Once given an order, the golem continues to follow it until its task its complete. The golem can use your Intelligence modifier + your proficiency bonus for its attack rolls. If the golem drops to 0 hit points, it dies. You can restore the golem's hit points and reanimate it over the course of a long rest.");
+					RemoveString(prefix + 'Cnote.Left', "\n\u25C6 Monsterous Grafts: The golem may have up to three Monstrous Grafts attached to it by its creator. The golem's weapon attacks, including monsterous grafts added by its creator, are magical. Monsterous grafts have a +6 attack bonus, deal twice the normal number of damage dice, and have a +5 bonus to their damage rolls. The golem can only have 1 graft in each slot.");
+				}
+			}],
+			extraname: "Golem's Monsterous Grafts",
+			extrachoices: ["Amphibious Adaptation (Donor: has Amphibious trait)", 
+			"Arcane Synapses (Donor: has Spellcasting/Innate Spellcasting)", 
+			"Beast's Hide (Donor: Large or larger Beast)", 
+			"Bestial Weapons (Arms) (Donor: Bst/Drgn/Mons with Claw attack)", 
+			"Bestial Weapons (Head) (Donor: Bst/Drgn/Mons with Bite attack)", 
+			"Charging Hooves (Donor: has Charge trait or Gore/Hooves attack)", 
+			"Climbing Apparatus (Donor: Bst/Humn/Mons with climb speed)", 
+			"Doppel-Blooded (Donor: has shapechanger tag)", 
+			"Draconis Fundamentum (Donor: Drgn/Humn/Mons with a Breath Weapon)", 
+			"Dragon's Hide (Donor: Large or larger Dragon)", 
+			"Energetic Suture (Acid) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to acid damage)",
+			"Energetic Suture (Cold) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to cold damage)",
+			"Energetic Suture (Fire) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to fire damage)",
+			"Energetic Suture (Poison) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to poison damage)",
+			"Energetic Suture (Thunder) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to thunder damage)",    
+			"Fiend's Hide (Donor: Medium or larger Fiend)", 
+			"Heart of Steel (Donor: Construct)", 
+			"Horns (Donor: has Gore/Horns/Ram/Tusk attack)", 
+			"Indiscernible Anatomy (Donor: Medium or larger Aberration)", 
+			"Leaping Legs (Donor: has the Pounce/Standing Leap trait)", 
+			"Olfactory Implants (Donor: has Keen Smell/Keen Hearing and Smell trait)", 
+			"Oversized Arms (Donor: Giant)", 
+			"Prehensile Tail (Donor: has a Tail attack)", 
+			"Regenerating Marrow (Donor: has the Regeneration trait)", 
+			"Replacement (Donor: any creature)", 
+			"Stench (Donor: has the Stench trait)", 
+			"Tentacles (Donor: has a Tentacles/Tendrils attack)", 
+			"Venom Sac (Donor: has a natural weapon/trait that deals poison/poisoned condition)", 
+			"Voice Box (Donor: has the Mimicry trait)", 
+			"Webspinner Apparatus (Donor: has a Web action)"],
+			extraTimes: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,3],
+			"amphibious adaptation (donor: has amphibious trait)" : {
+				name: "Amphibious Adaptation",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Amphibious Adaptation: The golem can breathe both air and water.");
+						aFnc(prefix + "Comp.Use.Speed", ",\nswim 30 ft");
+					},
+					"My alchemy golem gains the Monsterous Graft: Amphibious Adaptation."]
+				}
+			},
+			"arcane synapses (donor: has spellcasting/innate spellcasting)" : {
+				name: "Arcane Synapses",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Arcane Synapses: The golem knows 1 wizard cantrip. If a second creature is harvested and grafted, it knows 2 wizard cantrips.");
+					},
+					"My alchemy golem gains the Monsterous Graft: Arcane Synapses."]
+				},
+				spellcastingBonus: [{
+					name: "Arcane Synapses (Golem)",
+					firstCol: "AG",
+					times: 2,
+					spellcastingAbility: 4,
+					"class": ["wizard"],
+					level: [0,0],
+				}]
+			},
+			"beast's hide (donor: large or larger beast)" : {
+				name: "Beast's Hide",
+				source: ["VSoS", 370],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						if (bAdd) Value(prefix + "Comp.Use.AC", "13+Dex");
+						else Value(prefix + "Comp.Use.AC", "14+Dex");
+					},
+					"My alchemy golem's AC is equal to 13 + its Dexterity Modifier, if its worn armor isn't higher. It may benefit from a shield."]
+				},
+			},
+			"bestial weapons (arms) (donor: bst/drgn/mons with claw attack)" : {
+				name: "Bestial Weapons (Arms)",
+				source: ["VSoS", 370],
+				submenu: "[Arms Grafts]",
+				description: "",                  
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
+						if (bAdd) { AddWeapon("Bestial Weapon: Claws", "", prefix); }
+						else {
+							for (i = 1; i < 3; ++i){
+								if (/bestial weapon: claws/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+									Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+						}
+					},
+					"My alchemy golem gains the Monsterous Graft: Bestial Weapons (Arms).",
+					900],
+				},
+			},
+			"bestial weapons (head) (donor: bst/drgn/mons with bite attack)" : {
+				name: "Bestial Weapons (Head)",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
+						if (bAdd) { AddWeapon("Bestial Weapon: Teeth", "", prefix); }
+						else {
+							for (i = 1; i < 3; ++i){
+								if (/bestial weapon: teeth/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+									Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+						}
+					},
+					"My alchemy golem gains the Monsterous Graft: Bestial Weapons (Head).",
+					900],
+				},
+			},
+			"charging hooves (donor: has charge trait or gore/hooves attack)" : {
+				name: "Charging Hooves",
+				source: ["VSoS", 370],
+				submenu: "[Legs Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Features", "\n\u25C6 Charging Hooves: Once on each of its turns, if the golem moves 15 ft in straight line, it can move +10 ft in that direction");
+					}]
+				}
+			},
+			"climbing apparatus (donor: bst/humn/mons with climb speed)" : {
+				name: "Climbing Apparatus",
+				source: ["VSoS", 370],
+				submenu: "[Legs Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Speed", ",\nclimb 30 ft");
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Climbing Apparatus: The golem gains a climb speed equal to its walking speed.");
+					}]
+				}
+			},
+			"doppel-blooded (donor: has shapechanger tag)" : {
+				name: "Doppel-Blooded",
+				source: ["VSoS", 370],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Doppel-Blooded: Once per long rest, The golem can transform its appearance for 1 hr. it can change its height, weight, face, voice, hair, & race. It cannot become a different size, and its basic shape remains.");
+					}]
+				}
+			},
+			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)" : {
+				name: "Draconis Fundamentum",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+				creatureCallback: [function(prefix, oCrea, bAdd) {
+					if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
+					if (bAdd) { AddWeapon("Draconis Fundamentum", "", prefix); }
+					else {
+						for (i = 1; i < 3; ++i){
+							if (/Draconis Fundamentum/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+								Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+						}
+					},
+					"My alchemy golem gains the Monsterous Graft: Draconis Fundamentum.",
+					900],
+				}
+			},
+			"dragon's hide (donor: large or larger dragon)" : {
+				name: "Dragon's Hide",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						if (bAdd) Value(prefix + "Comp.Use.AC", 17);
+						else Value(prefix + "Comp.Use.AC", "14+Dex");
+					}, "My alchemy golem's AC is equal to 17, if its worn armor isn't higher. It may benefit from a shield."]
+				}
+			},
+			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, acid") );
+						else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", acid", ".") );
+					}]
+				}
+			},
+			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, cold") );
+						else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", cold", ".") );
+					}]
+				}
+			},
+			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, fire") );
+						else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", fire", ".") );
+					}]
+				}
+			},
+			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, poison") );
+						else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", poison", ".") );
+					}]
+				}
+			},
+			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, thunder") );
+						else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", thunder", ".") );
+					}]
+				}
+			},
+			"fiend's hide (donor: medium or larger fiend)" : {
+				name: "Fiend's Hide",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						if (bAdd) Value(prefix + "Comp.Use.AC", "15+min(Dex|2)");
+						else Value(prefix + "Comp.Use.AC", "14+Dex");
+					}, "My alchemy golem's AC is equal to 15 + its Dexterity Modifier, max 2, if its worn armor isn't higher. It may benefit from a shield."]
+				}
+			},
+			"heart of steel (donor: construct)" : {
+				name: "Heart of Steel",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Heart of Steel: The golem ignores effects of 1 level of exhaustion & finishes a long rest in 4 hours.");
+					}]
+				}
+			},
+			"horns (donor: has gore/horns/ram/tusk attack)" : {
+				name: "Horns",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;            
+						if (bAdd) { 
+							AddWeapon("Horns", "", prefix);
+						}
+						else {
+							for (i = 1; i < 3; ++i){
+								if (/horns/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+									Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+						}
+					},
+					"My alchemy golem gains the Monsterous Graft: Horns.",
+					900],
+				},        
+			},
+			"indiscernible anatomy (donor: medium or larger aberration)" : {
+				name: "Indiscernible Anatomy",
+				source: ["VSoS", 372],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Indiscernible Anatomy: Critical hits against the golem become normal hits.");
+					}]
+				}
+			},
+			"leaping legs (donor: has the pounce/standing leap trait)" : {
+				name: "Leaping Legs",
+				source: ["VSoS", 372],
+				submenu: "[Legs Grafts]",
+				description: " My jump distance doubles. I can jump my full distance without a running start.",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Leaping Legs: The golem's jump distance is doubled. It can jump its full distance without a running start.");
+					}]
+				}
+			},
+			"olfactory implants (donor: has keen smell/keen hearing and smell trait)" : {
+				name: "Olfactory Implants",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Senses", "Keen Smell");
+					}]
+				}
+			},
+			"oversized arms (donor: giant)" : {
+				name: "Oversized Arms",
+				source: ["VSoS", 372],
+				submenu: "[Arms Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd) {
+						// if( GetFeatureChoice("classes", "alchemist", "subclassfeature2.1", true).indexOf("oversized arms (donor: giant)") !== -1) {
+						// 	ClassSubList["alchemist-xenoalchemist"].features["subclassfeature2.1"]["oversized arms (donor: giant)"].calcChanges.creatureCallback[0](prefix, oCrea, bAdd);
+						// }  
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						for(var i = 1; i <= 3; i++){
+							// * The base field name
+							var baseField = prefix + "Comp.Use.Attack." + i;
+
+							// * Range and Description as fields
+							var range = baseField + ".Range";
+							var description = baseField + ".Description";
+
+							// * Range and Description as strings
+							var strRange = What(range);
+							var strDescription = What(description);
+
+							if(bAdd){
+								if((/\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange) && !(/reach/).test(strDescription)) {
+									var rNum = strRange.match(/\d+\s?(ft|m)/i);
+									var unit = rNum[1];
+									var curRange = parseInt(rNum[0], 10);
+
+									Value(range, strRange.replace(/\d+\s?(ft|m)/i, (curRange + 5) + " " + unit));
+									AddString(description, "Reach", "; ");
+								}
+								if(!(/\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange) && !(/reach/).test(strDescription)) {
+									Value(range, "Melee (10 ft)");
+									AddString(description, "Reach", "; ");
+								}
+							}
+							if(!bAdd) {
+								if((/\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange)) {
+									var rNum = strRange.match(/\d+\s?(ft|m)/i); 
+									var unit = rNum[1];
+									var curRange = parseInt(rNum[0], 10);
+
+									Value(range, strRange.replace(/\d+\s?(ft|m)/i, Math.max(curRange - 5, 5) + " " + unit));
+									Value(description, strDescription.replace(/(,|;)? ?reach/i, ''));
+								}
+							}
+						}
+						aFnc(prefix + "Comp.Use.Traits.", "\n\u25C6 Oversized Arms: The golem's reach increases by 5 ft, unless the weapon used has Reach. It has advantage on saves made to maintain grip on objects.")
+					},
+					"My golem's reach increases by 5 ft, unless the weapon it is using has Reach.", 1000]	
+				}
+			},
+			"prehensile tail (donor: has a tail attack)" : {
+				name: "Prehensile Tail",
+				source: ["VSoS", 372],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
+						if (bAdd) { 
+							AddWeapon("Prehensile Tail", "", prefix);
+							AddString(prefix + "Comp.Use.Features", "\n\u25C6 Prehensile Tail: The golem's tail can hold and manipulate objects, but cannot use weapons/shields");
+						}
+						else {
+							for (i = 1; i < 3; ++i){
+								if (/Prehensile Tail/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+									Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+							RemoveString(prefix + "Comp.Use.Features", "\n\u25C6 Prehensile Tail: The golem's tail can hold and manipulate objects, but cannot use weapons/shields");
+						}
+					},
+					"My alchemy golem gains the Monsterous Graft: Prehensile Tail.",
+					900], 
+				}
+			},
+			"regenerating marrow (donor: has the regeneration trait)" : {
+				name: "Regenerating Marrow",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Features", "\n\u25C6 Regenerating Marrow: Once per short rest, the golem can use a bonus action to regain hit points equal to 1d10 + Constitution modifier.");
+					}]
+				}
+			},
+			"replacement (donor: any creature)" : {
+				name: "Replacement",
+				source: ["VSoS", 373],
+				submenu: "[Any Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Replacement: A replacement limb or organ functions the same as the missing one. It takes up the most relevant body slot.");
+					}]
+				}
+			},
+			"stench (donor: has the stench trait)" : {
+				name: "Stench",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Features", "\n\u25C6 Stench: Once per short rest, as a bonus action, each creature within 10 ft of the golem must make a Con save, DC 15, or be poisoned until the end of their next turn.");
+					}]
+				}
+			},
+			"tentacles (donor: has a tentacles/tendrils attack)" : {
+				name: "Tentacles",
+				source: ["VSoS", 373],
+				submenu: "[Arms Grafts]",
+				description: "",
+				calcChanges : {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
+						if (bAdd) { AddWeapon("Tentacles", "", prefix); }
+						else {
+							for (i = 1; i < 3; ++i){
+								if (/tentacles/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+									Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+						}
+					},
+					"My alchemy golem gains the Monsterous Graft: Tentacles.",
+					900],   
+				}
+			},
+			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)" : {
+				name: "Venom Sac",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Features", "\n\u25C6 Venom Sac: Once per short rest, as a bonus action, the golem can coat a weapon in basic poison. The save DC for this poison is 15.");
+					}]
+				}
+			},
+			"voice box (donor: has the mimicry trait)" : {
+				name: "Voice Box",
+				source: ["VSoS", 373],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Voice Box: The golem can mimic any sound it has heard, including voices. Creatures can tell they are mimicries if they succeed on an Insight check contested by my Deception check.");
+					}]
+				}
+			},
+			"webspinner apparatus (donor: has a web action)" : {
+				name: "Webspinner Apparatus",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Features", "\n\u25C6 Webspinner Apparatus: Once per short rest, the golem can cast the web spell without using a spell slot or components.");
+					}]
+				},
+				spellcastingBonus : [{
+					spells: ["web"],
+					name: "Webspinner Apparatus",
+					selection: ["web"],
+					firstCol: "AG",
+					spellcastingAbility : 3,
+					allowUpCasting: false
+				}]
+			}          
+		},
 	}
 })
 
@@ -4057,7 +5198,7 @@ MagicItemsList["advanced mutation"] = {
 	}
 }
 
-// Ooze bottle magic item for Ooze rancher subclass
+// * Ooze bottle magic item for Ooze rancher subclass
 MagicItemsList["ooze bottle"] = {
 	name: "Ooze Bottle",
 	sortname: "Bottle, Ooze",
