@@ -4607,14 +4607,7 @@ AddSubClass("alchemist","xenoalchemist",{
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
 						if (bAdd) { 
 							AddWeapon("Bestial Weapon: Claws", "", prefix);
-							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
-							for (var i = 0; i < creatureOptions.length; i++) {
-								var creature = creatureOptions[i];
-								if (creature.name.toLowerCase() === "alchemy golem") {
-									creature.commoneval(prefix, oCrea, bAdd);
-									break; 
-								}
-							}
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
 						 }
 						else {
 							for (i = 1; i < 3; ++i){
@@ -4637,14 +4630,7 @@ AddSubClass("alchemist","xenoalchemist",{
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
 						if (bAdd) { 
 							AddWeapon("Bestial Weapon: Teeth", "", prefix); 
-							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
-							for (var i = 0; i < creatureOptions.length; i++) {
-								var creature = creatureOptions[i];
-								if (creature.name.toLowerCase() === "alchemy golem") {
-									creature.commoneval(prefix, oCrea, bAdd);
-									break; 
-								}
-							}
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
 						}
 						else {
 							for (i = 1; i < 3; ++i){
@@ -4707,14 +4693,7 @@ AddSubClass("alchemist","xenoalchemist",{
 					if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
 					if (bAdd) { 
 						AddWeapon("Draconis Fundamentum", "", prefix); 
-						var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
-							for (var i = 0; i < creatureOptions.length; i++) {
-								var creature = creatureOptions[i];
-								if (creature.name.toLowerCase() === "alchemy golem") {
-									creature.commoneval(prefix, oCrea, bAdd);
-									break; 
-								}
-							}
+						ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
 					}
 					else {
 						for (i = 1; i < 3; ++i){
@@ -4842,13 +4821,7 @@ AddSubClass("alchemist","xenoalchemist",{
 						if (bAdd) { 
 							AddWeapon("Horns", "", prefix);
 							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
-							for (var i = 0; i < creatureOptions.length; i++) {
-								var creature = creatureOptions[i];
-								if (creature.name.toLowerCase() === "alchemy golem") {
-									creature.commoneval(prefix, oCrea, bAdd);
-									break; 
-								}
-							}
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
 						}
 						else {
 							for (i = 1; i < 3; ++i){
@@ -4908,24 +4881,11 @@ AddSubClass("alchemist","xenoalchemist",{
 				calcChanges: {
 					creatureCallback: [function(prefix, oCrea,bAdd) {
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
-						var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
 						if(bAdd) {
-							for (var i = 0; i < creatureOptions.length; i++) {
-								var creature = creatureOptions[i];
-								if (creature.name.toLowerCase() === "alchemy golem") {
-									creature.commoneval(prefix, oCrea, bAdd);
-									break; 
-								}
-							}
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd)
 						}
 						if(!bAdd) {
-							for (var i = 0; i < creatureOptions.length; i++) {
-								var creature = creatureOptions[i];
-								if (creature.name.toLowerCase() === "alchemy golem") {
-									creature.commonremoveeval(prefix, oCrea, bAdd);
-									break; 
-								}
-							}
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commonremoveeval(prefix, oCrea, bAdd)
 						}
 						var aFnc = bAdd ? AddString : RemoveString;
 						aFnc(prefix + "Comp.Use.Traits.", "\n\u25C6 Oversized Arms: The golem's reach increases by 5 ft, unless the weapon used has Reach. It has advantage on saves made to maintain grip on objects.")
@@ -4944,14 +4904,7 @@ AddSubClass("alchemist","xenoalchemist",{
 						if (bAdd) { 
 							AddWeapon("Prehensile Tail", "", prefix);
 							AddString(prefix + "Comp.Use.Features", "\n\u25C6 Prehensile Tail: The golem's tail can hold and manipulate objects, but cannot use weapons/shields");
-							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
-							for (var i = 0; i < creatureOptions.length; i++) {
-								var creature = creatureOptions[i];
-								if (creature.name.toLowerCase() === "alchemy golem") {
-									creature.commoneval(prefix, oCrea, bAdd);
-									break; 
-								}
-							}
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
 						}
 						else {
 							for (i = 1; i < 3; ++i){
