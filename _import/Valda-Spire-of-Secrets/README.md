@@ -28,17 +28,13 @@ Everything up to "Mad Bomber" has been added and updated to v13.2.0 for MPMB's S
     - Non-primed bombs will now use Str/Dex instead of Int to determine damage bonus
   - Non-damaging bombs now use `ability : 0` and `abilitytodamage : false` to stop the sheet from adding damage
     - Added `excludeBombDamage` to prevent Int being added to damage bonus. If this is true, no calculation is done and it will use whatever is in the `damage` array.
+  - Fixed Xenoalchemist "Oversized Arms" for "Alchemy Golem" not changing newly added weapons' range correctly.
+    - Each choice that adds a weapon now calls on a `commoneval` and "Oversized Arms" now calls on a `commonremoveeval` to reset ranges with the exception of "Tentacles"
 
 ### Added
-  - Alchemist Base Class
-    - Amorist Subclass
-    - Apothercary Subclass
-    - Mad Bomber Subclass
-    - Mutagenist Subclass
-    - Ooze Rancher Subclass
+  - Alchemist Class and Subclass Finished
 
 ### WIP: 
-  - Alchemist Subclasses
 
 ### TODO: 
   - Finish Alchemist class update and revisions
