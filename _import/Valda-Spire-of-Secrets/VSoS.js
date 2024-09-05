@@ -4908,8 +4908,8 @@ AddSubClass("alchemist","xenoalchemist",{
 				calcChanges: {
 					creatureCallback: [function(prefix, oCrea,bAdd) {
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+						var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
 						if(bAdd) {
-							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
 							for (var i = 0; i < creatureOptions.length; i++) {
 								var creature = creatureOptions[i];
 								if (creature.name.toLowerCase() === "alchemy golem") {
@@ -4919,7 +4919,6 @@ AddSubClass("alchemist","xenoalchemist",{
 							}
 						}
 						if(!bAdd) {
-							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
 							for (var i = 0; i < creatureOptions.length; i++) {
 								var creature = creatureOptions[i];
 								if (creature.name.toLowerCase() === "alchemy golem") {
