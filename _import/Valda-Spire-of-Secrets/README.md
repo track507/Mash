@@ -36,7 +36,8 @@ Everything up to "Mad Bomber" has been added and updated to v13.2.0 for MPMB's S
   - Captain Class
     - Dragon Banner Subclass
     - Eagle Banner Subclass
-    -
+    - Jolly Roger
+    - Captain Cohorts
 
 ### WIP: 
   - Captain Subclasses
