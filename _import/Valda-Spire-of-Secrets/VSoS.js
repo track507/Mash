@@ -22139,7 +22139,7 @@ CompanionList["mechanaut's apparatus"] = {
 	}]
 }
 	 
-// * Abbot cohort creature option
+// * Abbot Captain cohort
 CreatureList["abbot"] = {
 	name: "Abbot",
 	source: ["VSoS", 54],
@@ -22264,7 +22264,7 @@ CreatureList["abbot"] = {
 	},
 }
 	
-// * Berserker cohort creature option
+// * Berserker Captain cohort
 CreatureList["berserker"] = {
 	name: "Berserker",
 	source: ["VSoS", 55],
@@ -22359,7 +22359,7 @@ CreatureList["berserker"] = {
 	},
 }
 	
-// * Champion cohort creature option
+// * Champion Captain cohort
 CreatureList["champion"] = {
 	name: "Champion",
 	source: ["VSoS", 56],
@@ -22483,7 +22483,7 @@ CreatureList["champion"] = {
 	}
 }
 	
-// * Construct cohort creature option
+// * Construct Captain cohort
 CreatureList["construct"] = {
 	name: "Construct",
 	source: ["VSoS", 56],
@@ -22602,7 +22602,7 @@ CreatureList["construct"] = {
 	}
 }
 	
-// * Cultist cohort creature option
+// * Cultist Captain cohort
 CreatureList["cultist"] = {
 	name: "Cultist",
 	source: ["VSoS", 57],
@@ -22712,7 +22712,7 @@ CreatureList["cultist"] = {
 	}
 }
 	
-// * Hunter cohort creature option
+// * Hunter Captain cohort
 CreatureList["hunter"] = {
 	name: "Hunter",
 	source: ["VSoS", 58],
@@ -22821,7 +22821,7 @@ CreatureList["hunter"] = {
 	}
 }
 	
-// * Mage cohort creature option
+// * Mage Captain cohort
 CreatureList["mage"] = {
 	name: "Mage",
 	source: ["VSoS", 58],
@@ -22946,7 +22946,7 @@ CreatureList["mage"] = {
 	}
 }
 	
-// * Scoundrel cohort creature option
+// * Scoundrel Captain cohort
 CreatureList["scoundrel"] = {
 	name: "Scoundrel",
 	source: ["VSoS", 59],
@@ -23058,7 +23058,7 @@ CreatureList["scoundrel"] = {
 	}
 }
 	
-// * Templar cohort creature option
+// * Templar Captain cohort
 CreatureList["templar"] = {
 	name: "Templar",
 	source: ["VSoS", 60],
@@ -23196,7 +23196,7 @@ CreatureList["templar"] = {
 	}
 }
 	
-// * Undead cohort creature option
+// * Undead Captain cohort
 CreatureList["undead"] = {
 	name: "Undead",
 	source: ["VSoS", 61],
