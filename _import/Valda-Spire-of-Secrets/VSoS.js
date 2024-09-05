@@ -3693,7 +3693,7 @@ AddSubClass("alchemist","ooze rancher", {
                 }],
                 eval: function(prefix, lvl){
                     AddString(prefix + 'Cnote.Left', "\u25C6 Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
-                    AddString(prefix + 'Cnote.Left', "\u25C6 Engulf: As an action, the cube moves up to its speed. While doing so, it can enter Large or smaller creatures' spaces. Whenever the cube enters a creature's space, the creature must make a  Dexterity saving throw equal to its master's bomb save DC. On a successful save, the creature can choose to be pushed 5 feet back or to the side of the cube. A creature that chooses not to be pushed suffers the consequences of a failed saving throw. On a failed save, the cube enters the creature's space, and the creature takes 10 (3d6) acid damage and is engulfed. The engulfed creature can't breathe, is restrained, and takes 21 (6d6) acid damage at the start of each of the cube's turns. When the cube moves, the engulfed creature moves with it. An engulfed creature can try to escape by taking an action to make a DC 12 Strength check. On a success, the creature escapes and enters a space of its choice within 5 feet of the cube.");
+                    AddString(prefix + 'Cnote.Left', "\u25C6 Engulf: As an action, the cube moves up to its speed. While doing so, it can enter Large or smaller creatures' spaces. Whenever the cube enters a creature's space, the creature must make a  Dexterity saving throw equal to its master's bomb save DC. On a successful save, the creature can choose to be pushed 5 feet back or to the side of the cube. A creature that chooses not to be pushed suffers the consequences of a failed saving throw. On a failed save, the cube enters the creature's space, and the creature takes 10 (3d6) acid damage and is engulfed. The engulfed creature can't breathe, is restrained, and takes 21 (6d6) acid damage at the start of each of the cube's turns. When the cube moves, the engulfed creature moves with it. An engulfed creature can try to escape by taking an action to make a DC 12 Strength check. On a success, the creature escapes and enters a space of its choice within 5 feet of the cube.");
                 },
                 removeeval: function(prefix, lvl){
                     RemoveString(prefix + 'Cnote.Left', "\u25C6 Ooze Bottle: The cube is friendly to me and my allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, it will follow me. The cube dissolves into a lifeless sludge after 1 hour.");
@@ -5028,8 +5028,891 @@ AddSubClass("alchemist","xenoalchemist",{
 	}
 })
 
-// * Companion list for alchemist
-CompanionList.alchemist_homunculus = {
+// Captain class
+ClassList["captain"] = {
+    name: "Captain",
+    regExpSearch: /captain/i,
+    source: ["VSoS", 46],
+    primaryAbility: "Strength/Dexterity, Charisma",
+    prereqs: "Strength 13 or Dexterity 13, and Charisma 13",
+    die: 8,
+    improvements: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5],
+    saves: ["Con", "Cha"],
+    abilitySave: 6,
+    spellcastingFactor: 1,
+    spellcastingTable : levels.map(function (n) { return [0,0,0,0,0,0,0,0,0]}),
+    spellcastingList: {
+        class: "any",
+        spells: [],
+    },
+    skillstxt: {
+        primary: "Choose two from Animal Handling, Athletics, Deception, History, Insight, Intimidation, Perception, and Persuasion",
+    },
+    armorProfs: {
+        primary: [true, true, false, true],
+        secondary: [true, true, false, true],
+    },
+    weaponProfs: {
+        primary: [true, true],
+        secondary: [true, true]
+    },
+    equipment: "Captain starting equipment: " +
+    	"\n \u2022 Scale mail -or- leather armor;" +
+        "\n \u2022 A warhammer -or- a longsword -or- any simple weapon;" +
+        "\n \u2022 A light crossbow and 20 bolts -or- a shortbow and 20 arrows -or- 5 javelins;" +
+        "\n \u2022 A diplomat's pack -or- an explorer's pack;" +
+        "\n \u2022 An embroidered standard and a dagger",
+    subclasses: ["Banner", []],
+    attacks: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    features: {
+        "born leader" : {
+            name: "Born Leader",
+            source: ["VSoS", 46],
+            minlevel: 1,
+            description: "\n    I have advantage on any Charisma (Persuasion) checks to convince someone to let me take"+
+                         "\n    charge of a situation or to give someone orders in a dangerous situation. I can use my"+
+                         "\n    Cha mod instead of Int for any ability check I make related to planning, strategy, or tactics."
+        },
+        "fighting style" : {
+            name: "Fighting Style",
+            source: ["VSoS", 47],
+            minlevel: 1,
+            description: "\n    Choose a Fighting Style using the \"Choose Feature\" button above",
+            choices: ["Archery", "Defense", "Dueling", "Protection"],
+            "archery" : FightingStyles.archery,
+            "defense" : FightingStyles.defense,
+            "dueling" : FightingStyles.dueling,
+            "protection" : FightingStyles.protection,
+        },
+        // Big thanks to MorePurpleMoreBetter for the writing CalcChanges attribute that lets the user generate cohort spell sheets.
+        "cohort" : {
+            name: "Cohort",
+            source: ["VSoS", 47],
+            minlevel: 2,
+            description: "\n    I gain a cohort. Select a cohort using the \"Companion Options\" button on a Companion"+
+                         "\n    page, and generate cohort spell sheets by using the \"Choose Feature\" button above.  If my"+
+                         "\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort."+
+                         "\n    The previous cohort loses all abilities granted by this ability.", 
+            choices: ["Abbot: Generate Spells (6th level)", "Abbot: Generate Spells (14th level)", "Cultist: Generate Spells (1st level)", "Cultist: Generate Spells (6th level)", "Mage: Generate Spells (1st level)", "Mage: Generate Spells (6th level)", "Mage: Generate Spells (14th level)", "Mage: Generate Spells (18th level)"],
+            "abbot: generate spells (6th level)": {
+                name: "Abbot Cohort",
+                description: "\n    I gain a cohort. Select a cohort using the \"Companion Options\" button on a Companion"+
+                             "\n    page, and generate cohort spell sheets by using the \"Choose Feature\" button above.  If my"+
+                             "\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort."+
+                             "\n    The previous cohort loses all abilities granted by this ability.", 
+                prereqeval: function(v) {
+                    if (!(classes.known.captain.level >= 6 && classes.known.captain.level < 14)) return false;
+ 
+                    for (var entry in CurrentCompRace) {
+                        if (/\babbot\b/i.test(CurrentCompRace[entry].known)) return true;
+                    }
+                    return false;
+                },
+                eval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Abbot";
+                    CurrentSpells["captain"].shortname = "Abbot";
+                },
+                removeeval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Captain";
+                    CurrentSpells["captain"].shortname = "Captain";
+                },
+                calcChanges: {
+                    spellCalc: [
+                        function (type, spellcasters, ability) {
+                            // Only do this for the 'captain' class, and not for prepared spells, and not if the selected ability score is "none"
+                            if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
+                
+                            // Find the "abbot" companion by looking at the known
+                            // This means that "abbot" needs to be part of the Creature's object name
+                            // (e.g. CreatureList["abbot"]), or it has to be part of the name of the creature
+                            // when added through creatureOptions
+                            var prefix = false;
+                            for (var entry in CurrentCompRace) {
+                                if ( /\babbot\b/i.test(CurrentCompRace[entry].known) ) {
+                                    prefix = entry;
+                                    break;
+                                }
+                            }
+                
+                            // Stop if no match was found
+                            if (!prefix) return;
+                
+                            // Get the abbreviation for the selected ability
+                            var abi = AbilityScores.abbreviations[ability - 1];
+                
+                            // Get the modifier for the character and the found abbot creature
+                            var charMod = Number(What(abi + " Mod"));
+                            var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
+                
+                            // Return the difference between the two modifiers
+                            return creaMod - charMod;
+                        }, "My Abbot cohort can cast these spells. These spells use the abbot's Wisdom for the spellcasting ability, spell attacks, and saving throw DCs."
+                    ]
+                },
+                spellcastingBonus:[{
+                    spells: ["guidance", "spare the dying", "bless", "lesser restoration", "protection from evil and good"],
+                    name: "Abbot Cohort",
+                    selection: ["guidance", "spare the dying", "bless", "lesser restoration", "protection from evil and good"],
+                    firstCol: "atwill",
+                    times: 5,
+                    magicitemComponents: true,
+                    spellcastingAbility: 5,
+                }]
+            },
+            "abbot: generate spells (14th level)": {
+                name: "Abbot Cohort",
+                description: "\n    I gain a cohort. Select a cohort using the \"Companion Options\" button on a Companion"+
+                             "\n    page, and generate cohort spell sheets by using the \"Choose Feature\" button above.  If my"+
+                             "\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort."+
+                             "\n    The previous cohort loses all abilities granted by this ability.", 
+                prereqeval: function(v) {
+                    if (!(classes.known.captain.level >= 14)) return false;
+ 
+                    for (var entry in CurrentCompRace) {
+                        if (/\babbot\b/i.test(CurrentCompRace[entry].known)) return true;
+                    }
+                    return false;
+                },
+                eval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Abbot";
+                    CurrentSpells["captain"].shortname = "Abbot";
+                },
+                removeeval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Captain";
+                    CurrentSpells["captain"].shortname = "Captain";
+                },
+                calcChanges: {
+                    spellCalc: [
+                        function (type, spellcasters, ability) {
+                            if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
+                
+                            var prefix = false;
+                            for (var entry in CurrentCompRace) {
+                                if ( /\babbot\b/i.test(CurrentCompRace[entry].known) ) {
+                                    prefix = entry;
+                                    break;
+                                }
+                            }
+                            if (!prefix) return;
+                
+                            var abi = AbilityScores.abbreviations[ability - 1];
+                            var charMod = Number(What(abi + " Mod"));
+                            var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
+                
+                            return creaMod - charMod;
+                        }, "My Abbot cohort can cast these spells. These spells use the abbot's Wisdom for the spellcasting ability, spell attacks, and saving throw DCs."
+                    ]
+                },
+                spellcastingBonus:[{
+                    spells: ["guidance", "spare the dying", "bless", "lesser restoration", "protection from evil and good", "death ward", "revivify", "speak with animals"],
+                    name: "Abbot Cohort",
+                    selection: ["guidance", "spare the dying", "bless", "lesser restoration", "protection from evil and good", "death ward", "revivify", "speak with animals"],
+                    firstCol: "atwill",
+                    times: 8,
+                    magicitemComponents: true,
+                    spellcastingAbility: 5,
+                }]
+            },
+            "cultist: generate spells (1st level)": {
+                name: "Cultist Cohort",
+                description: "\n    I gain a cohort. Select a cohort using the \"Companion Options\" button on a Companion"+
+                             "\n    page, and generate cohort spell sheets by using the \"Choose Feature\" button above.  If my"+
+                             "\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort."+
+                             "\n    The previous cohort loses all abilities granted by this ability.", 
+                prereqeval: function(v) {
+                    if (!(classes.known.captain.level < 6)) return false;
+ 
+                    for (var entry in CurrentCompRace) {
+                        if (/\bcultist\b/i.test(CurrentCompRace[entry].known)) return true;
+                    }
+                    return false;
+                },
+                eval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Cultist";
+                    CurrentSpells["captain"].shortname = "Cultist";
+                },
+                removeeval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Captain";
+                    CurrentSpells["captain"].shortname = "Captain";
+                },
+                calcChanges: {
+                    spellCalc: [
+                        function (type, spellcasters, ability) {
+                            if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
+ 
+                            var prefix = false;
+                            for (var entry in CurrentCompRace) {
+                                if ( /\bcultist\b/i.test(CurrentCompRace[entry].known) ) {
+                                    prefix = entry;
+                                    break;
+                                }
+                            }
+                            if (!prefix) return;
+                
+                            var abi = AbilityScores.abbreviations[ability - 1];            
+                            var charMod = Number(What(abi + " Mod"));
+                            var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
+                
+                            return creaMod - charMod;
+                        }, "My Cultist cohort can cast these spells. These spells use the cultist's Charisma for the spellcasting ability, spell attacks, and saving throw DCs."
+                    ]
+                },
+                spellcastingBonus:[{
+                    spells: ["dancing lights", "mage hand", "minor illusion", "charm person", "detect magic"],
+                    name: "Cultist Cohort",
+                    selection: ["dancing lights", "mage hand", "minor illusion", "charm person", "detect magic"],
+                    firstCol: "atwill",
+                    times: 5,
+                    magicitemComponents: true,
+                    spellcastingAbility: 6,
+                }]
+            },
+            "cultist: generate spells (6th level)": {
+                name: "Cultist Cohort",
+                description: "\n    I gain a cohort. Select a cohort using the \"Companion Options\" button on a Companion"+
+                             "\n    page, and generate cohort spell sheets by using the \"Choose Feature\" button above.  If my"+
+                             "\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort."+
+                             "\n    The previous cohort loses all abilities granted by this ability.", 
+                prereqeval: function(v) {
+                    if (!(classes.known.captain.level >= 6)) return false;
+ 
+                    for (var entry in CurrentCompRace) {
+                        if (/\bcultist\b/i.test(CurrentCompRace[entry].known)) return true;
+                    }
+                    return false;
+                },
+                eval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Cultist";
+                    CurrentSpells["captain"].shortname = "Cultist";
+                },
+                removeeval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Captain";
+                    CurrentSpells["captain"].shortname = "Captain";
+                },
+                calcChanges: {
+                    spellCalc: [
+                        function (type, spellcasters, ability) {
+                            if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
+                
+                            var prefix = false;
+                            for (var entry in CurrentCompRace) {
+                                if ( /\bcultist\b/i.test(CurrentCompRace[entry].known) ) {
+                                    prefix = entry;
+                                    break;
+                                }
+                            }            
+                            if (!prefix) return;
+                
+                            var abi = AbilityScores.abbreviations[ability - 1];
+                
+                            var charMod = Number(What(abi + " Mod"));
+                            var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
+                
+                            return creaMod - charMod;
+                        }, "My Cultist cohort can cast these spells. These spells use the cultist's Charisma for the spellcasting ability, spell attacks, and saving throw DCs."
+                    ]
+                },
+                spellcastingBonus:[{
+                    spells: ["dancing lights", "mage hand", "minor illusion", "charm person", "detect magic", "disguise self", "false life", "suggestion"],
+                    name: "Cultist Cohort",
+                    selection: ["dancing lights", "mage hand", "minor illusion", "charm person", "detect magic", "disguise self", "false life", "suggestion"],
+                    firstCol: "atwill",
+                    times: 8,
+                    magicitemComponents: true,
+                    spellcastingAbility: 6,
+                }]
+            },
+            "mage: generate spells (1st level)": {
+                name: "Mage Cohort",
+                description: "\n    I gain a cohort. Select a cohort using the \"Companion Options\" button on a Companion"+
+                             "\n    page, and generate cohort spell sheets by using the \"Choose Feature\" button above.  If my"+
+                             "\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort."+
+                             "\n    The previous cohort loses all abilities granted by this ability.", 
+                prereqeval: function(v) {
+                    if (!(classes.known.captain.level < 6)) return false;
+ 
+                    for (var entry in CurrentCompRace) {
+                        if (/\bmage\b/i.test(CurrentCompRace[entry].known)) return true;
+                    }
+                    return false;
+                },
+                eval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Mage";
+                    CurrentSpells["captain"].shortname = "Mage";
+                },
+                removeeval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Captain";
+                    CurrentSpells["captain"].shortname = "Captain";
+                },
+                calcChanges: {
+                    spellCalc: [
+                        function (type, spellcasters, ability) {
+                            if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
+                
+                            var prefix = false;
+                            for (var entry in CurrentCompRace) {
+                                if ( /\bmage\b/i.test(CurrentCompRace[entry].known) ) {
+                                    prefix = entry;
+                                    break;
+                                }
+                            }            
+                            if (!prefix) return;
+                
+                            var abi = AbilityScores.abbreviations[ability - 1];
+                
+                            var charMod = Number(What(abi + " Mod"));
+                            var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
+                
+                            return creaMod - charMod;
+                        }, "My Mage cohort can cast these spells. These spells use the mage's Intelligence for the spellcasting ability, spell attacks, and saving throw DCs."
+                    ]
+                },
+                spellcastingBonus:[{
+                    spells: ["mage hand", "prestidigitation", "floating disk", "grease", "mage armor"],
+                    name: "Mage Cohort",
+                    selection: ["mage hand", "prestidigitation", "floating disk", "grease", "mage armor"],
+                    firstCol: "atwill",
+                    times: 5,
+                    magicitemComponents: true,
+                    spellcastingAbility: 4,
+                }]
+            },
+            "mage: generate spells (6th level)": {
+                name: "Mage Cohort",
+                description: "\n    I gain a cohort. Select a cohort using the \"Companion Options\" button on a Companion"+
+                             "\n    page, and generate cohort spell sheets by using the \"Choose Feature\" button above.  If my"+
+                             "\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort."+
+                             "\n    The previous cohort loses all abilities granted by this ability.", 
+                prereqeval: function(v) {
+                    if (!(classes.known.captain.level >= 6 && classes.known.captain.level < 14)) return false;
+ 
+                    for (var entry in CurrentCompRace) {
+                        if (/\bmage\b/i.test(CurrentCompRace[entry].known)) return true;
+                    }
+                    return false;
+                },
+                eval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Mage";
+                    CurrentSpells["captain"].shortname = "Mage";
+                },
+                removeeval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Captain";
+                    CurrentSpells["captain"].shortname = "Captain";
+                },
+                calcChanges: {
+                    spellCalc: [
+                        function (type, spellcasters, ability) {
+                            if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
+                
+                            var prefix = false;
+                            for (var entry in CurrentCompRace) {
+                                if ( /\bmage\b/i.test(CurrentCompRace[entry].known) ) {
+                                    prefix = entry;
+                                    break;
+                                }
+                            }            
+                            if (!prefix) return;
+                
+                            var abi = AbilityScores.abbreviations[ability - 1];
+                
+                            var charMod = Number(What(abi + " Mod"));
+                            var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
+                
+                            return creaMod - charMod;
+                        }, "My Mage cohort can cast these spells. These spells use the mage's Intelligence for the spellcasting ability, spell attacks, and saving throw DCs."
+                    ]
+                },
+                spellcastingBonus:[{
+                    spells: ["mage hand", "prestidigitation", "floating disk", "grease", "mage armor", "message", "hold person", "invisibility"],
+                    name: "Mage Cohort",
+                    selection: ["mage hand", "prestidigitation", "floating disk", "grease", "mage armor", "message", "hold person", "invisibility"],
+                    firstCol: "atwill",
+                    times: 8,
+                    magicitemComponents: true,
+                    spellcastingAbility: 4,
+                }]
+            },
+            "mage: generate spells (14th level)": {
+                name: "Mage Cohort",
+                description: "\n    I gain a cohort. Select a cohort using the \"Companion Options\" button on a Companion"+
+                             "\n    page, and generate cohort spell sheets by using the \"Choose Feature\" button above.  If my"+
+                             "\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort."+
+                             "\n    The previous cohort loses all abilities granted by this ability.", 
+                prereqeval: function(v) {
+                    if (!(classes.known.captain.level >= 14 && classes.known.captain.level < 18)) return false;
+ 
+                    for (var entry in CurrentCompRace) {
+                        if (/\bmage\b/i.test(CurrentCompRace[entry].known)) return true;
+                    }
+                    return false;
+                },
+                eval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Mage";
+                    CurrentSpells["captain"].shortname = "Mage";
+                },
+                removeeval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Captain";
+                    CurrentSpells["captain"].shortname = "Captain";
+                },
+                calcChanges: {
+                    spellCalc: [
+                        function (type, spellcasters, ability) {
+                            if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
+                
+                            var prefix = false;
+                            for (var entry in CurrentCompRace) {
+                                if ( /\bmage\b/i.test(CurrentCompRace[entry].known) ) {
+                                    prefix = entry;
+                                    break;
+                                }
+                            }            
+                            if (!prefix) return;
+                
+                            var abi = AbilityScores.abbreviations[ability - 1];
+                
+                            var charMod = Number(What(abi + " Mod"));
+                            var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
+                
+                            return creaMod - charMod;
+                        }, "My Mage cohort can cast these spells. These spells use the mage's Intelligence for the spellcasting ability, spell attacks, and saving throw DCs."
+                    ]
+                },
+                spellcastingBonus:[{
+                    spells: ["mage hand", "prestidigitation", "floating disk", "grease", "mage armor", "message", "hold person", "invisibility", "dimension door", "polymorph"],
+                    name: "Mage Cohort",
+                    selection: ["mage hand", "prestidigitation", "floating disk", "grease", "mage armor", "message", "hold person", "invisibility", "dimension door", "polymorph"],
+                    firstCol: "atwill",
+                    times: 10,
+                    magicitemComponents: true,
+                    spellcastingAbility: 4,
+                }]
+            },
+            "mage: generate spells (18th level)": {
+                name: "Mage Cohort",
+                description: "\n    I gain a cohort. Select a cohort using the \"Companion Options\" button on a Companion"+
+                             "\n    page, and generate cohort spell sheets by using the \"Choose Feature\" button above.  If my"+
+                             "\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort."+
+                             "\n    The previous cohort loses all abilities granted by this ability.", 
+                prereqeval: function(v) {
+                    if (!(classes.known.captain.level >= 18)) return false;
+ 
+                    for (var entry in CurrentCompRace) {
+                        if (/\bmage\b/i.test(CurrentCompRace[entry].known)) return true;
+                    }
+                    return false;
+                },
+                eval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Mage";
+                    CurrentSpells["captain"].shortname = "Mage";
+                },
+                removeeval: function(lvl, chc){
+                    CurrentSpells["captain"].name = "Captain";
+                    CurrentSpells["captain"].shortname = "Captain";
+                },
+                calcChanges: {
+                    spellCalc: [
+                        function (type, spellcasters, ability) {
+                            if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
+                
+                            var prefix = false;
+                            for (var entry in CurrentCompRace) {
+                                if ( /\bmage\b/i.test(CurrentCompRace[entry].known) ) {
+                                    prefix = entry;
+                                    break;
+                                }
+                            }            
+                            if (!prefix) return;
+                
+                            var abi = AbilityScores.abbreviations[ability - 1];
+                
+                            var charMod = Number(What(abi + " Mod"));
+                            var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
+                
+                            return creaMod - charMod;
+                        }, "My Mage cohort can cast these spells. These spells use the mage's Intelligence for the spellcasting ability, spell attacks, and saving throw DCs."
+                    ]
+                },
+                spellcastingBonus:[{
+                    spells: ["mage hand", "prestidigitation", "tenser's floating disk", "grease", "mage armor", "message", "hold person", "invisibility", "dimension door", "polymorph", "otiluke's resilient sphere"],
+                    name: "Mage Cohort",
+                    selection: ["mage hand", "prestidigitation", "tenser's floating disk", "grease", "mage armor", "message", "hold person", "invisibility", "dimension door", "polymorph", "otiluke's resilient sphere"],
+                    firstCol: "atwill",
+                    times: 11,
+                    magicitemComponents: true,
+                    spellcastingAbility: 4,
+                }]
+            }
+        },
+        "subclassfeature3" : {
+            name: "Banner",
+            source: ["VSoS", 38],
+            minlevel: 3,
+            description: "\n    Choose a Banner to fly by entering it in the \"Class\" field."
+        },
+        "war tactics" : {
+            name: "War Tactics",
+            source: ["VSoS", 38],
+            minlevel: 3,
+            additional: levels.map(function (n) { 
+				return n < 3 ? "" : n < 6 ? "d8" : n < 10 ? "d8" : n < 14 ? "d10" : n < 18 ? "d10" : "d12";
+			}),
+			limfeaname : "Battle Dice",
+			usages : levels.map(function(n){
+				return n < 3 ? 0 : n < 6 ? 2 : n < 14 ? 3 : 4;
+			}),
+			recovery : "SR/Init",
+            description: "\n    I gain a pool of battle dice, which I can use to perform special maneuvers in combat."+
+                            "\n    I regain expended battle dice finishing a short/long rest, or when rolling initiative."+
+                            "\n    My battle dice change when I reach certain captain levels."+
+                            "\n    If a maneuver requires a saving throw, the DC is (8 + proficiency + my Charisma mod).",
+            extraname: "War Tactic Maneuver",
+            action: [["bonus action", "Brace"],
+                        ["bonus action", "Rally"],
+                        ["bonus action", "Staggering Strike"]],
+            "brace" : {
+                name: "Brace",
+                source: ["VSoS", 48],
+                description: "\n    As a bonus action, I can expend a battle die. Each allied creature within 30 feet of me that"+
+                                "\n    can see or hear me adds the battle die to all saves they make until the end of my next turn.",
+            },
+            "rally" : {
+                name: "Rally",
+                source: ["VSoS", 48],
+                description: "\n    As a bonus action, I can expend a battle die to choose 1 ally other than myself within 60 ft of"+
+                                "\n    me that can see or hear me. That ally regains hit points equal to the number rolled + my"+
+                                "\n    Charisma modifier. I can't use this ability to heal a creature that has 0 hit points."
+            },
+            "staggering strike" : {
+                name: "Staggering Strike",
+                source: ["VSoS", 48],
+                description: "\n    As a bonus action, when I make a weapon attack against a Large or smaller creature, I can"+
+                                "\n    expend a battle die. On a hit, the target must make a Constitution save or be incapacitated"+
+                                "\n    until the start of my next turn."
+            },
+            autoSelectExtrachoices : [{
+                extrachoice: "brace"
+            }, {
+                extrachoice: "rally"
+            }, {
+                extrachoice: "staggering strike"
+            }],
+        },
+        "blitz" : {
+            name: "Blitz",
+            source: ["VSoS", 48],
+            minlevel: 5,
+            description: "\n    As a bonus action, I can have a cohort or friendly creature within 60 feet of me that can see"+
+                            "\n    or hear me use their reaction to move up to their speed or make a weapon attack.",
+            action: ["bonus action", "Blitz"]
+        },
+        "advanced tactics" : {
+            name: "Advanced Tactics",
+            source: ["VSoS", 48],
+            minlevel: 9,
+            description: " My War Tactics maneuvers improve.",
+            extraname: "Advanced Maneuver",
+            "advanced brace" : {
+                name: "Advanced Brace",
+                source: ["VSoS", 49],
+                description: "\n    When I use Brace, affected allies also add the battle die to their ability checks."
+            },
+            "advanced rally" : {
+                name: "Advanced Rally",
+                source: ["VSoS", 49],
+                description: "\n    When I use Rally, the chosen creature also gains temp hit points equal to my captain level."
+            },
+            "advanced staggering strike" : {
+                name: "Advanced Staggering Strike",
+                source: ["VSoS", 49],
+                description: "\n    When I use Staggering Strike, I also add the battle die to the damage roll."
+            },
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if (!v.isDC && !v.isRangedWeapon && v.isMeleeWeapon){
+                            var lvl = classes.known.captain.level;
+                            var die = lvl < 9 ? "" : "Staggering Strike +" + (lvl < 10 ? "1d8" : lvl < 18 ? "1d10" : "1d12");
+                            fields.Description += (fields.Description ? "; " : '') +  die;
+                        }
+                    }, "I add the battle die roll to my Staggering Strike damage."
+                ]
+            },
+            autoSelectExtrachoices : [{
+                extrachoice: "advanced brace"
+            }, {
+                extrachoice: "advanced rally"
+            }, {
+                extrachoice: "advanced staggering strike"
+            }],
+        },
+        "coordi nated strike" : {
+            name: "Coordinated Strike",
+            source: ["VSoS", 49],
+            minlevel: 11,
+            description: "\n    Once/each on my turns when I hit a creature with an attack, I can deal an extra 2d8 damage"+
+                            "\n    if my cohort has also hit that creature with an attack since the end of my last turn.",
+            calcChanges: {
+                atkAdd: [ 
+					function(fields, v) {
+                    	if (!v.isDC) fields.Description += (fields.Description ? "; " : '') + "Coordinated strike +2d8 w/Cohort";
+                	}, "Once on each of my turns, when I hit a creature with an attack, I can deal an extra 2d8 damage if my cohort has also hit that creature with an attack since the end of my last turn."
+                ]
+            }
+        },
+        "lead by example" : {
+            name: "Lead By Example",
+            source: ["VSoS", 49],
+            minlevel: 15,
+            description: "\n    When I roll a 20 on an attack roll/ability check/save, friendly creatures within 30 ft of me gain"+
+                         "\n    advantage when it makes the same type of roll before the start of my next turn."
+        },
+        "legendary commander" : {
+            name: "Legendary Commander",
+            source: ["VSoS", 49],
+            minlevel: 20,
+            additional: "3 x long rest",
+            description: "\n    I gain 3 legendary actions. At the end of another creature's turn, I can spend a legendary"+
+                            "\n    action to take an action of my choice, or allow a friendly creature within 60 feet of me that"+
+                            "\n    can hear/see me to take an action of their choice. If the creature takes an Attack action as"+
+                            "\n    a legendary action, they can use features they have that gives them extra attacks.",
+            extraLimitedFeatures: [{
+                name: "Legendary Actions",
+                usages: 3,
+                recovery: "long rest",
+            }]
+        }
+    }
+}
+
+// * Dragon Banner Captain subclass
+AddSubClass("captain", "dragon",{
+	regExpSearch: /\bdragon banner\b/i,
+	subname: "Dragon Banner",
+	source: ["VSoS", 49],
+	features: {
+		"subclassfeature3" : {
+			name: "Bonus Battle Die",
+			source: ["VSoS", 49],
+			minlevel: 3,
+			description: " I gain 1 extra battle die.",
+			limfeaname : "Battle Dice",
+			usages : levels.map(function(n){
+				return n < 3 ? 0 : 1;
+			}),
+			additional: levels.map(function (n) { 
+				return n < 3 ? "" : n < 6 ? "d8" : n < 10 ? "d8" : n < 14 ? "d10" : n < 18 ? "d10" : "d12";
+			}),
+			recovery : "SR/Init",
+			limfeaAddToExisting : true,			
+		},
+		"subclassfeature3.1" : {
+			name: "Maneuver: Cleave",
+			source: ["VSoS", 49],
+			minlevel: 3,
+			description: " I gain a new maneuver. See notes page.",
+			extraname: "Dragon Banner Maneuver",
+			"cleave": {
+				name: "Cleave",
+				source: ["VSoS", 49],
+				description: "\n    Once on each of my turns, when I reduce a hostile creature to 0 hit points or score a crit with"+
+								"\n    a melee weapon attack, I can spend a battle die to move up to 15 ft and make another melee"+
+								"\n    weapon attack as part of the same action. On hit, I add the battle die to the damage roll."
+			},
+			autoSelectExtrachoices: [{
+				extrachoice: "cleave"
+			}]
+		},
+		"subclassfeature7": {
+			name: "Maneuver: Wade Into Battle",
+			source: ["VSoS", 49],
+			minlevel: 7,
+			description: " I gain a new maneuver. See notes.",
+			extraname: "Dragon Banner Maneuver",
+			action: ["bonus action", "Wade Into Battle"],
+			"wade into battle": {
+				name: "Wade Into Battle",
+				source: ["VSoS", 49],
+				description: "\n    I can expend a battle die to take the Dash or Disengage action as a bonus action.",
+				action : [["bonus action", "Dash/Disengage (1 Battle Dice)"]]
+			},
+			autoSelectExtrachoices: [{
+				extrachoice: "wade into battle"
+			}]
+		},
+		"subclassfeature13": {
+			name: "Maneuver: Fury Attack",
+			source: ["VSoS", 50],
+			minlevel: 13,
+			description: " I gain a new maneuver. See notes page.",
+			extraname: "Dragon Banner Maneuver",
+			action: ["bonus action", "Fury Attack"],
+			"fury attack" : {
+				name: "Fury Attack",
+				source: ["VSoS", 50],
+				description: "\n    When I take the attack action on my turn, I may spend a battle die and a bonus action to"+
+								"\n    make up to 3 melee weapon attacks instead of 1. Each attack must target a different creature."
+			},
+			autoSelectExtrachoices: [{
+				extrachoice: "fury attack"
+			}]
+		},
+		"subclassfeature17": {
+			name: "Vicious Focus",
+			source: ["VSoS", 50],
+			minlevel: 17,
+			description: "\n    When I reduce a hostile creature to 0 hit points or score a crit on a melee weapon attack, for"+
+							"\n    the next minute, my weapon attacks score a crit on a 19 or 20. Each time I reduce a hostile"+
+							"\n    creature's hit points to 0 or score another crit during this minute, my critical hit range"+
+							"\n    increases by 1, to a maximum of 16-20. If I fall unconscious, this effect ends early."
+		}
+	}
+})
+
+// * Eagle Banner Captai subclass
+AddSubClass("captain","eagle",{
+	regExpSearch: /\beagle banner\b/i,
+	subname: "Eagle Banner",
+	source: ["VSoS", 50],
+	features: {
+		"subclassfeature3" : {
+			name: "Manuever: Eagle Shot",
+			source: ["VSoS", 50],
+			minlevel: 3,
+			description: " I gain a new maneuver. See notes page.",
+			extraname: "Eagle Banner Maneuver",
+			action: ["bonus action", "Eagle Shot"],
+			"eagle shot" : {
+				name: "Eagle Shot",
+				source: ["VSoS", 50],
+				description: "\n    When I make a ranged weapon attack roll, I can use my bonus action and expend a battle die"+
+								"\n    to add it to the roll. I can use this ability before/after the attack roll, but before the GM says"+
+								"\n    the attack hits or misses.",
+				action : [["bonus action", "Eagle Shot (1 Battle Dice)"]]
+			},
+			autoSelectExtrachoices: [{
+				extrachoice: "eagle shot"
+			}]
+		},
+		"subclassfeature7" : {
+			name: "Vantage Point",
+			source: ["VSoS", 50],
+			minlevel: 7,
+			description: "\n    I gain a climbing speed equal to my walking speed, and can climb difficult surfaces at half"+
+							"\n    speed without making an ability check.",
+			speed: { climb: {spd: "walk", enc : "walk"} } 
+		},
+		"subclassfeature13" : {
+			name: "Close-Quarters Shooting",
+			source: ["VSoS", 50],
+			minlevel: 13,
+			description: "\n    I, and friendly creatures within 15 feet of me, don't gain disadvantage on ranged attack rolls"+
+							"\n    from being within 5 feet of a hostile creature."
+		},
+		"subclassfeature17" : {
+			name: "Scattershot",
+			source: ["VSoS", 50],
+			minlevel: 17,
+			description: "\n    I can use my action to make a ranged weapon attack against each creature I choose within a"+
+							"\n    15 ft cone, making a separate attack roll for each target. If I target only one creature in this"+
+							"\n    cone, my attack deals one additional weapon damage die.",
+			action: ["action", "Scattershot"],
+			calcChanges: {
+				atkAdd: [
+					function (fields, v) {
+						if (/scattershot/i.test(v.WeaponTextName) && v.isRangedWeapon && !v.isDC) {
+							fields.Range = "15 ft cone";
+							fields.Description += (fields.Description ? "; " : '') + "1 atk per target; if only 1 target, +1 dmg die";
+						}
+					}, 'If the word \"Scattershot\" is included in a ranged weapon attack, it is treated as if it is using my Scattershot feature.'
+				]
+			}
+		}
+	}
+})
+
+// Jolly Roger subclass
+AddSubClass("captain","jolly roger",{
+	regExpSearch: /\bjolly roger banner\b/i,
+	subname: "Jolly Roger Banner",
+	source: ["VSoS", 50],
+	features: {
+		"subclassfeature3" : {
+			name: "Maneuver: Double Thrust",
+			source: ["VSoS", 50],
+			minlevel: 3,
+			description: " I gain a new maneuver. See notes.",
+			extraname: "Jolly Roger Banner Maneuver",
+			action: ["bonus action", "Double Thrust"],
+			"double thrust" : {
+				name: "Double Thrust",
+				source: ["VSoS", 50],
+				description: "\n    When I make an attack with a finesse weapon as part of the Attack Action on my turn, I can"+
+								"\n    spend a battle die as a bonus action to make an additional attack with that weapon. I add the"+
+								"\n    battle die, instead of my ability modifier, to the weapon's damage roll."
+			},
+			autoSelectExtrachoices: [{
+				extrachoice: "double thrust"
+			}],
+			calcChanges: {
+				atkCalc: [
+					function(fields, v, output){
+						if (/double thrust/i.test(v.WeaponTextName) && /finesse/i.test(fields.Description) && !v.isDC && v.isMeleeWeapon && classes.known.captain.level > 2) {
+							var lvl = classes.known.captain.level;
+							var die = lvl < 10 ? "1d8" : lvl < 18 ? "1d10" : "1d12";
+							fields.Damage_Bonus = die,
+							v.theWea.abilitytodamage = false;
+						}
+					}, "When the phrase \"Double Thrust\" is added to an attack, I add a battle die, instead of my ability modifier, to the damage roll."
+				]
+			},
+		},
+		"subclassfeature7" : {
+			name: "Tricky Footwork",
+			source: ["VSoS", 50],
+			minlevel: 7,
+			description: "\n    When I hit a creature of my size or smaller with a melee attack on my turn, I can switch places"+
+							"\n    with the target. This movement doesn't provoke opportunity attacks.",
+			calcChanges: {
+				atkAdd: [
+					function (fields, v) {
+						if (v.isMeleeWeapon) {
+							fields.Description += (fields.Description ? "; " : '') + "On hit vs crea my size or smaller, can switch w/ target";
+						}
+					}
+				]
+			}
+		},
+		"subclassfeature13" : {
+			name: "Unfair Play",
+			source: ["VSoS", 50],
+			minlevel: 13,
+			description: "\n    My cohort and I can use a bonus action to take the Hide, Use an Object action, or attempt to"+
+							"\n    shove a creature. I have advantage on Strength (Athletics) checks to push another creature"+
+							"\n    out of a waterborne vessel.",
+			action: ["bonus action", "Unfair Play"],
+			calcChanges: {
+				companionCallback: [function(prefix, oCrea, bAdd, sCompType) {
+					if (sCompType !== "cohort") return;
+					var str = "\u25C6 Unfair Play: (bonus action) The cohort can take the Hide, Use an Object action, or attempt to shove a creature.";
+					var aFnc = bAdd ? AddString : RemoveString;
+					aFnc(prefix + "Comp.Use.Traits", str, true);
+				}] 
+			}               
+		},
+		"subclassfeature17" : {
+			name: "All Hands On Deck",
+			source: ["VSoS", 50],
+			minlevel: 17,
+			description: "\n    I can use my action on my turn to direct each friendly creature within 60 feet of me that can"+
+							"\n    see me or hear me to use their reaction to take an action of my choice. This action cannot be"+
+							"\n    the Attack, Cast a Spell, Dodge, or Use a Magic Item action.",
+			action: ["action", "All Hands On Deck"]
+		}
+	}
+})
+
+// * Alchemist homunculus companion list
+CompanionList["homunculus"] = {
 	name : "Alchemist Homunculus",
 	nameMenu : "Familiar (Homunculus)",
 	source : [["VSoS", 35]],
@@ -5088,6 +5971,1178 @@ CompanionList.alchemist_homunculus = {
 			objCrea.type = "Construct";
 			objCrea.subtype = "";
 		}
+	}
+}
+
+// * Captain's Cohort companionlist
+CompanionList["cohort"] = {
+	name : "Cohort",
+	nameMenu: "Cohort (Captain class feature)",
+	nameTooltip: "the Cohort class feature",
+	source: ["VSoS", 47],
+	notes: [{
+		name: "Following an 8 hour initiation period",
+		description: ["this creature becomes its captain's cohort. A captain can have only 1 cohort at a time.",
+						"\u25C6 The cohort's alignment is within 1 step of their captain's. Its personality trait and flaw are GM determined.",
+						"\u25C6 Its bond is: \"I will follow my commander into any fray, and I will gladly fight by their side until my death.\"",
+						"\u25C6 The cohort always obeys their captain's commands as best as they can. The cohort takes their turn immediately before or after their captain's turns each round (captain's choice). If the cohort's captain is incapacitated or absent, the cohort acts on their own.",
+						"\u25C6 The cohort gains proficiency in any weapon category, armor category, or shields mentioned in its statistics. The cohort uses their captain's proficiency bonus instead of their own.",
+		].join("\n"),
+		joinString: ", "                    
+	}],
+	attributesAdd: {
+		proficiencyBonusLinked: true,
+		hdLinked: ["captain"],
+		minlevelLinked : ["captain"],
+		features: [{
+			name: "Cohort",
+			description: " The cohort gains hit points, hit dice, and new abilities as their captain gains Captain levels. The cohort gains an Ability Score Improvement when their captain does."
+		}]
+	}
+}
+	 
+// * Abbot cohort creature option
+CreatureList["abbot"] = {
+	name: "Abbot",
+	source: ["VSoS", 54],
+	size: 3,
+	type: "Humanoid",
+	subtype: "any race",
+	companion: "cohort",
+	alignment: "Any",
+	ac: 15,
+	hp: 11,
+	hd: [2,8],
+	speed: "30 ft",
+	proficiencyBonus: 2,
+	challengeRating: "1/4",
+	scores: [13, 11, 12, 10, 14, 11],
+	saves: ["", "", "", "", 4, 2],
+	senses: "",
+	languages: "any 1 language",
+	header: "Cohort",
+	attacksAction: 1,
+	attacks: [{
+		name: "Mace",
+		source: ["SRD"],
+		regExpSearch: /mace/i,
+		baseWeapon: "mace",
+	}, {
+		name: "Light Crossbow",
+		source: ["SRD"],
+		regExpSearch: /light crossbow/i,
+		baseWeapon: "light crossbow",
+	}],
+	skills: { "Medicine" : 4, "Religion" : 2 },
+	actions: [{
+		name: "Healing Hands",
+		description: "(1/day) The abbot or 1 creature the abbot touches regains 11 (2d8 + proficiency) hit points.",
+	}, {
+		name: "Guiding Strike",
+		description: "(bonus action, 1/day) When the abbot hits a creature with a weapon attack, the next attack roll made against this target before the end of the abbot's next turn has advantage.",
+	}],
+	features: [{
+		name: "Divine Devotion",
+		description: "The abbot can use its Healing Hands & Guiding Strike an additional time each day when the captain reaches 5th, 11th, and 17th level.",
+		minlevel: 2,
+	}, {
+		name: "Spellcasting",
+		minlevel: 6,
+		description: "(DC 8+Prof+Wis) The abbot can cast the following spells, at will, using Wisdom as its spellcasting ability:"+
+						"\n    At will: guidance, spare the dying"+
+						"\n    1/day each: bless, lesser restoration, protection from evil and good", 
+	}],
+	traits: [{
+		name: "Divine Strike",
+		minlevel: 10,
+		description: "The abbot deals an extra 1d8 radiant damage when they hit with an attack roll.",
+		eval: function (prefix, lvl){
+			for (var i = 1; i < 4; ++i){
+				if (What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection"))
+					Value(prefix + "Comp.Use.Attack." + i + ".Description", "+1d8 radiant damage");
+			}
+		},
+		removeeval: function (prefix, lvl){
+			for (var i = 1; i < 4; ++i){
+				RemoveString(prefix + "Comp.Use.Attack." + i + ".Description", "+1d8 radiant damage");
+			}
+		}
+	}, {
+		name: "Merciful Light",
+		minlevel: 18,
+		description: "(Reaction) When a friendly creature within 30 ft of the abbot takes damage, the abbot causes that creature to regain hit points equal to 2d8 + the abbot's Wisdom modifer."
+	}],
+	changeeval: function(prefix, lvl){
+		// update healing hands/guiding strike usages
+		var uses = lvl[1] < 5 ? "1" : lvl[1] < 11 ? "2" : lvl[1] < 17 ? "3" : "4";
+		var oldUses = lvl[0] < 5 ? "1" : lvl[0] < 11 ? "2" : lvl[0] < 17 ? "3" : "4"
+		Value(prefix + "Comp.Use.Traits", What(prefix + "Comp.Use.Traits").replace("Healing Hands: (" + oldUses + "/day)", "Healing Hands: (" + uses + "/day)"));
+		Value(prefix + "Comp.Use.Traits", What(prefix + "Comp.Use.Traits").replace("Guiding Strike: (bonus action, " + oldUses + "/day)", "Guiding Strike: (bonus action, " + uses + "/day)"));
+	
+		// update spellcasting
+		if (lvl[0] < 14 && lvl[1] >= 14) ReplaceString(prefix + "Comp.Use.Features", "protection from evil and good, death ward, revivify, speak with dead", undefined, "protection from evil and good", false);
+		else if (lvl[0] >=14 && lvl[1] < 14) RemoveString(prefix + "Comp.Use.Features", ", death ward, revivify, speak with dead", false);
+	},
+	eval: function(prefix, lvl){       
+		// add equipment section
+		var layersArray = eval_ish(What(prefix + "Companion.Layers.Remember"));
+		if (layersArray[1] == true) return;
+		layersArray[1] = true;
+		Value(prefix + "Companion.Layers.Remember", layersArray.toSource());
+		ShowCompanionLayer(prefix);
+	
+		// clear equipment
+		for (var i = 1; i <= 17; ++i) {
+			Value(prefix + "Comp.eqp.Gear Row " + i, "");
+			Value(prefix + "Comp.eqp.Gear Weight " + i, "");
+		}
+	
+		// add equipment
+		var added = 0;
+		for (var i = 1; i <= 17; ++i) {
+			if (!What(prefix + "Comp.eqp.Gear Row " + i)){
+				switch (added) {
+					case 0:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Chain Shirt");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "20");
+						break;
+					case 1:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Shield");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "6");
+						break;
+					case 2:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Mace");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "4");
+						break;
+					case 3:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Light Crossbow");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "5");
+						break;
+				}
+				added++;
+				if (added == 4) break;
+			}
+		}
+	},
+}
+	
+// * Berserker cohort creature option
+CreatureList["berserker"] = {
+	name: "Berserker",
+	source: ["VSoS", 55],
+	size: 3,
+	type: "Humanoid",
+	subtype: "any race",
+	companion: "cohort",
+	alignment: "Any",
+	ac: 12,
+	hp: 13,
+	hd: [2,8],
+	speed: "30 ft",
+	proficiencyBonus: 2,
+	challengeRating: "1/4",
+	scores: [14, 14, 14, 9, 10, 9],
+	saves: [4, "", 4, "", "", ""],
+	senses: "",
+	languages: "any 1 language",
+	header: "Cohort",
+	attacksAction: 1,
+	attacks: [{
+		name: "Greataxe",
+		source: ["SRD"],
+		regExpSearch: /greataxe/i,
+		baseWeapon: "greataxe",
+	}, {
+		name: "Handaxe",
+		source: ["SRD"],
+		regExpSearch: /handaxe/i,
+		baseWeapon: "handaxe",
+	}],
+	skills: { "Athletics" : 4, "Survival" : 2 },
+	actions: [{
+		name: "Retaliation",
+		description: "(reaction, 3/day) After being hit by a melee attack, the berserker can make 1 melee weapon attack against the attacker.",
+		minlevel: 10,
+	}],
+	features: [{
+		name: "Unarmored Defense",
+		description: "AC gains Constitution modifier when wearing no armor and wielding no shield.",
+		addMod: [{ type: "", field: "Comp.Use.AC", mod: "Con", text: "While the berserker is wearing no armor and wielding no shield, its AC includes its Constitution modifier."}]
+	},{
+		name: "Reckless",
+		description: "The berserker can gain adv. on all melee weapon attacks that turn, but attack rolls against it have adv. until the start of its next turn.",
+		minlevel: 2,
+	}, {
+		name: "Relentless",
+		minlevel: 6,
+		description: "(1/day) If the berserker is reduced to 0 hit points but not killed outright, it drops to 1 hit point instead."
+	}],
+	traits: [{
+		name: "Critical Rush",
+		minlevel: 14,
+		description: "Once per turn, when the berserker scores a critical hit, it can move up to its movement speed and make a melee weapon attack with advantage."
+	}, {
+		name: "Primal Resolve",
+		minlevel: 18,
+		description: "When the berserker has half its hit points or fewer, it has resistance to bludgeoning, piercing, or slashing damage from nonmagical attacks."
+	}],
+	eval: function(prefix, lvl){       
+		// add equipment section
+		var layersArray = eval_ish(What(prefix + "Companion.Layers.Remember"));
+		if (layersArray[1] == true) return;
+		layersArray[1] = true;
+		Value(prefix + "Companion.Layers.Remember", layersArray.toSource());
+		ShowCompanionLayer(prefix);
+	
+		// clear equipment
+		for (var i = 1; i <= 17; ++i) {
+			Value(prefix + "Comp.eqp.Gear Row " + i, "");
+			Value(prefix + "Comp.eqp.Gear Weight " + i, "");
+		}
+	
+		// add equipment
+		var added = 0;
+		for (var i = 1; i <= 17; ++i) {
+			if (!What(prefix + "Comp.eqp.Gear Row " + i)){
+				switch (added) {
+					case 0:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Greataxe");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "7");
+						break;
+					case 1:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Handaxe");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "2");
+						break;
+				}
+				added++;
+				if (added == 2) break;
+			}
+		}
+	},
+}
+	
+// * Champion cohort creature option
+CreatureList["champion"] = {
+	name: "Champion",
+	source: ["VSoS", 56],
+	size: 3,
+	type: "Humanoid",
+	subtype: "any race",
+	companion: "cohort",
+	alignment: "Any",
+	ac: 16,
+	hp: 11,
+	hd: [2,8],
+	speed: "30 ft",
+	proficiencyBonus: 2,
+	challengeRating: "1/4",
+	scores: [14, 11, 13, 11, 12, 9],
+	saves: [4, "", 3, "", "", ""],
+	senses: "",
+	languages: "any 1 language",
+	header: "Cohort",
+	attacksAction: 1,
+	attacks: [{
+		name: "Longsword",
+		source: ["SRD"],
+		regExpSearch: /longsword/i,
+		baseWeapon: "longsword",
+	}, {
+		name: "Javelin",
+		source: ["SRD"],
+		regExpSearch: /javelin/i,
+		baseWeapon: "javelin",
+	}],
+	skills: { "Animal Handling" : 3, "Athletics" : 4 },
+	actions: [{
+		name: "Second Wind",
+		description: "(bonus action, 1/short rest) The champion regains 5 hit points. This healing increases when the captain reaches certain levels: 10 hp at 6th level, 20 hp at 14th level.",
+		minlevel: 2,
+	}],
+	features: [{
+		name: "Indomitable",
+		description: "(1/day) The champion can reroll a failed saving throw.",
+	},{
+		name: "Ability Score Increase 1",
+		minlevel: 6,
+		description: "The champion's Strength, Dexterity, or Constitution score increases by 2, to a max of 20."
+	},{
+		name: "Ability Score Increase 2",
+		minlevel: 14,
+		description: "The champion's Strength, Dexterity, or Constitution score increases by 2, to a max of 20."
+	},{
+		name: "Action Surge",
+		description: "(1/short rest) The champion takes 2 actions on its turn.",
+		minlevel: 18,
+	}],
+	traits: [ {
+		name: "Martial Prowess",
+		minlevel: 10,
+		description: "When the champion hits with a melee weapon, the weapon deals an additional 3 (1d8) damage. When the captain reaches 18th level, the extra damage increases to 9 (2d8).",
+	}],
+	eval: function(prefix, lvl){       
+		// add equipment section
+		var layersArray = eval_ish(What(prefix + "Companion.Layers.Remember"));
+		if (layersArray[1] == true) return;
+		layersArray[1] = true;
+		Value(prefix + "Companion.Layers.Remember", layersArray.toSource());
+		ShowCompanionLayer(prefix);
+	
+		// clear equipment
+		for (var i = 1; i <= 17; ++i) {
+			Value(prefix + "Comp.eqp.Gear Row " + i, "");
+			Value(prefix + "Comp.eqp.Gear Weight " + i, "");
+		}
+	
+		// add equipment
+		var added = 0;
+		for (var i = 1; i <= 17; ++i) {
+			if (!What(prefix + "Comp.eqp.Gear Row " + i)){
+				switch (added) {
+					case 0:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Ringmail");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "40");
+						break;
+					case 1:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Shield");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "6");
+						break;
+					case 2:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Longsword");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "3");
+						break;
+					case 3:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Javelin");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "2");
+						break;
+				}
+				added++;
+				if (added == 4) break;
+			}
+		}
+	},
+	changeeval: function(prefix, lvl){
+		// if we are downleveling past martial prowess, remove it
+		if (lvl[1] < 10 && lvl[0] >= 10){       
+			var str = lvl[0] >= 18 ? "+9 (2d8)" : "+3 (1d8)" ;
+				for (var i = 1; i <= 3; ++i){
+					var sAtkFld = prefix + "Comp.Use.Attack." + i;
+					Value(sAtkFld + ".Description", What(sAtkFld + ".Description").replace("; " + str + " damage", ""));
+				}
+		}
+		// if we have martial prowess, update it
+		if (lvl[1] >= 10){
+			var removestr = lvl[0] < 10 ? "" : lvl[0] < 18 ? "; +3 (1d8) damage" : "; +9 (2d8) damage"; 
+			var str = lvl[1] >= 18 ? "+9 (2d8)" : "+3 (1d8)" ;
+			for (var i = 1; i <= 3; ++i){
+				var sAtkFld = prefix + "Comp.Use.Attack." + i;
+				if (What(sAtkFld + ".Weapon Selection") && /\bmelee\b/i.test(What(sAtkFld + ".Range"))){
+					if (removestr == "") Value(sAtkFld + ".Description", What(sAtkFld + ".Description") + "; " + str + " damage");
+					else Value(sAtkFld + ".Description", What(sAtkFld + ".Description").replace(removestr, "; " + str + " damage"));
+				}
+			}
+		}
+	}
+}
+	
+// * Construct cohort creature option
+CreatureList["construct"] = {
+	name: "Construct",
+	source: ["VSoS", 56],
+	size: 3,
+	type: "Construct",
+	companion: "cohort",
+	alignment: "Any",
+	ac: 17,
+	hp: 13,
+	hd: [2,8],
+	speed: "30 ft",
+	proficiencyBonus: 2,
+	challengeRating: "1/4",
+	scores: [14, 10, 15, 10, 10, 9],
+	saves: ["", "", "", "", "", ""],
+	senses: "darkivsion 60 ft",
+	languages: "any 1 language, cannot speak",
+	header: "Cohort",
+	damage_immunities: "poison",
+	condition_immunities: "charmed, exhaustion, poisoned",
+	attacksAction: 1,
+	attacks: [{
+		name: "Slam",
+		source: ["VSoS", 56],
+		regExpSearch: /\bslam\b/i,
+		type: "Natural",
+		ability: 1,
+		damage: [1,8, "bludgeoning"],
+		range: "Melee (5 ft)",
+		description: "",
+	},{    
+		name: "Death Burst",
+		source: ["VSoS", 56],
+		regExpSearch: /\bdeath burst\b/i,
+		type: "Natural",
+		ability: 1,
+		damage: [2,6, "fire"],
+		range: "5 ft radius",
+		dc: true,
+		modifiers: ["-Str+oCha", ""],
+		abilitytodamage: false,
+		description: "Occurs when reduced to 0 hit points; Dexterity save; half on save",        
+	},{
+		name: "Charged Slam",
+		source: ["VSoS", 56],
+		regExpSearch: /charged slam/i,
+		type: "Natural",
+		ability: 1,
+		damage: [1,8, "bludgeoning"],
+		range: "Melee (5 ft)",
+		description: "+4 (1d8) lightning damage",
+	}],
+	features: [{
+		name: "Surveillance Protocol",
+		minlevel: 2,
+		description: "The construct gains 60 ft blindsight. It adds the captain's level to its passive perception.",
+	},{
+		name: "Improved Armor 1",
+		minlevel: 6,
+		description: " +1 to AC",
+		addMod: [{type:"", field: "Comp.Use.AC", mod: "1", text: "The construct's armor class increases by 1." }]
+	},{
+		name: "Improved Armor 2",
+		minlevel: 14,
+		description: " +1 to AC",
+		addMod: [{type:"", field: "Comp.Use.AC", mod: "1", text: "The construct's armor class increases again by 1." }]
+	}],
+	traits: [{
+		name: "Death Burst",
+		description: "When the construct drops to 0 hit points, each creature within 5 feet of it must make a DC (12 or Captain's maneuver save DC) Dexterity save, taking 7 (2d6) fire damage on a failed save, or half as much on a success.",
+	}, {
+		name: "Charged Slam",
+		minlevel: 10,
+		description: "The construct's slam attack now deals an extra 4 (1d8) lightning damage on a hit.",
+		eval: function(prefix, lvl){
+			Value(prefix + "Comp.Use.Attack.1.Weapon Selection", "Charged Slam");
+			Value(prefix + "Comp.Use.Attack.1.Description", "+4 (1d8) lightning damage");
+		},
+		removeeval: function(prefix, lvl){
+			Value(prefix + "Comp.Use.Attack.1.Weapon Selection", "Slam");
+		}
+	},{
+		name: "Improved Death Burst",
+		minlevel: 6,
+		description: "The construct's Death Burst damage increases to 21 (6d6).",
+		eval: function(prefix, lvl) {
+			Value(prefix + "BlueText.Comp.Use.Attack.2.Damage Die", "6d6");
+		},
+		removeeval: function(prefix, lvl){
+			Value(prefix + "BlueText.Comp.Use.Attack.2.Damage Die", "2d6");
+		}
+	},{
+		name: "Magic Resistance",
+		description: "The construct has advantage on saves against spells and other magical effects.",
+		minlevel: 10,
+	},{
+		name: "Unerring Strike",
+		description: "Once on each of its turns, when the construct misses with a slam attack, it can reroll it.",
+		minlevel: 18,
+	}],
+	eval: function(prefix, lvl){
+		// get rid of the charged slam on selection
+		Value(prefix + "Comp.Use.Attack.3.Weapon Selection", "");
+	
+		// add equipment section
+		var layersArray = eval_ish(What(prefix + "Companion.Layers.Remember"));
+		if (layersArray[1] == true) return;
+		layersArray[1] = true;
+		Value(prefix + "Companion.Layers.Remember", layersArray.toSource());
+		ShowCompanionLayer(prefix);    
+	},
+	changeeval: function (prefix, lvl){
+		// update passive perception bonus
+		if (lvl[1] >= 2) Value(prefix + "BlueText.Comp.Use.Skills.Perc.Pass.Bonus", classes.known.captain.level);
+		else Value(prefix + "BlueText.Comp.Use.Skills.Perc.Pass.Bonus", 0);
+	}
+}
+	
+// * Cultist cohort creature option
+CreatureList["cultist"] = {
+	name: "Cultist",
+	source: ["VSoS", 57],
+	size: 3,
+	type: "Humanoid",
+	subtype: "any race",
+	companion: "cohort",
+	alignment: "Any",
+	ac: 12,
+	hp: 11,
+	hd: [2,8],
+	speed: "30 ft",
+	proficiencyBonus: 2,
+	challengeRating: "1/4",
+	scores: [11, 13, 12, 11, 9, 14],
+	saves: ["", "", "", "", 1, 4],
+	skills: { "Deception" : 4, "Persuasion" : 4 },
+	senses: "",
+	languages: "any 1 language",
+	header: "Cohort",
+	attacksAction: 1,
+	attacks: [{
+		name: "Melee Eldritch Strike",
+		source: ["VSoS", 57],
+		regExpSearch: /\bmelee eldritch strike\b/i,
+		type: "AlwaysProf",
+		ability: 6,
+		damage: [1,10, "force"],
+		range: "Melee (5 ft)",
+		description: "",
+	}, {
+		name: "Ranged Eldritch Strike",
+		source: ["VSoS", 57],
+		regExpSearch: /\branged eldritch strike\b/i,
+		type: "AlwaysProf",
+		ability: 6,
+		damage: [1,10, "force"],
+		range: "120 ft",
+		description: "",
+	}],
+	features: [{
+		name: "Dark Devotion",
+		description: "The cultist has advantage on saves against being charmed or frightened.",
+	},{
+		name: "Spellcasting",
+		description: "(DC 8+Prof+Cha) The cultist can cast the following spells, at will, using Charisma as its spellcasting ability:"+
+						"\n    At will: dancing lights, mage hand, minor illusion"+
+						"\n    1/day each: charm person, detect magic", 
+	}],
+	traits: [{
+		name: "Eldritch Pact",
+		minlevel: 2,
+		description: "The cultist's Eldritch strike damage increases by +1d10 when the captain reaches 5th, 11th, and 17th level",
+	}, {
+		name: "Spellcasting",
+		minlevel: 6,
+		description: "The cultist gains new spells. See features",
+	},{
+		name: "Sinister Curse",
+		minlevel: 10,
+		description: "(action, 1/day) 1 creature the cultist can see within 60 ft of it must succeed on a Wisdom save (spell DC) or be cursed for 1 minute,. While cursed, the creature has disadvantage on attack rolls and saves, and may repeat the save at the end of each of its turns to end the curse.",
+	},{
+		name: "Spellcasting",
+		description: "The cultist gains new spells. See features",
+		minlevel: 14,
+	},{
+		name: "Spiteful Rebuke",
+		description: "(reaction) In response to being damaged by a visible creature within 60 feet of it, the cultist forces that creature to make a Dexterity save (spell DC). The creature takes 11 (2d10) fire damage, or half on save.",
+		minlevel: 18,
+	}],
+	eval: function(prefix, lvl){
+		// add equipment section
+		var layersArray = eval_ish(What(prefix + "Companion.Layers.Remember"));
+		if (layersArray[1] == true) return;
+		layersArray[1] = true;
+		Value(prefix + "Companion.Layers.Remember", layersArray.toSource());
+		ShowCompanionLayer(prefix);
+		
+		// clear equipment
+		for (var i = 1; i <= 17; ++i) {
+			Value(prefix + "Comp.eqp.Gear Row " + i, "");
+			Value(prefix + "Comp.eqp.Gear Weight " + i, "");
+		}
+	
+		// add leather armor
+		for (var i = 1; i <= 17; ++i) {
+			if (!What(prefix + "Comp.eqp.Gear Row " + i)){
+				Value(prefix + "Comp.eqp.Gear Row " + i, "Leather Armor");
+				Value(prefix + "Comp.eqp.Gear Weight " + i, "10");
+				break;
+			}
+		}
+	},
+	changeeval: function (prefix, lvl){
+		// update spellcasting
+		var atWillRemoveStr = lvl[0] < 6 ? "illusion" : lvl[0] < 14 ? "illusion, disguise self, false life" : "illusion, disguise self, false life, darkness, spider climb";
+		var perDayRemoveStr = lvl[0] < 6 ? "detect magic" : lvl[0] < 14 ? "detect magic, suggestion" : "detect magic, suggestion, fear";
+		var atWillStr = lvl[1] < 6 ? "illusion" : lvl[1] < 14 ? "illusion, disguise self, false life" : "illusion, disguise self, false life, darkness, spider climb";
+		var perDayStr = lvl[1] < 6 ? "detect magic" : lvl[1] < 14 ? "detect magic, suggestion" : "detect magic, suggestion, fear";
+		Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(atWillRemoveStr, atWillStr));
+		Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(perDayRemoveStr, perDayStr));
+	
+		// update eldritch strike damage
+		var die = lvl[1] < 5 ? "1d10" : lvl[1] < 11 ? "2d10" : lvl[1] < 17 ? "3d10" : "4d10";
+		Value(prefix + "BlueText.Comp.Use.Attack.1.Damage Die", die);
+		Value(prefix + "BlueText.Comp.Use.Attack.2.Damage Die", die);
+	}
+}
+	
+// * Hunter cohort creature option
+CreatureList["hunter"] = {
+	name: "Hunter",
+	source: ["VSoS", 58],
+	size: 3,
+	type: "Humanoid",
+	subtype: "any race",
+	companion: "cohort",
+	alignment: "Any",
+	ac: 14,
+	hp: 11,
+	hd: [2,8],
+	speed: "30 ft",
+	proficiencyBonus: 2,
+	challengeRating: "1/4",
+	scores: [10, 14, 12, 10, 14, 9],
+	saves: [2, 4, "", "", "", ""],
+	senses: "",
+	skills: { "Perception" : 4, "Survival" : 4 },
+	languages: "any 1 language",
+	header: "Cohort",
+	attacksAction: 1,
+	attacks: [{
+		name: "Scimitar",
+		source: ["SRD"],
+		regExpSearch: /\bscimitar\b/i,
+		baseWeapon: "scimitar"
+	}, {
+		name: "Longbow",
+		source: ["SRD"],
+		regExpSearch: /\blongbow\b/i,
+		baseWeapon: "longbow"
+	}],
+	features: [{
+		name: "Keen Hearing & Sight",
+		description: "The hunter has advantage on Perception checks that rely on hearing or sight.",
+	},{
+		name: "Vantage Point",
+		minlevel: 6,
+		description: "The hunter gains a climb speed equal to its walk speed.",
+		eval: function(prefix, lvl){
+			Value(prefix + "Comp.Use.Speed", "30 ft, climb 30 ft")
+		},
+		removeeval: function(prefix, lvl){
+			Value(prefix + "Comp.Use.Speed", "30 ft")
+		}
+	}],
+	traits: [{
+		name: "True Shot",
+		minlevel: 2,
+		description: "(bonus action, 1/day) After making an attack or damage roll with a ranged weapon, the hunter can roll a d10 and add it to the total. The hunter gains +1 use of this feature when its captain reaches 5th, 11th, and 17th level.",
+	}, {
+		name: "Predator's Mark",
+		minlevel: 10,
+		description: "(bonus action, 1/day) When the hunter hits with an attack, it marks the target for 1 minute or until it loses concentration. The hunter has advantage on attack rolls against the marked target and deals an extra 1d8 damage on a hit.",
+	},{
+		name: "Instinctive Dodge",
+		minlevel: 14,
+		description: "(reaction) In response to being hit by an attack or failing a Dexterity save, the hunter can add +3 to its AC/save.",
+	},{
+		name: "Multiattack",
+		minlevel: 18,
+		description: "(3/day) The hunter makes 2 ranged weapon attacks.",
+	}],
+	eval: function(prefix, lvl){
+		// add equipment section
+		var layersArray = eval_ish(What(prefix + "Companion.Layers.Remember"));
+		if (layersArray[1] == true) return;
+		layersArray[1] = true;
+		Value(prefix + "Companion.Layers.Remember", layersArray.toSource());
+		ShowCompanionLayer(prefix);
+		
+		// clear equipment
+		for (var i = 1; i <= 17; ++i) {
+			Value(prefix + "Comp.eqp.Gear Row " + i, "");
+			Value(prefix + "Comp.eqp.Gear Weight " + i, "");
+		}
+	
+		// add equipment
+		var added = 0;
+		for (var i = 1; i <= 17; ++i) {
+			if (!What(prefix + "Comp.eqp.Gear Row " + i)){
+				switch (added) {
+					case 0:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Studded Leather");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "13");
+						break;
+					case 1:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Scimitar");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "3");
+						break;
+					case 2:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Longbow");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "2");
+						break;
+				}
+				added++;
+				if (added == 3) break;
+			}
+		}
+	},
+	changeeval: function (prefix, lvl){
+		// update true shot uses
+		var uses = lvl[1] < 5 ? "1" : lvl[1] < 11 ? "2" : lvl[1] < 17 ? "3" : "4";
+		var oldUses = lvl[0] < 5 ? "1" : lvl[0] < 11 ? "2" : lvl[0] < 17 ? "3" : "4";
+		Value(prefix + "Comp.Use.Traits", What(prefix + "Comp.Use.Traits").replace("True Shot: (bonus action, " + oldUses + "/day)", "True Shot: (bonus action, " + uses + "/day)"));
+	}
+}
+	
+// * Mage cohort creature option
+CreatureList["mage"] = {
+	name: "Mage",
+	source: ["VSoS", 58],
+	size: 3,
+	type: "Humanoid",
+	subtype: "any race",
+	companion: "cohort",
+	alignment: "Any",
+	ac: 11,
+	hp: 9,
+	hd: [2,8],
+	speed: "30 ft",
+	proficiencyBonus: 2,
+	challengeRating: "1/4",
+	scores: [9, 12, 10, 14, 13, 12],
+	saves: ["", "", "", 4, 3, ""],
+	senses: "",
+	skills: { "Arcana" : 4, "History" : 4 },
+	languages: "any 1 language",
+	header: "Cohort",
+	attacksAction: 1,
+	attacks: [{
+		name: "Dagger",
+		source: ["SRD"],
+		regExpSearch: /\bdagger\b/i,
+		baseWeapon: "dagger"
+	}, {
+		name: "Arcane Arrow",
+		source: ["VSoS", 58],
+		regExpSearch: /\barcane arrow\b/i,
+		type: "AlwaysProf",
+		ability: 4,
+		damage: [1,10, "force"],
+		range: "120 ft",
+		description: "",
+	}, {
+		name: "Elemental Burst",
+		source: ["VSoS", 59],
+		regExpSearch: /\barcane arrow\b/i,
+		type: "AlwaysProf",
+		ability: 4,
+		dc: true,
+		abilitytodamage: false,
+		damage: [8,6, ""],
+		range: "120 ft",
+		description: "10 foot radius, Dexterity save; half on save",
+	}],
+	features: [{
+		name: "Magic Resistance",
+		description: "The mage has advantage on saves against spells and other magical effects.",
+	},{
+		name: "Spellcasting",
+		description: "(DC 8+Prof+Int) The mage can cast the following spells, at will, using Intelligence as its spellcasting ability:"+
+		"\n    At will: mage hand, prestidigitation"+
+		"\n    1/day each: floating disk, grease, mage armor", 
+	}],
+	traits: [{
+		name: "Arcane Apprenticeship",
+		minlevel: 2,
+		description: "The mage's Arcane Arrow attack gains +1d10 damage when its captain reaches 5th, 11th, and 17th level. The mage adds its Intelligence modifier to its damage roll.",
+	}, {
+		name: "Spellcasting",
+		minlevel: 6,
+		description: "The mage gains new spells. See features",
+	},{
+		name: "Elemental Burst",
+		minlevel: 10,
+		description: "(action, 1/day) The mage unleashes a 10 ft radius magical explosion that deals damage of a chosen type: acid, cold, fire, lightning, or thunder.",
+		eval: function(prefix, lvl){
+			Value(prefix + "Comp.Use.Attack.3.Weapon Selection", "Elemental Burst");
+		},
+		removeeval: function(prefix, lvl){
+			Value(prefix + "Comp.Use.Attack.3.Weapon Selection", "");
+		}
+	},{
+		name: "Spellcasting",
+		minlevel: 14,
+		description: "The mage gains new spells. See features",
+	},{
+		name: "Contingent Sphere",
+		minlevel: 18,
+		description: "(reaction, 1/day) In response to taking damage, the mage casts the resilent sphere spell targeting itself.",
+	}],
+	eval: function(prefix, lvl){
+		// remove elemental burst
+		Value(prefix + "Comp.Use.Attack.3.Weapon Selection", "");
+	
+		// add equipment section
+		var layersArray = eval_ish(What(prefix + "Companion.Layers.Remember"));
+		if (layersArray[1] == true) return;
+		layersArray[1] = true;
+		Value(prefix + "Companion.Layers.Remember", layersArray.toSource());
+		ShowCompanionLayer(prefix);
+		
+		// clear equipment
+		for (var i = 1; i <= 17; ++i) {
+			Value(prefix + "Comp.eqp.Gear Row " + i, "");
+			Value(prefix + "Comp.eqp.Gear Weight " + i, "");
+		}
+	
+		// add dagger
+		for (var i = 1; i <= 17; ++i) {
+			if (!What(prefix + "Comp.eqp.Gear Row " + i)){
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Dagger");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "1");
+						break
+			}
+		}
+	},
+	changeeval: function (prefix, lvl){
+		// update arcane arrow damage
+		var die = lvl[1] < 5 ? "1d10" : lvl[1] < 11 ? "2d10" : lvl[1] < 17 ? "3d10" : "4d10";
+		Value(prefix + "BlueText.Comp.Use.Attack.2.Damage Die", die);
+	
+		// update spellcasting
+		var atWillRemoveStr = lvl[0] < 6 ? "prestidigitation" : "prestidigitation, message";
+		var perDayRemoveStr = lvl[0] < 6 ? "mage armor" : lvl[0] < 14 ? "mage armor, hold person, invisibility" : "mage armor, hold person, invisibility, dimension door, polymorph";
+		var atWillStr = lvl[1] < 6 ? "prestidigitation" : "prestidigitation, message";
+		var perDayStr = lvl[1] < 6 ? "mage armor" : lvl[1] < 14 ? "mage armor, hold person, invisibility" : "mage armor, hold person, invisibility, dimension door, polymorph";
+		Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(atWillRemoveStr, atWillStr));
+		Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(perDayRemoveStr, perDayStr));
+	}
+}
+	
+// * Scoundrel cohort creature option
+CreatureList["scoundrel"] = {
+	name: "Scoundrel",
+	source: ["VSoS", 59],
+	size: 3,
+	type: "Humanoid",
+	subtype: "any race",
+	companion: "cohort",
+	alignment: "Any",
+	ac: 13,
+	hp: 9,
+	hd: [2,8],
+	speed: "30 ft",
+	proficiencyBonus: 2,
+	challengeRating: "1/4",
+	scores: [8, 14, 11, 13, 12, 10],
+	saves: ["", 4, "", 3, "", ""],
+	senses: "",
+	skills: { "Acrobatics" : 4, "Perception" : 3, "Sleight of Hand": 4, "Stealth": 4 },
+	languages: "any 1 language",
+	header: "Cohort",
+	attacksAction: 1,
+	attacks: [{
+		name: "Shortsword",
+		source: ["SRD"],
+		regExpSearch: /\bshortsword\b/i,
+		baseWeapon: "shortsword"
+	}, {
+		name: "Shortbow",
+		source: ["SRD"],
+		regExpSearch: /\bshortbow\b/i,
+		baseWeapon: "shortbow"
+	}],
+	features: [{
+		name: "Sneak Attack",
+		description: "Once on each of its turns, the scoundrel can add +3(1d6) damage to a finesse/ranged weapon attack if it has advantage. It doesn't need advantage if an unincapacitated ally is within ft of the target and the scoundrel doesn't have disadvantage.",
+	}, {
+		name: "Evasion",
+		minlevel: 14,
+		description: "The scoundrel's Dexterity saves vs. areas of effect negate damage on success and halve it on failure.",
+	}],
+	traits: [{
+		name: "Rogue Training",
+		minlevel: 2,
+		description: "The scoundrel's Sneak Attack damage increases by +3(1d6) when its captain reaches 6th, 10th, 14th, and 18th level.",
+	},{
+		name: "Cunning Action",
+		minlevel: 6,
+		description: "(bonus action) The scoundrel takes the Dash, Disengage, or Hide action.",
+	},{
+		name: "Uncanny Dodge",
+		minlevel: 10,
+		description: "(reaction) The scoundrel halves the damage that it takes from an attack that hits it, by an attacker it can see.",
+	},{
+		name: "Assassinate",
+		minlevel: 18,
+		description: "(1/day) During its first turn in combat, the scoundrel turns a hit that it makes with a weapon attack into a critical hit.",
+	}],
+	eval: function(prefix, lvl){
+		// add equipment section
+		var layersArray = eval_ish(What(prefix + "Companion.Layers.Remember"));
+		if (layersArray[1] == true) return;
+		layersArray[1] = true;
+		Value(prefix + "Companion.Layers.Remember", layersArray.toSource());
+		ShowCompanionLayer(prefix);
+		
+		// clear equipment
+		for (var i = 1; i <= 17; ++i) {
+			Value(prefix + "Comp.eqp.Gear Row " + i, "");
+			Value(prefix + "Comp.eqp.Gear Weight " + i, "");
+		}
+	
+		// add equipment
+		var added = 0;
+		for (var i = 1; i <= 17; ++i) {
+			if (!What(prefix + "Comp.eqp.Gear Row " + i)){
+				switch (added) {
+					case 0:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Leather Armor");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "10");
+						break;
+					case 1:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Shortsword");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "2");
+						break;
+					case 2:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Shortbow");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "2");
+						break;
+				}
+				added++;
+				if (added == 3) break;
+			}
+		}
+	},
+	changeeval: function (prefix, lvl){
+		// update sneak attack damage
+		var die = lvl[1] < 6 ? "+3(1d6)" : lvl[1] < 10 ? "+7(2d6)" : lvl[1] < 14 ? "+10(3d6)" : lvl[1] < 18 ? "+14(4d6)" : "+17(5d6)";
+		var oldDie = lvl[0] < 6 ? "+3(1d6)" : lvl[0] < 10 ? "+7(2d6)" : lvl[0] < 14 ? "+10(3d6)" : lvl[0] < 18 ? "+14(4d6)" : "+17(5d6)";
+		for (var i = 1; i < 4; ++i){
+			var atkFld = prefix + "Comp.Use.Attack." + i;
+			if (/finesse/i.test(What(atkFld + ".Description")) || /\//.test(What(atkFld + ".Range")))
+			{
+				if (!/sneak attack/i.test(What(atkFld + ".Description")))
+					Value(atkFld + ".Description", What(atkFld + ".Description") + "; Sneak Attack " + die + " damage");
+				else
+					Value(atkFld + ".Description", What(atkFld + ".Description").replace(oldDie, die));
+			}
+		}
+	}
+}
+	
+// * Templar cohort creature option
+CreatureList["templar"] = {
+	name: "Templar",
+	source: ["VSoS", 60],
+	size: 3,
+	type: "Humanoid",
+	subtype: "any race",
+	companion: "cohort",
+	alignment: "Any",
+	ac: 16,
+	hp: 11,
+	hd: [2,8],
+	speed: "30 ft",
+	proficiencyBonus: 2,
+	challengeRating: "1/4",
+	scores: [14, 9, 12, 10, 10, 14],
+	saves: ["", "", "", "", 2, 4],
+	senses: "",
+	skills: { "Athletics" : 4, "Religion" : 2 },
+	languages: "any 1 language",
+	header: "Cohort",
+	attacksAction: 1,
+	attacks: [{
+		name: "Longsword",
+		source: ["SRD"],
+		regExpSearch: /\blongsword\b/i,
+		baseWeapon: "longsword"
+	}, {
+		name: "Javelin",
+		source: ["SRD"],
+		regExpSearch: /\bjavelin\b/i,
+		baseWeapon: "javelin"
+	}],
+	features: [{
+		name: "Brave",
+		description: "The templar has advantage on saves to avoid or end the frightened condition.",
+	}, {
+		name: "Holy Weapons",
+		minlevel: 10,
+		description: "The templar's weapons are magical and it has a +2 bonus to its weapon attack rolls.",
+	}],
+	traits: [{
+		name: "Smite",
+		minlevel: 2,
+		description: "(bonus action, 1/day) When the templar hits with a melee weapon, the target takes an extra 9 (2d8) radiant damage. The templar gains extra uses of this feature when its captain reaches 5th, 11th, and 17th level.",
+	},{
+		name: "Parry",
+		minlevel: 6,
+		description: "(reaction) The templar adds 2 to its AC against 1 melee attack that would hit it. The templar must be able to see the attacker and wielding a melee weapon.",
+	},{
+		name: "Zealous Inspiration",
+		minlevel: 14,
+		description: "(action, 1/day) The templar and each friendly creature within 30 feet of it gain 20 temporary hit points.",
+	},{
+		name: "Improved Smite",
+		minlevel: 18,
+		description: "The extra damage of Smite increases to 18 (4d8). When the templar finishes a short rest and has no uses of Smite remaining, it regains 1 use.",
+	}],
+	eval: function(prefix, lvl){
+		// add equipment section
+		var layersArray = eval_ish(What(prefix + "Companion.Layers.Remember"));
+		if (layersArray[1] == true) return;
+		layersArray[1] = true;
+		Value(prefix + "Companion.Layers.Remember", layersArray.toSource());
+		ShowCompanionLayer(prefix);
+		
+		// clear equipment
+		for (var i = 1; i <= 17; ++i) {
+			Value(prefix + "Comp.eqp.Gear Row " + i, "");
+			Value(prefix + "Comp.eqp.Gear Weight " + i, "");
+		}
+	
+		// add equipment
+		var added = 0;
+		for (var i = 1; i <= 17; ++i) {
+			if (!What(prefix + "Comp.eqp.Gear Row " + i)){
+				switch (added) {
+					case 0:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Chain Mail");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "55");
+						break;
+					case 1:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Longsword");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "3");
+						break;
+					case 2:
+						Value(prefix + "Comp.eqp.Gear Row " + i, "Javelin");
+						Value(prefix + "Comp.eqp.Gear Weight " + i, "2");
+						break;
+				}
+				added++;
+				if (added == 3) break;
+			}
+		}
+	},
+	changeeval: function (prefix, lvl){
+		// update smite damage
+		var die = lvl[1] < 2 ? "" : lvl[1] < 18 ? "+9(2d8)" : "+18(4d8)";
+		var oldDie = lvl[0] < 2 ? "" : lvl[0] < 18 ? "+9(2d8)" : "+18(4d8)";
+		for (var i = 1; i < 4; ++i){
+			var atkFld = prefix + "Comp.Use.Attack." + i;
+			if (/melee/i.test(What(atkFld + ".Range")))
+			{
+				if (die == "") RemoveString(atkFld + ".Description", "; Smite " + oldDie + " radiant damage");
+				else if (!/smite/i.test(What(atkFld + ".Description")))
+					Value(atkFld + ".Description", What(atkFld + ".Description") + "; Smite " + die + " radiant damage");
+				else
+					Value(atkFld + ".Description", What(atkFld + ".Description").replace(oldDie, die));
+			}
+		}
+	
+		// update holy weapons feature
+		if (lvl[1] >= 10){
+			for (var i = 1; i < 4; ++i){
+				var atkFld = prefix + "Comp.Use.Attack." + i;
+				if (What(atkFld + ".Weapon Selection") && !/magical/i.test(What(atkFld + ".Description"))){
+					Value(atkFld + ".Description", What(atkFld + ".Description") + "; magical");
+					Value(prefix + "BlueText.Comp.Use.Attack." + i + ".To Hit Bonus", What(prefix + "BlueText.Comp.Use.Attack." + i + ".To Hit Bonus") + "+2");
+				}
+			}
+		}
+		else{
+			for (var i = 1; i < 4; ++i){
+				var atkFld = prefix + "Comp.Use.Attack." + i;
+				if (/magical/i.test(What(atkFld + ".Description"))){
+					Value(atkFld + ".Description", What(atkFld + ".Description").replace("; magical", ""));
+					Value(prefix + "BlueText.Comp.Use.Attack." + i + ".To Hit Bonus", What(prefix + "BlueText.Comp.Use.Attack." + i + ".To Hit Bonus").replace("+2", ""));
+				}
+			}
+		}
+	
+		// update smite uses
+		var uses = lvl[1] < 5 ? "1" : lvl[1] < 11 ? "2" : lvl[1] < 17 ? "3" : "4";
+		var oldUses = lvl[0] < 5 ? "1" : lvl[0] < 11 ? "2" : lvl[0] < 17 ? "3" : "4";
+		Value(prefix + "Comp.Use.Traits", What(prefix + "Comp.Use.Traits").replace("Smite: (bonus action, " + oldUses + "/day)", "Smite: (bonus action, " + uses + "/day)"));
+	}
+}
+	
+// * Undead cohort creature option
+CreatureList["undead"] = {
+	name: "Undead",
+	source: ["VSoS", 61],
+	size: 3,
+	type: "Undead",
+	companion: "cohort",
+	alignment: "Any",
+	ac: 9,
+	hp: 13,
+	hd: [2,8],
+	speed: "30 ft",
+	proficiencyBonus: 2,
+	challengeRating: "1/4",
+	scores: [15, 9, 15, 9, 9, 9],
+	damage_immunities: "poison",
+	condition_immunities: "charmed, exhaustion, poisoned",
+	senses: "darkvision 60 ft",
+	languages: "any 1 language",
+	header: "Cohort",
+	attacksAction: 1,
+	attacks: [{
+		name: "Bite",
+		source: ["VSoS", 61],
+		regExpSearch: /\bbite\b/i,
+		type: "Natural",
+		ability: 1,
+		damage: [1,6, "piercing"],
+		range: "Melee (5 ft)",
+		description: "",
+	}],
+	features: [{
+		name: "Undead Fortitude",
+		description: "If the undead drops to 0 hit points, it must make a Con save DC 5 + the damage taken. On success, the undead drops to 1 hit point instead. It automatically fails if the damage was radiant or from a critical hit.",
+	}, {
+		name: "Turn Resistance",
+		minlevel: 2,
+		description: "Advantage on saves against effects that turns undead.",
+	}],
+	traits: [{
+		name: "Necrotizing Bite",
+		minlevel: 6,
+		description: "The undead's bite deals an extra 1d6 necrotic damage on hit.",
+	},{
+		name: "Regeneration",
+		minlevel: 10,
+		description: "The undead regains 1 hit point at the start of its turn, unless it took fire/radiant damage since the start of its last turn. The undead dies only if it starts its turn with 0 hit points and doesn't regenerate.",
+	},{
+		name: "Improved Necrotizing Bite",
+		minlevel: 14,
+		description: "The necrotic damage for the undead's bite increases to 7 (2d6), and the undead regains hit points equal to the necrotic damage on a hit.",
+		eval: function(prefix, lvl){
+			var atkFld = prefix + "Comp.Use.Attack.1";
+			Value(atkFld + ".Description",  What(atkFld + ".Description") + "; regain hitpoints equal to necrotic damage");
+		},        
+		removeeval: function(prefix, lvl){
+			var atkFld = prefix + "Comp.Use.Attack.1";
+			RemoveString(atkFld + ".Description", "; regain hitpoints equal to necrotic damage");
+		}
+	},{
+		name: "Undead Horde",
+		minlevel: 18,
+		description: "A Humanoid slain by the undead's bite attack rises 24 hours later as a zombie, unless the Humanoid is restored to life or its body is destroyed. Zombies are under the captain's control for 24 hours, refreshed if the captain casts the animate dead spell. The captain only control 6 zombies max.",
+	}],
+	eval: function(prefix, lvl){
+		// add equipment section
+		var layersArray = eval_ish(What(prefix + "Companion.Layers.Remember"));
+		if (layersArray[1] == true) return;
+		layersArray[1] = true;
+		Value(prefix + "Companion.Layers.Remember", layersArray.toSource());
+		ShowCompanionLayer(prefix);
+		
+		// clear equipment
+		for (var i = 1; i <= 17; ++i) {
+			Value(prefix + "Comp.eqp.Gear Row " + i, "");
+			Value(prefix + "Comp.eqp.Gear Weight " + i, "");
+		}
+	},
+	changeeval: function (prefix, lvl){
+		// update bite extra damage
+		var die = lvl[1] < 6 ? "" : lvl[1] < 14 ? "+1d6 necrotic damage" : "+7 (2d6) necrotic damage";
+		var oldDie = lvl[0] < 6 ? "" : lvl[0] < 14 ? "+1d6 necrotic damage" : "+7 (2d6) necrotic damage";
+		var atkFld = prefix + "Comp.Use.Attack.1";
+			if (oldDie == "") Value(atkFld + ".Description",  What(atkFld + ".Description") + die);
+			else Value(atkFld + ".Description", What(atkFld + ".Description").replace(oldDie, die));
 	}
 }
 
