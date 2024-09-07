@@ -18066,6 +18066,7 @@ var MasterworkWeaponProperties = {
 	}
 }
 
+// * Craftsman Class
 ClassList["craftsman"] = {
 	// given damage dice and direction to step, return the new dice step.
 	// a direction of true means we are stepping upwards.
@@ -22017,6 +22018,318 @@ AddSubClass("craftsman","bladeworker",{
 		},
 	}
 });
+
+// * Gunslinger class
+ClassList["gunslinger"] = {
+    name: "Gunslinger",
+    regExpSearch: /\bgunslinger\b/i,
+    source: ["VSoS", 91],
+    primaryAbility: "Dexterity and Constitution",
+    prereqs: "Dexterity 13",
+    die: 8,
+    improvements: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5],
+    saves: ["Dex", "Cha"],
+    abilitySave: 2,
+    skillstxt: {
+        primary: "Choose two from Acrobatics, Animal Handling, Athletics, Deception, Persuasion, Sleight of Hand, Stealth",
+    },
+    armorProfs: {
+        primary: [true, false, false, false],
+        secondary: [true, false, false, false]
+    },
+    weaponProfs: {
+        primary: [true, false, ["all firearms"]],
+        secondary: [true, false, ["all firearms"]],
+    },
+    toolProfs: {
+        primary: ["One type of gaming set", 1]
+    },
+    equipment: "Gunslinger starting equipment: " +
+        "\n \u2022 a handgun and 20 bullets -or- a revolver and 10 bullets;" +
+        "\n \u2022 any two-handed firearm that isn't heavy and 30 bullets/shells;" +
+        "\n \u2022 a dungeoneer's pack -or- an explorer's pack;" +
+        "\n \u2022 leather armor, a longcoat, and a dagger",
+    subclasses: ["Gunslinger's Creed", []],
+    attacks: [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+    features: {
+        "fighting style": {
+            name: "Fighting Style",
+            minlevel: 1,
+            source: ["VSoS", 92],
+            description: desc([
+                "Choose a Fighting Style for the gunslinger using the \"Choose Feature\" button above."
+            ]),
+            choices: ["Akimbo", "Bullseye", "Duelist", "Shotgunner"],
+            "akimbo": {
+                name: "Akimbo Fighting Style",
+                source: ["VSoS", 92],
+                description: desc([
+                    "I don't take the -2 damage penalty of offhand firearm attacks when two-weapon fighting.",
+                ]),
+                calcChanges: {
+                    atkAdd:[
+                        function (fields, v){
+                            if (/[, ]*offhand \(\-2\)/i.test(fields.Description)){
+                                fields.Description = fields.Description.replace(/[, ]*offhand \(\-2\)/i, "");
+                                fields.Description_Tooltip = fields.Description_Tooltip.replace(/When you engage in two-weapon fighting with two light firearms, you subtract 2 from the damage roll of the bonus attack, to a minimum of 1 damage./, "");
+                            }
+                        },
+                        "I don't take the -2 damage penalty of offhand firearm attacks when two-weapon fighting."
+                    ]
+                }
+            },
+            "bullseye": {
+                name: "Bullseye Fighting Style",
+                source: ["VSoS", 93],
+                description: desc([
+                    "Ranged firearm attack rolls with Sighted or a normal range of 80 ft or longer gain a +2 bonus.",
+                    "This effect doesn't stack with Archery Fighting Style."
+                ]),
+                calcChanges: {
+                    atkCalc : [
+                        function (fields, v, output) {                           
+                            // check if the archery fighting style is here, back out
+                            if (!/Archery Fighting Style/i.test(What("Class Features")) || !(/\d+\/\d+/i).test(fields.Range)) return;
+                            var rangeFld = fields.Range.match(/(\d+)\/(\d+)/i);;
+                            var shortRange = parseInt(rangeNmbr[1]);
+                            if(!(/firearm/i.test(v.theWea.list) || !/firearm/i.test(fields.Description)) && (!/sighted/i.test(fields.Description) || !shortRange >= 80)) return;
+                            output.extraHit += 2;
+ 
+                        }, "I gain a +2 bonus to ranged attack rolls I make with firearms with the Sighted property or have a normal range of 80 or longer. Doesn't stack with the Archery fighting style.",
+                    ]
+                }
+            },
+            "duelist": {
+                name: "Duelist Fighting Style",
+                source : ["VSoS", 93],
+                description: desc ([
+                    "Once per round, I deal 1 extra die of weapon damage when making a ranged, one-handed",
+                    "firearm attack roll that exceeds the target's AC by 5+. Must have 1 free hand.",
+                ]),
+                calcChanges: {
+                    atkAdd: [
+                        function (fields, v) {
+                            if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) && !/\btwo-handed\b/i.test(fields.Description) && (/(\d+)d(\d+)/).test(fields.Damage_Die)) {
+                                // get the die type
+                                var dieSplit = fields.Damage_Die.split("d");
+                                if (dieSplit.length < 2) return;
+                                var die = "1d" + dieSplit[1];
+                                fields.Description += (fields.Description ? "; " : "") + "Duelist +" + die;
+                            }
+                        }, "Once per round, when wielding a firearm in one hand and nothing in the other, I deal 1 extra die of weapon damage if my attack roll exceeds the target's AC by 5 or more.",
+                    ]
+                }
+            },
+            "shotgunner" : {
+                name: "Shotgunner Fighting Style",
+                source : ["VSoS", 93],
+                description : desc ([
+                    "When I hit on a ranged firearm attack with Scatter, I can reroll the lowest damage die.",
+                ]),
+                calcChanges : {
+                    atkAdd: [
+                        function (fields, v){
+                            if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) && /\bscatter\b/i.test(fields.Description)) {
+                                fields.Description += (fields.Description ? "; " : "") + "reroll lowest dmg die";
+                            }
+                        }, "When I hit with a ranged weapon attack using a firearm that has the Scatter property, I can reroll the lowest damage die.",
+                    ]
+                }
+            }
+        },
+        "quickdraw": {
+            name: "Quick Draw",
+            source : ["VSoS", 93],
+            minlevel: 1,
+            description: desc([
+                "Adv. on initiative rolls. I can draw/stow 2 weapons when I roll initiative as part of my action.",
+            ]),
+            
+        },
+        "critical shot": {
+            name: "Critical Shot",
+            source : ["VSoS", 93],
+            minlevel: 2,
+            description: desc([
+                "My ranged firearm attacks score a critical hit on a roll of 19-20, increasing at 9th & 17th level.",
+            ]),
+            additional: levels.map(function (n) { return n < 2 ? "" : ("critical hit range: " + n < 9 ? "19-20" : n < 17 ? "18-20" : "17-20");}),
+            calcChanges: {
+                atkAdd: [
+                    function (fields, v){
+                        if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description))){
+                            fields.Description += (fields.Description ? "; " : "") + "crit on " + (classes.known.gunslinger.level < 9 ? "19-20" : classes.known.gunslinger.level < 17 ? "18-20" : "17-20");
+                        }
+                    }, "At 2nd level, my ranged firearm attacks score a crit on a roll of 19-20; at 9th level, 18-20; and at 17th level, 17-20."
+                ]
+            }
+        },
+        "poker face": {
+            name: "Poker Face",
+            source : ["VSoS", 93],
+            minlevel: 2,
+            description: desc([
+                "Advantage on checks/saves vs others trying to sense my motives, emotions, or thoughts."
+            ]),
+            savetxt : {
+                adv_vs : ["others sensing my motives, emotions, thoughts"]
+            }
+        },
+        "risk" : {
+            name: "Risk",
+            source : ["VSoS", 93],
+            minlevel: 2,
+            description: desc([
+                "I can spend Risk Dice to fuel Deeds once per turn (see third page) ",
+                "My deed save DC is 8 + my proficiency bonus + my Dexterity modifier."
+            ]),
+            limfeaname: "Risk Dice",
+            additional : levels.map(function (n) { return n < 2 ? "" : n < 10 ? "d8" : n < 18 ? "d10" : "d12"}),
+            usages: levels.map(function (n) { return n < 2 ? 0 : n < 6 ? 4 : n < 14 ? 5 : 6}),
+            recovery: "long rest",
+            extraname: "Deed",
+            action: ["bonus action", "Deed"],
+            "bitethebullet": {
+                name: "Bite the Bullet",
+                source: ["VSoS", 94],
+                description: desc([
+                    "As a bonus action, I can expend 1 risk die to gain temporary hit points equal to the roll + my",
+                    "Constitution modifier."
+                ]),
+            },
+            "coveringfire": {
+                name: "Covering Fire",
+                source: ["VSoS", 94],
+                description: desc([
+                    "As a bonus action, when I hit a creature with a ranged weapon attack, I can subtract the risk",
+                    "die from the next attack roll the creature makes before the start of my next turn."
+                ]),
+            },
+            "dodgeroll": {
+                name: "Dodge Roll",
+                source: ["VSoS", 94],
+                description: desc([
+                    "As a bonus action, I can spend a risk die to move up to 15 ft and reload any firearm I am",
+                    "holding. This movement doesn't provoke opportunity attacks, ignores difficult terrain, and can",
+                    "move through a hostile creature's space as long as I don't end my movement there."
+                ]),
+            },
+            "limbshot": {
+                name: "Limb Shot",
+                source: ["VSoS", 94],
+                description: desc([
+                    "As a bonus action, when I hit a creature with a ranged weapon attack, I can spend a risk die,",
+                    "forcing the target to make a Constitution save or drop a held object of my choice at its feet."
+                ]),
+            },
+            "skinofyourteeth": {
+                name: "Skin of Your Teeth",
+                source: ["VSoS", 94],
+                description: desc([
+                    "As a reaction to a creature I can see making an attack roll against me, I can add a risk die to",
+                    "my AC against the attack."
+                ]),
+                action: ["reaction", ""],
+            },
+            "steadyaim": {
+                name: "Steady Aim",
+                source: ["VSoS", 94],
+                description: desc([
+                    "As a bonus action, I can spend a risk die to double the normal and maximum range for the",
+                    "next ranged weapon attack I make."
+                ])
+            },
+            autoSelectExtrachoices: [{
+                extrachoice: "bitethebullet"
+            }, {
+                extrachoice: "coveringfire"
+            }, {
+                extrachoice: "dodgeroll"
+            }, {
+                extrachoice: "limbshot"
+            }, {
+                extrachoice: "skinofyourteeth"
+            }, {
+                extrachoice: "steadyaim"
+            }]
+        },
+        "subclassfeature3" : {
+            name: "Gunslinger's Creed",
+            minlevel: 3,
+            source: ["VSoS", 93],
+            description: desc(["Choose a Gunslinger's Creed and put it in the \"Class\" field."])
+        },
+        "gutshot": {
+            name: "Gut Shot",
+            minlevel: 6,
+            source: ["VSoS", 94],
+            description: desc([
+                "When I crit on a ranged firearm attack vs a Large or smaller creature, the creature moves at",
+                "half speed & has disadvantage on attack rolls & ability checks until it uses its action to end",
+                "the effect. Elementals, Oozes, and Undead are immune to this effect."
+            ])
+        },
+        "evasion": {
+            name: "Evasion",
+            minlevel: 7,
+            source: ["VSoS", 94],
+            description: desc(["My Dexterity saves vs. areas of effect negate damage on success and halve it on failure."]),
+            savetxt : { text : ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"] }
+        },
+        "mankiller": {
+            name: "Mankiller",
+            minlevel: 11,
+            source: ["VSoS", 94],
+            description: desc(["I add my ability modifier to damage rolls of ranged firearm attacks I make using my action."]),
+            calcChanges: {
+                atkCalc: [
+                    function (fields, v, output){
+                        if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) && !/\boff[ \-]+hand/i.test(v.WeaponTextName)){
+                            output.modToDmg = true;
+                        }
+                    },  "I add my ability modifier to damage rolls of ranged firearm attacks I make using my action."
+                ]
+            }
+        },
+        "diregambit": {
+            name: "Dire Gambit",
+            minlevel: 13,
+            source: ["VSoS", 94],
+            description: desc("I regain 1 expended risk die whenever I score a critical hit.")
+        },
+        "cheatdeath": {
+            name: "Cheat Death",
+            minlevel: 15,
+            source: ["VSoS", 94],
+            description: desc([
+                "When I drop to 0 hit points but don't die, I can use my reaction to expend & roll a risk die,",
+                "dropping to a number of hit points equal to the roll instead."
+            ]),
+            action: ["reaction", ""],
+            usages: 1,
+            recovery: "short rest"
+        },
+        "maverick": {
+            name: "Maverick",
+            minlevel: 18,
+            source: ["VSoS", 94],
+            description: desc("I have advantage on Constitution checks and saving throws."),
+            savetxt: { adv_vs: ["Constitution"]},
+            advantages: [["Constitution", true]],
+        },
+        "headshot": {
+            name: "Head Shot",
+            minlevel: 20,
+            source: ["VSoS", 94],
+            description: desc([
+                "When I crit with a firearm attack, the creature dies if it has <100 hp. If not, it takes 10d10",
+                "damage. Elementals, Oozes, Undead, and creatures that lack nervous systems are immune."
+            ]),
+            usages: 1,
+            recovery: "short rest"
+        }
+    }
+}
 
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
