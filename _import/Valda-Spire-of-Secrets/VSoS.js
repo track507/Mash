@@ -22284,7 +22284,7 @@ ClassList["gunslinger"] = {
             calcChanges: {
                 atkCalc: [
                     function (fields, v, output){
-                        if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) && !/\boff[ \-]+hand/i.test(v.WeaponTextName)){
+                        if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) && !(/((^|[^+-]\b)off).?hand(ed)?\b/i).test(v.WeaponTextName)){
                             output.modToDmg = true;
                         }
                     },  "I add my ability modifier to damage rolls of ranged firearm attacks I make using my action."
@@ -22336,8 +22336,7 @@ AddSubClass("gunslinger","gun tank",{
     regExpSearch: /\bgun tank\b/i,
     subname: "Gun Tank",
     source: ["VSoS", 95],
-    prerequisite : "Strength 15 or higher",
-    prereqeval : function (v) { return What("Str") >= 15; },
+    prereqs : "Strength 15 or higher",
     abilitySaveAlt: 1,
     features: {
         "subclassfeature3": {
@@ -22402,7 +22401,7 @@ AddSubClass("gunslinger","gun tank",{
                             fields.Description = fields.Description.replace(/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i, "");
                         }
                     }, "I ignore the two-handed property of firearms I am proficient in.",
-                    999
+                    1 // * needs high priorty.
                 ]
             }
         },
