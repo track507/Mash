@@ -22331,6 +22331,99 @@ ClassList["gunslinger"] = {
     }
 }
 
+// * Gun Tank Gunslinger subclass
+AddSubClass("gunslinger","gun tank",{
+    regExpSearch: /\bgun tank\b/i,
+    subname: "Gun Tank",
+    source: ["VSoS", 95],
+    prerequisite : "Strength 15 or higher",
+    prereqeval : function (v) { return What("Str") >= 15; },
+    abilitySaveAlt: 1,
+    features: {
+        "subclassfeature3": {
+            name: "Heavy Gunner",
+            minlevel: 3,
+            source: ["VSoS", 95],
+            description: desc([
+                "I can use heavy firearms regardless of their weight. I can use Strength instead of Dexterity",
+                "for attack & damage rolls using heavy firearms, and my Deed save DC."
+            ]),
+            scorestxt: "Prerequisite: Strength 15 or higher",
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if ((/firearm/i.test(v.theWea.list) || /firearm/i.test(fields.Description)) && /heavy/i.test(fields.Description)){
+                            fields.Mod = v.StrDex;
+                        }
+                    }, "I can use Strength instead of Dexterity for attack & damage rolls using heavy firearms."
+                ]
+            }
+        },
+        "subclassfeature3.1": {
+            name: "Tough As Nails",
+            minlevel: 3,
+            source: ["VSoS", 95],
+            description: desc([
+                "My hp max increases by my gunslinger level. I gain proficiency with medium & heavy armor.",
+            ]),
+            armorProfs: [true, true, true, false],
+            calcChanges: {
+                hp: function (totalHD, HDObj, prefix){
+                    if (classes.known.gunslinger) {
+                        return [classes.known.gunslinger.level, "Tough As Nails"];
+                    }
+                }
+            }
+        },
+        "subclassfeature7": {
+            name: "Thick-Headed",
+            minlevel: 7,
+            source: ["VSoS", 95],
+            description: desc([
+                "I have advantage on saves made to avoid or end the charmed condition on myself."
+            ]),
+            savetxt: { adv_vs : ["charmed"] }
+        },
+        "subclassfeature10": {
+            name: "Strong As An Ox",
+            minlevel: 10,
+            source: ["VSoS", 95],
+            description: desc([
+                "My carry capacity, and weight I can push/drag/lift is doubled. I have advantage on Strength",
+                "checks and saves, and can ignore the Two-handed property on firearms I am proficient in."
+            ]),
+            savetxt: { adv_vs: ["Strength"]},
+            advantages: [["Strength", true]],
+            carryingCapacity: 2,
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v, output){
+                        if ((/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i).test(fields.Description) && (/firearm/i.test(v.theWea.list) || /firearm/i.test(fields.Description)) && fields.Proficiency){
+                            fields.Description = fields.Description.replace(/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i, "");
+                        }
+                    }, "I ignore the two-handed property of firearms I am proficient in.",
+                    999
+                ]
+            }
+        },
+        "subclassfeature14": {
+            name: "Gun Rage",
+            minlevel: 14,
+            source: ["VSoS", 95],
+            description: desc([
+                "Start/end as a bonus action: lasts 1 min; resistance to bludgeoning/piercing/slashing damage;",
+                "I can make 1 additional attack when I take the Attack action on my turn; my speed is halved,",
+                "and I have disadv. on Dex checks/saves. Stops if I take cover or end turn without attacking."
+            ]),
+            usages: 1,
+            recovery: "short rest",
+            action : [["bonus action", " (start/end)"], ["action", "Gun Rage Attack (3 attacks per action)"]],
+            dmgres : [["Bludgeoning", "Bludgeon. (in rage)"], ["Piercing", "Piercing (in rage)"], ["Slashing", "Slashing (in rage)"]],
+            savetxt: { text: ["Disadv on Dex rolls in rage"]}
+        }
+    }
+})
+
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
 	name : "Alchemist Homunculus",
