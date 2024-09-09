@@ -4398,7 +4398,7 @@ AddSubClass("alchemist","xenoalchemist",{
 					abilitytodamage: false,
 					dc: true,
 					modifiers: ["", "5"],
-					tooltip: "Each creature in a 15-foot cone must make a Dexterity saving throw (DC equals 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes 1d6 damage for each point of your proficiency bonus, or half as much damage on a successful one. The breath weapon’s damage type is the same as the donor’s breath weapon. Once you use this ability, you can’t use it again until you finish a short or long rest.",
+					tooltip: "Each creature in a 15-foot cone must make a Dexterity saving throw (DC equals 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes 1d6 damage for each point of your proficiency bonus, or half as much damage on a successful one. The breath weapon's damage type is the same as the donor's breath weapon. Once you use this ability, you can't use it again until you finish a short or long rest.",
 					description: "Dex save, save halves damage",
 				}, {
 					name: "Horns",
@@ -18334,7 +18334,7 @@ ClassList["craftsman"] = {
 			// add firearm to the description & tooltip
 			fields.Description += (fields.Description == "" ? "" : "; ") + "Firearm";
 			fields.Description_Tooltip += (fields.Description_Tooltip ? "\n" : "") +
-										   "Firearm: You don’t add your ability modifier to this weapon’s damage rolls. Firearm ammunition can’t be recovered once used.";        
+										   "Firearm: You don't add your ability modifier to this weapon's damage rolls. Firearm ammunition can't be recovered once used.";        
 		}
 	},
 	AddFirearmRemoveAbilityModToDamage : function(fields, v, output, letter) {
@@ -18456,7 +18456,7 @@ ClassList["craftsman"] = {
 				// add reload to description 
 				fields.Description += (fields.Description ? "; " : "") + "Reload (1; 2 actions)";
 				fields.Description_Tooltip += (fields.Description_Tooltip ? "\n" : "") + 
-											"Reload: This weapon can be used to make a number of attacks before it must be reloaded. If you are proficient with the weapon, reloading it takes a bonus action; otherwise, reloading it takes an action. Some weapons require an action or longer to reload, even if you have proficiency, which is specified in the Reload property. If reloading a weapon requires longer than one action, the weapon can’t be used to make attacks until reloading is finished.";
+											"Reload: This weapon can be used to make a number of attacks before it must be reloaded. If you are proficient with the weapon, reloading it takes a bonus action; otherwise, reloading it takes an action. Some weapons require an action or longer to reload, even if you have proficiency, which is specified in the Reload property. If reloading a weapon requires longer than one action, the weapon can't be used to make attacks until reloading is finished.";
 				// increase damage by 3
 				var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 3);                       
 				fields.Damage_Die = newDice;
@@ -18466,7 +18466,7 @@ ClassList["craftsman"] = {
 				// add reload to description 
 				fields.Description += (fields.Description ? "; " : "") + "Reload (5)";
 				fields.Description_Tooltip += (fields.Description_Tooltip ? "\n" : "") + 
-											"Reload: This weapon can be used to make a number of attacks before it must be reloaded. If you are proficient with the weapon, reloading it takes a bonus action; otherwise, reloading it takes an action. Some weapons require an action or longer to reload, even if you have proficiency, which is specified in the Reload property. If reloading a weapon requires longer than one action, the weapon can’t be used to make attacks until reloading is finished.";
+											"Reload: This weapon can be used to make a number of attacks before it must be reloaded. If you are proficient with the weapon, reloading it takes a bonus action; otherwise, reloading it takes an action. Some weapons require an action or longer to reload, even if you have proficiency, which is specified in the Reload property. If reloading a weapon requires longer than one action, the weapon can't be used to make attacks until reloading is finished.";
  
 			}
 		}
@@ -18492,7 +18492,7 @@ ClassList["craftsman"] = {
 			// add description + tooltip
 			fields.Description += (fields.Description ? "; " : "") + "Scatter";
 			fields.Description_Tooltip += (fields.Description_Tooltip ? "\n" : "") + 
-										"Scatter: If you make an attack against a target that is within half this weapon’s normal range, you deal the damage value listed in parentheses instead of the weapon’s normal damage dice.";
+										"Scatter: If you make an attack against a target that is within half this weapon's normal range, you deal the damage value listed in parentheses instead of the weapon's normal damage dice.";
 										
 			// calculate new range
 			var newRange = ClassList["craftsman"].CalcNewRange(fields.Range, -70);
@@ -18559,7 +18559,7 @@ ClassList["craftsman"] = {
 			// add trip to description + tooltip
 			fields.Description += (fields.Description ? "; " : "") + "Trip";
 			fields.Description_Tooltip += (fields.Description_Tooltip ? "\n" : "") +
-										"Trip: You can make a shove attempt against any creature within this weapon’s reach. Furthermore, you have advantage on ability checks you make to shove a creature using this weapon.";
+										"Trip: You can make a shove attempt against any creature within this weapon's reach. Furthermore, you have advantage on ability checks you make to shove a creature using this weapon.";
 		}
 	},
 	AddTwohanded : function(fields, v, letter){
@@ -18601,7 +18601,7 @@ ClassList["craftsman"] = {
 				fields.Description += (fields.Description ? "; " : "") + "Counterweighted";
  
 			fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + 
-										"Counterweighted: You can wield this weapon in one hand, as long as you don’t have a weapon in your other hand.";
+										"Counterweighted: You can wield this weapon in one hand, as long as you don't have a weapon in your other hand.";
 		}
 	},
 	AddDouble : function(fields, v, letter) {
@@ -18616,7 +18616,7 @@ ClassList["craftsman"] = {
 			if (!/double/i.test(fields.Description))
 				fields.Description += (fields.Description ? "; " : "") + "Double";
 			fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + 
-										"Double: This weapon has two damage-dealing ends. When you take the Attack action and make an attack with this weapon, you can use your bonus action to make an additional attack with it; you don’t add your ability modifier to the damage roll of this additional attack.";
+										"Double: This weapon has two damage-dealing ends. When you take the Attack action and make an attack with this weapon, you can use your bonus action to make an additional attack with it; you don't add your ability modifier to the damage roll of this additional attack.";
 		}
 	},
 	AddExplosive : function(fields, v, letter){
@@ -18634,7 +18634,7 @@ ClassList["craftsman"] = {
 			// add double to description & tooltip
 			fields.Description += (fields.Description ? "; " : "") + "Explosive";
 			fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + 
-										"Explosive: When this weapon’s projectile hits a target, it explodes in a 15-foot diameter sphere. The projectile can target an unoccupied space within its range. Each creature other than the target within the blast radius (for a Medium or smaller target, each creature within 5 feet of it) must make a Dexterity saving throw, taking half the damage rolled on a failed save or no damage on a successful one.";
+										"Explosive: When this weapon's projectile hits a target, it explodes in a 15-foot diameter sphere. The projectile can target an unoccupied space within its range. Each creature other than the target within the blast radius (for a Medium or smaller target, each creature within 5 feet of it) must make a Dexterity saving throw, taking half the damage rolled on a failed save or no damage on a successful one.";
 		}
 	},
 	AddHeat : function(fields, v, letter){
@@ -18649,7 +18649,7 @@ ClassList["craftsman"] = {
 			if (!/heat/i.test(fields.Description))
 				fields.Description += (fields.Description ? "; " : "") + "Heat";
 			fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + 
-										"Heat: This weapon gains 1 heat point whenever an attack is made with it, and it loses 1 heat point at the start of each of your turns. If the weapon has 3 heat points, it overheats and loses all heat points. An overheated weapon can’t be used to make an attack again until the end of your next turn.";
+										"Heat: This weapon gains 1 heat point whenever an attack is made with it, and it loses 1 heat point at the start of each of your turns. If the weapon has 3 heat points, it overheats and loses all heat points. An overheated weapon can't be used to make an attack again until the end of your next turn.";
 		}
 	},
 	AddMagical : function(fields, v, letter){
@@ -18679,7 +18679,7 @@ ClassList["craftsman"] = {
 			// add massive to description & tooltip
 			fields.Description += (fields.Description ? "; " : "") + "Massive";
 			fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + 
-										"Massive: You can only make an attack with this weapon when you take the Attack action, and only as the first attack you make on your turn. Once you make an attack with this weapon, you can’t make any attacks until the start of your next turn. If you would be able to attack more than once when you take the Attack action on your turn, you deal an extra two dice of damage for each attack you forgo when using this weapon.";
+										"Massive: You can only make an attack with this weapon when you take the Attack action, and only as the first attack you make on your turn. Once you make an attack with this weapon, you can't make any attacks until the start of your next turn. If you would be able to attack more than once when you take the Attack action on your turn, you deal an extra two dice of damage for each attack you forgo when using this weapon.";
 		}
 	},
 	AddMounted : function(fields, v, letter){
@@ -18693,7 +18693,7 @@ ClassList["craftsman"] = {
 			// add mounted to description & tooltip
 			fields.Description += (fields.Description ? "; " : "") + "Mounted";
 			fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + 
-										"Mounted: This weapon is normally used while attached to a tripod, vehicle, or other bracing mount. You can mount or unmount this weapon as an action. While it is mounted, it can’t be moved. It can only be used to make an attack while unmounted if held by a Medium or larger creature with a Strength score of at least 15.";
+										"Mounted: This weapon is normally used while attached to a tripod, vehicle, or other bracing mount. You can mount or unmount this weapon as an action. While it is mounted, it can't be moved. It can only be used to make an attack while unmounted if held by a Medium or larger creature with a Strength score of at least 15.";
 		}
 	},
 	AddPrecision : function(fields, v, letter){
@@ -18874,7 +18874,7 @@ ClassList["craftsman"] = {
 			// add penetrating to description + tooltip
 			fields.Description += (fields.Description ? "; " : "") + "Penetrating (Dex save)";
 			fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + 
-										"Penetrating: This weapon pierces through its targets. When you make a ranged attack with this weapon and don’t have disadvantage, you can target all creatures in a straight line within this weapon’s normal range. You don’t make an attack roll for this attack. Instead, each creature in the line must succeed on a Dexterity saving throw or take damage as if it were hit by the weapon.";
+										"Penetrating: This weapon pierces through its targets. When you make a ranged attack with this weapon and don't have disadvantage, you can target all creatures in a straight line within this weapon's normal range. You don't make an attack roll for this attack. Instead, each creature in the line must succeed on a Dexterity saving throw or take damage as if it were hit by the weapon.";
 		}
 	},
 	AddSeeking : function(fields, v, letter) {
@@ -18884,7 +18884,7 @@ ClassList["craftsman"] = {
 			// add seeking to description + tooltip
 			fields.Description += (fields.Description ? "; " : "") + "5 dmg on miss";
 			fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + 
-										"Seeking: When you make an attack roll that doesn’t have disadvantage with this weapon and miss, you instead hit the target and deal 5 damage of the weapon’s type. This damage can’t be increased in any way, and no other effects can be applied to the hit.";
+										"Seeking: When you make an attack roll that doesn't have disadvantage with this weapon and miss, you instead hit the target and deal 5 damage of the weapon's type. This damage can't be increased in any way, and no other effects can be applied to the hit.";
 		}
 	},
 	AddThreatening : function(fields, v, letter) {
@@ -18894,7 +18894,7 @@ ClassList["craftsman"] = {
 			// add seeking to description + tooltip
 			fields.Description += (fields.Description ? "; " : "") + "Threatening";
 			fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + 
-										"Threatening: When you make an opportunity attack with a threatening weapon, you can do so without using your reaction. You can’t make more than one opportunity attack per turn.";
+										"Threatening: When you make an opportunity attack with a threatening weapon, you can do so without using your reaction. You can't make more than one opportunity attack per turn.";
 		}
 	},
 	AddVorpal : function(fields, v, letter) {
@@ -19512,7 +19512,7 @@ ClassList["craftsman"] = {
 										fields.Damage_Die = "2d12+1";
 										fields.Description += (fields.Description == "" ? "" : "; ") + "Mounted";
 										fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") +
-																	   "Mounted: This weapon is normally used while attached to a tripod, vehicle, or other bracing mount. You can mount or unmount this weapon as an action. While it is mounted, it can’t be moved. It can only be used to make an attack while unmounted if held by a Medium or larger creature with a Strength score of at least 15.";
+																	   "Mounted: This weapon is normally used while attached to a tripod, vehicle, or other bracing mount. You can mount or unmount this weapon as an action. While it is mounted, it can't be moved. It can only be used to make an attack while unmounted if held by a Medium or larger creature with a Strength score of at least 15.";
 									}
 						}
 					}, "",
@@ -20726,8 +20726,8 @@ AddSubClass("craftsman","mechanaut",{
 					"masterwork weapons with Master and Legendary properties.",
 					"",
 					"Repairing the Apparatus",
-					"When my apparatus drops to 0 hit points, it can’t move or act, but can be",
-					"repaired. I can spend 1 minute restoring the apparatus’s ability to move at half",
+					"When my apparatus drops to 0 hit points, it can't move or act, but can be",
+					"repaired. I can spend 1 minute restoring the apparatus's ability to move at half",
 					"speed, which it loses if it takes damage again before it is repaired. I can repair",
 					"my apparatus at the end of a short rest by spending my Hit Dice, causing it to",
 					"regain hit points as if it had taken a short rest. When I finish a long rest, I can",
@@ -20915,7 +20915,7 @@ AddSubClass("craftsman","mechanaut",{
 					companionCallback : [function(prefix, oCrea, bAdd, sCompType){
 						if (sCompType !== "mechanaut's apparatus") return;
 						var aFnc = bAdd ? AddString : RemoveString;
-						var str = "\u25C6 Heavy Suspension:\n   The apparatus’s jump distance triples. It\n   takes no damage from falling a distance\n   of less than 100 feet.";
+						var str = "\u25C6 Heavy Suspension:\n   The apparatus's jump distance triples. It\n   takes no damage from falling a distance\n   of less than 100 feet.";
 						aFnc(prefix + "Comp.Use.Features", str, true);
 					},
 					"Mechanaut's Apparatuses I create have a tripled jump distance, and take no damage from falling a distance of less than 100 feet."
@@ -20971,7 +20971,7 @@ AddSubClass("craftsman","mechanaut",{
 				name: "Ballista Cannon Attachment Upgrade",
 				source: ["VSoS", 75],
 				description: desc([
-					"As an action, I can fire the apparatus’s integrated heavy ballista. See companion pages.",
+					"As an action, I can fire the apparatus's integrated heavy ballista. See companion pages.",
 				]),
 				calcChanges: {
 					creatureCallback: [
@@ -21030,7 +21030,7 @@ AddSubClass("craftsman","mechanaut",{
 						var str = "\u25C6 Rocket Engine:\n   A piloting creature can use their bonus action to propel the apparatus up to 30 feet in a straight line in a\n   chosen direction. If the apparatus makes a melee attack immediately after this move, the attack gains\n   advantage. On hit, this attack knocks the target prone OR pushes it up to 10 feet away from the apparatus.";
 						aFnc(prefix + "Cnote.Left", str, true);
 					},
-					"Mechanaut's Apparatuses I create gain the Rocket Engine attachment upgrade: A piloting creature can use their bonus action to light the apparatus’s installed rocket engine, propelling the apparatus up to 30 feet in a straight line in a chosen direction. If the apparatus makes a melee attack immediately after this movement, the attack is made with advantage. On a hit, this attack knocks the target prone or pushes it up to 10 feet away from the apparatus (piloting creature's choice)."
+					"Mechanaut's Apparatuses I create gain the Rocket Engine attachment upgrade: A piloting creature can use their bonus action to light the apparatus's installed rocket engine, propelling the apparatus up to 30 feet in a straight line in a chosen direction. If the apparatus makes a melee attack immediately after this movement, the attack is made with advantage. On a hit, this attack knocks the target prone or pushes it up to 10 feet away from the apparatus (piloting creature's choice)."
 					],
 				}
 			}
@@ -21048,8 +21048,8 @@ AddSubClass("craftsman","mechanaut",{
 				source: ["VSoS", 75],
 				additional : "Prereq: Exotic, Melee",
 				description: desc([
-					"If this weapon is installed in a mechanaut’s apparatus and it deals more than one die of",
-					"damage on a hit, when I roll damage, I can maximize one of the weapon’s damage dice",
+					"If this weapon is installed in a mechanaut's apparatus and it deals more than one die of",
+					"damage on a hit, when I roll damage, I can maximize one of the weapon's damage dice",
 					"instead of rolling it.",
 				])
 			},
@@ -21129,7 +21129,7 @@ AddSubClass("craftsman","Calibaron",{
 				source : ["VSoS", 71],
 				description: desc ([
 					"Once per round. while wielding a firearm in one hand and nothing in the other, if I make a",
-					"ranged weapon attack roll and exceed the target’s AC by 5+, I deal 1 extra die of",
+					"ranged weapon attack roll and exceed the target's AC by 5+, I deal 1 extra die of",
 					"weapon damage."
 				]),
 				calcChanges: {
@@ -21368,7 +21368,7 @@ AddSubClass("craftsman","forgeknight",{
 								if (!/\bheat\b/i.test(fields.Description))
 									fields.Description += (fields.Description ? "; " : "") + "Heat";
 								fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + 
-																							"Heat: This weapon gains 1 heat point whenever an attack is made with it, and it loses 1 heat point at the start of each of your turns. If the weapon has 3 heat points, it overheats and loses all heat points. An overheated weapon can’t be used to make an attack again until the end of your next turn.";
+																							"Heat: This weapon gains 1 heat point whenever an attack is made with it, and it loses 1 heat point at the start of each of your turns. If the weapon has 3 heat points, it overheats and loses all heat points. An overheated weapon can't be used to make an attack again until the end of your next turn.";
 							}
 							if (/\bexplosive\b/i.test(v.WeaponTextName)){
 
@@ -21539,7 +21539,7 @@ AddSubClass("craftsman","thunderlord",{
 					"15 ft of the target of your attack must succeed on a Dex save vs my Masterwork save DC or",
 					"take lightning damage equal to 1d6 + my Int modifier.",
 					"- Discharge: The target takes an extra 1d6 lightning damage per charge point expended.",
-					"- Jolt: The target can’t take reactions until the start of my next turn."
+					"- Jolt: The target can't take reactions until the start of my next turn."
 				])
 			},
 			calcChanges: {
@@ -21679,7 +21679,7 @@ AddSubClass("craftsman","thunderlord",{
 					if (/\belectroshock\b/i.test(v.WeaponTextName) && (/bexotic\b/i.test(v.theWea.type) || /\bexotic\b/i.test(fields.Description))){
 
 						fields.Description += (fields.Description == "" ? "" : "; ") + "Electroshock 1/rest";
-						fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + "Electroshock: When you hit a creature with this weapon, you can expend the weapon’s built-in power cell to shock the target. The target must succeed on a Constitution saving throw against your Masterwork save DC or be stunned until the end of your next turn. Once you use this property, you can’t use it again with this weapon until you finish a short or long rest.";
+						fields.Description_Tooltip += (fields.Description_Tooltip == "" ? "" : "\n") + "Electroshock: When you hit a creature with this weapon, you can expend the weapon's built-in power cell to shock the target. The target must succeed on a Constitution saving throw against your Masterwork save DC or be stunned until the end of your next turn. Once you use this property, you can't use it again with this weapon until you finish a short or long rest.";
 					}
 				}, "If the word \"Electroshock\" is included in the name of an exotic attack, the Electroshock masterwork property is added to its description and tooltip.",
 				103
@@ -21748,11 +21748,11 @@ AddSubClass("craftsman","trapper",{
 				source: ["VSoS", 77],
 				note: [
 					"I place this trap in an unoccupied 5-foot-square area within 5 feet of me. When",
-					"a Small or larger creature moves within the trap’s area, the trap clamps down on",
+					"a Small or larger creature moves within the trap's area, the trap clamps down on",
 					"the creature. The creature must make a Dexterity save vs my Masterwork save",
 					"DC. On a failed save, the creature takes 2d8 slashing damage, and if it is Large",
 					"or smaller, it becomes trapped, rendering it unable to move. On a successful",
-					"save, the creature takes half as much damage and isn’t trapped. The trapped",
+					"save, the creature takes half as much damage and isn't trapped. The trapped",
 					"creature or another creature within 5 feet of it can use its action to make a",
 					"Strength check against my Masterwork save DC, freeing the trapped creature on",
 					"a success. A Huge or larger creature that failed its saving throw rips the trap",
@@ -21766,7 +21766,7 @@ AddSubClass("craftsman","trapper",{
 					"I place this trap in up to four unoccupied, contiguous, 5-foot-square areas I",
 					"choose within 10 feet of me. Each of these areas becomes difficult terrain. When",
 					"a creature moves into or within the area, it takes 2d4 piercing damage for every",
-					"5 feet it travels. Once deployed, the razor wire can’t be recovered."
+					"5 feet it travels. Once deployed, the razor wire can't be recovered."
 				],
 				amendTo: "Traps"
 			}, {
@@ -21778,7 +21778,7 @@ AddSubClass("craftsman","trapper",{
 					"the bomb to explode. Each creature within 5 feet of the bomb must make a",
 					"Dexterity save vs my Masterwork save DC, taking 2d6 fire damage on a failed",
 					"save, or half as much damage on a successful one. The explosion ignites",
-					"flammable objects in the area that aren’t being worn or carried."
+					"flammable objects in the area that aren't being worn or carried."
 				],
 				amendTo: "Traps"
 			}]
@@ -21825,7 +21825,7 @@ AddSubClass("craftsman","trapper",{
 				source: ["VSoS", 76],
 				additional : "Prereq: Exotic, Ranged, not Firearm;\n   1/short rest",
 				description: desc([
-					"When I hit a Large or smaller creature with this weapon’s projectile, it also deploys a net",
+					"When I hit a Large or smaller creature with this weapon's projectile, it also deploys a net",
 					"that automatically hits the creature."
 				])
 			},
@@ -22422,6 +22422,171 @@ AddSubClass("gunslinger","gun tank",{
         }
     }
 })
+
+// * Gun-Ko Master Gunslinger subclass
+AddSubClass("gunslinger","gun-ko master",{
+    regExpSearch: /\bgun\-ko master\b/i,
+    subname: "Gun-Ko Master",
+    source: ["VSoS", 96],
+    features: {
+        "subclassfeature3": {
+            name: "Point-Blank Shot",
+            source: ["VSoS", 96],
+            minlevel: 3,
+            description: desc([
+                "Being in 5 ft of a hostile creature doesn't impose disadvantage on my ranged firearm attacks."
+            ])
+        },
+        "subclassfeature3.1": {
+            name: "Gun-Ko",
+            source: ["VSoS", 96],
+            minlevel: 3,
+            description: desc([
+                "I can treat firearms as melee weapons with Finesse, dealing 1d6 bludgeoning damage on hit,",
+                "or 1d8 if the firearm is two-handed. When I make a ranged firearm attack vs a creature within",
+                "5 ft of me, I can make a melee weapon attack using the firearm as a bonus action."
+            ]),
+            action: ["bonus action", "Gun-Ko Attack"],
+            calcChanges : {
+                atkAdd : [
+                    function(fields, v) {
+                        if ((/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i).test(fields.Description) && (/firearm/i.test(v.theWea.list) || /firearm/i.test(fields.Description))) {
+                            fields.Description += (fields.Description ? ", " : "") + "Melee (1d8)";
+                        }
+                        if((/finesse/i).test(fields.Description) && (/firearm/i.test(v.theWea.list) || /firearm/i.test(fields.Description))){
+                            fields.Description += (fields.Description ? ", " : "") + "Melee (1d6)";
+                        }
+                    }
+                ]
+            }   
+        },
+        "subclassfeature7" : {
+            name: "Lightning Disarm",
+            source: ["VSoS", 96],
+            minlevel: 7,
+            description: desc([
+                "As a bonus action, with a free hand, expend a risk die to force a creature holding a firearm",
+                "within 5 ft of me to make a Dex save vs my Deed save DC. On fail, I take the firearm.",
+            ]),
+            action: ["bonus action", ""]
+        },
+        "subclassfeature7.1": {
+            name: "Bullet Catch",
+            source: ["VSoS", 96],
+            minlevel: 7,
+            description: desc([
+                "As a reaction to being hit by a ranged weapon attack, I reduce the damage by 1d10 + my",
+                "Dexterity modifier + my proficiency bonus (min 0)."
+            ]),
+            action: ["reaction", ""]
+        },
+        "subclassfeature10": {
+            name: "Predictive Dodge",
+            source: ["VSoS", 96],
+            minlevel: 10,
+            description: desc([
+                "As a bonus action, I gain Dodge effect vs ranged attacks & effects from 1 creature I can see",
+                "within 30 ft of me until start of my next turn, losing this if I take damage from them."
+            ]),
+            action: ["bonus action", ""]
+        },
+        "subclassfeature14": {
+            name: "Gatling Strikes",
+            source: ["VSoS", 96],
+            minlevel: 14,
+            description: desc([
+                "I can use my bonus action to make 2 melee weapon attacks & 1 ranged weapon attack with a",
+                "firearm against targets within 15 ft of me."
+            ]),
+            action: ["bonus action", ""],
+            usages: 1,
+            recovery: "short rest"
+        }
+    }
+})
+
+// * High Roller Gunslinger subclass
+AddSubClass("gunslinger","high roller",{
+    regExpSearch: /\bhigh roller\b/i,
+    subname: "High Roller",
+    source: ["VSoS", 96],
+    features: {
+        "subclassfeature3": {
+            name: "Bonus Proficiencies",
+            source: ["VSoS", 96],
+            minlevel: 3,
+            description: desc([
+                "I gain proficiency in all gaming sets and in either Deception, Insight or Perception."
+            ]),
+            toolProfs: ["All gaming sets"],
+            skillstxt: ["Choose one from Deception, Insight, or Perception."]
+        },
+        "subclassfeature3.1": {
+            name: "All In",
+            source: ["VSoS", 96],
+            minlevel: 3,
+            description: desc([
+                "As a bonus action for my attack roll/ability check, or as a reaction to rolling a save, I expend",
+                "a risk die to add it to the result. If I roll a 1 on the risk die, I fail the roll regardless of result."
+            ]),
+            action: [["bonus action", " (Attack/Ability Check)"], ["reaction", " (Saving Throw)"]]
+        },
+        "subclassfeature3.2": {
+            name: "Liar's Dice",
+            source: ["VSoS", 96],
+            minlevel: 3,
+            description: desc([
+                "When I make a d20 roll, I can roll in secret and declare any result. The GM can all my bluff,",
+                "revealing the number. If truthful, treat the result as if I rolled a 20. If lying, roll the d20 again",
+                "and use the lowest roll. If the GM chooses not to call my bluff, I use the result I declared.",
+            ]),
+            usagescalc: "event.value = Math.max(1 + What('Cha Mod'), 1);",
+            usages: "1 + Cha mod (min 1)",
+            recovery: "long rest"
+        },
+        "subclassfeature7": {
+            name: "Boom or Bust",
+            source: ["VSoS", 97],
+            minlevel: 7,
+            description: desc([
+                "When I hit with a ranged firearm attack, I can expend & add a risk die to the damage roll,",
+                "jamming it afterwards. Jammed weapons can't make attacks until an action is used to clear it.",
+            ]), 
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description))){
+                            var die = classes.known.gunslinger.level < 10 ? "+1d8" : classes.known.gunslinger.level < 18 ? "+1d10" : "+1d12";
+                            fields.Description += (fields.Description ? "; " : "" ) + "Boom or Bust " + die;
+                            fields.Description_Tooltip += (fields.Description_Tooltip ? "" : "\n") + "Boom or Bust: when you hit with a ranged firearm attack, you can expend a risk die and add it to the weapon's damage roll. After this attack, the weapon jams. A jammed weapon can't be used to make an attack until a creature uses its action to clear the weapon malfunction.";
+                        }
+                    }, "When I hit with a ranged firearm attack, I can expend a risk die and add it to the weapon's damage roll, jamming the weapon afterwards."
+                ]
+            }
+        },
+        "subclassfeature10": {
+            name: "Unlucky Numbers",
+            source: ["VSoS", 97],
+            minlevel: 10,
+            description: desc([
+                "As a reaction to getting hit from a hostile creature I can see, record the d20 roll & impose",
+                "disadv. on that attack roll. Until short/long rest, attacks vs me crit when rolling that number.",
+            ]),
+            action: ["reaction", ""]
+        },
+        "subclassfeature14": {
+            name: "Double Or Nothing",
+            source: ["VSoS", 97],
+            minlevel: 14,
+            description: desc([
+                "On a crit with a firearm, roll two d20s, treating them as ranged firearm attack rolls vs the",
+                "target. If both miss, the crit is a normal hit. If either crits, roll the firearm damage thrice.",
+            ])
+        }
+    }
+})
+
+
 
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
