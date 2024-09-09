@@ -22038,8 +22038,8 @@ ClassList["gunslinger"] = {
         secondary: [true, false, false, false]
     },
     weaponProfs: {
-        primary: [true, false, ["all firearms"]],
-        secondary: [true, false, ["all firearms"]],
+        primary: [true, false, ["Firearms"]],
+        secondary: [true, false, ["Firearms"]],
     },
     toolProfs: {
         primary: ["One type of gaming set", 1]
@@ -22059,6 +22059,15 @@ ClassList["gunslinger"] = {
             description: desc([
                 "Choose a Fighting Style for the gunslinger using the \"Choose Feature\" button above."
             ]),
+            calcChanges : {
+                atkAdd : [
+                    function (fields, v){
+                        if((/firearms?/i).test(v.theWea.type) || (/firearms?/i).test(v.theWea.list)) {
+                            fields.Proficiency = true;
+                        }
+                    }
+                ]
+            },
             choices: ["Akimbo", "Bullseye", "Duelist", "Shotgunner"],
             "akimbo": {
                 name: "Akimbo Fighting Style",
@@ -22074,7 +22083,8 @@ ClassList["gunslinger"] = {
                                 fields.Description_Tooltip = fields.Description_Tooltip.replace(/When you engage in two-weapon fighting with two light firearms, you subtract 2 from the damage roll of the bonus attack, to a minimum of 1 damage./, "");
                             }
                         },
-                        "I don't take the -2 damage penalty of offhand firearm attacks when two-weapon fighting."
+                        "I don't take the -2 damage penalty of offhand firearm attacks when two-weapon fighting.",
+                        500
                     ]
                 }
             },
@@ -22090,7 +22100,7 @@ ClassList["gunslinger"] = {
                         function (fields, v, output) {                           
                             // check if the archery fighting style is here, back out
                             if (!/Archery Fighting Style/i.test(What("Class Features")) || !(/\d+\/\d+/i).test(fields.Range)) return;
-                            var rangeFld = fields.Range.match(/(\d+)\/(\d+)/i);;
+                            var rangeFld = fields.Range.match(/(\d+)\/(\d+)/i);
                             var shortRange = parseInt(rangeNmbr[1]);
                             if(!(/firearm/i.test(v.theWea.list) || !/firearm/i.test(fields.Description)) && (!/sighted/i.test(fields.Description) || !shortRange >= 80)) return;
                             output.extraHit += 2;
@@ -22347,12 +22357,11 @@ AddSubClass("gunslinger","gun tank",{
                 "I can use heavy firearms regardless of their weight. I can use Strength instead of Dexterity",
                 "for attack & damage rolls using heavy firearms, and my Deed save DC."
             ]),
-            scorestxt: "Prerequisite: Strength 15 or higher",
             calcChanges: {
                 atkAdd: [
                     function(fields, v){
-                        if ((/firearm/i.test(v.theWea.list) || /firearm/i.test(fields.Description)) && /heavy/i.test(fields.Description)){
-                            fields.Mod = v.StrDex;
+                        if (((/firearms?/i).test(v.theWea.type) || (/firearms?/i).test(v.theWea.list)) && /heavy/i.test(fields.Description)){
+                            fields.Mod = What("Str Mod") > What("Dex Mod") ? 1 : 2;
                         }
                     }, "I can use Strength instead of Dexterity for attack & damage rolls using heavy firearms."
                 ]
@@ -22398,7 +22407,7 @@ AddSubClass("gunslinger","gun tank",{
                 atkAdd: [
                     function(fields, v, output){
                         if ((/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i).test(fields.Description) && (/firearm/i.test(v.theWea.list) || /firearm/i.test(fields.Description)) && fields.Proficiency){
-                            fields.Description = fields.Description.replace(/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i, "");
+                            fields.Description = fields.Description.replace(/([;,]? ?((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b[;,]? ?)/i, "");
                         }
                     }, "I ignore the two-handed property of firearms I am proficient in.",
                     1 // * needs high priorty.
@@ -22581,6 +22590,192 @@ AddSubClass("gunslinger","high roller",{
             description: desc([
                 "On a crit with a firearm, roll two d20s, treating them as ranged firearm attack rolls vs the",
                 "target. If both miss, the crit is a normal hit. If either crits, roll the firearm damage thrice.",
+            ])
+        }
+    }
+})
+
+// * Musketeer gunslinger subclass
+AddSubClass("gunslinger","musketeer",{
+    regExpSearch: /\bmusketeer\b/i,
+    subname: "Musketeer",
+    source: ["VSoS", 97],
+    features: {
+        "subclassfeature3": {
+            name: "Bonus Proficiencies",
+            minlevel: 3,
+            source: ["VSoS", 97],
+            description: desc(["I gain proficiency with the bayonet, cutlass, halberd, rapier, and shortsword."]),
+            weaponProfs: [true, false, ["bayonet", "cutlass", "halberd", "rapier", "shortsword"]]
+        },
+        "subclassfeature3.1": {
+            name: "Heavy Shot",
+            minlevel: 3,
+            source: ["VSoS", 97],
+            description: desc([
+                "When I hit a target with a ranged attack using a blunderbuss/flintlock/musket, I deal extra",
+                "damage equal to the number of damage dice rolled for the attack."
+            ]),
+            calcChanges: {
+                atkCalc: [
+                    function(fields, v, output){
+                        if (((/\bblunderbuss\b/i).test(v.WeaponTextName + v.baseWeaponName) || (/\bflintlock\b/i).test(v.WeaponTextName + v.baseWeaponName) || (/\bmusket\b/i).test(v.WeaponTextName + v.baseWeaponName)) && fields.Damage_Die.match(/(\d+)d(\d+)/i)) {
+                            var dmgDie = fields.Damage_Die.match(/(\d+)d(\d+)/i);
+                            var dieAmt = parseInt(dmgDie[1]);
+                            output.extraDmg += dieAmt;
+                        }
+                    }, "Ranged attacks I make using a blunderbuss, flintlock, or musket deal extra damage equal to the number of damage dice rolled for the attack." 
+                ]
+            }
+        },
+        "subclassfeature7": {
+            name: "Lock, Stock, And Barrel",
+            minlevel: 7,
+            source: ["VSoS", 97],
+            description: desc([
+                "I ignore the Loading and Misfire properties of the blunderbuss, flintlock, and musket."
+            ]),
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v, output){ 
+                        if (((/\bblunderbuss\b/i).test(v.WeaponTextName + v.baseWeaponName) || (/\bflintlock\b/i).test(v.WeaponTextName + v.baseWeaponName) || (/\bmusket\b/i).test(v.WeaponTextName + v.baseWeaponName))){
+                            fields.Description = fields.Description.replace(/([;,]? ?loading|loading[;,]? ?)/i, "").replace(/([;,]? ?misfire|misfire[;,]? ?)/i, "");
+                        }
+                    }, "I ignore the Loading and Misfire properties of the blunderbuss, flintlock, and musket.",
+                    999
+                ]
+            }
+        },
+        "subclassfeature10":{
+            name: "Bayonet Charge",
+            minlevel: 10,
+            source: ["VSoS", 97],
+            description: desc([
+                "If I move 15 ft or more straight towards a target, I can use a bonus action to make an attack",
+                "with a bayonet or melee weapon I am holding."
+            ]),
+            action: ["bonus action", ""]
+        },
+        "subclassfeature14": {
+            name: "All For One",
+            minlevel: 14,
+            source: ["VSoS", 97],
+            description: desc([
+                "As a reaction to a friendly creature within 5 ft of me being attacked, I make an attack with a",
+                "firearm or bayonet against the attacker."
+            ]),
+            action: ["reaction", ""]
+        }
+    }
+})
+
+// * Pistolero Gunslinger subclass
+AddSubClass("gunslinger","pistolero",{
+    regExpSearch: /\bpistolero\b/i,
+    subname: "Pistolero",
+    source: ["VSoS", 97],
+    features: {
+        "subclassfeature3": {
+            name: "Point-Blank Shot",
+            minlevel: 3,
+            source: ["VSoS", 97],
+            description: desc([
+                "I don't get disadvantage on ranged firearm attacks from being within 5 ft of a hostile creature"
+            ])
+        },
+        "subclassfeature3.1": {
+            name: "Fan The Hammer",
+            minlevel: 3,
+            source: ["VSoS", 97],
+            description: desc([
+                "When I take the Attack action on my turn with a one-handed, non-automatic firearm & have",
+                "a free hand, I can use my bonus action & a spend a risk die to make 2 extra ranged attacks",
+                "with that firearm, with disadvantage. At 14th level, I make 3 extra attacks with this feature.",                  
+            ]),
+            additional: levels.map(function (n) { return n < 3 ? "" : ((n < 14 ? "2" : "3") + " attacks") }),
+            action: ["bonus action", ""]
+        },
+        "subclassfeature7": {
+            name: "Speed Loader",
+            minlevel: 7,
+            source: ["VSoS", 97],
+            description: desc(["On my turn, I can reload 1 one-handed firearm as a free action."])
+        },
+        "subclassfeature10": {
+            name: "Bullet Time",
+            minlevel: 10,
+            source: ["VSoS", 97],
+            description: desc([
+                "As a bonus action, I can gain advantage on a ranged, one-handed firearm attack roll."
+            ]),
+            usages: 1,
+            recovery: "short rest",
+            action: ["bonus action", ""]
+        },
+        "subclassfeature14": {
+            name: "Swift Vengeance",
+            minlevel: 14,
+            source: ["VSoS", 97],
+            description: desc([
+                "As a reaction to taking damage from a creature within 15 ft of me, I make a firearm attack",
+                "against that creature."
+            ]),
+            action: ["reaction", ""]
+        }
+    }
+})
+
+// * Sharpshooter gunsling subclass
+AddSubClass("gunslinger","sharpshooter",{
+    regExpSearch: /\bsharpshooter\b/i,
+    subname: "Sharpshooter",
+    source: ["VSoS", 98],
+    features: { 
+        "subclassfeature3": {
+            name: "Eagle Eye",
+            minlevel: 3,
+            source: ["VSoS", 98],
+            description: desc([
+                "As a bonus action, expend & add a risk die to a ranged two-handed firearm attack roll.",
+                "The attack doesn't gain disadvantage due to long range."
+            ]),
+            action: ["bonus action", ""]
+        },
+        "subclassfeature3.1": {
+            name: "Sniper's Stance",
+            minlevel: 3,
+            source: ["VSoS", 98],
+            description: desc([
+                "No disadv. on ranged firearm attacks from being prone. Standing up uses 5 ft of movement."
+            ]),
+        },
+        "subclassfeature7": {
+            name: "Camouflage",
+            minlevel: 7,
+            source: ["VSoS", 98],
+            description: desc([
+                "Spend 1 minute to gain benefits until I move: adv. on Dex (Stealth) checks to hide; attacking",
+                "while hidden won't reveal my location; disadv. on checks to find origin of my firearm attacks."
+            ])
+        },
+        "subclassfeature10": {
+            name: "Eye For Movement",
+            minlevel: 10,
+            source: ["VSoS", 98],
+            description: desc([
+                "As a bonus action, I gain darkvision and the effects of see invisibility out 20 ft or further until",
+                "the start of my next turn."
+            ]),
+            action: ["bonus action", ""],
+        },
+        "subclassfeature14": {
+            name: "Focused Shot",
+            minlevel: 14,
+            source: ["VSoS", 98],
+            description: desc([
+                "Once on each of my turns when I hit with a ranged firearm attack, the bullet continues",
+                "straight out to its normal range, stopping at solid objects. Make an attack roll vs each",
+                "creature in the line. On hit, the bullet deals damage and continues; on miss, the bullet stops."
             ])
         }
     }
