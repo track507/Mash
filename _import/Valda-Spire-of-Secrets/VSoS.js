@@ -24609,6 +24609,278 @@ CreatureList["undead"] = {
 	}
 }
 
+// * Necromancer Undead Thrall Companion list
+CompanionList["undead thrall"] = {
+    name: "Undead Thrall",
+    nameMenu: "Undead Thrall (Necromancer class feature)",
+    nameTooltip: "the Thralls class feature",
+    source: ["VSoS", 130],
+    notes: [{
+        name: "Thrall",
+        description: desc([
+            "Control of this thrall is maintained by its necromancer indefinitely. The thrall takes its turn immediately",
+            "before or after its necromancer's turn, taking actions their necromancer chooses. If the thrall's necromancer",
+            "is unconscious, the thrall moves to protect them, but does not attack. Thralls share 1 bonus action and",
+            "reaction, to be used by a single thrall once per round. Thralls use their necromancer's spell attack modifier",
+            "for their attacks. The thrall's necromancer can sever their connection to the thrall, causing it to crumple into",
+            "a heap if corporeal, or flee to the Ethereal Plane if incorporeal."
+        ]),
+    }, {
+        name: "Many Thralls",
+        description: desc([
+            "When the necromancer has 3 or more of the same type of thrall under its command, instead of rolling an",
+            "attack roll for each attacking thrall of the same type, it may roll a single attack against a single target. If this",
+            "attack hits, all thralls of the same type are treated as having hit; if it misses, all thralls of the same type",
+            "are treated as having missed."
+        ])
+    }]
+}
+
+// * Bonebeast undead thrall
+CreatureList["bonebeast"] = {
+    name: "Bonebeast",
+    source: ["VSoS", 141],
+    size: 3,
+    type: "Undead",
+    companion: "undead thrall",
+    alignment: "Unaligned",
+    ac: 14,
+    hp: 27,
+    hd: [5, 8],
+    speed: "40 ft",
+    proficiencyBonus: 2,
+    challengeRating: "1",
+    scores: [12, 15, 13, 5, 10, 5],
+    senses: "Darkvision 60 ft",
+    attacksAction: 1,
+    attacks : [{
+        name : "Bite",
+        ability: 0,
+        damage: [2, 6, "Piercing"],
+        range: "Melee",
+        modifiers: ["oInt+oProf-Prof", "oInt"],
+    }],
+    damage_immunities: "poison",
+    condition_immunities: "poisoned",
+    languages: "All languages it knew in life & languages of its creator (can't speak)",
+    traits: [{
+        name: "Keen Smell",
+        description: "The bonebeast has advantage on Wisdom (Perception) checks that rely on smell.",
+    }, {
+        name: "Pack Tactics",
+        description: "The bonebeast has advantage on attack rolls agains a creature if at least one of the bonebeast's allies is within 5 feet of the creature and the ally isn't incapacitated."
+    }],
+}
+
+// * Gorger undead thrall
+CreatureList["gorger"] = {
+    name: "Gorger",
+    source: ["VSoS", 141],
+    size: 3,
+    type: "Undead",
+    companion: "undead thrall",
+    alignment: "Unaligned",
+    ac: 8,
+    hp: 36,
+    hd: [8, 8],
+    speed: "30 ft",
+    proficiencyBonus: 2,
+    challengeRating: "1",
+    scores: [16, 7, 10, 7, 10, 6],
+    senses: "Blindsight 10 ft, Darkvision 60 ft",
+    attacksAction: 1,
+    attacks : [{
+        name : "Bite",
+        ability: 0,
+        damage: [2, 8, "Piercing"],
+        range: "Melee",
+        modifiers: ["oInt+oProf-Prof", "oInt"],
+    }],
+    damage_immunities: "poison",
+    condition_immunities: "charmed, exhaustion, poisoned",
+    languages: "All languages it knew in life & languages of its creator (can't speak)",
+    traits: [{
+        name: "Echolocation",
+        description: "The gorger can't use its blindsight while deafened.",
+    }]
+}
+
+// * Gravetouched Ghoul undead thrall
+CreatureList["gravetouched ghoul"] = {
+    name: "Gravetouched Ghoul",
+    source: ["VSoS", 141],
+    size: 3,
+    type: "Undead",
+    companion: "undead thrall",
+    alignment: "Unaligned",
+    ac: 12,
+    hp: 63,
+    hd: [14, 8],
+    speed: "30 ft",
+    proficiencyBonus: 2,
+    challengeRating: "2",
+    scores: [18, 15, 10, 9, 10, 8],
+    senses: "Blindsight 60 ft",
+    attacksAction: 1,
+    attacks : [{
+        name : "Claws",
+        ability: 0,
+        damage: [4, 6, "Slashing"],
+        range: "Melee",
+        modifiers: ["oInt+oProf-Prof", "oInt"],
+    }],
+    damage_immunities: "poison",
+    condition_immunities: "charmed, exhaustion, poisoned",
+    languages: "All languages it knew in life & languages of its creator (can't speak)",
+    traits: [{
+        name: "Regeneration",
+        description: "The ghoul regains 5 hit points at the start of its turn. If the ghoul takes fire or radiant damage, this trait doesn't function at the start of the ghoul's next turn. The ghoul dies only if it starts its turn with 0 hit points and doesn't regenerate.",
+    }]
+}
+
+// * skeleton undead thrall
+CreatureList["skeleton"] = {
+    name: "Skeleton",
+    source: ["VSoS", 142],
+    size: 3,
+    type: "Undead",
+    companion: "undead thrall",
+    alignment: "Unaligned",
+    ac: 13,
+    hp: 13,
+    hd: [2, 8],
+    speed: "30 ft",
+    proficiencyBonus: 2,
+    challengeRating: "1/4",
+    scores: [10, 14, 15, 6, 8, 5],
+    senses: "Darkvision 60 ft",
+    attacksAction: 1,
+    attacks : [{
+        name : "Shortsword",
+        ability: 0,
+        damage: [1, 6, "Piercing"],
+        range: "Melee",
+        modifiers: ["oInt+oProf-Prof", "oInt"],
+    }, {
+        name : "Shortbow",
+        ability: 0,
+        damage: [1, 6, "Piercing"],
+        range: "80/320 ft",
+        modifiers: ["oInt+oProf-Prof", "oInt"],
+    }],
+    damage_vulnerabilities: "bludgeoning",
+    damage_immunities: "poison",
+    condition_immunities: "exhaustion, poisoned",
+    languages: "All languages it knew in life & languages of its creator (can't speak)",
+}
+
+// * Spirit undead thrall
+CreatureList["spirit"] = {
+    name: "Spirit",
+    source: ["VSoS", 142],
+    size: 3,
+    type: "Undead",
+    companion: "undead thrall",
+    alignment: "Unaligned",
+    ac: 15,
+    hp: 7,
+    hd: [2, 8],
+    speed: "25 ft, fly 25 ft (hover)",
+    proficiencyBonus: 2,
+    challengeRating: "1/4",
+    scores: [1, 14, 9, 10, 10, 11],
+    senses: "Darkvision 120 ft",
+    attacksAction: 1,
+    attacks : [{
+        name : "Grave Touch",
+        ability: 0,
+        damage: [1, 4, "Necrotic"],
+        range: "Melee",
+        description: "target's hit point maximum is reduced by amount equal to damage dealt, lasts until long rest",
+        modifiers: ["oInt+oProf-Prof", "oInt"],
+    }],
+    damage_vulnerabilities: "radiant",
+    damage_immunities: "cold, poison, necrotic",
+    condition_immunities: "exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained",
+    languages: "All languages it knew in life & languages of its creator (can't speak)",
+    traits: [{
+        name: "Incorporeal Movement",
+        description: "The spirit can move through other creatures as if they were difficult terrain. The spirit takes 5 (1d10) force damage if it ends its turn inside an object.",
+    }]
+}
+
+// * Visage undead thrall
+CreatureList["visage"] = {
+    name: "Visage",
+    source: ["VSoS", 143],
+    size: 3,
+    type: "Undead",
+    companion: "undead thrall",
+    alignment: "Unaligned",
+    ac: 17,
+    hp: 40,
+    hd: [9, 8],
+    speed: "25 ft, fly 25 ft (hover)",
+    proficiencyBonus: 2,
+    challengeRating: "2",
+    scores: [1, 16, 11, 10, 10, 11],
+    senses: "Darkvision 120 ft",
+    attacksAction: 1,
+    attacks : [{
+        name : "Horrify",
+        ability: 0,
+        damage: [5, 4, "Psychic"],
+        range: "Melee",
+        modifiers: ["oInt+oProf-Prof", "oInt"],
+    }],
+    damage_immunities: "cold, poison, necrotic",
+    condition_immunities: "exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained",
+    languages: "All languages it knew in life & languages of its creator (can't speak)",
+    traits: [{
+        name: "Incorporeal Movement",
+        description: "The visage can move through other creatures as if they were difficult terrain. The visage takes 5 (1d10) force damage if it ends its turn inside an object.",
+    }, {
+    name: "Magic Resistance",
+        description: "The visage has advantage on saving throws against spells and other magical effects.",
+    }, {
+        name: "Invisibility",
+        description: "As an action, the visage can magically turn invisible until it attacks or until its concentration ends (as if concentrating on a spell). Any equipment the visage wears or carries is invisible with it."
+    }],
+}
+
+// * Zombie undead thrall
+CreatureList["zombie"] = {
+    name: "Zombie",
+    source: ["VSoS", 143],
+    size: 3,
+    type: "Undead",
+    companion: "undead thrall",
+    alignment: "Unaligned",
+    ac: 8,
+    hp: 22,
+    hd: [3, 8],
+    speed: "20 ft",
+    proficiencyBonus: 2,
+    challengeRating: "1/4",
+    scores: [13, 6, 16, 3, 6, 5],
+    senses: "Darkvision 60 ft",
+    attacksAction: 1,
+    attacks : [{
+        name : "Slam",
+        ability: 0,
+        damage: [1, 6, "Bludgeoning"],
+        range: "Melee",
+        modifiers: ["oInt+oProf-Prof", "oInt"],
+    }],
+    damage_immunities: "poison",
+    condition_immunities: "poisoned",
+    languages: "All languages it knew in life & languages of its creator (can't speak)",
+    traits: [{
+        name: "Undead Fortitude",
+        description: "If damage reduces the zombie to 0 hit points, it must make a Constitution saving throw with a DC of 5 + the damage taken, unless the damage is radiant or from a critical hit. On a success, the zombie drops to 1 hit point instead.",
+    }],
+}
+
 // ! Magic Items
 
 // * Amorist Only
@@ -24755,6 +25027,19 @@ MagicItemsList["ooze bottle"] = {
 	descriptionLong: "As an action, you can throw this vial up to 20 feet, shattering it on impact and releasing a gray ooze. This ooze is friendly to you and your allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, the ooze will follow you. However, the biochemistry of this ooze is unstable, and the ooze dissolves into a lifeless sludge after 1 hour. The charcoal-colored liquid inside this bottle seems to lunge about with unnatural momentum.",
     descriptionFull: "As an action, you can throw this vial up to 20 feet, shattering it on impact and releasing a gray ooze. This ooze is friendly to you and your allies, and will otherwise attack the nearest creature it can detect. If there is no creature to attack, the ooze will follow you. However, the biochemistry of this ooze is unstable, and the ooze dissolves into a lifeless sludge after 1 hour. The charcoal-colored liquid inside this bottle seems to lunge about with unnatural momentum.",
 }
+
+// * Bag of bones Necromancer 
+MagicItemsList["bag of bones"] = {
+    name: "Bag of Bones",
+    source: ["VSoS", 131],
+    type: "wondrous item",
+    rarity: "none",
+    attunement: false,
+    description: "Use an action to place a corpse or willing Undead creature into an extradimensional space connected to the bag; up to 10 Medium or smaller corpses/creatures. Use an action to dump the contents of the bag within 5 feet of me. This bag is destroyed if placed in another extradimensional space.",
+    descriptionLong: "Use an action to place a corpse or willing Undead creature into an extradimensional space connected to the bag; up to 10 Medium or smaller corpses/creatures. Use an action to dump the contents of the bag within 5 feet of me. This bag violently expels anything other than corpses/bones/undead creatures placed into it. This bag is destroyed if placed in another extradimensional space. Its contents remain in the same extradimensional space until I create a new bag.",
+    descriptionFull: "The bag connects to a vast extradimensional space that can only hold Medium or smaller corpses, bones, and Undead creatures; it violently expels anything else placed within it. You can use an action to place a corpse or willing Undead creature into the bag, up to a maximum of ten corpses or Undead creatures, or use your action to dump the contents of the bag, which land in spaces within 5 feet of you. You can transform any container you can carry into a bag of bones by performing a special ritual over the course of 1 hour while you hold it. This container ceases to be magical if you perform this ritual again to create a new bag of bones. The container always connects to the same extradimensional space. If the bag is placed inside an extradimensional space, such as that created by a bag of holding, it is destroyed. Its contents remain in the same extradimensional space until you create a new bag.",
+    action: [["action", "(add item)"], ["action", "(dump contents)"]]
+};
 
 // ! Weapons
 
