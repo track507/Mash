@@ -23143,6 +23143,7 @@ ClassList["necromancer"] = {
                 isNotWeapon: true,
                 useSpellcastingAbility: true,
                 useSpellMod: "necromancer",
+                selectNow : true
             }],
             limfeaname: "Charnel Touch Points",
             usages: levels.map(function(n) { return n * 5 }),
