@@ -22690,7 +22690,7 @@ AddSubClass("gunslinger","pistolero",{
             description: desc([
                 "When I take the Attack action on my turn with a one-handed, non-automatic firearm & have",
                 "a free hand, I can use my bonus action & a spend a risk die to make 2 extra ranged attacks",
-                "with that firearm, with disadvantage. At 14th level, I make 3 extra attacks with this feature.",                  
+                "with that firearm, with disadvantage. At 14th level, I make 3 extra attacks with this feature.",                  
             ]),
             additional: levels.map(function (n) { return n < 3 ? "" : ((n < 14 ? "2" : "3") + " attacks") }),
             action: ["bonus action", ""]
@@ -23342,6 +23342,345 @@ ClassList["necromancer"] = {
         }
     }
 }
+
+// * Blood Ascendant necromancer subclass
+AddSubClass("necromancer","blood ascendant",{
+    regExpSearch: /\bblood ascendant\b/i,
+    subname: "Blood Ascendant",
+    source: ["VSoS", 132],
+    features: {
+        "subclassfeature3" : {
+            name: "Ascendant Spells",
+            minlevel: 3,
+            source: ["VSoS", 132],
+            description: desc ([
+                "I learn additional spells, which do not count towards the number of spells I know.",
+            ]),
+            spellcastingExtraApplyNonconform: true,
+            spellcastingExtra: ["charm person", "sleep", "enthrall", "suggestion", "hypnotic pattern", "vampiric touch", "phantasmal killer", "private sanctum", "dominate person", "modify memory"],          
+        },
+        "subclassfeature3.1" : {
+            name: "Charnel Drain",
+            minlevel: 3,
+            source: ["VSoS", 133],
+            description: desc([
+                "I regain hit points equal to my Intelligence modifier + my necromancer level (min 3) when I",
+                "reduce a hostile creature to 0 hit points using Charnel Touch."
+            ]),
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
+                            fields.Description += (fields.Description ? "; " : "") + "Drain (heal " + Math.max((parseInt(What('Int Mod')) + classes.known.necromancer.level), 3) + " hp)";
+                            fields.Description_Tooltip = "Charnel Drain: When you reduce a hostile creature to 0 hit points with your Charnel Touch, you regain hit points equal to your Intelligence modifier + your necromancer level (minimum 3)."
+                        }
+                    }, "I regain hit points equal to my Intelligence modifier + my necromancer level (min 3) when I reduce a hostile creature to 0 hit points using Charnel Touch."
+                ]
+            }
+        },
+        "subclassfeature6" : {
+            name: "Vampiric Transformation",
+            minlevel: 6,
+            source: ["VSoS", 133],
+            description: desc([
+                "I can use my action and 15 Charnel Touch points to transform into a bat or cloud of mist for 1",
+                "hour, or until I drop to 0 hit points or revert as an action. Anything I'm wearing transforms",
+                "with me, but objects I carry fall to the ground. See third page for transformation options."
+            ]),
+            action: ["action", "(15 CT)"],
+            "bat" : {
+                name: "Bat",
+                source: ["VSoS", 133],
+                description: desc([
+                    "I transform into a Tiny bat. While in bat form, I have all the senses of a bat, I can't speak, my",
+                    "walk speed is 5 ft, and I have a fly speed of 30 ft.  My other statistics are unchanged."
+                ])
+            },
+            "mist" : {
+                name: "Mist",
+                source: ["VSoS", 133],
+                description: desc([
+                    "I transform into a Medium cloud of mist. While in this form, I can't speak, manipulate objects",
+                    "or take any actions other than to revert. I am weightless, have a fly speed of 20 ft, can hover",
+                    "and can enter and occupy the space of another creature. I can pass through any space air can",
+                    "pass through, except water. I have advantage on Strength, Dexterity, and Constitution saves,",
+                    "and gain resistance to bludgeoning, piercing, and slashing damage."
+                ])
+            },
+            autoSelectExtrachoices: [{
+                extrachoice: "bat",
+            }, {
+                extrachoice: "mist",
+            }],
+            vision: ["Blindsight (undeafened Bat form)", 60],
+            dmgres: [["Bludgeoning", "Bludgeon. (as Mist)"],
+                     ["Piercing", "Pierce. (as Mist)"],
+                     ["Slashing", "Slash. (as Mist)"]],
+            savetxt: {
+                adv_vs: ["Str/Dex/Con saves as mist"]
+            }
+        },
+        "subclassfeature10": {
+            name: "Children of the Night",
+            minlevel: 10,
+            source: ["VSoS", 133],
+            description: desc([
+                "When I perform my Animate Thralls ritual, I can summon wolves, swarms of bats, and swarms",
+                "of rats as my thralls. When these thralls are reduced to 0 hit points, they vanish in mist.",
+                "Use the \"Race\" drop down menu on the companion page to select these."
+            ]),
+            creatureOptions: [{
+                name: "Wolf",
+                source:["SRD", 159],
+                size: 3,
+                type: "Beast",
+                companion: "undead thrall",
+                companionApply: "undead thrall",
+                alignment: "Unaligned",
+                ac: 13,
+                hp: 11,
+                hd:[2,8],
+                speed: "40 ft",
+                proficiencyBonus: 2,
+                challengeRating: "1/4",
+                scores: [12,15,12,3,12,6],
+                senses: "",
+                attacksAction: 1,
+                attacks: [{
+                    name: "Bite",
+                    ability: 0,
+                    damage: [2,4, "piercing"],
+                    range: "Melee",
+                    description: "If target is creature, must Strength save DC 11 or be knocked prone",
+                    modifiers: ["oInt+oProf-Prof", "oInt"],
+                }],
+                skills: {
+                    "Perception" : 3,
+                    "Stealth" : 4,
+                },
+                traits: [{
+                    name: "Keen Hearing and Smell",
+                    description: "The wolf has advantage on Wisdom (Perception) checks that rely on hearing or smell."
+                }, {
+                    name: "Pack Tactics",
+                    description: "The wolf has advantage on attack rolls against a creature if at least one of the wolf's allies is within 5 feet of the creature and the ally isn't incapacitated."
+                }]
+            }, {
+                name: "Swarm of Bats",
+                source:["SRD", 154],
+                size: 3,
+                type: "Beast",
+                subtype: "swarm",
+                companion: "undead thrall",
+                companionApply: "undead thrall",
+                alignment: "Unaligned",
+                ac: 12,
+                hp: 22,
+                hd:[5,8],
+                speed: "fly 30 ft",
+                proficiencyBonus: 2,
+                challengeRating: "1/4",
+                scores: [5, 15, 10, 2, 12, 4],
+                senses: "Blindsight 60 ft",
+                attacksAction: 1,
+                damage_resistances: "bludgeoning, piercing, slashing",
+                condition_immunities: "charmed, frightened, grappled, paralyzed, petrified, prone, restrained, stunned",
+                attacks: [{
+                    name: "Bite",
+                    ability: 0,
+                    damage: [2,4, "piercing"],
+                    range: "Melee",
+                    description: "reduce damage die to 1d4 if the swarm has less than half its max hit points",
+                    modifiers: ["oInt+oProf-Prof", "oInt"],
+                }],
+                traits: [{
+                    name: "Echolocation",
+                    description: "The swarm can't use its blindsight while deafened."
+                },{
+                    name: "Keen Hearing",
+                    description: "The swarm has advantage on Wisdom (Perception) checks that rely on hearing."
+                }, {
+                    name: "Swarm",
+                    description: "The swarm can occupy another creature's space and vice versa, and the swarm can move through any opening large enough for a Tiny bat. The swarm can't regain hit points or gain temporary hit points."
+                }]
+            }, {
+                name: "Swarm of Rats",
+                source:["SRD", 155],
+                size: 3,
+                type: "Beast",
+                subtype: "swarm",
+                companion: "undead thrall",
+                companionApply: "undead thrall",
+                alignment: "Unaligned",
+                ac: 10,
+                hp: 24,
+                hd:[7,8],
+                speed: "30 ft",
+                proficiencyBonus: 2,
+                challengeRating: "1/4",
+                scores: [9, 11, 9, 2, 10, 3],
+                senses: "Darkvision 60 ft",
+                attacksAction: 1,
+                damage_resistances: "bludgeoning, piercing, slashing",
+                condition_immunities: "charmed, frightened, grappled, paralyzed, petrified, prone, restrained, stunned",
+                attacks: [{
+                    name: "Bite",
+                    ability: 0,
+                    damage: [2,6, "piercing"],
+                    range: "Melee",
+                    description: "reduce damage die to 1d6 if the swarm has less than half its max hit points",
+                    modifiers: ["oInt+oProf-Prof", "oInt"],
+                }],
+                traits: [{
+                    name: "Keen Smell",
+                    description: "The swarm has advantage on Wisdom (Perception) checks that rely on smell."
+                }, {
+                    name: "Swarm",
+                    description: "The swarm can occupy another creature's space and vice versa, and the swarm can move through any opening large enough for a Tiny rat. The swarm can't regain hit points or gain temporary hit points."
+                }]
+            }]
+        },
+        "subclassfeature20": {
+            name: "Lichdom: Nosferatu",
+            minlevel: 20,
+            source: ["VSoS", 133],
+            description: desc([
+                "I gain extra features when I undertake the rite to become a lich, found on the third page."
+            ]),
+            "phylactery": {
+                name: "Coffin Phylactery",
+                source: ["VSoS", 133],
+                description: desc([
+                    "My phylactery is a coffin filled with grave dirt. When I drop to 0 hit points, I reform in this",
+                    "coffin in 1 hour, gaining the benefits of a long rest. Until I spend 24 hours resting in the coffin,",
+                    "my hit point maximum is reduced to 1, and I drop to 0 hit points if I begin my turn in sunlight.",
+                    "My new body is identical to the one that was destroyed."
+                ])
+            },
+            "regeneration" : {
+                name: "Regeneration",
+                source: ["VSoS", 133],
+                description: desc([
+                    "At the start of each of my turns, if I have more than 0 hit points and I am not in direct",
+                    "sunlight, I regain 10 hit points."
+                ])
+            },
+            "vampiric agility" : {
+                name: "Vampiric Agility",
+                source: ["VSoS", 133],
+                description: desc([
+                    "My speed is doubled, and I can climb difficult surfaces, including upside down on ceilings,",
+                    "without needing to make an ability check."
+                ]),
+                speed: { allModes: "*2" }
+            }, 
+            autoSelectExtrachoices: [{
+                extrachoice: "phylactery"
+            }, {
+                extrachoice: "regeneration"
+            }, {
+                extrachoice: "vampiric agility"
+            }],
+            
+        }
+    }
+})
+
+// * Death Knight necromancer subclass
+AddSubClass("necromancer","death knight",{
+    regExpSearch: /\bdeath knight\b/i,
+    subname: "Death Knight",
+    source: ["VSoS", 133],
+    attacks: [1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+    features: {
+        "subclassfeature3": {
+            name: "Intensive Combat Research",
+            minlevel: 3,
+            source: ["VSoS", 134],
+            description: desc([
+                "I gain proficiency with light & medium armor, shields, martial weapons. I can perform somatic",
+                "components of spells while holding weapons and shields in both hands."
+            ]),
+            armorProfs: [true, true, false, true],
+            weaponProfs: [false, true]
+        },
+        "subclassfeature3.1" : {
+            name: "Charnel Strike",
+            minlevel: 3,
+            source: ["VSoS", 134],
+            description: desc([
+                "Once per turn I can spend CT points & apply CT damage to a target I hit with a melee",
+                "weapon attack I made as part of an Attack action. When I deal damage using Charnel Touch",
+                "or Charnel Strike, I gain temp hp equal to the necrotic damage dealt, up to my hit point total.",
+            ]),
+            calcChanges: {
+                atkAdd: [
+                    function (fields, v) {
+                        if (v.isMeleeWeapon && !v.isSpell && !SpellsList[v.thisWeapon[3]]) {
+                            fields.Description += (fields.Description ? "; " : "") + "Charnel Strike: +" + (parseInt(What('Proficiency Bonus')) * 5) + " necrotic dmg & temp hp)"; 
+                        }
+                        if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
+                            fields.Description += (fields.Description ? "; " : "") + "gain temp hp equal to dmg";
+                        }
+                    }, "Once per turn I can spend CT points & apply CT damage to a target I hit with a melee weapon attack I made as part of an Attack action. When I deal damage using Charnel Touch or Charnel Strike, I gain temp hp equal to the necrotic damage dealt, up to my hit point max."
+                ]
+            }
+        },
+        "subclassfeature6" : {
+            name: "Extra Attack",
+            minlevel: 6,
+            source: ["VSoS", 134],
+            description: desc([
+                "I can attack twice instead of once when I take the Attack action on my turn. My melee",
+                "weapon attacks score a crit on a roll of 19-20."
+            ]),
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if (v.isMeleeWeapon && !/\bcrit on\b/i.test(fields.Description)){
+                            fields.Description += (fields.Description ? "; " : "") + "; crit on 19-20";
+                        }
+                    }, "My melee weapon attacks score a critical hit on a roll of 19-20."
+                ]
+            }
+        },
+        "subclassfeature10" : {
+            name: "Overcharged Thralls",
+            minlevel: 10,
+            source: ["VSoS", 134],
+            description: desc([
+                "When 1 of my thralls dies/is released by me, I regain CT points equal to my necromancer level",
+            ])
+        }, 
+        "subclassfeature20" : {
+            name: "Lichdom: Imperator",
+            minlevel: 20,
+            source: ["VSoS", 134],
+            description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
+            armorProfs: [true, true, true, true],
+            dmgres: ["Bludgeoning", "Piercing", "Slashing"],
+            "completedcombatresearch" : {
+                name: "Completed Combat Research",
+                source: ["VSoS", 134],
+                description: desc(["I gain proficiency with heavy armor & resistance to bludgeoning, piercing, and slashing dmg."])
+            },
+            "peerlesscharnelstrike" : {
+                name: "Peerless Charnel Strike",
+                source: ["VSoS", 134],
+                description: desc([
+                    "Necrotic damage dealt by Charnel Touch ignores resistance and immunity to necrotic",
+                    "damage. The amount of temporary hit points I gain from Charnel Strike is no longer limited",
+                    "by half my total hit points."
+                ])
+            },
+            autoSelectExtrachoices: [{
+                extrachoice: "completedcombatresearch"
+            }, {
+                extrachoice: "peerlesscharnelstrike"
+            }]
+        }
+    }
+})
 
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
