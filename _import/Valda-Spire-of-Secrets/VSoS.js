@@ -22979,7 +22979,7 @@ AddSubClass("gunslinger","trick shot",{
             ])
         }
     }
-})
+});
 
 // * White Hat gunslinger subclass
 AddSubClass("gunslinger","white hat",{
@@ -23043,7 +23043,305 @@ AddSubClass("gunslinger","white hat",{
             action: ["bonus action", "Regain Reach for the Skies"]
         }
     }
-})
+});
+
+// * Investigator class
+
+// * Necromancer class
+// Necromancer spell list
+[
+    // Cantrips (0 Level)
+    "acid splash", "caustic blade", "cheat", "chill touch","cryptogram", "dancing lights", "eldritch orb", "eye of anubis", "flesh ripper", "hocuspocus", "light", "lightning surge", "mage hand", "mending", "minor lifesteal", "poison spray", "shocking grasp", "spark of life", "true strike",
+    // 1st level
+    "alarm", "arcane anomaly", "bane", "blood print", "command", "dead mist lash", "detect evil and good", "detect magic", "exhume", "expeditious retreat", "false life", "flawed reconstruction", "fog cloud", "gahoul's shrieking skull", "grease", "hollowing curse", "identify", "indemnify", "inflict wounds", "mage armor", "memorize", "might of the abyss", "protection from evil and good", "sleep", "unseen servant",
+    // 2nd level
+    "melf's acid arrow", "blindness/deafness", "curse ward", "darkness", "darkvision", "delay", "detect thoughts", "enlarge/reduce", "gentle repose", "invisibility", "knock", "locate object", "misty step", "nondescript", "pass without trace", "protection from ballistics", "protect threshold", "ray of enfeeblement", "silence", "spider climb", "stone bones", "unseen accountant", "web",
+    // 3rd level
+    "animate dead", "benign dismemberment", "bestow curse", "call lightning", "clairvoyance", "counterspell", "curse of blades", "dead fog", "dispel magic", "fear", "gaseous form", "glyph of warding", "nondetection", "phantom steed", "remove curse", "revivify", "ruby-eye curse", "rusting grasp", "seance", "speak with dead", "stinking cloud", "vampiric touch",
+    // 4th level
+    "arcane eye", "blight", "death ward", "dimension door", "dire warning", "distort gravity", "false vision", "gahoul's scapegoat", "grasp of the grave", "greater invisibility", "locate creature", "phantasmal killer", "leomund's secret chest",
+    // 5th level
+    "antilife shell", "cloudkill", "contagion", "dispel evil and good", "dream", "insect plague", "modify memory", "pharaoh's curse", "scrutinize foe", "scrying", "teleportation circle",
+    // 6th level
+    "antiballistics field", "circle of death", "contingency", "create undead", "eyebite", "flesh to stone", "frenzy", "gahoul's spectral scythe", "harm", "inexorable sarcophagus", "magic jar",
+    // 7th level
+    "abduct", "etherealness", "finger of death", "plane shift", "sequester", "teleport",
+    // 8th level
+    "antimagic field", "clone", "feeblemind", "gahoul's glorious gothic", "mind blank", "power word stun", 
+    // 9th level
+    "heart of darkness", "imprisonment", "power word kill", "storm of vengeance", "weird"
+].forEach( function (s) {
+    if(SpellsList[s] && SpellsList[s].classes && SpellsList[s].classes.indexOf("necromancer") === -1) SpellsList[s].classes.push("necromancer");
+});
+
+ClassList["necromancer"] = {
+    name: "Necromancer",
+    regExpSearch: /\bnecromancer\b/i,
+    source: ["VSoS", 128],
+    primaryAbility: "Intelligence",
+    prereqs: "Intelligence 13",
+    die: 6,
+    improvements: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5],
+    saves: ["Con", "Int"],
+    abilitySave: 4,
+    skillstxt: {
+        primary: "Choose two from Arcana, Deception, History, Intimidation, Investigation, Medicine, Persuasion, or Religion",
+    },
+    armorProfs: {
+        primary: [false, false, false, false],
+        secondary: [false, false, false, false]
+    },
+    weaponProfs: {
+        primary: [true, false],
+        secondary: [false, false]
+    },
+    equipment: "Necromancer starting equipment: " +
+        "\n \u2022 a component pouch -or- an arcane focus;" +
+        "\n \u2022 A dungeoneer's pack -or- a scholar's pack;" +
+        "\n \u2022 A shovel, a dagger, & any simple weapon",
+    subclasses: ["Grave Ambition", []],
+    attacks: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    spellcastingFactor : 1,
+    spellcastingKnown: {
+        cantrips: [4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+        spells: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15],
+        prepared: false,
+    },
+    spellcastingList: {
+        class : ["necromancer"],
+    },
+    features: {
+        "spellcasting" : {
+            name: "Spellcasting",
+            source: ["VSoS", 128],
+            minlevel: 1,
+            description: desc([
+                "I can cast necromancer cantrips/spells that I know using Intelligence as my spellcasting ability.",
+                "I can use an arcane focus as a spellcasting focus for my necromancer spells.",
+                "I can cast necromancer spells as rituals if they have the ritual tag."
+            ])
+        },
+        "charnel touch" : {
+            name: "Charnel Touch",
+            source: ["VSoS", 129],
+            minlevel : 1,
+            description: desc([
+                "I have a pool of Charnel Touch points. As an action I declare a number of points (max prof",
+                "bonus x 5) & make a melee spell attack (willing creatures auto-hit). On hit, I deal necrotic dmg",
+                "equal to declared points & expend them (heals Undead, Constructs immune, 2x dmg on crit)."
+            ]),
+            weaponOptions: [{
+                name: "Charnel Touch",
+                source: ["VSoS", 129],
+                regExpSearch: /\bcharnel touch\b/i,
+                type: "Spell",
+                ability: 4,
+                abilitytodamage: false,
+                damage: [0,0, "Necrotic"],
+                range: "Melee",
+                description: "Damage doubles on crit; Constructs are immune; heals Undead",
+                isNotWeapon: true,
+                useSpellcastingAbility: true,
+                useSpellMod: "necromancer",
+            }],
+            limfeaname: "Charnel Touch Points",
+            usages: levels.map(function(n) { return n * 5 }),
+            recovery: "long rest",
+            calcChanges: {
+                atkAdd : [
+                    function(fields, v) {
+                        if(/charnel touch/i.test(v.WeaponTextName)) {
+                            fields.Description += (fields.Description ? "; " : "") + "Max " + How("Proficiency Bonus") * 5 + " necrotic dmg";
+                        }
+                    }
+                ]
+            }
+        },
+        "thralls": {
+            name: "Thralls",
+            source: ["VSoS", 130],
+            minlevel: 2,
+            description: desc([
+                "I can perform a 10 minute ritual to raise one or more Small or Medium humanoid",
+                "corpses/remains within 30 feet of me into undead thralls. See notes for details."
+            ]),
+            additionaL: levels.map(function(n) { return n < 2 ? "" : ("Thrall CR total: " + (n < 3 ? "1/4" : n < 5 ? "1/2" : n < 9 ? "1" : n < 13 ? "2" : n < 17 ? "3" : "4"))}),
+            spellChanges: {
+                "animate dead" : {
+                    time : "1 a",
+                    description: "Turn Small/Medium humanoid corpses into 1+2/SL Skeletons or Zombies, following Thralls rules",
+                    changes: "I can cast this spell as an action instead of over the course of 1 minute. undead I create using this spell are treated as my thralls and use the appropriate Undead Thrall stat block."
+                }
+            },
+            toNotesPage: [{
+                name: "Animate Thralls",
+                note: desc([
+                    "I can spend 10 uninterrupted minutes performing a ritual with a spellcasting",
+                    "focus or component pouch to raise the remains of 1 or more Small or Medium",
+                    "humanoids within 30 feet of me into Undead thralls. I maintain control over my",
+                    "thralls indefinitely. Create thralls through the companion pages."
+                ])
+            }, {
+                name: "Commanding Thralls",
+                note: desc ([
+                    "I can mentally control all my thralls while I am conscious without using any",
+                    "actions. If I am unconscious, my thralls will move to protect my body from harm",
+                    "but will not attack. In combat, my thralls take their turns immediately before or",
+                    "after my turn (my choice). All my thralls collectively share 1 reaction and bonus",
+                    "action, which a single thrall can use each round. Thralls use my spell attack",
+                    "modifier to make their attacks."
+                ]),
+                amendTo: "Animate Thralls"
+            }, {
+                name: "Maximum Thralls",
+                note: desc ([
+                    "As I gain levels in this class, my Thrall CR Total increases. The combined CR of all",
+                    "my thralls cannot exceed my Thrall CR Total, and the total number of thralls",
+                    "under my control cannot exceed my proficiency bonus. At any time, I can sever",
+                    "my connection to 1 or more thralls, releasing them. Corporeal undead crumple",
+                    "into a heap and incorporeal undead flee to the Ethereal Plane.",
+                ]),
+                amendTo: "Commanding Thralls"
+            }, {
+                name: "Animate Dead",
+                note: desc ([
+                    "If I know the Animate Dead spell, I can cast it as an action instead of a minute.",
+                    "All Undead I create using spells or other magic count as my thralls and can be",
+                    "commanded as such. If my new thralls granted to me by a spell cause me to",
+                    "exceed my Thrall CR Total or total number of thralls, I can immediately sever my",
+                    "connection to any number of my existing thralls to stay within my limits. My",
+                    "thralls can never command or create other Undead. I cannot reanimate undead",
+                    "that have been reduced to 0 hit points. "
+                ]),
+                amendTo: "Maximum Thralls"
+            }]
+        },
+        "bag of bones" : {
+            name: "Bag of Bones",
+            minlevel: 2,
+            source: ["VSoS", 131],
+            description: desc ([
+                "I can make a magical bag of bones with a 1 hr ritual while holding a container I can carry.",
+                "When I do this, other bags of bones I make are unmade. See magic item entry for details.",
+            ]),
+            magicitemsAdd : ["Bag of Bones"],
+        },
+        "subclassfeature3" : {
+            name: "Grave Ambition",
+            source: ["VSoS", 131],
+            minlevel: 3,
+            description: desc(["Choose a Grave Ambition in the \"Class\" field."]),
+        },
+        "black arcana" : {
+            name: "Black Arcana",
+            source: ["VSoS", 131],
+            minlevel: 3,
+            description: desc([
+                "As a bonus action I can expend a spell slot to regain 1d8 CT points/SS level (up to pool max).",
+            ]),
+            action: ["bonus action", "Replenish Charnel Touch"]
+        },
+        "critical spellcasting" : {
+            name: "Critical Spellcasting",
+            source: ["VSoS", 131],
+            minlevel: 5,
+            description: desc([
+                "Creatures that roll a 1 on a save vs my spells auto-fail and take double damage dice from the",
+                "spell, & my spell attacks crit on a roll of 19-20. At 14th level, creatures auto-fail & take double",
+                "damage dice from my spells on a roll of 1-2, & my spell attacks crit on a roll of 18-20.",
+            ]),
+            calcChanges: {
+                atkAdd: [
+                    function (fields, v){
+                        if (v.isSpell){
+                            if (v.isDC && v.isSpell && SpellsList[v.thisWeapon[3]] && v.thisWeapon[4].indexOf("necromancer") !== -1){
+                                fields.Description += (fields.Description ? "; " : "") + "double dmg dice vs crea rolling " + (classes.known.necromancer.level < 14 ? "1" : "1-2") + " vs save";
+                            }
+                            if(!v.isDC && v.isSpell && SpellsList[v.thisWeapon[3]] && v.thisWeapon[4].indexOf("necromancer") !== -1){
+                                fields.Description += (fields.Description ? "; " : "") + "crit on " + (classes.known.necromancer.level < 14 ? "19-20" : "18-20");
+                            }
+                        }
+                    }, "Creatures that roll a 1 on a save against my spells take double the damage dice as damage, and my spell attacks score a critical hit on a roll of 19-20. At 14th level, Creatures that roll a 1-2 on a save against my spells take double damage dice as damage, and my spell attacks score a critical hit on a roll of 18-20."
+                ]
+            }
+        },
+        "enthralling presence" : {
+            name: "Enthralling Presence",
+            source: ["VSoS", 131],
+            minlevel: 7,
+            description: desc([
+                "Undead I control are immune to effects that turn undead. While I am conscious, my undead",
+                "can't be forcefully controlled by another creature."
+            ])
+        },
+        "undying servitude" : {
+            name: "Undying Servitude",
+            source: ["VSoS", 131],
+            minlevel: 18,
+            description: desc(["When a thrall drops to 0 hp & not destroyed, I can use reaction to heal it for half its max hp."]),
+            usages: 1,
+            recovery: "long rest",
+            action: ["reaction", ""]
+        },
+        "lichdom" : {
+            name: "Lichdom",
+            source: ["VSoS", 132],
+            minlevel: 20,
+            description: desc([
+                "I can undergo a rite to become a lich. See third page & notes pages."
+            ]),
+            savetxt : {
+                immune: ["necrotic damage", "poison", "effects of exhaustion"],
+                text: ["I don't need to eat, drink, sleep, or breathe", "Effects that affect undead affect me except turn undead"]
+            },
+            toNotesPage: [{
+                name: "Lichdom",
+                note: desc([
+                    "I have completed my phylactery and am ready to undergo the rite. To do so, I",
+                    "shut myself away for 30 days in an isolated location of my choice, and emerge",
+                    "as an immortal lich. Once the rite is completed, I gain extra benefits, as well",
+                    "as those dictated by my Grave Ambition."
+                ]),
+                amendTo: "Animate Dead"
+            }, {
+                name: "Phylactery Form and Weakness",
+                note: desc([
+                    "A lich's phylactery has a unique form and critical flaw by which it can be",
+                    "destroyed. Examples of forms include a family heirloom, prized possession, a",
+                    "sword, piece of armor, or entire castle. Examples of weaknesses include dipping",
+                    "it in the lava of an active volcano, or performing a 24 hour ritual to destroy it.",
+                    "Discuss with your GM the form and weaknesses your phylactery possesses."
+                ]),
+                amendTo: "Lichdom"
+            }],
+            "phylactery": {
+                name: "Phylactery",
+                source: ["VSoS", 132],
+                description: desc([
+                    "If I drop to 0 hit points, my body crumbles to dust, but my soul escapes to my phylactery.",
+                    "After 1d4 + 1 days, a new body forms in a space closest to my phylactery, and I return to life.",
+                    "When my body reforms, I gain the benefits of a long rest. The new body is identical to the",
+                    "one that was destroyed."
+                ]),
+            },
+            "undead traits" : {
+                name: "Undead Resilience & Traits",
+                source: ["VSoS", 132],
+                description: desc([
+                    "I have immunity to necrotic & poison damage, & the poisoned condition. I am also immune",
+                    "to the effects of exhaustion and I don't need to eat, drink, sleep, or breathe. I must still rest",
+                    "for 4 hours to gain the benefits of a long rest. Spells and effects that typically affect Undead",
+                    "affect me as well. I am immune to any effect that turns Undead."
+                ]),
+            },
+            autoSelectExtrachoices: [{
+                extrachoice: "phylactery",
+            }, {
+                extrachoice: "undead traits",
+            }]
+        }
+    }
+}
 
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
