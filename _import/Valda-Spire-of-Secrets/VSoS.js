@@ -23683,6 +23683,119 @@ AddSubClass("necromancer","death knight",{
     }
 })
 
+// * Overlord necromancer subclass
+AddSubClass("necromancer","overlord",{
+    regExpSearch: /\boverlord\b/i,
+    subname: "Overlord",
+    source: ["VSoS", 134],
+    features: {
+        "subclassfeature3" : {
+            name: "Overlord Spells",
+            minlevel: 3,
+            source: ["VSoS", 134],
+            description: desc ([
+                "I learn additional spells, which do not count towards the number of spells I know.",
+            ]),
+            spellcastingExtraApplyNonconform: true,
+            spellcastingExtra: ["bane", "command", "detect thoughts", "hold person", "haste", "slow", "compulsion", "confusion", "dominate person", "geas"],          
+        },
+        "subclassfeature3.1": {
+            name: "Charnel Boon",
+            minlevel: 3,
+            source: ["VSoS", 134],
+            description: desc([
+                "As a bonus action, I can expend 5 or more Charnel Touch points to empower all my thralls",
+                "within 30 ft of me. Until the end of my next turn, those thralls gain a +1 bonus to their attack",
+                "rolls, damage rolls, and AC per 5 points expended, up to +3."
+            ]),
+            action: ["bonus action", ""],
+        },
+        "subclassfeature6":{
+            name: "Despotic Discourse",
+            minlevel: 6,
+            source: ["VSoS", 134],
+            description: desc([
+                "I gain proficiency in Deception, Intimidation, or Persuasion. I can use my Intelligence modifier",
+                "instead of Charisma when making Deception/Intimidation/Persuasion checks."
+            ]),
+            skillstxt: "Choose one from Deception, Intimidation, or Persuasion",
+            addMod: [
+                {type: "skill", field: "Deception", mod: "max(Int-Cha|Cha)", text: "I can use my Intelligence modifier instead of Charisma when making Deception, Intimidation, and Persuasion checks."},
+                {type: "skill", field: "Intimidation", mod: "max(Int-Cha|Cha)", text: "I can use my Intelligence modifier instead of Charisma when making Deception, Intimidation, and Persuasion checks."},
+                {type: "skill", field: "Persuasion", mod: "max(Int-Cha|Cha)", text: "I can use my Intelligence modifier instead of Charisma when making Deception, Intimidation, and Persuasion checks."},        
+            ]
+        },
+        "subclassfeature10":{
+            name: "Sacrificial Thralls",
+            minlevel: 10,
+            source: ["VSoS", 135],
+            description: desc([
+                "When I am targeted by an attack, I can use my reaction to change the target of the attack to",
+                "one of my thralls that is in range/reach of the attack."
+            ]),
+            action: ["reaction", "Sacrifice Thrall"],
+            usages: 1,
+            recovery: "short rest",
+        },
+        "subclassfeature20": {
+            name: "Lichdom: Tyrant",
+            minlevel: 20,
+            source: ["VSoS", 135],
+            description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
+            action: [["action", "Dominate Beast/Person/Monster (CT)"]],
+            spellcastingBonus: [{
+                spells: ["dominate beast"],
+                name: "Lichdom: Tyrant",
+                selection: ["dominate beast"],
+                firstCol: "25",
+                allowUpCasting: false,
+            }, {
+                spells: ["dominate person"],
+                name: "Lichdom: Tyrant",
+                selection: ["dominate person"],
+                firstCol: "30",
+                allowUpCasting: false,
+            }, {
+                spells: ["dominate monster"],
+                name: "Lichdom: Tyrant",
+                selection: ["dominate monster"],
+                firstCol: "60",
+                allowUpCasting: false,
+            }],
+            "immortalrule": {
+                name: "Immortal Rule",
+                source: ["VSoS", 135],
+                description: desc([
+                    "If I drop to 0 hit points, I can choose an unconscious Humanoid or a corpse of one that has",
+                    "died within the last minute that is within 120 ft of me to possess. A creature warded by a",
+                    "protection from evil and good or magic circle spell can't be possessed. Once I possess a body",
+                    "I control it. My game stats are replaced by the stats of the creature, except my alignment,",
+                    "Intelligence, Wisdom, and Charisma scores. If the body has 0 hit points when I possess it, its",
+                    "type becomes Undead and it regains 50 hit points, up to its hit point max. I retain the benefit",
+                    "of my own class features, and I cannot use any class features the creature has. If I possess the",
+                    "body of an unconsious creature, that creature makes a Charisma save vs my spell save DC",
+                    "after 8 hours, repeating the save every 8 hours. On a success, I am ejected from the body and",
+                    "begin the process of reforming at my phylactery. Once I have possessed a creature this way, I",
+                    "cannot possess it again using this feature."
+                ])
+            },
+            "tyrantsinfluence" : {
+                name: "Tyrant's Influence",
+                source: ["VSoS", 135],
+                description: desc([
+                    "I can expend Charnel Touch points to cast the following spells without expending a spell slot:",
+                    "dominate beast (25 points), dominate person (30 points), dominate monster (60 points)."
+                ])
+            },
+            autoSelectExtrachoices: [{
+                extrachoice: "immortalrule"
+            }, {
+                extrachoice: "tyrantsinfluence"
+            }]
+        }
+    }
+})
+
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
 	name : "Alchemist Homunculus",
@@ -25378,7 +25491,7 @@ MagicItemsList["bag of bones"] = {
     description: "Use an action to place a corpse or willing Undead creature into an extradimensional space connected to the bag; up to 10 Medium or smaller corpses/creatures. Use an action to dump the contents of the bag within 5 feet of me. This bag is destroyed if placed in another extradimensional space.",
     descriptionLong: "Use an action to place a corpse or willing Undead creature into an extradimensional space connected to the bag; up to 10 Medium or smaller corpses/creatures. Use an action to dump the contents of the bag within 5 feet of me. This bag violently expels anything other than corpses/bones/undead creatures placed into it. This bag is destroyed if placed in another extradimensional space. Its contents remain in the same extradimensional space until I create a new bag.",
     descriptionFull: "The bag connects to a vast extradimensional space that can only hold Medium or smaller corpses, bones, and Undead creatures; it violently expels anything else placed within it. You can use an action to place a corpse or willing Undead creature into the bag, up to a maximum of ten corpses or Undead creatures, or use your action to dump the contents of the bag, which land in spaces within 5 feet of you. You can transform any container you can carry into a bag of bones by performing a special ritual over the course of 1 hour while you hold it. This container ceases to be magical if you perform this ritual again to create a new bag of bones. The container always connects to the same extradimensional space. If the bag is placed inside an extradimensional space, such as that created by a bag of holding, it is destroyed. Its contents remain in the same extradimensional space until you create a new bag.",
-    action: [["action", "(add item)"], ["action", "(dump contents)"]]
+    action: [["action", " (add item)"], ["action", " (dump contents)"]]
 };
 
 // ! Weapons
