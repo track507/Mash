@@ -22294,7 +22294,7 @@ ClassList["gunslinger"] = {
             calcChanges: {
                 atkCalc: [
                     function (fields, v, output){
-                        if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) && !(/((^|[^+-]\b)off).?hand(ed)?\b/i).test(v.WeaponTextName)){
+                        if ((/firearms?/i.test(v.theWea.list) || /firearms?/i.test(fields.Description)) && !(/((^|[^+-]\b)off).?hand(ed)?\b/i).test(v.WeaponTextName)){
                             output.modToDmg = true;
                         }
                     },  "I add my ability modifier to damage rolls of ranged firearm attacks I make using my action."
@@ -22406,7 +22406,7 @@ AddSubClass("gunslinger","gun tank",{
             calcChanges: {
                 atkAdd: [
                     function(fields, v, output){
-                        if ((/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i).test(fields.Description) && (/firearm/i.test(v.theWea.list) || /firearm/i.test(fields.Description)) && fields.Proficiency){
+                        if ((/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i).test(fields.Description) && (/firearms?/i.test(v.theWea.list) || /firearms?/i.test(fields.Description)) && fields.Proficiency){
                             fields.Description = fields.Description.replace(/([;,]? ?((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b[;,]? ?)/i, "");
                         }
                     }, "I ignore the two-handed property of firearms I am proficient in.",
@@ -22462,7 +22462,7 @@ AddSubClass("gunslinger","gun-ko master",{
                         if ((/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i).test(fields.Description) && (/firearm/i.test(v.theWea.list) || /firearm/i.test(fields.Description))) {
                             fields.Description += (fields.Description ? ", " : "") + "Melee (1d8)";
                         }
-                        if((/finesse/i).test(fields.Description) && (/firearm/i.test(v.theWea.list) || /firearm/i.test(fields.Description))){
+                        if((/finesse/i).test(fields.Description) && (/firearms?/i.test(v.theWea.list) || /firearms?/i.test(fields.Description))){
                             fields.Description += (fields.Description ? ", " : "") + "Melee (1d6)";
                         }
                     }
@@ -22564,7 +22564,7 @@ AddSubClass("gunslinger","high roller",{
             calcChanges: {
                 atkAdd: [
                     function(fields, v){
-                        if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description))){
+                        if ((/firearms?/i.test(v.theWea.list) || /firearms?/i.test(fields.Description))){
                             var die = classes.known.gunslinger.level < 10 ? "+1d8" : classes.known.gunslinger.level < 18 ? "+1d10" : "+1d12";
                             fields.Description += (fields.Description ? "; " : "" ) + "Boom or Bust " + die;
                             fields.Description_Tooltip += (fields.Description_Tooltip ? "" : "\n") + "Boom or Bust: when you hit with a ranged firearm attack, you can expend a risk die and add it to the weapon's damage roll. After this attack, the weapon jams. A jammed weapon can't be used to make an attack until a creature uses its action to clear the weapon malfunction.";
@@ -22781,7 +22781,269 @@ AddSubClass("gunslinger","sharpshooter",{
     }
 })
 
+// * Spellslinger gunslinger subclass
+AddSubClass("gunslinger","spellslinger",{
+    regExpSearch: /\bspellslinger\b/i,
+    subname: "Spellslinger",
+    source: ["VSoS", 98],
+    spellcastingKnown : {
+        cantrips : [0,0,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,3,3],
+        spells : [0,0,3,4,4,4,5,5,5,6,7,7,8,8,8,9,9,9,10,10],
+    },
+    spellcastingList: {
+        "class": "wizard",
+        school: ["Evoc", "Abjur"],
+        level: [1,4],           
+    },
+    spellcastingAbility: 4,
+    spellcastingFactor: "warlock1",
+    spellcastingTable: [
+        [0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0],
+        [2,0,0,0,0,0,0,0,0],
+        [3,0,0,0,0,0,0,0,0],
+        [3,0,0,0,0,0,0,0,0],
+        [3,0,0,0,0,0,0,0,0],
+        [4,2,0,0,0,0,0,0,0],
+        [4,2,0,0,0,0,0,0,0],
+        [4,2,0,0,0,0,0,0,0],
+        [4,3,0,0,0,0,0,0,0],
+        [4,3,0,0,0,0,0,0,0],
+        [4,3,0,0,0,0,0,0,0],
+        [4,3,2,0,0,0,0,0,0],
+        [4,3,2,0,0,0,0,0,0],
+        [4,3,2,0,0,0,0,0,0],
+        [4,3,3,0,0,0,0,0,0],
+        [4,3,3,0,0,0,0,0,0],
+        [4,3,3,0,0,0,0,0,0],
+        [4,3,3,1,0,0,0,0,0],
+        [4,3,3,1,0,0,0,0,0],
+    ],
+    features: {
+        "subclassfeature3": {
+            name: "Spellcasting",
+            source: ["VSoS", 98],
+            minlevel: 3,
+            description: desc([
+                "I can cast wizard cantrips/spells that I know, using Intelligence as my spellcasting ability"
+            ]),
+            additional : levels.map( function (n) {
+                if (n < 3) return "";
+                var cantrips = n < 10 ? "3" : "4";
+                var spells = n < 4 ? "3" : n < 7 ? "4" : n < 8 ? "5" : n < 10 ? "6" : n < 11 ? "7" : n < 13 ? "8" : n < 14 ? "9" : n < 16 ? "10" : n < 19 ? "11" : n < 20 ? "12" : "13";
+                return cantrips + " cantrips & " + spells + " spells known";
+            }),
+            spellcastingBonus : [{ // the spells gained at level 8, 14, and 20
+                name : "From any school",
+                "class" : "wizard",
+                times : [0,0,0,0,0,0,0,1,1,1,1,1,1,2,2,2,2,2,2,3],
+                level : [1, 4]
+            },{
+                name : "Finger Guns",
+                spells : ["finger guns"],
+                selection : ["finger guns"],
+                firstCol : "markedbox",
+                times : 1
+            }]
+        },
+        "subclassfeature3.1": {
+            name: "Bang, You're Dead!",
+            source: ["VSoS", 99],
+            minlevel: 3,
+            description: desc([
+                "I can use Deeds with finger guns spell attacks. When I hit with a finger guns attack, I can",
+                "spend a risk die as a bonus action to deal an extra 1d8 force damage."
+            ]),
+            action: ["bonus action", ""],
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if (/\bfinger guns\b/i.test(v.WeaponTextName)){
+                            fields.Description += (fields.Description ? "; " : "") + "can use Deeds; Bang +1d8 force damage";
+                        }
+                    }, "I can use Deeds with finger guns spell attacks. When I hit with a finger guns attack, I can spend a risk die as a bonus action to deal an extra 1d8 force damage."
+                ]
+            }
+        },
+        "subclassfeature7": {
+            name: "Spellshot",
+            source: ["VSoS", 99],
+            minlevel: 7,
+            description: desc([
+                "When I use my action to cast a cantrip, I can use my bonus action to make 1 ranged attack",
+                "with a firearm or make a ranged spell attack using the finger guns cantrip."
+            ]),
+            action: ["bonus action", ""]
+        },
+        "subclassfeature7.1": {
+            name: "Rune-Carved Cartridges",
+            source: ["VSoS", 99],
+            minlevel: 7,
+            description: desc([
+                "My ranged firearm attacks count as magical for overcoming resistance & immunity."
+            ])
+        },
+        "subclassfeature10": {
+            name: "Magic Bullet",
+            source: ["VSoS", 99],
+            minlevel: 10,
+            description: desc([
+                "As a bonus action, a ranged firearm attack I make on my turn vs a target at normal range",
+                "automatically hits, and deals an extra 3d4 + 3 force damage."
+            ]),
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if (((/firearms?/i).test(v.theWea.type) || (/firearms?/i).test(v.theWea.list))){
+                            fields.Description += (fields.Description == "" ? "" : "; ") + "Magic Bullet (+3d4+3 force)";
+                        }
+                    }, "As a bonus action, A ranged weapon attack I make on my turn vs a target at normal range automatically hits, and deals an extra 3d4 + 3 force damage.",
+                ]
+            },
+            action: ["bonus action", ""],
+            usages: 1,
+            recovery: "long rest"
+        },
+        "subclassfeature14": {
+            name: "Improved Spellshot",
+            source: ["VSoS", 99],
+            minlevel: 14,
+            description: desc([
+                "On casting a spell with an action, I can expend a risk die as a bonus action to make a ranged",
+                "spell attack with a firearm or finger guns cantrip. Add the risk die to the attack roll. On hit, the",
+                "attack deals its normal damage + the spell's effects."
+            ])
+        }
+    }
+});
 
+// * Trick Shot gunslinger subclass
+AddSubClass("gunslinger","trick shot",{
+    regExpSearch: /\btrick shot\b/i,
+    subname: "Trick Shot",
+    source: ["VSoS", 100],
+    features: {
+        "subclassfeature3": {
+            name: "Creative Trajectory",
+            minlevel: 3,
+            source: ["VSoS", 100],
+            description: desc([
+                "My ranged firearm attacks ignore half cover."
+            ])
+        },
+        "subclassfeature3.1": {
+            name: "Ricochet",
+            minlevel: 3,
+            source: ["VSoS", 100],
+            description: desc([
+                "As a bonus action, on a miss with a ranged firearm attack without disadvantage, reroll the",
+                "attack roll. On hit, the attack deals half damage."
+            ]),
+            action: ["bonus action", ""],
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if ((/firearms?/i.test(v.theWea.list) || /firearms?/i.test(fields.Description))){
+                            fields.Description += (fields.Description ?  "; " : "") + "Ricochet \u00BD";
+                        }
+                    }, "As a bonus action, on a miss with a ranged firearm attack without disadvantage I can reroll the attack roll. On hit, the attack deals half damage."
+                ]
+            }
+        },
+        "subclassfeature7": {
+            name: "Light-Footed",
+            minlevel: 7,
+            source: ["VSoS", 100],
+            description: desc([
+                "Difficult terrain costs me no extra movement."
+            ])
+        },
+        "subclassfeature10": {
+            name: "Deft Deflectionist",
+            minlevel: 10,
+            source: ["VSoS", 100],
+            description: desc([
+                "As a reaction to a creature I can see making a ranged weapon attack roll against me, I make a",
+                "ranged firearm attack roll. If my roll is greater than the attacker's, the attack gains disadv."
+            ]),
+            action: ["reaction", "Deflect"]
+        },
+        "subclassfeature14": {
+            name: "Pinball Shot",
+            minlevel: 14,
+            source: ["VSoS", 100],
+            description: desc([
+                "Once on my turn when I hit with a ranged firearm attack, I can make another attack roll vs a",
+                "separate target within range of the first target up to half the firearm's normal range."
+            ])
+        }
+    }
+})
+
+// * White Hat gunslinger subclass
+AddSubClass("gunslinger","white hat",{
+    regExpSearch: /\bwhite hat\b/i,
+    subname: "White Hat",
+    source: ["VSoS", 100],
+    features: {
+        "subclassfeature3": {
+            name: "Lay Down The Law",
+            minlevel: 3,
+            source: ["VSoS", 100],
+            description: desc([
+                "As a bonus action, expend a risk die and gain temp hp equal to the roll + my gunslinger level",
+                "(twice my gunslinger level at 10th level), dividing it among creatures I can see (not me) within",
+                "range of a held firearm. When a creature loses temp hp from an attack, use a reaction to",
+                "make 1 ranged firearm attack vs the attacker. The temp hp is lost at the start of my next turn."
+            ]),
+            action: [["bonus action", "Lay Down The Law (Temp HP)"], ["reaction", "Lay Down The Law (Attack)"]],
+        },
+        "subclassfeature3.1": {
+            name: "Steely-Eyed Aura",
+            minlevel: 3,
+            source: ["VSoS", 100],
+            description: desc([
+                "While conscious, I & friendly creatures within 10 ft of me have adv. on saves vs frightened.",
+                "This becomes 30 ft when I reach 14th level."
+            ]),
+            savetxt: { adv_vs: ["fright"] },
+            additional: levels.map(function (n) { n < 14 ? "10 foot aura" : "30 foot aura"})
+        },
+        "subclassfeature7": {
+            name: "Reach For The Skies",
+            minlevel: 7,
+            source: ["VSoS", 100],
+            description: desc([
+                "As an action, a creature within 30 ft of me that can see or hear me makes a Wis save vs my",
+                "Deed save DC or for 1 min become incapacitated & can't willingly move until it takes damage,",
+                "repeating the save at end of its turns. Creatures immune to fright auto succeed the save."
+            ]),
+            action: ["action", ""],
+            usages: 1,
+            recovery: "short rest"
+        },
+        "subclassfeature10": {
+            name: "Long Arm Of The Law",
+            minlevel: 10,
+            source: ["VSoS", 101],
+            description: desc([
+                "Creatures with temp hp from Lay Down The Law resist bludgeoning, piercing, & slashing;",
+                "deal half damage. Until the start of my next turn, it can't move until it Disengages."
+            ])
+        },
+        "subclassfeature14": {
+            name: "Gold Star Hero",
+            minlevel: 14,
+            source: ["VSoS", 101],
+            description: desc([
+                "When a creature has temp hp from Lay Down The Law, it has resistance to bludgeoning,",
+                "Steely-Eyed Aura range increases to 30 ft; Regain Reach for the Skies spending a risk die & BA"
+            ]),
+            action: ["bonus action", "Regain Reach for the Skies"]
+        }
+    }
+})
 
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
