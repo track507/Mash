@@ -36,12 +36,12 @@ Everything up to "Mad Bomber" has been added and updated to v13.2.0 for MPMB's S
   - Alchemist Class and Subclasses Finished (written by seaworld)
   - Captain Class and Subclasses Finished (written by seaworld)
   - Craftsman Class and Subclasses Finished (originally written by aelartheelfrogue, updated by seaworld)
+  - Gunslinger Class and Subclasses (written by seaworld)
 
 ### WIP: 
-  - Gunslinger Class and Subclasses
+  - Necromancer Class and Subclasses
 
 ### TODO: 
-  - Finish Alchemist class update and revisions
   - Add the rest of the classes and update
   - Add the rest of the subclasses and update
   - Add all spells and update
