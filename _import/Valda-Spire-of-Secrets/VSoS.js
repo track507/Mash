@@ -23357,7 +23357,6 @@ AddSubClass("necromancer","blood ascendant",{
             description: desc ([
                 "I learn additional spells, which do not count towards the number of spells I know.",
             ]),
-            spellcastingExtraApplyNonconform: true,
             spellcastingExtra: ["charm person", "sleep", "enthrall", "suggestion", "hypnotic pattern", "vampiric touch", "phantasmal killer", "private sanctum", "dominate person", "modify memory"],          
         },
         "subclassfeature3.1" : {
@@ -23503,7 +23502,7 @@ AddSubClass("necromancer","blood ascendant",{
                 }, {
                     name: "Swarm",
                     description: "The swarm can occupy another creature's space and vice versa, and the swarm can move through any opening large enough for a Tiny bat. The swarm can't regain hit points or gain temporary hit points."
-                }]
+                }],
             }, {
                 name: "Swarm of Rats",
                 source:["SRD", 155],
@@ -23696,7 +23695,6 @@ AddSubClass("necromancer","overlord",{
             description: desc ([
                 "I learn additional spells, which do not count towards the number of spells I know.",
             ]),
-            spellcastingExtraApplyNonconform: true,
             spellcastingExtra: ["bane", "command", "detect thoughts", "hold person", "haste", "slow", "compulsion", "confusion", "dominate person", "geas"],          
         },
         "subclassfeature3.1": {
@@ -23795,6 +23793,1014 @@ AddSubClass("necromancer","overlord",{
         }
     }
 })
+
+// * Pale Master necromancer subclass
+AddSubClass("necromancer","pale master",{
+    regExpSearch: /\bpale master\b/i,
+    subname: "Pale Master",
+    source: ["VSoS", 135],
+    features: {
+        "subclassfeature3" : {
+            name: "Pale Master Spells",
+            minlevel: 3,
+            source: ["VSoS", 135],
+            description: desc ([
+                "I learn additional spells, which do not count towards the number of spells I know.",
+            ]),
+            spellcastingExtra: ["exhume", "inflict wounds", "invisibility", "ray of enfeeblement", "animate dead", "fear", "evard's black tentacles", "blight", "cloudkill", "scrying"],          
+        },
+        "subclassfeature3.1": {
+            name: "Charnel Empower",
+            minlevel: 3,
+            source: ["VSoS", 135],
+            description: desc([
+                "When I deal damage with a 1st level or higher necromancy spell, I can expend Charnel Touch",
+                "points (up to my necromancer level + my Intelligence modifier) to deal extra necrotic damage",
+                "to one of the spell's targets equal to the points expended."
+            ])
+        },
+        "subclassfeature6": {
+            name: "Frightening Gaze",
+            minlevel: 6,
+            source: ["VSoS", 135],
+            description: desc([
+                "I gain proficiency in Intimidation. As a bonus action, I can spend 10 Charnel Touch points to",
+                "force a creature I can see within 60 ft of me to make a Wisdom save vs my spell save DC or",
+                "be frightened of me for 1 min, repeating the save at the end of each of its turns to end it."
+            ]),
+            action: ["bonus action", ""],
+            skills: ["Intimidation"]
+        },
+        "subclassfeature10" : {
+            name: "Thrall Rush",
+            minlevel: 10,
+            source: ["VSoS", 136],
+            description: desc([
+                "If I roll initiative and am not surprised, each thrall can move up to its speed or make 1 attack.",
+            ])
+        },
+        "subclassfeature20" : {
+            name: "Lichdom: Archlich",
+            minlevel: 20,
+            source: ["VSoS", 136],
+            description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
+            "devoursoul" : {
+                name: "Devour Soul",
+                source: ["VSoS", 136],
+                description: desc([
+                    "When I reduce a hostile creature to 0 hit points, I can roll a d8 and regain expended spell slots",
+                    "of my choice whose combined level is no greater than the number rolled. A creature whose",
+                    "soul is devoured can't be restored to life by means short of a true resurrection or wish spell."
+                ]),
+                usages: 1,
+                recovery: "long rest"
+            },
+            "paralyzingtouch" : {
+                name: "Paralyzing Touch",
+                source: ["VSoS", 136],
+                description: desc([
+                    "When I hit with a Charnel Touch attack and expend 20 or more points, the target must",
+                    "succeed on a Constitution save vs my spell save DC or be paralyzed for 1 minute, repeating",
+                    "the save at the end of each of its turns to end the condition."
+                ])
+            },
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
+                            fields.Description += (fields.Description ? "; " : "") + "Paralyze (20 CT)";
+                            fields.Description_Tooltip = "Paralyzing Touch: When you hit with a Charnel Touch attack and expend 20 or more points, the target must succeed on a Constitution saving throw against your spell save DC or be paralyzed for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.";
+                        }
+                    }, "When I hit with a Charnel Touch attack and expend 20 or more points, the target must succeed on a Constitution save vs my spell save DC or be paralyzed for 1 minute, repeating the save at the end of each of its turns to end the condition.",
+                ]
+            },
+            autoSelectExtrachoices: [{
+                extrachoice: "devoursoul"
+            }, {
+                extrachoice: "paralyzingtouch"
+            }]
+        }
+    }
+})
+
+// * Pharaoh necromancer subclass
+AddSubClass("necromancer","pharaoh",{
+    regExpSearch: /\bpharaoh\b/i,
+    subname: "Pharaoh",
+    source: ["VSoS", 136],
+    features: { 
+        "subclassfeature3" : {
+            name: "Pharaoh Spells & Holy Symbol",
+            source: ["VSoS", 136],
+            minlevel: 3,
+            description: desc ([
+                "I learn additional spells, which do not count towards the number of spells I know.",
+                "I can also use a holy symbol as a spellcasting focus for my necromancer spells."
+            ]),
+            spellcastingExtra: ["bless", "guiding bolt", "halo of flame", "lesser restoration", "revivify", "snakestaff", "death ward", "divination", "greater restoration", "insect plague"],
+        },
+        "subclassfeature3.1" : {
+            name: "Channel Divinity",
+            source: ["VSoS", 137],
+            minlevel: 3,
+            description: desc([
+                "I have 1 use of Channel Divinity. I can expend 15 Charnel Touch points to regain 1 use.",
+            ]),
+            usages: 1,
+            altResource: "15 CT",
+            recovery: "short rest"
+        },
+        "subclassfeature3.2" : {
+            name: "Channel Divinity: Ankh of Radiance",
+            source: ["VSoS", 137],
+            minlevel: 3,
+            description: desc([
+                "As an action, I bless a number of willing creatures up to my Intelligence modifier that I can",
+                "see within 60 ft of me. For 1 minute. The first time a blessed creature takes damage, it has",
+                "resistance to that damage. If it took damage from a melee weapon attack, the attacker takes",
+                "1d6 radiant damage. This damage increases by 1d6 at 5th, 11th, and 17th level."
+            ]),
+            additional: levels.map(function (n) { return (n < 5 ? "1d6" : n < 11 ? "2d6" : n < 17 ? "3d6" : "4d6"); }),
+            action: ["action", ""]
+        },
+        "subclassfeature6" : {
+            name: "Mock Divinity",
+            source: ["VSoS", 137],
+            minlevel: 6,
+            description: desc([
+                "I can create new effects when using the thaumaturgy cantrip:",
+                "- Within an open area within 120 feet of me, changing darkness to dim light, dim",
+                "   light to bright light, and vice versa. I can also change bright light to cause disadvantage on",
+                "   Wisdom (Perception) checks which rely on sight, or darkness to limit darkvision to 30 ft (not",
+                "   affecting creatures who can see in magical darkness).",
+                "- Create a Huge illusory avatar of a deity at a point I can see within 120 ft of me, mimicking",
+                "   my movement and projecting my speech in a booming voice for 1 minute."
+            ]),
+            spellcastingExtraApplyNonconform: true,
+            spellcastingExtra: ["thaumaturgy", "bless", "guiding bolt", "halo of flame", "lesser restoration", "revivify", "snakestaff", "death ward", "divination", "greater restoration", "insect plague"],
+            spellChanges: {
+                "thaumaturgy": {
+                    changes: "I can create additional effects using this cantrip: \n• You can brighten or darken the sun or moon, affecting the area within 120 feet of you for up to 1 minute. You can change darkness to dim light and dim light to bright light, or vice versa. Additionally, you can heighten bright light to a blazing radiance, which causes disadvantage on Wisdom (Perception) checks which rely on sight, or you can deepen darkness to a pitch black, which limits darkvision to a 30-foot radius. This deeper darkness has no effect on creatures that can see in magical darkness.\n• You manifest a Huge illusory avatar of a deity at a point you can see within 120 feet of you, which mimics your movements and projects your speech in a booming voice for 1 minute."
+                }
+            }
+        },
+        "subclassfeature10": {
+            name: "Channel Divinity: Scarab of Judgement",
+            source: ["VSoS", 137],
+            minlevel: 10,
+            description: desc([
+                "As an action, I destroy an Undead I control within my reach, and a willing Humanoid I choose",
+                "that I can see within 60 ft of me regains hit points equal to the Undead's hit points. A creature",
+                "that regains hit points this way cannot do so this way again until it finishes a long rest."
+            ]),
+            action: ["action", ""]
+        },
+        "subclassfeature20" : {
+            name: "Lichdom: God-King",
+            source: ["VSoS", 137],
+            minlevel: 20,
+            description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
+            "canopicphylacteries": {
+                name: "Canopic Phylacteries",
+                source: ["VSoS", 137],
+                description: desc([
+                    "I gain four canopic jars containing my stomach, lungs, intestines, and liver. Each jar has a",
+                    "weakness (discussed with my GM), and my immortality is stopped when all four jars are",
+                    "destroyed. When I am reduced to 0 hit points, I reform at my sarcophagus."
+                ]),
+            },
+            "mummyrot": {
+                name: "Mummy Rot",
+                source: ["VSoS", 137],
+                description: desc([
+                    "When I hit with a Charnel Touch attack and expend 20 or more points, the target must make",
+                    "a Constitution save vs my spell save DC or be cursed. Cursed targets can't regain hit points,",
+                    "and their hit point maximums decrease by 3d6 every 24 hours. If the curse reduces a target's",
+                    "hit point maximum to 0, the target dies, & its body turns to dust. The curse lasts until",
+                    "removed by the remove curse spell or similar magic."
+                ])
+            },
+            "whirlwindofsand": {
+                name: "Whirlwind of Sand",
+                source: ["VSoS", 137],
+                description: desc([
+                    "As an action, I can transform into a whirlwind of sand, move up to 60 ft, and revert to my",
+                    "normal form. While in whirlwind form, I am immune to all damage, can't be grappled,",
+                    "petrified, knocked prone, restrained, or stunned. I retain all equipment in my possession."
+                ]),
+                action: ["action", ""]
+            },
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
+                            fields.Description += (fields.Description ? "; " : "") + "Mummy Rot (20 CT)";
+                            fields.Description_Tooltip = "Mummy Rot: When you hit with a Charnel Touch attack and expend 20 or more points, the target must succeed on a Constitution saving throw against your spell save DC or be cursed with mummy rot. The cursed target can’t regain hit points, and its hit point maximum decreases by 3d6 for every 24 hours that elapse. If the curse reduces the target’s hit point maximum to 0, the target dies, and its body turns to dust. The curse lasts until removed by the remove curse spell or other magic."
+                        }
+                    }, "When I hit with a Charnel Touch attack and expend 20 or more points, the target must succeed on a Constitution saving throw against my spell save DC or be cursed with mummy rot."
+                ]
+            },
+            autoSelectExtrachoices: [{
+                extrachoice: "canopicphylacteries"
+            }, {
+                extrachoice: "mummyrot"
+            }, {
+                extrachoice: "whirlwindofsand"
+            }]
+        }
+    }
+})
+
+// * Plague Lord necromancer subclass
+AddSubClass("necromancer","plague lord",{
+    regExpSearch: /\bplague lord\b/i,
+    subname: "Plague Lord",
+    source: ["VSoS", 137],
+    features: { 
+        "subclassfeature3": {
+            name: "Charnel Toxin",
+            minlevel: 3,
+            source: ["VSoS", 138],
+            description: desc([
+                "When I hit with Charnel Touch and expend 5 or more points, the target must make a",
+                "Constitution save vs my spell DC or be poisoned until the start of my next turn."
+            ]),
+            calcChanges: {
+                atkAdd: [
+                    function (fields, v){
+                        if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
+                            fields.Description += (fields.Description ? "; " : "") + "Toxin (5 CT)";
+                            fields.Description_Tooltip += "Charnel Toxin: When you hit with a Charnel Touch attack and expend 5 or more points, the target must succeed on a Constitution saving throw against your spell save DC or be poisoned until the start of your next turn.";
+                        }
+                    }, "When I hit with Charnel Touch and expend 5 or more points, the target must make a Constitution save vs my spell DC or be poisoned until the start of my next turn."
+                ]
+            }
+        },
+        "subclassfeature3.1": {
+            name: "Vile Congregation",
+            minlevel: 3,
+            source: ["VSoS", 138],
+            description: desc([
+                "When a hostile creature within 5 ft of me makes an attack roll or save, I can roll a d4 and",
+                "subtract the result from the roll. This ability does not affect Constructs or Undead."
+            ])
+        },
+        "subclassfeature6": {
+            name: "Projectile Spew",
+            minlevel: 6,
+            source: ["VSoS", 138],
+            description: desc([
+                "My Charnel Touch, and my spells with a range of touch, now have a reach of 15 feet."
+            ]),
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if (/\bcharnel touch\b/i.test(v.WeaponTextName))
+                        {
+                            fields.Range = "Melee 15 ft"
+                        }
+                    }, "I can reach creatures up to 15 feet away with my Charnel Touch feature."
+                ],
+                spellAdd: [
+                    function (spellKey, spellObj, spName, isDuplicate){
+                        if (spellObj.range == "Touch"){
+                            spellObj.range = "15 ft";
+                            return true;
+                        }
+                    }, "I can reach creatures up to 15 feet away with spells that have a range of Touch."
+                ]
+            },
+        },
+        "subclassfeature10": {
+            name: "Bloated Thralls",
+            minlevel: 10,
+            source: ["VSoS", 138],
+            description: desc ([
+                "When a thrall dies or I release it, I can choose for each creature within 5 ft of it to make a",
+                "Dexterity save vs my spell save DC, taking 4d6 poison damage and getting poisoned until the",
+                "start of my next turn. On a save, creatures take half damage and are not poisoned."
+            ]),
+            weaponOptions: [{
+                name: "Thrall Burst",
+                source: ["VSoS", 138],
+                regExpSearch: /\bthrall burst\b/i,
+                type: "AlwaysProf",
+                ability: 4,
+                abilitytodamage: false,
+                damage: [4,6, "Poison"],
+                range: "5 ft rad",
+                description: "On thrall death/release; All crea Dex save, targets poisoned until end of my next turn; save halves & no poison",
+                dc: true,
+                isNotWeapon: true,
+                selectNow : true
+            }]
+        },
+        "subclassfeature20": {
+            name: "Lichdom: Corpulent Lich",
+            minlevel: 20,
+            source: ["VSoS", 138],
+            description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
+            "goreburst": {
+                name: "Gore Burst",
+                source: ["VSoS", 138],
+                description: desc([
+                    "When I drop to 0 hit points, each creature within 20 ft of me must make a Dexterity save vs",
+                    "my spell save DC or take 5d10 poison damage and be poisoned until the start of my next",
+                    "turn. On a save, a creature takes half damage and isn't poisoned."
+                ]),
+            },
+            "masterofdisease" : {
+                name: "Master of Disease",
+                source: ["VSoS", 138],
+                description: desc([
+                    "When I use my Charnel Toxin feature and expend 25 or more points, the target is poisoned",
+                    "and cursed for up to 1 minute on a failed save. Choose two of the following effects to occur",
+                    "while the target is cursed:",
+                    "- The target has disadvantage on the checks and saves of one ability of my choice.",
+                    "- The target can only see out to a radius of 10 feet.",
+                    "- The target falls prone at the end of each of its turns.",
+                    "- The target loses an extra 1d6 hit points whenever it takes damage.",
+                    "- The target can only babble nonsense and can't perform verbal components of spells.",
+                    "The target may repeat the save at the end of each of its turns to end the curse and the",
+                    "poisoned condition."
+                ])
+            },
+            calcChanges: {
+                atkAdd: [
+                    function (fields, v){
+                        if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
+                            fields.Description += (fields.Description ? "; " : "") + "Curse (25 CT)";
+                            fields.Description_Tooltip += "\nMaster of Disease: When you use your Charnel Toxin feature and expend 25 or more points, the creature is poisoned and cursed for up to 1 minute on a failed save. Choose two of the following effects which afflict the target while it is cursed:\n• Choose one ability score. The target has disadvantage on ability checks and saving throws made with that ability score.\n• The target can only see out to a radius of 10 feet.\n• The target falls prone at the end of each of its turns.\n• The target loses an extra 1d6 hit points whenever it takes damage.\n• The target can speak only in a babblingnonsense language and can’t perform the verbal components of spells.\nAt the end of each of its turns, the target makes a Constitution saving throw against your spell save DC, ending the curse and the poisoned condition on a success.";
+                        }
+                    }, "When I use my Charnel Toxin feature and expend 25 or more points, the target is poisoned and cursed with two effects of my choice (on the third page) for up to 1 minute on a failed save."
+                ]
+            },
+            weaponOptions: [{
+                name: "Gore Burst",
+                source: ["VSoS", 138],
+                regExpSearch: /\bgore burst\b/i,
+                type: "AlwaysProf",
+                ability: 4,
+                abilitytodamage: false,
+                damage: [10,10, "Necrotic"],
+                range: "20 ft rad",
+                description: "On drop to 0 hp; all crea Dex save, targets poisoned until end of my next turn; 5d10 is poison type; save halves & no poison",
+                dc: true,
+                isNotWeapon: true,
+                selectNow : true
+            }],
+            autoSelectExtrachoices: [{
+                extrachoice: "goreburst"
+            }, {
+                extrachoice: "masterofdisease"
+            }]
+        }
+    }
+});
+
+// * Reanimator necromancer subclass
+AddSubClass("necromancer","reanimator",{
+    regExpSearch: /\breanimator\b/i,
+    subname: "Reanimator",
+    source: ["VSoS", 138],
+    features: { 
+        "subclassfeature3": {
+            name: "Skilled Surgeon",
+            minlevel: 3,
+            source: ["VSoS", 138],
+            description: desc([
+                "I gain proficiency in Medicine. I can use Intelligence instead of Wisdom for Medicine checks."
+            ]),
+            skills: ["Medicine"],
+            addMod: [
+                {type: "skill", field: "Medicine", mod: "Int-Wis", text: "I can use my Intelligence modifier instead of Wisdom when making Medicine checks."},       
+            ]
+        },
+        // todo add ability to graft somehow?
+        "subclassfeature3.1" : {
+            name: "Mad Science",
+            minlevel: 3,
+            source: ["VSoS", 138],
+            description: desc([
+                "I spend 10 min installing monsterous grafts on one of my non-incorporeal thralls. My thralls",
+                "don't lose hp when I install/remove grafts, & they don't need to recover from attachment.",
+            ]),
+            extraname: "Undead Thralls Monsterous Grafts",
+			extrachoices: ["Amphibious Adaptation (Donor: has Amphibious trait)", 
+			"Arcane Synapses (Donor: has Spellcasting/Innate Spellcasting)", 
+			"Beast's Hide (Donor: Large or larger Beast)", 
+			"Bestial Weapons (Arms) (Donor: Bst/Drgn/Mons with Claw attack)", 
+			"Bestial Weapons (Head) (Donor: Bst/Drgn/Mons with Bite attack)", 
+			"Charging Hooves (Donor: has Charge trait or Gore/Hooves attack)", 
+			"Climbing Apparatus (Donor: Bst/Humn/Mons with climb speed)", 
+			"Doppel-Blooded (Donor: has shapechanger tag)", 
+			"Draconis Fundamentum (Donor: Drgn/Humn/Mons with a Breath Weapon)", 
+			"Dragon's Hide (Donor: Large or larger Dragon)", 
+			"Energetic Suture (Acid) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to acid damage)",
+			"Energetic Suture (Cold) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to cold damage)",
+			"Energetic Suture (Fire) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to fire damage)",
+			"Energetic Suture (Poison) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to poison damage)",
+			"Energetic Suture (Thunder) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to thunder damage)",    
+			"Fiend's Hide (Donor: Medium or larger Fiend)", 
+			"Heart of Steel (Donor: Construct)", 
+			"Horns (Donor: has Gore/Horns/Ram/Tusk attack)", 
+			"Indiscernible Anatomy (Donor: Medium or larger Aberration)", 
+			"Leaping Legs (Donor: has the Pounce/Standing Leap trait)", 
+			"Olfactory Implants (Donor: has Keen Smell/Keen Hearing and Smell trait)", 
+			"Oversized Arms (Donor: Giant)", 
+			"Prehensile Tail (Donor: has a Tail attack)", 
+			"Regenerating Marrow (Donor: has the Regeneration trait)", 
+			"Replacement (Donor: any creature)", 
+			"Stench (Donor: has the Stench trait)", 
+			"Tentacles (Donor: has a Tentacles/Tendrils attack)", 
+			"Venom Sac (Donor: has a natural weapon/trait that deals poison/poisoned condition)", 
+			"Voice Box (Donor: has the Mimicry trait)", 
+			"Webspinner Apparatus (Donor: has a Web action)"],
+			extraTimes: 1,
+			"amphibious adaptation (donor: has amphibious trait)" : {
+				name: "Amphibious Adaptation",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Amphibious Adaptation: The undead thrall can breathe both air and water.");
+						aFnc(prefix + "Comp.Use.Speed", ",\nswim 30 ft");
+					},
+					"My alchemy undead thrall gains the Monsterous Graft: Amphibious Adaptation."]
+				}
+			},
+			"arcane synapses (donor: has spellcasting/innate spellcasting)" : {
+				name: "Arcane Synapses",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Arcane Synapses: The undead thrall knows 1 wizard cantrip. If a second creature is harvested and grafted, it knows 2 wizard cantrips.");
+					},
+					"My undead thrall gains the Monsterous Graft: Arcane Synapses."]
+				},
+				spellcastingBonus: [{
+					name: "Arcane Synapses (undead thrall)",
+					firstCol: "AG",
+					times: 2,
+					spellcastingAbility: 4,
+					"class": ["wizard"],
+					level: [0,0],
+				}]
+			},
+			"beast's hide (donor: large or larger beast)" : {
+				name: "Beast's Hide",
+				source: ["VSoS", 370],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						if (bAdd) Value(prefix + "Comp.Use.AC", "13+Dex");
+						else Value(prefix + "Comp.Use.AC", "14+Dex");
+					},
+					"My undead thrall's AC is equal to 13 + its Dexterity Modifier, if its worn armor isn't higher. It may benefit from a shield."]
+				},
+			},
+			"bestial weapons (arms) (donor: bst/drgn/mons with claw attack)" : {
+				name: "Bestial Weapons (Arms)",
+				source: ["VSoS", 370],
+				submenu: "[Arms Grafts]",
+				description: "",                  
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/undead thrall/i.test(oCrea.companion)) return;         
+						if (bAdd) { 
+							AddWeapon("Bestial Weapon: Claws", "", prefix);
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+						 }
+						else {
+							for (i = 1; i < 3; ++i){
+								if (/bestial weapon: claws/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+									Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+						}
+					},
+					"My undead thrall gains the Monsterous Graft: Bestial Weapons (Arms).",
+					900],
+				},
+			},
+			"bestial weapons (head) (donor: bst/drgn/mons with bite attack)" : {
+				name: "Bestial Weapons (Head)",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/undead thrall/i.test(oCrea.companion)) return;           
+						if (bAdd) { 
+							AddWeapon("Bestial Weapon: Teeth", "", prefix); 
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+						}
+						else {
+							for (i = 1; i < 3; ++i){
+								if (/bestial weapon: teeth/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+									Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+						}
+					},
+					"My undead thrall gains the Monsterous Graft: Bestial Weapons (Head).",
+					900],
+				},
+			},
+			"charging hooves (donor: has charge trait or gore/hooves attack)" : {
+				name: "Charging Hooves",
+				source: ["VSoS", 370],
+				submenu: "[Legs Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Features", "\n\u25C6 Charging Hooves: Once on each of its turns, if the undead thrall moves 15 ft in straight line, it can move +10 ft in that direction");
+					}]
+				}
+			},
+			"climbing apparatus (donor: bst/humn/mons with climb speed)" : {
+				name: "Climbing Apparatus",
+				source: ["VSoS", 370],
+				submenu: "[Legs Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Speed", ",\nclimb 30 ft");
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Climbing Apparatus: The undead thrall gains a climb speed equal to its walking speed.");
+					}]
+				}
+			},
+			"doppel-blooded (donor: has shapechanger tag)" : {
+				name: "Doppel-Blooded",
+				source: ["VSoS", 370],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Doppel-Blooded: Once per long rest, The undead thrall can transform its appearance for 1 hr. it can change its height, weight, face, voice, hair, & race. It cannot become a different size, and its basic shape remains.");
+					}]
+				}
+			},
+			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)" : {
+				name: "Draconis Fundamentum",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+				creatureCallback: [function(prefix, oCrea, bAdd) {
+					if (!/undead thrall/i.test(oCrea.companion)) return;             
+					if (bAdd) { 
+						AddWeapon("Draconis Fundamentum", "", prefix); 
+						ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+					}
+					else {
+						for (i = 1; i < 3; ++i){
+							if (/Draconis Fundamentum/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+								Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+						}
+					},
+					"My undead thrall gains the Monsterous Graft: Draconis Fundamentum.",
+					900],
+				}
+			},
+			"dragon's hide (donor: large or larger dragon)" : {
+				name: "Dragon's Hide",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						if (bAdd) Value(prefix + "Comp.Use.AC", 17);
+						else Value(prefix + "Comp.Use.AC", "14+Dex");
+					}, "My undead thrall's AC is equal to 17, if its worn armor isn't higher. It may benefit from a shield."]
+				}
+			},
+			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, acid") );
+						else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", acid", ".") );
+					}]
+				}
+			},
+			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, cold") );
+						else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", cold", ".") );
+					}]
+				}
+			},
+			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, fire") );
+						else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", fire", ".") );
+					}]
+				}
+			},
+			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, poison") );
+						else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", poison", ".") );
+					}]
+				}
+			},
+			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, thunder") );
+						else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", thunder", ".") );
+					}]
+				}
+			},
+			"fiend's hide (donor: medium or larger fiend)" : {
+				name: "Fiend's Hide",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						if (bAdd) Value(prefix + "Comp.Use.AC", "15+min(Dex|2)");
+						else Value(prefix + "Comp.Use.AC", "14+Dex");
+					}, "My undead thrall's AC is equal to 15 + its Dexterity Modifier, max 2, if its worn armor isn't higher. It may benefit from a shield."]
+				}
+			},
+			"heart of steel (donor: construct)" : {
+				name: "Heart of Steel",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Heart of Steel: The undead thrall ignores effects of 1 level of exhaustion & finishes a long rest in 4 hours.");
+					}]
+				}
+			},
+			"horns (donor: has gore/horns/ram/tusk attack)" : {
+				name: "Horns",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/undead thrall/i.test(oCrea.companion)) return;           
+						if (bAdd) { 
+							AddWeapon("Horns", "", prefix);
+							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+						}
+						else {
+							for (i = 1; i < 3; ++i){
+								if (/horns/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+									Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+						}
+					},
+					"My undead thrall gains the Monsterous Graft: Horns.",
+					900],
+				},        
+			},
+			"indiscernible anatomy (donor: medium or larger aberration)" : {
+				name: "Indiscernible Anatomy",
+				source: ["VSoS", 372],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Indiscernible Anatomy: Critical hits against the undead thrall become normal hits.");
+					}]
+				}
+			},
+			"leaping legs (donor: has the pounce/standing leap trait)" : {
+				name: "Leaping Legs",
+				source: ["VSoS", 372],
+				submenu: "[Legs Grafts]",
+				description: " My jump distance doubles. I can jump my full distance without a running start.",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Leaping Legs: The undead thrall's jump distance is doubled. It can jump its full distance without a running start.");
+					}]
+				}
+			},
+			"olfactory implants (donor: has keen smell/keen hearing and smell trait)" : {
+				name: "Olfactory Implants",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Senses", "Keen Smell");
+					}]
+				}
+			},
+			"oversized arms (donor: giant)" : {
+				name: "Oversized Arms",
+				source: ["VSoS", 372],
+				submenu: "[Arms Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd) {
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						if(bAdd) {
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd)
+						}
+						if(!bAdd) {
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commonremoveeval(prefix, oCrea, bAdd)
+						}
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits.", "\n\u25C6 Oversized Arms: The undead thrall's reach increases by 5 ft, unless the weapon used has Reach. It has advantage on saves made to maintain grip on objects.")
+					},
+					"My undead thrall's reach increases by 5 ft, unless the weapon it is using has Reach.", 1000]	
+				}
+			},
+			"prehensile tail (donor: has a tail attack)" : {
+				name: "Prehensile Tail",
+				source: ["VSoS", 372],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/undead thrall/i.test(oCrea.companion)) return;            
+						if (bAdd) { 
+							AddWeapon("Prehensile Tail", "", prefix);
+							AddString(prefix + "Comp.Use.Features", "\n\u25C6 Prehensile Tail: The undead thrall's tail can hold and manipulate objects, but cannot use weapons/shields");
+							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+						}
+						else {
+							for (i = 1; i < 3; ++i){
+								if (/Prehensile Tail/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+									Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+							RemoveString(prefix + "Comp.Use.Features", "\n\u25C6 Prehensile Tail: The undead thrall's tail can hold and manipulate objects, but cannot use weapons/shields");
+						}
+					},
+					"My undead thrall gains the Monsterous Graft: Prehensile Tail.",
+					900], 
+				}
+			},
+			"regenerating marrow (donor: has the regeneration trait)" : {
+				name: "Regenerating Marrow",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Features", "\n\u25C6 Regenerating Marrow: Once per short rest, the undead thrall can use a bonus action to regain hit points equal to 1d10 + Constitution modifier.");
+					}]
+				}
+			},
+			"replacement (donor: any creature)" : {
+				name: "Replacement",
+				source: ["VSoS", 373],
+				submenu: "[Any Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Replacement: A replacement limb or organ functions the same as the missing one. It takes up the most relevant body slot.");
+					}]
+				}
+			},
+			"stench (donor: has the stench trait)" : {
+				name: "Stench",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Features", "\n\u25C6 Stench: Once per short rest, as a bonus action, each creature within 10 ft of the undead thrall must make a Con save, DC 15, or be poisoned until the end of their next turn.");
+					}]
+				}
+			},
+			"tentacles (donor: has a tentacles/tendrils attack)" : {
+				name: "Tentacles",
+				source: ["VSoS", 373],
+				submenu: "[Arms Grafts]",
+				description: "",
+				calcChanges : {
+					creatureCallback: [function(prefix, oCrea, bAdd) {
+						if (!/undead thrall/i.test(oCrea.companion)) return;           
+						if (bAdd) { AddWeapon("Tentacles", "", prefix); } // * no need to call commoneval
+						else {
+							for (i = 1; i < 3; ++i){
+								if (/tentacles/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+									Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+							}
+						}
+					},
+					"My undead thrall gains the Monsterous Graft: Tentacles.",
+					900],   
+				}
+			},
+			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)" : {
+				name: "Venom Sac",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Features", "\n\u25C6 Venom Sac: Once per short rest, as a bonus action, the undead thrall can coat a weapon in basic poison. The save DC for this poison is 15.");
+					}]
+				}
+			},
+			"voice box (donor: has the mimicry trait)" : {
+				name: "Voice Box",
+				source: ["VSoS", 373],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Voice Box: The undead thrall can mimic any sound it has heard, including voices. Creatures can tell they are mimicries if they succeed on an Insight check contested by my Deception check.");
+					}]
+				}
+			},
+			"webspinner apparatus (donor: has a web action)" : {
+				name: "Webspinner Apparatus",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [function(prefix, oCrea,bAdd){
+						if (!/undead thrall/i.test(oCrea.companion)) return;
+						var aFnc = bAdd ? AddString : RemoveString;
+						aFnc(prefix + "Comp.Use.Features", "\n\u25C6 Webspinner Apparatus: Once per short rest, the undead thrall can cast the web spell without using a spell slot or components.");
+					}]
+				},
+				spellcastingBonus : [{
+					spells: ["web"],
+					name: "Webspinner Apparatus",
+					selection: ["web"],
+					firstCol: "AG",
+					spellcastingAbility : 3,
+					allowUpCasting: false
+				}]
+			}
+            
+        },
+        "subclassfeature3.2" : {
+            name: "Charnel Voltage",
+            minlevel: 3,
+            source: ["VSoS", 139],
+            description: desc([
+                "I can deal lightning damage using my Charnel Touch. When I do this and spend 5 or more CT",
+                "points, another creature within 5 ft of the target makes a Dex save vs my spell save DC, taking",
+                "lightning damage equal to half the points spent on failure.",
+            ]),
+            calcChanges: {
+                atkAdd: [
+                    function (fields, v){
+                        if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
+                            fields.Description += (fields.Description ? "; " : "") + "; Voltage (5 CT)";
+                            fields.Description_Tooltip += "Charnel Voltage: You can choose to deal lightning damage instead of necrotic damage with your Charnel Touch. When you hit with a Charnel Touch attack that deals lightning damage and expends 5 or more points, you can cause the energy to arc to a second creature within 5 feet of the target. The second creature must make a Dexterity saving throw against your spell save DC, taking lightning damage equal to half the number of Charnel Touch points expended on a failed save."
+                        }
+                    }, "I can choose to deal lightning damage instead of necrotic damage with my Charnel Touch. When I hit with a Charnel Touch attack that deals lightning damage and expends 5 or more points, you can cause the energy to arc to a second creature within 5 feet of the target. The second creature must make a Dexterity saving throw against your spell save DC, taking lightning damage equal to half the number of Charnel Touch points expended on a failed save."
+                ]
+            },                
+        },
+        "subclassfeature6": {
+            name: "Lazarus Bolt",
+            minlevel: 6,
+            source: ["VSoS", 139],
+            description: desc ([
+                "As an action, I can touch a creature that has died within the last min that doesn't lack vital",
+                "organs or has died from old age. The creature gains 1 hit point. For 1 min, I can restore hit",
+                "points to it using my Charnel Touch feature as if it was Undead."
+            ]),
+            action: ["action", ""]
+        },
+        "subclassfeature10": {
+            name: "Arcane Stitching",
+            minlevel: 10,
+            source: ["VSoS", 139],
+            description: desc([
+                "I can spend 1 min and 10 Charnel Touch points to apply a stitch to 1 of my thralls. Only 1",
+                "thrall can be stitched, and a thrall can only have 1 type of stitch. A stitch lasts until activated,",
+                "the thrall is killed, or I finish a long rest. See third page."
+            ]),
+            "augmentedincision": {
+                name: "Augmented Incision",
+                source: ["VSoS", 139],
+                description: desc([
+                    "The thrall can activate this stitch to gain advantage on attack rolls and ability checks until the",
+                    "end of its next turn."
+                ])
+            },
+            "bulwarkbackstitch": {
+                name: "Bulwark Backstitch",
+                source: ["VSoS", 139],
+                description: desc(["The thrall can activate this stitch to cast the shield spell when it is hit by an attack."])
+            },
+            "fleetthreads": {
+                name: "Fleet Threads",
+                source: ["VSoS", 139],
+                description: desc(["The thrall can activate this stitch to triple its speed until the end of its next turn."])
+            },
+            "voltaicsuture": {
+                name: "Voltaic Suture",
+                source: ["VSoS", 139],
+                description: desc([
+                    "When the thrall hits a creature with an attack, it can activate this stitch to deal an extra 3d6",
+                    "lightning or necrotic damage (my choice)."
+                ])
+            },
+            autoSelectExtrachoices: [{
+                extrachoice: "augmentedincision"
+            }, {
+                extrachoice: "bulwarkbackstitch"
+            }, {
+                extrachoice: "fleetthreads"
+            }, {
+                extrachoice: "voltaicsuture"
+            }]
+        },
+        "subclassfeature20": {
+            name: "Lichdom: Patchwork Golem",
+            minlevel: 20,
+            source: ["VSoS", 139],
+            description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
+            scoresOverride: [20,20,20,0,0,0],
+            dmgres: [["Bludgeoning", "Bludg. (nonmagical)"], ["Piercing", "Pierc. (nonmagical)"], ["Slashing", "Slash. (nonmagical)"]],
+            savetxt: { adv_vs : ["magic"], },
+            toNotesPage: [{
+                name: "Golem Form",
+                source: ["VSoS", 139],
+                note: desc([
+                    "My Strength, Dexterity & Constitution scores become 20 if they weren't already higher. I gain",
+                    "resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks that aren't",
+                    "adamantine. I don't lose hit points or hit dice from installing/removing monsterous grafts, and",
+                    "I take no time to recover from the attachment of a monsterous graft."
+                ]),
+                page3notes: true
+            }, {
+                name: "Magic Resistance",
+                source: ["VSoS", 139],
+                note: desc(["I have advantage on saves against spells and other magical effects."]),
+                page3notes: true
+            }],
+        }
+    }
+}
+)
 
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
