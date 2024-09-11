@@ -4605,7 +4605,9 @@ AddSubClass("alchemist","xenoalchemist",{
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
 						if (bAdd) { 
 							AddWeapon("Bestial Weapon: Claws", "", prefix);
-							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+                            if(GetFeatureChoice('classes', 'alchemist', 'subclassfeature18', true).indexOf("oversized arms (donor: giant)") !== -1) {
+                                ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+                            }
 						 }
 						else {
 							for (i = 1; i < 3; ++i){
@@ -4628,8 +4630,10 @@ AddSubClass("alchemist","xenoalchemist",{
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
 						if (bAdd) { 
 							AddWeapon("Bestial Weapon: Teeth", "", prefix); 
-							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
-						}
+                            if(GetFeatureChoice('classes', 'alchemist', 'subclassfeature18', true).indexOf("oversized arms (donor: giant)") !== -1) {
+                                ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+                            }
+                        }
 						else {
 							for (i = 1; i < 3; ++i){
 								if (/bestial weapon: teeth/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
@@ -4691,7 +4695,9 @@ AddSubClass("alchemist","xenoalchemist",{
 					if (!/\balchemy golem\b/i.test(oCrea.name)) return;              
 					if (bAdd) { 
 						AddWeapon("Draconis Fundamentum", "", prefix); 
-						ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+                        if(GetFeatureChoice('classes', 'alchemist', 'subclassfeature18', true).indexOf("oversized arms (donor: giant)") !== -1) {
+                            ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+                        }
 					}
 					else {
 						for (i = 1; i < 3; ++i){
@@ -4818,8 +4824,9 @@ AddSubClass("alchemist","xenoalchemist",{
 						if (!/\balchemy golem\b/i.test(oCrea.name)) return;            
 						if (bAdd) { 
 							AddWeapon("Horns", "", prefix);
-							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
-							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+							if(GetFeatureChoice('classes', 'alchemist', 'subclassfeature18', true).indexOf("oversized arms (donor: giant)") !== -1) {
+                                ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+                            }
 						}
 						else {
 							for (i = 1; i < 3; ++i){
@@ -4902,8 +4909,10 @@ AddSubClass("alchemist","xenoalchemist",{
 						if (bAdd) { 
 							AddWeapon("Prehensile Tail", "", prefix);
 							AddString(prefix + "Comp.Use.Features", "\n\u25C6 Prehensile Tail: The golem's tail can hold and manipulate objects, but cannot use weapons/shields");
-							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
-						}
+                            if(GetFeatureChoice('classes', 'alchemist', 'subclassfeature18', true).indexOf("oversized arms (donor: giant)") !== -1) {
+                                ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+                            }
+                        }
 						else {
 							for (i = 1; i < 3; ++i){
 								if (/Prehensile Tail/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
@@ -23406,11 +23415,12 @@ AddSubClass("necromancer","blood ascendant",{
                 attacksAction: 1,
                 attacks: [{
                     name: "Bite",
-                    ability: 0,
+                    ability: 2,
                     damage: [2,4, "piercing"],
                     range: "Melee",
+                    abilitytodamage : true,
                     description: "If target is creature, must Strength save DC 11 or be knocked prone",
-                    modifiers: ["oInt+oProf-Prof", "oInt"],
+                    modifiers: ["(oInt+oProf)-(Dex+Prof)", ""],
                 }],
                 skills: {
                     "Perception" : 3,
@@ -23445,11 +23455,12 @@ AddSubClass("necromancer","blood ascendant",{
                 condition_immunities: "charmed, frightened, grappled, paralyzed, petrified, prone, restrained, stunned",
                 attacks: [{
                     name: "Bite",
-                    ability: 0,
+                    ability: 2,
                     damage: [2,4, "piercing"],
                     range: "Melee",
+                    abilitytodamage : true,
                     description: "reduce damage die to 1d4 if the swarm has less than half its max hit points",
-                    modifiers: ["oInt+oProf-Prof", "oInt"],
+                    modifiers: ["(oInt+oProf)-(Dex+Prof)", ""],
                 }],
                 traits: [{
                     name: "Echolocation",
@@ -23483,11 +23494,12 @@ AddSubClass("necromancer","blood ascendant",{
                 condition_immunities: "charmed, frightened, grappled, paralyzed, petrified, prone, restrained, stunned",
                 attacks: [{
                     name: "Bite",
-                    ability: 0,
+                    ability: 2,
                     damage: [2,6, "piercing"],
                     range: "Melee",
+                    abilitytodamage : true,
                     description: "reduce damage die to 1d6 if the swarm has less than half its max hit points",
-                    modifiers: ["oInt+oProf-Prof", "oInt"],
+                    modifiers: ["(oInt+oProf)-(Dex+Prof)", ""],
                 }],
                 traits: [{
                     name: "Keen Smell",
@@ -24139,7 +24151,7 @@ AddSubClass("necromancer","reanimator",{
             minlevel: 3,
             source: ["VSoS", 138],
             description: desc([
-                "I spend 10 min installing monsterous grafts on one of my non-incorporeal thralls. My thralls",
+                "I spend 10 min installing a monsterous graft on one of my non-incorporeal thralls. My thralls",
                 "don't lose hp when I install/remove grafts, & they don't need to recover from attachment.",
             ]),
 			choices : ["Amphibious Adaptation (Donor: has Amphibious trait)", 
@@ -24234,7 +24246,9 @@ AddSubClass("necromancer","reanimator",{
 						if (!/undead thrall/i.test(oCrea.companion)) return;         
 						if (bAdd) { 
 							AddWeapon("Bestial Weapon: Claws", "", prefix);
-                            CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+                            if(GetFeatureChoice('classes', 'necromancer', 'subclassfeature3.1', true).indexOf("oversized arms (donor: giant)") !== -1) {
+                                CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+                            }
 						}
 						else {
 							for (i = 1; i < 3; ++i){
@@ -24257,7 +24271,9 @@ AddSubClass("necromancer","reanimator",{
 						if (!/undead thrall/i.test(oCrea.companion)) return;           
 						if (bAdd) { 
 							AddWeapon("Bestial Weapon: Teeth", "", prefix); 
-                            CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+                            if(GetFeatureChoice('classes', 'necromancer', 'subclassfeature3.1', true).indexOf("oversized arms (donor: giant)") !== -1) {
+                                CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+                            }
                         }
 						else {
 							for (i = 1; i < 3; ++i){
@@ -24320,7 +24336,9 @@ AddSubClass("necromancer","reanimator",{
 					if (!/undead thrall/i.test(oCrea.companion)) return;             
 					if (bAdd) { 
 						AddWeapon("Draconis Fundamentum", "", prefix); 
-                        CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+                        if(GetFeatureChoice('classes', 'necromancer', 'subclassfeature3.1', true).indexOf("oversized arms (donor: giant)") !== -1) {
+                            CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+                        }
 					}
 					else {
 						for (i = 1; i < 3; ++i){
@@ -24447,7 +24465,9 @@ AddSubClass("necromancer","reanimator",{
 						if (!/undead thrall/i.test(oCrea.companion)) return;           
 						if (bAdd) { 
 							AddWeapon("Horns", "", prefix);
-							CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+                            if(GetFeatureChoice('classes', 'necromancer', 'subclassfeature3.1', true).indexOf("oversized arms (donor: giant)") !== -1) {
+                                CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+                            }
 						}
 						else {
 							for (i = 1; i < 3; ++i){
@@ -24530,7 +24550,9 @@ AddSubClass("necromancer","reanimator",{
 						if (bAdd) { 
 							AddWeapon("Prehensile Tail", "", prefix);
 							AddString(prefix + "Comp.Use.Features", "\n\u25C6 Prehensile Tail: The undead thrall's tail can hold and manipulate objects, but cannot use weapons/shields");
-                            CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+                            if(GetFeatureChoice('classes', 'necromancer', 'subclassfeature3.1', true).indexOf("oversized arms (donor: giant)") !== -1) {
+                                CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+                            }
 						}
 						else {
 							for (i = 1; i < 3; ++i){
@@ -24752,6 +24774,562 @@ AddSubClass("necromancer","reanimator",{
                 note: desc(["I have advantage on saves against spells and other magical effects."]),
                 page3notes: true
             }],
+			choices : ["Amphibious Adaptation (Donor: has Amphibious trait)", 
+							"Arcane Synapses (Donor: has Spellcasting/Innate Spellcasting)", 
+							"Beast's Hide (Donor: Large or larger Beast)", 
+							"Bestial Weapons (Arms) (Donor: Bst/Drgn/Mons with Claw attack)", 
+							"Bestial Weapons (Head) (Donor: Bst/Drgn/Mons with Bite attack)", 
+							"Charging Hooves (Donor: has Charge trait or Gore/Hooves attack)", 
+							"Climbing Apparatus (Donor: Bst/Humn/Mons with climb speed)", 
+							"Darkvision (Donor: has Darkvision)", 
+							"Doppel-Blooded (Donor: has shapechanger tag)", 
+							"Draconis Fundamentum (Donor: Drgn/Humn/Mons with a Breath Weapon)", 
+							"Dragon's Hide (Donor: Large or larger Dragon)", 
+							"Energetic Suture (Acid) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to acid damage)",
+							"Energetic Suture (Cold) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to cold damage)",
+							"Energetic Suture (Fire) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to fire damage)",
+							"Energetic Suture (Lightning) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to lightning damage)",
+							"Energetic Suture (Poison) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to poison damage)",
+							"Energetic Suture (Thunder) (Donor: Clst/Drgn/Elem/Fey/Fnd with imm/res to thunder damage)",    
+							"Fiend's Hide (Donor: Medium or larger Fiend)", 
+							"Heart of Steel (Donor: Construct)", 
+							"Horns (Donor: has Gore/Horns/Ram/Tusk attack)", 
+							"Indiscernible Anatomy (Donor: Medium or larger Aberration)", 
+							"Leaping Legs (Donor: has the Pounce/Standing Leap trait)", 
+							"Olfactory Implants (Donor: has Keen Smell/Keen Hearing and Smell trait)", 
+							"Oversized Arms (Donor: Giant)", 
+							"Prehensile Tail (Donor: has a Tail attack)", 
+							"Regenerating Marrow (Donor: has the Regeneration trait)", 
+							"Replacement (Donor: any creature)", 
+							"Stench (Donor: has the Stench trait)", 
+							"Tentacles (Donor: has a Tentacles/Tendrils attack)", 
+							"Venom Sac (Donor: has a natural weapon/trait that deals poison/poisoned condition)", 
+							"Voice Box (Donor: has the Mimicry trait)", 
+							"Webspinner Apparatus (Donor: has a Web action)"],
+            times : 1,
+			"amphibious adaptation (donor: has amphibious trait)" : {
+				name: "Amphibious Adaptation",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "\n   I can breathe both air and water. I gain a swim speed equal to my walking speed.",
+				speed : {
+					swim : { spd : "walk", enc : "walk" }
+				}
+			},
+			"arcane synapses (donor: has spellcasting/innate spellcasting)" : {
+				name: "Arcane Synapses",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "\n   I learn 1 wizard cantrip of my choice. Int is my spellcasting ability for this cantrip."+
+								"\n   I can harvest a second creature to learn 1 more wizard cantrip.",
+				spellcastingBonus: [{
+					name: "Arcane Synapses",
+					firstCol: "atwill",
+					times: levels.map(function(n) {return n < 2 ? 0 : 1; }),
+					spellcastingAbility: 4,
+					"class": ["wizard"],
+					level: [0,0],
+				}]
+			},
+			"beast's hide (donor: large or larger beast)" : {
+				name: "Beast's Hide",
+				source: ["VSoS", 370],
+				submenu: "[External Grafts]",
+				description: "\n   My AC is 13 + Dex mod, if higher than the armor I am wearing. Shields may still apply.",
+				armorAdd: "Beast's Hide",
+				armorOptions: [{
+					name : "Beast's Hide",
+					source: ["VSoS", 370],
+					regExpSearch: /\bbeast's hide\b/i,
+					ac: "13",
+					selectNow : true
+				}]
+			},
+			"bestial weapons (arms) (donor: bst/drgn/mons with claw attack)" : {
+				name: "Bestial Weapons (Arms)",
+				source: ["VSoS", 370],
+				submenu: "[Arms Grafts]",
+				description: desc("I gain claws I can use to make unarmed strikes: Finesse, 1d6+Str/Dex slashing damage."),
+				weaponOptions: [{
+					name: "Claws",
+					source: ["VSoS", 370],
+					regExpSearch: /\bclaws\b/i,
+					type: "Natural",
+					ability: 1,
+					abilitytodamage: true,
+					damage: [1, 6, "slashing"],
+					range: "Melee",
+					description: "Finesse",
+					list: "melee",
+					selectNow : true
+				}]
+			},
+			"bestial weapons (head) (donor: bst/drgn/mons with bite attack)" : {
+				name: "Bestial Weapons (Head)",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: "\n   I gain teeth I can use to make unarmed strikes: Finesse, 1d6+Str/Dex piercing damage.",
+				weaponOptions: [{
+					name: "Teest",
+					source: ["VSoS", 370],
+					regExpSearch: /\bteeth\b/i,
+					type: "Natural",
+					ability: 1,
+					abilitytodamage: true,
+					damage: [1, 6, "slashing"],
+					range: "Melee",
+					description: "Finesse",
+					list: "melee",
+					selectNow : true
+				}]
+			},
+			"charging hooves (donor: has charge trait or gore/hooves attack)" : {
+				name: "Charging Hooves",
+				source: ["VSoS", 370],
+				submenu: "[Legs Grafts]",
+				description: "\n   Once on each of my turns, if I move 15 ft in straight line, I can move +10 ft in that direction.",
+			},
+			"climbing apparatus (donor: bst/humn/mons with climb speed)" : {
+				name: "Climbing Apparatus",
+				source: ["VSoS", 370],
+				submenu: "[Legs Grafts]",
+				description: "\n    I gain a climb speed equal to my walking speed.",
+				speed : {
+					climb : { spd : "walk", enc : "walk" }
+				}
+			},
+			"darkvision (donor: has darkvision)" : {
+				name: "Darkvision",
+				source: ["VSoS", 370],
+				submenu: "[Head Grafts]",
+				description: " I gain 60 ft darkvision.",
+				vision: [["Darkvision", 60]]
+			},
+			"doppel-blooded (donor: has shapechanger tag)" : {
+				name: "Doppel-Blooded",
+				source: ["VSoS", 370],
+				submenu: "[Internal Grafts]",
+				additional: "1 x long rest",
+				description: "\n   I can transform my appearance for 1 hr. I can change my height, weight, face, voice, "+
+								"\n   hair, & race. I cannot become a different size, and my basic shape remains.",
+				extraLimitedFeatures: [{
+					name: "Shape Change",
+					usages: 1,
+					recovery: "long rest",
+				}]
+			},
+			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)" : {
+				name: "Draconis Fundamentum",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n   As an action, each creature in a 15 ft cone makes a Dex save against 8+Con+Prof."+
+								"\n   Each creature takes (Prof)d6 damage or half on save, same damage type as donor's.",
+				weaponOptions: [{
+					name: "Draconis Fundamentum",
+					source: ["VSoS", 371],
+					regExpSearch: /\bdraconis fundamentum\b/i,
+					type: "Natural",
+					ability: 3,
+					abilitytodamage: false,
+					damage: [1, 6, ""],
+					range: "15 ft cone",
+					description: "\u00BD on Dex save",
+					dc: true
+				}],
+				calcChanges: {
+					atkAdd : [function (fields, v) {
+						if (/\bdraconis fundamentum\b/i.test(v.WeaponTextName)){
+							fields.Damage_Die = How("Proficiency Bonus") + "d6";
+						}
+					},
+					"My Draconis Fundamentum attack deals 1d6 damage for each point of my proficiency bonus."
+				]},
+				action: ["action", "Draconis Fundamentum"],
+				extraLimitedFeatures: {
+					name: "Draconis Fundamentum",
+					usages: 1,
+					recovery: "short rest",
+				}
+			},
+			"dragon's hide (donor: large or larger dragon)" : {
+				name: "Dragon's Hide",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "\n   My AC is 17, if higher than the armor I am wearing. Shields may still apply."+
+							 "\n   I gain resistance to acid/cold/fire/lightning/poison damage if the"+
+							 "\n   donor was immune to it. I only gain resistance if I am proficient with"+
+							 "\n   heavy armor.",
+				armorOptions: [{
+					name : "Dragon's Hide",
+					source: ["VSoS", 31],
+					regExpSearch: /\bdragon's hide\b/i,
+					dex: -10,
+					ac: "17",
+					selectNow : true
+				}]
+			},
+			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to acid damage.",
+				dmgres: ["Acid"],                    
+			},
+			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to cold damage.",
+				dmgres: ["Cold"],                    
+			},
+			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to fire damage.",
+				dmgres: ["Fire"],                    
+			},
+			"energetic suture (lightning) (donor: clst/drgn/elem/fey/fnd with imm/res to lightning damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to lightning damage.",
+				dmgres: ["Lightning"],                    
+			},
+			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to poison damage.",
+				dmgres: ["Poison"],                    
+			},
+			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)" : {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to thunder damage.",
+				dmgres: ["Thunder"],                    
+			},
+			"fiend's hide (donor: medium or larger fiend)" : {
+				name: "Fiend's Hide",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "\n   My AC is 15 + Dex (max 2) if higher than the armor I am wearing. Shields may still apply.",
+				armorOptions: [{
+					name : "Fiend's Hide",
+					source: ["VSoS", 31],
+					regExpSearch: /\bfiend's hide\b/i,
+					dex: 2,
+					ac: "15",
+					selectNow : true
+				}]
+			},
+			"heart of steel (donor: construct)" : {
+				name: "Heart of Steel",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				description: "\n    I may ignore the effects of 1 level of exhaustion & finish a long rest in 4 hours.",
+				savetxt: {
+					immune: ["1st level exhaustion"]
+				}
+			},
+			"horns (donor: has gore/horns/ram/tusk attack)" : {
+				name: "Horns",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "\n   I gain horns I can use to make unarmed strikes: 1d6+Str damage of same type as donor."+
+								"\n   If I move in a straight line for 10 ft immediately before making a horn attack, I can force "+
+								"\n   the target into a Strength contest to knock them prone.",
+				weaponOptions: [{
+					name: "Horns",
+					source: ["VSoS", 372],
+					regExpSearch: /\bHorns\b/i,
+					type: "Natural",
+					ability: 1,
+					abilitytodamage: true,
+					damage: [1, 6, "Bludgeoning"],
+					range: "Melee",
+					selectNow : true
+				}],             
+			},
+			"indiscernible anatomy (donor: medium or larger aberration)" : {
+				name: "Indiscernible Anatomy",
+				source: ["VSoS", 372],
+				submenu: "[Internal Grafts]",
+				description: "\n    Critical hits against me become normal hits.",
+			},
+			"leaping legs (donor: has the pounce/standing leap trait)" : {
+				name: "Leaping Legs",
+				source: ["VSoS", 372],
+				submenu: "[Legs Grafts]",
+				description: "\n    My jump distance doubles. I can jump my full distance without a running start.",
+			},
+			"olfactory implants (donor: has keen smell/keen hearing and smell trait)" : {
+				name: "Olfactory Implants",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "\n   I gain advantage on Wisdom (Perception) checks that rely on smell.",
+				vision : [["Keen Smell", 0]]
+			},
+			"oversized arms (donor: giant)" : {
+				name: "Oversized Arms",
+				source: ["VSoS", 372],
+				submenu: "[Arms Grafts]",
+				description: desc([
+					"+5 ft Melee reach, unless the weapon used has Reach. If Small, I can use heavy weapons",
+					"without penalty. I have adv. on Str checks and saves I make to maintain my grip on objects."
+				]),
+				savetxt: {
+					adv_vs: ["keeping grip on an object"]
+				},
+				calcChanges: {
+					atkAdd: [ 
+						function (fields, v) 	{
+							if(v.isMeleeWeapon && (/\d+\s?(ft|m)/i).test(fields.Range) && !/reach/i.test(fields.Description)) { // * Checks for "Melee (x ft)"
+								var rNum = fields.Range.match(/\d+\s?(ft|m)/i);
+								var unit = rNum[2];
+								var curRange = parseInt(rNum[1], 10);
+								fields.Range = fields.Range.replace(/\d+\s?(ft|m)/i, (curRange + 5) + " " + unit);
+							}
+							if(v.isMeleeWeapon && !(/\(\d+\s?(ft|m)\)/i).test(fields.Range) && !/reach/i.test(fields.Description)) {
+								fields.Range = "Melee (10 ft)";
+								fields.Description += (fields.Description ? "; " : "") + "Reach"
+							}
+						},
+						"My melee reach increases by 5 ft, unless the weapon I am using has Reach."
+					]
+				}
+			},
+			"prehensile tail (donor: has a tail attack)" : {
+				name: "Prehensile Tail",
+				source: ["VSoS", 372],
+				submenu: "[External Grafts]",
+				description: "\n   I gain a tail I can use to make unarmed strikes: Finesse, 1d6+Str/Dex bludgeoning damage."+
+								"\n   I can hold and manipulate objects with the tail, but it cannot use weapons/shields.",
+				weaponOptions: [{
+					name: "Tail",
+					source: ["VSoS", 372],
+					regExpSearch: /\btail\b/i,
+					type: "Natural",
+					ability: 1,
+					abilitytodamage: true,
+					damage: [1, 6, "Bludgeoning"],
+					range: "Melee",
+					description: "Finesse",
+					selectNow : true
+				}],    
+			},
+			"regenerating marrow (donor: has the regeneration trait)" : {
+				name: "Regenerating Marrow",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n    I can use a bonus action to regain hit points equal to 1d10 + Constitution modifier.",
+				action: ["bonus action", ""],
+				extraLimitedFeatures: [{
+					name: "Regenerating Marrow",
+					usages: 1,
+					recovery: "short rest"
+				}]
+			},
+			"replacement (donor: any creature)" : {
+				name: "Replacement",
+				source: ["VSoS", 373],
+				submenu: "[Any Grafts]",
+				description: desc("A replacement limb/organ functions identically. It takes up the most relevant body slot.")
+			},
+			"stench (donor: has the stench trait)" : {
+				name: "Stench",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n    As a bonus action, each creature within 10 ft of me must Con save, DC (8+Prof+Con)"+
+								"\n    or be poisoned until the end of their next turn.",
+				action: ["bonus action", ""],
+				extraLimitedFeatures: [{
+					name: "Stench",
+					usages: 1,
+					recovery: "short rest"
+				}]
+			},
+			"tentacles (donor: has a tentacles/tendrils attack)" : {
+				name: "Tentacles",
+				source: ["VSoS", 373],
+				submenu: "[Arms Grafts]",
+				description: desc([
+					"I gain a tentacle I can use to make unarmed strikes: Finesse, 10 ft, 1d6+Str/Dex bludgeoning.",
+					"When I hit with this attack, I may use my bonus action to attempt to grapple the target."
+				]),
+				weaponOptions: [{
+					name: "Tentacle",
+					source: ["VSoS", 373],
+					regExpSearch: /\btentacle\b/i,
+					type: "Natural",
+					ability: 1,
+					abilitytodamage: true,
+					damage: [1, 6, "Bludgeoning"],
+					range: "Melee (10 ft)",
+					description: "Finesse, Reach, on hit, may use bonus action to attempt a grapple on target",
+					selectNow : true
+				}],    
+			},
+			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)" : {
+				name: "Venom Sac",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n    As a bonus action, I can coat a weapon in basic poison. the save DC = 8+Prof+Con mod.",
+				action: ["bonus action", ""],
+				extraLimitedFeatures: [{
+					name: "Venom Sac",
+					usages: 1,
+					recovery: "short rest"
+				}]
+			},
+			"voice box (donor: has the mimicry trait)" : {
+				name: "Voice Box",
+				source: ["VSoS", 373],
+				submenu: "[Head Grafts]",
+				description: "\n   I can mimic any sound I have heard, including voices. Creatures can tell they are mimicries"+
+								"\n   if they succeed on an Insight check contested by my Deception check.",
+			},
+			"webspinner apparatus (donor: has a web action)" : {
+				name: "Webspinner Apparatus",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n    I can cast the web spell without using a spell slot or components: DC 8+Prof+Con mod.",
+				extraLimitedFeatures: [{
+					name: "Webspinner Apparatus",
+					usages: 1,
+					recovery: "short rest"
+				}],
+				spellcastingBonus : [{
+					spells: ["web"],
+					name: "Webspinner Apparatus",
+					selection: ["web"],
+					firstCol: "oncesr",
+					spellcastingAbility: 3,
+					allowUpCasting: false,
+				}]
+			}
+        }
+    }
+});
+
+// * Reaper necromancer subclass
+AddSubClass("necromancer","reaper",{
+    regExpSearch: /\breaper\b/i,
+    subname: "Reaper",
+    source: ["VSoS", 139],
+    features: { 
+        "subclassfeature3": {
+            name: "Reaper Spells",
+            source: ["VSoS", 139],
+            minlevel: 3,
+            description: desc ([
+                "I learn additional spells, which do not count towards the number of spells I know."
+            ]),
+            spellcastingExtraApplyNonconform: true,
+            spellcastingExtra: ["false life", "inflict wounds", "invisibility", "silence", "fear", "speak with dead", "greater invisibility", "phantasmal killer", "mislead", "passwall"],
+        },
+        "subclassfeature3.1": {
+            name: "Charnel Veil",
+            source: ["VSoS", 139],
+            minlevel: 3,
+            description: desc([
+                "When I hit with Charnel Touch and expend 5 or more points, I become invisible until the start",
+                "of my next turn. This effect ends early if I move 15 feet or more."
+            ]),
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
+                            fields.Description += "; Veil (5 CT)";
+                            fields.Description_Tooltip += "Charnel Veil: When you hit with a Charnel Touch attack and expend 5 or more points, you become invisible until the start of your next turn. This effect ends early if you move 15 feet or more.";
+                        }
+                    }
+                ]
+            }
+        },
+        "subclassfeature6" : {
+            name: "Umbral Form",
+            source: ["VSoS", 139],
+            minlevel: 6,
+            description: desc([
+                "As an action, I become a shadow on a surface; my movement speed doubles, I gain a climb",
+                "speed equal to my move speed, I can move across difficult surfaces without an ability check,",
+                "and I can't jump or fly. As a shadow, attacks against me have disadv, and in darkness, I am",
+                "invisible to any creature that would need darkvision to see me in that darkness. I can't take",
+                "actions as a shadow. My equipment merges with me and has no effect until I leave the form. I",
+                "can leave the form as a bonus action or when I start my turn (no action required)."
+            ]),
+            action: [["action", "Enter Umbral Form"], ["bonus action", "Exit Umbral Form"]],
+        },
+        "subclassfeature10": {
+            name: "Wraith Flight",
+            source: ["VSoS", 140],
+            minlevel: 10,
+            description: desc(["Thrall fly speeds double, and while flying, opportunity attacks against them have disadv."]),
+            calcChanges: {
+                companionCallback: [
+                    function(prefix, oCrea, bAdd, sCompType) {
+                        if (sCompType !== "undead thrall" && !(/fly ?(\d+)/i).test(oCrea.speed)) return;
+                        if(bAdd && (/fly ?(\d+)/i).test(oCrea.speed)) {
+                            var spd = oCrea.speed.match(/fly ?(\d+)/i)
+                            var newSpd = parseInt(spd[1]) * 2;
+                            Value(prefix + "Comp.Use.Speed", What(prefix + "Comp.Use.Speed").replace(/fly ?(\d+)/i, "fly " + newSpd));
+                        }
+                        else Value(prefix + "Comp.Use.Speed", oCrea.speed);
+                    }
+                ]
+            }
+        },
+        "subclassfeature20" : {
+            name: "Lichdom: Grim Reaper",
+            source: ["VSoS", 140],
+            minlevel: 20,
+            description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
+            "deathtouch": {
+                name: "Death's Touch",
+                source: ["VSoS", 140],
+                description: desc([
+                    "When I use Charnel Touch and roll and 11 or higher on the attack roll, I hit the target,",
+                    "regardless of its AC."
+                ])
+            },
+            "fellflight": {
+                name: "Fell Flight",
+                source: ["VSoS", 140],
+                description: desc(["I gain a flying speed of 60 feet."])
+            },
+            "grimharvest": {
+                name: "Grim Harvest",
+                source: ["VSoS", 140],
+                description: desc([
+                    "When I kill a Humanoid using Charnel Touch, I animate them as a visage under my control,",
+                    "which counts as one of my thralls."
+                ])
+            },
+            autoSelectExtrachoices: [{
+                extrachoice: "deathtouch"
+            }, {
+                extrachoice: "fellflight"
+            }, {
+                extrachoice: "grimharvest"
+            }],
+            calcChanges: {
+                atkAdd: [
+                    function(fields, v){
+                        if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
+                            fields.Description += (fields.Description ? "; " : "" ) + "hit on >10; Grim Harvest";
+                            fields.Description_Tooltip += (fields.Description_Tooltip ? "\n" : "" ) + "Death's Touch: When you use your Charnel Touch against a creature you can see and roll an 11 or higher on the d20 for the attack roll, you hit the target, regardless of its AC.\nGrim Harvest: When you kill a Humanoid using Charnel Touch, you rip their soul from their body, which animates as a visage under your control, which counts as one of your thralls.";
+                        }
+                    }, "When I use my Charnel Touch against a creature I can see and roll an 11 or higher on the d20 for the attack roll, I hit the target, regardless of its AC. Additionally, When I kill a Humanoid using Charnel Touch, I rip their soul from their body, which animates as a visage under my control, which counts as one of my thralls."             
+                ]
+            },
+            speed: { fly: { spd: 60 } }
         }
     }
 });
@@ -24887,62 +25465,62 @@ CompanionList["undead thrall"] = {
         header : "Undead Thrall",
         attacks : [{
             name: "Slam",
-            ability: 0,
+            ability: 1,
             damage: [2, 8, "Bludgeoning"],
-            modifiers: ["oInt+oProf-Prof", "oInt"],
+            modifiers: ["(oInt+oProf)-(Prof+Str)", "oInt"],
             range: "Melee (5 ft)",
             abilitytodamage: false,
             description: "Counts as magical"
         }, {
             name: "Bestial Weapon: Claws",
-            ability: 0,
+            ability: 2,
             damage: [2, 6, "Slashing"],
             range: "Melee (5 ft)",
             abilitytodamage: false,
-            modifiers: ["oInt+oProf-Prof", "oInt"],
+            modifiers: ["(oInt+oProf)-(Prof+Dex)", "oInt"],
             description: "Counts as magical"
         }, {
             name: "Bestial Weapon: Teeth",
-            ability: 0,
+            ability: 2,
             damage: [2, 6, "Piercing"],
             range: "Melee (5 ft)",
             abilitytodamage: false,
-            modifiers: ["oInt+oProf-Prof", "oInt"],
+            modifiers: ["(oInt+oProf)-(Prof+Dex)", "oInt"],
             description: "Counts as magical"
         }, {
             name: "Draconis Fundamentum",
-            ability: 0,
+            ability: 2,
             damage: [6, 6, ""],
             range: "15 ft cone",
             abilitytodamage: false,
             dc: true,
-            modifiers: ["oInt+oProf-Prof", "oInt"],
+            modifiers: ["(oInt+oProf)-(Prof+Dex)", "oInt"],
             tooltip: "Each creature in a 15-foot cone must make a Dexterity saving throw (DC equals 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes 1d6 damage for each point of your proficiency bonus, or half as much damage on a successful one. The breath weapon's damage type is the same as the donor's breath weapon. Once you use this ability, you can't use it again until you finish a short or long rest.",
             description: "Dex save, save halves damage",
         }, {
             name: "Horns",
-            ability: 0,
+            ability: 1,
             damage: [2, 6, "Bludgeoning"],
             range: "Melee (5 ft)",
             abilitytodamage: false,
-            modifiers: ["oInt+oProf-Prof", "oInt"],
+            modifiers: ["(oInt+oProf)-(Prof+Str)", "oInt"],
             description: "Counts as magical; if moved 10 ft in a straight line before attacking, target makes contested Str check or knocked prone",
             tooltip: "Horns are a natural weapon that you can use to make unarmed strikes. If you move in a straight line for 10 feet immediately before hitting a creature with your horns, that creature must make a Strength check contested by your Strength check. If you succeed, the creature is knocked prone."
         }, {
             name: "Prehensile Tail",
-            ability: 0,
+            ability: 1,
             damage: [2, 6, "Bludgeoning"],
             range: "Melee (5 ft)",
             abilitytodamage: false,
-            modifiers: ["oInt+oProf-Prof", "oInt"],
+            modifiers: ["(oInt+oProf)-(Prof+Str)", "oInt"],
             description: "Counts as magical",
         },{
             name: "Tentacles",
-            ability: 0,
+            ability: 1,
             damage: [2, 6, "Bludgeoning"],
             range: "Melee (10 ft)",
             abilitytodamage: false,
-            modifiers: ["oInt+oProf-Prof", "oInt"],
+            modifiers: ["(oInt+oProf)-(Prof+Str)", "oInt"],
             description: "Finesse, Reach; Counts as magical; may use bonus action to attempt grapple",
         }]
     },
@@ -24998,7 +25576,7 @@ CompanionList["undead thrall"] = {
         }
     },
     attributesChange : function(sCrea, objCrea) {
-        if (objCrea.type.toLowerCase() != "undead") {
+        if (objCrea.type.toLowerCase().indexOf("undead") !== -1) {
 			objCrea.type = "Undead";
 			objCrea.subtype = "";
 		}
@@ -26197,7 +26775,7 @@ CreatureList["bonebeast"] = {
     }, {
         name: "Pack Tactics",
         description: "The bonebeast has advantage on attack rolls agains a creature if at least one of the bonebeast's allies is within 5 feet of the creature and the ally isn't incapacitated."
-    }],
+    }],  
 }
 
 // * Gorger undead thrall
@@ -26230,7 +26808,7 @@ CreatureList["gorger"] = {
     traits: [{
         name: "Echolocation",
         description: "The gorger can't use its blindsight while deafened.",
-    }]
+    }],  
 }
 
 // * Gravetouched Ghoul undead thrall
@@ -26263,7 +26841,7 @@ CreatureList["gravetouched ghoul"] = {
     traits: [{
         name: "Regeneration",
         description: "The ghoul regains 5 hit points at the start of its turn. If the ghoul takes fire or radiant damage, this trait doesn't function at the start of the ghoul's next turn. The ghoul dies only if it starts its turn with 0 hit points and doesn't regenerate.",
-    }]
+    }], 
 }
 
 // * skeleton undead thrall
@@ -26334,7 +26912,7 @@ CreatureList["spirit"] = {
     traits: [{
         name: "Incorporeal Movement",
         description: "The spirit can move through other creatures as if they were difficult terrain. The spirit takes 5 (1d10) force damage if it ends its turn inside an object.",
-    }]
+    }],
 }
 
 // * Visage undead thrall
@@ -26373,7 +26951,7 @@ CreatureList["visage"] = {
     }, {
         name: "Invisibility",
         description: "As an action, the visage can magically turn invisible until it attacks or until its concentration ends (as if concentrating on a spell). Any equipment the visage wears or carries is invisible with it."
-    }],
+    }]
 }
 
 // * Zombie undead thrall
@@ -26395,10 +26973,10 @@ CreatureList["zombie"] = {
     attacksAction: 1,
     attacks : [{
         name : "Slam",
-        ability: 0,
+        ability: 1,
         damage: [1, 6, "Bludgeoning"],
         range: "Melee",
-        modifiers: ["oInt+oProf-Prof", "oInt"],
+        modifiers: ["(oInt+oProf)-(Prof+Str)", ""],
     }],
     damage_immunities: "poison",
     condition_immunities: "poisoned",
@@ -26406,7 +26984,7 @@ CreatureList["zombie"] = {
     traits: [{
         name: "Undead Fortitude",
         description: "If damage reduces the zombie to 0 hit points, it must make a Constitution saving throw with a DC of 5 + the damage taken, unless the damage is radiant or from a critical hit. On a success, the zombie drops to 1 hit point instead.",
-    }],
+    }]
 }
 
 // ! Magic Items
