@@ -23173,49 +23173,7 @@ ClassList["necromancer"] = {
                     description: "Turn Small/Medium humanoid corpses into 1+2/SL Skeletons or Zombies, following Thralls rules",
                     changes: "I can cast this spell as an action instead of over the course of 1 minute. undead I create using this spell are treated as my thralls and use the appropriate Undead Thrall stat block."
                 }
-            },
-            toNotesPage: [{
-                name: "Animate Thralls",
-                note: desc([
-                    "I can spend 10 uninterrupted minutes performing a ritual with a spellcasting",
-                    "focus or component pouch to raise the remains of 1 or more Small or Medium",
-                    "humanoids within 30 feet of me into Undead thralls. I maintain control over my",
-                    "thralls indefinitely. Create thralls through the companion pages."
-                ])
-            }, {
-                name: "Commanding Thralls",
-                note: desc ([
-                    "I can mentally control all my thralls while I am conscious without using any",
-                    "actions. If I am unconscious, my thralls will move to protect my body from harm",
-                    "but will not attack. In combat, my thralls take their turns immediately before or",
-                    "after my turn (my choice). All my thralls collectively share 1 reaction and bonus",
-                    "action, which a single thrall can use each round. Thralls use my spell attack",
-                    "modifier to make their attacks."
-                ]),
-                amendTo: "Animate Thralls"
-            }, {
-                name: "Maximum Thralls",
-                note: desc ([
-                    "As I gain levels in this class, my Thrall CR Total increases. The combined CR of all",
-                    "my thralls cannot exceed my Thrall CR Total, and the total number of thralls",
-                    "under my control cannot exceed my proficiency bonus. At any time, I can sever",
-                    "my connection to 1 or more thralls, releasing them. Corporeal undead crumple",
-                    "into a heap and incorporeal undead flee to the Ethereal Plane.",
-                ]),
-                amendTo: "Commanding Thralls"
-            }, {
-                name: "Animate Dead",
-                note: desc ([
-                    "If I know the Animate Dead spell, I can cast it as an action instead of a minute.",
-                    "All Undead I create using spells or other magic count as my thralls and can be",
-                    "commanded as such. If my new thralls granted to me by a spell cause me to",
-                    "exceed my Thrall CR Total or total number of thralls, I can immediately sever my",
-                    "connection to any number of my existing thralls to stay within my limits. My",
-                    "thralls can never command or create other Undead. I cannot reanimate undead",
-                    "that have been reduced to 0 hit points. "
-                ]),
-                amendTo: "Maximum Thralls"
-            }]
+            }
         },
         "bag of bones" : {
             name: "Bag of Bones",
@@ -24176,7 +24134,6 @@ AddSubClass("necromancer","reanimator",{
                 {type: "skill", field: "Medicine", mod: "Int-Wis", text: "I can use my Intelligence modifier instead of Wisdom when making Medicine checks."},       
             ]
         },
-        // todo add ability to graft somehow?
         "subclassfeature3.1" : {
             name: "Mad Science",
             minlevel: 3,
@@ -24185,8 +24142,7 @@ AddSubClass("necromancer","reanimator",{
                 "I spend 10 min installing monsterous grafts on one of my non-incorporeal thralls. My thralls",
                 "don't lose hp when I install/remove grafts, & they don't need to recover from attachment.",
             ]),
-            extraname: "Undead Thralls Monsterous Grafts",
-			extrachoices: ["Amphibious Adaptation (Donor: has Amphibious trait)", 
+			choices : ["Amphibious Adaptation (Donor: has Amphibious trait)", 
 			"Arcane Synapses (Donor: has Spellcasting/Innate Spellcasting)", 
 			"Beast's Hide (Donor: Large or larger Beast)", 
 			"Bestial Weapons (Arms) (Donor: Bst/Drgn/Mons with Claw attack)", 
@@ -24216,7 +24172,7 @@ AddSubClass("necromancer","reanimator",{
 			"Venom Sac (Donor: has a natural weapon/trait that deals poison/poisoned condition)", 
 			"Voice Box (Donor: has the Mimicry trait)", 
 			"Webspinner Apparatus (Donor: has a Web action)"],
-			extraTimes: 1,
+			times : 1,
 			"amphibious adaptation (donor: has amphibious trait)" : {
 				name: "Amphibious Adaptation",
 				source: ["VSoS", 370],
@@ -24278,8 +24234,8 @@ AddSubClass("necromancer","reanimator",{
 						if (!/undead thrall/i.test(oCrea.companion)) return;         
 						if (bAdd) { 
 							AddWeapon("Bestial Weapon: Claws", "", prefix);
-							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
-						 }
+                            CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+						}
 						else {
 							for (i = 1; i < 3; ++i){
 								if (/bestial weapon: claws/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
@@ -24301,8 +24257,8 @@ AddSubClass("necromancer","reanimator",{
 						if (!/undead thrall/i.test(oCrea.companion)) return;           
 						if (bAdd) { 
 							AddWeapon("Bestial Weapon: Teeth", "", prefix); 
-							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
-						}
+                            CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
+                        }
 						else {
 							for (i = 1; i < 3; ++i){
 								if (/bestial weapon: teeth/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
@@ -24364,7 +24320,7 @@ AddSubClass("necromancer","reanimator",{
 					if (!/undead thrall/i.test(oCrea.companion)) return;             
 					if (bAdd) { 
 						AddWeapon("Draconis Fundamentum", "", prefix); 
-						ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+                        CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
 					}
 					else {
 						for (i = 1; i < 3; ++i){
@@ -24491,8 +24447,7 @@ AddSubClass("necromancer","reanimator",{
 						if (!/undead thrall/i.test(oCrea.companion)) return;           
 						if (bAdd) { 
 							AddWeapon("Horns", "", prefix);
-							var creatureOptions = ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions;
-							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+							CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
 						}
 						else {
 							for (i = 1; i < 3; ++i){
@@ -24553,10 +24508,10 @@ AddSubClass("necromancer","reanimator",{
 					creatureCallback: [function(prefix, oCrea,bAdd) {
 						if (!/undead thrall/i.test(oCrea.companion)) return;
 						if(bAdd) {
-							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd)
+							CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
 						}
 						if(!bAdd) {
-							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commonremoveeval(prefix, oCrea, bAdd)
+							CompanionList["undead thrall"].commonremoveeval(prefix, oCrea, bAdd);
 						}
 						var aFnc = bAdd ? AddString : RemoveString;
 						aFnc(prefix + "Comp.Use.Traits.", "\n\u25C6 Oversized Arms: The undead thrall's reach increases by 5 ft, unless the weapon used has Reach. It has advantage on saves made to maintain grip on objects.")
@@ -24575,7 +24530,7 @@ AddSubClass("necromancer","reanimator",{
 						if (bAdd) { 
 							AddWeapon("Prehensile Tail", "", prefix);
 							AddString(prefix + "Comp.Use.Features", "\n\u25C6 Prehensile Tail: The undead thrall's tail can hold and manipulate objects, but cannot use weapons/shields");
-							ClassSubList['alchemist-xenoalchemist'].features['subclassfeature18'].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
+                            CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
 						}
 						else {
 							for (i = 1; i < 3; ++i){
@@ -24780,7 +24735,7 @@ AddSubClass("necromancer","reanimator",{
             description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
             scoresOverride: [20,20,20,0,0,0],
             dmgres: [["Bludgeoning", "Bludg. (nonmagical)"], ["Piercing", "Pierc. (nonmagical)"], ["Slashing", "Slash. (nonmagical)"]],
-            savetxt: { adv_vs : ["magic"], },
+            savetxt: { adv_vs : ["spells", "magical effects"], },
             toNotesPage: [{
                 name: "Golem Form",
                 source: ["VSoS", 139],
@@ -24799,8 +24754,7 @@ AddSubClass("necromancer","reanimator",{
             }],
         }
     }
-}
-)
+});
 
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
@@ -24921,6 +24875,148 @@ CompanionList["mechanaut's apparatus"] = {
 			"pages. This is so that they may benefit from the automation of Masterwork weapon properties."
 		])
 	}]
+}
+
+// * Necromancer Undead Thrall Companion list
+CompanionList["undead thrall"] = {
+    name: "Undead Thrall",
+    nameMenu: "Undead Thrall (Necromancer class feature)",
+    nameTooltip: "the Thralls class feature",
+    source: ["VSoS", 130],
+    attributesAdd : {
+        header : "Undead Thrall",
+        attacks : [{
+            name: "Slam",
+            ability: 0,
+            damage: [2, 8, "Bludgeoning"],
+            modifiers: ["oInt+oProf-Prof", "oInt"],
+            range: "Melee (5 ft)",
+            abilitytodamage: false,
+            description: "Counts as magical"
+        }, {
+            name: "Bestial Weapon: Claws",
+            ability: 0,
+            damage: [2, 6, "Slashing"],
+            range: "Melee (5 ft)",
+            abilitytodamage: false,
+            modifiers: ["oInt+oProf-Prof", "oInt"],
+            description: "Counts as magical"
+        }, {
+            name: "Bestial Weapon: Teeth",
+            ability: 0,
+            damage: [2, 6, "Piercing"],
+            range: "Melee (5 ft)",
+            abilitytodamage: false,
+            modifiers: ["oInt+oProf-Prof", "oInt"],
+            description: "Counts as magical"
+        }, {
+            name: "Draconis Fundamentum",
+            ability: 0,
+            damage: [6, 6, ""],
+            range: "15 ft cone",
+            abilitytodamage: false,
+            dc: true,
+            modifiers: ["oInt+oProf-Prof", "oInt"],
+            tooltip: "Each creature in a 15-foot cone must make a Dexterity saving throw (DC equals 8 + your Constitution modifier + your proficiency bonus). On a failed save, the creature takes 1d6 damage for each point of your proficiency bonus, or half as much damage on a successful one. The breath weapon's damage type is the same as the donor's breath weapon. Once you use this ability, you can't use it again until you finish a short or long rest.",
+            description: "Dex save, save halves damage",
+        }, {
+            name: "Horns",
+            ability: 0,
+            damage: [2, 6, "Bludgeoning"],
+            range: "Melee (5 ft)",
+            abilitytodamage: false,
+            modifiers: ["oInt+oProf-Prof", "oInt"],
+            description: "Counts as magical; if moved 10 ft in a straight line before attacking, target makes contested Str check or knocked prone",
+            tooltip: "Horns are a natural weapon that you can use to make unarmed strikes. If you move in a straight line for 10 feet immediately before hitting a creature with your horns, that creature must make a Strength check contested by your Strength check. If you succeed, the creature is knocked prone."
+        }, {
+            name: "Prehensile Tail",
+            ability: 0,
+            damage: [2, 6, "Bludgeoning"],
+            range: "Melee (5 ft)",
+            abilitytodamage: false,
+            modifiers: ["oInt+oProf-Prof", "oInt"],
+            description: "Counts as magical",
+        },{
+            name: "Tentacles",
+            ability: 0,
+            damage: [2, 6, "Bludgeoning"],
+            range: "Melee (10 ft)",
+            abilitytodamage: false,
+            modifiers: ["oInt+oProf-Prof", "oInt"],
+            description: "Finesse, Reach; Counts as magical; may use bonus action to attempt grapple",
+        }]
+    },
+    commoneval : function(prefix, oCrea,bAdd) {
+        var aFnc = bAdd ? AddString : RemoveString;
+        for(var i = 1; i <= 3; i++) {
+            // * The base field name
+            var baseField = prefix + "Comp.Use.Attack." + i;
+
+            // * Range and Description as fields
+            var range = baseField + ".Range";
+            var description = baseField + ".Description";
+
+            // * Range and Description as strings
+            var strRange = What(range);
+            var strDescription = What(description);
+
+            if((/^\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange) && !(/reach/).test(strDescription)) {
+                var rNum = strRange.match(/\d+\s?(ft|m)/i);
+                var unit = rNum[1];
+                var curRange = parseInt(rNum[0], 10);
+
+                Value(range, strRange.replace(/\d+\s?(ft|m)/i, (curRange + 5) + " " + unit));
+                AddString(description, "Reach", "; ");
+            }
+            if(!(/^\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange) && !(/reach/).test(strDescription)) {
+                Value(range, "Melee (10 ft)");
+                AddString(description, "Reach", "; ");
+            }
+        }
+    },
+    commonremoveeval : function(prefix, oCrea,bAdd) {
+        for(var i = 1; i <= 3; i++){
+            // * The base field name
+            var baseField = prefix + "Comp.Use.Attack." + i;
+
+            // * Range and Description as fields
+            var range = baseField + ".Range";
+            var description = baseField + ".Description";
+
+            // * Range and Description as strings
+            var strRange = What(range);
+            var strDescription = What(description);
+
+            if((/\d+\s?(ft|m)/i).test(strRange) && (/melee/i).test(strRange) && !(/tentacles?/i).test(What(baseField + ".Weapon Selection"))) {
+                var rNum = strRange.match(/\d+\s?(ft|m)/i); 
+                var unit = rNum[1];
+                var curRange = parseInt(rNum[0], 10);
+
+                Value(range, strRange.replace(/\d+\s?(ft|m)/i, Math.max(curRange - 5, 5) + " " + unit));
+                Value(description, strDescription.replace(/(,|;)? ?reach/i, ''));
+            }
+        }
+    },
+    attributesChange : function(sCrea, objCrea) {
+        if (objCrea.type.toLowerCase() != "undead") {
+			objCrea.type = "Undead";
+			objCrea.subtype = "";
+		}
+    },
+    eval: function(prefix, lvl){
+        AddString(prefix + 'Cnote.Left', "\u25C6 Animate Thralls: I can spend 10 uninterrupted minutes performing a ritual with a spellcasting focus or component pouch to raise the remains of 1 or more Small or Medium humanoids within 30 feet of me into Undead thralls. I maintain control over my thralls indefinitely. Create thralls through the companion pages.");
+        AddString(prefix + 'Cnote.Left', "\n\u25C6 Commanding Thralls: I can mentally control all my thralls while I am conscious without using any actions. If I am unconscious, my thralls will move to protect my body from harm but will not attack. In combat, my thralls take their turns immediately before or after my turn (my choice). All my thralls collectively share 1 reaction and bonus action, which a single thrall can use each round. Thralls use my spell attack modifier to make their attacks.");
+        AddString(prefix + 'Cnote.Left', "\n\u25C6 Maximum Thralls : As I gain levels in this class, my Thrall CR Total increases. The combined CR of all my thralls cannot exceed my Thrall CR Total, and the total number of thralls under my control cannot exceed my proficiency bonus. At any time, I can sever my connection to 1 or more thralls, releasing them. Corporeal undead crumple into a heap and incorporeal undead flee to the Ethereal Plane.");
+        AddString(prefix + 'Cnote.Left', "\n\u25C6 Animate Dead: If I know the Animate Dead spell, I can cast it as an action instead of a minute. All Undead I create using spells or other magic count as my thralls and can be commanded as such. If my new thralls granted to me by a spell cause me to exceed my Thrall CR Total or total number of thralls, I can immediately sever my connection to any number of my existing thralls to stay within my limits. My thralls can never command or create other Undead. I cannot reanimate undead that have been reduced to 0 hit points.");
+        Value(prefix + "Comp.Use.Attack.2.Weapon Selection", "");
+        Value(prefix + "Comp.Use.Attack.3.Weapon Selection", "");
+    },
+    removeeval: function(prefix, lvl){
+        RemoveString(prefix + 'Cnote.Left', "\u25C6 Animatee Thralls: I can spend 10 uninterrupted minutes performing a ritual with a spellcasting focus or component pouch to raise the remains of 1 or more Small or Medium humanoids within 30 feet of me into Undead thralls. I maintain control over my thralls indefinitely. Create thralls through the companion pages.");
+        RemoveString(prefix + 'Cnote.Left', "\n\u25C6 Commanding Thralls: I can mentally control all my thralls while I am conscious without using any actions. If I am unconscious, my thralls will move to protect my body from harm but will not attack. In combat, my thralls take their turns immediately before or after my turn (my choice). All my thralls collectively share 1 reaction and bonus action, which a single thrall can use each round. Thralls use my spell attack modifier to make their attacks.");
+        RemoveString(prefix + 'Cnote.Left', "\n\u25C6 Maximum Thralls : As I gain levels in this class, my Thrall CR Total increases. The combined CR of all my thralls cannot exceed my Thrall CR Total, and the total number of thralls under my control cannot exceed my proficiency bonus. At any time, I can sever my connection to 1 or more thralls, releasing them. Corporeal undead crumple into a heap and incorporeal undead flee to the Ethereal Plane.");
+        RemoveString(prefix + 'Cnote.Left', "\n\u25C6 Animate Dead: If I know the Animate Dead spell, I can cast it as an action instead of a minute. All Undead I create using spells or other magic count as my thralls and can be commanded as such. If my new thralls granted to me by a spell cause me to exceed my Thrall CR Total or total number of thralls, I can immediately sever my connection to any number of my existing thralls to stay within my limits. My thralls can never command or create other Undead. I cannot reanimate undead that have been reduced to 0 hit points.");
+    }
 }
 	 
 // * Abbot Captain cohort
@@ -26066,33 +26162,6 @@ CreatureList["undead"] = {
 			if (oldDie == "") Value(atkFld + ".Description",  What(atkFld + ".Description") + die);
 			else Value(atkFld + ".Description", What(atkFld + ".Description").replace(oldDie, die));
 	}
-}
-
-// * Necromancer Undead Thrall Companion list
-CompanionList["undead thrall"] = {
-    name: "Undead Thrall",
-    nameMenu: "Undead Thrall (Necromancer class feature)",
-    nameTooltip: "the Thralls class feature",
-    source: ["VSoS", 130],
-    notes: [{
-        name: "Thrall",
-        description: desc([
-            "Control of this thrall is maintained by its necromancer indefinitely. The thrall takes its turn immediately",
-            "before or after its necromancer's turn, taking actions their necromancer chooses. If the thrall's necromancer",
-            "is unconscious, the thrall moves to protect them, but does not attack. Thralls share 1 bonus action and",
-            "reaction, to be used by a single thrall once per round. Thralls use their necromancer's spell attack modifier",
-            "for their attacks. The thrall's necromancer can sever their connection to the thrall, causing it to crumple into",
-            "a heap if corporeal, or flee to the Ethereal Plane if incorporeal."
-        ]),
-    }, {
-        name: "Many Thralls",
-        description: desc([
-            "When the necromancer has 3 or more of the same type of thrall under its command, instead of rolling an",
-            "attack roll for each attacking thrall of the same type, it may roll a single attack against a single target. If this",
-            "attack hits, all thralls of the same type are treated as having hit; if it misses, all thralls of the same type",
-            "are treated as having missed."
-        ])
-    }]
 }
 
 // * Bonebeast undead thrall
