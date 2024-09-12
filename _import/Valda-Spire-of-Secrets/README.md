@@ -33,13 +33,14 @@ Everything up to "Mad Bomber" has been added and updated to v13.2.0 for MPMB's S
   - Removed `weaponsAdd` from "Underbarrel Grenade Launcher"
 
 ### Added
-  - Alchemist Class and Subclasses Finished (written by seaworld)
-  - Captain Class and Subclasses Finished (written by seaworld)
-  - Craftsman Class and Subclasses Finished (originally written by aelartheelfrogue, updated by seaworld)
-  - Gunslinger Class and Subclasses (written by seaworld)
-
+  - Alchemist Class and Subclasses Finished (written by seaw0rld)
+  - Captain Class and Subclasses Finished (written by seaw0rld)
+  - Craftsman Class and Subclasses Finished (originally written by aelartheelfrogue, updated by seaw0rld)
+  - Gunslinger Class and Subclasses (written by seaw0rld)
+  - Necromancer Class and Subclasses (written by seaw0rld)
 ### WIP: 
-  - Necromancer Class and Subclasses
+  - Investigator Class and Subclasses (seaw0rld)
+  - Martyr Class and Subclasses (trackatnite)
 
 ### TODO: 
   - Add the rest of the classes and update
