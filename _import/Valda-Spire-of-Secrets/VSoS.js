@@ -22385,7 +22385,7 @@ AddSubClass("gunslinger","gun tank",{
             ]),
             armorProfs: [true, true, true, false],
             calcChanges: {
-                hp: function (totalHD, HDObj, prefix){
+                hp: function (totalHD, HDobj, prefix){
                     if (classes.known.gunslinger) {
                         return [classes.known.gunslinger.level, "Tough As Nails"];
                     }
@@ -23965,7 +23965,7 @@ AddSubClass("necromancer","pharaoh",{
                     function(fields, v){
                         if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
                             fields.Description += (fields.Description ? "; " : "") + "Mummy Rot (20 CT)";
-                            fields.Description_Tooltip = "Mummy Rot: When you hit with a Charnel Touch attack and expend 20 or more points, the target must succeed on a Constitution saving throw against your spell save DC or be cursed with mummy rot. The cursed target can’t regain hit points, and its hit point maximum decreases by 3d6 for every 24 hours that elapse. If the curse reduces the target’s hit point maximum to 0, the target dies, and its body turns to dust. The curse lasts until removed by the remove curse spell or other magic."
+                            fields.Description_Tooltip = "Mummy Rot: When you hit with a Charnel Touch attack and expend 20 or more points, the target must succeed on a Constitution saving throw against your spell save DC or be cursed with mummy rot. The cursed target can't regain hit points, and its hit point maximum decreases by 3d6 for every 24 hours that elapse. If the curse reduces the target's hit point maximum to 0, the target dies, and its body turns to dust. The curse lasts until removed by the remove curse spell or other magic."
                         }
                     }, "When I hit with a Charnel Touch attack and expend 20 or more points, the target must succeed on a Constitution saving throw against my spell save DC or be cursed with mummy rot."
                 ]
@@ -24100,7 +24100,7 @@ AddSubClass("necromancer","plague lord",{
                     function (fields, v){
                         if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
                             fields.Description += (fields.Description ? "; " : "") + "Curse (25 CT)";
-                            fields.Description_Tooltip += "\nMaster of Disease: When you use your Charnel Toxin feature and expend 25 or more points, the creature is poisoned and cursed for up to 1 minute on a failed save. Choose two of the following effects which afflict the target while it is cursed:\n• Choose one ability score. The target has disadvantage on ability checks and saving throws made with that ability score.\n• The target can only see out to a radius of 10 feet.\n• The target falls prone at the end of each of its turns.\n• The target loses an extra 1d6 hit points whenever it takes damage.\n• The target can speak only in a babblingnonsense language and can’t perform the verbal components of spells.\nAt the end of each of its turns, the target makes a Constitution saving throw against your spell save DC, ending the curse and the poisoned condition on a success.";
+                            fields.Description_Tooltip += "\nMaster of Disease: When you use your Charnel Toxin feature and expend 25 or more points, the creature is poisoned and cursed for up to 1 minute on a failed save. Choose two of the following effects which afflict the target while it is cursed:\n• Choose one ability score. The target has disadvantage on ability checks and saving throws made with that ability score.\n• The target can only see out to a radius of 10 feet.\n• The target falls prone at the end of each of its turns.\n• The target loses an extra 1d6 hit points whenever it takes damage.\n• The target can speak only in a babblingnonsense language and can't perform the verbal components of spells.\nAt the end of each of its turns, the target makes a Constitution saving throw against your spell save DC, ending the curse and the poisoned condition on a success.";
                         }
                     }, "When I use my Charnel Toxin feature and expend 25 or more points, the target is poisoned and cursed with two effects of my choice (on the third page) for up to 1 minute on a failed save."
                 ]
@@ -25333,6 +25333,266 @@ AddSubClass("necromancer","reaper",{
         }
     }
 });
+
+// * Warden class
+ClassList["warden"] = {
+	regExpSearch : /warden/i,
+	name : "Warden",
+	source : ["VSoS", 145],
+	primaryAbility : "Constitution and Strength",
+	improvements : [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4],
+	die : 10,
+	saves : ["Str", "Con"],
+    skillstxt : {
+		primary : "Choose two from Animal Handling, Athletics, Nature, Perception, and Survival"
+	},
+	armorProfs : {
+		primary : [true, true, false, true],
+		secondary : [true, true, false, true]
+    },
+	weaponProfs : {
+		primary : [true, true],
+		secondary : [true, true]
+    },
+	equipment : "Warden starting equipment:" 
+    + "\n \u2022 A shield and any martial weapon;" 
+    + "\n \u2022 A chain shirt, leather armor and a spear, or chain mail (if proficient);" 
+    + "\n \u2022 Two light hammers or any simple melee weapon;" 
+    + "\n \u2022 A dungeoneer's pack or an explorer's pack;"
+    + "\n\nAlternatively, choose 5d4 \xD7 10 gp worth of starting equipment instead of both the class' and the background's starting equipment.",
+	subclasses : ["Champion's Call", []],
+	attacks : [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+	abilitySave : 3,
+	features : {
+		"sentinel's stand" : {
+			name : "Sentinel's Stand",
+			source : ["VSoS", 146],
+			minlevel : 1,
+			description :  desc([
+				"Wardens are towers that cannot easily be felled. Use the \"Choose Features\" button above to select an option."
+			]),
+			extraname : "Sentinel's Stand options",
+			choices : ["Armor Proficiency", "Primal Toughness", "Stalwart Spirit"],
+			"armor proficiency" : {
+				name : "Armor Proficiency",
+				source : ["VSoS", 146],
+				description : desc([
+					"I gain proficiency with heavy armor."
+				]),
+				armor : [false, false, true, false],
+			},
+			"primal toughness" : {
+				name : "Primal Toughness",
+				source : ["VSoS", 146],
+				description : desc([
+					"My hit point maximum increases by 1 + my Constitution modifier, and it increases by 1 every time I gain a level in this class."
+				]),
+				calcChanges : {
+					hp : function (totalHD, HDobj, prefix) {
+						if (classes.known.warden) {
+							return [classes.known.warden.level + HDobj.conMod, "Primal Toughness (Warden)"];
+						}
+					}
+				}
+			},
+			"stalwart spirit" : {
+				name : "Stalwart Spirit",
+				source : ["VSoS", 146],
+				description : desc([
+					"I gain proficiency in one saving throw of my choice."
+				]),
+			},
+		},
+		"warden's grasp" : {
+			name : "Warden's Grasp",
+			source : ["VSoS", 147],
+			minlevel : 1,
+			description : levels.map(function(n) {
+                return desc(["As a bonus action I can ensnare nearby enemies into combat. Until the start of my next turn, I can't move, and each Large or smaller creature I choose within 5 feet can't willingly move away from me unless it first takes the Disengage action."]) + n >= 14 ? desc(['At 14th level, the range of this ability increases to 10 feet.']) : "";
+            }),
+			action : ["bonus action", ""],
+		},
+		"fighting style" : {
+			name : "Fighting Style",
+			source : ["VSoS", 147],
+			minlevel : 2,
+			description : desc([
+                "I adopt a style of fighting as my specialty. I can't take a Fighting Style option more than once, even if I later get to choose again. Use the \"Choose Features\" button above to select a Fighting Style."
+            ]),
+			extraname: "Fighting Style",
+			choices : ["Crippling", "Great Weapon Fighting", "Protection", "Titan Fighting"],
+			"crippling" : {
+				name : "Fighting Style: Crippling",
+				source : ["VSoS", 147],
+				description : desc([
+					"When I hit a creature with a melee weapon attack, its speed is reduced by 10 feet, to a minimum of 0, until the end of its next turn, and it can't take the Dash action until the end of its turn."
+				]),
+                calcChanges : {
+                    atkAdd : [
+                        function(fields, v) {
+                            if (v.isMeleeWeapon && !/crippling/i.test(fields.Description)) {
+                                fields.Description += (fields.Description ? "; " : "") + "Crippling";
+                            }
+                        }
+                    ]
+                }
+			},
+			"great weapon fighting" : {
+				name : "Fighting Style: Great Weapon Fighting",
+				source : ["VSoS", 147],
+				description : FightingStyles.great_weapon
+			},
+			"protection" : {
+				name : "Fighting Style: Protection",
+				source : ["VSoS", 147],
+				description : FightingStyles.protection,
+				action : ["reaction", ""],
+            },
+			"titan fighting" : {
+				name : "Fighting Style: Titan Fighting",
+				source : ["VSoS", 147],
+				description : desc([
+					"I gain a +2 bonus to melee weapon attack rolls I make against Large or larger creatures."
+				]),
+            },
+		},
+		"warden's mark" : {
+			name : "Warden's Mark",
+			source : ["VSoS", 147],
+			minlevel : 2,
+			description : levels.map(function(n) {
+                return desc(["I can use my bonus action to mark a creature I can see within 30 feet. While within 5 feet of me, it has disadvantage on any attack roll that doesn't target me. This lasts for 1 minute, until I mark another creature, or become incapacitated."]) + n >= 11 ? desc(['At 11th level, whenever I take the Attack action on my turn, I can make an additional attack against a creature I have marked.']) : "";
+            }),
+			action : ["bonus action", ""]
+		},
+        "subclassfeature3" : {
+            name : "Champion's Call",
+            source : ["VSoS", 148],
+            minlevel : 3,
+            description : desc([
+                "Choose a Champion's Call and put it in the \"Class\" field."
+            ])
+        },
+		"warden's resolve" : {
+			name : "Warden's Resolve",
+			source : ["VSoS", 148],
+			minlevel : 3,
+			description : levels.map(function(n) {
+                return desc(['Whenever my hit points are less than half my maximum, I have resistance to bludgeoning, piercing, and slashing damage.']) + n >= 11 ? desc(['At 11th level, I have resistance to all damage except for psychic.']) : "";
+            }),
+		},
+		"font of life" : {
+			name : "Font of Life",
+			source : ["VSoS", 148],
+			minlevel : 4,
+			description : levels.map(function(n) {
+                return desc(['I can use my action to end either one disease or one condition afflicting me. The condition can be blinded, charmed, deafened, frightened, paralyzed, or poisoned. I can use this action even if the condition I end would otherwise prevent it.']) + n >= 15 ? desc(['At 15th level, once per day when I use this ability, my hit points are also restored to half my maximum, if they were lower.']) : "";
+            }),
+			action : ["action", ""],
+			recovery : "short rest",	
+			usages : 1,
+		},
+		"sentinel's step" : {
+			name : "Sentinel's Step",
+			source : ["VSoS", 148],
+			minlevel : 7,
+			description : desc(["Wardens are faultless trackers, which can navigate hazardous terrain with ease. Use the \"Choose Feature\" button to choose one of the Sentinel's Step."]),
+			extraname: "Sentinel's Step",
+			choices : ["Earthstrength", "Thundering Charge", "Wildblood"],
+			"earthstrength" : {
+				name : "Sentinel's Step: Earthstrength",
+				source : ["VSoS", 148],
+				description : desc([
+					"I possess the might of the earth itself. my carrying capacity doubles, and I have advantage on ability checks and saving throws against being pushed against my will or knocked prone."
+				]),
+                carryingCapacity : 2,
+                savetxt : {
+                    adv_vs : ["pushed","knocked prone"]
+                }
+            },
+			"thundering charge" : {
+				name : "Sentinel's Step: Thundering Charge",
+				source : ["VSoS", 148],
+				description : desc([
+					"On my first round of combat, my speed increases by 30 feet and I have advantage on the first melee weapon attack I make."
+				]),
+            },
+			"wildblood" : {
+				name : "Sentinel's Step: Wildblood",
+				source : ["VSoS", 148],
+				description : desc([
+					"my reflexes have been honed by the perils of nature. I can't be surprised while I am conscious. Additionally, I have a +5 bonus to my passive Wisdom (Perception) and passive Intelligence (Investigation) scores."
+				]),
+                addMod : { type : "skill", field : "passive perception", mod : 5, text : "I have a +5 bonus to my passive Wisdom (Perception) and passive Intelligence (Investigation) scores." }
+            },
+		},
+		"undying" : {
+			name : "Undying",
+			source : ["VSoS", 148],
+			minlevel : 9,
+			description : desc([
+				"When I am reduced to 0 hit points and are not killed outright, I can choose to drop to 1 hit point instead. Once I use this ability, I can't use it again until I finish a long rest."
+			]),
+			recovery : "long rest",	
+			usages : 1
+		},
+		"interrupt" : {
+			name : "Interrupt",
+			source : ["VSoS", 148],
+			minlevel : 10,
+			description : desc([
+				"As a reaction when a creature hits me with an attack, I can punctuate its strikes. After that attack, and if the creature could make additional attacks before the end of its turn, the creature can make one fewer attack than normal on this turn."
+			]),
+			action : ["reaction", ""],
+		},
+		"sentinel's soul" : {
+			name : "Sentinel's Soul",
+			source : ["VSoS", 148],
+			minlevel : 18,
+			description : desc([
+                "Wardens are unshakable guardians that cannot be bowed. At 18th level, choose one of the following features."
+            ]),
+			extraname: "Sentinel's Soul",
+			choices : ["Ageless Guardian", "Eyes of the Mountain", "Impenetrable Mind"],
+			"ageless guardian" : {
+				name : "Sentinel's Soul: Ageless Guardian",
+				source : ["VSoS", 148],
+				description : desc([
+					"I am immune to poison and disease, no longer need food or water, suffer none of the frailty of old age, and can't be aged magically. I can still die of old age, however. Additionally, I have advantage on Constitution saving throws."
+				]),
+                savetxt : {
+                    immune : ["poison", "disease", "magical aging effects"],
+                },
+                advantages : [
+                    ["Constitution", true]
+                ],
+            },
+			"eyes of the mountain" : {
+				name : "Sentinel's Soul: Eyes of the Mountain",
+				source : ["VSoS", 148],
+				description : desc([
+					"I gain tremorsense with a range of 15 feet, and can detect the presence of hidden or invisible creatures within 30 feet. Additionally, I have advantage on Dexterity saving throws"
+				]),
+                advantages : [
+                    ["Dexterirty", true]
+                ],
+            },
+			"impenetrable mind" : {
+				name : "Sentinel's Soul: Impenetrable Mind",
+				source : ["VSoS", 148],
+				description : desc([
+					"My thoughts can't be read, and I can't be charmed or frightened. Additionally, I have advantage on Wisdom saving throws."
+				]),
+                savetxt : {
+                    immune : ["charmed", "frightened"],
+                },
+                advantages : [
+                    ["Wisdom", true]
+                ],
+            },
+		},
+	}
+};
 
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
