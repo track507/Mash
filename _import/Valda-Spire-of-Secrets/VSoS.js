@@ -1,5 +1,5 @@
 var iFileName = "Valda's Spire of Secrets";
-RequiredSheetVersion("13.2.0");
+RequiredSheetVersion("13.2.1");
 
 /* 
 
@@ -3012,7 +3012,7 @@ ClassList["alchemist"] = {
 				ability : 0,
 				abilitytodamage : false,
 				excludeBombDamage : true,
-				description : "Finesse, \u00BD on Dex save, or full on fail to all; Can't evade for Crea(s) in 60 ft",
+				description : "Finesse, special, \u00BD on Dex save, or full on fail to all; Can't evade for Crea(s) in 60 ft",
 				selectNow : true
 			}]
         }
@@ -25742,7 +25742,8 @@ ClassList["warden"] = {
 				name : "Primal Toughness",
 				source : ["VSoS", 146],
 				description : desc([
-					"My hit point maximum increases by 1 + my Constitution modifier, and it increases by 1 every time I gain a level in this class."
+					"My hit point maximum increases by 1 + my Con. modifier, and it increases " + 
+                    "by 1 every time I gain a level in this class."
 				]),
 				calcChanges : {
 					hp : function (totalHD, HDobj, prefix) {
@@ -25764,9 +25765,12 @@ ClassList["warden"] = {
 			name : "Warden's Grasp",
 			source : ["VSoS", 147],
 			minlevel : 1,
-			description : levels.map(function(n) {
-                return desc(["As a bonus action I can ensnare nearby enemies into combat. Until the start of my next turn, I can't move, and each Large or smaller creature I choose within 5 feet can't willingly move away from me unless it first takes the Disengage action."]) + n >= 14 ? desc(['At 14th level, the range of this ability increases to 10 feet.']) : "";
-            }),
+			description : desc([
+                "As a bonus action I can ensnare nearby enemies into combat. Until the start of my next turn, I " +
+                "can't move, and each Large or smaller crea I choose within 5 ft can't willingly move away " +
+                "from me unless it first takes the Disengage action. ", 
+                "At 14th level, the range of this ability increases to 10 feet."
+            ]),
 			action : ["bonus action", ""],
 		},
 		"fighting style" : {
@@ -25774,7 +25778,8 @@ ClassList["warden"] = {
 			source : ["VSoS", 147],
 			minlevel : 2,
 			description : desc([
-                "I adopt a style of fighting as my specialty. I can't take a Fighting Style option more than once, even if I later get to choose again. Use the \"Choose Features\" button above to select a Fighting Style."
+                "I adopt a style of fighting as my specialty. I can't take a Fighting Style option more than once, even " +
+                "if I later get to choose again. Use the \"Choose Features\" button above to select a Fighting Style."
             ]),
 			extraname: "Fighting Style",
 			choices : ["Crippling", "Great Weapon Fighting", "Protection", "Titan Fighting"],
@@ -25782,7 +25787,8 @@ ClassList["warden"] = {
 				name : "Fighting Style: Crippling",
 				source : ["VSoS", 147],
 				description : desc([
-					"When I hit a creature with a melee weapon attack, its speed is reduced by 10 feet, to a minimum of 0, until the end of its next turn, and it can't take the Dash action until the end of its turn."
+					"When I hit a creature with a melee weapon attack, its speed is reduced by 10 feet, to a minimum " +
+                    "of 0, until the end of its next turn, and it can't take the Dash action until the end of its turn."
 				]),
                 calcChanges : {
                     atkAdd : [
@@ -25794,17 +25800,8 @@ ClassList["warden"] = {
                     ]
                 }
 			},
-			"great weapon fighting" : {
-				name : "Fighting Style: Great Weapon Fighting",
-				source : ["VSoS", 147],
-				description : FightingStyles.great_weapon
-			},
-			"protection" : {
-				name : "Fighting Style: Protection",
-				source : ["VSoS", 147],
-				description : FightingStyles.protection,
-				action : ["reaction", ""],
-            },
+			"great weapon fighting" : FightingStyles.two_weapon,
+			"protection" : FightingStyles.protection,
 			"titan fighting" : {
 				name : "Fighting Style: Titan Fighting",
 				source : ["VSoS", 147],
@@ -25817,9 +25814,12 @@ ClassList["warden"] = {
 			name : "Warden's Mark",
 			source : ["VSoS", 147],
 			minlevel : 2,
-			description : levels.map(function(n) {
-                return desc(["I can use my bonus action to mark a creature I can see within 30 feet. While within 5 feet of me, it has disadvantage on any attack roll that doesn't target me. This lasts for 1 minute, until I mark another creature, or become incapacitated."]) + n >= 11 ? desc(['At 11th level, whenever I take the Attack action on my turn, I can make an additional attack against a creature I have marked.']) : "";
-            }),
+			description : desc([
+                "As a bonus action, I can mark a crea I can see within 30 ft. While within 5 feet of me, it " +
+                "has disadv. on any attack roll that doesn't target me. This lasts for 1 minute, until I mark " +
+                "another creature, or become incapacitated.", 
+                "At 11th level, I can make an additional attack vs. the marked crea."
+            ]),
 			action : ["bonus action", ""]
 		},
         "subclassfeature3" : {
@@ -25834,17 +25834,22 @@ ClassList["warden"] = {
 			name : "Warden's Resolve",
 			source : ["VSoS", 148],
 			minlevel : 3,
-			description : levels.map(function(n) {
-                return desc(['Whenever my hit points are less than half my maximum, I have resistance to bludgeoning, piercing, and slashing damage.']) + n >= 11 ? desc(['At 11th level, I have resistance to all damage except for psychic.']) : "";
-            }),
+			description : desc([
+                "When my hp is less than half my max, I have resistance to blud/pierce/slash", 
+                "At 11th level, this becomes all damage but psychic."
+            ])
 		},
 		"font of life" : {
 			name : "Font of Life",
 			source : ["VSoS", 148],
 			minlevel : 4,
-			description : levels.map(function(n) {
-                return desc(['I can use my action to end either one disease or one condition afflicting me. The condition can be blinded, charmed, deafened, frightened, paralyzed, or poisoned. I can use this action even if the condition I end would otherwise prevent it.']) + n >= 15 ? desc(['At 15th level, once per day when I use this ability, my hit points are also restored to half my maximum, if they were lower.']) : "";
-            }),
+			description : desc([
+                "As an action, I end one disease or condition afflicting me. The condition " +
+                "can be blinded, charmed, deafened, frightened, paralyzed, or poisoned. I can do so even if the " + 
+                "condition would prevent me otherwise.", 
+                "At 15th level, 1/Day when I use " +
+                "this ability, my hit points are restored to half my max, if they're lower."
+            ]),
 			action : ["action", ""],
 			recovery : "short rest",	
 			usages : 1,
@@ -25853,14 +25858,18 @@ ClassList["warden"] = {
 			name : "Sentinel's Step",
 			source : ["VSoS", 148],
 			minlevel : 7,
-			description : desc(["Wardens are faultless trackers, which can navigate hazardous terrain with ease. Use the \"Choose Feature\" button to choose one of the Sentinel's Step."]),
+			description : desc([
+                "Wardens are faultless trackers, which can navigate hazardous terrain with ease. " +
+                "Use the \"Choose Feature\" button to choose one of the Sentinel's Step."
+            ]),
 			extraname: "Sentinel's Step",
 			choices : ["Earthstrength", "Thundering Charge", "Wildblood"],
 			"earthstrength" : {
 				name : "Sentinel's Step: Earthstrength",
 				source : ["VSoS", 148],
 				description : desc([
-					"I possess the might of the earth itself. my carrying capacity doubles, and I have advantage on ability checks and saving throws against being pushed against my will or knocked prone."
+					"My carrying capacity doubles, and I have " +
+                    "adv. on ability checks and saving throws against being pushed against my will or knocked prone."
 				]),
                 carryingCapacity : 2,
                 savetxt : {
@@ -25878,7 +25887,8 @@ ClassList["warden"] = {
 				name : "Sentinel's Step: Wildblood",
 				source : ["VSoS", 148],
 				description : desc([
-					"my reflexes have been honed by the perils of nature. I can't be surprised while I am conscious. Additionally, I have a +5 bonus to my passive Wisdom (Perception) and passive Intelligence (Investigation) scores."
+					"My reflexes have been honed by the perils of nature. I can't be surprised while I am conscious. " +
+                    "Additionally, I have a +5 bonus to my passive Wisdom (Perception) and passive Intelligence (Investigation) scores."
 				]),
                 addMod : { type : "skill", field : "passive perception", mod : 5, text : "I have a +5 bonus to my passive Wisdom (Perception) and passive Intelligence (Investigation) scores." }
             },
@@ -25888,7 +25898,7 @@ ClassList["warden"] = {
 			source : ["VSoS", 148],
 			minlevel : 9,
 			description : desc([
-				"When I am reduced to 0 hit points and are not killed outright, I can choose to drop to 1 hit point instead. Once I use this ability, I can't use it again until I finish a long rest."
+				"When I am reduced to 0 hit points and are not killed outright, I can choose to drop to 1 hit point instead."
 			]),
 			recovery : "long rest",	
 			usages : 1
@@ -25898,7 +25908,8 @@ ClassList["warden"] = {
 			source : ["VSoS", 148],
 			minlevel : 10,
 			description : desc([
-				"As a reaction when a creature hits me with an attack, I can punctuate its strikes. After that attack, and if the creature could make additional attacks before the end of its turn, the creature can make one fewer attack than normal on this turn."
+				"As a reaction when a crea hits me with an attack, I can punctuate its strikes. " +
+                "The crea can now make one fewer attack than normal on this turn, if it could make additional attacks on this turn."
 			]),
 			action : ["reaction", ""],
 		},
@@ -25907,7 +25918,7 @@ ClassList["warden"] = {
 			source : ["VSoS", 148],
 			minlevel : 18,
 			description : desc([
-                "Wardens are unshakable guardians that cannot be bowed. At 18th level, choose one of the following features."
+                "Wardens are unshakable guardians that cannot be bowed. At 18th level, choose one of the following features from the \"Choose Feature\" button."
             ]),
 			extraname: "Sentinel's Soul",
 			choices : ["Ageless Guardian", "Eyes of the Mountain", "Impenetrable Mind"],
@@ -25950,6 +25961,73 @@ ClassList["warden"] = {
 		},
 	}
 };
+
+AddSubClass("warden", "bloodwrath guardian", {
+    regExpSearch : /^(?=.*bloodwrath)(?=.*guardian).*$/i,
+    subname : "Bloodwrath Guardian",
+    source : ["VSoS", 149],
+    features : {
+        "subclassfeature3" : {
+            name : "Feral Trance",
+            source : ["VSoS", 149],
+            minlevel : 3,
+            description : desc([
+                "As a bonus action, I can enter/exit a trance for 1 min and gain the following:",
+                "\u2022 Adv. on Strength checks and saving throws",
+                "\u2022 My walking speed is increased by 10 ft",
+                "\u2022 I have adv. on melee attack rolls using Strength vs. a crea I have marked",
+                "\u2022 Attacks against me have advantage",
+                "This ends if I am knocked unconscious, if I haven't attacked a hostile crea. since my last turn or taken damage since then, or if I end it as a bonus action."
+            ]),
+            action : ["bonus action", ""],
+            usages : 1,
+            recovery : "short rest"
+        },
+        "subclassfeature6" : {
+            name : "Predator's Scent",
+            source : ["VSoS", 149],
+            minlevel : 6,
+            description : desc([
+                "A crea. can remained marked for up to 24 hrs. Additionally, I know the direction and distance to the crea. while it's on the same plane."
+            ]),
+            vision : [["Know Marked Crea. Direct/Distance"]]
+        },
+        "subclassfeature13" : {
+            name : "Evasion",
+			source : [["VSoS", 149], ["T", 144]],
+			minlevel : 13,
+			description : desc([
+				"If an effect allows me to make a Dex save for half damage, I take no damage on a success",
+				"Also, I only take half damage on a failed save; I can't do this while incapacitated"
+			]),
+			savetxt : { text : ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"] }
+        },
+        "subclassfeature20" : {
+            name : "Form of the Primal Beast",
+            source : ["VSoS", 149],
+            minlevel : 20,
+            description : desc([
+                "I tranform into a beast for 1 min and gain the following found on 3rd page notes.",
+            ]),
+            usages : 1,
+            recovery : "long rest",
+            toNotesPage : [{
+                name : "Form of the Primal Beast: Features",
+                source : [["VSoS", 149]],
+                note : desc([
+                    "Once per long rest when I transfrom into a primal beast, I gain the following:",
+                    "\u2022 All benefits from Feral Trance",
+                    "\u2022 40 temporary hp",
+                    "\u2022 Every crea. I hit with a melee attack receives a bleeding wound. A crea. loses 1d8 hp at the start of each of its turns per each wound, unless it uses its action to stop the bleeding of all of its wounds." + 
+                    "While a crea. is bleeding, it can't regain hp. A crea can have a number of bleeding wounds up to my prof. bonus.",
+                    "Constructs, Oozes, and undead can't receive bleeding wounds."
+                ])
+            }]
+        }
+    }
+});
+
+
 
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
