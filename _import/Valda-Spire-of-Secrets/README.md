@@ -38,13 +38,15 @@ Everything up to "Mad Bomber" has been added and updated to v13.2.0 for MPMB's S
   - Craftsman Class and Subclasses Finished (originally written by aelartheelfrogue, updated by seaw0rld)
   - Gunslinger Class and Subclasses (written by seaw0rld)
   - Necromancer Class and Subclasses (written by seaw0rld)
-  - Martyr Class (trackatnite)
+  - Martyr Class (written by trackatnite)
     - Burden of Atonement Subclass
     - Burden of Discord Subclass
+  - Warden Class (written by nanur, edited/updated by trackatnite)
+    - Bloodwrath Guardian Subclass
   
 ### WIP: 
   - Investigator Class and Subclasses (seaw0rld)
-  - Martyr Subclasses (trackatnite)
+  - Martyr & Warden Subclasses (trackatnite)
 
 ### TODO: 
   - Add the rest of the classes and update
