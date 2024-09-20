@@ -25696,7 +25696,7 @@ ClassList["warden"] = {
 	regExpSearch : /warden/i,
 	name : "Warden",
 	source : ["VSoS", 145],
-	primaryAbility : "Constitution and Strength",
+	primaryAbility : "Strength",
 	improvements : [0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4],
 	die : 10,
 	saves : ["Str", "Con"],
@@ -25765,11 +25765,14 @@ ClassList["warden"] = {
 			source : ["VSoS", 147],
 			minlevel : 1,
 			description : desc([
-                "As a bonus action I can ensnare nearby enemies into combat. Until the start of my next turn, I " +
+                "As a bonus action I can ensnare nearby enemies. Until the start of my next turn, I " +
                 "can't move, and each Large or smaller crea I choose within 5 ft can't willingly move away " +
                 "from me unless it first takes the Disengage action. ", 
                 "At 14th level, the range of this ability increases to 10 feet."
             ]),
+            additional : levels.map(function (n) {
+                return n < 14 ? "5 ft" : "10 ft"
+            }),
 			action : ["bonus action", ""],
 		},
 		"fighting style" : {
@@ -25897,7 +25900,7 @@ ClassList["warden"] = {
 			source : ["VSoS", 148],
 			minlevel : 9,
 			description : desc([
-				"When I am reduced to 0 hit points and are not killed outright, I can choose to drop to 1 hit point instead."
+				"When I am reduced to 0 hp and are not killed outright, I can choose to drop to 1 hp instead."
 			]),
 			recovery : "long rest",	
 			usages : 1
@@ -25963,7 +25966,7 @@ ClassList["warden"] = {
 
 // * Bloodwrath guardian warden subclass
 AddSubClass("warden", "bloodwrath guardian", {
-    regExpSearch : /^(?=.*bloodwrath)(?=.*guardian).*$/i,
+    regExpSearch : /bloodwrath guardian/i,
     subname : "Bloodwrath Guardian",
     source : ["VSoS", 149],
     features : {
@@ -25997,7 +26000,7 @@ AddSubClass("warden", "bloodwrath guardian", {
 			source : [["VSoS", 149], ["T", 144]],
 			minlevel : 13,
 			description: desc(["My Dexterity saves vs. areas of effect negate damage on success and halve it on failure."]),
-            savetxt : { text : ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"] }
+            savetxt : { text : "Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg" }
         },
         "subclassfeature20" : {
             name : "Form of the Primal Beast",
@@ -26029,7 +26032,7 @@ AddSubClass("warden", "grey watchman", {
 	regExpSearch : /grey watchman/i,
 	subname : "Grey Watchman",
 	source : ["VSoS", 150],
-    abilitysave : 1,
+    abilitySave : 1,
     abilitySaveAlt : 2,
 	features : {
 		"subclassfeature3" : {
@@ -26138,10 +26141,7 @@ AddSubClass("warden", "grey watchman", {
             description :  desc([
                 "I have advantage on ability checks to make fortifications, examine walls and other defenses for weak points and entry" + 
                 " ways, and climb constructed walls. When I have \u00BE cover, I'm considered to have full cover."
-            ]),
-            savetxt : {
-                adv_vs
-            }
+            ])
         },
         "subclassfeature13" : {
             name : "Mettle",
@@ -26176,7 +26176,7 @@ AddSubClass("warden", "nightgaunt", {
 	regExpSearch : /nightgaunt/i,
 	subname : "Nightgaunt",
 	source : ["VSoS", 152],
-    abilitysave : 2,
+    abilitySave : 3,
 	features : {
 		"subclassfeature3" : {
 			name : "Darkvision",
@@ -26219,7 +26219,7 @@ AddSubClass("warden", "nightgaunt", {
                 "As a bonus action, I can divorce myself from life. For 1 min, I gain following benefits for",
                 "\u2022 I am immune to poison damage and being poisoned",
                 "\u2022 I can use my Undying feature up to three times without expending a use of the feature",
-                "\u2022 Once per turn when I deal damage to a hostile crea with a melee weapon attack, I deal an extra 4d6 necrotic damage and gain temp hp equal to the necrotic damage dealt, which last untl the start of my next turn"
+                "\u2022 Once per turn when I deal damage to a hostile crea with a melee weapon attack, I deal an extra 4d6 necrotic damage and gain temp hp equal to the necrotic damage dealt, which last until the start of my next turn"
             ]),
 			recovery : "long rest",
 			usages : 1,
@@ -26233,13 +26233,16 @@ AddSubClass("warden", "soulblood shaman", {
 	subname : "Soulblood Shaman",
 	source : ["VSoS", 153],
 	spellcastingList : {
-        "class" : ["druid"]
+        "class" : "druid",
+        level : [1,5],
+        school : ["Evoc", "Trans"]
     },
     abilitysave : 5,
 	spellcastingKnown : {
-		spells : [0,0,1,2,2,2,3,4,4,5,6,6,7,8,8,9,9,9,10,11 ],
+		spells : [0, 0, 2, 3, 3, 3, 4, 4, 4, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9],
 		cantrips : [0, 0, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
 	},
+    spellcastingFactor : 3,
 	spellcastingTable : [ 
 		[0, 0, 0, 0, 0, 0, 0, 0, 0], //lvl 0
 		[0, 0, 0, 0, 0, 0, 0, 0, 0], //lvl 1
@@ -26270,16 +26273,15 @@ AddSubClass("warden", "soulblood shaman", {
 			minlevel : 3,
 			description :  desc([
                 "I can cast known druid cantrips/spells, using Wisdom as my spellcasting ability",
-                "I know three 1st level druid spells, two of which must be Evoc or Trans.",
-                "Spells I learn at higher levels can be from any school of magic."
+                "These spells must be Transmutation or Evocation, unless it is the spell gained at",
+                "3rd, 8th, 14th, and 20th level"
             ]),
             spellcastingBonus : [{
-                name : "Evoc or Trans",
+                name : "any school",
                 "class" : ["druid"],
-                school : ["Evoc", "Trans"],
-                level : [0,0],
+                level : [1,4],
                 times : levels.map(function(n) {
-                    return n < 3 ? 0 : 2
+                    return n < 3 ? 0 : n < 8 ? 1 : n < 14 ? 2 : n < 20 ? 3 : 4
                 })
             }]
 		},
@@ -26338,7 +26340,7 @@ AddSubClass("warden", "stoneheart defender", {
             source : ["VSoS", 154],
 			minlevel : 3,
             description : desc([
-                "Whenever I use my Warden's Grasph ability, I gain a +2 bonus to AC until the start of my next turn." + 
+                "Whenever I use my Warden's Grasp ability, I gain a +2 bonus to AC until the start of my next turn." + 
                 " Additionally, until I move, I can't be shoved or pushed from where I am standing." + 
                 " I have adv on Str saves vs. knocked prone, can't slip or fall from ledges, and immune to fly, levitate, and telekinesis."
             ])
@@ -26459,7 +26461,7 @@ AddSubClass("warden", "verdant protector", {
 	subname : "Verdant Protector",
 	source : ["VSoS", 155],
 	features : {
-		"subclassfeature1" : {
+		"subclassfeature3" : {
 			name : "Green Mark",
 			source : ["VSoS", 155],
 			minlevel : 3,
@@ -26467,7 +26469,7 @@ AddSubClass("warden", "verdant protector", {
                 "While a marked crea is within 30 ft of me, the ground it walks on is difficult terrain."
             ]),
 		},
-		"subclassfeature2" : {
+		"subclassfeature6" : {
 			name : "Verdant Skin",
 			source : ["VSoS", 155],
 			minlevel : 6,
@@ -26477,7 +26479,7 @@ AddSubClass("warden", "verdant protector", {
 			skills : ["Stealth"],
 			action : ["action", ""],
 		},
-		"subclassfeature13" : {
+		"subclassfeature113" : {
 			name : "Mettle",
             source : ["VSoS", 154],
 			minlevel : 13,
@@ -26487,7 +26489,7 @@ AddSubClass("warden", "verdant protector", {
             ]),
             savetxt : { text : ["Con save vs. effects: fail \u2015 half dmg, success \u2015 no dmg"] }
         },
-		"subclassfeature4" : {
+		"subclassfeature20" : {
 			name : "Form of the Oak Sentinel",
 			source : ["VSoS", 155],
 			minlevel : 20,
