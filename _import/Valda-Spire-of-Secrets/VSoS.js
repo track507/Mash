@@ -24267,7 +24267,7 @@ AddSubClass("necromancer","pharaoh",{
             spellcastingExtra: ["thaumaturgy", "bless", "guiding bolt", "halo of flame", "lesser restoration", "revivify", "snakestaff", "death ward", "divination", "greater restoration", "insect plague"],
             spellChanges: {
                 "thaumaturgy": {
-                    changes: "I can create additional effects using this cantrip: \n• You can brighten or darken the sun or moon, affecting the area within 120 feet of you for up to 1 minute. You can change darkness to dim light and dim light to bright light, or vice versa. Additionally, you can heighten bright light to a blazing radiance, which causes disadvantage on Wisdom (Perception) checks which rely on sight, or you can deepen darkness to a pitch black, which limits darkvision to a 30-foot radius. This deeper darkness has no effect on creatures that can see in magical darkness.\n• You manifest a Huge illusory avatar of a deity at a point you can see within 120 feet of you, which mimics your movements and projects your speech in a booming voice for 1 minute."
+                    changes: "I can create additional effects using this cantrip: \n\u2022 You can brighten or darken the sun or moon, affecting the area within 120 feet of you for up to 1 minute. You can change darkness to dim light and dim light to bright light, or vice versa. Additionally, you can heighten bright light to a blazing radiance, which causes disadvantage on Wisdom (Perception) checks which rely on sight, or you can deepen darkness to a pitch black, which limits darkvision to a 30-foot radius. This deeper darkness has no effect on creatures that can see in magical darkness.\n\u2022 You manifest a Huge illusory avatar of a deity at a point you can see within 120 feet of you, which mimics your movements and projects your speech in a booming voice for 1 minute."
                 }
             }
         },
@@ -24457,7 +24457,7 @@ AddSubClass("necromancer","plague lord",{
                     function (fields, v){
                         if (/\bcharnel touch\b/i.test(v.WeaponTextName)){
                             fields.Description += (fields.Description ? "; " : "") + "Curse (25 CT)";
-                            fields.Description_Tooltip += "\nMaster of Disease: When you use your Charnel Toxin feature and expend 25 or more points, the creature is poisoned and cursed for up to 1 minute on a failed save. Choose two of the following effects which afflict the target while it is cursed:\n• Choose one ability score. The target has disadvantage on ability checks and saving throws made with that ability score.\n• The target can only see out to a radius of 10 feet.\n• The target falls prone at the end of each of its turns.\n• The target loses an extra 1d6 hit points whenever it takes damage.\n• The target can speak only in a babblingnonsense language and can't perform the verbal components of spells.\nAt the end of each of its turns, the target makes a Constitution saving throw against your spell save DC, ending the curse and the poisoned condition on a success.";
+                            fields.Description_Tooltip += "\nMaster of Disease: When you use your Charnel Toxin feature and expend 25 or more points, the creature is poisoned and cursed for up to 1 minute on a failed save. Choose two of the following effects which afflict the target while it is cursed:\n\u2022 Choose one ability score. The target has disadvantage on ability checks and saving throws made with that ability score.\n\u2022 The target can only see out to a radius of 10 feet.\n\u2022 The target falls prone at the end of each of its turns.\n\u2022 The target loses an extra 1d6 hit points whenever it takes damage.\n\u2022 The target can speak only in a babblingnonsense language and can't perform the verbal components of spells.\nAt the end of each of its turns, the target makes a Constitution saving throw against your spell save DC, ending the curse and the poisoned condition on a success.";
                         }
                     }, "When I use my Charnel Toxin feature and expend 25 or more points, the target is poisoned and cursed with two effects of my choice (on the third page) for up to 1 minute on a failed save."
                 ]
@@ -25961,6 +25961,7 @@ ClassList["warden"] = {
 	}
 };
 
+// * Bloodwrath guardian warden subclass
 AddSubClass("warden", "bloodwrath guardian", {
     regExpSearch : /^(?=.*bloodwrath)(?=.*guardian).*$/i,
     subname : "Bloodwrath Guardian",
@@ -25995,11 +25996,8 @@ AddSubClass("warden", "bloodwrath guardian", {
             name : "Evasion",
 			source : [["VSoS", 149], ["T", 144]],
 			minlevel : 13,
-			description : desc([
-				"If an effect allows me to make a Dex save for half damage, I take no damage on a success",
-				"Also, I only take half damage on a failed save; I can't do this while incapacitated"
-			]),
-			savetxt : { text : ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"] }
+			description: desc(["My Dexterity saves vs. areas of effect negate damage on success and halve it on failure."]),
+            savetxt : { text : ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"] }
         },
         "subclassfeature20" : {
             name : "Form of the Primal Beast",
@@ -26026,6 +26024,7 @@ AddSubClass("warden", "bloodwrath guardian", {
     }
 });
 
+// * gray watchman warden subclass
 AddSubClass("warden", "grey watchman", {
 	regExpSearch : /grey watchman/i,
 	subname : "Grey Watchman",
@@ -26140,7 +26139,10 @@ AddSubClass("warden", "grey watchman", {
                 "I have advantage on ability checks to make fortifications, examine walls and other defenses for weak points and entry" + 
                 " ways, and climb constructed walls. When I have \u00BE cover, I'm considered to have full cover."
             ]),
-            },
+            savetxt : {
+                adv_vs
+            }
+        },
         "subclassfeature13" : {
             name : "Mettle",
             source : ["VSoS", 151],
@@ -26149,6 +26151,7 @@ AddSubClass("warden", "grey watchman", {
                 "Whenever I make a Con. save for \u00BD damage, I take no damage on a success and" + 
                 " \u00BD on a fail."
             ]),
+            savetxt : { text : ["Con save vs. effects: fail \u2015 half dmg, success \u2015 no dmg"] }
         },
         "subclassfeature20" : {
             name : "Unbreakable Sentinel",
@@ -26168,10 +26171,12 @@ AddSubClass("warden", "grey watchman", {
 	}
 });
 
+// * nightgaunt warden subclass
 AddSubClass("warden", "nightgaunt", {
 	regExpSearch : /nightgaunt/i,
 	subname : "Nightgaunt",
 	source : ["VSoS", 152],
+    abilitysave : 2,
 	features : {
 		"subclassfeature3" : {
 			name : "Darkvision",
@@ -26183,32 +26188,314 @@ AddSubClass("warden", "nightgaunt", {
             ]),
             vision : [["Darkvision", "fixed 60"], ["Darkvision", "+30"]]
 		},
-		"subclassfeature2" : {
+		"subclassfeature3.1" : {
 			name : "Marked for Death",
-			source : ["HB: Warden", 3],
+			source : ["VSoS", 152],
 			minlevel : 3,
-			description :  desc(["If I deal damage to a creature I have marked with a melee weapon attack and its remaining hit points are lower than the damage I dealt to it with that attack, the marked creature instead drops to 0 hit points."]),
+            description : desc([
+                "When I deal damage to a marked crea with a melee weapon attack and its remaining hp is lower than the damage I dealt to it with that attack, it drops to 0 hp instead."
+            ])
 		},
-		"subclassfeature3" : {
+		"subclassfeature6" : {
 			name : "Undead Empathy",
-			source : ["HB: Warden", 3],
+			source : ["VSoS", 152],
 			minlevel : 6,
-			description :  desc(["Whenever an undead tries to attack me, it must make a Wisdom saving throw. On a failed save, its attack misses and, if its Intelligence is 4 or lower, it becomes friendly to I and my allies. Save DC mod is Con."]),
+            description : desc([
+                "Whenever an undead attacks me, it must make a Wis save or it misses. If it's Int is lower than 4, it becomes friendly to my allies and I. The save DC is 8 + Prof. Bonus + Con. mod."
+            ])
 		},
-		"subclassfeature4" : {
+		"subclassfeature13" : {
 			name : "Evasion",
-			source : ["HB: Warden", 3],
+			source : ["VSoS", 152],
 			minlevel : 13,
-			description :  desc(["Beginning at 13th level, I can nimbly dodge out of the way of certain area effects, such as a red dragon’s fiery breath or an ice storm spell. When I am subjected to an effect that allows I to make a Dexterity saving throw to take only half damage, I instead take no damage if I succeed on the saving throw, and only half damage if I fail."]),
+			description: desc(["My Dexterity saves vs. areas of effect negate damage on success and halve it on failure."]),
+            savetxt : { text : ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"] }
 		},
-		"subclassfeature5" : {
+		"subclassfeature20" : {
 			name : "Gravelord",
-			source : ["HB: Warden", 3],
+			source : ["VSoS", 152],
 			minlevel : 20,
-			description :  desc(["At 20th level, I can use my action to invite the necromantic energies of true undead into my body, divorcing myself from life for the next minute and gaining the following benefits:" 
-            + "\n\u2022 I am immune to poison damage and being poisoned." 
-            + "\n\u2022 I can use my Undying feature up to three times, even if I have already used it today." 
-            + "\n\u2022 Once per turn, when I deal damage with a melee weapon attack, I can deal an extra 4d6 necrotic damage and gain temporary hit points, which last until the beginning of my next turn, equal to the necrotic damage dealt. Once I use this feature, I can’t use it again untilyou finish a long rest."]),
+            description : desc([
+                "As a bonus action, I can divorce myself from life. For 1 min, I gain following benefits for",
+                "\u2022 I am immune to poison damage and being poisoned",
+                "\u2022 I can use my Undying feature up to three times without expending a use of the feature",
+                "\u2022 Once per turn when I deal damage to a hostile crea with a melee weapon attack, I deal an extra 4d6 necrotic damage and gain temp hp equal to the necrotic damage dealt, which last untl the start of my next turn"
+            ]),
+			recovery : "long rest",
+			usages : 1,
+		},
+	},
+});
+
+// * soulblood shaman warden subclass
+AddSubClass("warden", "soulblood shaman", {
+	regExpSearch : /soulblood shaman/i,
+	subname : "Soulblood Shaman",
+	source : ["VSoS", 153],
+	spellcastingList : {
+        "class" : ["druid"]
+    },
+    abilitysave : 5,
+	spellcastingKnown : {
+		spells : [0,0,1,2,2,2,3,4,4,5,6,6,7,8,8,9,9,9,10,11 ],
+		cantrips : [0, 0, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+	},
+	spellcastingTable : [ 
+		[0, 0, 0, 0, 0, 0, 0, 0, 0], //lvl 0
+		[0, 0, 0, 0, 0, 0, 0, 0, 0], //lvl 1
+		[0, 0, 0, 0, 0, 0, 0, 0, 0], //lvl 2
+		[2, 0, 0, 0, 0, 0, 0, 0, 0], //lvl 3
+		[3, 0, 0, 0, 0, 0, 0, 0, 0], //lvl 4
+		[3, 0, 0, 0, 0, 0, 0, 0, 0], //lvl 5
+		[3, 0, 0, 0, 0, 0, 0, 0, 0], //lvl 6
+		[4, 2, 0, 0, 0, 0, 0, 0, 0], //lvl 7
+		[4, 2, 0, 0, 0, 0, 0, 0, 0], //lvl 8
+		[4, 2, 0, 0, 0, 0, 0, 0, 0], //lvl 9
+		[4, 3, 0, 0, 0, 0, 0, 0, 0], //lvl10
+		[4, 3, 0, 0, 0, 0, 0, 0, 0], //lvl11
+		[4, 3, 0, 0, 0, 0, 0, 0, 0], //lvl12
+		[4, 3, 2, 0, 0, 0, 0, 0, 0], //lvl13
+		[4, 3, 2, 0, 0, 0, 0, 0, 0], //lvl14
+		[4, 3, 2, 0, 0, 0, 0, 0, 0], //lvl15
+		[4, 3, 3, 0, 0, 0, 0, 0, 0], //lvl16
+		[4, 3, 3, 0, 0, 0, 0, 0, 0], //lvl17
+		[4, 3, 3, 0, 0, 0, 0, 0, 0], //lvl18
+		[4, 3, 3, 1, 0, 0, 0, 0, 0], //lvl19
+		[4, 3, 3, 1, 0, 0, 0, 0, 0] //lvl20
+	],
+	features : {
+		"subclassfeature3" : {
+			name : "Spellcasting",
+            source : ["VSoS", 153],
+			minlevel : 3,
+			description :  desc([
+                "I can cast known druid cantrips/spells, using Wisdom as my spellcasting ability",
+                "I know three 1st level druid spells, two of which must be Evoc or Trans.",
+                "Spells I learn at higher levels can be from any school of magic."
+            ]),
+            spellcastingBonus : [{
+                name : "Evoc or Trans",
+                "class" : ["druid"],
+                school : ["Evoc", "Trans"],
+                level : [0,0],
+                times : levels.map(function(n) {
+                    return n < 3 ? 0 : 2
+                })
+            }]
+		},
+		"subclassfeature3.1" : {
+			name : "Soulblood",
+            source : ["VSoS", 153],
+			minlevel : 3,
+			description :  desc(["When a crea within 5 ft of me deals damage to me, I can use my reaction to mark the crea."]),
+			action : ["reaction", ""],
+		},
+		"subclassfeature6" : {
+			name : "Whispers of Beyond",
+            source : ["VSoS", 153],
+			minlevel : 6,
+			description :  desc([
+                "I can spend one minute to think when I make an Intelligence or Wisdom check, to gain adv. on the roll." + 
+                " However, the GM can decline to give I adv. on this check if the spirits would not possess appropriate guidance of knowledge."
+            ]),
+		},
+		"subclassfeature13" : {
+			name : "Spell Resistance",
+            source : ["VSoS", 153],
+			minlevel : 13,
+            description : desc(["I have advantage on saves against spells and other magical effects."]),
+            savetxt : {
+                adv_vs : ["spells", "magic"]
+            }
+		},
+		"subclassfeature20" : {
+			name : "Ethereal Watcher",
+            source : ["VSoS", 154],
+			minlevel : 20,
+			description :  desc([
+                "As an action 1/LR, I can become an ethereal watcher. For the next minute, I gain the following benefits:" ,
+                "\u2022 As a bonus action on my turn, I can become ethereal" ,
+                "\u2022 I can return from being ethereal as a bonus action when I cast a spell, or when I use my Warden's Mark or Grasp feature on my turn",
+                "\u2022 When I return from being ethereal, each crea I choose within 10 feet takes 4d10 force damage",
+                "\u2022 I can cast 1st and 2nd-level druid spells I know without expending spell slots"
+            ]),
+            action : ["action", ""],
+			recovery : "long rest",
+			usages : 1,
+		},
+	},
+});
+
+// * stoneheart defender warden subclass
+AddSubClass("warden", "stoneheart defender", {
+	regExpSearch : /stoneheart defender/i,
+	subname : "Stoneheart Defender",
+    source : ["VSoS", 154],
+    abilitySave : 1,
+	features : {
+		"subclassfeature3" : {
+			name : "Roots of Rock",
+            source : ["VSoS", 154],
+			minlevel : 3,
+            description : desc([
+                "Whenever I use my Warden's Grasph ability, I gain a +2 bonus to AC until the start of my next turn." + 
+                " Additionally, until I move, I can't be shoved or pushed from where I am standing." + 
+                " I have adv on Str saves vs. knocked prone, can't slip or fall from ledges, and immune to fly, levitate, and telekinesis."
+            ])
+		},
+		"subclassfeature6" : {
+			name : "Earthshatter",
+            source : ["VSoS", 154],
+			minlevel : 6,
+			description :  desc([
+                "I can use Warden's Grasp as an action instead of a bonus action." +
+                " When I do so, each crea affected must make a Str saving throw or be knocked prone." + 
+                " I can this a number of times equal to my Str mod per long rest."
+            ]),
+            usages : "Str mod per ",
+            usagescalc : "event.value = What('Str mod');",
+			action : ["action", ""],
+		},
+		"subclassfeature13" : {
+			name : "Mettle",
+            source : ["VSoS", 154],
+			minlevel : 13,
+            description :  desc([
+                "Whenever I make a Con. save for \u00BD damage, I take no damage on a success and" + 
+                " \u00BD on a fail."
+            ]),
+            savetxt : { text : ["Con save vs. effects: fail \u2015 half dmg, success \u2015 no dmg"] }
+        },
+		"subclassfeature20" : {
+			name : "Immortal Mountain",
+            source : ["VSoS", 154],
+			minlevel : 20,
+			description :  desc([
+                "As an action 1/LR, I can summon the power of true earth. For 1 min, I gain the following benefits:",
+                "\u2022 Bludgeoning, piercing, and slashing damage I take is reduced by 5." ,
+                "\u2022 I gain the effects of my Roots of Rock ability for the entire duration.",
+                "\u2022 As I move, I can leave behind a 5 ft wide trail of difficult terrain behind me.", 
+            ]),
+			recovery : "long rest",
+			usages : 1,
+		},
+	},
+});
+
+// * storm sentinel warden subclass
+AddSubClass("warden", "storm sentinel", {
+	regExpSearch : /storm sentinel/i,
+	subname : "Storm Sentinel",
+    source : ["VSoS", 154],
+	features : {
+		"subclassfeature3" : {
+			name : "Flash from Above",
+            source : ["VSoS", 155],
+			minlevel : 3,
+			description :  desc([
+                "Whenever I am standing under the open sky, I can use my action to conjure a harmless, but impressive, bolt of lightning or peal of thunder. I can do so even without clouds."
+            ]),
+		},
+		"subclassfeature3.1" : {
+			name : "Thunderblast",
+			source : ["VSoS", 155],
+			minlevel : 3,
+			description :  desc([
+                "Whenever I hit a marked crea with a melee weapon attack, each crea I choose within 5 ft of the target takes 1d8 lightning damage."
+            ]),
+			additional : "1d8 lightning",
+		},
+		"subclassfeature6" : {
+			name : "Static Blast",
+			source : ["VSoS", 155],
+			minlevel : 6,
+			description :  desc([
+                "When I use Warden's Grasp as a bonus action, each creature affected can't take reactions until the start of my next turn."
+            ]),
+		},
+		"subclassfeature13" : {
+            name: "Evasion",
+            source: ["VSoS", 155],
+            minlevel: 11,
+            description: desc("My Dexterity saves vs. areas of effect negate damage on success and halve it on failure"),
+            savetxt: { text: ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"] }
+		},
+		"subclassfeature20" : {
+			name : "Stormlord",
+			source : ["VSoS", 155],
+			minlevel : 20,
+			description :  desc([
+                "I gain a fly speed equal to my movement speed", 
+                "1/LR I can also use my action to summon a bolt of lightning to strike me. For 1 minute, I gain the following benefits" ,
+                "\u2022 My flight speed is doubled",
+                "\u2022 I can cast call lightning as a bonus action without using a spell slot, and can call a bolt of lightning on subsequent turns as a bonus action"]),
+            action : ["action", ""],
+            recovery : "long rest",
+			usages : 1,
+            spellcastingBonus : [{
+                name : "Stormlord",
+                spells : ["call lightning"],
+                selection : ["call lightning"],
+                times : 1
+            }],
+            speed : {
+				fly : { spd : "walk", enc : "walk" }
+			},
+            spellChanges : {
+                "call lightning": {
+                    description : "60-ft rad 10-ft high cloud; 1 ba all in 5-ft rad under cloud 3d10+1d10/SL Lightning dmg; save half",
+                    descriptionShorter : "60-ft rad 10-ft high cloud; 1 ba all in 5-ft rad under it 3d10+1d10/SL Lightn. dmg; save half",
+                    descriptionFull : "A storm cloud appears in the shape of a cylinder that is 10 feet tall with a 60-foot radius, centered on a point you can see within range directly above you. The spell fails if you can't see a point in the air where the storm cloud could appear (for example, if you are in a room that can't accommodate the cloud)." + "\n   " + "When you cast the spell, choose a point you can see under the cloud. A bolt of lightning flashes down from the cloud to that point. Each creature within 5 feet of that point must make a Dexterity saving throw. A creature takes 3d10 lightning damage on a failed save, or half as much damage on a successful one. On each of your turns until the spell ends, you can use your bonus action to call down lightning in this way again, targeting the same point or a different one." + "\n   " + "If you are outdoors in stormy conditions when you cast this spell, the spell gives you control over the existing storm instead of creating a new one. Under such conditions, the spell's damage increases by 1d10." + AtHigherLevels + "When you cast this spell using a spell slot of 4th level or higher level, the damage increases by 1d10 for each slot level above 3rd.",
+                    changes : "I can keep casting as a bonus action instead of an action."
+                }
+            }
+		},
+	},
+});
+
+// * verdant protector warden subclass
+AddSubClass("warden", "verdant protector", {
+	regExpSearch : /verdant protector/i,
+	subname : "Verdant Protector",
+	source : ["VSoS", 155],
+	features : {
+		"subclassfeature1" : {
+			name : "Green Mark",
+			source : ["VSoS", 155],
+			minlevel : 3,
+			description :  desc([
+                "While a marked crea is within 30 ft of me, the ground it walks on is difficult terrain."
+            ]),
+		},
+		"subclassfeature2" : {
+			name : "Verdant Skin",
+			source : ["VSoS", 155],
+			minlevel : 6,
+			description :  desc([
+                "I gain proficiency in Stealth. Additionally, I can use my action to gain adv on Stealth checks I make to hide among vegetation."
+            ]),
+			skills : ["Stealth"],
+			action : ["action", ""],
+		},
+		"subclassfeature13" : {
+			name : "Mettle",
+            source : ["VSoS", 154],
+			minlevel : 13,
+            description :  desc([
+                "Whenever I make a Con. save for \u00BD damage, I take no damage on a success and" + 
+                " \u00BD on a fail."
+            ]),
+            savetxt : { text : ["Con save vs. effects: fail \u2015 half dmg, success \u2015 no dmg"] }
+        },
+		"subclassfeature4" : {
+			name : "Form of the Oak Sentinel",
+			source : ["VSoS", 155],
+			minlevel : 20,
+			description :  desc([
+                "As an action 1/LR, I can transform into an oak sentinel. For 1 min, I gain the following:",
+                "\u2022 My AC becomes 20, if it was lower.", 
+                "\u2022 My attacks have Reach, if they did not have it before.",
+                "\u2022 I can use Warden's Grasp as an action, instead of a bonus action. When I do so, I can make an attack against each crea affected, with a separate attack roll for each target."]),
 			recovery : "long rest",
 			usages : 1,
 		},
