@@ -25719,7 +25719,6 @@ ClassList["warden"] = {
     + "\n\nAlternatively, choose 5d4 \xD7 10 gp worth of starting equipment instead of both the class' and the background's starting equipment.",
 	subclasses : ["Champion's Call", []],
 	attacks : [1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-	abilitySave : 3,
 	features : {
 		"sentinel's stand" : {
 			name : "Sentinel's Stand",
@@ -26027,7 +26026,194 @@ AddSubClass("warden", "bloodwrath guardian", {
     }
 });
 
+AddSubClass("warden", "grey watchman", {
+	regExpSearch : /grey watchman/i,
+	subname : "Grey Watchman",
+	source : ["VSoS", 150],
+    abilitysave : 1,
+    abilitySaveAlt : 2,
+	features : {
+		"subclassfeature3" : {
+			name : "Battle Tactics",
+			source : ["VSoS", 150],
+			minlevel : 3,
+			description :  desc([
+                "I gain 2 Battle Dice, which I regain on a short rest or when I roll initiative, and" +
+                " gain more at higher levels. Once per turn, I can perform a maneuver (see page 3 notes)." +
+                " My save for my maneuvers is 8 + Prof. Bonus + Str/Dex (my choice)"
+			]),
+			recovery : "short rest",
+			usages : [0, 0, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4],
+			additional : levels.map(function (n) {
+				return n < 3 ? "" : n < 13 ? "d8" : n < 19 ? "d10" : "d10";
+			}),
+            "bull rush" : {
+                name : "Bull Rush",
+                extraname : "Battle Tactics: Maneuvers",
+                source : ["VSoS", 151],
+                description : desc([
+                    "As a bonus action whenever I move at least 10 ft in a straight line and after I immediately make a " + 
+                    " melee weapon attack vs. a crea, I can expend a battle die to shove the target 10 ft away" + 
+                    " or knock them prone. I Add the result from the battle die to the Athletics check to shove the target."
+                ]),
+                action : ["bonus action", ""]
+            },
+            "bulwark" : {
+                name : "Bulwark",
+                extraname : "Battle Tactics: Maneuvers",
+                source : ["VSoS", 151],
+                descripton : desc([
+                    "As a bonus action when I hit a crea with a melee attack, I can expend a battle die" +
+                    " to reduce the damage from that crea the next time they damage me before the start of my next turn" + 
+                    " The damage reduced is equal to the battle die result"
+                ]),
+                action : ["bonus action", ""]
+            },
+            "cleave" : {
+                name : "Cleaave",
+                extraname : "Battle Tactics: Maneuvers",
+                source : ["VSoS", 151],
+                description : desc([
+                    "Once per turn, when I reduce a hostile crea to 0 hp or score a critical hit with a melee weapon" + 
+                    " attack, I can expend a battle die to move up to 15 ft and make another melee weapon attack" + 
+                    " as part of the same action. I add the result from the battle die to the attack's damage."
+                ])
+            },
+            "heel-cutter" : {
+                name : "Heel-Cutter",
+                extraname : "Battle Tactics: Maneuvers",
+                source : ["VSoS", 151],
+                description : desc([
+                    "When I make an opportunity attack vs. a crea, I can expend a battle die to prevent it from escaping." +
+                    " I add the battle die to the attack roll, and on a hit, the crea must make a Strength save or" + 
+                    " its speed is reduced to 0 until the end of its turn." 
+                ])
+            },
+            "reckless assault" : {
+                name : "Reckless Assault",
+                extraname : "Battle Tactics: Maneuvers",
+                source : ["VSoS", 151],
+                description : desc([
+                    "When I make an attack vs. a crea, I can expend a battle die to make it a reckless attack." + 
+                    " I gain advantage on the attack roll, but all attacks vs. me have advantage until" + 
+                    " the start of my next turn."
+                ])
+            },
+            "staggering strike" : {
+                name : "Stargering Strike",
+                extraname : "Battle Tactics: Maneuvers",
+                source : ["VSoS", 151],
+                description : desc([
+                    "As a bonus action when I make a weapon attack vs. a Large or smaller crea, I can expend a battle die" + 
+                    " to daze the taarget. On a hit, the target must make a Con. save or be incapacitated until the" + 
+                    " start of my next turn."
+                ]),
+                action : ["bonus action", ""]
+            },
+            autoSelectExtrachoices : [{
+                extrachoice : "bull rush"
+            }, {
+                extrachoice : "bulwark"
+            }, {
+                extrachoice : "cleave"
+            }, {
+                extrachoice : "heel-cutter"
+            }, {
+                extrachoice : "reckless assault"
+            }, {
+                extrachoice : "staggering strike"
+            }]
+		},
+        "subclassfeature3.1" : {
+            name : "Hold the Line",
+            source : ["VSoS", 151],
+            minlevel : 3,
+            description :  desc([
+                "When I use Warden's Grasp, I can choose a crea, not myself, to gain a +1 bonus to AC and saving throws while they remain in range of the effect's area until the start of my next turn."
+            ])
+        },
+        "subclassfeature6" : {
+            name : "Fortification Expert",
+            source : ["VSoS", 151],
+            minlevel : 6,
+            description :  desc([
+                "I have advantage on ability checks to make fortifications, examine walls and other defenses for weak points and entry" + 
+                " ways, and climb constructed walls. When I have \u00BE cover, I'm considered to have full cover."
+            ]),
+            },
+        "subclassfeature13" : {
+            name : "Mettle",
+            source : ["VSoS", 151],
+            minlevel : 13,
+            description :  desc([
+                "Whenever I make a Con. save for \u00BD damage, I take no damage on a success and" + 
+                " \u00BD on a fail."
+            ]),
+        },
+        "subclassfeature20" : {
+            name : "Unbreakable Sentinel",
+            source : ["VSoS", 151],
+            minlevel : 20,
+            description :  desc([
+                "As an action 1/LR, I can transform into a paragon of battle and gain the following:", 
+                "\u2022 +2 bonus to AC" ,
+                "\u2022 I regain an expended battle die whenever I hit a marked crea with an attack",
+                "\u2022 I can take 1 additional reaction during each round of combat. I can't take",
+                " more than 1 reaction in a single turn",
+            ]),
+            action : ["action",""],
+            recovery : "long rest",
+            usages : 1,
+        },
+	}
+});
 
+AddSubClass("warden", "nightgaunt", {
+	regExpSearch : /nightgaunt/i,
+	subname : "Nightgaunt",
+	source : ["VSoS", 152],
+	features : {
+		"subclassfeature3" : {
+			name : "Darkvision",
+			source : ["VSoS", 152],
+			minlevel : 3,
+            description : desc([
+                "I gain dark vision with a range of 60 ft or +30 ft if I already have it.",
+                "At 13th level, I can see through magical and non-magical darkness."
+            ]),
+            vision : [["Darkvision", "fixed 60"], ["Darkvision", "+30"]]
+		},
+		"subclassfeature2" : {
+			name : "Marked for Death",
+			source : ["HB: Warden", 3],
+			minlevel : 3,
+			description :  desc(["If I deal damage to a creature I have marked with a melee weapon attack and its remaining hit points are lower than the damage I dealt to it with that attack, the marked creature instead drops to 0 hit points."]),
+		},
+		"subclassfeature3" : {
+			name : "Undead Empathy",
+			source : ["HB: Warden", 3],
+			minlevel : 6,
+			description :  desc(["Whenever an undead tries to attack me, it must make a Wisdom saving throw. On a failed save, its attack misses and, if its Intelligence is 4 or lower, it becomes friendly to I and my allies. Save DC mod is Con."]),
+		},
+		"subclassfeature4" : {
+			name : "Evasion",
+			source : ["HB: Warden", 3],
+			minlevel : 13,
+			description :  desc(["Beginning at 13th level, I can nimbly dodge out of the way of certain area effects, such as a red dragon’s fiery breath or an ice storm spell. When I am subjected to an effect that allows I to make a Dexterity saving throw to take only half damage, I instead take no damage if I succeed on the saving throw, and only half damage if I fail."]),
+		},
+		"subclassfeature5" : {
+			name : "Gravelord",
+			source : ["HB: Warden", 3],
+			minlevel : 20,
+			description :  desc(["At 20th level, I can use my action to invite the necromantic energies of true undead into my body, divorcing myself from life for the next minute and gaining the following benefits:" 
+            + "\n\u2022 I am immune to poison damage and being poisoned." 
+            + "\n\u2022 I can use my Undying feature up to three times, even if I have already used it today." 
+            + "\n\u2022 Once per turn, when I deal damage with a melee weapon attack, I can deal an extra 4d6 necrotic damage and gain temporary hit points, which last until the beginning of my next turn, equal to the necrotic damage dealt. Once I use this feature, I can’t use it again untilyou finish a long rest."]),
+			recovery : "long rest",
+			usages : 1,
+		},
+	},
+});
 
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
