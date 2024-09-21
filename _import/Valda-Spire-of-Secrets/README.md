@@ -16,8 +16,7 @@ I am also going to go through the process of adding each class/subclass and ensu
 I am going page by page and adding/updating content. I will be providing updates through the README.md 
 
 ## Important
-
-*Due to a recent `weaponsAdd` bug, I am adding the bomb as "Bomb (Alchemist)" in `weaponOptions` instead of using `weaponsAdd : { select : ["Bomb"] }`*
+  - Due to the "witch" being considered part of the sorcerer `regExpSearch`, I've overwritten the regEx to only include sorcerer so that the witch class can be properly added.
 
 Everything in this script has been updated to v13.2.1 for MPMB's Sheet and 1.4 of the PDF.
 
@@ -39,15 +38,15 @@ Everything in this script has been updated to v13.2.1 for MPMB's Sheet and 1.4 o
   - Gunslinger Class and Subclasses (written by seaw0rld)
   - Necromancer Class and Subclasses (written by seaw0rld)
   - Martyr Class and Subclasses (written by trackatnite)
-  - Warden Class and Subclasses(written by nanur, edited/updated by trackatnite)
+  - Warden Class and Subclasses (written by nanur, edited/updated by trackatnite)
+  - Witch Class and Subclasses (written by PoetGod, edited/changed by trackatnite)
   
 ### WIP: 
   - Investigator Class and Subclasses (seaw0rld)
-  - Witch Class (written by poetgod, edited/updated by trackatnite)
+  - Add all spells and update
 
 ### TODO: 
-  - Add the rest of the classes and update
+  - Add Investigator Class
   - Add the rest of the subclasses and update
-  - Add all spells and update
   - Add all magic items and update
   - Add all equipment and update
