@@ -38,13 +38,12 @@ Everything in this script has been updated to v13.2.1 for MPMB's Sheet and 1.4 o
   - Craftsman Class and Subclasses Finished (originally written by aelartheelfrogue, updated by seaw0rld)
   - Gunslinger Class and Subclasses (written by seaw0rld)
   - Necromancer Class and Subclasses (written by seaw0rld)
-  - Martyr Class (written by trackatnite)
-    - Burden of Atonement Subclass
-    - Burden of Discord Subclass
+  - Martyr Class and Subclasses (written by trackatnite)
   - Warden Class and Subclasses(written by nanur, edited/updated by trackatnite)
   
 ### WIP: 
   - Investigator Class and Subclasses (seaw0rld)
+  - Witch Class (written by poetgod, edited/updated by trackatnite)
 
 ### TODO: 
   - Add the rest of the classes and update
