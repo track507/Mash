@@ -23254,7 +23254,7 @@ AddSubClass("gunslinger","white hat",{
 //     source : ["VSoS", 119],
 //     spellcastingExtra : ["cure wounds", "sanctuary", "calm emotions", "lesser restoration", "remove curse", "speak with dead", "death ward", "fire shield", "greater restoration", "mass cure wounds"],
 //     features : {
-//         "subclassfeature1.1" : {
+//         "subclassfeature1" : {
 //             name : "Burden Spells",
 //             source : ["VSoS", 121],
 //             minlevel : 1,
@@ -23263,7 +23263,7 @@ AddSubClass("gunslinger","white hat",{
 //                 "the total amount of spells I know."
 //             ])
 //         },
-//         "subclassfeature1.2" : {
+//         "subclassfeature1.1" : {
 //             name : "Bonus Proficiency",
 //             source : ["VSoS", 119],
 //             minlevel : 1,
@@ -23272,7 +23272,7 @@ AddSubClass("gunslinger","white hat",{
 //             ]),
 //             armorProfs : [true, true, true, true],
 //         },
-//         "subclassfeature1.3" : {
+//         "subclassfeature1.2" : {
 //             name : "Self-Sacrifice",
 //             source : ["VSoS", 119],
 //             minlevel : 1,
@@ -23288,7 +23288,7 @@ AddSubClass("gunslinger","white hat",{
 //             source : ["VSoS", 119],
 //             minlevel : 6,
 //             description : desc([
-//                 "When I Torment a hostile creature and is reduced to 0 hp, I take no damage instead."
+//                 "When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead."
 //             ])
 //         },
 //         "subclassfeature14" : {
@@ -23397,7 +23397,7 @@ AddSubClass("gunslinger","white hat",{
 //             source : ["VSoS", 121],
 //             minlevel : 6,
 //             description : desc([
-//                 "When I use torment against a hostile crea and is reduced to 0 hp, I take no damage instead."
+//                 "When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead."
 //             ])
 //         },
 // 		"subclassfeature14" : {
@@ -23554,9 +23554,12 @@ AddSubClass("gunslinger","white hat",{
 //             source : ["VSoS", 122],
 //             minlevel : 1,
 //             description : desc([
-//                 "I can use a bonus action to restore 1 hp to a crea within 60 ft or remove the blinded,",
-//                 "deafened, or poisoned condition from a willing crea I touch."
-//             ])
+//                 "Oncer per short rest, I can use a bonus action to restore 1 hp to a crea within 60 ft or",
+//                 "remove the blinded, deafened, or poisoned condition from a willing crea I touch."
+//             ]),
+//             usages : 1,
+//             recovery : "short rest" 
+//             action : ["bonus action", ""],
 //         },
 //         "subclassfeature6" : {
 //             name : "Sacrosanct Spell",
@@ -23577,19 +23580,373 @@ AddSubClass("gunslinger","white hat",{
 //                 "of the rest to gain a blessing. This lasts until the crea finished a long or short rest.",
 //                 "While blessed, a crea can reroll any attack roll, ability check, or saving throw.",
 //                 "Doing so will expend the blessing and the crea must use the new roll."
-//             ])
+//             ]),
+//             usages : 1,
+//             recovery : "Day"
 //         },
 //         "subclassfeature20" : {
 //             name : "Annointed Healer",
 //             source : ["VSoS", 122],
 //             minlevel : 18,
 //             description : desc([
-//                 "Whenevr I restore hp to a crea, I can add my martyr level to the number of hp restored.",
+//                 "Whenever I restore hp to a crea, I can add my martyr level to the number of hp restored.",
 //                 "A crea can only benefit from this once everytime I finish a long rest."
 //             ])
 //         }
 //     }
 // })
+
+AddSubClass("martyr", "burden of rebirth", {
+    regExpSearch : /burden of rebirth/i,
+    source : ["VSoS", 122],
+    subname : "Burden of Rebirth",
+    spellcastingExtra : ["entangle", "goodberry", "pass without trace", "spike growth", "plant growth", "speak with plants", "conjure woodland beings", "hallucinatory terrain", "awaken", "reincarnate"],
+    features : {
+        "subclassfeature1" : {
+            name : "Burden Spells",
+            source : ["VSoS", 122],
+            minlevel : 1,
+            description : desc([
+                "I learn additional spells that is considered always prepared and doesn't count against the", 
+                "total amount of spells I know."
+            ])
+        },
+        "subclassfeature1.1" : {
+            name : "Cantrips",
+            source : ["VSoS", 122],
+            minlevel : 1,
+            description : desc([
+                "I know spare the dying, thaumaturgy, and one more cleric cantrip of my choice. Wisdom is my", 
+                "spellcasting ability for this."
+            ]),
+            spellcastingBonus : [{
+				name : "Cantrips",
+				spells : ["druidcraft", "shillelagh"],
+				selection : ["druidcraft", "shillelagh"],
+                spellcastingAbility : 5,
+				times : 2
+			}, {
+				name : "Cantrips: cleric spell list",
+				"class" : "druid",
+				level : [0,0],
+                spellcastingAbility : 5,
+				times : 1
+			}]
+        },
+        "subclassfeature1.2" : {
+            name : "Friend of the Forest",
+            source : ["VSoS", 122],
+            minlevel : 1,
+            description : desc([
+                "I can cast speak with animals without losing hp. When I do so, I have adv. on Charisma checks",
+                "made directed at beasts for the duration. I can do this once per short rest."
+            ]),
+            usages : 1,
+            recovery : "short rest",
+            spellcastingBonus : [{
+                name : "Friend of the Forest",
+                spells : ["speak with animals"],
+                selection : ["speak with animals"],
+                firstCol : "oncesr",
+                times : 1
+            }]
+        },
+        "subclassfeature6" : {
+            name : "Sacrosanct Spell",
+            source : ["VSoS", 123],
+            minlevel : 6,
+            description : desc([
+                "Whenever I cast one of my Burden Spells or a spell that only heals a crea, I lost no hp", 
+                "from casting it if I cast it at its lowest level. Casting the spell still counts against", 
+                "my total number of spell uses."
+            ])
+        },
+        "subclassfeature14" : {
+            name : "Verdant Resilience",
+            source : ["VSoS", 123],
+            minlevel : 14,
+            description : desc([
+                "As a bonus action on my turn I can regenerate for 1 min. At the start of each of my turns, I",
+                "regain hp equal to my Wis mod. I also gain resistance to blud/pierce/slash and can't cast",
+                "martyr spells. I can end this early as a bonus action. I can do this once per short rest."
+            ]),
+            action : ["bonus action", ""],
+            usages : 1,
+            recovery : "short rest",
+        },
+        "subclassfeature20" : {
+            name : "Turn of the Wheel",
+            source : ["VSoS", 123],
+            minlevel : 18,
+            description : desc([
+                "I can cast reincarnate without expending material components or losing hp. When I do, I can",
+                "choose which race the target reincarnates as, intead of the GM. If I die without using my",
+                "Final Martyrdom, I return to life in 24 hours as by the reincarnate spell. Once I do so,",
+                "I can't this again for 10 days."
+            ]),
+            spellcastingBonus : [{
+                name : "Turn of the Wheel",
+                spells : ["reincarnate"],
+                selection : ["reincarnate"],
+                times : 1
+            }],
+            spellchanges : {
+                "reincarnate" : {
+                    compMaterial : "",
+                    components : "V,S\u2020",
+                    description : "Brings humanoid that died in last 10 days to life, I choose its new body",
+                    changes : "No material components and I can choose what the target reincarnates as."
+                }
+            },
+            usages : 1,
+            recovery : "10 days"
+        }
+    }
+})
+
+AddSubClass("martyr", "burden of revolution", {
+    regExpSearch : /burden of revolution/i,
+    source : ["VSoS", 123],
+    subname : "Burden of Revolution",
+    spellcastingExtra : ["command", "heroism", "hold person", "magic weapon", "haste", "pillar of salt", "stoneskin", "wall of fire", "hold monster", "telepathic bond"],
+    features : {
+        "subclassfeature1" : {
+            name : "Burden Spells",
+            source : ["VSoS", 123],
+            minlevel : 1,
+            description : desc([
+                "I learn additional spells that is considered always prepared and doesn't count against", 
+                "the total amount of spells I know."
+            ])
+        },
+        "subclassfeature1.1" : {
+            name : "Bonus Proficiency",
+            source : ["VSoS", 123],
+            minlevel : 1,
+            description : desc([
+                "I gain proficiency with heavy armor."
+            ]),
+            armorProfs : [true, true, true, true],
+        },
+        "subclassfeature1.2" : {
+            name : "Bulwark of Rebellion",
+            source : ["VSoS", 123],
+            minlevel : 1,
+            description : desc([
+                "Once per short rest, I can use a bonus action to gain 1d12 + my martyr level temp hp, which",
+                "lasts for an hour."
+            ]),
+            action : ["bonus action", ""],
+            usages : 1,
+            recovery : "short rest"
+        },
+        "subclassfeature6" : {
+            name : "Bloody Reprieve",
+            source : ["VSoS", 123],
+            minlevel : 6,
+            description : desc([
+                "When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead."
+            ])
+        },
+        "subclassfeature14" : {
+            name : "Unyielding Banner",
+            source : ["VSoS", 123],
+            minlevel : 14,
+            description : desc([
+                "All allies, including me, within 10 ft adds my Wis mod to initative rolls and immune to being",
+                "charmed or frightened."
+            ]),
+            savetxt : {
+                immune : ["charmed", "frightened"]
+            },
+            additional : levels.map(function(n) {
+                return n < 14 ? "" : "10 ft";
+            })
+        },
+        "subclassfeature18" : {
+            name : "Kingslayer",
+            source : ["VSoS", 124],
+            minlevel : 18,
+            description : desc([
+                "When I reduce a hostile crea to 0 hp, I can choose one of the following effects:",
+                "\u2022 All of the crea spells and effects immediately end, including all spells with permanent",
+                "effects. Additionally, spells that trigger on the crea death don't trigger",
+                "\u2022 Each crea allied with the crea within 120 ft and has a lower CR than it must make a Wis",
+                "save or be frightened for 1 min. It can repeat the save at the end of each of its turns",
+                "\u2022 As a bonus action, I move up to 15 ft and make another melee weapon attack"
+            ]),
+            action : ["bonus action", " (melee attack)"],
+            usages : 1,
+            recovery : "short rest"
+        }
+    }
+})
+
+AddSubClass("martyr", "burden of truth", {
+    regExpSearch : /burden of truth/i,
+    source : ["VSoS", 124],
+    subname : "Burden of Truth",
+    spellcastingExtra : ["charm person", "identify", "augury", "detect thoughts", "sending", "speak with dead", "divination", "freedom of movement", "legend lore", "scrinyg"],
+    features : {
+        "subclassfeature1" : {
+            name : "Burden Spells",
+            source : ["VSoS", 124],
+            minlevel : 1,
+            description : desc([
+                "I learn additional spells that is considered always prepared and doesn't count against", 
+                "the total amount of spells I know."
+            ])
+        },
+        "subclassfeature1.1" : {
+            name : "Moral Erudition",
+            source : ["VSoS", 125],
+            minlevel : 1,
+            description : desc([
+                "I can add my Wis mod instead of Cha for Persuasion checks. Other creatures can always",
+                "discern when I am telling the truth."
+            ]),
+            addMod : { type : "skill", field : "Pers", mod : "max(Wis|0)", text : "I can add my Wisdom modifier to any Charisma (Persuasion) checks I make." }
+        },
+        "subclassfeature1.2" : {
+            name : "Maxim of Truth",
+            source : ["VSoS", 125],
+            minlevel : 1,
+            description : desc([
+                "As a bonus action once per short rest, I can cast zone of truth centered on me. This",
+                "has a 5 ft rad and duration of 1 min. Wisdom is my spellcasting ability for this."
+            ]),
+            action : ["bonus action", ""],
+            usages : 1,
+            recovery : "short rest",
+            spellcastingBonus : [{
+                name : "Maxim of Truth",
+                spells : ["zone of truth"],
+                selection : ["zone of truth"],
+                spellcastingAbility : 5,
+                times : 1,
+                firstCol : "oncesr"
+            }],
+            spellchanges : {
+                "zone of truth" : {
+                    description : "5 rad all in or enter save or unable to lie; I'm aware if saved or not; crea aware it cannot lie",
+                    duration : "1 min",
+                    range : "5 ft",
+                    changes : "The range becomes 5 ft and the duration is 1 minute."
+                }
+            },
+        },
+        "subclassfeature6" : {
+            name : "Sacrosanct Spell",
+            source : ["VSoS", 125],
+            minlevel : 6,
+            description : desc([
+                "Whenever I cast one of my Burden Spells or a spell that only heals a crea, I lost no hp", 
+                "from casting it if I cast it at its lowest level. Casting the spell still counts against", 
+                "my total number of spell uses."
+            ])
+        },
+        "subclassfeature14" : {
+            name : "Foretold Escape",
+            source : ["VSoS", 125],
+            minlevel : 14,
+            description : desc([
+                "When a crea I can see makes an attack roll against me, I can use my reaction to impose",
+                "diadvantage on that roll."
+            ]),
+            action : ["reaction", ""]
+        },
+        "subclassfeature18" : {
+            name : "Eyes of Prophecy",
+            source : ["VSoS", 125],
+            minlevel : 18,
+            description : desc([
+                "Once per short rest, I can replace one attack, ability check, or saving throw roll I make",
+                "with a 20."
+            ])
+        }
+    }
+})
+
+AddSubClass("martyr", "burden of tyranny", {
+    regExpSearch : /burden of tyranny/i,
+    source : ["VSoS", 125],
+    subname : "Burden of Tyranny",
+    spellcastingExtra : ["bane", "command", "find steed", "hold person", "bestow curse", "fear", "banishment", "dominate beast", "dominate person", "geas"],
+    abilitySave : 5,
+    features : {
+        "subclassfeature1" : {
+            name : "Burden Spells",
+            source : ["VSoS", 125],
+            minlevel : 1,
+            description : desc([
+                "I learn additional spells that is considered always prepared and doesn't count against", 
+                "the total amount of spells I know."
+            ])
+        },
+        "subclassfeature1.1" : {
+            name : "Bonus Proficiency",
+            source : ["VSoS", 125],
+            minlevel : 1,
+            description : desc([
+                "I gain proficiency with heavy armor."
+            ]),
+            armorProfs : [true, true, true, true],
+        },
+        "subclassfeature1.2" : {
+            name : "Diabolic Ultimatum",
+            source : ["VSoS", 125],
+            minlevel : 1,
+            description : desc([
+                "As an action once per short rest, I can choose a crea that I can see within 60 ft to",
+                "make Wis save, or the crea is charmed or frightened for 1 min. It can repeat the save",
+                "on each of its turns. The DC for this is 8 + Prof. Bonus + Wis mod."
+            ]),
+            action : ["action", ""],
+            usages : 1,
+            recovery : "short rest"
+        },
+        "subclassfeature6" : {
+            name : "Bloody Reprieve",
+            source : ["VSoS", 125],
+            minlevel : 6,
+            description : desc([
+                "When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead."
+            ])
+        },
+        "subclassfeature14" : {
+            name : "Crush Resistance",
+            source : ["VSoS", 125],
+            minlevel : 14,
+            description : desc([
+                "Once per turn when I hit a hostile crea with a melee weapon attack, I gain 1d8",
+                "temp hp. If I reduce a Humanoid to 0 hp with a melee weapon attack, this becomes",
+                "4d8 instead."
+            ]),
+            usages : 1,
+            recovery : "Turn"
+        },
+        "subclassfeature18" : {
+            name : "Crush Resistance",
+            source : ["VSoS", 125],
+            minlevel : 18,
+            description : desc([
+                "I can cast dominate person without expending hp or counting against my spell uses",
+                "once per day. Whenever I cast this spell, the target has disadv on its saving throw",
+                "and doesn't make a new save everytime it takes damage. I can cast this once per",
+                "long rest without expending hp."
+            ]),
+            spellcastingBonus : [{
+                name : "Crush Resistance",
+                spells : ["dominate person"],
+                selection : ["dominate person"],
+                times : 1,
+                firstCol : "Day",
+            }],
+            usages : 1,
+            recovery : "long rest"
+        }
+    }
+})
 
 // // * Necromancer class
 // // Necromancer spell list
@@ -26415,7 +26772,7 @@ AddSubClass("warden", "soulblood shaman", {
         level : [1,5],
         school : ["Evoc", "Trans"]
     },
-    abilitysave : 5,
+    abilitySave : 5,
 	spellcastingKnown : {
 		spells : [0, 0, 2, 3, 3, 3, 4, 4, 4, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9],
 		cantrips : [0, 0, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
