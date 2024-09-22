@@ -30,6 +30,10 @@ Everything in this script has been updated to v13.2.1 for MPMB's Sheet and 1.4 o
   - Fixed Xenoalchemist "Oversized Arms" for "Alchemy Golem" not changing newly added weapons' range correctly.
     - Each choice that adds a weapon now calls on a `commoneval` and "Oversized Arms" now calls on a `commonremoveeval` to reset ranges with the exception of "Tentacles"
   - Removed `weaponsAdd` from "Underbarrel Grenade Launcher"
+  - Fixed `CompanionList` for Mystical Companion House of Bishops feature not getting familiar notes, attributes, header, or actions.
+  - Revamped House of Bishops spellcasting to change as little as possible. Now it only changes the `level` and `spells` array in `spellcatingList` and `spellcastingKnown`.
+    - It now uses calcChanges.spellList to add the wizard evoc and conj spells to the class
+  - A lot of wording and script changes to Warmage for readability
 
 ### Added
   - Alchemist Class and Subclasses Finished (written by seaw0rld)
