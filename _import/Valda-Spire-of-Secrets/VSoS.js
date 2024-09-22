@@ -28473,9 +28473,7 @@ ClassList["warmage"] = {
 	spellcastingList : {
 		"class" : "warmage",
 		level : [0, 0],
-		notspells : []
 	},
-	spellcastingExtra : [],
     features : {
         "spellcasting" : {
 			name : "Spellcasting",
@@ -29424,7 +29422,7 @@ AddSubClass("warmage", "house of bishops", {
 			},
 			removeeval: function() {
 				ClassList.warmage.spellcastingKnown.spells = [0];
-				ClassList.warmage.spellcastingList.class = ["warmage"];
+                ClassList.warmage.spellcastingList.level = [0, 0]
 			},
 			spellcastingBonus : [{ // the spells gained at level 3, 8, 14, 20
 				name : "From any school",
@@ -29855,7 +29853,7 @@ AddSubClass("warmage", "house of knights", {
 			source : [["VSoS", 170]],
 			minlevel : 10,
 			description : desc([
-                "I gain temp hp equal to 2\xD7 my waramge level, which lasts for 1 min",
+                "I gain temp hp equal to 2\xD7 my warmage level, which lasts for 1 min",
 			]),
 			usages : 1,
 			recovery : "short rest",
@@ -29879,7 +29877,7 @@ AddSubClass("warmage", "house of knights", {
             weaponOptions : [{
                 regExpSearch : /field of blades/i,
                 source : [["VSoS", 170]],
-                name : "Field of Blade",
+                name : "Field of Blades",
                 damage : [2, 10, "Force"],
                 type : "Cantrip",
                 ability : 4,
@@ -29931,7 +29929,7 @@ AddSubClass("warmage", "house of lancers", {
 				"\u2022 My unarmed strikes use Int instead of Str for atk and dmg rolls",
 				"\u2022 The dmg becomes a d6, unless already higher",
 				"\u2022 My unarmed strikes count as melee weapons for the purposes of warmage spells",
-                "\u2022 I can make an unarmed strike as a bonus action; Must've atk'd w/unarmed strike as an action"
+                "\u2022 I can make an unarmed strike as a bonus action; Must atk w/unarmed strike as an action"
 			]),
             action : [["bonus action", " (Unarmed Strike)"]],
 			calcChanges : {
@@ -29942,6 +29940,7 @@ AddSubClass("warmage", "house of lancers", {
                         }
                         if(v.baseWeaponName == "unarmed strike" && What('Int Mod') > What(AbilityScores.abbreviations[fields.Mod - 1] + ' Mod') && (fields.Damage_Die.match(/\b(\d+)d(\d+)\b/i) || fields.Damage_Die == 1)) {
                             var oDmg = fields.Damage_Die == 1 ? 1 : fields.Damage_Die.match(/\b(\d+)d(\d+)\b/i);
+                            fields.Mod = 4;
                             if( oDmg == 1 ){
                                 fields.Damage_Die = "1d6"
                             }
@@ -30071,7 +30070,7 @@ AddSubClass("warmage", "house of pawns", {
 			source : [["VSoS", 171]],
 			minlevel : 7,
 			description : desc([
-                "If I target a crea w/ a cantrip, they can't make opporunity atks vs. me",
+                "If I target a crea w/ a cantrip, they can't make opportunity atks vs. me",
                 "This lasts the rest of my turn, whether or not I deal dmg",
 			])
 		},
@@ -30464,6 +30463,32 @@ CompanionList["undead thrall"] = {
         RemoveString(prefix + 'Cnote.Left', "\n\u25C6 Animate Dead: If I know the Animate Dead spell, I can cast it as an action instead of a minute. All Undead I create using spells or other magic count as my thralls and can be commanded as such. If my new thralls granted to me by a spell cause me to exceed my Thrall CR Total or total number of thralls, I can immediately sever my connection to any number of my existing thralls to stay within my limits. My thralls can never command or create other Undead. I cannot reanimate undead that have been reduced to 0 hit points.");
     }
 }
+
+// * Companion list for House of Bishops feature.
+CompanionList["mystical companion"] = {
+	name : "Mystical Companion",
+    nameTooltip : "for Mystical Companion",
+    nameOrigin : "7th level Warmage House of Bishops Feature",
+	nameMenu : "Familiar (Warmage House of Bishops)",
+	source : ["VSoS", 166],
+	includeCheck : function(sCrea, objCrea, iCreaCR) { //only imp, pseudodragon, quasit, or sprite
+		return /^(imp|pseudodragon|quasit|sprite)$/i.test(sCrea);
+	},
+    action : CompanionList.familiar.action,
+    attributesAdd : CompanionList.familiar.attributesAdd,
+    attributesChange : CompanionList.familiar.attributesChange,
+    notes : function() {
+        var a = newObj(CompanionList.familiar.notes);
+        a[0].description = [
+            "appearing in an unoccupied space within 10 ft",
+            "It assumes a chosen form (can change at every casting): imp, pseudodragon, quasit, sprite",
+            "It has the chosen form's statistics, but its type changes from beast to celestial, fey, or fiend",
+            "When the familiar drops to 0 hit points, it disappears, leaving behind no physical form",
+            "It reappears when I cast this spell again (in a new form if so desired)"
+        ].join("\n   ");
+        return a;
+    }()
+};
 
 // * Witch's familiar
 CompanionList["witch's familiar"] = {
