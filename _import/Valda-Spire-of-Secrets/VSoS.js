@@ -28604,7 +28604,7 @@ ClassList["warmage"] = {
 					spellCalc : [
 						function (type, spellcasters, ability) {
 							//if we dont know the house of bishops feature, then we can just add +1 to our warmage saves.
-							if( type == "dc" && spellcasters.indexOf("warmage") !== -1 ) return 1;
+							if( type == "dc" && (spellcasters.indexOf("warmage") !== -1 || spellcasters.indexOf("warmage-adaptive arcanist") !== -1) ) return 1;
 						},
 						"I add +1 to all the saving throw DCs of my warmage spells."
 					],
@@ -28757,7 +28757,6 @@ ClassList["warmage"] = {
                     "Additionally, other creatures can always discern when I am telling the truth."
 				]),
 				skills : ["Insight", "Persuasion"],
-				skillstxt : "I gain proficiency with Insight and Persuasion",
 				prereqeval : function(v) { return (/\bpawns|knights\b/).test(classes.known.warmage.subclass); },
 			},
 			"cloak of feathers" : {
@@ -29392,6 +29391,7 @@ ClassList["warmage"] = {
     }
 };
 
+// * house of bishops warmage subclass
 AddSubClass("warmage", "house of bishops", {
 	regExpSearch : /^(?=.*house)(?=.*bishops).*$/i,
 	subname : "House of Bishops",
@@ -29486,6 +29486,7 @@ AddSubClass("warmage", "house of bishops", {
 	}
 });
 
+// * house of cards warmage subclass
 AddSubClass("warmage", "house of cards", {
 	regExpSearch : /^(?=.*house)(?=.*cards).*$/i,
 	subname : "House of Cards",
@@ -29573,6 +29574,536 @@ AddSubClass("warmage", "house of cards", {
                 "When I draw one or more cards from my deck, I draw 2\xD7 as many",
                 "I put half the cards drawn in the bottom and the other half in my hand"
 			])
+		}
+	}
+});
+
+// * house of bishops warmage subclass
+AddSubClass("warmage", "house of dice", {
+	regExpSearch : /^(?=.*house)(?=.*dice).*$/i,
+	subname : "House of Dice",
+	fullname : "House of Dice",
+	source : [["VSoS", 167]],
+	features : {
+		"subclassfeature3" : {
+			name : "Bonus Proficiencies",
+			source : [["VSoS", 167]],
+			minlevel :3,
+			description : desc([
+				"I gain proficiency in Sleight of Hand and with the Dice Set"
+			]),
+			toolProfs : ["Dice Set"],
+			skills : ["Sleight of Hand"],
+		},
+		"subclassfeature3.1" : {
+			name : "Dice of Fate",
+			source : [["VSoS", 167]],
+			minlevel : 3,
+			description : desc([
+                "I gain 4 Dice of Fate; using one to add to an ability check, atk roll, save, or dmg roll",
+                "I can use it after the roll, but before the GM determine's the outcome; It then goes to the GM",
+                "They can use it on a roll w/ an NPC or Monster; returning to me after they use it, and so forth",
+                "I regain all dice, even if the GM has them; I gain 2 more at 7th level to use w/ warmage spells",
+                "I can add 2 dice instead of 1 to my warmage spell dmg rolls"
+			]),
+			extraLimitedFeatures : [{
+				name : "Dice of Fate",
+				usages : "4 at level 3, +2 at level 7",
+				usagescalc : "event.value = classes.known.warmage.level < 7 ? 4 : 6;",
+				additional : 'd6',
+				recovery : "long rest",
+			}]
+		},
+		"subclassfeature3.2" : {
+			name : "Chaos Roll",
+			source : [["VSoS", 167]],
+			minlevel : 3,
+			description : desc([
+                "I can use 2 Dice of Fate to create an effect of chaotic energy (see 3rd page notes)",
+			]),
+			toNotesPage : [{
+				name : "Chaos Rolls Table",
+				page3notes : true,
+				source : [["VSoS", 167]],
+				note : desc([
+					"\u2022  2: I cast fireball centered on me",
+					"\u2022  3: My AC is reduced by 2 until the start of my next turn",
+					"\u2022  4: I fall prone",
+                    "\u2022  5: Creas. w/in 60 ft, not me, speak in a nonsense language for 1 min; Can't cast verbal spells",
+                    "\u2022  6: A 5 ft rad sphere is heavily obscured w/in 60 ft of me until the start of my next turn",
+					"\u2022  7: I gain 7 temp HP and keep the Dice of Fate instead of giving them to the GM",
+					"\u2022  8: I become invisible until the end of my next turn, as per invisibility",
+                    "\u2022  9: Random obj w/in 60 ft explodes; No dmg to me or allies; 3d6 fire dmg to GM chosen crea",
+                    "\u2022 10: I teleport to a visible place w/in 60 ft; Creas w/in 5 ft of me, Dex save or 2d6 fore dmg",
+                    "\u2022 11: A visibile crea w/in 60 ft takes 4d6 necrotic dmg; I gain hp equal to the dmg dealt",
+					"\u2022 12: I cast lightning bolt and can add the Dice of Fate to the damage roll",
+				])
+			}],
+			action : ["action",""]
+		},
+		"subclassfeature7" : {
+			name : "Loaded Dice",
+			source : [["VSoS", 168]],
+			minlevel : 7,
+			description : desc([
+                "When I roll a die, I can flip it upside down",
+			]),
+			usages : 1,
+			recovery : "Turn",
+		},
+		"subclassfeature10" : {
+			name : "Twisted Fate",
+			source : [["VSoS", 168]],
+			minlevel : 10,
+			description : desc([
+                "If I make an atk or ability check w/disadv on my turn, I can use a die; 5-no disadv; 6-Gain adv",
+			]),
+			action : ["bonus action", ""]
+		},
+		"subclassfeature15" : {
+			name : "Roll the Bones",
+			source : [["VSoS", 168]],
+			minlevel : 15,
+			description : desc([
+                "When I take dmg from a visible crea, I can use 2 dice to make a Chaos Roll"
+			]),
+			action : ["reaction", ""]
+		},
+		"subclassfeature18" : {
+			name : "Steal Luck",
+			source : [["VSoS", 168]],
+			minlevel : 18,
+			description : desc([
+				"When I roll initiative, roll a d6. I steal that many Dice of Fate back from the GM."
+			])
+		}
+	}
+});
+
+// * house of kings warmage subclass
+AddSubClass("warmage", "house of kings", {
+	regExpSearch : /^(?=.*house)(?=.*kings).*$/i,
+	subname : "House of Kings",
+	fullname : "House of Kings",
+	source : [["VSoS", 168]],
+	features : {
+		"subclassfeature3" : {
+			name : "Bonus Proficiency",
+			source : [["VSoS", 168]],
+			minlevel : 3,
+			description : desc([
+				"I am proficient w/ medium armor, battleaxes, lances, longswords, tridents, and warhammers"
+			]),
+			armorProfs :[true, true, false, false],
+			weaponProfs : [true, false, ["battleaxes", "lances", "longswords", "tridents", "warhammers"]]
+		},
+		"subclassfeature3.1" : {
+			name : "Battle Tactics",
+			source : [["VSoS", 168]],
+			minlevel : 3,
+			description : desc([
+                "I gain 2 battle dice. I can use a die to perform a stratagem (see 3rd page notes)",
+                "I regain all uses on a short or long rest, or when I roll initiative",
+			]),
+			additional : levels.map( function(n) {
+				return n < 13 ? "d8" : "d10";
+			}),
+            
+            limefeaname : "Battle Die",
+            usages : "",
+            usagescalc : "event.value = classes.known.warmage.level < 7 ? 2 : classes.known.warmage.level < 19 ? 3 : 4;",
+			recovery : "short rest",
+			toNotesPage : [{
+				name : "Stratagem",
+				source : [["VSoS", 169]],
+				page3notes : true,
+				note : desc([
+                    "\u2022 Blitz: Bonus action when I hit a crea w/atk, 1 ally w/in 60 ft that can see/hear me",
+                    "  moves up to \u00BD its spd w/out provoking opportunity atks from the crea I targeted",
+                    "\u2022 Check: Bonus action when I hit a crea w/atk; Target Cha save or rea to move \u00BD spd away",
+                    "  crea immune to frightened auto succeeds",
+                    "\u2022 Flash of Brilliance: When I roll an Int/Wis check, I can add it before GM determines outcome",
+                    "\u2022 Gambit: When I hit a crea w/atk, next crea that atks them, not me, adds it to their atk roll",
+                    "\u2022 Mystic Counsel: Bonus action, 1 audible/visible crea w/in 30 ft, can add it to next spell save",
+                    "\u2022 Stalemate: Bonus action when I hit a crea w/atk, can't willingly move, unless disengages first",
+                    "  This lasts until the end of its next turn",
+				])
+			}]
+		},
+		"subclassfeature7" : {
+			name : "Leading from the Front",
+			source : [["VSoS", 168]],
+			minlevel : 7,
+			description : desc([
+				"Allies w/in 120 of me, includes myself, ignores nonmagical difficult terrain"
+			])
+		},
+		"subclassfeature10" : {
+			name : "Tactical Master",
+			source : [["VSoS", 168]],
+			minlevel : 10,
+			description : desc([
+				"Allies w/in 10 ft adds my Int mod to their saves vs spells and magical effects that deal dmg"
+			]),
+			savetxt : { text : ["Add Int mod to damaging spells and magical effects"] },
+			additional : levels.map( function(n) {
+				return n < 10 ? "" : "10-ft radius";
+			})
+		},
+		"subclassfeature15" : {
+			name : "Stratagem",
+			source : [["VSoS", 168]],
+			minlevel : 15,
+			description : desc([
+				"I learn the Checkmate stratagem."
+			]),
+			toNotesPage : [{
+				name : "Stratagem: Checkmate",
+				note : desc([
+                    "\u2022 Checkmate: Bonus action when I hit a crea w/ wpn/spell atk, 1 visible/audible ally can atk",
+                    "  Ally must be w/in reach of crea I hit, using its rea to atk w/ wpn/spell requiring an atk roll",
+                    "  It adds the result of the die to the weapon's dmg roll"
+ 				]),
+                amendTo : "Stratagem",
+				page3notes : true,
+			}],
+			action : ["bonus action", "Checkmate (1 Battle Die)"],
+		},
+		"subclassfeature18" : {
+			name : "Grandmaster", 
+			source : [["VSoS", 169]],
+			minlevel : 18,
+			description : desc([
+                "When I roll initiative, each visible/audible ally w/in 60 ft up to my Int mod gain a battle die",
+                "It can expend it to add to an atk, ability check, save, or dmg roll; before the GM's outcome",
+                "After 10 mins, they lose it, even if it isn't used. A crea can only have 1 die from this at a time",
+			])
+		}
+	}
+});
+
+AddSubClass("warmage", "house of knights", {
+	regExpSearch : /^(?=.*house)(?=.*knights).*$/i,
+	fullname : "House of Knights",
+	subname : "House of Knights",
+	source : [["VSoS", 169]],
+	features : {
+		"subclassfeature3" : {
+			name : "Bonus Proficiency",
+			source : [["VSoS", 169]],
+			minlevel : 3,
+			description : desc([
+				"I gain proficiency with medium armor and martial weapons"
+			]),
+			armorProfs : [true, true, false, false],
+			weaponProfs : [true, true]
+		},
+		"subclassfeature3.1" : {
+			name : "Force Breastplate",
+			source : [["VSoS", 169]],
+			minlevel : 3,
+			description : desc([
+                "I can add my Int mod instead of Dex to AC w/ medium, light, or mage armor",
+			]),
+			//from Joost
+			extraAC : [{ 
+				mod : "Int-Dex",
+				text : "I add my Intelligence modifier to AC instead of my Dexterity.",
+				stopeval : function (v) { return v.mediumArmor || v.heavyArmor; } // for everything but medium and heavy armor
+			}, {
+				mod : "min(2|Int)-min(2|Dex)",
+				text : "I add my Intelligence modifier (max 2) to AC instead of my Dexterity (max 2) when wearing medium armor.",
+				stopeval : function (v) { return !v.mediumArmor; } // only for medium armor
+			}]
+		},
+		"subclassfeature3.2" : {
+			name : "Mystical Weapon",
+			source : [["VSoS", 169]],
+			minlevel : 3,
+			description : desc([
+                "I learn force weapon; I can draw any simple/martial weapon of my choice",
+                "It's summoned into my hand and deals force dmg instead of its normal dmg",
+                "When it leaves my hand, its stored in a pocket dimension until I summon it again",
+			]),
+			spellcastingBonus : [{
+				name : "Mystical Weapon",
+				spells : ["force weapon"],
+				selection : ["force weapon"],
+				firstCol : "atwill"
+			}],
+            calcChanges : {
+                atkAdd : [
+                    function(fields, v) { 
+                        if(/force ?(weapon)?/i.test(fields.WeaponTextName) && !/\bforce weapon\b/.test(SpellsList[v.thisWeapon[3]].name)) {
+                            fields.Damage_Type = "Force"
+                        }
+                    }
+                ]
+            }
+		},
+		"subclassfeature7" : {
+			name : "Flurry of Blades",
+			source : [["VSoS", 169]],
+			minlevel : 7,
+			description : desc([
+                "If I cast a cantrip w/ multiple atk rolls, I can make one additional atk with it",
+			]),
+			action : ["bonus action", "Flurry of Blades"]
+		},
+		"subclassfeature10" : {
+			name : "Knight's Ward",
+			source : [["VSoS", 170]],
+			minlevel : 10,
+			description : desc([
+                "I gain temp hp equal to 2\xD7 my waramge level, which lasts for 1 min",
+			]),
+			usages : 1,
+			recovery : "short rest",
+			action : ["bonus action", ""]
+		},
+		"subclassfeature15" : {
+			name : "Tactical Maneuver",
+			source : [["VSoS", 170]],
+			minlevel : 15,
+			description : desc([
+				"I can spend my whole movement to teleport up to half my spd to a visible space"
+			])
+		},
+		"subclassfeature18" : {
+			name : "Field of Blades",
+			source : [["VSoS", 170]],
+			minlevel : 18,
+			description : desc([
+                "I can atk up to 5 visible creas w/in 30 ft with a melee spell atk; 2d10 + Int mod force dmg",
+			]),
+            weaponOptions : [{
+                regExpSearch : /field of blades/i,
+                source : [["VSoS", 170]],
+                name : "Field of Blade",
+                damage : [2, 10, "Force"],
+                type : "Cantrip",
+                ability : 4,
+                abilitytodamage : true,
+                range : "30 ft",
+                description : "5 visible targets w/in range; atk roll for each",
+                special : true,
+                selectNow : true
+            }],
+			action : ["action", ""]
+		}
+	}
+});
+
+// * house of lancers warmage subclass
+AddSubClass("warmage", "house of lancers", {
+	regExpSearch : /^(?=.*house)(?=.*lancers).*$/i,
+	fullname : "House of Lancers",
+	subname : "House of Lancers",
+	source : [["VSoS", 170]],
+	features : {
+		"subclassfeature3" : {
+			name : "Intercept Technique",
+			source : [["VSoS", 170]],
+			minlevel : 3,
+			description : desc([
+                "My AC becomes 10 + Dex + Int while w/out armor; or 13 + Dex + Int w/ mage armor",
+                "If I wield a shield, I lose this benefit",
+			]),
+            armorOptions : [{
+                regExpSearch : /intercept technique/i,
+                name : "Intercept Technique",
+                ac : "10+Int",
+                source : [["VSoS", 170]],
+                selectNow : true
+            }],
+			extraAC : [{ 
+				mod : "max(Int-Dex|0)",
+				text : "I can use my Intelligence modifier instead of Dexterity to AC while under the effects of mage armor.",
+				stopeval : function (v) { return !(/^mage armou?r$/).test(CurrentArmour.known); }
+			}]
+		},
+		"subclassfeature3.1" : { 
+			name : "Hand-to-Hand Arcana",
+			source : [["VSoS", 170]],
+			minlevel : 3,
+			description : desc([
+                "I learn the secrets to unarmed combat and gain the following:",
+				"\u2022 My unarmed strikes use Int instead of Str for atk and dmg rolls",
+				"\u2022 The dmg becomes a d6, unless already higher",
+				"\u2022 My unarmed strikes count as melee weapons for the purposes of warmage spells",
+                "\u2022 I can make an unarmed strike as a bonus action; Must've atk'd w/unarmed strike as an action"
+			]),
+            action : [["bonus action", " (Unarmed Strike)"]],
+			calcChanges : {
+				atkAdd : [
+					function( fields, v ) {
+                        if(v.baseWeaponName == "unarmed strike") {
+                            fields.Proficiency = true;
+                        }
+                        if(v.baseWeaponName == "unarmed strike" && What('Int Mod') > What(AbilityScores.abbreviations[fields.Mod - 1] + ' Mod') && (fields.Damage_Die.match(/\b(\d+)d(\d+)\b/i) || fields.Damage_Die == 1)) {
+                            var oDmg = fields.Damage_Die == 1 ? 1 : fields.Damage_Die.match(/\b(\d+)d(\d+)\b/i);
+                            if( oDmg == 1 ){
+                                fields.Damage_Die = "1d6"
+                            }
+                            if( oDmg[0] && Number(oDmg[1]) == 1 && Number(oDmg[2]) < 6) {
+                                fields.Damage_Die = "1d6"
+                            }
+                        }
+					}
+				]
+			}
+		},
+		"subclassfeature3.2" : {
+			name : "Shock Trooper",
+			source : [["VSoS", 170]],
+			minlevel : 3,
+			description : desc([
+                "When I make a melee atk on my turn vs. a visible crea, I can lunge 15 ft to it before atking",
+                "This doesn't provoke opportunity atks, and can travel through air, but fall after the atk"
+			])
+		},
+		"subclassfeature7" : {
+			name : "Mystical Physicality",
+			source : [["VSoS", 170]],
+			minlevel : 7,
+			description : desc([
+                "When I make a Str, Dex, or Con check, I can add my Int instead of its normal modifier",
+				"In addition, moving through difficult terrain no longer costs me additional movement"
+			])
+		},
+		"subclassfeature10" : {
+			name : "Deflect Energy",
+			source : [["VSoS", 170]],
+			minlevel : 10,
+			description : desc([
+                "I reduce dmg from ranged spell or wpn atk; 1d10+Int mod+\u00BD warmage level (rounded down)",
+                "The dmg type from the atk must be cold, fire, force, lightning, necrotic, or radiant",
+			]),
+			additional : levels.map(function(n) {
+                return n < 10 ? "" : "1d10 + Int mod + " + Math.floor(n/2)
+            }),
+            action : ["reaction" , ""]
+		},
+		"subclassfeature15" : {
+			name : "Improved Shock Trooper",
+			source : [["VSoS", 170]],
+			minlevel : 15,
+			description : desc([
+                "My Shock Trooper lunge increases to 30 ft, teleporting me through a crea or obj; as if blinking",
+                "I can't blink into an occupied space",
+			])
+		},
+		"subclassfeature18" : {
+			name : "Flurry of Spells",
+			source : [["VSoS", 170]],
+			minlevel : 18,
+			description : desc([
+                "I can expend a use of my Arcane Surge to cast three different cantrips",
+                "It must have a casting time of 1 action or bonus action; I can't use Arcane Surge with these",
+			]),
+			action : ["action" ,"Flurry of Spells (Arcane Surge)"],
+			usages : 1,
+			recovery : "long rest"
+		}
+	}
+});
+
+AddSubClass("warmage", "house of pawns", {
+	regExpSearch : /^(?=.*house)(?=.*pawns).*$/i,
+	fullname : "House of Pawns",
+	subname : "House of Pawns",
+	source : [["VSoS", 171]],
+	features : {
+		"subclassfeature3" : {
+			name : "Promotion",
+			source : [["VSoS", 171]],
+			minlevel : 3,
+			description : desc([
+                "I learn an additional warmage trick that can be from any house",
+			]),
+			bonusClassExtrachoices : [{
+                'class' : "warmage",
+                feature : "warmage tricks",
+                bonus : 1
+            }]
+		},
+		"subclassfeature3.1" : {
+			name : "Adaptive Arcanist",
+			source : [["VSoS", 171]],
+			minlevel : 3,
+			description : desc([
+				"When I finish a short or long rest, I can pick any warmage cantrip",
+                "This doesn't count against me; I know it until I pick a new one"
+			]),
+			eval : function() {
+				CurrentSpells["warmage-adaptive arcanist"] = {
+					name : "Adaptive Arcanist",
+					ability : 4,
+					list : {"class" : "warmage"},
+					known : {cantrips : 0, spells : 'list'},
+					bonus : {
+                        bon1 : {
+                            name : 'Just select "Full List"',
+                            spells : []
+                        },
+                        bon2 : {
+                            name : 'on the bottom left',
+                            spells : []
+                        }
+                    },
+                    typeList : 4,
+                    refType : "class",
+                    allowUpCasting : true,
+                    firstCol : ""
+				},
+				SetStringifieds('spells'); CurrentUpdates.types.push('spells');
+			},
+			removeeval : function () {
+                delete CurrentSpells["warmage-adaptive arcanist"];
+                SetStringifieds('spells'); CurrentUpdates.types.push('spells');
+            }
+		},
+		"subclassfeature7" : {
+			name : "Pawn Storm",
+			source : [["VSoS", 171]],
+			minlevel : 7,
+			description : desc([
+                "If I target a crea w/ a cantrip, they can't make opporunity atks vs. me",
+                "This lasts the rest of my turn, whether or not I deal dmg",
+			])
+		},
+		"subclassfeature10" : {
+			name : "Additional Arcane Fighting Style",
+			source : [["VSoS", 171]],
+			minlevel : 10,
+			description : desc([
+				"I can choose an additional fighting style from the Arcane Fighting Style class feature."
+			]),
+			bonusClassExtrachoices : [{
+				"class" : "warmage",
+				feature : "arcane fighting style",
+				bonus : 1
+			}]
+		},
+		"subclassfeature15" : {
+			name : "Opening Move",
+			source : [["VSoS", 171]],
+			minlevel : 15,
+			description : desc([
+                "I can add my Int mod to initiative rolls",
+                "When I roll initiative and not surprised, I can move up to my speed",
+			]),
+			addMod : { type : "skill", field : "Init", mod : "max(Int|0)", text : "I can add my Intelligence modifier to initiative rolls."}
+		},
+		"subclassfeature18" : {
+			name : "Fundamental Mastery",
+			source : [["VSoS", 171]],
+			minlevel : 18,
+			description : desc([
+                "When I roll dmg for a warmage cantrip, I can treat one of the die as its max value",
+			]),
+			usages : 1,
+			recovery : "Turn"
 		}
 	}
 });
