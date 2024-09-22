@@ -40,6 +40,7 @@ Everything in this script has been updated to v13.2.1 for MPMB's Sheet and 1.4 o
   - Martyr Class and Subclasses (written by trackatnite)
   - Warden Class and Subclasses (written by nanur, edited/updated by trackatnite)
   - Witch Class and Subclasses (written by PoetGod, edited/changed by trackatnite)
+  - Warmage Class and Subclasses (written by trackatnite)
   
 ### WIP: 
   - Investigator Class and Subclasses (seaw0rld)
