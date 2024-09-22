@@ -29969,7 +29969,10 @@ AddSubClass("warmage", "house of lancers", {
 			description : desc([
                 "When I make a Str, Dex, or Con check, I can add my Int instead of its normal modifier",
 				"In addition, moving through difficult terrain no longer costs me additional movement"
-			])
+			]),
+            addMod : ["Acrobatics", "Athletics", "Sleight of Hand", "Stealth"].map(function(skill) {
+                return { type : "skill", field : skill, mod : (skill == "Acrobatics" || skill == "Sleight of Hand") ? "max(Int-Dex|0)" : "max(Int-Str|0)", text : "I use my Intelligence modifier instead of its normal modifier"};
+            })
 		},
 		"subclassfeature10" : {
 			name : "Deflect Energy",
@@ -30104,6 +30107,97 @@ AddSubClass("warmage", "house of pawns", {
 			]),
 			usages : 1,
 			recovery : "Turn"
+		}
+	}
+});
+
+AddSubClass("warmage", "house of rooks", {
+	regExpSearch : /^(?=.*house)(?=.*rooks).*$/i,
+	fullname : "House of Rooks",
+	subname : "House of Rooks",
+	source : [["VSoS", 171]],
+	features : {
+		"subclassfeature3" : {
+			name : "Rook Strike",
+			source : [["VSoS", 171]],
+			minlevel : 3,
+			description : desc([
+                "I gain adv on the next spell atk roll or a crea has disadv on a warmage cantrip save",
+                "The crea has disadv on the save until the end of my turn",
+                "I can do this once per short or long rest, or if I reduce a crea to 0 hp with a warmage cantrip"
+			]),
+			action : ["bonus action", ""],
+			usages : 1,
+			recovery : "short rest"
+		},
+		"subclassfeature3.1" : {
+			name : "Rasp",
+			source : [["VSoS", 171]],
+			minlevel : 3,
+			description : desc([
+                "I can cast knock at will w/out a spell slot; casting time 1 min and it's completely silent",
+			]),
+			spellcastingBonus : [{
+				name : "Rasp",
+				spells : ["knock"],
+				selection : ["knock"],
+				firstCol : "atwill"
+			}],
+            spellChanges : {
+                "knock" : {
+                    time : "1 min",
+                    description : "1 object is unlocked (1 lock), unstuck, unbarred, arcane lock suppressed for 10 min; Completely silent",
+                    descriptionFull : "Choose an object that you can see within range. The object can be a door, a box, a chest, a set of manacles, a padlock, or another object that contains a mundane or magical means that prevents access." + "\n   " + "A target that is held shut by a mundane lock or that is stuck or barred becomes unlocked, unstuck, or unbarred. If the object has multiple locks, only one of them is unlocked." + "\n   " + "If you choose a target that is held shut with arcane lock, that spell is suppressed for 10 minutes, during which time the target can be opened and shut normally." + "\n   " + "When you cast the spell, it is completely silent, and no sound eminates.",
+                    changes : "I can cast knock at will. Doing so create no sound."
+                }
+            }
+		},
+		"subclassfeature7" : {
+			name : "Arcane Acrobat",
+			source : [["VSoS", 171]],
+			minlevel : 7,
+			description : desc([
+                "I can add my Int mod to all Dex checks I make; I subtract 60 ft when determining fall dmg",
+                "I cannot be incapacitate to do this"
+			]),
+            addMod : ["Acrobatics", "Sleight of Hand"].map(function(skill) {
+                return { type : "skill", field : skill, mod : "max(Int|0)", text : "I can add my Intelligence modifier to all Dexterity checks I make"};
+            })
+		},
+		"subclassfeature10" : {
+			name : "Fleeting Decoy",
+			source : [["VSoS", 171]],
+			minlevel : 10,
+			description : desc([
+                "When I take dmg from a visible crea, I can raise a defensive illusion to protect me",
+                "All atks after this have disadv until the start of my next turn"
+			]),
+			action : ["reaction", ""]
+		},
+		"subclassfeature15" : {
+			name : "Elusive Step",
+			source : [["VSoS", 171]],
+			minlevel : 15,
+			description : desc([
+                "If I move 15 or more ft on my turn, additional movement doesn't provoke opportunity atks",
+			])
+		},
+		"subclassfeature18" : {
+			name : "Flash of Feathers",
+			source : [["VSoS", 171]],
+			minlevel : 18,
+			description : desc([
+                "I can cast invisibility on myself w/out a spell slot or components. While invisible,",
+                "my speed is 2\xD7 and I can make one wpn atk or warmage cantrip w/out ending the spell",
+			]),
+			usages : 1,
+			recovery : "short rest",
+			spellcastingBonus : [{
+				name : "Flash of Feathers",
+				spells : ["invisibility"],
+				selection : ["invisibility"],
+				firstCol : "oncesr"
+			}]
 		}
 	}
 });
