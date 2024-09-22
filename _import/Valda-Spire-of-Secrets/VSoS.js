@@ -1819,7 +1819,6 @@ FeatsList["winged"] = {
 };
 
 // ! This section adds classes
-// ! Will need to be checked after subclasses has been added for required discorveries
 
 // * Alchemist class
 ClassList["alchemist"] = {
@@ -29780,6 +29779,7 @@ AddSubClass("warmage", "house of kings", {
 	}
 });
 
+// * house of knights warmage subclass
 AddSubClass("warmage", "house of knights", {
 	regExpSearch : /^(?=.*house)(?=.*knights).*$/i,
 	fullname : "House of Knights",
@@ -30010,6 +30010,7 @@ AddSubClass("warmage", "house of lancers", {
 	}
 });
 
+// * house of pawns warmage subclass
 AddSubClass("warmage", "house of pawns", {
 	regExpSearch : /^(?=.*house)(?=.*pawns).*$/i,
 	fullname : "House of Pawns",
@@ -30110,6 +30111,7 @@ AddSubClass("warmage", "house of pawns", {
 	}
 });
 
+// * house of rooks warmage subclass
 AddSubClass("warmage", "house of rooks", {
 	regExpSearch : /^(?=.*house)(?=.*rooks).*$/i,
 	fullname : "House of Rooks",
@@ -30200,6 +30202,8 @@ AddSubClass("warmage", "house of rooks", {
 		}
 	}
 });
+
+// ! This section adds companionlists
 
 // * Alchemist homunculus companion list
 CompanionList["homunculus"] = {
@@ -30464,7 +30468,7 @@ CompanionList["undead thrall"] = {
     }
 }
 
-// * Companion list for House of Bishops feature.
+// * Companion list for House of Bishops feature
 CompanionList["mystical companion"] = {
 	name : "Mystical Companion",
     nameTooltip : "for Mystical Companion",
@@ -30604,7 +30608,9 @@ CompanionList["witch's familiar"] = {
 		}
 	},
 };
-	 
+
+// ! This section adds creatures
+
 // * Abbot Captain cohort
 CreatureList["abbot"] = {
 	name: "Abbot",
@@ -31995,7 +32001,7 @@ CreatureList["zombie"] = {
     }]
 }
 
-// ! Magic Items
+// ! This section adds magic items
 
 // * Amorist Only
 MagicItemsList["potion of true love"] = {
@@ -32155,7 +32161,7 @@ MagicItemsList["bag of bones"] = {
     action: [["action", " (add item)"], ["action", " (dump contents)"]]
 };
 
-// ! Weapons
+// ! This section adds weapons
 
 WeaponsList["bomb"] = {
 	regExpSearch : /^(?!.*renaissance)(?=.*\bbomb\b).*$/i,
@@ -32172,4 +32178,171 @@ WeaponsList["bomb"] = {
 	tooltip : "   Special: When a bomb hits a target, it explodes in a 5-foot radius and is destroyed. The bomb can be thrown at an unoccupied space within its range. Each creature other than the target within the blast radius must succeed on a DC 11 Dexterity saving throw, taking half the damage rolled on a failed save or no damage on a successful one.\n   Additionally, as a bonus action, you can empty some of the bomb's explosive material to permanently remove the blast radius from this bomb, dealing damage only to the bomb's target.",
 	special : true,
 	abilitytodamage : true,
+};
+
+// ! This section adds spells
+
+SpellsList["abduct"] = {
+	name : "Abduct",
+	classes : ["necromancer", "witch", "bard", "sorcerer", "wizard"],
+	source : ["VSoS", 329],
+	level : 7,
+	school : "Conj",
+	time : "1 min",
+	range : "1 mile",
+	components : "V,S,M",
+	compMaterial : "A silver saucer",
+	duration : "1 h",
+	save : "Cha",
+    descriptionShorter : "known crea save or teleports w/in 30ft; I pick sit/stand/prone/bound, and if it stay or returns",
+	description : "1 known crea in range save or teleport w/in 30 ft of me; sit/stand/prone/bound; stay or return at end",
+	descriptionFull : "This spell teleports a creature to your location. Choose a creature within range that is known to you as the target of this spell. An unwilling creature can make a Charisma saving throw to resist this effect. The target is placed at a location of your choice within 30 feet of you. You choose if the target is sitting, standing, prone, or bound with nearby restraints. At the end of the spell’s duration, you can choose whether the target remains at your location or is teleported back to the location from which it was abducted."
+};
+SpellsList["aberrate"] = {
+	name : "Aberrate",
+	classes : ["witch", "druid", "sorcerer", "warlock", "wizard"],
+	source : ["VSoS", 329],
+	level : 2,
+	school : "Trans",
+	time : "1 a",
+	range : "Self",
+	components : "V,S",
+	duration : "1 min",
+    descriptionShorter : "No extra dmg from crits; after taking dmg, rea to resist that dmg type (not the trigger dmg)",
+	description : "I don't take extra dmg from crits; after taking dmg, rea to resist that dmg type (not the trigger dmg)",
+	descriptionFull : "This spell causes your anatomy to become fluid, constantly refreshing into new and more terrible shapes. For the duration, you do not take extra damage from critical hits." + "\n   " + "Additionally, your body adapts to threats as it warps. Immediately after you take damage while this spell is active, you can use your reaction to gain resistance to that damage type until this spell ends or until you use this ability again to gain resistance to a different damage type. This resistance doesn't apply to the triggering damage."
+};
+SpellsList["accelerate/decelerate"] = {
+	name : "Accelerate/Decelerate",
+	classes : ["bard", "sorcerer", "wizard"],
+	source : ["VSoS", 329],
+	level : 1,
+	school : "Trans",
+	time : "1 rea",
+	timefull : "1 reaction, which you take when a creature you can see within 60 feet is hit with an attack",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A drop of oil or a drop of molasses",
+	duration : "Instantaneous",
+	description : "Triggering attack damage is increased or decreased by 1d6+1d6/SL+spell mod",
+	descriptionFull : "This spell speeds up or slows down an attack the instant before it strikes, lessening or multiplying its force." + "\n   " + toUni("Accelerate") + ": Increase the damage the target takes by 1d6 + your spellcasting ability modifier." + "\n   " + toUni("Decelerate") + ": Reduce the damage the target takes by 1d6 + your spellcasting ability modifier (to a minimum of 0 damage)." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the change in damage increases by 1d6 for each slot level above 1st."
+};
+SpellsList["accursed act"] = {
+	name : "Accursed Act",
+	classes : ["witch"],
+	source : ["VSoS", 329],
+	level : 1,
+	school : "Ench",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "Incense or a black candle",
+	duration : "Conc, 1 min",
+	save : "Wis",
+	description : "1 crea save or 1d8+1d8/SL+spell mod Psy dmg 1/turn on atk or cast; if not, rpt save at EOT to end",
+	descriptionFull : "Lighting a candle, you speak dark curses in a lost tongue, directed at one creature you can see within range. That creature must make a Wisdom saving throw or be cursed for the duration. While cursed, the creature takes psychic damage once per turn equal to 1d8 + your spellcasting ability modifier whenever it attacks or casts a spell. If the target doesn’t attack or cast a spell on its turn, it can repeat their saving throw at the end of their turn, ending the effect on a success." + "\n   " + "A remove curse spell ends this curse early." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, you deal an additional 1d8 psychic damage for each slot level above 1st."
+};
+SpellsList["action"] = {
+	name : "Action",
+	classes : ["witch", "bard", "paladin", "sorcerer", "wizard"],
+	source : ["VSoS", 329],
+	level : 1,
+	school : "Trans",
+	time : "1 a",
+	range : "30 ft",
+	components : "V,S,M",
+	compMaterial : "A shaving of licorice root",
+	duration : "1 rnd",
+	description : "1 willing crea gets add'l action next turn to Attack (1 wea atk), Dash, Diseng., Hide, or Use Object",
+	descriptionFull : "Choose a willing creature that you can see within range. During its next turn, the target gains an additional action. That action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide, or Use an Object action."
+};
+SpellsList["aerial alacrity"] = {
+	name : "Aerial Alacrity",
+	classes : ["witch", "druid", "sorcerer", "wizard"],
+	source : ["VSoS", 330],
+	level : 2,
+	school : "Trans",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A feather from a bird of prey",
+	duration : "10 min",
+	description : "willing crea w/fly speed gets hover, adv on Acrobatics, flyby, bns to Dash",
+	descriptionFull : "Target a willing creature you can see within range that has a flying speed (including those with a temporary or magically bestowed flying speed). That creature gains the following benefits for the duration:" + "\n \u2022" + "The target can take the Dash action as a bonus action." + "\n \u2022" + "The target can hover." + "\n \u2022" + "The target has advantage on Dexterity (Acrobatics) checks." + "\n \u2022" + "The target doesn’t provoke an opportunity attack when it flies out of an enemy’s reach."
+};
+SpellsList["after image"] = {
+	name : "After Image",
+	classes : ["investigator", "ranger", "sorcerer", "warlock", "wizard"],
+	source : ["VSoS", 330],
+	level : 3,
+	school : "Illus",
+	time : "1 a",
+	range : "Self",
+	components : "V,S,M\u0192",
+	compMaterial : "A silver hand mirror worth 50 gp",
+	duration : "10 min",
+	ritual: false,
+	description : "When hit by atk, roll a die; odd hits duplicate, disappears until I move 10 ft or Dodge (50 gp)",
+	descriptionFull : "You create an illusory duplicate of yourself which follows your every movement. When you are hit by an attack during the spell’s duration, roll any die. On an odd roll, the attack targets and hits the duplicate instead of you. The duplicate vanishes, reappearing after you move 10 feet or more or take the Dodge action. On an even roll, the attack targets you as normal."
+};
+SpellsList["antiballistics field"] = {
+	name : "Antiballistics Field",
+	classes : ["necromancer", "cleric", "wizard"],
+	source : ["VSoS", 330],
+	level : 6,
+	school : "Abjur",
+	time : "1 a",
+	range : "S:40-ft rad",
+	components : "V,S,M",
+	compMaterial : "A pinch of wet gunpowder",
+	duration : "Conc, 10 min",
+	ritual: false,
+	description : "Atks w/firearms fail and jam; 1 a to clear jam; firearm atks from outside, disadv and 1/2 dmg",
+	descriptionFull : "An invisible 40-foot-radius field of magic extends from you, disrupting bullets and causing firearms to malfunction. Within the sphere, attacks with firearms fail, and firearms used to make an attack immediately jam. A jammed firearm can’t be used to make an attack until a creature uses its action to clear the weapon malfunction." + "\n   " + "Firearms outside the sphere which are fired into it have disadvantage on attack rolls, and deal only half damage on a successful hit."
+};
+SpellsList["arc blade"] = {
+	name : "Arc Blade",
+	classes : ["warmage"],
+	source : ["VSoS", 330],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "S:5-ft rad",
+	components : "V,M",
+	compMaterial : "A melee weapon",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Melee wea atk w/cast; wea dmg becomes Ltng. and +0d8 Ltng. dmg; crea in 5ft 1d6 Ltng. dmg; +1 die ea CL5/11/17",
+	descriptionCantripDie : "Melee wea atk w/cast; wea dmg becomes Ltng.; hit: +`CD-1`d8 Ltng. dmg, 1 crea in 5 ft `CD`d6 Ltng. dmg",
+	descriptionFull : "As part of the action used to cast this spell, you must make a melee attack with a weapon against one creature within the spell’s range, otherwise the spell fails. On a hit, the target suffers the weapon attack’s normal effects, except that any damage dealt by the attack is lightning damage instead of its normal type. Additionally, an arc of lightning jumps to a creature you choose within 5 feet of the target, dealing 1d6 lightning damage." + "\n   " + "This spell’s damage increases when you reach certain levels. At 5th level, the melee attack deals an additional 1d8 lightning damage, and the secondary damage deals an additional 1d6 lightning damage to their targets. Both damage rolls increase by one die at 11th level (2d8 and 3d6) and 17th level (3d8 and 4d6)."
+};
+SpellsList["arcane anomaly"] = {
+	name : "Arcane Anomaly",
+	classes : ["necromancer", "witch", "bard", "sorcerer", "wizard"],
+	source : ["VSoS", 330],
+	level : 1,
+	school : "Abjur",
+	time : "1 a",
+	range : "S:30-ft rad",
+	components : "V,S,M",
+	compMaterial : "A broken mirror",
+	duration : "Conc, 1 min",
+	ritual: false,
+	description : "Spells cast in range have 1/6 chance to fail, wasting spell slot but not components",
+	descriptionFull : "You spread cracks in the magical energy that suffuses the multiverse. For the duration, whenever a spell is cast within range, roll a d6. On a 1, the spell casting fails, expending a spell slot as normal, but not consuming expensive material components."
+};
+SpellsList["arcane capacitor"] = {
+	name : "Arcane Capacitor",
+	classes : ["sorcerer", "wizard"],
+	source : ["VSoS", 330],
+	level : 6,
+	school : "Evoc",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "A potato",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Melee spell atk for 5d10 Force dmg; hit or miss, regain 1st-lvl spell slot; 7th:2nd, 9th:3rd",
+	descriptionFull : "You channel a wave of arcane power into your fingertips, recycling the leftover energy into a new spell slot. Make a melee spell attack against a creature you can reach. On a hit, the target takes 5d10 force damage. Whether you hit or miss, you then regain one expended 1st-level spell slot." + AtHigherLevels + "When you cast this spell using a 7th-level spell slot, you instead regain an expended 2nd-level spell slot. If you cast it using a 9th-level spell slot, you instead regain an expended 3rd-level spell slot."
 };
