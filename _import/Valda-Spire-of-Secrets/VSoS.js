@@ -32312,8 +32312,8 @@ SpellsList["arc blade"] = {
 	compMaterial : "A melee weapon",
 	duration : "Instantaneous",
 	ritual: false,
-	description : "Melee wea atk w/cast; hit: wea dmg is Ltng. +0d8 Ltng. dmg; 1 crea in 5ft 1d6 Ltng. dmg; +1 die ea CL5/11/17",
-	descriptionCantripDie : "Melee wea atk w/cast; hit: wea dmg is Ltng. +`CD-1`d8 Ltng. dmg, 1 crea in 5 ft `CD`d6 Ltng. dmg",
+	description : "Melee wea atk w/cast; hit: wea dmg is Ltng., +0d8 Ltng. dmg; 1 crea in 5ft 1d6 Ltng. dmg; +1 die ea CL5/11/17",
+	descriptionCantripDie : "Melee wea atk w/cast; hit: wea dmg is Ltng., +`CD-1`d8 Ltng. dmg, 1 crea in 5 ft `CD`d6 Ltng. dmg",
 	descriptionFull : "As part of the action used to cast this spell, you must make a melee attack with a weapon against one creature within the spell’s range, otherwise the spell fails. On a hit, the target suffers the weapon attack’s normal effects, except that any damage dealt by the attack is lightning damage instead of its normal type. Additionally, an arc of lightning jumps to a creature you choose within 5 feet of the target, dealing 1d6 lightning damage." + "\n   " + "This spell’s damage increases when you reach certain levels. At 5th level, the melee attack deals an additional 1d8 lightning damage, and the secondary damage deals an additional 1d6 lightning damage to their targets. Both damage rolls increase by one die at 11th level (2d8 and 3d6) and 17th level (3d8 and 4d6)."
 };
 SpellsList["arcane anomaly"] = {
@@ -32401,8 +32401,8 @@ SpellsList["burning blade"] = {
 	compMaterial : "A melee weapon",
 	duration : "Instantaneous",
 	ritual: false, 
-	description : "Melee wea atk w/cast; hit: wea dmg is Fire +0d6 Fire dmg, fire stays in tgt space; +1d6 CL5/11/17, B",
-	descriptionCantripDie : "Melee wea atk w/cast; hit: wea dmg is Fire +`CD-1`d6 Fire dmg, ignite tgt space; crea in space `CD`d6 Fire dmg",
+	description : "Melee wea atk w/cast; hit: wea dmg is Fire, +0d6 Fire dmg, fire stays in tgt space; +1d6 CL5/11/17, B",
+	descriptionCantripDie : "Melee wea atk w/cast; hit: wea dmg is Fire, +`CD-1`d6 Fire dmg, ignite tgt space; crea in space `CD`d6 Fire dmg",
 	descriptionFull : "As part of the action used to cast this spell, you must make a melee attack with a weapon against one creature within the spell’s range, otherwise the spell fails. On a hit, the target suffers the weapon attack’s normal effects, except that any damage dealt by the attack is fire damage instead of its normal type. Additionally, embers whirl in the target’s space. Until the start of your next turn, when a creature enters the space for the first time or ends its turn there, you can use your reaction to deal 1d6 fire damage to the creature, ending the spell." + "\n   " + "This spell’s damage increases when you reach certain levels. At 5th level, the melee attack deals an additional 1d6 fire damage to the target on a hit, and the secondary damage deals an additional 1d6 fire damage to its target. Both damage rolls increase by one die at 11th level (2d6 and 3d6) and 17th level (3d6 and 4d6)."
 };
 SpellsList["burnt offering"] = {
@@ -32873,7 +32873,318 @@ SpellsList["eye of ra"] = {
 	compMaterial : "A holy symbol",
 	duration : "Instantaneous",
 	ritual: false,
-	description : "Ranged spell atk, hit: 1d8 Radiant dmg and tgt can't Hide until end of my next turn; +1d8 CL5/11/17; B",
+	description : "Ranged spell atk for 1d8 Radiant dmg \u0026 can't Hide until end of my next turn; +1d8 CL5/11/17 \u0026 +1 atk CL5; B",
     descriptionCantripDie : "Ranged spell atk for `CD`d8 Radiant \u0026 can't Hide until end of my next turn; +1 atk at CL5 for `CD-1`d8 Radiant",
 	descriptionFull : "A beam of furious radiance erupts from your right eye, directed at a creature you can see within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 radiant damage and can’t take the Hide action until the end of your next turn. This spell creates an additional beam and deals more damage at higher levels. At 5th level, you fire a second beam originating from your left eye. Your first beam’s damage increases by 1d8 (2d8) when you reach 11th level, and your second beam’s damage increases by 1d8 (2d8) when you reach 17th level."
+};
+SpellsList["false vision"] = {
+	name : "False Vision",
+	classes : ["investigator", "necromancer", "witch", "bard", "wizard"],
+	source : ["VSoS", 338],
+	level : 4,
+	school : "Illus",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "A pinch of dust from a precious gem",
+	duration : "8 h",
+	ritual: false,
+	description : "1 crea/place/obj \u226410 ft in any dimension hidden from divination, or I can deceive the diviner",
+	descriptionFull : "For the duration, you hide a target that you touch from divination magic. The target can be a willing creature, a place, or an object no larger than 10 feet in any dimension. If the target is targeted by any divination magic or perceived through a scrying spell’s sensors, you are able to present the diviner with false information of your choice, as long as you are conscious at the time of the divination attempt. The target could appear to be in different circumstances, in one or more false locations, or completely undetectable."
+};
+SpellsList["finger guns"] = {
+	name : "Finger Guns",
+	classes : ["warmage", "bard", "sorcerer", "wizard"],
+	source : ["VSoS", 338],
+	level : 0,
+	school : "Evoc",
+	time : "1 bns",
+	range : "Self",
+	components : "V,S",
+	duration : "1 min",
+	ritual: false,
+	description : "Action for ranged spell atk, 60 ft, 1d8 Force dmg on hit; counts as firearm; +1d8 CL5/11/17",
+	descriptionCantripDie : "Action for ranged spell atk, 60 ft, `CD`d8 Force dmg on hit; counts as firearm",
+	descriptionFull : "You extend your forefinger and thumb, a dangerous gesture mimicking a gun. For the duration, you can use your action to make a ranged spell attack against one creature you can see within 60 feet of you, dealing 1d8 force damage on a hit." + "\n   " + "Your finger gun doesn’t require ammunition, but it is considered to be a firearm for spells and effects that apply to firearms." + "\n   " + "The spell’s damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8)."
+};
+SpellsList["flawed reconstruction"] = {
+	name : "Flawed Reconstruction",
+	classes : ["necromancer", "witch", "warlock", "wizard"],
+	source : ["VSoS", 338],
+	level : 1,
+	school : "Trans",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "A needle and thread",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "1 crea regain 4d6+1d6/SL hit points; max hit points reduced by same until LR",
+    descriptionShorter : "1 crea regains 4d6+1d6/SL hp; max hp reduced by same until end of long rest; Leaves perm. scars",
+	descriptionFull : "You stitch together the wounds of a willing creature you touch, which regains 4d6 hit points. However, the mending is imperfect, and the target’s hit point maximum is reduced by the same amount until it finishes a long rest. A creature that regains hit points due to this spell will be left with some permanent scars." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the healing increases by 1d6 for each slot level above 1st."
+};
+SpellsList["flesh ripper"] = {
+	name : "Flesh Ripper",
+	classes : ["necromancer"],
+	source : ["VSoS", 338],
+	level : 0,
+	school : "Trans",
+	time : "1 a",
+	range : "30 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	save : "Str",
+	ritual: false,
+	description : "Ranged spell atk for 1d8 Prc dmg \u0026 save or can't move more than 30 ft from me; +1d8 CL5/11/17",
+	descriptionCantripDie : "Ranged spell atk for `CD`d8 Pierc. \u0026 save or must stay w/in 30 ft of me, ending if \u003E30 ft away",
+	descriptionFull : "As you cast this spell, a spectral meat hook is flung at the creature of your choice, connected to a spectral chain. Make a ranged spell attack against a creature within range. On a hit, the target takes 1d8 piercing damage as a spectral meat hook plunges into their body. Until the start of your next turn, the target must make a Strength saving throw to move further than 30 feet from you. On a failed save, it is prevented from moving until the start of your turn. This effect ends if you are further than 30 feet away from the target." + "\n   " + "This spell’s damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8)."
+};
+SpellsList["force buckler"] = {
+	name : "Force Buckler",
+	classes : ["warmage"],
+	source : ["VSoS", 339],
+	level : 0,
+	school : "Abjur",
+	time : "1 bns",
+	range : "Self",
+	components : "V,S,M\u0192",
+	compMaterial : "A specially prepared gauntlet worth at least 5 gp",
+	duration : "1 rnd",
+	ritual: false,
+	description : "My AC gains +2 as if wielding a shield; ends if hit by an attack",
+	descriptionFull : "You summon a translucent yet visible field of force, which springs forth from the prepared gauntlet. Until the start of your next turn, this shield grants you a +2 bonus to your Armor Class, as if you were wielding a shield. This spell ends early if you are hit by an attack."
+};
+SpellsList["force dart"] = {
+	name : "Force Dart",
+	classes : ["warmage"],
+	source : ["VSoS", 339],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "120 ft",
+	components : "V,S,M\u0192",
+	compMaterial : "A specially prepared gauntlet worth at least 5 gp",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Ranged spell atk for 1d10 Force dmg; +1d10 CL5/11/17",
+	descriptionCantripDie : "Ranged spell atk for `CD`d10 Force dmg",
+	descriptionFull : "You fling a dart of magical force at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 force damage." + "\n   " + "This spell’s damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10)."
+};
+SpellsList["force weapon"] = {
+	name : "Force Weapon",
+	classes : ["warmage"],
+	source : ["VSoS", 339],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "5 ft",
+	components : "V,S,M\u0192",
+	compMaterial : "A specially prepared gauntlet worth at least 5 gp",
+	duration : "1 rnd",
+	ritual: false,
+	description : "Melee spell atk for 1d10 Force dmg; can opportunity attack until next turn; +1 atk CL5/11/17",
+	descriptionCantripDie : "`CD` melee spell atks for 1d10 Force dmg each; can make 1 Opp. Attack before next turn",
+	descriptionFull : "You conjure a blade of magical force in the air, which lashes out at your foes. Make a melee spell attack against a creature within range. On a hit, the target takes 1d10 force damage. The blade remains in existence for a short time; until the start of your next turn, you can make a single strike with your mystical blade as an opportunity attack." + "\n   " + "You can make 1 additional attack on your turn at 5th level (2 attacks), at 11th level (3 attacks), and at 17th level (4 attacks)."
+};
+SpellsList["free throw"] = {
+	name : "Free Throw",
+	classes : ["bard", "sorcerer", "wizard"],
+	source : ["VSoS", 339],
+	level : 1,
+	school : "Trans",
+	time : "1 a",
+	range : "Self",
+	components : "S,M",
+	compMaterial : "A scrap of pigskin",
+	duration : "1 rnd",
+	save : "Dex",
+	ritual: false,
+	description : "I throw 1 obj \u22645+5/SL lb. up to 150 ft; If at crea, ignores cover \u0026 save or 4d4+2d4/SL Bludg dmg; save halves",
+	descriptionFull : "As part of the casting of this spell, you throw a handheld object weighing 5 pounds or less. For the duration of the spell, you choose the object’s exact trajectory, up to 150 feet of distance. The object can navigate around obstacles and corners, and ignores half and three-quarters cover if it is directed at a creature. If the object strikes a creature, that creature must make a Dexterity saving throw or take 4d4 bludgeoning damage, or half as much on a successful save. The object stops moving after striking a creature or object." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the maximum weight of objects that you can throw with this spell increases by 5 pounds, and the damage increases by 2d4 for each slot level above 1st."
+};
+SpellsList["frenzy"] = {
+	name : "Frenzy",
+	classes : ["necromancer", "witch", "bard", "wizard"],
+	source : ["VSoS", 340],
+	level : 6,
+	school : "Ench",
+	time : "1 a",
+	range : "120 ft",
+	components : "V,S,M",
+	compMaterial : "A drop of fresh blood",
+	duration : "Conc, 1 min",
+	save : "Wis",
+	ritual: false,
+	description : "Crea in 20 ft of a point save or atk crea in reach or self w/melee wea; improv/unarmed if no melee wea",
+	descriptionFull : "With a gesture, you reduce a crowd to base instinct and violence. Choose a point you can see within range. Each creature within 20 feet of that point must make a Wisdom saving throw. On a failed save, a creature is frenzied for the duration. When a creature is frenzied, it draws a melee weapon, if it has one." + "\n   " + "A frenzied creature must use its action at the beginning of its turn to attack a creature within its reach. It uses a melee weapon, if it has one, or an improvised weapon or unarmed strike if it doesn’t. If multiple targets are within the creature’s reach, it chooses its target randomly. If there is no target within the creature’s reach, it attacks itself, against its own AC, dealing damage as normal on a hit." + "\n   " + "At the end of its turn, a frenzied creature can repeat its saving throw, ending the effect on itself early on a success."
+};
+SpellsList["frigid blade"] = {
+	name : "Frigid Blade",
+	classes : ["warmage"],
+	source : ["VSoS", 340],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "S:5-ft rad",
+	components : "V,M",
+	compMaterial : "A melee weapon",
+	duration : "1 rnd",
+	ritual: false,
+	description : "Melee wea atk w/cast; hit: wea dmg is Cold +0d8 Cold dmg, 1d8 Cold if moves before my turn; +1d8 CL5/11/17, B",
+	descriptionCantripDie : "Melee wea atk with cast; hit: wea dmg is Cold, +`CD-1`d8 Cold, rea for `CD`d8 Cold if moves before my turn",
+	descriptionFull : "As part of the action used to cast this spell, you must make a melee attack with a weapon against one creature within the spell’s range, otherwise the spell fails. On a hit, the attack does damage as normal, except that the attack deals cold damage instead of its normal type. Additionally, the target is covered in a brittle frost until the start of your next turn. If the target willingly moves before then, you can use your reaction to deal 1d8 cold damage to the target, ending the spell." + "\n   " + "At 5th level, the melee attack and secondary damage each deal an additional 1d8 cold damage. Both damage rolls increase by 1d8 at 11th level (2d8 and 3d8) and 17th level (3d8 and 4d8)."
+};
+SpellsList["frolicking fountain"] = {
+	name : "Frolicking Fountain",
+	classes : ["witch", "bard", "druid", "warlock", "wizard"],
+	source : ["VSoS", 340],
+	level : 5,
+	school : "Ench",
+	time : "1 a",
+	range : "120 ft",
+	components : "V,S,M",
+	compMaterial : "A conductor's baton",
+	duration : "Conc, 1 min",
+	save : "Wis",
+	ritual: false,
+	description : "Create 5-ft water cube; crea that see it w/in 60 ft save or charmed; B",
+	descriptionFull : "You conjure a 5-foot cube of water that animates in a hypnotic motion at an unoccupied space within range. The water swirls for the duration, not leaving its space except to send small jets up to five feet into the air. Each creature within 60 feet other than you which sees the fountain must make a Wisdom saving throw or become charmed by you for the duration. While charmed by this spell, a creature must use its movement on each of its turns to get as close to the water as possible. A charmed creature can’t willingly move away from the fountain. At the end of its turn, a charmed creature can attempt the saving throw again, ending the effect on a success. Once a creature has succeeded on a save against this spell, it can’t be affected by the same instance of it again." + "\n   " + "If a creature is within 5 feet of the fountain, you can use a bonus action to command the water to lash out at that creature. Make a melee spell attack against the target. On a hit, the water deals 4d6 bludgeoning damage to the target. If the target is charmed by this spell, it can attempt the saving throw again after taking damage from it."
+};
+SpellsList["gahoul's glorious gothic"] = {
+	name : "Gahoul's Glorious Gothic",
+	classes : ["necromancer"],
+	source : ["VSoS", 340],
+	level : 8,
+	school : "Conj",
+	time : "1 h",
+	range : "1 mile",
+	components : "V,S,M\u0192",
+	compMaterial : "A decorated gothic manor miniature worth at least 1,000 gp",
+	duration : "7 days",
+	ritual: false,
+	description : "Create a gothic estate staffed by skeletons and stocked with food; B",
+	descriptionFull : "A rift opens, pouring forth tons of brick and stonework that neatly and quickly assemble into a vast gothic estate. The estate consists of a manor containing a vault, a spacious 200-by-200-foot courtyard, and a 10-foot high wrought iron fence around the perimeter. Any creature within the estate’s area is escorted away by harmless but forceful specters." + "\n   " + "You can create any floor plan you like for the manor, but the space can’t exceed 50 cubes, each cube being 10 feet on each side, or five stories in total, including basements. The manor is adorned with barred windows and decorative gargoyles, but is furnished and decorated as you choose. Once the manor is first created, these details are recorded in the miniature manor used to cast the spell and can’t be changed. The manor is staffed by 50 skeletons obedient to you, and contains enough food to serve 50 people each day for a week. The skeletons can perform any task a normal human servant could perform, but they can’t attack or take any action that would directly harm another creature." + "\n   " + "The manor contains a 15-foot cube vault, which is an extradimensional space. Items placed within the vault will be present next time you cast this spell." + "\n   " + "The courtyard is drenched in necromantic magic, such that any humanoid buried in its grounds rises 24 hours later as a ghoul under your control, as per the spell animate dead. When the spell is cast, 3 ghouls are animated in the courtyard. These undead are under your control, but can’t leave the estate. They patrol the estate if given no other instructions. Undead can’t be turned within the estate." + "\n   " + "The estate crumbles into dust and bone after 7 days, and all items placed within the manor appear safely in the space the manor occupied. If cast in the same place once every 7 days for a year, the estate becomes permanent."
+};
+SpellsList["gahoul's scapegoat"] = {
+	name : "Gahoul's Scapegoat",
+	classes : ["necromancer", "witch"],
+	source : ["VSoS", 341],
+	level : 4,
+	school : "Abjur",
+	time : "1 min",
+	range : "Self",
+	components : "V,S,M",
+	compMaterial : "Black chalk, paint, or oil",
+	duration : "8 h",
+	ritual: false,
+	description : "Mark 1 willing crea; when hit by atk, can use rea and end spell to swap places and have atk hit crea",
+	descriptionFull : "You trace a complex arcane symbol into the flesh of a willing creature within 5 feet of you, marking them for sacrifice. During the spell’s duration, when you are hit with an attack and the marked creature is within 60 feet of you, you can use your reaction to switch positions with the creature, causing it to be hit by the attack instead of you. The spell then ends."
+};
+SpellsList["gahoul's shrieking skull"] = {
+	name : "Gahoul's Shrieking Skull",
+	classes : ["necromancer"],
+	source : ["VSoS", 341],
+	level : 1,
+	school : "Necro",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A skull",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Crea in 10-ft cube take 2d4+1d4/SL Thunder dmg; Audible for 300 ft",
+	descriptionFull : "You throw a cackling skull at a point you can see within range, which emits a mortifying shriek audible out to 300 feet. Each creature within a 10-foot cube centered on the skull takes 2d4 thunder damage, without making a saving throw." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d4 for each slot level above 1st."
+};
+SpellsList["gahoul's spectral scythe"] = {
+	name : "Gahoul's Spectral Scythe",
+	classes : ["necromancer"],
+	source : ["VSoS", 341],
+	level : 6,
+	school : "Necro",
+	time : "1 a",
+	range : "S:60-ft line",
+	components : "V,S",
+	duration : "1 rnd",
+	save : "Dex",
+	ritual: false,
+	description : "Crea in 60\xD710 (L\xD7W) ft save or 6d8+1d8/SL Necro; if w/in 120 ft, scythe returns; save again; save \u00BD both",
+	descriptionFull : "You conjure a phantasmal scythe of death in your open hand and throw it whirling through the air. The scythe travels in a 60-foot long, 10-foot wide line, coming to rest hovering in the air at the end of its line or before it strikes any solid objects. Each creature within the area while the scythe is moving must make a Dexterity saving throw or take 6d8 necrotic damage, or half as much on a successful save. A creature has disadvantage on this saving throw if the scythe comes to rest in the creature’s space." + "\n   " + "If you are within 120 feet of the scythe at the start of your next turn, it returns to you in a 10-foot wide line, forcing creatures within its area of travel to make saving throws against the scythe’s damage." + AtHigherLevels +  "When you cast this spell using a spell slot of 7th level or higher, the damage increases by 1d8 for each slot level above 6th."
+};
+SpellsList["game of fate"] = {
+	name : "Game of Fate",
+	classes : ["investigator", "bard", "wizard"],
+	source : ["VSoS", 341],
+	level : 6,
+	school : "Ench",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A gaming set",
+	duration : "1 h",
+	save : "Wis",
+	ritual: false,
+	description : "Challenge a creature to a game for 6d6 Psychic dmg and agreed-upon stakes; B",
+    descriptionShorter : "1 Crea \u0026 \u003E3 Int save or play game; Lose/Tie 6d6 (max 10d6) psy; Can up stakes; Ends tgt/I uncon./dmg; B",
+	descriptionFull : "You magically compel a creature within range to a nonmagical game with vital consequences. If the creature you choose has an Intelligence of 3 or lower, or doesn’t speak any language, the creature is unaffected. An unwilling creature can make a Wisdom saving throw to resist this effect. On a failed save, the creature is compelled to join you in the game. If the target takes damage or falls unconscious, this spell ends." + "\n   " + "The loser of the game takes 6d6 psychic damage. If no player loses or has won by the end of the spell’s duration, both you and the target take this damage." + "\n   " + "Additionally, you and the target creature can negotiate for greater stakes. You can bet higher psychic damage (up to a maximum of 10d6,) property, or more esoteric rewards, such as bestowal of a noble title, on the game. The spell reveals if a creature attempts to bet property they do not own. A bet is finalized when you and the target agree on the bet, solidifying the bet with a handshake or similar gesture. Property or currency bet on the game is teleported to the winner at the game’s conclusion. The loser is also magically compelled to take any action (such as bestowing a title) promised as part of a bet." + "\n   " + "Lastly, no spell, magical effect, or creature other than you and the target can influence the game’s outcome."
+};
+SpellsList["geomantic discernment"] = {
+	name : "Geo. Discernment",
+	classes : ["investigator", "druid", "ranger", "wizard"],
+	source : ["VSoS", 342],
+	level : 3,
+	school : "Div",
+	time : "1 a",
+	range : "S:100-ft rad",
+	components : "V,S",
+	duration : "Conc, 10 min",
+	ritual: true,
+	description : "See aura around precious metals, gems, etc.; not blocked by any nonmagical obstacles",
+	descriptionFull : "You gain the ability to sense valuable minerals in a 100-foot radius around you. A glowing aura that only you can see appears around any valuable metals, gems, ores, native elements, or other resources in that radius for the spell’s duration. You can see this aura through any amount of nonmagical material."
+};
+SpellsList["glitterdust"] = {
+	name : "Glitterdust",
+	classes : ["witch", "bard", "sorcerer", "wizard"],
+	source : ["VSoS", 342],
+	level : 3,
+	school : "Conj",
+	time : "1 a",
+	range : "S:15-ft cone",
+	components : "V,S,M",
+	compMaterial : "A handful of powdered mica",
+	duration : "Conc, 1 min",
+	save : "Con",
+	ritual: false,
+	description : "Crea in area save or blinded; crea in area get no benefit from invisibility",
+	descriptionFull : "You spray golden particles in a 15-foot cone, covering all creatures and objects in that area. Each creature in the area must succeed a Constitution saving throw or be blinded for the duration. A creature blinded by this spell can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. Each creature within the area, whether or not it succeeds on its saving throw, can’t benefit from being invisible for the duration."
+};
+SpellsList["grasp of the grave"] = {
+	name : "Grasp of the Grave",
+	classes : ["necromancer"],
+	source : ["VSoS", 342],
+	level : 4,
+	school : "Necro",
+	time : "1 a",
+	range : "120 ft",
+	components : "V,S,M",
+	compMaterial : "A shrunken hand",
+	duration : "Conc, 1 min",
+	save : "Str",
+	ritual: false,
+    description : "20-ft rad becomes diff. terrain; crea entering or starting turn save or 3d6+1d6/SL Necro dmg; B",
+	descriptionShorter : "20 ft rad dif ter; Non-undead enter/SoT/A save or 3d6+1d6/SL Necro, move in rad; save \u00BD, no move",
+	descriptionFull : "Spectral skeletal arms emerge from the ground in a 20-foot-radius circle, centered on a point you can see within range. The arms grasp at creatures within the area, except for undead creatures, which ignore the effects of this spell. The area is difficult terrain." + "\n   " + "When a creature enters the area for the first time on a turn or starts its turn there, it must make a Strength saving throw. On a failed save, a creature takes 3d6 necrotic damage, and is dragged by the hands to any unoccupied space within the area that you choose. On a successful save, a creature takes half as much damage and is not moved." + "\n   " + "Until the spell ends, you can use your action to force each creature within the area to immediately make a save against this spell." + AtHigherLevels + "When you cast this spell using a spell slot of 5th level or higher, its damage increases by 1d6 for each slot level above 4th."
+};
+SpellsList["guided missile"] = {
+	name : "Guided Missile",
+	classes : ["bard", "druid", "paladin"],
+	source : ["VSoS", 342],
+	level : 1,
+	school : "Trans",
+	time : "1 bns",
+	range : "Self",
+	components : "V",
+	duration : "Conc, 1 min",
+	ritual: false,
+	description : "Next ranged weapon atk has advantage and double normal/long range",
+	descriptionFull : "You utter a prayer to guide your projectile, causing it to arc toward its target. The next ranged weapon attack you make before the spell ends has advantage, and has double its normal and long ranges."
 };
