@@ -32660,3 +32660,127 @@ SpellsList["curse ward"] = {
 	description : "1 willing crea resist Necro. dmg; immune to curse, possession, and hexes; max HP can't be reduced",
 	descriptionFull : "You reach out your hand and touch a willing creature within your reach, raising a smoke-like barrier around it. For the duration, the target has resistance to necrotic damage and can’t be cursed, possessed, or targeted by a hex. Also, its maximum hit points can’t be lowered. If the target is already affected by one of these effects, the effect is suspended until the spell ends."
 };
+SpellsList["dead fog"] = {
+	name : "Dead Fog",
+	classes : ["necromancer"],
+	source : ["VSoS", 335],
+	level : 3,
+	school : "Necro",
+	time : "1 a",
+	range : "120 ft",
+	components : "V,S",
+	duration : "1 rnd",
+	save : "Con",
+	ritual: false,
+    descriptionShorter : "15 ft rad sphere fog; crea enter/start turn save or 3d8+1d8/(10+5hp or SL) Necro; Escping can Str save",
+	description : "Create 15-ft rad sphere of fog; crea enter or start turn in it save or 3d8+1d8/SL Necro. dmg; B",
+	descriptionFull : "A 15-foot-radius sphere of fog, filled with the necromantic Dead Mists, appears centered on a point you can see within range. The fog spreads around corners, and its area is heavily obscured. It lasts for the duration, or until strong wind disperses the fog, ending the spell." + "\n   " + "When you cast this spell, you can empower it with your own life essence by losing 10, 15, or 20 hit points when you cast it. When you do so, treat the spell slot used to cast the spell as being one level higher if you lost 10 hit points, two levels higher if you lost 15 hit points, and three levels higher if you lost 20 hit points, up to a maximum of 9th level." + "\n   " + "When a creature enters the area for the first time on a turn or starts its turn there, it must make a Constitution saving throw, taking 3d8 necrotic damage on a failed save." + "\n   " + "Additionally, when a creature tries to leave the sphere of fog, you can choose for the fog to grasp the creature with misty tendrils. The creature must make a Strength saving throw to leave the fog, and is unable to move on a failed save." + AtHigherLevels + "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d8 for each slot level above 3rd."
+};
+SpellsList["dead mist lash"] = {
+	name : "Dead Mist Lash",
+	classes : ["necromancer"],
+	source : ["VSoS", 335],
+	level : 1,
+	school : "Necro",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Ranged spell atk for 3d8+1d8/(5hp/SL) Necro. dmg",
+	descriptionFull : "You conjure forth a glowing white tendril formed of the sinister, necromantic Dead Mists, which lashes out at a foe you can see within range. When you cast this spell, you can empower it with your own life essence by losing 5, 10, or 15 hit points when you cast it. When you do so, treat the spell slot used to cast the spell as being one level higher for every 5 hit points lost, up to a maximum of 9th level." + "\n   " + "Make a ranged spell attack roll against a creature within range. On a hit, the target takes 3d8 necrotic damage." + AtHigherLevels + "If you cast this spell using a slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st."
+};
+SpellsList["defenestration"] = {
+	name : "Defenestration",
+	classes : ["bard"],
+	source : ["VSoS", 336],
+	level : 2,
+	school : "Evoc",
+	time : "1 a",
+	range : "30 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	save : "Str",
+	ritual: false,
+	description : "1 crea save \u0026 pushed 5 ft or 4d6+1d6/SL Slash dmg and flies 20 ft away through a window",
+	descriptionFull : "A wave of force erupts from your open hand, hurling a creature you can see within range through a window. The target makes a Strength saving throw. On a failure, the target is thrown up to 20 feet through a window of your choice. If there is no window within 20 feet of the target, it is instead thrown through a window of arcane force, which materializes 10 feet behind it and vanishes after the creature shatters it. The target takes 4d6 slashing damage as it flies through a window. On a successful save, the target instead is pushed back 5 feet and takes no damage." + AtHigherLevels + "When you cast this spell using a spell slot of 3rd level or higher, the target can be pushed back an additional 5 feet for each slot level above 2nd, and takes an additional 1d6 slashing damage for each slot level above 2nd."
+};
+SpellsList["delay"] = {
+	name : "Delay",
+	classes : ["necromancer", "witch", "bard", "sorcerer", "wizard"],
+	source : ["VSoS", 336],
+	level : 2,
+	school : "Trans",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "An octagonal sign",
+	duration : "Instantaneous",
+	save : "Wis",
+	ritual: false,
+	description : "1 crea save or moved to end of init. starting next rnd onwards",
+	descriptionFull : "You briefly slow time for a creature of your choice that you can see within range. The target must succeed on a Wisdom saving throw or be moved to last place in the initiative order from the beginning of the next round onwards."
+};
+SpellsList["demand"] = {
+	name : "Demand",
+	classes : ["witch", "bard", "sorcerer", "warlock", "wizard"],
+	source : ["VSoS", 336],
+	level : 6,
+	school : "Ench",
+	time : "1 a",
+	range : "Unlimited",
+	components : "V,S,M",
+	compMaterial : "A snake's tongue and a piece of copper wire",
+	duration : "Conc, 8 h",
+	save : "Wis",
+	ritual: false,
+    descriptionShorter : "Send msg \u226425 words to crea w/ Int \u22651; can use as per Suggestion spell",
+	description : "Send 25 words or less to 1 crea, it can reply; can use as per Suggestion; B",
+	descriptionFull : "You send a short message of twenty-five words or fewer to a creature with which you are familiar. The creature hears the message in its mind, recognizes you as the sender if it knows you, and can answer in a like manner immediately. The spell enables creatures with Intelligence scores of at least 1 to understand the meaning of your message." + "\n   " + "You can send the message across any distance, and even to other planes of existence, but if the target is on a different plane than you, there is a 5 percent chance that the message doesn’t arrive." + "\n   " + "You can use this message to suggest a reasonable-sounding course of activity to the target, in which case the target must make a Wisdom saving throw or be compelled to follow your instructions for the duration, as per the suggestion spell."
+};
+SpellsList["dire charm"] = {
+	name : "Dire Charm",
+	classes : ["witch", "bard", "sorcerer", "wizard"],
+	source : ["VSoS", 336],
+	level : 4,
+	school : "Ench",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M\u0192",
+	compMaterial : "A nymph's eyelash, worth at least 100 gp",
+	duration : "10 days",
+	save : "Wis",
+	ritual: false,
+	description : "1 humanoid save w/ disadv unless fighting or charmed; Reroll save if we harm it; Becomes perm. \u2265SL",
+	descriptionFull : "You attempt to charm a humanoid you can see within range. It must make a Wisdom saving throw, and has disadvantage unless you or your companions are fighting it. If it fails the saving throw, it is charmed by you until the spell ends. If you or your companions do anything harmful to it, it can reattempt the saving throw. The charmed creature regards you as a friendly acquaintance. When the spell ends, the creature knows it was charmed by you." + AtHigherLevels + "When you cast this spell using a spell slot of 8th level or higher, the duration becomes permanent (until dispelled)."
+};
+SpellsList["dire warning"] = {
+	name : "Dire Warning",
+	classes : ["investigator", "necromancer", "cleric", "wizard"],
+	source : ["VSoS", 336],
+	level : 4,
+	school : "Div",
+	time : "1 a",
+	range : "Self",
+	components : "V,S",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Get 6 helpful words from future self; must do 10-min ritual w/in 1 week to deliver; B",
+    descriptionShorter : "Receive \u22646 word msg from future me; must do 10 min (R) w/in 1 week before casting again",
+	descriptionFull : "You receive a message of up to 6 words from your future self, warning you of a critical threat or pointing you toward a fruitful avenue. At some point in the future, once you have learned why you sent the message, you must perform a 10-minute-long ritual to deliver the message back in time to your past self. Once you cast this spell, you can’t cast it again until you perform this ritual, or one week later if you don’t discover this information. If you cast this spell and receive no message, it indicates that you never complete the ritual in the future, possibly owing to your death or some other hindrance."
+};
+SpellsList["distort gravity"] = {
+	name : "Distort Gravity",
+	classes : ["investigator", "necromancer", "druid", "sorcerer", "wizard"],
+	source : ["VSoS", 337],
+	level : 4,
+	school : "Trans",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "A gyroscope",
+	duration : "Conc, 1 h",
+	ritual: true,
+	description : "All crea/obj w/in 15 ft of where I touch, treat as if it was the ground; All crea/obj fall after spell ends",
+	descriptionFull : "The spell manipulates the direction of gravity on a non-horizontal surface you touch, causing it to attract creatures and objects within 15 feet of it as if it were the ground. The surface can be up to a 60-foot square in area and can wrap around a structure, if its geometry permits. A creature can walk on this surface as if it were level ground, even if the surface is perpendicular to the ground or upside down." + "\n   " + "When the duration ends, all creatures and objects fall from the surface."
+};
