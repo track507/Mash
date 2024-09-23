@@ -33455,3 +33455,34 @@ SpellsList["invisibility purge"] = {
 	description : "Invis. effects in range dispelled if possible, or suppressed for 1 min. if not, except innate invis.",
 	descriptionFull : "You purge magical invisibility effects within 120 feet of you. Any creature, object, location, or effect within 120 feet of you that is hidden by magical invisibility is revealed and the invisibility is dispelled." + "\n   " + "This spell applies to innate abilities that are magical in nature, such as an imp’s Invisibility, but it doesn’t affect creatures on other planes of existence, such as the Ethereal Plane. It also doesn’t reveal creatures that are naturally invisible. Items that grant magical invisibility (such as a ring of invisibility) have their effects suppressed for 1 minute."
 };
+SpellsList["jam weapon"] = {
+	name : "Jam Weapon",
+	classes : ["witch", "bard", "wizard"],
+	source : ["VSoS", 347],
+	level : 2,
+	school : "Trans",
+	time : "1 rea",
+	timeFull : "1 reaction, which you take when a creature you can see within range attacks with a firearm",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A pinch of wet gunpowder",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Jam 1+1/SL firearm, preventing it from firing; 1 a to clear jam",
+	descriptionFull : "The firearm you target jams upon firing. The attack fails, and the firearm is jammed. A jammed firearm can’t be used to make an attack until a creature uses its action to clear the weapon malfunction. At Higher Levels. When you cast this spell using a spell slot of 3rd level or higher, you can jam one additional firearm within range for each slot level above 2nd."
+};
+SpellsList["jethro's instant reload"] = {
+	name : "Jethro's Instant Reload",
+	classes : ["investigator", "bard", "ranger", "wizard"],
+	source : ["VSoS", 347],
+	level : 2,
+	school : "Conj",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "A spent bullet casing",
+	duration : "1 h",
+	ritual: true,
+	description : "1 wea reloads automatically; if wea takes 1 a or longer to reload, it reloads at end of turn",
+	descriptionFull : "One ranged weapon you touch becomes enchanted to reload itself automatically. If the weapon has the Loading or Reload property, you can ignore this for the duration. When the weapon’s ammunition is depleted, new ammunition teleports from your person to your hand or into the weapon, as appropriate. If the weapon takes an action or longer to reload, it reloads itself at the end of your turn. If you aren’t carrying sufficient ammunition for the weapon to reload, the spell ends."
+};
