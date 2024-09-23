@@ -32312,8 +32312,8 @@ SpellsList["arc blade"] = {
 	compMaterial : "A melee weapon",
 	duration : "Instantaneous",
 	ritual: false,
-	description : "Melee wea atk w/cast; wea dmg becomes Ltng. and +0d8 Ltng. dmg; crea in 5ft 1d6 Ltng. dmg; +1 die ea CL5/11/17",
-	descriptionCantripDie : "Melee wea atk w/cast; wea dmg becomes Ltng.; hit: +`CD-1`d8 Ltng. dmg, 1 crea in 5 ft `CD`d6 Ltng. dmg",
+	description : "Melee wea atk w/cast; hit: wea dmg is Ltng. +0d8 Ltng. dmg; 1 crea in 5ft 1d6 Ltng. dmg; +1 die ea CL5/11/17",
+	descriptionCantripDie : "Melee wea atk w/cast; hit: wea dmg is Ltng. +`CD-1`d8 Ltng. dmg, 1 crea in 5 ft `CD`d6 Ltng. dmg",
 	descriptionFull : "As part of the action used to cast this spell, you must make a melee attack with a weapon against one creature within the spell’s range, otherwise the spell fails. On a hit, the target suffers the weapon attack’s normal effects, except that any damage dealt by the attack is lightning damage instead of its normal type. Additionally, an arc of lightning jumps to a creature you choose within 5 feet of the target, dealing 1d6 lightning damage." + "\n   " + "This spell’s damage increases when you reach certain levels. At 5th level, the melee attack deals an additional 1d8 lightning damage, and the secondary damage deals an additional 1d6 lightning damage to their targets. Both damage rolls increase by one die at 11th level (2d8 and 3d6) and 17th level (3d8 and 4d6)."
 };
 SpellsList["arcane anomaly"] = {
@@ -32345,4 +32345,78 @@ SpellsList["arcane capacitor"] = {
 	ritual: false,
 	description : "Melee spell atk for 5d10 Force dmg; hit or miss, regain 1st-lvl spell slot; 7th:2nd, 9th:3rd",
 	descriptionFull : "You channel a wave of arcane power into your fingertips, recycling the leftover energy into a new spell slot. Make a melee spell attack against a creature you can reach. On a hit, the target takes 5d10 force damage. Whether you hit or miss, you then regain one expended 1st-level spell slot." + AtHigherLevels + "When you cast this spell using a 7th-level spell slot, you instead regain an expended 2nd-level spell slot. If you cast it using a 9th-level spell slot, you instead regain an expended 3rd-level spell slot."
+};
+SpellsList["benign dismemberment"] = {
+	name : "Benign Dismemberment",
+	classes : ["investigator", "necromancer", "witch", "wizard"],
+	source : ["VSoS", 331],
+	level : 3,
+	school : "Necro",
+	time : "1 min",
+	range : "Touch",
+	components : "V,S",
+	duration : "1 h",
+	ritual: true,
+	description : "willing crea can be dismembered w/o dmg; hold together to fix; irreversible on spell end",
+	descriptionFull : "For the duration, a willing target’s body parts (fingers, legs, tail, and even its head) can be harmlessly severed from its body. It takes no damage from such dismemberment, as long as the cut removing the body part is swift and leaves a clean cut. The target’s head remains alive and conscious, and parts connected to it also remain alive. All severed body parts become inanimate, but do not begin decomposition for the spell’s duration. Any of the target’s severed body parts that are removed during this spell’s duration can be held back to the stump, which instantly causes the part to knit to the stump, restoring the body part." + "\n   " + "At the end of the duration, severed body parts become permanently severed. The target dies if vital organs have not been reattached to its head."
+};
+SpellsList["blood print"] = {
+	name : "Blood Print",
+	classes : ["investigator", "martyr", "necromancer", "witch", "bard", "cleric", "druid", "paladin", "ranger", "sorcerer", "wizard"],
+	source : ["VSoS", 331],
+	level : 1,
+	school : "Necro",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "An ounce or more of blood",
+	duration : "Instantaneous",
+	ritual: true,
+	description : "Know what type of crea a blood sample came from, & uniquely identify; can preserve and compare",
+	descriptionFull : "At your touch, wet blood on a surface shifts and reforms into a pattern of crimson blotches. This blood print is unique to the particular creature to whom the blood belongs, but you can determine the creature’s kind (such as human, gnoll, deer, or fire giant) by examining the general shape. A print can be preserved by pressing a sheet of paper against it. If this spell is cast twice, it is possible to match samples of blood originating from the same creature by comparing the prints."
+};
+SpellsList["boomering"] = {
+	name : "Boomering",
+	classes : ["martyr", "cleric", "paladin", "sorcerer"],
+	source : ["VSoS", 331],
+	level : 1,
+	school : "Evoc",
+	time : "1 a",
+	range : "30 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Ranged spell atk for 3d6+1d6/SL Radiant dmg; miss: reroll once; extra tgts at higher levels",
+	descriptionFull : "A dizzying ring of sparks launches from your outstretched hand and ricochets back to you moments later. Make a ranged spell attack roll against a creature within range. On a hit, you deal 3d6 radiant damage. If this attack misses, you can repeat the attack roll against the same target once." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st." + "\n   " + "If you cast this spell using a spell slot of 3rd level or higher, after the ring hits the first target, it ricochets to a second target of your choice that you can see within 30 feet of the first target, dealing damage as normal on a hit. If you cast this spell using a spell slot of 5th level or higher, the ring can ricochet to a third target of your choice that you can see within 30 feet of the second target. No matter how many creatures the ring ricochets to, you can only repeat the attack roll against one of the spell’s targets."
+};
+SpellsList["burning blade"] = {
+	name : "Burning Blade",
+	classes : ["warmage"],
+	source : ["VSoS", 331],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "S:5-ft rad",
+	components : "V,M",
+	compMaterial : "A melee weapon",
+	duration : "Instantaneous",
+	ritual: false, 
+	description : "Melee wea atk w/cast; hit: wea dmg is Fire +0d6 Fire dmg, fire stays in tgt space; +1d6 CL5/11/17, B",
+	descriptionCantripDie : "Melee wea atk w/cast; hit: wea dmg is Fire +`CD-1`d6 Fire dmg, ignite tgt space; crea in space `CD`d6 Fire dmg",
+	descriptionFull : "As part of the action used to cast this spell, you must make a melee attack with a weapon against one creature within the spell’s range, otherwise the spell fails. On a hit, the target suffers the weapon attack’s normal effects, except that any damage dealt by the attack is fire damage instead of its normal type. Additionally, embers whirl in the target’s space. Until the start of your next turn, when a creature enters the space for the first time or ends its turn there, you can use your reaction to deal 1d6 fire damage to the creature, ending the spell." + "\n   " + "This spell’s damage increases when you reach certain levels. At 5th level, the melee attack deals an additional 1d6 fire damage to the target on a hit, and the secondary damage deals an additional 1d6 fire damage to its target. Both damage rolls increase by one die at 11th level (2d6 and 3d6) and 17th level (3d6 and 4d6)."
+};
+SpellsList["burnt offering"] = {
+	name : "Burnt Offering",
+	classes : ["martyr"],
+	source : ["VSoS", 332],
+	level : 1,
+	school : "Abjur",
+	time : "10 min",
+	range : "Self",
+	components : "V,S,M",
+	compMaterial : "A pyre and a slain animal",
+	duration : "24 h",
+	ritual: true,
+	description : "While armored, Wis to AC instead of Dex; 3rd: reroll 1 saving throw, must use new roll",
+	descriptionFull : "By constructing a pyre and burning an animal’s corpse, you court the favor of the gods. For the duration, while you are wearing armor, you can add your Wisdom modifier, instead of your Dexterity modifier, to your Armor Class." + AtHigherLevels + "If you cast this spell using a spell slot of 3rd level or higher, you can also reroll one saving throw you make during the duration. You can choose to reroll the saving throw after you roll the die, but must decide before the outcome is determined and must use the new roll."
 };
