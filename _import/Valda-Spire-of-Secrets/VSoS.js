@@ -33499,7 +33499,7 @@ SpellsList["lashing tendrils"] = {
 	duration : "Conc, 1 min",
 	save : "Dex",
 	ritual: false,
-	description : "Crea coming w/in 5 ft of me or start turn, save or 1d6+1d6/SL Bludg. dmg, up to 6d6; success: half dmg",
+	description : "Crea coming w/in 5 ft of me or start turn, save or 1d6+1d6/SL Bludg. dmg, up to 6d6; save halves",
 	descriptionFull : "You sprout grotesque, whipping tendrils which automatically attack nearby creatures. When a creature comes within 5 feet of you or begins its turn there, it must make a Dexterity saving throw. A creature takes 1d6 bludgeoning damage on a failed save, or half as much on a successful one." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st, up to a maximum of 6d6."
 };
 SpellsList["legendary libation"] = {
@@ -33533,4 +33533,139 @@ SpellsList["lightning surge"] = {
 	description : "Crea in 5 ft save or 1d6 Lightning dmg; +1d6 CL5/11/17",
 	descriptionCantripDie : "Creatures within 5 ft save or `CD`d6 Lightning damage",
 	descriptionFull : "You emit a dazzling array of short lightning bolts in all directions. All other creatures within 5 feet of you must succeed on a Dexterity saving throw or take 1d6 lightning damage." + "\n   " + "This spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6)."
+};
+SpellsList["magic daggers"] = {
+	name : "Magic Daggers",
+	classes : ["warmage", "bard"],
+	source : ["VSoS", 347],
+	level : 0,
+	school : "Conj",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Ranged spell atk w/ dagger 1d6 force dmg; CL5:2, CL11:3, CL17:4 daggers",
+	descriptionCantripDie : "`CD` ranged spell atks for 1d6 force damage each",
+	descriptionFull : "With a flourish, you conjure a throwing dagger of magical force out of thin air and flick it from your wrist at a target you can see. Make a ranged spell attack roll against a creature within range. On a hit, the target takes 1d6 magical piercing damage. The dagger vanishes after the attack." + "\n   " + "At higher levels, you conjure more daggers out of force and make additional attacks: two daggers at 5th level, three daggers at 11th level, and four daggers at 17th level. You can use the daggers to attack the same target or at different ones. Make a separate attack roll for each dagger."
+};
+SpellsList["mandy's enchanted carriage"] = {
+	name : "Mandy's Enchanted Carriage",
+	classes : ["witch", "druid"],
+	source : ["VSoS", 348],
+	level : 4,
+	school : "Trans",
+	time : "1 min",
+	range : "30 ft",
+	components : "V,S,M",
+	compMaterial : "A vegetable",
+	duration : "Special",
+	ritual: false,
+	description : "Create carriage for six people, lasts until midnight or 24 h; see book",
+	descriptionFull : "You transform a vegetable into a Large magical carriage, complete with reins and two quasi-real horses. The carriage is luxurious and carries up to six passengers—four within and two atop it at the coach’s seat. Creatures within the carriage have full cover from external effects, but can see outside through a pair of windows composed of magical force. While sitting in the coach’s seat, a creature can control the carriage, which has a speed of 100 feet and can travel 10 miles in an hour, or 13 miles at a fast pace." + "\n   " + "This spell’s duration varies depending upon when and where it was cast. If cast in a location where time passes normally, the spell lasts until the twelfth stroke of the next midnight, however long that may be. Elsewhere, the spell lasts for 24 hours. When the spell ends, the carriage’s occupants are ejected into adjacent unoccupied spaces, the carriage shrinks back into a vegetable, and the quasi-real horses fade." + "\n   " + "The carriage and horses count as a single object with 12 AC and 100 HP. The spell ends early if the carriage and horses are reduced to 0 hit points."
+};
+SpellsList["mandy's feral follower"] = {
+	name : "Mandy's Feral Follower",
+	classes : ["witch", "druid"],
+	source : ["VSoS", 348],
+	level : 4,
+	school : "Trans",
+	time : "1 min",
+	range : "30 ft",
+	components : "V,S,M",
+	compMaterial : "A small servant's bell",
+	duration : "Special",
+	ritual: false,
+	description : "Transform 1+1/SL Small/Tiny Beasts w/ \u22643 Int into commoners under my command; see B",
+	descriptionFull : "After spending the casting time singing a song, you touch a Small or smaller beast. The target must have an Intelligence of 3 or less. The beast then transforms into a humanoid with the statistics of a commoner and an appearance of your choosing. The commoner is friendly to you and your allies, has a basic understanding of all simple unskilled tasks, and can understand the languages you speak, but doesn’t speak. The commoner is clothed in common clothes, but has no other equipment." + "\n   " + "In combat, the commoner rolls their own initiative and acts on their own turn. They behave as though they are dutifully employed by you." + "\n   " + "This spell’s duration varies depending upon when and where it was cast. If cast in a location where time passes normally, the spell lasts until the twelfth stroke of the next midnight, however long that may be. Elsewhere, the spell lasts for 24 hours." + "\n   " + "The transformation lasts for the duration, or until the target drops to 0 hit points or dies. When it reverts to its true form, the creature returns to the number of hit points it had before it transformed. If it reverts as a result of dropping to 0 hit points, any excess damage carries over to its true form. As long as the excess damage doesn’t reduce the creature’s normal form to 0 hit points, it isn’t knocked unconscious." + AtHigherLevels + "When you cast this spell using a spell slot of 5th level or higher, you can transform one additional animal for each spell slot above 4th."
+};
+SpellsList["mandy's marvelous dress"] = {
+	name : "Mandy's Marvelous Dress",
+	classes : ["witch", "bard"],
+	source : ["VSoS", 349],
+	level : 4,
+	school : "Conj",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M\u0192",
+	compMaterial : "A glass slipper worth at least 100 gp",
+	duration : "Conc, special",
+	save : "Wis",
+	ritual: false,
+	description : "1 crea can replace Cha chk w/ a 10; atks save or miss; lasts to midnight or 24 hr",
+	descriptionFull : "A willing creature you touch is instantly clothed in a fabulous ball gown, perfectly tailored and complete with a set of glittering jewelry. You can choose for the dress to sit atop the creature’s clothing or armor, or for it to magically replace its outfit. The creature can’t remove the dress until the spell ends; similarly, the jewelry vanishes if it is removed from the dress. Until the spell ends, when the wearer makes a Charisma check, it can replace the number it rolls with a 10." + "\n   " + "Additionally, if the wearer of the dress is attacked by a creature that can see it, the attacker must succeed on a Wisdom saving throw or miss the attack. On a success, the attacker is immune to this effect until this spell ends." + "\n   " + "This spell’s duration varies depending upon when and where it was cast. If cast in a location where time passes normally, the spell lasts until the twelfth stroke of the next midnight, however long that may be. Elsewhere, the spell lasts for 24 hours. When the spell ends, the dress vanishes in a puff of sparkles, and the creature becomes clothed in its original outfit."
+};
+SpellsList["mass skirmish"] = {
+	name : "Mass Skirmish",
+	classes : ["cleric", "wizard"],
+	source : ["VSoS", 349],
+	level : 7,
+	school : "Trans",
+	time : "1 a",
+	range : "S:30-ft rad",
+	components : "V,S,M",
+	compMaterial : "A branch from a tree",
+	duration : "Conc, 10 min",
+	ritual: false,
+	description : "Any number of crea get +15 ft spd, ignore diff. terrain, don't provoke opportunity atks",
+	descriptionFull : "This spell allows you to enhance the mobility of any number of willing creatures that you can see within range. You bolster each target, enabling them to move easily through enemy formations. For the duration, each target’s speed is increased by 15 feet, is unaffected by nonmagical difficult terrain, and doesn’t provoke opportunity attacks."
+};
+SpellsList["memorize"] = {
+	name : "Memorize",
+	classes : ["investigator", "necromancer", "bard", "cleric", "wizard"],
+	source : ["VSoS", 349],
+	level : 1,
+	school : "Ench",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M\u2020",
+	compMaterial : "A page of written text and a length of silver string worth 10 gp, tied in a knot, which the spell consumes",
+	duration : "Instantaneous",
+	ritual: true,
+	description : "Perfectly memorize a page for 1 year; adv. on Int checks to remember it",
+	descriptionFull : "While casting this spell, your eyes pass over the words on the page, which are committed to your memory. For the next year, you exactly remember the details of all information on this page. After that time, you have advantage on all Intelligence checks you make to recall this information."
+};
+SpellsList["might of the abyss"] = {
+	name : "Might of the Abyss",
+	classes : ["necromancer", "cleric"],
+	source : ["VSoS", 349],
+	level : 1,
+	school : "Evoc",
+	time : "1 a",
+	range : "15 ft",
+	components : "V,S,M",
+	compMaterial : "A small, black strip of ribbon",
+	duration : "Conc, 1 min",
+	ritual: false,
+	description : "3+1/SL crea (not me) wea atks get +1d4 dmg while in range; range 20 when upcast",
+	descriptionFull : "You channel stygian power from an extraplanar source, enhancing three creatures other than yourself within range. Whenever a target makes a weapon attack, it adds 1d4 damage to their damage roll. If a target moves more than 15 feet away from you, it loses the effect until it is within range again." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the range increases by 5 feet, and you can target one additional creature for each slot level above 1st."
+};
+SpellsList["minor lifesteal"] = {
+	name : "Minor Lifesteal",
+	classes : ["necromancer", "sorcerer", "wizard"],
+	source : ["VSoS", 349],
+	level : 0,
+	school : "Necro",
+	time : "1 a",
+	range : "60 ft",
+	components : "S",
+	duration : "Instantaneous",
+	save : "Con",
+	description : "1 crea save or 1d4 Necro. dmg and I gain as Temp HP; +1d4 CL5/11/17",
+	descriptionCantripDie : "1 crea save or `CD`d4 Necro. dmg, and I gain as Temp HP",
+	descriptionFull : "You drain life energy from a hostile creature you can see within range. The target must succeed on a Constitution saving throw or take 1d4 necrotic damage. You then gain temporary hit points equal to the amount of damage dealt, which last until you finish a long rest. This spell has no effect on undead or constructs." + "\n   " + "This spell’s damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4)."
+};
+SpellsList["moment to think"] = {
+	name : "Moment to Think",
+	classes : ["warmage", "cleric", "sorcerer", "wizard"],
+	source : ["VSoS", 350],
+	level : 0,
+	school : "Trans",
+	time : "1 bns",
+	range : "Self",
+	components : "V",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Move in space and Search, Use Object, or Int chk to recall info while time stops",
+	descriptionFull : "When you cast this spell, you briefly stop time for everyone but yourself. You can take one additional action and move around in your space while no time passes for other creatures. That action can be used only to take the Search or Use an Object action, or to make an Intelligence check to remember information about something." + "\n   " + "Furthermore, you can’t affect or damage any creature or object, other than objects you are wearing or carrying. If an object leaves your hand, it also becomes frozen in time."
 };
