@@ -33188,3 +33188,94 @@ SpellsList["guided missile"] = {
 	description : "Next ranged weapon atk has advantage and double normal/long range",
 	descriptionFull : "You utter a prayer to guide your projectile, causing it to arc toward its target. The next ranged weapon attack you make before the spell ends has advantage, and has double its normal and long ranges."
 };
+SpellsList["halo of flame"] = {
+	name : "Halo of Flame",
+	classes : ["martyr", "cleric", "paladin"],
+	source : ["VSoS", 342],
+	level : 2,
+	school : "Evoc",
+	time : "1 a",
+	range : "S:10-ft rad",
+	components : "V,S",
+	duration : "Instantaneous",
+	save : "Dex",
+	ritual: false,
+	description : "Create a 10-ft rad, 5-ft wide ring; crea in area save or 4d6+1d6/SL Fire dmg; save halves",
+	descriptionFull : "A ring of flame ignites above your head and then springs outward, coming to rest in a burning circle. The circle is composed of a 5-foot wide line of flame, curving to form a 10-foot-radius ring around you. Each creature you choose within the area must make a Dexterity saving throw. On a failed save, a creature takes 4d6 fire damage, or half as much on a successful save." + AtHigherLevels + "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d6 for each slot level above 2nd."
+};
+SpellsList["hangover"] = {
+	name : "Hangover",
+	classes : ["bard"],
+	source : ["VSoS", 343],
+	level : 2,
+	school : "Ench",
+	time : "1 a",
+	range : "30 ft",
+	components : "V,S,M",
+	compMaterial : "A tiny vial of strong liquor",
+	duration : "Instantaneous",
+	save : "Con",
+	ritual: false,
+	description : "1 crea save or 3d8+1d8/SL Psy dmg, Poisoned til start of my next turn; disadv. on Conc save from dmg",
+	descriptionFull : "You emit a drunken aura that quickly washes away, leaving the feeling of an intense hangover. A creature you choose within range must succeed on a Constitution saving throw or take 3d8 psychic damage. The target has disadvantage on Constitution saving throws it makes to maintain concentration on a spell due to this damage. Additionally, on a failed save, the target is poisoned until the start of your next turn." + AtHigherLevels + "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd."
+};
+SpellsList["heart of darkness"] = {
+	name : "Heart of Darkness",
+	classes : ["necromancer"],
+	source : ["VSoS", 343],
+	level : 9,
+	school : "Necro",
+	time : "1 h",
+	range : "S:1-mile rad",
+	components : "V,S,M\u0192",
+	compMaterial : "A humanoid heart prepared with onyx and diamond dust worth at least 10,000 gp",
+	duration : "Until dispelled",
+	ritual: false,
+	descriptionShorter : "Raise and command up to 100 undead while holding the heart; see book",
+    description : "Raise up to 100 S/M Skel/Zomb \u0026 doesn't count vs me; Crea w/heart cmds 1/Day; AC 10/HP 20; See B",
+	descriptionFull : "When you cast this spell, you stab a black, ritualistically prepared humanoid heart. The ichor from the heart infects the land with foul necromantic energies, causing up to one hundred piles of bones or corpses of Medium or Small humanoids within a 1-mile radius to rise from the dead, becoming skeletons or zombies (the GM has the creatures’ game statistics). The undead dig their way out of graves, smash their way out of mausoleums, and tear down cemetery gates." + "\n   " + "The creature that is holding the heart can use its action to issue a general command to all undead created by the spell, such as to destroy a town or hunt down a particular creature. Only one general command can be issued to the undead every 24 hours. If not issued a command, the undead indiscriminately attack living creatures, other than the creature that is holding the heart and creatures designated by it. Once given an order, the undead continue to follow it to the best of their ability until the task is complete." + "\n   " + "Even while you hold the heart, the undead aren’t directly under your control, and therefore don’t count against any limitations of undead you can command." + "\n   " + "The undead remain animated until the spell ends. The spell ends if the heart is destroyed (AC 20, HP 10, immunity to necrotic, poison, and psychic damage) or targeted by a dispel magic spell cast as a 9th-level spell. When the spell ends, all undead animated by it are instantly destroyed, crumpling into a heap. The spell also ends if every undead created by it is destroyed."
+};
+SpellsList["hocuspocus"] = {
+	name : "Hocuspocus",
+	classes : ["necromancer", "witch", "warlock"],
+	source : ["VSoS", 343],
+	level : 0,
+	school : "Conj",
+	time : "1 a",
+	range : "30 ft",
+	components : "V,S",
+	duration : "1 min",
+	ritual: false,
+	description : "Minor phenomena; candles flicker; quiet sounds; glowing orbs; chill/warm air; small obj hover \u0026 rattle; B",
+	descriptionFull : "You conjure minor paranormal phenomena and other ominous effects. You create one of the following magical effects within range for 1 minute:" + "\n \u2022" + "You cause all candles, torches, and other open flames to darken and flicker." + "\n \u2022" + "You create a quiet sound that originates from a point of your choice within range, such as ominous whispers, the drone of insects, or the sound of crying." + "\n \u2022" + "You create up to four torch-sized spectral, glowing orbs, which float around within range. The orbs do not provide light, apart from a dim glow."  + "\n \u2022" + "You can chill or warm the air in a 10-foot cube by 10 degrees." + "\n \u2022" + "You cause small, unattended objects to rattle or levitate an inch off the ground." + "\n   " + "If you cast this spell multiple times, you can have up to three of its effects active at a time, and you can dismiss such an effect as an action."
+};
+SpellsList["hollowing curse"] = {
+	name : "Hollowing Curse",
+	classes : ["necromancer", "witch", "sorcerer", "warlock", "wizard"],
+	source : ["VSoS", 344],
+	level : 1,
+	school : "Necro",
+	time : "1 a",
+	range : "30 ft",
+	components : "V,S",
+	duration : "Conc, 1 min",
+	save : "Dex",
+	ritual: false,
+    description : "crea save or 2d6+1d6/SL Necro \u0026 cursed; 1 a for 1d6+1d6/SL Necro or ends; save \u00BD \u0026 no curse; see B",
+	descriptionFull : "Tendrils of black mist extend from your fingertips, latching onto a creature and draining its vitality. Choose a creature you can see within range to make a Dexterity saving throw. On a failed save, the target takes 2d6 necrotic damage and is cursed for up to one minute. On a successful save, the target takes half as much damage and is not cursed. While the target is cursed, you can use your action to deal 1d6 necrotic damage to it automatically. The curse ends early if you use your action to do anything else, if the target is ever outside the spell’s range, or if the target has total cover from you. A remove curse spell also ends this curse." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the initial and secondary damage each increases by 1d6 for each slot level above 1st."
+};
+SpellsList["hunger of the earth"] = {
+	name : "Hunger of the Earth",
+	classes : ["druid", "wizard"],
+	source : ["VSoS", 344],
+	level : 4,
+	school : "Trans",
+	time : "1 a",
+	range : "30 ft",
+	components : "V,S",
+	duration : "Conc, 1 h",
+	save : "Str",
+	ritual: false,
+    description : "\u2264Large crea save or sinking; Str chk/crea in 5 ft to esc \u0026 ends; \u2264S/M/L sinks fully in 2+1/Size rnds \u0026 Suffo",
+	descriptionFull : "Choose a Large or smaller creature on the ground within range. The earth opens up beneath that creature and attempts to swallow them up. The target must make a Strength saving throw or be restrained for the duration. Furthermore, if the target fails the save, it begins sinking into the ground." + "\n   " + "A restrained target, or another creature within 5 feet of it, can attempt to free the target by using an action to make a Strength check against your spell save DC, freeing the target. The target has disadvantage on this Strength check. The spell ends early if the target is freed." + "\n   " + "At the end of the target’s turn, it sinks deeper into the ground. A Small or smaller creature fully sinks into the ground after 2 rounds of sinking, a Medium creature fully sinks after 3 rounds, and a Large creature fully sinks after 4 rounds. If a target fully sinks underground, it begins to suffocate."
+};
