@@ -32420,3 +32420,243 @@ SpellsList["burnt offering"] = {
 	description : "While armored, Wis to AC instead of Dex; 3rd: reroll 1 saving throw, must use new roll",
 	descriptionFull : "By constructing a pyre and burning an animal’s corpse, you court the favor of the gods. For the duration, while you are wearing armor, you can add your Wisdom modifier, instead of your Dexterity modifier, to your Armor Class." + AtHigherLevels + "If you cast this spell using a spell slot of 3rd level or higher, you can also reroll one saving throw you make during the duration. You can choose to reroll the saving throw after you roll the die, but must decide before the outcome is determined and must use the new roll."
 };
+SpellsList["candy blast"] = {
+	name : "Candy Blast",
+	classes : ["witch", "sorcerer", "wizard"],
+	source : ["VSoS", 332],
+	level : 0,
+	school : "Conj",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Ranged spell atk for 1d8 Bludg. dmg; tgt space is diff. terrain; 1 a to clear; +1d8 CL5/11/17",
+	descriptionCantripDie : "Ranged spell atk for `CD`d8 Bludg. dmg; tgt space is diff. terrain; 1 a to clear",
+	descriptionFull : "You summon a handful of hard candy—boiled sweets, mints, jelly beans, etc.—and hurl them at a target you can see within range. Make a ranged spell attack roll. On a hit, the target takes 1d8 bludgeoning damage, and the space it is standing in, up to a 5-foot square, becomes difficult terrain until a creature uses an action to gather up the fallen candy. The candy produced by this spell is edible, but has no nutritional value." + "\n   " + "This spell’s damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8)."
+};
+SpellsList["card trick"] = {
+	name : "Card Trick",
+	classes : ["warmage", "witch", "bard", "sorcerer", "wizard"],
+	source : ["VSoS", 332],
+	level : 0,
+	school : "Trans",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A deck of playing cards",
+	duration : "Instantaneous",
+	save : "Dex",
+	ritual: false,
+	description : "Choose ranged spell attack or 1 crea Dex save, hit/fail: 1d6 Force dmg; +1d6 CL5/11/17",
+    descriptionCantripDie : "Choose ranged spell atk or 1 crea Dex save; hit/fail: `CD`d6 Force dmg",
+	descriptionFull : "With a flash of your hands, you fling a playing or tarot card charged with energy at your opponents. Choose whether you make a ranged spell attack roll or for the target to make a Dexterity saving throw. On a hit or a failed saving throw, the target takes 1d6 force damage." + "\n   " + "This spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6)."
+};
+SpellsList["caustic blade"] = {
+	name : "Caustic Blade",
+	classes : ["necromancer", "warmage"],
+	source : ["VSoS", 332],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "S:5-ft rad",
+	components : "V,M",
+	compMaterial : "A melee weapon",
+	duration : "Instantaneous",
+	ritual: false, 
+	description : "Melee wea atk w/cast; hit: wea dmg is Acid +0d8 Acid dmg, miss by 3 or less: 1d8 Acid dmg; +1d8 CL5/11/17",
+	descriptionCantripDie : "Melee wea atk w/cast; hit: +`CD-1`d8 Acid dmg, miss by 3 or less: `CD`d8 Acid dmg",
+	descriptionFull : "As part of the action used to cast this spell, you must make a melee attack with a weapon against one creature within the spell’s range, otherwise the spell fails. On a hit, the target suffers the weapon attack’s normal effects, except that any damage dealt by the attack is acid damage instead of its normal type. If you miss by 3 or less, acid splashes on the target, and you instead deal 1d8 acid damage." + "\n   " + "This spell’s damage increases when you reach certain levels. At 5th level, the melee attack deals an additional 1d8 acid damage to the target on a hit, and the acid damage dealt on a miss increases to 2d8. Both damage rolls increase by one die at 11th level (2d8 and 3d8) and 17th level (3d8 and 4d8)."
+};
+SpellsList["cheat"] = {
+	name : "Cheat",
+	classes : ["necromancer", "warmage", "witch", "bard", "sorcerer", "warlock", "wizard"],
+	source : ["VSoS", 332],
+	level : 0,
+	school : "Div",
+	time : "1 bns",
+	range : "Self",
+	components : "S,M",
+	compMaterial : "A weighted die",
+	duration : "1 rnd",
+	ritual: false,
+	description : "Reroll ability checks to play nonmagical games of skill",
+	descriptionFull : "You subtly twist your fingers, and fate seems to follow suit. For the duration, you can reroll any ability check you make to play nonmagical games of skill. Therefore, this spell could influence a game of poker, but not the result of a deck of many things."
+};
+SpellsList["chromatic bullet"] = {
+	name : "Chromatic Bullet",
+	classes : ["paladin", "ranger"],
+	source : ["VSoS", 333],
+	level : 1,
+	school : "Evoc",
+	time : "1 bns",
+	range : "Self",
+	components : "V,S,M",
+	compMaterial : "A firearm",
+	duration : "Conc, 1 min",
+	ritual: false,
+	description : "Next ranged firearm atk +2d4+2d4/SL Acid/Cold/Fire/Ltng/Psn/Thun. dmg; can chg wea dmg type",
+	descriptionFull : "The next time you hit a creature with a ranged weapon attack using a firearm during the spell’s duration, your bullet sparks with elemental energy. The attack deals an extra 2d4 damage to the target. You choose whether this additional damage is acid, cold, fire, lightning, poison, or thunder damage, and you can choose to change the firearm’s damage to one of these damage types. You do not need to pick the same damage type for both." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 2d4 for each slot level above 1st."
+};
+SpellsList["clue"] = {
+	name : "Clue",
+	classes : ["investigator", "witch", "bard", "cleric", "druid", "paladin", "ranger", "wizard"],
+	source : ["VSoS", 333],
+	level : 1,
+	school : "Div",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "A magnifying glass and pipe",
+	duration : "10 min",
+	ritual: true,
+	description : "Foot/fingerprints in 45 ft rad glow; pick a time w/in last 10 days; each crea print glows diff; reveals invis",
+	descriptionFull : "When you cast this spell, all footprints and fingerprints within a 45-foot radius of a point you touch become highlighted and glow faintly for the duration. At the time of casting, choose any period of time up to the last 10 days to the present; only footprints and fingerprints left within that time will be highlighted. Each creature whose footprints or fingerprints are detected by the spell is assigned a unique color, but are not otherwise identified. Any creature that moves or touches objects in the area will also leave colorful footprints and fingerprints, which might reveal invisible creatures in the area."
+};
+SpellsList["concealed shot"] = {
+	name : "Concealed Shot",
+	classes : ["bard", "druid", "sorcerer", "warlock", "wizard"],
+	source : ["VSoS", 333],
+	level : 0,
+	school : "Illus",
+	time : "1 a",
+	range : "Self",
+	components : "S,M",
+	compMaterial : "A ranged weapon",
+	duration : "Instantaneous",
+	description : "Ranged wea atk w/cast; projectile invis. in flight and wea doesn't reveal my position",
+	descriptionFull : "As part of the action used to cast this spell, you must make an attack with a ranged weapon, otherwise the spell fails. The attack’s projectile is invisible while in flight, and the weapon itself is silent. If the weapon is a firearm, this spell suppresses the smoke and light the weapon produces, making it impossible to see or hear where the shot came from." + "\n   " + "This spell only conceals the first shot you make; any additional shots aren’t concealed."
+};
+SpellsList["conjure cannonball"] = {
+	name : "Conjure Canonball",
+	classes : ["sorcerer", "wizard"],
+	source : ["VSoS", 333],
+	level : 3,
+	school : "Conj",
+	time : "1 a",
+	range : "600 ft",
+	components : "V,S,M",
+	compMaterial : "A small replica cannon",
+	duration : "Instantaneous",
+	save : "Dex",
+	description : "Ranged spell atk for 4d10+1d10/SL Bludg. dmg; crea w/in 5 ft of target save or \u00BD dmg",
+	descriptionFull : "You summon a cannonball, mid-flight and at full velocity, which explodes on impact. Make a spell attack roll against a target you can see within range. On a hit, the target takes 4d10 bludgeoning damage, and each creature within 5 feet of the target must make a Dexterity saving throw. On a failed save, a creature takes half as much damage." + AtHigherLevels + "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d10 for each spell slot above 3rd."
+};
+SpellsList["conjure cover"] = {
+	name : "Conjure Cover",
+	classes : ["investigator", "druid", "ranger", "sorcerer", "wizard"],
+	source : ["VSoS", 333],
+	level : 1,
+	school : "Conj",
+	time : "1 bns",
+	range : "10 ft",
+	components : "V,S,M",
+	compMaterial : "A duck figurine",
+	duration : "Conc, 1 h",
+	ritual: true,
+	description : "Create 5\xD718\xD73 ft (L\xD7W\xD7H) segments; Med \u00BD, Small \u00BE, prone full cover; ea 10 AC, 60 hp; can hurdle",
+	descriptionFull : "You conjure a low cobblestone wall along the ground, a perfect source of cover, at a point you can see within range. The wall is 18 inches thick and is composed of three 5-foot long by 3-foot high segments. Each segment must be contiguous with at least one other segment." + "\n   " + "A Medium creature that hunkers behind the wall has half cover from ranged attacks, and a Small creature that hunkers behind it has three-quarters cover from ranged attacks. A prone creature has full cover behind the wall. The wall can be leapt over without using any additional movement." + "\n   " + "Each segment has AC 10 and 60 hit points. Reducing a segment of the wall to 0 hit points causes it to crumble, destroying it. The wall disappears when all the segments are destroyed or the spell ends."
+};
+SpellsList["consecrated armor"] = {
+	name : "Consecrated Armor",
+	classes : ["investigator", "cleric"],
+	source : ["VSoS", 334],
+	level : 1,
+	school : "Abjur",
+	time : "1 a",
+	range : "Self",
+	components : "V,S,M",
+	compMaterial : "A drop of blessed oil",
+	duration : "8 h",
+	ritual: true,
+	description : "AC becomes 12+Dex, or 15+Dex against fiends and undead; can use w/shields",
+	descriptionFull : "You trace a holy symbol on your chest, and an invisible barrier protects you until the spell ends. Your base AC becomes 12 + your Dexterity modifier. If you are attacked by a fiend or undead, your AC becomes 15 + your Dexterity modifier against that attack."
+};
+SpellsList["corruption curse"] = {
+	name : "Corruption Curse",
+	classes : ["witch"],
+	source : ["VSoS", 334],
+	level : 6,
+	school : "Necro",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S",
+	duration : "Conc, 1 min",
+	ritual: false,
+	description : "1 crea cursed, choose Dex, Con, or Wis; disadv on chosen save and add'l effect; see book",
+    descriptionShorter : "1 crea; I pick: Dex: disadv Dex save/chk, Con: disadv Con save/no heal, or Wis: disadv Wis save/spll atks",
+	descriptionFull : "With a piercing glare and a sinister gesture, you send a ribbon of dark magic into a target’s body. A creature you can see within range is cursed for the duration and suffers from one of the following effects of your choice while cursed:" + "\n   " + toUni("Dull Reflexes") + ": The target has disadvantage on Dexterity checks and saving throws." + "\n   " + toUni("Feeble Fortitude") + ": The target has disadvantage on Constitution saving throws and can’t regain hit points." + "\n   " + toUni("Weak Will") + ": The target has disadvantage on Wisdom saving throws as well as spell attack rolls." + "\n   " + "A remove curse spell cast using a spell slot of 6th level or higher ends this curse early."
+};
+SpellsList["cryptogram"] = {
+	name : "Cryptogram",
+	classes : ["necromancer", "warmage", "witch", "bard", "sorcerer", "warlock", "wizard"],
+	source : ["VSoS", 334],
+	level : 0,
+	school : "Conj",
+	time : "1 a",
+	range : "Unlimited",
+	components : "V,S,M",
+	compMaterial : "A small written message",
+	duration : "Instantaneous",
+	description : "Send a message up to 8 characters (incl. spaces) to known crea on same plane, 1/day",
+	descriptionFull : "You send a small scroll with a short message to a creature of your choice. The recipient must be a creature known to you and also be on the same plane of existence as you. This scroll will hover in front of the recipient, drop into their pocket, or appear sitting on something nearby. The scroll’s message can be up to 8 characters long (spaces count as characters). You can send only one scroll to a single target each day."
+};
+SpellsList["curse of binding"] = {
+	name : "Curse of Binding",
+	classes : ["witch"],
+	source : ["VSoS", 334],
+	level : 7,
+	school : "Ench",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A body part from the intended target, such as a fingernail, a lock of hair, or a drop of blood",
+	duration : "Until dispelled",
+	save : "Cha",
+	ritual: true,
+	description : "Pick 1 tgt and location; tgt must stay w/in 20 ft; if tgt starts turn \u003E20 ft away, Str save or drag 60 ft to it",
+	descriptionFull : "You bind one creature or object to a location, cursing it so that it may never leave. Choose a target and a location within range, both of which you must be able to see. If the target is a creature, it must make a Charisma saving throw (a willing creature may choose to fail this save), or be cursed to be permanently bound to the chosen location. While cursed, the target can act and move around freely, as long as it remains within 20 feet of the point it is bound to. If the target begins its turn outside of this area, it must make a Strength saving throw against your spell save DC or be dragged 60 feet towards the point it was bound to." + "\n   " + "Additionally, if the creature tries to use extraplanar travel, it must make another Charisma saving throw. On a failure, the travel attempt fails and any resources used are wasted. On a success, the curse is suppressed until the creature returns to the plane on which it was bound, at which point the dragging effect resumes." + "\n   " + "A remove curse spell cast using a spell slot of 7th level or higher ends this curse early."
+};
+SpellsList["curse of blades"] = {
+	name : "Curse of Blades",
+	classes : ["necromancer", "witch", "bard", "warlock", "wizard"],
+	source : ["VSoS", 334],
+	level : 3,
+	school : "Ench",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S",
+	duration : "Conc, 1 min",
+	save : "Wis",
+	description : "1 crea w/wea, save or can't drop/stow wea; w/ Attack action, makes additional wea atk vs. self",
+	descriptionFull : "Unholy bands of black energy tie a creature to its weapon. Choose a creature you can see within range that is holding a weapon to make a Wisdom saving throw. On a failed save, the creature is cursed for the duration. A cursed target can’t willingly drop or stow its weapon. Additionally, whenever it takes the Attack action on its turn, it makes one additional attack using its weapon targeting itself, against its own AC, dealing damage as normal on a hit." + "\n   " + "A remove curse spell ends this curse early."
+};
+SpellsList["curse of chains"] = {
+	name : "Curse of Chains",
+	classes : ["witch"],
+	source : ["VSoS", 335],
+	level : 1,
+	school : "Ench",
+	time : "1 a",
+	range : "120 ft",
+	components : "V,S",
+	duration : "Conc, 1 min",
+	save : "Con",
+	ritual: false,
+	description : "2 crea w/in 30 ft of another save, or can't move further apart; if 1 cursed, bns to pick another w/in 30 ft",
+	descriptionFull : "A black brand resembling iron shackles darkens the ankles of two creatures you can see. Choose two creatures you can see within range of the spell, and within 30 feet of each other, to each make a Constitution saving throw. A willing creature can choose to fail this saving throw. On a failed save, a target is cursed for the duration. If only one target is cursed by this spell, you can use your action or bonus action on a subsequent turn to choose another target within 30 feet of the cursed creature to make a saving throw. While two creatures are cursed by this spell, they are unable to willingly move further away from each other." + "\n   " + "A remove curse spell ends this curse early."
+};
+SpellsList["curse ward"] = {
+	name : "Curse Ward",
+	classes : ["investigator", "martyr", "necromancer", "witch", "cleric", "paladin", "warlock", "wizard"],
+	source : ["VSoS", 335],
+	level : 2,
+	school : "Abjur",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S",
+	duration : "1 h",
+	ritual: false,
+	description : "1 willing crea resist Necro. dmg; immune to curse, possession, and hexes; max HP can't be reduced",
+	descriptionFull : "You reach out your hand and touch a willing creature within your reach, raising a smoke-like barrier around it. For the duration, the target has resistance to necrotic damage and can’t be cursed, possessed, or targeted by a hex. Also, its maximum hit points can’t be lowered. If the target is already affected by one of these effects, the effect is suspended until the spell ends."
+};
