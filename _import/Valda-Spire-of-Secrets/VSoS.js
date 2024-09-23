@@ -33279,3 +33279,179 @@ SpellsList["hunger of the earth"] = {
     description : "\u2264Large crea save or sinking; Str chk/crea in 5 ft to esc \u0026 ends; \u2264S/M/L sinks fully in 2+1/Size rnds \u0026 Suffo",
 	descriptionFull : "Choose a Large or smaller creature on the ground within range. The earth opens up beneath that creature and attempts to swallow them up. The target must make a Strength saving throw or be restrained for the duration. Furthermore, if the target fails the save, it begins sinking into the ground." + "\n   " + "A restrained target, or another creature within 5 feet of it, can attempt to free the target by using an action to make a Strength check against your spell save DC, freeing the target. The target has disadvantage on this Strength check. The spell ends early if the target is freed." + "\n   " + "At the end of the target’s turn, it sinks deeper into the ground. A Small or smaller creature fully sinks into the ground after 2 rounds of sinking, a Medium creature fully sinks after 3 rounds, and a Large creature fully sinks after 4 rounds. If a target fully sinks underground, it begins to suffocate."
 };
+SpellsList["ice claw prison"] = {
+	name : "Ice Claw Prison",
+	classes : ["sorcerer", "warlock", "wizard"],
+	source : ["VSoS", 344],
+	level : 3,
+	school : "Evoc",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A crystal claw",
+	duration : "Conc, 1 min",
+	save : "Str",
+	ritual: false,
+    descriptionShorter : "10 ft Large ice hand in vis. rng; AC 18/HP \u00BD my max; Immune psn/psy; 1 bns Slash/Imprison/Release; B",
+	description : "Create a Large ice hand that can Slash, Imprison, or Release on command; see book",
+	descriptionFull : "You choose an unoccupied 10-foot square that you can see within range. A Large clawed hand made from razor-sharp ice appears there and lasts for the spell’s duration. It acts at your command, though it can’t move from its initial location." + "\n   " + "The hand is an object that has AC 18 and hit points equal to half your hit point maximum. It has immunity to poison and psychic damage. If it drops to 0 hit points, the spell ends. The claw doesn’t fill its space. When you cast the spell, and as a bonus action on your subsequent turns, you can command the claw to perform one of the following tasks:" + "\n   " + toUni("Slash") + ": The claw lashes out at a target within 10 feet of itself. Make a melee spell attack using your own spell attack bonus. On a hit, the target takes 3d8 slashing or cold damage (your choice)." + "\n   " + toUni("Imprison") + ": The claw grabs a Large or smaller creature within 10 feet of itself. The target must succeed on a Strength saving throw against your spell save DC or be dragged into the claw’s space and restrained for the duration. At the end of each of its turns, the restrained target can make a Strength check against your spell save DC. On a success, the target escapes and is no longer restrained by the hand, but on a failure it takes 1d8 cold damage. While a creature is restrained by the hand, the hand can’t imprison or slash another creature. The claw can slash a creature it has restrained." + "\n   " + toUni("Release") + ": The claw releases an imprisoned target, which is no longer restrained." + AtHigherLevels + "When you cast this spell using a spell slot of 4th level or higher, the damage of the Slash and Imprison options increases by 1d8 for each spell slot above 3rd."
+};
+SpellsList["icicle javelin"] = {
+	name : "Icicle Javelin",
+	classes : ["druid", "sorcerer", "wizard"],
+	source : ["VSoS", 344],
+	level : 1,
+	school : "Conj",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A small icicle",
+	duration : "Instantaneous",
+	save : "Str",
+	ritual: false,
+	description : "Ranged spell atk for 3d8+1d8/SL Cold dmg and pin to adjacent surface; B",
+    descriptionShorter : "Rngd spell atk 3d8+1d8/SL Cold \u0026 pin against adj surface; SoT Str save to esc or spd 0; Lasts 1 turn",
+	descriptionFull : "You fling a massive icicle toward a target of your choice within range. Make a ranged spell attack against the target. On a hit, the target takes 3d8 cold damage. If the target is also adjacent to a wall, or a similar large, immobile object, it may also be pinned to that surface on its next turn. At the beginning of its turn, the target can make a Strength saving throw. On a failed save, it has a speed of 0 until the start of its next turn." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st."
+};
+SpellsList["identity curse"] = {
+	name : "Identity Curse",
+	classes : ["witch"],
+	source : ["VSoS", 345],
+	level : 9,
+	school : "Ench",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S",
+	duration : "Until dispelled",
+	save : "Wis",
+	ritual: false,
+	description : "1 crea save or forget its identity and personal memories (not statistics)",
+    descriptionShorter : "crea save or asleep for 1hr \u0026 forgets identity \u0026 class feat; keep stats/skills/general knowledge; see B",
+	descriptionFull : "You extend a finger to a creature’s temple, who then forgets its own name. Choose one creature you can touch to make a Wisdom saving throw. On a failed save, the target falls unconscious for 1 hour and is cursed to forget its identity. When the target awakens, it loses all its personal memories, though the target retains all of its general knowledge, proficiencies, and other statistics. The target won’t realize it has any class features or special abilities, and so doesn’t willingly make use of them. If left to its own devices, the target will quickly adopt a new name and begin to build a new identity." + "\n   " + "A remove curse spell cast using a 9th-level spell slot ends this curse. When this curse ends, the target regains all its past memories."
+};
+SpellsList["impressions of the past"] = {
+	name : "Impressions of the Past",
+	classes : ["cleric", "wizard"],
+	source : ["VSoS", 345],
+	level : 7,
+	school : "Div",
+	time : "1 a",
+	range : "Self",
+	components : "V,S,M\u0192",
+	compMaterial : "An hourglass and a glass eye worth at least 100 gp",
+	duration : "Conc, 1 min",
+	save : "Wis",
+	ritual: false,
+	description : "Observe (all senses) a time up to 100 years ago; share effect with 8th or higher level spell slot",
+    descriptionShorter : "Observe w/ senses time in 100 years ago; can't move/speak/sense; \u22648th SL to share effect",
+	descriptionFull : "You cast your senses back in time to perceive your current location as it was at some point in the past, including any events that were happening at that time. You must specify the exact time you wish to see, which can’t be more than 100 years ago. When viewing the past, it appears dreamlike and shadowy, but you are able to discern detail and hear conversation as normal, and any special senses you possess (such as darkvision) also work as normal." + "\n   " + "While perceiving the past, you can look in any direction, but you can’t move or speak, and are unable to sense your present surroundings." + AtHigherLevels + "When you cast this spell using a spell slot of 8th level or higher, you may share this spell with one other creature that you touch. An unwilling target can make a Wisdom saving throw to avoid being affected."
+};
+SpellsList["indemnify"] = {
+	name : "Indemnify",
+	classes : ["martyr", "necromancer"],
+	source : ["VSoS", 345],
+	level : 1,
+	school : "Necro",
+	time : "1 bns",
+	range : "30 ft",
+	components : "V,S,M",
+	compMaterial : "A drop of blood",
+	duration : "Conc, 1 h",
+	save : "Con",
+	ritual: false,
+	description : "1 crea save or 1d8 Rad/Necro dmg whenever I lose HP while in range",
+	descriptionFull : "You fling a drop of blood at a target you can see within range, marking them for reckoning. The target must make a Constitution saving throw. On a failed save, the target takes 1d8 radiant or necrotic damage (your choice) whenever you lose hit points for the duration. This spell ends early if the target begins its turn further than 60 feet from you."
+};
+SpellsList["inevitable boulder"] = {
+	name : "Inevitable Boulder",
+	classes : ["druid", "wizard"],
+	source : ["VSoS", 345],
+	level : 7,
+	school : "Conj",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "An almost spherical stone",
+	duration : "Conc, 1 min",
+	save : "Dex",
+	ritual: false,
+	description : "Create a boulder that moves 60 ft toward target every turn; see book",
+	descriptionFull : "At a point you choose within range, you conjure into existence a Large 8-foot diameter boulder, which rolls in pursuit of one creature that you can see of your choice. The boulder has 18 AC, 75 HP, immunity to poison and psychic damage, and resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks. If the boulder is reduced to 0 hit points, it vanishes and the spell ends." + "\n   " + "At the beginning of each of your turns, the boulder moves 60 feet in the direction of its target. If the boulder enters a creature’s space, the creature must make a Dexterity saving throw. On a failed save, it takes 6d10 bludgeoning damage and, if it is Large size or smaller, is knocked prone. On a success, the creature takes half as much damage and is not knocked prone. The boulder also crushes nonmagical objects smaller than itself in its path. If the boulder reaches its target, it rolls over it and continues on, completing its 60-foot movement. The boulder continues to pursue its target for the duration, rolling over it more than once if possible." + "\n   " + "After the spell ends, the boulder continues to pursue its target for up to 24 hours. Once the boulder strikes its target after the spell ends, it immediately vanishes."
+};
+SpellsList["inexorable sarcophagus"] = {
+	name : "Inexorable Sarcophagus",
+	classes : ["necromancer"],
+	source : ["VSoS", 346],
+	level : 6,
+	school : "Necro",
+	time : "1 a",
+	range : "30 ft",
+	components : "V,S,M\u0192",
+	compMaterial : "A finely made miniature sarcophagus worth at least 1,000 gp",
+	duration : "Conc, 1 min",
+	save : "Dex",
+	ritual: false,
+	description : "1 crea save or trapped inside a sarcophagus; see book",
+	descriptionFull : "You toss a palm-sized sarcophagus at an unoccupied point you can see within range, where it grows to full size in an instant and attempts to ensnare a Medium or smaller creature within 5 feet of it with grimy gauze. The creature must succeed a Dexterity saving throw or be restrained and pulled into the open sarcophagus." + "\n   " + "The gauze restraining the creature is an object with AC 10 and 100 HP. It is vulnerable to slashing and fire damage, and immune to psychic and poison damage. If it is reduced to 0 hit points, the spell ends." + "\n   " + "A creature restrained by this spell must make another Dexterity saving throw at the end of each of its turns. If it successfully saves against this spell three times, it twists free of the gauze, ending the spell. If it fails three times, the sarcophagus slams shut and sinks deep into the earth. The creature is wrapped head to toe by the gauze and becomes incapacitated. The spell ends, but the sarcophagus remains buried in the earth. The sarcophagus has 1 minute of air, and the creature begins to suffocate after this time." + "\n   " + "If a humanoid dies within the sarcophagus, they rise 24 hours later as a mummy under your control, as per the spell create undead. You can only command one mummy animated by this spell at a time." + "\n   " + "Any time after this spell ends, you can cause the sarcophagus to ascend to the surface as an action. You can also use your action to shrink the sarcophagus down to its original size while it is unoccupied."
+};
+SpellsList["instant replay"] = {
+	name : "Instant Replay",
+	classes : ["martyr", "bard", "paladin", "ranger"],
+	source : ["VSoS", 346],
+	level : 1,
+	school : "Trans",
+	time : "1 bns",
+	range : "Self",
+	components : "V,S",
+	duration : "1 min",
+	ritual: false,
+	description : "Next time I miss an attack, I can reroll it",
+	descriptionFull : "The next time you miss a creature with an attack before this spell ends, you can instantly reset yourself to the moment before the attack and repeat it against the same target."
+};
+SpellsList["intensify gravity"] = {
+	name : "Intensify Gravity",
+	classes : ["cleric", "druid", "sorcerer", "wizard"],
+	source : ["VSoS", 346],
+	level : 4,
+	school : "Trans",
+	time : "1 a",
+	range : "100 ft",
+	components : "V,S,M",
+	compMaterial : "A lodestone and iron fillings",
+	duration : "Conc, 1 min",
+	ritual: false,
+	description : "In area use double movement (incl. climb, fly, etc.); stacks with diff. terrain; see B",
+    descriptionShorter : "Crea in area \u00BD spd (climb, fly, etc), 2\xD7 weight, \u0026 fall dmg; stack w/ diff. terr.; prone crea Str chk to stand",
+	descriptionFull : "This spell intensifies gravity in a 50-foot-radius, 100-foot-high cylinder centered on a point within range. Each creature in this area must spend two feet of movement for every foot moved, including flying, jumping, and climbing movement. This can be combined with difficult terrain to slow movement to a quarter of normal speed. If a prone creature wishes to stand up, it must succeed on a Strength check against your spell save DC. On a failure, it can’t move at all on its turn." + "\n   " + "Objects in the area, including those being worn or carried, weigh double their usual weight, which may cause creatures to become encumbered or cause load-bearing spells like levitate to fail. Any ranged weapon attacks that pass into, out of, or through the area have disadvantage, and any falling damage dealt within the spell’s area is doubled."
+};
+SpellsList["intrusive thought"] = {
+	name : "Intrusive Thought",
+	classes : ["witch", "bard", "sorcerer", "wizard"],
+	source : ["VSoS", 346],
+	level : 2,
+	school : "Ench",
+	time : "1 rea",
+	timeFull : "1 reaction, which you take when you see a creature within 60 feet of you taking an action",
+	range : "60 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	save : "Wis",
+	ritual: false,
+	description : "1 crea taking action, save or take different action of my choice instead; B",
+	descriptionFull : "As a reaction when a creature you can see within range uses its action to attack or takes the Dash, Dodge, or Disengage action, you can attempt to distort its thinking. The target makes a Wisdom saving throw. A target automatically succeeds on this saving throw if it can’t be charmed. On a failed save, the creature takes an action of your choice from among those options, instead of the action it intended to take."
+};
+SpellsList["invisibility purge"] = {
+	name : "Invisibility Purge",
+	classes : ["investigator", "witch", "bard", "sorcerer", "wizard"],
+	source : ["VSoS", 346],
+	level : 4,
+	school : "Abjur",
+	time : "1 a",
+	range : "S:120-ft rad",
+	components : "V,S,M\u0192",
+	compMaterial : "powdered silver worth at least 100 gp",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Invis. effects in range dispelled if possible, or suppressed for 1 min. if not, except innate invis.",
+	descriptionFull : "You purge magical invisibility effects within 120 feet of you. Any creature, object, location, or effect within 120 feet of you that is hidden by magical invisibility is revealed and the invisibility is dispelled." + "\n   " + "This spell applies to innate abilities that are magical in nature, such as an imp’s Invisibility, but it doesn’t affect creatures on other planes of existence, such as the Ethereal Plane. It also doesn’t reveal creatures that are naturally invisible. Items that grant magical invisibility (such as a ring of invisibility) have their effects suppressed for 1 minute."
+};
