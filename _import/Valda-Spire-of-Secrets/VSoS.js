@@ -33486,3 +33486,51 @@ SpellsList["jethro's instant reload"] = {
 	description : "1 wea reloads automatically; if wea takes 1 a or longer to reload, it reloads at end of turn",
 	descriptionFull : "One ranged weapon you touch becomes enchanted to reload itself automatically. If the weapon has the Loading or Reload property, you can ignore this for the duration. When the weapon’s ammunition is depleted, new ammunition teleports from your person to your hand or into the weapon, as appropriate. If the weapon takes an action or longer to reload, it reloads itself at the end of your turn. If you aren’t carrying sufficient ammunition for the weapon to reload, the spell ends."
 };
+SpellsList["lashing tendrils"] = {
+	name : "Lashing Tendrils",
+	classes : ["warlock"],
+	source : ["VSoS", 347],
+	level : 1,
+	school : "Trans",
+	time : "1 a",
+	range : "Self",
+	components : "V,S,M",
+	compMaterial : "The tip of an octopus tentacle",
+	duration : "Conc, 1 min",
+	save : "Dex",
+	ritual: false,
+	description : "Crea coming w/in 5 ft of me or start turn, save or 1d6+1d6/SL Bludg. dmg, up to 6d6; success: half dmg",
+	descriptionFull : "You sprout grotesque, whipping tendrils which automatically attack nearby creatures. When a creature comes within 5 feet of you or begins its turn there, it must make a Dexterity saving throw. A creature takes 1d6 bludgeoning damage on a failed save, or half as much on a successful one." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d6 for each slot level above 1st, up to a maximum of 6d6."
+};
+SpellsList["legendary libation"] = {
+	name : "Legendary Libation",
+	classes : ["bard", "cleric", "druid"],
+	source : ["VSoS", 347],
+	level : 0,
+	school : "Conj",
+	time : "1 bns",
+	range : "Self",
+	components : "V,M",
+	compMaterial : "A container, such as a mug, tankard, or flask, which is filled with liquid that is purified by the spell",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "A drink that slakes thirst for 24 h; also, drinker gets adv. on saves vs. fear for 1 h",
+	descriptionFull : "You speak a word of power and your container fills with a drink of your choosing, which can be imbibed as an action. The drink is delicious and satisfies the drinker’s thirst for the next 24 hours. Furthermore, the drinker has advantage on saving throws against becoming frightened for one hour after consuming this libation. If the drink is not consumed within one hour of being conjured, it loses its magic and turns into mundane, flavorless water." + "\n   " + "A creature can’t benefit from more than one legendary libation in any given 24-hour period."
+};
+SpellsList["lightning surge"] = {
+	name : "Lightning Surge",
+	classes : ["necromancer", "warmage", "sorcerer", "warlock", "wizard"],
+	source : ["VSoS", 347],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "S:5-ft rad",
+	components : "V,S,M",
+	compMaterial : "Two bits of copper wire",
+	duration : "Instantaneous",
+	save : "Dex",
+	ritual: false,
+	description : "Crea in 5 ft save or 1d6 Lightning dmg; +1d6 CL5/11/17",
+	descriptionCantripDie : "Creatures within 5 ft save or `CD`d6 Lightning damage",
+	descriptionFull : "You emit a dazzling array of short lightning bolts in all directions. All other creatures within 5 feet of you must succeed on a Dexterity saving throw or take 1d6 lightning damage." + "\n   " + "This spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6)."
+};
