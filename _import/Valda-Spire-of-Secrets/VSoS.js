@@ -32784,3 +32784,96 @@ SpellsList["distort gravity"] = {
 	description : "All crea/obj w/in 15 ft of where I touch, treat as if it was the ground; All crea/obj fall after spell ends",
 	descriptionFull : "The spell manipulates the direction of gravity on a non-horizontal surface you touch, causing it to attract creatures and objects within 15 feet of it as if it were the ground. The surface can be up to a 60-foot square in area and can wrap around a structure, if its geometry permits. A creature can walk on this surface as if it were level ground, even if the surface is perpendicular to the ground or upside down." + "\n   " + "When the duration ends, all creatures and objects fall from the surface."
 };
+SpellsList["eldritch orb"] = {
+	name : "Eldritch Orb",
+	classes : ["necromancer", "witch", "warlock"],
+	source : ["VSoS", 337],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	save : "Dex",
+	ritual: false,
+	description : "Ranged spell atk for 1d8 Force dmg; each crea in 5 ft save or half dmg; +1d8 CL5/11/17",
+	descriptionCantripDie : "Ranged spell atk for `CD`d8 Force dmg; each crea in 5 ft save or half dmg",
+	descriptionFull : "You fling a ball of eldritch energy at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 force damage, and each other creature within 5 feet of the target must make a Dexterity saving throw. On a failed save, a creature takes half as much damage." + "\n   " + "This spell’s damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8)."
+};
+SpellsList["elemental curse"] = {
+	name : "Elemental Curse",
+	classes : ["witch"],
+	source : ["VSoS", 337],
+	level : 6,
+	school : "Evoc",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S",
+	duration : "Conc, 1 min",
+	save : "Con",
+	ritual: false,
+	description : "1 crea save or vuln to Acid/Cold/Fire/Ltng/Thun; if resist, no resist; if immune, resist",
+	descriptionFull : "A spark leaps from your finger to a creature you touch, spreading in bright cracks across its skin. The target must make a Constitution saving throw or be cursed for the duration. While cursed, the target has vulnerability to your choice of acid, cold, fire, lightning, or thunder damage. If the creature has resistance to the chosen damage type, it instead only loses that resistance. If the target has immunity to the chosen damage type, it is treated as having only resistance to that damage." + "\n   " + "A remove curse spell ends this curse early."
+};
+SpellsList["evasiveness"] = {
+	name : "Evasiveness",
+	classes : ["sorcerer", "wizard"],
+	source : ["VSoS", 337],
+	level : 5,
+	school : "Trans",
+	time : "1 a",
+	range : "Touch",
+	components : "V,M",
+	compMaterial : "A scrap of silk",
+	duration : "Conc, 1 h",
+	ritual: false,
+	description : "1 crea AC becomes 20 and gets adv. on Dex saves",
+	descriptionFull : "You touch a willing creature. Until the spell ends, the target gains a superhuman ability to dodge attacks. The target’s AC becomes 20, if it were lower, regardless of what kind of armor it is wearing, and it has advantage on Dexterity saving throws."
+};
+SpellsList["exhume"] = {
+	name : "Exhume",
+	classes : ["necromancer", "cleric", "wizard"],
+	source : ["VSoS", 337],
+	level : 1,
+	school : "Necro",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A drop of blood",
+	duration : "Instantaneous",
+	ritual: true,
+	description : "A pile of humanoid bones emerge from the ground; 1d4 piles if in a burial place",
+	descriptionFull : "Choose an unoccupied 20-foot square within range—note that the area must have solid earth beneath it; this spell fails if cast on the upper floor of a building. This spell then causes one pile of humanoid bones to rise out of the ground within that square. If you cast this spell within a burial place such as a graveyard, mausoleum, or barrow, 1d4 piles of bones are exhumed instead of 1. The ground itself is not changed or disturbed by this spell; the bones simply appear out of the ground."
+};
+SpellsList["eye of anubis"] = {
+	name : "Eye of Anubis",
+	classes : ["necromancer", "witch", "cleric"],
+	source : ["VSoS", 337],
+	level : 0,
+	school : "Necro",
+	time : "1 a",
+	range : "60 ft",
+	components : "M",
+	compMaterial : "A holy symbol",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Ranged spell atk for 1d8 Necro dmg \u0026 can't Diseng. til end of my next turn; +1d8 CL5/11/17 \u0026 +1 atk CL5; B",
+    descriptionCantripDie : "Ranged spell atk for `CD`d8 Necro \u0026 can't Diseng. til end of my next turn; +1 atk at CL5 for `CD-1`d8 Necro",
+	descriptionFull : "A beam of tenebrous moonlight streaks from your left eye toward a creature within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 necrotic damage and can’t take the Disengage action until the end of your next turn. This spell creates an additional beam and deals more damage at higher levels. At 5th level, you fire a second beam originating from your right eye. Your first beam’s damage increases by 1d8 (2d8) when you reach 11th level, and your second beam’s damage increases by 1d8 (2d8) when you reach 17th level."
+};
+SpellsList["eye of ra"] = {
+	name : "Eye of Ra",
+	classes : ["cleric"],
+	source : ["VSoS", 338],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "60 ft",
+	components : "M",
+	compMaterial : "A holy symbol",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Ranged spell atk, hit: 1d8 Radiant dmg and tgt can't Hide until end of my next turn; +1d8 CL5/11/17; B",
+    descriptionCantripDie : "Ranged spell atk for `CD`d8 Radiant \u0026 can't Hide until end of my next turn; +1 atk at CL5 for `CD-1`d8 Radiant",
+	descriptionFull : "A beam of furious radiance erupts from your right eye, directed at a creature you can see within range. Make a ranged spell attack against the target. On a hit, the target takes 1d8 radiant damage and can’t take the Hide action until the end of your next turn. This spell creates an additional beam and deals more damage at higher levels. At 5th level, you fire a second beam originating from your left eye. Your first beam’s damage increases by 1d8 (2d8) when you reach 11th level, and your second beam’s damage increases by 1d8 (2d8) when you reach 17th level."
+};
