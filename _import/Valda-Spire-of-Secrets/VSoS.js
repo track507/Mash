@@ -33652,7 +33652,7 @@ SpellsList["minor lifesteal"] = {
 	duration : "Instantaneous",
 	save : "Con",
 	description : "1 crea save or 1d4 Necro. dmg and I gain as Temp HP; +1d4 CL5/11/17",
-	descriptionCantripDie : "1 crea save or `CD`d4 Necro. dmg, and I gain as Temp HP",
+	descriptionCantripDie : "1 crea save or `CD`d4 Necro. dmg, and I gain as Temp HP; No effect vs. Undead/Constructs",
 	descriptionFull : "You drain life energy from a hostile creature you can see within range. The target must succeed on a Constitution saving throw or take 1d4 necrotic damage. You then gain temporary hit points equal to the amount of damage dealt, which last until you finish a long rest. This spell has no effect on undead or constructs." + "\n   " + "This spell’s damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4)."
 };
 SpellsList["moment to think"] = {
@@ -33668,4 +33668,214 @@ SpellsList["moment to think"] = {
 	ritual: false,
 	description : "Move in space and Search, Use Object, or Int chk to recall info while time stops",
 	descriptionFull : "When you cast this spell, you briefly stop time for everyone but yourself. You can take one additional action and move around in your space while no time passes for other creatures. That action can be used only to take the Search or Use an Object action, or to make an Intelligence check to remember information about something." + "\n   " + "Furthermore, you can’t affect or damage any creature or object, other than objects you are wearing or carrying. If an object leaves your hand, it also becomes frozen in time."
+};
+SpellsList["nondescript"] = {
+	name : "Nondescript",
+	classes : ["investigator", "necromancer", "witch", "bard", "sorcerer", "wizard"],
+	source : ["VSoS", 350],
+	level : 2,
+	school : "Illus",
+	time : "1 a",
+	range : "Self",
+	components : "V,S",
+	duration : "Conc, 10 min",
+	ritual: false,
+	description : "Creatures who see me while I'm under this spell can't remember what I look like",
+	descriptionFull : "This spell makes you seem ordinary and nondescript to others, though it doesn’t change your actual appearance. Creatures who see you while you are under the influence of this spell are unable to recall specific details of your appearance upon being asked if they had seen you or someone matching your description, though their memory of actions you undertook or events they experienced is unaffected."
+};
+SpellsList["paradox"] = {
+	name : "Paradox",
+	classes : ["sorcerer", "warlock", "wizard"],
+	source : ["VSoS", 350],
+	level : 9,
+	school : "Trans",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Undo 1 a from the last rnd and its direct effects; 10d8 Psy dmg to the crea that took it",
+	descriptionFull : "By twisting the flow of time into knots, you cause one action of your choice taken within range within the last round to be undone. Reality then reasserts itself, recoiling from the damage caused by removing an event from time. The direct effects of that action, such as damage dealt by an attack or spell, are undone, but the indirect effects, such as creatures choosing to move to different locations, are not. The creature that took the action takes 10d8 psychic damage, as it copes with its history being modified."
+};
+SpellsList["perforating smite"] = {
+	name : "Perforating Smite",
+	classes : ["paladin"],
+	source : ["VSoS", 350],
+	level : 2,
+	school : "Evoc",
+	time : "1 bns",
+	range : "Self",
+	components : "V",
+	duration : "Conc, 1 min",
+	save : "Dex",
+	ritual: false,
+	description : "Next firearm atk is 5-ft wide line at normal range; crea in area save vs. normal dmg, save halves",
+	descriptionFull : "The next time you make an attack with a firearm before this spell ends, the shot is charged with an incredible amount of power. Instead of making an attack roll against a single target, the shot becomes a 5-foot wide line that extends from you out to the weapon’s normal range. Each creature in that line must make a Dexterity saving throw. A creature takes the weapon’s normal damage on a failed save, or half as much damage on a successful one."
+};
+SpellsList["petal storm"] = {
+	name : "Petal Storm",
+	classes : ["witch", "druid"],
+	source : ["VSoS", 350],
+	level : 2,
+	school : "Conj",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A handful of flower petals",
+	duration : "Conc, 1 min",
+	save : "Dex",
+	ritual: false,
+	description : "Crea enter/start turn in area save or 3d4+2d4/SL Slash dmg; bns move 30 ft; see B",
+	descriptionFull : "Choose an unoccupied 15-foot cube of air that you can see within range. An elemental force of swirling winds appears in the cube and lasts for the spell’s duration. The cloud heavily obscures its area." + "\n   " + "Any creature that enters the storm for the first time on a turn or starts its turn there must make a Strength saving throw. On a failed save, the creature takes 3d4 slashing damage. As a bonus action, you can move the storm up to 30 feet in any direction. The first time storm’s area contains leaf litter, flowers, bushes, or trees, it sucks up extra material and the damage the spell deals increases by 2d4." + AtHigherLevels + "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 2d4 for each slot level above 2nd."
+};
+SpellsList["phantasmal beauty"] = {
+	name : "Phantasmal Beauty",
+	classes : ["witch", "bard", "wizard"],
+	source : ["VSoS", 350],
+	level : 3,
+	school : "Illus",
+	time : "1 a",
+	range : "120 ft",
+	components : "V,S",
+	duration : "Conc, 1 min",
+	save : "Wis",
+	ritual: false,
+	description : "1 crea save or incapacitated, can't move, and disadv. on all Perception chks",
+	descriptionFull : "You tap into the dreams of a creature you can see within range and create an illusory manifestation of its deepest desires, visible only to that creature. The target must make a Wisdom saving throw. On a failed save, the target becomes incapacitated and unable to move for the duration. In addition, it has disadvantage on all Wisdom (Perception) checks it makes. At the end of each of its turns, the target can make another Wisdom saving throw. On a success, the spell ends on the target."
+};
+SpellsList["phantom grapnel"] = {
+	name : "Phantom Grapnel",
+	classes : ["warmage"],
+	source : ["VSoS", 351],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "30 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	save : "Str",
+	ritual: false,
+	description : "Move to Huge or larger crea or empty space, or pull Large or smaller crea 10 ft. to me on failed save",
+	descriptionFull : "You conjure a chain and hook made of magical force, which you propel at a creature or unoccupied space you can see within range. When you target a space or a creature of Huge size or larger, your grapnel pulls you to that target in a straight line. You provoke opportunity attacks for this movement as normal. When you target a creature of Large size or smaller, you pull the target up to 10 feet towards you. A creature can make a Strength saving throw to resist this movement."
+};
+SpellsList["pharaoh's curse"] = {
+	name : "Pharaoh's Curse",
+	classes : ["necromancer", "witch"],
+	source : ["VSoS", 351],
+	level : 5,
+	school : "Necro",
+	time : "1 a",
+	range : "10 ft",
+	components : "V,S",
+	duration : "Until dispelled",
+	save : "Con",
+	ritual: false,
+	description : "1 crea save or can't regain HP, and max HP reduces by 3d6 every 24 h",
+	descriptionFull : "Opening your palm, you release a puff of dust, the pestilence of mummy rot. Choose one creature within range to make a Constitution saving throw. On a failed save, the target is cursed with mummy rot. The cursed target can’t regain hit points, and its hit point maximum decreases by 3d6 for every 24 hours that elapse. If the curse reduces the target’s hit point maximum to 0, the target dies, and its body turns to dust." + "\n   " + "The curse lasts until removed by a spell or magical effect that cures mummy rot. A remove curse spell cast using a spell slot of 5th level or higher also ends this spell."
+};
+SpellsList["pillar of salt"] = {
+	name : "Pillar of Salt",
+	classes : ["martyr"],
+	source : ["VSoS", 351],
+	level : 3,
+	school : "Trans",
+	time : "1 a",
+	range : "120 ft",
+	components : "V,S,M",
+	compMaterial : "A drop of lantern oil and a pinch of sulfur",
+	duration : "Instantaneous",
+	save : "Con",
+	ritual: false,
+	description : "Point in range 10ft sphere ea crea save or 7d6+1d6/SL Necro; save halves; HP 0: turn to salt",
+	descriptionFull : "You deliver a mote of divine wrath to a point you can see within range. Each creature you choose in a 10-foot-radius sphere centered on that point must make a Constitution saving throw. On a failed save, a creature takes 7d6 necrotic damage, or half as much on a successful save. If this damage reduces a target which failed its saving throw to 0 hit points, it is transformed into a pillar of salt." + AtHigherLevels + "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 1d6 for each slot level above 3rd."
+};
+SpellsList["polybrachia"] = {
+	name : "Polybrachia",
+	classes : ["martyr", "paladin", "ranger", "warlock", "wizard"],
+	source : ["VSoS", 351],
+	level : 3,
+	school : "Conj",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "A pair of armbands",
+	duration : "Conc, 10 min",
+	ritual: false,
+	description : "1 crea gets 2 new arms; adv. on Ath. chks using them; bns to atk w/ wea held by them; see B",
+	descriptionFull : "Two muscular arms consisting of brilliant arcane energy appear on a willing creature that you touch. These arms are fully functional and can be used to hold weapons and shields (allowing the target to hold 2 two-handed weapons, or 4 one-handed weapons), perform somatic components of spells, and perform other actions, though the arms themselves don’t grant the target additional actions. For the duration, the target has advantage on Strength (Athletics) checks made using the additional arms. Also, if the arms are used to carry weapons, the target can use a bonus action to make an additional melee weapon attack using the arms."
+};
+SpellsList["prehensile hair"] = {
+	name : "Prehensile Hair",
+	classes : ["witch"],
+	source : ["VSoS", 351],
+	level : 1,
+	school : "Trans",
+	time : "1 a",
+	range : "Self",
+	components : "V,S,M",
+	compMaterial : "A braided rope",
+	duration : "1 h",
+	ritual: true,
+	description : "Grow prehensile hair; can do simple tasks within 10 ft; can deliver touch spells",
+	descriptionFull : "You grow unduly long and tough hair (even from your eyebrows) which you can manipulate at will. You can use your hair to perform simple tasks within 10 feet of you, such as manipulating an object, opening an unlocked door or container, stowing or retrieving an item from an open container, or pouring the contents out of a vial. You can cast spells with a range of Touch using your hair, out to a range of 10 feet. Your hair returns to its normal length when this spell ends."
+};
+SpellsList["protection from ballistics"] = {
+	name : "Protection from Ballistics",
+	classes : ["martyr", "necromancer", "cleric", "druid", "paladin", "ranger", "warlock", "wizard"],
+	source : ["VSoS", 351],
+	level : 2,
+	school : "Abjur",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S",
+	duration : "Conc, 1 min",
+	ritual: false,
+	description : "Ranged firearm atks have disadv. vs. tgt; tgt resists firearm dmg",
+	descriptionFull : "A shimmering shield of energy surrounds one willing creature you touch. For the duration, ranged attacks made by firearms have disadvantage against the target, and the target has resistance to any damage dealt by firearms."
+};
+SpellsList["protect threshold"] = {
+	name : "Protect Threshold",
+	classes : ["investigator", "necromancer", "witch", "sorcerer", "wizard"],
+	source : ["VSoS", 352],
+	level : 2,
+	school : "Abjur",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "An ounce of salt for each foot of the warded portal's perimeter",
+	duration : "10 min",
+	save : "Wis",
+	ritual: true,
+	description : "Crea passing thru door/window/portal save or 4d6+1d6/SL psychic dmg; save halves",
+	descriptionFull : "Tracing arcane sigils along its boundary, you can ward a doorway, window, or other portal from entry. For the duration, an invisible eldritch creature stalks the warded portal. Any creature that attempts to pass through the portal must make a Wisdom saving throw or take 4d6 psychic damage, or half as much on a successful save." + AtHigherLevels + "When you cast this spell using a spell slot of 3rd level or higher, the damage increases by 1d6 for each slot level above 2nd."
+};
+SpellsList["psychedelics"] = {
+	name : "Psychedelics",
+	classes : ["witch", "bard", "druid", "ranger"],
+	source : ["VSoS", 352],
+	level : 1,
+	school : "Illus",
+	time : "1 a",
+	range : "S:60-ft rad",
+	components : "V,S,M",
+	compMaterial : "A mushroom",
+	duration : "1 rnd",
+	save : "Dex",
+	ritual: false,
+	description : "Crea in range save or disadv on atks til end of its next turn; crea/obj are trippy for 1 h",
+	descriptionFull : "For a moment, the colors around you shift in a rainbow swirl, before coming to rest far from their original hues. Each creature you choose within range must make a Dexterity saving throw. On a failed save, a creature has disadvantage on attack rolls until the end of its next turn. Additionally, the colors of all creatures and objects you choose within range change randomly and remain brightly and unnaturally colored for 1 hour."
+};
+SpellsList["quickstep"] = {
+	name : "Quickstep",
+	classes : ["warmage"],
+	source : ["VSoS", 352],
+	level : 0,
+	school : "Trans",
+	time : "1 bns",
+	range : "Self",
+	components : "V",
+	duration : "1 rnd",
+	ritual: false,
+	description : "My walking speed increases by 10 ft until the start of my next turn",
+	descriptionFull : "You call upon your inner reserves to give you a brief flash of speed. When you cast this spell, your walking speed increases by 10 feet until the start of your next turn."
 };
