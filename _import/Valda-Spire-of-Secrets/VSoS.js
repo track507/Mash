@@ -34158,7 +34158,6 @@ SpellsList["time's arrow"] = {
 	compMaterial : "A physical missile weighing a pound or less, such as an arrow, bolt, or sling bullet",
 	duration : "1 h",
 	ritual: false,
-	description : "Freeze missile in midair until touched, wind blows, dispelled, or spell ends; see book",
     description : "Stop proj. midair til touched, dispelled, or spell ends after which it flies 120 ft for its usual dmg +spell mod",
 	descriptionFull : "This spell enchants a missile so that it freezes in time and space. You may reposition the missile as part of the action to cast the spell." + "\n   " + "The missile remains frozen in place until a creature passes within 120 feet in front of it, something touches it, a strong wind blows upon it, the effect is dispelled, or the duration ends. At that time, the missile moves suddenly, as if it was just fired or thrown with a range of 120 feet. If a creature is in the line of fire, the missile makes an attack which adds your spell attack bonus to the attack roll and does the basic damage of whatever missile type was used (missiles that vary by launcher use the highest possible damage dice)."
 };
@@ -34189,7 +34188,99 @@ SpellsList["tyra's coerced karaoke"] = {
 	duration : "Conc, 1 min",
 	save : "Wis",
 	ritual: false,
-	description : "Crea in range save or sing along with me; can Conc. with Irresistible Dance",
     description : "Crea enter/starts turn in area save or sing w/ me \u0026 charmed; can Conc. with Irresistible Dance",
 	descriptionFull : "As spectral instruments appear playing around you, you begin singing a well-known song, and others feel compelled to join in. For the duration, when a creature comes within 30 feet of you or begins its turn there, it must make a Wisdom saving throw or begin singing along with you. A singing creature matches the pitch and words of the song as closely as it can, even if it can’t speak the song’s language. Furthermore, it can’t speak normally (though it can still communicate telepathically), and it can’t perform the verbal components of spells. Creatures that can’t be charmed are immune to this spell." + "\n   " + "Unlike other spells, you can concentrate on this spell and the spell irresistible dance at the same time. Losing your concentration on either spell ends both spells."
+};
+SpellsList["unseen accountant"] = {
+	name : "Unseen Accountant",
+	classes : ["investigator", "necromancer", "bard", "wizard"],
+	source : ["VSoS", 356],
+	level : 2,
+	school : "Conj",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "An abacus",
+	duration : "8 h",
+	ritual: true,
+	description : "Create invis. servant to do intellectual tasks; see book",
+	descriptionFull : "This spell creates an invisible, shapeless force that performs intellectual tasks at your command until the spell ends. The servant springs into existence in an unoccupied space on the ground within range. It has AC 10, 1 hit point, an Intelligence of 12, and it can’t attack. If it drops to 0 hit points, the spell ends. Once on each of your turns as a bonus action, you can mentally command the servant to move up to 15 feet and interact with an object. The accountant can perform intellectual tasks that a human clerk could do, such as assessing prices, updating accounts, managing inventories, or computing interest. Once you give the command, the accountant performs the task to the best of its ability until it completes the task, then waits for your next command. The accountant can perform no physical labor, and is not able to lift any object heavier than a bottle of ink. If you command the accountant to perform a task that would move it more than 300 feet away from you, the spell ends."
+};
+SpellsList["watery tentacles"] = {
+	name : "Watery Tentacles",
+	classes : ["druid", "warlock", "wizard"],
+	source : ["VSoS", 356],
+	level : 4,
+	school : "Conj",
+	time : "1 a",
+	range : "Self",
+	components : "V,S,M",
+	compMaterial : "An octopus tentacle",
+	duration : "Conc, 1 min",
+	save : "Str",
+	ritual: false,
+	description : "Gain 3+1/SL tentacles that can grapple within 30 ft and lift 100 pounds; see book",
+	descriptionFull : "When you cast this spell, three tentacles made of water appear around your body for the duration. As part of the action used to cast the spell, and as a bonus action on subsequent turns until the spell ends, you can command one of these tentacles to grapple a Large or smaller creature that you can see within 30 feet of you. The target must make a Strength saving throw or be grappled and restrained by the tentacle. At the end of each of its turns, a restrained target can repeat the saving throw, freeing itself on a success." + "\n   " + "You can grapple as many creatures as you have tentacles. You can use an action or bonus action on your turn to release a grappled creature, or to drag it up to 20 feet in a direction you choose." + "\n   " + "You can also use the tentacles to manipulate objects as an action or a bonus action. Each tentacle can lift up to 100 pounds, and you can command multiple tentacles to work together to lift the same object as part of the same action or bonus action. The tentacles aren’t capable of detailed control—for example, they can’t open a chest or uncork a bottle. Burning objects are extinguished when a tentacle grabs them." + AtHigherLevels + "When you cast this spell using a spell slot of 5th level or higher, you gain an additional tentacle for every slot level above 4th."
+};
+SpellsList["whispering wind"] = {
+	name : "Whispering Wind",
+	classes : ["investigator", "witch", "bard", "cleric", "druid", "wizard"],
+	source : ["VSoS", 356],
+	level : 1,
+	school : "Evoc",
+	time : "1 a",
+	range : "1 mile",
+	components : "V,S,M",
+	compMaterial : "A feather",
+	duration : "1 rnd",
+	ritual: false,
+	description : "Whisper \u226425 words to up to 6 crea in range/same gen. dir.; only they can hear/reply; must have clear path",
+	descriptionFull : "You point your finger in a direction and whisper a message of twenty-five words or less, while specifying up to six creatures to be the targets. If a target is in range and in the approximate direction indicated, they (and only they) hear the message carried on the wind. They can reply in a whisper that only you can hear." + "\n   " + "You can cast this spell only when there is a clear path for air to move between you and the targets. The spell doesn’t have to follow a straight line and can travel freely around corners or through openings, but is blocked by solid objects and areas of magical silence."
+};
+SpellsList["wildfire"] = {
+	name : "Wildfire",
+	classes : ["druid", "sorcerer", "wizard"],
+	source : ["VSoS", 357],
+	level : 8,
+	school : "Evoc",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A piece of flint",
+	duration : "Conc, 1 min",
+	save : "Dex",
+	ritual: false,
+	description : "Create 10 5-ft cubes area; crea enter/start turn in area save or 8d8 Fire dmg; save halves; see B",
+	descriptionFull : "You create a magical fire that fills ten 5-foot cubes on the ground, which you can arrange as you wish within range. Each cube you place must have a face adjacent to the face of another cube. On each of your turns after you cast this spell, you can use a bonus action to expand the area of the fire by up to ten additional 5-foot cubes that each have a face adjacent to the face of another cube of fire. The fire damages objects in the area and ignites flammable objects that aren’t being worn or carried." + "\n   " + "When a creature moves into the area of fire for the first time or starts its turn there, it must make a Dexterity saving throw. It takes 8d8 fire damage on a failed save, or half as much on a successful save."
+};
+SpellsList["winter flower"] = {
+	name : "Winter Flower",
+	classes : ["druid", "sorcerer", "wizard"],
+	source : ["VSoS", 357],
+	level : 6,
+	school : "Evoc",
+	time : "1 a",
+	range : "120 ft",
+	components : "V,S,M",
+	compMaterial : "A crystal flower",
+	duration : "24 h",
+	save : "Dex",
+	ritual: false,
+	description : "Tiny 1 HP flower explodes as bns or at 0 HP; crea in 30 ft save or 10d8 Cold dmg; save halves",
+	descriptionFull : "You cause a Tiny white flower to sprout at a point on the ground you can see within range. The flower has an AC of 15, 1 hit point, vulnerability to fire damage, and immunity to cold damage. During the spell’s duration, you can use a bonus action to command it to explode in a shower of ice. Alternatively, the flower will explode if it is reduced to 0 hit points. When the flower explodes, each creature within 30 feet of it must make a Dexterity saving throw. On a failed save, a creature takes 10d8 cold damage, or half as much on a successful one. The flower withers and dies if it doesn’t explode within 24 hours." + "\n   " + "If you cast this spell again while it is active, you can maintain the flower’s existence for another 24 hours. You can create a permanent flower by casting this spell on the same flower for seven days."
+};
+SpellsList["zephyr's feather"] = {
+	name : "Zephyr's Feather",
+	classes : ["ranger", "sorcerer", "warlock", "wizard"],
+	source : ["VSoS", 357],
+	level : 1,
+	school : "Conj",
+	time : "1 a",
+	range : "Self",
+	components : "V,S,M",
+	compMaterial : "A dove's feather",
+	duration : "Conc, 1 min",
+	ritual: false,
+	description : "3 feathers; on cast/as action, ranged spell atk 120 ft for 2d8+1d8/SL Slash dmg; SL3:5, SL5:7 feathers",
+	descriptionFull : "You wave your hand and three alabaster feathers, magically sharpened to a razor’s edge, appear and orbit around you. When you cast this spell, make a ranged spell attack using one of your feathers against a creature within 120 feet of you. On a hit, the target takes 2d8 slashing damage. Until the spell ends, while you have feathers remaining, you can make an attack using a feather on each of your turns as an action." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st, up to a maximum of 6d8. You gain an additional two feathers when you cast this spell using a spell slot of 3rd level or higher (5 feathers), and two more when you cast it using a spell slot of 5th level or higher (7 feathers)."
 };
