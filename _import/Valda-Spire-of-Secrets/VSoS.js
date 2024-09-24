@@ -33879,3 +33879,224 @@ SpellsList["quickstep"] = {
 	description : "My walking speed increases by 10 ft until the start of my next turn",
 	descriptionFull : "You call upon your inner reserves to give you a brief flash of speed. When you cast this spell, your walking speed increases by 10 feet until the start of your next turn."
 };
+SpellsList["recall"] = {
+	name : "Recall",
+	classes : ["sorcerer", "wizard"],
+	source : ["VSoS", 352],
+	level : 2,
+	school : "Conj",
+	time : "1 bns",
+	range : "Self",
+	components : "V,S",
+	duration : "1 rnd",
+	ritual: false,
+	description : "Rea to teleport to where I was when I cast this spell; Resolve triggering effect first",
+	descriptionFull : "Record where you are when you cast this spell. Until the end of your next turn, you can use your reaction to teleport back to that location, or to the nearest unoccupied space. If you use this reaction in response to an attack, spell, magical effect, or any other damaging effect, resolve the triggering effect before teleporting."
+};
+SpellsList["repulsor ring"] = {
+	name : "Repulsor Ring",
+	classes : ["cleric", "wizard"],
+	source : ["VSoS", 352],
+	level : 2,
+	school : "Abjur",
+	time : "1 a",
+	range : "5 ft",
+	components : "V,S,M",
+	compMaterial : "A piece of chalk",
+	duration : "Conc, 1 min",
+	ritual: false,
+	description : "Only crea I choose can enter; ranged atks vs. crea in area get disadv; melees push attacker 10 ft",
+	descriptionFull : "You outline a 5-foot diameter circle on the ground, which is warded against intruders. Only creatures you choose can step within the circle. Any ranged attack roll made against a target within the circle has disadvantage. If a hostile creature makes a melee attack against a target within the circle, the attacker is pushed back 10 feet immediately after the attack."
+};
+SpellsList["ruby-eye curse"] = {
+	name : "Ruby-Eye Curse",
+	classes : ["necromancer", "witch"],
+	source : ["VSoS", 353],
+	level : 3,
+	school : "Necro",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S",
+	duration : "Conc, 10 min",
+	save : "Con",
+	ritual: false,
+	description : "1 crea save or blind beyond 5 ft",
+	descriptionFull : "A red haze clouds the eyes of a creature that meets your gaze. Choose one creature you can see within range to make a Constitution saving throw. On a failed save, the creature is cursed for the duration. A cursed target can see normally out to 5 feet, but is blind beyond this radius." + "\n   " + "A remove curse spell ends this curse early."
+};
+SpellsList["rumbling charge"] = {
+	name : "Rumbling Charge",
+	classes : ["druid", "sorcerer", "wizard"],
+	source : ["VSoS", 353],
+	level : 1,
+	school : "Trans",
+	time : "1 a",
+	range : "Self",
+	components : "V,S,M",
+	compMaterial : "A lump of granite",
+	duration : "Instantaneous",
+	save : "Str",
+	ritual: false,
+	description : "Move 30 ft; hit object/creas save or 2d12+1d12/2SL Bludg. dmg; save halves",
+	descriptionFull : "You imbue yourself with the elemental power of a landslide. When you cast this spell, you immediately move 30 feet in a straight line without provoking opportunity attacks. If your path is blocked by a creature or object, you stop moving there, and that creature or object must make a Strength saving throw or take 2d12 bludgeoning damage, or half as much on a successful save." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d12 for every two slot levels above 1st."
+};
+SpellsList["rumor"] = {
+	name : "Rumor",
+	classes : ["investigator", "witch", "bard", "wizard"],
+	source : ["VSoS", 353],
+	level : 1,
+	school : "Ench",
+	time : "1 a",
+	range : "S:100-ft rad",
+	components : "V,S",
+	duration : "1 min",
+	ritual: true,
+	description : "10 word or less rumor heard by all crea near three or more other crea that share a language",
+	descriptionFull : "You magically spread a rumor of 10 words or less. Any creature within range that is near three or more other creatures which speak the same language as them believes that they hear the rumor being repeated by someone nearby. Different creatures hear the rumor from different people, so a concrete origin point is impossible to discern. Generally, creatures won’t be outright hostile upon hearing even the most vicious rumors, but hearing a rumor can affect their disposition positively or negatively."
+};
+SpellsList["rusting grasp"] = {
+	name : "Rusting Grasp",
+	classes : ["necromancer", "witch", "druid", "wizard"],
+	source : ["VSoS", 353],
+	level : 3,
+	school : "Trans",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Melee spell atk for 6d4+2d4/SL Acid \u0026 -3 AC to mundane metal armor/shield, destroyed if 10 AC; Stacks",
+	descriptionFull : "You conjure a potent acid at your fingertips, which can corrode metal and burn flesh. Make a melee spell attack against a creature or object within your reach. On a hit, a creature takes 6d4 acid damage and, if it is wearing nonmagical metal armor or wielding a nonmagical metal shield, you can corrode either its armor or shield. Corroded armor takes a permanent and cumulative -3 penalty to the AC it offers. Armor reduced to an AC of 10 is destroyed. A corroded shield is destroyed." + "\n   " + "If you target a nonmagical metal object with this spell that isn’t being worn or carried, you corrode and destroy parts of the object you choose that can fit within a 1-foot cube." + AtHigherLevels + "When you cast this spell using a spell slot of 4th level or higher, the damage increases by 2d4 for each slot level above 3rd. Additionally, you can destroy one additional cubic foot of a nonmagical object for each slot level above 3rd."
+};
+SpellsList["scrutinize foe"] = {
+	name : "Scrutinize Foe",
+	classes : ["investigator", "necromancer", "cleric", "wizard"],
+	source : ["VSoS", 353],
+	level : 5,
+	school : "Div",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Pick 1 crea, GM tells me 2 of: AC, curr HP, cond imms, dmg imms, dmg resists, dmg vulns, enchs/spells",
+	descriptionFull : "You discern minute details concerning one creature you can see within range. You learn two of the following pieces of information of your choice about the target: its Armor Class, current hit points, condition immunities, damage immunities, damage resistances, damage vulnerabilities, and enchantments (which reveals any spells which are currently affecting it). The GM must share with you the requested information."
+};
+SpellsList["seance"] = {
+	name : "S\u00e9ance",
+	classes : ["investigator", "necromancer", "witch"],
+	source : ["VSoS", 353],
+	level : 3,
+	school : "Necro",
+	time : "10 min",
+	range : "Self",
+	components : "V,S,M",
+	compMaterial : "A crystal ball, deck of tarot cards, or ouija board",
+	duration : "1 min",
+	ritual: false,
+    description : "Need \u22653 willing crea; ask familiar/5% chance of wrong crea 3 questions; fails if it was tgt'd w/in 10 days",
+	descriptionFull : "You and at least three willing creatures lock hands in a moment of meditation to conjure a spirit from the afterlife to answer your questions. Describe or name a creature that is familiar to you. If the creature’s soul is free and willing, it manifests as a ghostly specter. This spell fails if the spirit was the target of this spell within the last 10 days." + "\n   " + "Until the spell ends, you can ask up to three questions of the specter. The specter knows only what it knew in life, including the languages it knew. Answers are usually brief, cryptic, or repetitive, and the specter is under no compulsion to offer a truthful answer if you are hostile to it or it recognizes you as an enemy. There is a 5% chance that this spell contacts the wrong spirit, one which will answer questions untruthfully or ambiguously."
+};
+SpellsList["skirmish"] = {
+	name : "Skirmish",
+	classes : ["cleric", "ranger", "wizard"],
+	source : ["VSoS", 354],
+	level : 3,
+	school : "Trans",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "A branch from a tree",
+	duration : "Conc, 10 min",
+	save : "Wis",
+	ritual: false,
+	description : "1 crea speed is doubled, ignores diff. terrain, and doesn't provoke opportunity atks",
+	descriptionFull : "You enhance the mobility of one willing creature you touch, enabling them to move easily through enemy formations. For the duration, the target’s speed is doubled, it is unaffected by nonmagical difficult terrain, and it doesn’t provoke opportunity attacks."
+};
+SpellsList["snakestaff"] = {
+	name : "Snakestaff",
+	classes : ["martyr", "cleric", "druid", "wizard"],
+	source : ["VSoS", 354],
+	level : 3,
+	school : "Trans",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S,M",
+	compMaterial : "A quarterstaff",
+	duration : "Conc, 1 h",
+	ritual: false,
+	description : "Turn staff into a Giant Constrictor Snake under my control; staff breaks if snake dies",
+	descriptionFull : "You cast a staff to the ground, which writhes and grows into a giant constrictor snake under your control, which acts on its own initiative count. The snake is friendly to you and your companions. The snake will obey any verbal commands that you issue to it (no action required by you). If you don’t issue any commands, it defends itself from hostile creatures, but otherwise takes no actions. If the snake is reduced to 0 hit points, it dies and reverts to a broken staff. The GM has the creature’s statistics."
+};
+SpellsList["sonic pulse"] = {
+	name : "Sonic Pulse",
+	classes : ["warmage"],
+	source : ["VSoS", 354],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	save : "Con",
+	ritual: false,
+	description : "1 crea save or 1d8 Thun dmg and deafened until my next turn; 1d10 within 10 ft; +1d8/1d10 CL5/11/17",
+	descriptionCantripDie : "1 crea save or `CD`d8 Thun dmg and deafened until start of my next turn; `CD`d10 within 10 ft",
+	descriptionFull : "You compress a thunderous boom into an invisible ball and project it at a creature you can see within range. The target must succeed on a Constitution saving throw, or it takes 1d8 thunder damage and is deafened until the start of your next turn." + "\n   " + "If the spell’s target is within 10 feet of you, this spell’s damage becomes d10s, instead of d8s." + "\n   " + "This spell’s damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8)."
+};
+SpellsList["spark of life"] = {
+	name : "Spark of Life",
+	classes : ["necromancer"],
+	source : ["VSoS", 354],
+	level : 0,
+	school : "Necro",
+	time : "1 a",
+	range : "60 ft",
+	components : "V,S",
+	duration : "Instantaneous",
+	ritual: false,
+    description : "1 \u2264Huge corpse of crea makes 1 atk in 15 ft; +spell mod to hit; `CD`d4/6/8/10/12 from Tiny to Huge Blud.",
+	descriptionFull : "With a quick jolt of necromantic energy, the dead momentarily rise to obey you, if only for a few seconds. Choose the corpse of a Huge or smaller creature that has been dead for no more than an hour. When you cast this spell, the corpse stands up and can move up to 15 feet and make a single melee slam attack against a target of your choice within its reach, using your spell attack modifier. On a hit, this attack deals bludgeoning damage based on the corpse’s size: a Tiny corpse deals 1d4, a Small corpse deals 1d6, a Medium corpse deals 1d8, a Large corpse deals 1d10, and a Huge corpse deals 1d12. Once the corpse attacks, it once again crumples into a heap. A corpse targeted by this spell doesn’t become an undead creature." + "\n   " + "This spell’s damage increases as you gain levels. At 5th level, the corpse deals two damage dice according to its size. At 11th level, it deals three damage dice, and at 17th level, it deals four damage dice."
+};
+SpellsList["springheel"] = {
+	name : "Springheel",
+	classes : ["warmage", "druid"],
+	source : ["VSoS", 354],
+	level : 0,
+	school : "Trans",
+	time : "1 bns",
+	range : "Self",
+	components : "V",
+	duration : "1 rnd",
+	ritual: false,
+	description : "Jump speed increases by 10 ft., and can running high or long jump w/o running start",
+	descriptionFull : "You flood magic into your legs, allowing you to bound high into the air from a standstill. When you cast this spell, your jump distance increases 10 feet until the start of your next turn, and you can make a running high jump or a running long jump without a running start."
+};
+SpellsList["stone bones"] = {
+	name : "Stone Bones",
+	classes : ["investigator", "martyr", "necromancer", "druid", "ranger", "sorcerer", "wizard"],
+	source : ["VSoS", 355],
+	level : 2,
+	school : "Trans",
+	time : "1 bns",
+	range : "30 ft",
+	components : "V,S",
+	duration : "1 rnd",
+	ritual: false,
+	description : "1 crea resists nonmagical Bludgeoning/Piercing/Slashing dmg until end of my next turn",
+	descriptionFull : "You magically reinforce a creature you can see within range, granting it resistance to bludgeoning, piercing, and slashing damage from nonmagical attacks until the end of your next turn."
+};
+SpellsList["swift flight"] = {
+	name : "Swift Flight",
+	classes : ["witch", "sorcerer", "wizard"],
+	source : ["VSoS", 355],
+	level : 2,
+	school : "Trans",
+	time : "1 bns",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "A wing feather from any bird",
+	duration : "1 rnd",
+	ritual: false,
+	description : "1 crea gets fly speed of 30 ft until end of its next turn",
+	descriptionFull : "Streaks of energy flow from the back of a creature you touch, tracing the shapes of wings. Until the end of the target’s next turn, it has a flying speed of 30 feet. It falls if it ends its turn in the air and nothing else is holding it aloft."
+};
