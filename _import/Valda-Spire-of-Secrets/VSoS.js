@@ -34100,3 +34100,96 @@ SpellsList["swift flight"] = {
 	description : "1 crea gets fly speed of 30 ft until end of its next turn",
 	descriptionFull : "Streaks of energy flow from the back of a creature you touch, tracing the shapes of wings. Until the end of the target’s next turn, it has a flying speed of 30 feet. It falls if it ends its turn in the air and nothing else is holding it aloft."
 };
+SpellsList["tag"] = {
+	name : "Tag",
+	classes : ["bard", "sorcerer", "wizard"],
+	source : ["VSoS", 355],
+	level : 0,
+	school : "Illus",
+	time : "1 a",
+	range : "Touch",
+	components : "S,M",
+	compMaterial : "A drop of paint",
+	duration : "Instantaneous",
+	ritual: false,
+	description : "Create 10-ft image or message up to 3 words; lasts 7 days; nonmagical cleaning can't remove",
+	descriptionFull : "You press your hand against a flat plane on an object and imprint an elaborate and vibrant image that can fit within a 10-foot square onto the surface. The image can contain a message up to three words in length, and can include art, caricatures, or identifying logos in any combination of colors, decided when you cast the spell. Nonmagical cleaning supplies can’t remove the image, which fades after seven days."
+};
+SpellsList["thunderous distortion"] = {
+	name : "Thunderous Distortion",
+	classes : ["warmage"],
+	source : ["VSoS", 355],
+	level : 0,
+	school : "Evoc",
+	time : "1 a",
+	range : "S:10-ft cone",
+	components : "V,S",
+	duration : "Instantaneous",
+	save : "Con",
+	ritual: false,
+	description : "Crea in area save or 1d6 Thun. dmg; if cast on prev. turn, 1d8 dmg; +1d6/1d8 CL 5/11/17",
+	descriptionCantripDie : "Crea in area save or `CD`d6 Thun. dmg; if cast on prev. turn, `CD`d8 instead",
+	descriptionFull : "You produce a distorted wave of noise in a 10-foot cone, which can be heard up to 100 feet away. Each creature in that area must succeed a Constitution saving throw, or take 1d6 thunder damage." + "\n   " + "An echo of this noise persists until the end of your next turn. If you cast this spell again before the end of your next turn, its damage becomes d8s, instead of d6s." + "\n   " + "This spell’s damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6)."
+};
+SpellsList["time hop"] = {
+	name : "Time Hop",
+	classes : ["sorcerer", "wizard"],
+	source : ["VSoS", 355],
+	level : 1,
+	school : "Conj",
+	time : "1 bns",
+	range : "Self",
+	components : "V,S,M",
+	compMaterial : "The second hand of a clock",
+	duration : "Varies",
+	ritual: false,
+	description : "Shunted for 1/2/3 rnds; Can't take action/rea or be tgt'd, my spell effects pause; 3/SL 1 min, 5/SL 1 hr",
+	descriptionFull : "You shunt yourself a few seconds into the future. Choose a duration: 1 round, 2 rounds, or 3 rounds. You vanish, reappearing after the duration at the start of your turn in the nearest unoccupied space to where you disappeared. While vanished, you are outside time; you can’t take actions or reactions, time doesn’t pass for you, your spell effects are suspended, and you can’t be affected by attacks or effects." + AtHigherLevels + "When you cast this spell using a spell slot of 3rd level or higher, you can choose a duration of 1 minute. If you cast this spell using a spell slot of 5th level or higher, you can choose a duration of 1 hour."
+};
+SpellsList["time's arrow"] = {
+	name : "Time's Arrow",
+	classes : ["ranger", "wizard"],
+	source : ["VSoS", 355],
+	level : 1,
+	school : "Trans",
+	time : "1 a",
+	range : "Touch",
+	components : "V,S,M",
+	compMaterial : "A physical missile weighing a pound or less, such as an arrow, bolt, or sling bullet",
+	duration : "1 h",
+	ritual: false,
+	description : "Freeze missile in midair until touched, wind blows, dispelled, or spell ends; see book",
+    description : "Stop proj. midair til touched, dispelled, or spell ends after which it flies 120 ft for its usual dmg +spell mod",
+	descriptionFull : "This spell enchants a missile so that it freezes in time and space. You may reposition the missile as part of the action to cast the spell." + "\n   " + "The missile remains frozen in place until a creature passes within 120 feet in front of it, something touches it, a strong wind blows upon it, the effect is dispelled, or the duration ends. At that time, the missile moves suddenly, as if it was just fired or thrown with a range of 120 feet. If a creature is in the line of fire, the missile makes an attack which adds your spell attack bonus to the attack roll and does the basic damage of whatever missile type was used (missiles that vary by launcher use the highest possible damage dice)."
+};
+SpellsList["transient bulwark"] = {
+	name : "Transient Bulwark",
+	classes : ["investigator", "martyr", "wizard"],
+	source : ["VSoS", 356],
+	level : 1,
+	school : "Abjur",
+	time : "1 a",
+	range : "Self",
+	components : "V,S,M\u2020",
+	compMaterial : "A pearl worth 10 gp, which the spell consumes",
+	duration : "8 h",
+	ritual: true,
+	description : "Next attack against me has -10 to hit",
+	descriptionFull : "The next attack made against you within the duration has a -10 penalty to hit."
+};
+SpellsList["tyra's coerced karaoke"] = {
+	name : "Tyra's Coerced Karaoke",
+	classes : ["bard", "wizard"],
+	source : ["VSoS", 356],
+	level : 2,
+	school : "Ench",
+	time : "1 a",
+	range : "S:30-ft rad",
+	components : "V,S",
+	duration : "Conc, 1 min",
+	save : "Wis",
+	ritual: false,
+	description : "Crea in range save or sing along with me; can Conc. with Irresistible Dance",
+    description : "Crea enter/starts turn in area save or sing w/ me \u0026 charmed; can Conc. with Irresistible Dance",
+	descriptionFull : "As spectral instruments appear playing around you, you begin singing a well-known song, and others feel compelled to join in. For the duration, when a creature comes within 30 feet of you or begins its turn there, it must make a Wisdom saving throw or begin singing along with you. A singing creature matches the pitch and words of the song as closely as it can, even if it can’t speak the song’s language. Furthermore, it can’t speak normally (though it can still communicate telepathically), and it can’t perform the verbal components of spells. Creatures that can’t be charmed are immune to this spell." + "\n   " + "Unlike other spells, you can concentrate on this spell and the spell irresistible dance at the same time. Losing your concentration on either spell ends both spells."
+};
