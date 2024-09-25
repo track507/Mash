@@ -29420,7 +29420,7 @@ AddSubClass("warmage", "house of bishops", {
 				ClassList.warmage.spellcastingList.level = [0, 4];		
 			},
 			removeeval: function() {
-				ClassList.warmage.spellcastingKnown.spells = [0];
+				ClassList.warmage.spellcastingKnown.spells = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
                 ClassList.warmage.spellcastingList.level = [0, 0]
 			},
 			spellcastingBonus : [{ // the spells gained at level 3, 8, 14, 20
@@ -34691,7 +34691,7 @@ SpellsList["whispering wind"] = {
 	compMaterial : "A feather",
 	duration : "1 rnd",
 	ritual: false,
-	description : "Whisper \u226425 words to up to 6 crea in range/same gen. dir.; only they can hear/reply; must have clear path",
+	description : "Whisper \u226425 words to up to 6 crea in range/same dir.; only they can hear/reply; must have clear path",
 	descriptionFull : "You point your finger in a direction and whisper a message of twenty-five words or less, while specifying up to six creatures to be the targets. If a target is in range and in the approximate direction indicated, they (and only they) hear the message carried on the wind. They can reply in a whisper that only you can hear." + "\n   " + "You can cast this spell only when there is a clear path for air to move between you and the targets. The spell doesn’t have to follow a straight line and can travel freely around corners or through openings, but is blocked by solid objects and areas of magical silence."
 };
 SpellsList["wildfire"] = {
