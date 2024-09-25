@@ -21010,7 +21010,7 @@ AddSubClass("craftsman","mechanaut",{
 						if (sCompType !== "mechanaut's apparatus") return;
 						var aFnc = bAdd ? AddString : RemoveString;
 						var str = "\u25C6 Gyro Module:\n   A piloting creature can use their action to make an attack using an integrated weapon against any number\n   of creatures within 5 feet of the apparatus, making a separate attack roll against each target. The apparatus\n   cannot move between these attacks.";
-						aFnc(prefix + "Cnote.Lefts", str, true);
+						aFnc(prefix + "Cnote.Left", str, true);
 					},
 					"Mechanaut's Apparatuses I create gain the Gyro Module attachment upgrade: piloting creatures can use their action to make an attack using an integrated weapon against any number of creatures within 5 feet of the apparatus, making a separate attack roll against each target. The apparatus cannot move between these attacks."
 					],
@@ -30501,8 +30501,8 @@ CompanionList["witch's familiar"] = {
 	nameTooltip : "the Witch class feature",
 	nameOrigin : "variant of the Find Familiar 1st-level conjuration [ritual] spell",
 	source : ["VSoS", 177],
-	includeCheck : function(sCrea, objCrea, iCreaCR, bIsAL) {
-        return !objCrea.companion ? false : objCrea.companion.indexOf("familiar") !== -1  ? true : bIsAL && objCrea.companion.indexOf("familiar_not_al") !== -1 ? " (if DM approves)" : /^(imp|quasit|grep|fright|brass ?dragon ?wyrmling)$/i.test(sCrea) ? " (level 7 Witch)" : /^(death snail|flying book| homunculus|mock|moon jelly|pet rock|psudodrago|rag doll|sprite|tin soldier|winter wolf pup|yarn golem)$/i.test(sCrea);
+    includeCheck : function(sCrea, objCrea, iCreaCR) {
+        return !objCrea.companion ? false : objCrea.companion.indexOf("familiar") !== -1 ? true : bIsAL && objCrea.companion.indexOf("familiar_not_al") !== -1 ? " (if DM approves)" : objCrea.companion === "witch_improved_familiar" || /^(imp|quasit)$/i.test(sCrea) ? " (level 7 Witch)" : /^(pseudodragon|sprite|homunculus)$/i.test(sCrea);
 	},
 	action : [
 		["action", "Familiar (dismiss/reappear/attack)"],
@@ -30513,7 +30513,9 @@ CompanionList["witch's familiar"] = {
         var a = newObj(CompanionList.familiar.notes);
         a[0].description = [
             "appearing in an unoccupied space within 10 ft",
-            "It assumes a chosen form (can change at every casting), see the spell or class feature",
+            "It assumes a chosen form (can change at every casting): death snail, flying book, homunculus, mock,",
+            "moon jelly, pet rock, pseudodragon, rag doll, sprite, tin soldier, winter wolf pup, or yarn golem",
+            "At 7th level, I ",
             "It has the chosen form's statistics, but its type changes from beast to celestial, fey, or fiend",
             "When the familiar drops to 0 hit points, it disappears, leaving behind no physical form",
             "It reappears when I cast this spell again (in a new form if so desired)"
@@ -30569,6 +30571,7 @@ CompanionList["witch's familiar"] = {
 			objCrea.type = ["Celestial", "Fey", "Fiend"];
 			objCrea.subtype = "";
 		};
+        if(!classes.known.witch) return;
 		for (var i = 0; i < objCrea.attacks.length; i++) {
 			var oAtk = objCrea.attacks[i];
 			oAtk.useSpellMod = "witch";
@@ -30594,6 +30597,7 @@ CompanionList["witch's familiar"] = {
 		setAltHp : true,
 	},
 	changeeval : function(prefix, lvl) {
+        if(!classes.known.witch) return;
 		var sNameEntity = "Witch's Familiar";
 		var sExplanation = "A witch's familiar adds its master's proficiency bonus (oProf) to its AC, all saving throws, and to the damage of its attacks.";
 		// Add oProf to the AC, if not already present
@@ -32000,6 +32004,454 @@ CreatureList["zombie"] = {
         description: "If damage reduces the zombie to 0 hit points, it must make a Constitution saving throw with a DC of 5 + the damage taken, unless the damage is radiant or from a critical hit. On a success, the zombie drops to 1 hit point instead.",
     }]
 }
+
+CreatureList["brass dragon wyrmling"] = {
+	name : "Brass Dragon Wyrmling",
+	nameAlt : ["Dragon, Brass Wyrmling"],
+	source : ["M", 106],
+	size : 3,
+	type : "Dragon",
+	companion : "witch_improved_familiar",
+	alignment : "Chaotic Good",
+	ac : 16,
+	hp : 16,
+	hd : [3, 8],
+	speed : "30 ft, burrow 15 ft, fly 60 ft",
+	proficiencyBonus : 2,
+	challengeRating : "1",
+	scores : [15, 10, 13, 10, 11, 13],
+	saves : ["", 2, 3, "", 2, 3],
+	skills : {
+		"Perception" : 4,
+		"Stealth" : 2
+	},
+	senses : "Blindsight 10 ft, darkvision 60 ft",
+	passivePerception : 14,
+	damage_immunities : "fire",
+	languages : "Draconic",
+	attacksAction : 1,
+	attacks : [{
+		name : "Bite",
+		ability : 1,
+		damage : [1, 10, "piercing"],
+		range : "Melee (5 ft)",
+		description : "",
+        abilitytodamage : true
+	}],
+};
+
+CreatureList["death snail"] = {
+	name : "Death Snail",
+	source : ["VSoS", 364],
+	size : 5,
+	type : "Monstrosity",
+	companion : "witch's familiar",
+	alignment : "Neutral Evil",
+	ac : 14,
+	hp : 11,
+	hd : [2, 4],
+	speed : "10 ft, climb 10 ft",
+	proficiencyBonus : 2,
+	challengeRating : "1/4",
+	scores : [14, 6, 16, 10, 11, 6],
+	senses : "Blindsight 30 ft (Blind beyond this radius)",
+	passivePerception : 10,
+	attacksAction : 1,
+	attacks : [{
+		name : "Leech",
+		ability : 1,
+		damage : [1, 4, "piercing"],
+		range : "Melee (5 ft)",
+        abilitytodamage : true,
+		description : "+1d8 Poison dmg; DC 13 Con save or poisoned 1 min; repeat save at end of turn",
+		tooltip : "The attack deals an additional 1d8 Poison damage; The target hit must succeed on a DC 13 Constitution saving throw or become poisoned for 1 minute. The creature can repeat the saving throw at the end of each of its turns, ending the effect on a success."
+	}],
+};
+
+CreatureList["flying book"] = {
+	name : "Flying Book",
+	source : ["VSoS", 364],
+	size : 5,
+	type : "Construct",
+	companion : "witch's familiar",
+	alignment : "Unaligned",
+	ac : 13,
+	hp : 2,
+	hd : [1, 4],
+	speed : "0 ft, fly 30 ft (hover)",
+	proficiencyBonus : 2,
+	challengeRating : "0",
+	scores : [3, 15, 11, 1, 4, 1],
+	senses : "Blindsight 60 ft (Blind beyond this radius)",
+	passivePerception : 7,
+	damage_immunities : "poison, psychic",
+	damage_vulnerabilities : "fire",
+	condition_immunities : "blinded, charmed, deafened, frightened, paralyzed, petrified, poisoned",
+	attacksAction : 1,
+	attacks : [{
+		name : "Slam",
+		ability : 2,
+		damage : [1, "", "bludgeoning"],
+		range : "Melee (5 ft)",
+		description : "",
+		abilitytodamage : false
+	}],
+	traits : [{
+		name : "Antimagic Susceptibility",
+		description : "The flying book is incapacitated while in the area of an antimagic field. If targeted by dispel magic, the flying books must succeed on a Constitution saving throw against the caster's spell save DC or fall unconscious for 1 minute.",
+	}],
+	features : [{
+		name : "False Appearance",
+		description : "While the flying book remains motionless, it is indistinguishable from a normal book.",
+	}]
+};
+
+CreatureList["fright"] = {
+	name : "Fright",
+	source : ["VSoS", 365],
+	size : 4,
+	type : "Undead",
+	companion : "witch_improved_familiar",
+	alignment : "Chaotic Neutral",
+	ac : 12,
+	hp : 21,
+	hd : [6, 6],
+	speed : "0 ft, fly 40 ft (hover)",
+	proficiencyBonus : 2,
+	challengeRating : "1",
+	scores : [1, 14, 10, 10, 9, 14],
+	senses : "Darkvision 60 ft",
+	passivePerception : 9,
+	languages : "Understands all languages it knew in life but can't speak",
+	damage_immunities : "poison",
+	damage_resistances : "acid, cold, fire, lightning, necrotic, thunder; bludgeoning, piercing, and slashing from nonmagical weapons",
+	condition_immunities : "charmed, exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained, unconcious",
+	attacksAction : 1,
+	attacks : [{
+		name : "Life Drain",
+		ability : 2,
+		damage : [2, 8, "necrotic"],
+		range : "Melee (5 ft)",
+		description : "DC 12 Con Save or HP max reduced by damage taken until LR; dies if reduced to 0 max HP",
+		tooltip : "The target must succeed on a DC 10 Constituion saving throw or its hit points maximum is reduced by an amount equal to the damage taken. This reduction lasts until the creature finishes a long rest. The target dies if this effect reduces its hit point maximum to 0",
+		abilitytodamage : false
+	}],
+	traits : [{
+		name : "Incorporeal Movement",
+		description : "The fright can move through other creatures and objects as if they were difficult terrain. It takes 5 (1d10) force damage if it ends its turn inside an object.",
+	}]
+};
+
+CreatureList["grep"] = {
+	name : "Grep",
+    source : ["VSoS", 365],
+    size : 5,
+	type : "Monstrosity",
+	companion : "witch_improved_familiar",
+	alignment : "Neutral",
+	ac : 15,
+	hp : 19,
+	hd : [6, 4],
+	speed : "15 ft, fly 50 ft",
+	proficiencyBonus : 2,
+	challengeRating : "1",
+	scores : [3, 18, 13, 13, 15, 10],
+	skills : {
+		"Perception" : 4,
+		"Sleight of Hand" : 6,
+		"Stealth" : 6
+	},
+	senses : "Darkvision 60 ft, Adv. on Wis (Perception) checks using hearing or smell",
+	passivePerception : 12,
+	languages : "Understands Common and Undercommon but can't speak",
+	condition_immunities : "poisoned",
+	attacksAction : 1,
+	attacks : [{
+		name : "Claw",
+		ability : 2,
+		damage : [1, 4, "slashing"],
+		range : "Melee (5 ft)",
+		description : "",
+        abilitytodamage : true
+	}],
+	traits : [{
+		name : "Ambusher",
+		description : "The grep has advantage on attack rolls against any creature it has surprised.",
+	}, {
+		name : "Keen Hearing and Smell",
+		description : "The grep has advantage on Wisdom (Perception) checks that rely on hearing or smell.",
+	}, {
+		name : "Mimicry",
+		description : "The grep can mimic animal sounds and humanoid voices. A creature that hears the sounds can tell they are imitations with a successful DC 14 Wisdom (Insight) check.",
+	}],
+};
+
+CreatureList["mock"] = {
+	name : "Mock",
+	source : ["VSoS", 366],
+	size : 5,
+	type : "Monstrosity",
+	subtype : "Shapechanger",
+	companion : "witch's familiar",
+	alignment : "Neutral",
+	ac : 11,
+	hp : 18,
+	hd : [4, 4],
+	speed : "15 ft",
+	proficiencyBonus : 2,
+	challengeRating : "1/2",
+	scores : [9, 11, 14, 4, 13, 6],
+	skills : {
+		"Stealth" : 5
+	},
+	senses : "Darkvision 60 ft",
+	passivePerception : 11,
+	damage_resistances : "acid",
+	condition_immunities : "prone",
+	attacksAction : 1,
+	attacks : [{
+		name : "Bite",
+		ability : 2,
+		damage : [1, 4, "piercing"],
+		range : "Melee (5 ft)",
+		description : "+1d6 Acid damage; Can trigger Adhesive",
+        modifier : [1, ""],
+        abilitytodamage : true
+	}],
+    calcChanges : {
+        hp : function (totalHD, HDobj, prefix) {
+            return [4, "The mock as a +4 bonus to HP. This is the same as 2\xD7(Prof. Bonus +  Con. Mod.)"]
+        }
+    },
+	traits : [{
+		name : "Shapechanger",
+		description : "The mimic can use its action to polymorph into an object or back into its true, amorphous form. It can only take the appearance of Tiny objects and prefers the form of gold coins and jewels. Its statistics are the same in each form. Any equipment it is wearing or carrying isn't transformed. It reverts to its true form if it dies.",
+	}, {
+		name : "Adhesive (Object Form Only)",
+		description : "The mimic adheres to anything that touches it. A creature which picks up the mimic can't drop it unless it succeeds a DC 9 Strength check, made with disadvantage. The mimic can only adhere to one creature at a time. The mimic has advantage on attack rolls against any creature adhered to it.",
+	}],
+	features : [{
+		name : "False Appearance (Object Form Only)",
+		description : "While the mimic remains motionless, it is indistinguishable from an ordinary object.",
+	}]
+};
+
+CreatureList["moon jelly"] = {
+	name : "Moon Jelly",
+	source : ["VSoS", 366],
+	size : 5,
+	type : "Beast",
+	companion : "witch's familiar",
+	alignment : "Unaligned",
+	ac : 11,
+	hp : 1,
+	hd : [1, 4],
+	speed : "0 ft, swim 25 ft",
+	proficiencyBonus : 2,
+	challengeRating : "0",
+	scores : [1, 13, 8, 2, 11, 3],
+	senses : "Darkvision 60 ft",
+	passivePerception : 10,
+	attacksAction : 0,
+	traits : [{
+		name : "Bioluminescense",
+		description : "The moon jelly sheds dim light in a 10 ft radius.",
+	}, {
+		name : "Water Breathing",
+		description : "The moon jelly can only breathe underwater.",
+	}]
+};
+
+CreatureList["pet rock"] = {
+	name : "Pet Rock",
+	source : ["VSoS", 367],
+	size : 5,
+	type : "Elemental",
+	companion : "witch's familiar",
+	alignment : "Unaligned",
+	ac : 15,
+	hp : 5,
+	hd : [1, 4],
+	speed : "0 ft",
+	proficiencyBonus : 2,
+	challengeRating : "0",
+	scores : [1, 1, 16, 1, 5, 1],
+	passivePerception : 5,
+	damage_vulnerabilities : "thunder",
+	damage_immunities : "necrotic, poison, psychic",
+	damage_resistances : "fire, lightning, radiant; bludgeoning, piercing, and slashing from nonmagical weapons",
+	condition_immunities : "charmed, exhausted, frightened, paralyzed, petrified, poisoned, prone, unconscious",
+	attacksAction : 0,
+	traits : [{
+		name : "Just a Rock",
+		description : "The pet rock counts as an object for the purposes of spells and magical effects. Additionally, the rock cannot take actions that are not specified in its statistics.",
+	}],
+	features : [{
+		name : "False Appearance",
+		description : "The pet rock is indistinguishable from an ordinary rock with a face drawn on it.",
+	}]
+};
+
+CreatureList["rag doll"] = {
+	name : "Rag Doll",
+	source : ["VSoS", 367],
+	size : 5,
+	type : "Construct",
+	companion : "witch's familiar",
+	alignment : "Neutral Good",
+	ac : 11,
+	hp : 2,
+	hd : [1, 4],
+	speed : "20 ft",
+	proficiencyBonus : 2,
+	challengeRating : "0",
+	scores : [4, 12, 10, 3, 5, 16],
+	senses : "Darkvision 60 ft",
+	passivePerception : 7,
+	skills : {
+		"Persuasion" : 3,
+		"Stealth" : 3
+	},
+	damage_vulnerabilities : "fire",
+    condition_immunities : "poisoned",
+	damage_immunities : "poison, psychic; bludgeoning from nonmagical weapons",
+	attacksAction : 1,
+	attacks : [{
+		name : "Headbutt",
+		ability : 0,
+		damage : [1, "", "bludgeoning"],
+		range : "Melee (5 ft)",
+		description : "",
+		abilitytodamage : false
+	}],
+	traits : [{
+		name : "Mimicry",
+		description : "The rag doll can mimic simple sounds it has heard, such as a person whispering, a baby crying, or an animal chittering. A creature that hears the sounds can tell they are imitations with a successful DC 11 Wisdom (Insight) check.",
+	}],
+	features : [{
+		name : "False Appearance",
+		description : "While the rag doll remains motionless, it is indistinguishable from a normal stuffed toy.",
+	}]
+};
+
+CreatureList["tin soldier"] = {
+	name : "Tin Soldier",
+	source : ["VSoS", 368],
+	size : 5,
+	type : "Construct",
+	companion : "witch's familiar",
+	alignment : "Lawful Neutral",
+	ac : 14,
+	hp : 7,
+	hd : [2, 4],
+	speed : "30 ft",
+	proficiencyBonus : 2,
+	challengeRating : "1/8",
+	scores : [7, 12, 12, 5, 10, 10],
+	senses : "Darkvision 60 ft",
+	passivePerception : 12,
+	skills : {
+		"Perception" : 2
+	},
+	damage_immunities : "poison, psychic",
+    condition_immunities : "poisoned",
+	attacksAction : 1,
+	attacks : [{
+		name : "Bayonet",
+		ability : 0,
+		damage : [1, "", "piercing"],
+		range : "Melee (5 ft)",
+		description : "",
+		abilitytodamage : false
+	}, {
+		name : "Rifle (Recharge 6)",
+		ability : 2,
+		damage : [1, 6, "piercing"],
+		range : "20/60 ft",
+		description : "",
+		abilitytodamage : true
+	}],
+	traits : [{
+		name : "Formation",
+		description : "The tin soldier has advantage on attack rolls when it is within 5 feet of another tin soldier.",
+	}],
+	features : [{
+		name : "False Appearance",
+		description : "While the tin soldier remains motionless, it is indistinguishable from a normal toy.",
+	}]
+};
+
+CreatureList["winter wolf pup"] = {
+	name : "Winter Wolf Pup",
+	source : ["VSoS", 368],
+	size : 4,
+	type : "Monstrosity",
+	companion : "witch's familiar",
+	alignment : "Neutral Evil",
+	ac : 13,
+	hp : 7,
+	hd : [2, 6],
+	speed : "45 ft",
+	proficiencyBonus : 2,
+	challengeRating : "0",
+	scores : [5, 12, 11, 4, 12, 7],
+	passivePerception : 13,
+	skills : {
+		"Perception" : 3,
+		"Stealth" : 3
+	},
+	damage_resistances : "cold",
+	attacksAction : 1,
+	attacks : [{
+		name : "Bite",
+		ability : 2,
+		damage : [1, "", "piercing"],
+		range : "Melee (5 ft)",
+		description : "",
+		abilitytodamage : true
+	}],
+	traits : [{
+		name : "Snow Camouflage",
+		description : "The pup has advantage on Dexterity (Stealth) checks made to hide in snowy terrain.",
+	}],
+};
+
+CreatureList["yarn golem"] = {
+	name : "Yarn Golem",
+	source : ["VSoS", 368],
+	size : 5,
+	type : "Construct",
+	companion : "witch's familiar",
+	alignment : "Chaotic Neutral",
+	ac : 12,
+	hp : 2,
+	hd : [1, 4],
+	speed : "30 ft",
+	proficiencyBonus : 2,
+	challengeRating : "0",
+	scores : [8, 15, 10, 1, 10, 8],
+	passivePerception : 10,
+	damage_resistances : "piercing",
+    damage_immunities : "poison, psychic",
+    condition_immunities : "poisoned",
+	attacksAction : 1,
+	attacks : [{
+		name : "Tangle",
+		ability : 2,
+		damage : [0, "", ""],
+		range : "Melee (5 ft)",
+		description : "Medium or smaller target is restrained (escape DC 12)",
+		abilitytodamage : false,
+	}],
+	traits : [{
+		name : "Mutable Form",
+		description : "Whenever a spell or effect would alter the golem's form, the effect works as normal, except that the new form is always made out of a tangle of yarn.",
+	}],
+	features : [{
+		name : "False Appearance",
+		description : "While the golem remains motionless, it is indistinguishable from a normal ball of yarn.",
+	}]
+};
 
 // ! This section adds magic items
 
@@ -34283,4 +34735,4 @@ SpellsList["zephyr's feather"] = {
 	ritual: false,
 	description : "3 feathers; on cast/as action, ranged spell atk 120 ft for 2d8+1d8/SL Slash dmg; SL3:5, SL5:7 feathers",
 	descriptionFull : "You wave your hand and three alabaster feathers, magically sharpened to a razor’s edge, appear and orbit around you. When you cast this spell, make a ranged spell attack using one of your feathers against a creature within 120 feet of you. On a hit, the target takes 2d8 slashing damage. Until the spell ends, while you have feathers remaining, you can make an attack using a feather on each of your turns as an action." + AtHigherLevels + "When you cast this spell using a spell slot of 2nd level or higher, the damage increases by 1d8 for each slot level above 1st, up to a maximum of 6d8. You gain an additional two feathers when you cast this spell using a spell slot of 3rd level or higher (5 feathers), and two more when you cast it using a spell slot of 5th level or higher (7 feathers)."
-};
+}
