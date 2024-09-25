@@ -30501,7 +30501,7 @@ CompanionList["witch's familiar"] = {
 	nameTooltip : "the Witch class feature",
 	nameOrigin : "variant of the Find Familiar 1st-level conjuration [ritual] spell",
 	source : ["VSoS", 177],
-    includeCheck : function(sCrea, objCrea, iCreaCR) {
+    includeCheck : function(sCrea, objCrea, iCreaCRm, bIsAL) {
         return !objCrea.companion ? false : objCrea.companion.indexOf("familiar") !== -1 ? true : bIsAL && objCrea.companion.indexOf("familiar_not_al") !== -1 ? " (if DM approves)" : objCrea.companion === "witch_improved_familiar" || /^(imp|quasit)$/i.test(sCrea) ? " (level 7 Witch)" : /^(pseudodragon|sprite|homunculus)$/i.test(sCrea);
 	},
 	action : [
