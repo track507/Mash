@@ -32162,6 +32162,7 @@ CreatureList["grep"] = {
 	},
 	senses : "Darkvision 60 ft, Adv. on Wis (Perception) checks using hearing or smell",
 	passivePerception : 12,
+    senses : "",
 	languages : "Understands Common and Undercommon but can't speak",
 	condition_immunities : "poisoned",
 	attacksAction : 1,
@@ -32277,6 +32278,7 @@ CreatureList["pet rock"] = {
 	challengeRating : "0",
 	scores : [1, 1, 16, 1, 5, 1],
 	passivePerception : 5,
+    senses : "",
 	damage_vulnerabilities : "thunder",
 	damage_immunities : "necrotic, poison, psychic",
 	damage_resistances : "fire, lightning, radiant; bludgeoning, piercing, and slashing from nonmagical weapons",
@@ -32397,6 +32399,7 @@ CreatureList["winter wolf pup"] = {
 	challengeRating : "0",
 	scores : [5, 12, 11, 4, 12, 7],
 	passivePerception : 13,
+    senses : "",
 	skills : {
 		"Perception" : 3,
 		"Stealth" : 3
@@ -32436,6 +32439,7 @@ CreatureList["yarn golem"] = {
     damage_immunities : "poison, psychic",
     condition_immunities : "poisoned",
 	attacksAction : 1,
+    senses : "",
 	attacks : [{
 		name : "Tangle",
 		ability : 2,
