@@ -30513,9 +30513,8 @@ CompanionList["witch's familiar"] = {
         var a = newObj(CompanionList.familiar.notes);
         a[0].description = [
             "appearing in an unoccupied space within 10 ft",
-            "It assumes a chosen form (can change at every casting): death snail, flying book, homunculus, mock,",
-            "moon jelly, pet rock, pseudodragon, rag doll, sprite, tin soldier, winter wolf pup, or yarn golem",
-            "At 7th level, I ",
+            "It assumes a chosen form (can change at every casting): see witch's \"Familiar\" class feature",
+            "I get more choices at level 7. See witch's \"Improved Familiar\" class feature",
             "It has the chosen form's statistics, but its type changes from beast to celestial, fey, or fiend",
             "When the familiar drops to 0 hit points, it disappears, leaving behind no physical form",
             "It reappears when I cast this spell again (in a new form if so desired)"
@@ -32253,6 +32252,7 @@ CreatureList["moon jelly"] = {
 	senses : "Darkvision 60 ft",
 	passivePerception : 10,
 	attacksAction : 0,
+    attacks : [],
 	traits : [{
 		name : "Bioluminescense",
 		description : "The moon jelly sheds dim light in a 10 ft radius.",
@@ -32282,6 +32282,7 @@ CreatureList["pet rock"] = {
 	damage_resistances : "fire, lightning, radiant; bludgeoning, piercing, and slashing from nonmagical weapons",
 	condition_immunities : "charmed, exhausted, frightened, paralyzed, petrified, poisoned, prone, unconscious",
 	attacksAction : 0,
+    attacks : [],
 	traits : [{
 		name : "Just a Rock",
 		description : "The pet rock counts as an object for the purposes of spells and magical effects. Additionally, the rock cannot take actions that are not specified in its statistics.",
