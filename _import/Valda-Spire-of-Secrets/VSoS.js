@@ -30245,6 +30245,7 @@ AddSubClass("monk", "way of the bow", {
                 "I gain a +2 bonus to attack rolls I make with ranged weapons",
                 "I can't choose a style again even if I get to choose later on"
             ]),
+            minlevel : 3,
             source : [["VSoS", 222]],
             calcChanges : {
                 atkCalc : [
@@ -30406,9 +30407,16 @@ AddSubClass("monk", "way of the flagellant", {
                 source : [["VSoS", 223]],
                 page3notes : true,
                 note : desc([
-                    "\u2022 Branding Palm: When I hit a crea with an unarmed strike, I can spend a bns action and 1 ki point to brand them. The next attack that hits a branded crea within the next minute deals an extra 2d8 fire dmg. This becomes 3d8 at 11th and 4d8 at 17th level.",
-                    "\u2022 Electroshock Strike: After I take the attack action on my turn, I can spend 1 ki point to cast shocking grasp as a bonus action. Wisdom is my spellcasting ability for this.",
-                    "\u2022 Scissorhand Technique: If I deal slashing damage using a monk weapon to a creature, I can spend 1 ki point to make the target bleed. Constructs, oozes, and undead aren't affected. A creature with bleeding loses 1d6 hp at the start of each of their turns for each of its bleeding wounds it has unless it uses it action to stop all of its wounds from bleeding. A bleeding target cannot regain hp and can have a number of wounds up to my Proficiency bonus.",
+                    "\u2022 Branding Palm: When I hit a crea with an unarmed strike, I can spend a bns action and", 
+                    "  1 ki point to brand them. The next atk that hits a branded crea w/in the next minute deals", 
+                    "  an extra 2d8 fire dmg. This becomes 3d8 at 11th and 4d8 at 17th level.",
+                    "\u2022 Electroshock Strike: After I take the attack action on my turn, I can spend 1 ki point", 
+                    "  to cast fire dmg shocking grasp as a bns action. Wis is my spellcasting ability for this",
+                    "\u2022 Scissorhand Technique: If I deal slashing damage using a monk weapon to a crea, I can", 
+                    "  spend 1 ki point to make the target bleed. Constructs, oozes, and undead aren't affected", 
+                    "  A crea with bleeding loses 1d6 hp at the start of each of their turns for each of its bleeding", 
+                    "  wounds it has unless it uses it action to stop all of its wounds from bleeding. A bleeding", 
+                    "  target cannot regain hp and can have a number of wounds up to my Proficiency bonus.",
                 ])
             }],
             additional : "1 ki point",
