@@ -30261,15 +30261,22 @@ AddSubClass("monk", "way of the bow", {
             minlevel : 3,
             description : levels.map(function(n) { 
                 if(n<3) return ""
-                return desc([
+                var description = desc([
                     "I gain proficiency with longbows and shortbows, which are considered monk weapons",
                     "Any ranged atks I make within 5 ft of a hostile creature do not have disadvantage",
-                    "I can spend ki points to use the Flurry of Arrows and Soul Arrow (see page 3 notes)",
-                ]) + n < 6 ? "" : desc([
-                    "At 6th level, I can make a ranged weapon attack to deliver a Stunning Strike"
-                ])          
+                    "I can spend ki points to use the Flurry of Arrows and Soul Arrow (see page 3 notes)"
+                ]);
+                
+                if(n >= 6) {
+                    description += desc([
+                        "At 6th level, I can make a ranged weapon attack to deliver a Stunning Strike"
+                    ])
+                }
+            
+                // Add the level 6 description if the level is 6 or higher
+                return description;        
             }),
-            weaponProfs : [true, false, ["longbow, shortbow"]],
+            weaponProfs : [true, false, ["Longbow, Shortbow"]],
             calcChanges : {
                 atkAdd : [
                     function(fields, v) {
@@ -30287,8 +30294,12 @@ AddSubClass("monk", "way of the bow", {
                 page3notes : true,
                 name : "Bow Arts: Flurry of Arrows and Soul Arrow",
                 note : desc([
-                    "\u2022 Flurry of Arrows: Immediately after I take the atk action on my turn to make a ranged weapon atk or unarmed strike, I can spend 1 ki point to make an additional ranged weapon atk as a bonus action",
-                    "\u2022 Soul Arrow: When I take the atk action on my turn to make a ranged weapon attack, I can spend 1 ki point to fire a soul arrow for the first attack. This arrow ignores partial cover and deals extra damage equal to my Wisdom mod, and does not consume ammunition."
+                    "\u2022 Flurry of Arrows: Immediately after I take the atk action on my turn to make a", 
+                    "  ranged wea atk or unarmed strike, I can spend 1 ki point to make an additional ranged",
+                    "  wea atk as a bns action",
+                    "\u2022 Soul Arrow: When I take the atk action on my turn to make a ranged wea atk, I can", 
+                    "  spend 1 ki point to fire a soul arrow for the first atk. This arrow ignores partial", 
+                    "  cover and deals extra dmg equal to my Wis mod, and does not consume ammunition"
                 ])
             }]
         },
@@ -30309,12 +30320,19 @@ AddSubClass("monk", "way of the bow", {
             minlevel : 11,
             description : levels.map(function(n) {
                 if(n<11) return "";
-                return desc([
+                var description = desc([
                     "I can use my bns action and spend 1 ki point to gain blindsight",
-                    "The range is 120 ft and lasts until the end of my next turn",
-                ]) + n < 11 ? "" : desc([
-                    "At 17th level, I always have blindsight out to a range of 30 ft"
-                ])
+                    "The range is 120 ft and lasts until the end of my next turn"
+                ]);
+            
+                // Append additional description based on level
+                if (n >= 17) {
+                    description += desc([
+                        "At 17th level, I always have blindsight out to a range of 30 ft"
+                    ]);
+                }
+            
+                return description;
             }),
             additional : "1 ki point",
             action : [["bonus action", "Serenity of the Wind (1 ki)"]]
@@ -30350,7 +30368,7 @@ AddSubClass("monk", "way of the flagellant", {
                 "I gain proficiency with flails and whips which count as monk weapons.",
                 "I can choose to deal slash. instead of blud. dmg with my unarmed strikes."
             ]),
-            weaponProfs : [true, false, ["flail, whip"]],
+            weaponProfs : [true, false, ["Flail, Whip"]],
             calcChanges : {
                 atkAdd : [
                     function(fields, v) {
@@ -30652,9 +30670,9 @@ AddSubClass("monk", "way of the rose", {
                 note : desc([
                     "\u2022 Pink: I can use the help action as a bonus action to assist an ally in my aura",
                     "\u2022 Red: When a friendly crea in my aura hits an attack, they can use its bonus action", 
-                    "   with the attack to deal an extra 1d6 dmg",
+                    "  with the attack to deal an extra 1d6 dmg",
                     "\u2022 White: When a friendly crea ends its turn in my aura, it gains my Wis mod in temp hp",
-                    "   The crea cannot be myself"
+                    "  The crea cannot be myself"
                 ]),
                 page3notes : true
             }]
@@ -30665,7 +30683,7 @@ AddSubClass("monk", "way of the rose", {
             minlevel : 17,
             description : desc([
                 "When I take dmg from a visible crea within 5 ft of me, I can spend 1 ki point", 
-                "as a reaction to make an unarmed strike against that creature."
+                "as a rea to make an unarmed strike against that creature."
             ]),
             additional : "1 ki point",
             action : [["reaction", "Wreathed in Thorns (1 ki)"]]
@@ -30693,7 +30711,7 @@ AddSubClass("monk", "way of street fighting", {
             source : [["VSoS", 227]],
             minlevel : 6,
             description : desc([
-                "My unarmed strikes ignore the dmg threshold of objects and deal maximum dmg to them"
+                "My unarmed strikes ignore the dmg threshold of objects and deal max dmg to them"
             ])
         },
         "subclassfeature11" : {
@@ -30708,9 +30726,16 @@ AddSubClass("monk", "way of street fighting", {
                 name : "Special Moves",
                 page3notes : true,
                 note : desc([
-                    "\u2022 Ki Blast: As an action, I can spend 2 ki points to make a ranged spell attack using Wisdom as the spellcasting ability modifier against a creature I can see within 120 ft of me. On a hit, the target takes 6d8 + \u00BD my monk level in force damage",
-                    "\u2022 Uppercut: Immediately after I take the attack action on my turn, I can spend 1 ki point to make an unarmed strike as a bonus action. On a hit, if the creature is Large or smaller and doesn't have all of its hp, it takes damage as normal and is then knocked prone",
-                    "\u2022 Whirlwind Strike: Whenever I make a melee attack on my turn against a creature I can see, I can spend 1 ki point to lunge up to 15 ft toward the target before making the attack. This movement doesn't provoke opportunity attacks. I can peform this movement even if it causes me to travel through the air, thought I fall if I do not land on solid ground after making the attack."
+                    "\u2022 Ki Blast: As an action, I can spend 2 ki points to make a ranged spell atk using Wis as the", 
+                    "  spellcasting ability modifier against a crea I can see w/in 120 ft of me. On a hit, the target", 
+                    "  takes 6d8 + \u00BD my monk level in force dmg",
+                    "\u2022 Uppercut: Immediately after I take the attack action on my turn, I can spend 1 ki point to", 
+                    "  make an unarmed strike as a bns action. On a hit, if the crea is \u2264Large and doesn't have all", 
+                    "  of its hp, it takes dmg as normal and is then knocked prone",
+                    "\u2022 Whirlwind Strike: When I make a melee atk on my turn against a visible crea, I can spend 1 ki", 
+                    "  point to lunge up to 15 ft toward the target before making the atk. This movement doesn't", 
+                    "  provoke opportunity atks. I can peform this movement even if it causes me to travel through", 
+                    "   the air, though I fall if I do not land on solid ground after making the attack"
                 ])
             }],
             weaponOptions : [{
@@ -30745,7 +30770,9 @@ AddSubClass("monk", "way of street fighting", {
             source : [["VSoS", 227]],
             minlevel : 17,
             description : desc([
-                "Once per long rest, I can use my action and 3 ki points to make an unarmed strike against a creature within my reach. On a hit, the target takes damage as normal, and if it has 100 hp or fewer, it is reduced to 0 hp, knocked unconscious, and becomes stable."
+                "I can use my action and 3 ki points to make an unarmed strike against a crea w/in my reach", 
+                "On a hit, the target takes dmg as normal, and if it has \u2264100 hp, it is reduced to 0 hp,", 
+                "knocked unconscious, and becomes stable"
             ]),
             usages : 1,
             recovery : "long rest"          
