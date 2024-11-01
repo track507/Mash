@@ -30542,12 +30542,12 @@ AddSubClass("monk", "way of the mask", {
             minlevel : 3,
             description : desc([
                 "I can wrestle obstacles even if they cannot be conventionally wrestled",
-                "such as an ooze or a dragon. I gain the following:",
+                "I gain the following:",
                 "\u2022 I can grapple any crea regardless of size",
                 "\u2022 I can use an action to pin a creature grappled by me. I make", 
-                "    another grapple check, and if I succeed, we're both restrained until the grapple ends",
+                "  another grapple check, and if I succeed, we're both restrained until the grapple ends",
                 "\u2022 If I have the Grappler feat, I can choose whether a target grappled by me must", 
-                "    make a Athletics or Acrobatics check to escape"
+                "  make a Athletics or Acrobatics check to escape"
             ]),
             action : [["action", "Pin Creature (if grappled)"]]
         },
@@ -30743,7 +30743,7 @@ AddSubClass("monk", "way of street fighting", {
                     "\u2022 Whirlwind Strike: When I make a melee atk on my turn against a visible crea, I can spend 1 ki", 
                     "  point to lunge up to 15 ft toward the target before making the atk. This movement doesn't", 
                     "  provoke opportunity atks. I can peform this movement even if it causes me to travel through", 
-                    "   the air, though I fall if I do not land on solid ground after making the attack"
+                    "  the air, though I fall if I do not land on solid ground after making the attack"
                 ])
             }],
             weaponOptions : [{
