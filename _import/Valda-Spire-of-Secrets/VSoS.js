@@ -30234,6 +30234,60 @@ AddSubClass("warmage", "house of rooks", {
 
 // ! Subclasses
 
+// * Barbarian subclasses
+AddSubClass("barbarian", "colossus", {
+    regExpSearch : /^((?=.*(marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n))|((?=.*(warrior|fighter))(?=.*(feral|tribal))))(?=.*colossus).*$/i,
+    subname : "Path of the Colossus",
+    source : [["VSoS", 192]],
+    features : {
+        "subclassfeature3" : {
+            name : "Larger Than Life",
+            source : ["VSoS", 192],
+            minlevel : 3,
+            description : desc([
+                "When raging I gain the following:",
+                "\u2022 My size doubles in all dimensions and weight is multipled by 8",
+                "  If there's not enough room, I attain the max possible size in the available space",
+                "\u2022 My size increases by 1, but doesn't stack with spells such as enlarge/reduce",
+                "\u2022 My wea(s) also grow, dealing an extra 1d4 dmg",
+                "\u2022 As an action, I can swing in a 15 ft line, rolling a separate atk roll for each crea hit",
+            ]),
+            action : ["action", " (15-ft line)"],
+            calcChanges : {
+                atkAdd : [
+                    function(fields, v) { 
+                        if(v.isMeleeWeapon && classes.known.barbarian && classes.known.barbarian.level > 2 && (/\brage\b/i).test(v.WeaponTextName)) {
+                            fields.Description = (fields.Description ? "; " : "") + "+1d4 extra dmg"  
+                        }
+                    },
+                    "If I add \"Rage\" to the name of a weapon, I can treat it as a rage weapon and add +1d4 extra damage to it"
+                ],
+            }
+        },
+        "subclassfeature6" : {
+            name : "Imposing Presence",
+            source : ["VSoS", 193],
+            minlevel : 6,
+            description : desc([
+                "Ranged line of sight effects treats targets behind me as \u00BE cover",
+                "While raging, this becomes total cover"
+            ])
+        },
+        "subclassfeature10" : {
+            name : "Boulder Throw",
+            source : ["VSoS", 193],
+            minlevel : 10,
+            description : desc([
+                "I can throw boulders or other suitably large objects as weapons",
+                "Such weapons are have the following properties:",
+                "\u2022 Two-handed, heavy, thrown",
+                "\u2022 Range 30/60ft"
+            ])
+        }
+    }
+});
+
+// * Monk subclasses
 AddSubClass("monk", "way of the bow", {
     regExpSearch : /^(?=.*bow)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
     subname : "Way of the Bow",
