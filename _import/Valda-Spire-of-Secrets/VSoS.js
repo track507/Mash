@@ -30279,10 +30279,59 @@ AddSubClass("barbarian", "colossus", {
             minlevel : 10,
             description : desc([
                 "I can throw boulders or other suitably large objects as weapons",
-                "Such weapons are have the following properties:",
+                "Such weapons are considered proficient and have the following properties:",
                 "\u2022 Two-handed, heavy, thrown",
-                "\u2022 Range 30/60ft"
-            ])
+                "\u2022 Range 30/60ft",
+                "\u2022 2d8 Bludg. dmg",
+                "I may only throw a boulder once per turn"
+            ]),
+            usages : 1,
+            recovery : "Turn",
+            weaponOptions : [{
+                name : "Boulder Throw",
+                regExpSearch : /^(?=.*boulder)(?=.*throw).*$/i,
+                source : ["VSoS", 193],
+                type : "AlwaysProf",
+                ability : 1,
+                abilitytodamage : false,
+                damage : [2,8, "bludgeoning"],
+                range : "Range, 30/60ft",
+                description : "Two-handed, heavy, thrown",
+                selectNow : true
+            }]
+        },
+        "subclassfeature14" : {
+            name : "Colossal Strength",
+            source : ["VSoS", 193],
+            minlevel : 14,
+            description : levels.map(function(n) {
+                if(n<14) return ""
+                var description = desc([
+                    "I gain a +2 to Strength and my Str score max is now a 22",
+                ]);
+                
+                if(n>19) {
+                    description += desc([
+                        "At 20th level, I gain a +2 to Strength and my Str score max becomes a 26 instead of 22"
+                    ])
+                }
+                return description; 
+            }),
+            scores : [2,0,0,0,0,0],
+            scoresMaximum : [22,0,0,0,0,0],
+            "scoresmax26" : {
+                name : "Strength Max Increase",
+                extraname : "Path of the Colossus 14",
+                source : ["VSoS", 193],
+                description : desc([
+                    "My Strength max increase to 26 from 22"
+                ]),
+                scoresMaximum : [26,0,0,0,0,0]
+            },
+            autoSelectExtrachoices : [{
+                extrachoice : "scoresmax26",
+                minlevel : 20
+            }]
         }
     }
 });
@@ -30841,6 +30890,11 @@ AddSubClass("monk", "way of street fighting", {
         }
     }
 })
+
+// * Paladin Subclasses
+AddSubClass("paladin", "oath of storm", {
+
+});
 
 // ! This section adds companionlists
 
