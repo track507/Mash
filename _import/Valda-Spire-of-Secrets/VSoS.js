@@ -1828,13 +1828,13 @@ FeatsList["battle adept"] = {
     descriptionFull : "",
     // due to limitations, I have to do both separately.
     bonusClassExtrachoices : [{
-		"class" : "warden",
-		"subclass" : "warden-grey watchman",
-		"feature" : "subclassfeature3",
-		"bonus" : 2
-	}, {
         "class" : "captain",
-        "feature" : "war tactics",
+        feature : "war tactics",
+        bonus : 2
+    }, {
+        "class" : "warden",
+        "subclass" : "warden-grey watchman",
+        "feature" : "subclassfeature3",
         "bonus" : 2
     }],
 	extraLimitedFeatures : [{
@@ -1844,7 +1844,7 @@ FeatsList["battle adept"] = {
 		recovery : "short rest",
         addToExisting : true
 	}]
-}
+};
 
 // ! This section adds classes
 
@@ -5603,6 +5603,8 @@ ClassList["captain"] = {
             action: [["bonus action", "Brace"],
                         ["bonus action", "Rally"],
                         ["bonus action", "Staggering Strike"]],
+            extrachoices : ["Brace", "Rally", "Staggering Strike (Captain)"],
+            choicesNotInMenu : true,
             "brace" : {
                 name: "Brace",
                 source: ["VSoS", 48],
@@ -5616,7 +5618,7 @@ ClassList["captain"] = {
                                 "\n    me that can see or hear me. That ally regains hit points equal to the number rolled + my"+
                                 "\n    Charisma modifier. I can't use this ability to heal a creature that has 0 hit points."
             },
-            "staggering strike" : {
+            "staggering strike (captain)" : {
                 name: "Staggering Strike",
                 source: ["VSoS", 48],
                 description: "\n    As a bonus action, when I make a weapon attack against a Large or smaller creature, I can"+
@@ -5628,7 +5630,7 @@ ClassList["captain"] = {
             }, {
                 extrachoice: "rally"
             }, {
-                extrachoice: "staggering strike"
+                extrachoice: "staggering strike (captain)"
             }],
         },
         "blitz" : {
@@ -26620,6 +26622,8 @@ AddSubClass("warden", "grey watchman", {
 			additional : levels.map(function (n) {
 				return n < 3 ? "" : n < 13 ? "d8" : n < 19 ? "d10" : "d10";
 			}),
+            extrachoices : ["Bull Rush", "Bulwark", "Cleave", "Heel-Cutter", "Reckless Assault", "Staggering Strike (Warden)"],
+            choicesNotInMenu : true,
             "bull rush" : {
                 name : "Bull Rush",
                 extraname : "Battle Tactics: Maneuvers",
@@ -26672,7 +26676,7 @@ AddSubClass("warden", "grey watchman", {
                     " the start of my next turn."
                 ])
             },
-            "staggering strike" : {
+            "staggering strike (warden)" : {
                 name : "Stargering Strike",
                 extraname : "Battle Tactics: Maneuvers",
                 source : ["VSoS", 151],
@@ -26694,7 +26698,7 @@ AddSubClass("warden", "grey watchman", {
             }, {
                 extrachoice : "reckless assault"
             }, {
-                extrachoice : "staggering strike"
+                extrachoice : "staggering strike (warden)"
             }]
 		},
         "subclassfeature3.1" : {
@@ -28496,7 +28500,7 @@ ClassList["warmage"] = {
     spellcastingFactor : 3, //when multiclassing, use 1/3 factor
     spellcastingKnown : {
         cantrips : [4,4,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,10],
-		spells : [0]
+		spells : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     },
 	spellcastingList : {
 		"class" : "warmage",
@@ -28673,7 +28677,7 @@ ClassList["warmage"] = {
 			"striker" : {
 				name : "Arcane Striker Fighting Style",
 				description : desc([
-                    "When I exceed a target's AC by 5>, or score a critical hit, wtih a melee atk cantrip",
+                    "When I exceed a target's AC by \u22655, or score a critical hit, with a melee atk cantrip",
                     "I can add my Prof. Bonus to the damage roll"
                 ])
 			}
@@ -28696,7 +28700,7 @@ ClassList["warmage"] = {
 							var lvl = classes.known.warmage.level;
 							var extraDie = lvl < 5 ? 0 : lvl < 11 ? 1 : lvl < 17 ? 2 : 3; //The amount of die added based on level
 							var currentDieSize = parseInt(fields.Damage_Die.split('d')[1]);
-							fields.Description += (fields.Description ? '; ' : '+ ') + extraDie + 'd' + currentDieSize + '; Once per turn +' + What('Int Mod') + ' dmg';
+							fields.Description += (fields.Description ? '; ' : '+ ') + 'Once per turn ' + What('Int Mod') + (extraDie ? ' and +' + extraDie + 'd' + currentDieSize: "") + ' dmg';
 						}
 					}
 				]
@@ -28791,6 +28795,7 @@ ClassList["warmage"] = {
 				description : desc([
 					"When wearing no armor, and no shield, my AC equals to 10 + Dex mod + Int mod"
 				]),
+                prereqeval : function(v) { return (/\bpawns|rooks\b/).test(classes.known.warmage.subclass); },
 				armorOptions : [{
 					regExpSearch : /^(?=.*cloak)(?=.*feathers).*$/i,
 					name : "Cloak of Feathers",
@@ -28893,8 +28898,12 @@ ClassList["warmage"] = {
 				calcChanges : {
 					atkAdd : [
 						function(fields, v) { 
-							if(v.thisWeapon[3] && SpellsList[v.thisWeapon[3]].level === 0 && v.thisWeapon[4].indexOf("warmage") !== 1 && (/\d+ ?(f.{0,2}t|m)/i.test(fields.Range)) && fields.Range.match(/\d+([.,]\d+)?/g) >= 5) {
+							if(v.thisWeapon[3] && SpellsList[v.thisWeapon[3]].level === 0 && v.thisWeapon[4].indexOf("warmage") !== 1 && (((/\d+ ?(f.{0,2}t|m)/i.test(fields.Range)) && fields.Range.match(/\d+([.,]\d+)?/g) >= 5) || /melee/i.test(fields.Range))) {
 								var rngNum = fields.Range.match(/\d+([.,]\d+)?/g);
+                                if(/melee/i.test(fields.Range) && !rngNum) {
+                                    fields.Range = 'Melee (10 ft)';
+                                    return;
+                                }
 								var oChar = fields.Range.split(RegExp(rngNum.join('|')));
 								fields.Range = '';
 								rngNum.forEach(function (dR, idx) {
@@ -28969,6 +28978,10 @@ ClassList["warmage"] = {
 						function(fields, v, output) {  
 							if( !v.isDC && v.isSpell && v.thisWeapon[3] && SpellsList[v.thisWeapon[3]].level === 0 && v.thisWeapon[4].indexOf('warmage') !== 1 && ((/melee/i).test(fields.description) || (/melee/).test(fields.Range))) { 
 								var sRange = fields.Range.match(/\d+([.,]\d+)?/g);  // Handles special cases like thorn whip or other 'ranged' melee spells
+                                if (/melee/i.test(fields.Range) && !sRange) {
+                                    fields.Range = "Melee (15 ft)";
+                                    return;
+                                }
 								var oChar = fields.Range.split(RegExp(sRange.join('|')));
 								fields.Range = '';
 								sRange.forEach(function (dR, idx) {
@@ -29284,7 +29297,7 @@ ClassList["warmage"] = {
 				name : "Signature Focus", 
 				source : ["VSoS", 164],
 				description : desc([
-                    "On a long rest, I can place a sigil on a simple weapon; it becomes my focus",
+                    "On a long rest, I can place a sigil on a simple or martial wea; it becomes my focus",
                     "It's considered magical and gain the following benefits until I use this trick again",
 					"\u2022 As a bonus action, I can call it to my hand, as long as its on the same plane of existence",
 					"\u2022 I use my Int mod instead of Str or Dex to atk and dmg rolls",
@@ -29296,7 +29309,7 @@ ClassList["warmage"] = {
 					atkAdd : [
 						function (fields, v) {
 							//not a spell; can include signature, focus, or sigil to help sheet automate, must be a simple weapon, changes dex/str to int if applicable.
-							if (!v.isSpell && ((/\b(signature|focus|sigil)\b/i).test(v.WeaponTextName) && (/simple/i).test(v.theWea.type)) && (fields.Mod === 1 || fields.Mod === 2) && What('Int Mod') > What(AbilityScores.abbreviations[fields.Mod - 1] + ' Mod')) {
+							if (!v.isSpell && ((/\b(signature|focus|sigil)\b/i).test(v.WeaponTextName) && (/(simple|martial)/i).test(v.theWea.type)) && (fields.Mod === 1 || fields.Mod === 2) && What('Int Mod') > What(AbilityScores.abbreviations[fields.Mod - 1] + ' Mod')) {
 								fields.Mod = 4;
 							}
 						},
@@ -29306,7 +29319,7 @@ ClassList["warmage"] = {
 				},
                 limfeaname : "Focus Charges",
 				usages : "Int mod per ",
-                usagescalc : "event.value = 'What('Int Mod')'",
+                usagescalc : "event.value = Math.max(What('Int Mod'), 1);",
 				recovery : "long rest"
 			},
 			"silent cantrip" : {
@@ -29856,12 +29869,11 @@ AddSubClass("warmage", "house of knights", {
 				name : "Mystical Weapon",
 				spells : ["force weapon"],
 				selection : ["force weapon"],
-				firstCol : "atwill"
 			}],
             calcChanges : {
                 atkAdd : [
                     function(fields, v) { 
-                        if(/force ?(weapon)?/i.test(fields.WeaponTextName) && !/\bforce weapon\b/.test(SpellsList[v.thisWeapon[3]].name)) {
+                        if(!v.isSpell && ((/\bforce\b/i).test(v.WeaponTextName) && (/(simple|martial)/i).test(v.theWea.type))) {
                             fields.Damage_Type = "Force"
                         }
                     }
@@ -30307,13 +30319,8 @@ AddSubClass("barbarian", "colossus", {
             minlevel : 14,
             choices : ["scoresmax22", "scoresmax26"],
             choicesNotInMenu : true,
-            // selfChoosing : function() {
-            //     return classes.known.barbarian.level < 20 ? "scoresmax22" : "scoresmax26";
-            // },
             // changeeval : function(lvl,chc) {
             //     if(lvl < 14) return;
-            //     ApplyFeatureAttributes("class", ["barbarian","subclassfeature14"], [0,14,true], ["","scoresmax22","only"], false); // add Devil's Sight
-		    //     ApplyFeatureAttributes("class", ["barbarian","subclassfeature14"], [0,20,true], ["scoresmax22","","only"], false); // remove Devil's Sight
             // },
             "scoresmax22" : {
                 name : "Strength Max Increase (22)",
@@ -33787,6 +33794,253 @@ WeaponsList["nunchaku"] = {
     weight : 1,
     description : "Finesse, light",
     abilitytodamage : true,
+};
+WeaponsList["arc blade"] = {
+	regExpSearch : /^(?=.*arc)(?=.*blade).*$/i,
+	name : "Arc Blade",
+	source : ["VSoS", 330],
+	list : "spell",
+	ability : 0,
+	type : "Cantrip",
+	damage : ["Bd8/Cd6", "", "lightning"],
+	range : "With melee wea",
+	description : "Wea dmg is Ltng; 1st dmg added to the atk; 2nd to a tgt within 5 ft on hit",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["burning blade"] = {
+	regExpSearch : /^(?=.*burning)(?=.*blade).*$/i,
+	name : "Burning Blade",
+	source : ["VSoS", 331],
+	list : "spell",
+	ability : 0,
+	type : "Cantrip",
+	damage : ["Bd6/Cd6", "", "fire"],
+	range : "With melee wea",
+	description : "Wea dmg is Fire; 1st dmg added to the atk; 2nd as rea when tgt enters/ends in space",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["candy blast"] = {
+	regExpSearch : /candy blast/i,
+	name : "Candy Blast",
+	source : ["VSoS", 332],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 8, "bludgeoning"],
+	range : "60 ft",
+	description : "On hit, target space becomes difficult terrain; 1 action to clear",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["card trick"] = {
+	regExpSearch : /card trick/i,
+	name : "Card Trick",
+	source : ["VSoS", 332],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 6, "force"],
+	range : "60 ft",
+	description : "Choose: spell attack, or target Dex save vs. spell save DC",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["caustic blade"] = {
+	regExpSearch : /caustic blade/i,
+	name : "Caustic Blade",
+	source : ["VSoS", 332],
+	list : "spell",
+	ability : 0,
+	type : "Cantrip",
+	damage : ["Bd8/Cd8", "", "acid"],
+	range : "With melee wea",
+	description : "Wea dmg is Acid; 1st dmg on hit, 2nd on miss by 3 or less",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["eldritch orb"] = {
+	regExpSearch : /eldritch orb/i,
+	name : "Eldritch Orb",
+	source : ["VSoS", 337],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 8, "force"],
+	range : "60 ft",
+	description : "On hit, crea in 5 ft Dex save; success: nothing, fail: half dmg",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["eye of anubis"] = {
+	regExpSearch : /eye of anubis/i,
+	name : "Eye of Anubis",
+	source : ["VSoS", 337],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 8, "necrotic"],
+	range : "60 ft",
+	description : "On hit, tgt can't Disengage til end of my next turn; see spell or book for scaling",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["eye of ra"] = {
+	regExpSearch : /eye of ra/i,
+	name : "Eye of Ra",
+	source : ["VSoS", 338],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 8, "radiant"],
+	range : "60 ft",
+	description : "On hit, tgt can't Hide til end of my next turn; see spell or book for scaling",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["finger guns"] = {
+	regExpSearch : /finger guns/i,
+	name : "Finger Guns",
+	source : ["VSoS", 338],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 8, "force"],
+	range : "60 ft",
+	description : "1 action to attack for 1 minute; counts as firearm",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["flesh ripper"] = {
+	regExpSearch : /flesh ripper/i,
+	name : "Flesh Ripper",
+	source : ["VSoS", 338],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 8, "piercing"],
+	range : "30 ft",
+	description : "On hit, target can't move more than 30 ft away from me without a Str save",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["force dart"] = {
+	regExpSearch : /force dart/i,
+	name : "Force Dart",
+	source : ["VSoS", 339],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 10, "force"],
+	range : "120 ft",
+	description : "Can target creatures or objects",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["force weapon"] = {
+	regExpSearch : /force weapon/i,
+	name : "Force Weapon",
+	source : ["VSoS", 339],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 10, "Force"],
+	range : "5 ft",
+	description : "Can also make 1 opportunity attack before next turn; scaling adds atks, not dmg",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["frigid blade"] = {
+	regExpSearch : /frigid blade/i,
+	name : "Frigid Blade",
+	source : ["VSoS", 340],
+	list : "spell",
+	ability : 0,
+	type : "Cantrip",
+	damage : ["Bd8/Cd8", "", "cold"],
+	range : "With melee wea",
+	description : "Wea dmg is Cold; 1st dmg add to atk; 2nd as rea to tgt if it moves before my next turn",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["lightning surge"] = {
+	regExpSearch : /lightning surge/i,
+	name : "Lightning Surge",
+	source : ["VSoS", 347],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 6, "lightning"],
+	range : "S:5-ft rad",
+	description : "Crea in range Dex save; success: nothing",
+	abilitytodamage : false,
+	dc : true
+};
+WeaponsList["magic daggers"] = {
+	regExpSearch : /magic daggers/i,
+	name : "Magic Daggers",
+	source : ["VSoS", 348],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 6, "piercing"],
+	range : "60 ft",
+	description : "Each die is a separate dagger; scaling adds attacks, not dmg",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["minor lifesteal"] = {
+	regExpSearch : /minor lifesteal/i,
+	name : "Minor Lifesteal",
+	source : ["VSoS", 349],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 4, "necrotic"],
+	range : "60 ft",
+	description : "Con save, success: nothing; fail: I gain damage dealt as Temporary HP",
+	abilitytodamage : false,
+	dc : true
+};
+WeaponsList["sonic pulse"] = {
+	regExpSearch : /sonic pulse/i,
+	name : "Sonic Pulse",
+	source : ["VSoS", 354],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 8, "thunder"],
+	range : "60 ft",
+	description : "Con save, fail: deafened until my next turn; within 10 ft, d10s instead of d8s",
+	abilitytodamage : false,
+	dc : true
+};
+WeaponsList["spark of life"] = {
+	regExpSearch : /spark of life/i,
+	name : "Spark of Life",
+	source : ["VSoS", 354],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["Special", "", "bludgeoning"],
+	range : "60 ft",
+	description : "Corpse in range moves up to 15 ft and attack for 1d4/1d6/1d8/1d10/1d12 dmg; see book",
+	abilitytodamage : false,
+	dc : false
+};
+WeaponsList["thunderous distortion"] = {
+	regExpSearch : /thunderous distortion/i,
+	name : "Thunderous Distortion",
+	source : ["VSoS", 355],
+	list : "spell",
+	ability : 6,
+	type : "Cantrip",
+	damage : ["C", 6, "thunder"],
+	range : "S:10-ft cone",
+	description : "Crea in area Con save; cast again next turn for d8s instead of d6s",
+	abilitytodamage : false,
+	dc : true
 };
 
 // ! This section adds spells
