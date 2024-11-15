@@ -30358,6 +30358,141 @@ AddSubClass("barbarian", "colossus", {
     }
 });
 
+AddSubClass("barbarian", "fin", {
+    subname : "Path of the Fin",
+    source : ["VSoS", 193],
+    features : {
+        "subclassfeature3" : {
+            name : "Aquatic",
+            source : ["VSoS", 193],
+            minlevel : 3,
+            description : desc([
+                "I can breathe underwater and have a swim speed equal to my walk speed",
+                "If I'm swimming, my rage can't end early unless I choose to do so"
+            ]),
+            speed : {
+                swim : { spd : "walk", enc : "walk" }
+            },
+        },
+        "subclassfeature3.1" : {
+            name : "Feeding Frenzy",
+            source : ["VSoS", 193],
+            minlevel : 3,
+            description : levels.map(function(n) {
+                if(n<3) return ""
+                var description = desc([
+                    "I gain razor sharp teeth to make a bite attack with while raging",
+                    "I use this to make unarmed atks with; If I hit a crea w/in 5ft with a",
+                    "melee atk, I can use my bns action to make a bite atk against it",
+                    "This atk has adv. if the crea has \u2264\u008Bhp; I can do this",
+                    "a number of times equal to my Con mod per long rest (min. of 1)"
+                ])
+                
+                if(n>5) {
+                    description += desc([
+                        "At 6th level, my bite is considered magical for overcoming magic resistance"
+                    ])
+                }
+                return description; 
+            }),
+            usages : "Con mod per ",
+            usagescalc : "event.value = Math.max(1, What('Con Mod'));",
+            recovery : "long rest",
+            weaponOptions : [{
+                name : "Bite",
+                regExpSearch : /^(?=.*bite).*$/i,
+                source : ["VSoS", 193],
+                baseWeapon : "unarmed strike",
+                damage : [1,8,"Piercing"],
+                selectNow : true
+            }],
+            calcChanges : {
+                atkAdd : [
+                    function (fields, v) {
+                        if(/bite/i.test(v.WeaponTextName)) {
+                            fields.Description = (fields.Description ? "; " : "") + "Counts as magical";
+                        }
+                    }
+                ]
+            }
+        },
+        "subclassfeature6" : {
+            name : "Blood Sense",
+            source : ["VSoS", 193],
+            minlevel : 6,
+            description : desc([
+                "I gain adv. on all Investigation and Perception checks made with smell",
+                "I can automatically track a living crea whose scent I'm familiar with",
+                "as long as the trail is less than a week old; I can spend 1 min to",
+                "detect the scents of all living crea w/in 100 ft, or 1 mi. in water"
+            ]),
+            vision : [["Adv. on Perception checks that rely on smell", 0]],
+        },
+        "subclassfeature10" : {
+            name : "Mako",
+            source : ["VSoS", 193],
+            minlevel : 10,
+            description : desc([
+                "My bite atk dmg die increases from d8 to d10",
+                "Once per turn when I hit a crea with my bite, it must make a Dex save",
+                "On a fail, the tgt is knocked prone or grappled, my choice",
+                "The tgt has disadv. if I'm swimming"
+            ]),
+            calcChanges : {
+                atkAdd : [
+                    function (fields, v) {
+                        if(/bite/i.test(v.WeaponTextName)) {
+                            fields.Damage_Die = 'd10';
+                            fields.Description = (fields.Description ? "; " : "") + "Once per turn Dex save or prone/grappled; Disadv. if I'm swimming";
+                        }
+                    }
+                ]
+            }
+        },
+        "subclassfeature14" : {
+            name : "Tsunami",
+            source : ["VSoS", 193],
+            minlevel : 14,
+            description : desc([
+                "When raging, I can conjure a magical wave of salt water",
+                "The wave is up to 15-ft wide and 15-ft tall and moves w/ me",
+                "If a crea is caught in the wave, it's forced to swim and hold its breath",
+                "until it leaves wave's area or the wave moves away from it",
+                "The wave extinguishes all unprotected flames, and lasts for 1 min"
+            ]),
+            usages : 1,
+            recovery : "short rest",
+        }
+    }
+});
+
+// TODO: Below
+// AddSubClass("barbarian", "heavy metal", { 
+//     subname : "Path of Heavy Metal",
+//     source : ["VSoS", 194],
+//     features : {
+//         "subclassfeature3" : {
+//             name : "Bonus Proficiencies",
+//             source : ["VSoS", 194],
+//             minlevel : 3,
+//             description : desc([
+//                 "I gain proficiency with 3 musical instruments of my choice"
+//             ]),
+//             toolProfs : [["Any Musical instrument", 3]],
+//         },
+//         "subclassfeature3.1" : {
+//             name : "Heavy Metal Axe",
+//             source : ["VSoS", 194],
+//             minlevel : 3,
+//             description : desc([
+//                 "I can spend 8 hrs to convert any two-handed weapon into an instrument",
+//                 "Only I can play said instrument, and retains all of it's properties",
+//                 "I can have a number of instruments equal to my Prof Bonus"
+//             ])
+//         }
+//     }
+// });
+
 // * Monk subclasses
 AddSubClass("monk", "way of the bow", {
     regExpSearch : /^(?=.*bow)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
