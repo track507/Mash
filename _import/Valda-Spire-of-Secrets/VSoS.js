@@ -30313,52 +30313,43 @@ AddSubClass("barbarian", "colossus", {
             }]
         },
         "subclassfeature14" : {
-            // TODO: implement changeeval w/ choices.
             name : "Colossal Strength",
             source : ["VSoS", 193],
             minlevel : 14,
-            choices : ["scoresmax22", "scoresmax26"],
-            choicesNotInMenu : true,
-            // changeeval : function(lvl,chc) {
-            //     if(lvl < 14) return;
-            // },
-            "scoresmax22" : {
-                name : "Strength Max Increase (22)",
-                extraname : "Path of the Colossus 14",
-                source : ["VSoS", 193],
-                description : desc([
-                    "My Strength max increases to 22"
-                ]),
-                scoresMaximum : [22,0,0,0,0,0]
-            },
-            "scoresmax26" : {
-                name : "Strength Max Increase (26)",
-                extraname : "Path of the Colossus 14",
-                source : ["VSoS", 193],
-                description : desc([
-                    "My Strength max increases to 26"
-                ]),
-                scoresMaximum : [26,0,0,0,0,0]
-            },
             description : levels.map(function(n) {
                 if(n<14) return ""
                 var description = desc([
-                    "I gain a +2 to Strength and my Str score max is now a 22",
+                    "I gain a +2 to Str and my Str score max is now a 22",
                 ]);
                 
                 if(n>19) {
                     description += desc([
-                        "At 20th level, I gain a +2 to Strength and my Str score max becomes a 26 instead of 22"
+                        "At 20th level, my Str score max becomes a 26 instead of 22"
                     ])
                 }
                 return description; 
             }),
-            scores : [2,0,0,0,0,0]
+            scores : [2,0,0,0,0,0],
+            scoresMaximum : [22,0,0,0,0,0],
+            "scoresmax26" : {
+                name : "Strength Max Increase",
+                extraname : "Path of the Colossus 20",
+                source : ["VSoS", 193],
+                description : desc([
+                    "My Strength max increase to 26 from 22"
+                ]),
+                scoresMaximum : [26,0,0,0,0,0]
+            },
+            autoSelectExtrachoices : [{
+                extrachoice : "scoresmax26",
+                minlevel : 20
+            }]
         }
     }
 });
 
 AddSubClass("barbarian", "fin", {
+    regExpSearch : /^((?=.*(marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n))|((?=.*(warrior|fighter))(?=.*(feral|tribal))))(?=.*fin).*$/i,
     subname : "Path of the Fin",
     source : ["VSoS", 193],
     features : {
@@ -30410,7 +30401,7 @@ AddSubClass("barbarian", "fin", {
                 atkAdd : [
                     function (fields, v) {
                         if(/bite/i.test(v.WeaponTextName)) {
-                            fields.Description = (fields.Description ? "; " : "") + "Counts as magical";
+                            fields.Description += (fields.Description ? "; " : "") + "Counts as magical";
                         }
                     }
                 ]
@@ -30442,8 +30433,8 @@ AddSubClass("barbarian", "fin", {
                 atkAdd : [
                     function (fields, v) {
                         if(/bite/i.test(v.WeaponTextName)) {
-                            fields.Damage_Die = 'd10';
-                            fields.Description = (fields.Description ? "; " : "") + "Once per turn Dex save or prone/grappled; Disadv. if I'm swimming";
+                            fields.Damage_Die = '1d10';
+                            fields.Description += (fields.Description ? "; " : "") + "Once per turn Dex save or prone/grappled; Disadv. if I'm swimming";
                         }
                     }
                 ]
@@ -30466,32 +30457,152 @@ AddSubClass("barbarian", "fin", {
     }
 });
 
-// TODO: Below
-// AddSubClass("barbarian", "heavy metal", { 
-//     subname : "Path of Heavy Metal",
+AddSubClass("barbarian", "heavy metal", { 
+    regExpSearch : /^((?=.*(marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n))|((?=.*(warrior|fighter))(?=.*(feral|tribal))))((?=.*heavy)(?=.*metal)).*$/i,
+    subname : "Path of Heavy Metal",
+    source : ["VSoS", 194],
+    features : {
+        "subclassfeature3" : {
+            name : "Bonus Proficiencies",
+            source : ["VSoS", 194],
+            minlevel : 3,
+            description : desc([
+                "I gain proficiency with 3 musical instruments of my choice"
+            ]),
+            toolProfs : [["Any Musical instrument", 3]],
+        },
+        "subclassfeature3.1" : {
+            name : "Heavy Metal Axe",
+            source : ["VSoS", 194],
+            minlevel : 3,
+            description : desc([
+                "I can spend 8 hrs to convert any two-handed wea into an instrument",
+                "Only I can play said instrument, and it retains all of it's properties",
+                "I can have a number of instruments equal to my Prof Bonus"
+            ]),
+            additional : levels.map(function (n) {
+                return (n < 5 ? 2 : n < 9 ? 3 : n < 13 ? 4 : n < 17 ? 5 : 6) + " instruments";
+            })
+        },
+        "subclassfeature3.2" : {
+            name : "Solo Shredding",
+            source : ["VSoS", 194],
+            minlevel : 3,
+            description : desc([
+                "When I rage, I begin to vigorously play a solo on my instrument wea",
+                "Each time I deal dmg to a hostile crea, my Rage dmg increases by 1",
+                "I can increase it up to double my Prof Bonus; This lasts until I am incapacitated, no",
+                "longer holding my instrument weapon, miss an atk, or my rage ends"
+                
+            ])
+        },
+        "subclassfeature6" : {
+            name : "Killer Vocals",
+            source : ["VSoS", 194],
+            minlevel : 3,
+            description : desc([
+                "As a bonus action, I can release a blood-curdling screech",
+                "Each Large or smaller crea I choose w/in 5 ft is pushed 5 ft away and",
+                "deafened until the end of my next turn"
+            ]),
+            action : [["bonus action", ""]]
+        },
+        "subclassfeature11" : {
+            name : "Up To Eleven",
+            source : ["VSoS", 194],
+            minlevel : 11,
+            description : desc([
+                "When I make a Cha check or any check involving my instrument wea,",
+                "I can treat a d20 roll of 10 or lower as an 11"
+            ])
+        },
+        "subclassfeature14" : {
+            name : "Smash Hit",
+            source : ["VSoS", 194],
+            minlevel : 14,
+            description : desc([
+                "When I hit a crea w/ an instrument wea while raging, I can smash the target, dealing",
+                "an extra 4d12 dmg.",
+                "If the wea is non-magical, it's destroyed and no longer counts as an instrument wea",
+            ]),
+            additional : "4d12",
+            usages : 1,
+            recovery : "short rest"
+        }
+    }
+});
+
+// AddSubClass("barbarian", "muscle wizard", {
+//     regExpSearch : /^((?=.*(marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n))|((?=.*(warrior|fighter))(?=.*(feral|tribal))))((?=.*muscle)(?=.*wizard)).*$/i,
+//     subname : "Path of the Muscle Wizard",
 //     source : ["VSoS", 194],
 //     features : {
 //         "subclassfeature3" : {
-//             name : "Bonus Proficiencies",
+//             name : "Unarguable Wizardry",
 //             source : ["VSoS", 194],
 //             minlevel : 3,
 //             description : desc([
-//                 "I gain proficiency with 3 musical instruments of my choice"
-//             ]),
-//             toolProfs : [["Any Musical instrument", 3]],
+//                 "I gain Adv. on Intimidation checks to convince others I'm a wizard",
+//                 "If some questions my legitimacy, I can rage for 1 rnd",
+//                 "This rage can't be extended and doesn't count against me",
+//                 "I can only attack the crea that provoked me and their allies"
+//             ])
 //         },
 //         "subclassfeature3.1" : {
-//             name : "Heavy Metal Axe",
+//             name : "\"Cantrips\"",
 //             source : ["VSoS", 194],
 //             minlevel : 3,
 //             description : desc([
-//                 "I can spend 8 hrs to convert any two-handed weapon into an instrument",
-//                 "Only I can play said instrument, and retains all of it's properties",
-//                 "I can have a number of instruments equal to my Prof Bonus"
-//             ])
+//                 'At 3rd level, I learn how to use "magic" and "cantrips"',
+//                 'I can cast "cantrips" a number of times equal to my Str mod per short/long rest', 
+//                 'While raging, I can cast "cantrips" at will. Casting in this way does not count against me',
+//                 'See page 3 notes for "spellcasting"'
+//             ]),
+//             usages : "Str mod per ",
+//             usagescalc : "event.value = Math.min(What('Str mod'), 0);",
+//             recovery : "short rest",
+//             action : [["bonus action", ""]],
+//             toNotesPage : [{
+//                 name : '"Cantrips"',
+//                 note : desc([
+//                     "\u2022 Mage Hand: As a bns action when I hit a crea w/ melee wea on my turn, I can use",
+//                     "  my hand to attempt to shove the target",
+//                     "\u2022 Shocking Grasp: As a bns action when I make an atk on my turn, I can hit the target",
+//                     "  harder than usual. On a hit, the target can't take any rea until the start of my next turn",
+//                     "\u2022 True Strike: As a bns action when I make an atk on my turn, I can truly strike my target.",
+//                     "  On a hit, I deal an extra 1d8 dmg to the target"
+//                 ]),
+//                 page3notes :  true
+//             }],
+//         },
+//         "subclassfeature6" : {
+//             name : '"Spells"',
+//             source : ["VSoS", 194],
+//             minlevel : 6,
+//             description : desc([
+//                 "I can every \"spell\" that ever existed",
+//                 "However, I've only prepared the \"spells\" found on page 3 notes",
+//                 "I can cast each \"spell\" once per long rest"
+//             ]),
+//             action : [["action", "Burning Hands"], ["bonus action", "Magic Missile (w/atk)"], ["reaction", "Shield"]],
+//             toNotesPage : [{
+//                 name : '"Spells"',
+//                 note : desc([
+//                     "\u2022 Burning Hands: As an action on my turn, I can make an",
+//                     "  unarmed strike vs a crea w/in reach. On a hit they take",
+//                     "  1d8 + my Str mod bludgeoning dmg",
+//                     "\u2022 Magic Missile: When I take the atk action on my turn",
+//                     "  I can use my bns action to make a ranged atk with the wea",
+//                     "  I'm holding. I have adv. on the atk roll",
+//                     "\u2022 Shield: When I am targeted by an atk, I can produce a shield",
+//                     "  I gain the shield bns to AC vs the atk even if I wasn't holding it",
+//                     "  If I'm hit, I can reduce the dmg by 1d12 + my Con mod"
+//                 ]),
+//                 page3notes :  true
+//             }]
 //         }
 //     }
-// });
+// })
 
 // * Monk subclasses
 AddSubClass("monk", "way of the bow", {
