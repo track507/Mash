@@ -20,6 +20,28 @@ I am going page by page and adding/updating content. I will be providing updates
 
 Everything in this script has been updated to v13.2.1 for MPMB's Sheet and 1.4 of the PDF.
 
+### Added
+  - Alchemist Class and Subclasses Finished (written by seaw0rld)
+  - Captain Class and Subclasses Finished (written by seaw0rld)
+  - Craftsman Class and Subclasses Finished (originally written by aelartheelfrogue, updated by seaw0rld)
+  - Gunslinger Class and Subclasses (written by seaw0rld)
+  - Necromancer Class and Subclasses (written by seaw0rld)
+  - Martyr Class and Subclasses (written by trackatnite)
+  - Warden Class and Subclasses (written by nanur, edited/updated by trackatnite)
+  - Witch Class and Subclasses (written by PoetGod, edited/changed by trackatnite)
+  - Warmage Class and Subclasses (written by trackatnite)
+  - All spells (written by trackatnite)
+  - Barbarian Subclasses
+  
+### WIP: 
+  - Investigator Class and Subclasses (seaw0rld)
+  - Adding Subclasses
+
+### TODO: 
+  - Add Investigator Class (this is on the back burner until I get the subclasses finished or more demand for this class)
+  - Add all magic items and update
+  - Add all equipment and update
+
 ### All Current Fixes and Changes
   - Updated and removed `weaponsAdd` to prevent up to 13 attacks being automatically added to the sheet. It now appears in the attack drop down
   - All bombs now use Int as the modifier to show the DC. 
@@ -34,24 +56,3 @@ Everything in this script has been updated to v13.2.1 for MPMB's Sheet and 1.4 o
   - Revamped House of Bishops spellcasting to change as little as possible. Now it only changes the `level` and `spells` array in `spellcatingList` and `spellcastingKnown`.
     - It now uses calcChanges.spellList to add the wizard evoc and conj spells to the class
   - A lot of wording and script changes to Warmage for readability
-
-### Added
-  - Alchemist Class and Subclasses Finished (written by seaw0rld)
-  - Captain Class and Subclasses Finished (written by seaw0rld)
-  - Craftsman Class and Subclasses Finished (originally written by aelartheelfrogue, updated by seaw0rld)
-  - Gunslinger Class and Subclasses (written by seaw0rld)
-  - Necromancer Class and Subclasses (written by seaw0rld)
-  - Martyr Class and Subclasses (written by trackatnite)
-  - Warden Class and Subclasses (written by nanur, edited/updated by trackatnite)
-  - Witch Class and Subclasses (written by PoetGod, edited/changed by trackatnite)
-  - Warmage Class and Subclasses (written by trackatnite)
-  - All spells (written by trackatnite)
-  
-### WIP: 
-  - Investigator Class and Subclasses (seaw0rld)
-  - Adding Subclasses
-
-### TODO: 
-  - Add Investigator Class
-  - Add all magic items and update
-  - Add all equipment and update
