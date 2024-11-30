@@ -30532,77 +30532,298 @@ AddSubClass("barbarian", "heavy metal", {
     }
 });
 
-// AddSubClass("barbarian", "muscle wizard", {
-//     regExpSearch : /^((?=.*(marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n))|((?=.*(warrior|fighter))(?=.*(feral|tribal))))((?=.*muscle)(?=.*wizard)).*$/i,
-//     subname : "Path of the Muscle Wizard",
-//     source : ["VSoS", 194],
-//     features : {
-//         "subclassfeature3" : {
-//             name : "Unarguable Wizardry",
-//             source : ["VSoS", 194],
-//             minlevel : 3,
-//             description : desc([
-//                 "I gain Adv. on Intimidation checks to convince others I'm a wizard",
-//                 "If some questions my legitimacy, I can rage for 1 rnd",
-//                 "This rage can't be extended and doesn't count against me",
-//                 "I can only attack the crea that provoked me and their allies"
-//             ])
-//         },
-//         "subclassfeature3.1" : {
-//             name : "\"Cantrips\"",
-//             source : ["VSoS", 194],
-//             minlevel : 3,
-//             description : desc([
-//                 'At 3rd level, I learn how to use "magic" and "cantrips"',
-//                 'I can cast "cantrips" a number of times equal to my Str mod per short/long rest', 
-//                 'While raging, I can cast "cantrips" at will. Casting in this way does not count against me',
-//                 'See page 3 notes for "spellcasting"'
-//             ]),
-//             usages : "Str mod per ",
-//             usagescalc : "event.value = Math.min(What('Str mod'), 0);",
-//             recovery : "short rest",
-//             action : [["bonus action", ""]],
-//             toNotesPage : [{
-//                 name : '"Cantrips"',
-//                 note : desc([
-//                     "\u2022 Mage Hand: As a bns action when I hit a crea w/ melee wea on my turn, I can use",
-//                     "  my hand to attempt to shove the target",
-//                     "\u2022 Shocking Grasp: As a bns action when I make an atk on my turn, I can hit the target",
-//                     "  harder than usual. On a hit, the target can't take any rea until the start of my next turn",
-//                     "\u2022 True Strike: As a bns action when I make an atk on my turn, I can truly strike my target.",
-//                     "  On a hit, I deal an extra 1d8 dmg to the target"
-//                 ]),
-//                 page3notes :  true
-//             }],
-//         },
-//         "subclassfeature6" : {
-//             name : '"Spells"',
-//             source : ["VSoS", 194],
-//             minlevel : 6,
-//             description : desc([
-//                 "I can every \"spell\" that ever existed",
-//                 "However, I've only prepared the \"spells\" found on page 3 notes",
-//                 "I can cast each \"spell\" once per long rest"
-//             ]),
-//             action : [["action", "Burning Hands"], ["bonus action", "Magic Missile (w/atk)"], ["reaction", "Shield"]],
-//             toNotesPage : [{
-//                 name : '"Spells"',
-//                 note : desc([
-//                     "\u2022 Burning Hands: As an action on my turn, I can make an",
-//                     "  unarmed strike vs a crea w/in reach. On a hit they take",
-//                     "  1d8 + my Str mod bludgeoning dmg",
-//                     "\u2022 Magic Missile: When I take the atk action on my turn",
-//                     "  I can use my bns action to make a ranged atk with the wea",
-//                     "  I'm holding. I have adv. on the atk roll",
-//                     "\u2022 Shield: When I am targeted by an atk, I can produce a shield",
-//                     "  I gain the shield bns to AC vs the atk even if I wasn't holding it",
-//                     "  If I'm hit, I can reduce the dmg by 1d12 + my Con mod"
-//                 ]),
-//                 page3notes :  true
-//             }]
-//         }
-//     }
-// })
+AddSubClass("barbarian", "muscle wizard", {
+    regExpSearch : /^((?=.*(marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n))|((?=.*(warrior|fighter))(?=.*(feral|tribal))))((?=.*muscle)(?=.*wizard)).*$/i,
+    subname : "Path of the Muscle Wizard",
+    source : ["VSoS", 194],
+    features : {
+        "subclassfeature3" : {
+            name : "Unarguable Wizardry",
+            source : ["VSoS", 194],
+            minlevel : 3,
+            description : desc([
+                "I gain Adv. on Intimidation checks to convince others I'm a wizard",
+                "If some questions my legitimacy, I can rage for 1 rnd",
+                "This rage can't be extended and doesn't count against me",
+                "I can only attack the crea that provoked me and their allies"
+            ])
+        },
+        "subclassfeature3.1" : {
+            name : "\"Cantrips\"",
+            source : ["VSoS", 194],
+            minlevel : 3,
+            description : desc([
+                'At 3rd level, I learn how to use "magic" and "cantrips"',
+                'I can cast "cantrips" a number of times equal to my Str mod per short/long rest', 
+                'While raging, I can cast "cantrips" at will. Casting in this way does not count against me',
+                'See page 3 notes for "spellcasting"'
+            ]),
+            usages : "Str mod per ",
+            usagescalc : "event.value = Math.max(What('Str mod'), 0);",
+            recovery : "short rest",
+            action : [["bonus action", ""]],
+            toNotesPage : [{
+                name : '"Cantrips"',
+                note : desc([
+                    "\u2022 Mage Hand: As a bns action when I hit a crea w/ melee wea on my turn, I can use",
+                    "  my hand to attempt to shove the target",
+                    "\u2022 Shocking Grasp: As a bns action when I make an atk on my turn, I can hit the target",
+                    "  harder than usual. On a hit, the target can't take any rea until the start of my next turn",
+                    "\u2022 True Strike: As a bns action when I make an atk on my turn, I can truly strike my target.",
+                    "  On a hit, I deal an extra 1d8 dmg to the target"
+                ]),
+                page3notes :  true
+            }],
+        },
+        "subclassfeature6" : {
+            name : '"Spells"',
+            source : ["VSoS", 195],
+            minlevel : 6,
+            description : desc([
+                "I can every \"spell\" that ever existed. However, I've only prepared the \"spells\"",
+                "found on page 3 notes. I can cast each \"spell\" once per long rest",
+            ]),
+            action : [["action", "Burning Hands"], ["bonus action", "Magic Missile (w/atk)"], ["reaction", "Shield"]],
+            toNotesPage : [{
+                name : '"Spells"',
+                note : desc([
+                    "\u2022 Burning Hands: As an action on my turn, I can make an",
+                    "  unarmed strike vs a crea w/in reach. On a hit they take",
+                    "  1d8 + my Str mod bludgeoning dmg",
+                    "\u2022 Magic Missile: When I take the atk action on my turn",
+                    "  I can use my bns action to make a ranged atk with the wea",
+                    "  I'm holding. I have adv. on the atk roll",
+                    "\u2022 Shield: When I am targeted by an atk, I can produce a shield",
+                    "  I gain the shield bns to AC vs the atk even if I wasn't holding it",
+                    "  If I'm hit, I can reduce the dmg by 1d12 + my Con mod"
+                ]),
+                page3notes :  true
+            }]
+        },
+        "subclassfeature10" : {
+            name : "Magic Resistance",
+            source : ["VSoS", 195],
+            minlevel : 10,
+            description : desc([
+                "While raging, I have resistance to damage from spells"
+            ]),
+            savetxt : { text : ["Resistance to spell dmg while raging"] }
+        },
+        "subclassfeature14" : {
+            name : "I Cast Fist",
+            source : ["VSoS", 195],
+            minlevel : 14,
+            description : desc([
+                "I can crush my enemies with my ultimate \"Spell\", Fist. While raging I can use",
+                "my bns action or action to make a melee atk roll w/ adv. vs a crea w/in reach",
+                "On a hit, it deals 8d8 + my Str mod bludg. dmg.",
+                "Once I use this ability, I can't do so again until I stop raging and begin a new one"
+            ]),
+            usages : 1,
+            recovery : "Rage",
+            weaponOptions : [{
+                regExpSearch : /\bfist\b/i,
+                name : "Fist",
+                source : ["VSoS", 195],
+                type : "Natural",
+                damage : [8,8, "bludgeoning"],
+                ability : 1,
+                abilitytodamage : true,
+                description : "Once per rage",
+                range : "Melee",
+                selectNow : true
+            }]
+        }
+    }
+})
+
+AddSubClass("barbarian", "rage mage", {
+    regExpSearch : /^((?=.*(marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n))|((?=.*(warrior|fighter))(?=.*(feral|tribal))))((?=.*rage)(?=.*mage)).*$/i,
+    subname : "Path of the Rage Mage",
+    source : ["VSoS", 196],
+    abilitySave : 6,
+    spellcastingFactor : 3,
+    spellcastingList : {
+        "class" : "sorcerer",
+        level : [0,4],
+        school : ["Evoc", "Trans"]
+    },
+    spellcastingKnown : {
+        cantrips : [0, 0, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+        spells : [0, 0, 2, 3, 3, 3, 4, 4, 4, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9]
+    },
+    features : {
+        "subclassfeature3" : {
+            name : "Arcane Intuition",
+            source : ["VSoS", 196],
+            minlevel : 3,
+            description : desc([
+                "I gain gain proficiency in Arcana",
+                "Additionally, I can use Con instead of Int for Arcana checks"
+            ]),
+            skills : ["Arcana"],
+            addMod : { type : "skill", field : "Arcana", mod : "max(Con-Int|0)", text: "I can use Constitution instead of Intelligence for Arcana checks"}
+        },
+        "subclassfeature3.1" : {
+            name : "Spellcasting",
+            source : ["VSoS", 196],
+            minlevel : 3,
+            description : desc([
+                "While raging, I can cast and concentrate on known sorcerer cantrips/spells, using",
+                "Charisma as my spellcasting ability. Additionally, casting a spell on my turn",
+                "counts as atking a hostile crea for the purposes of maintaining my rage",
+            ]),
+            spellcastingBonus : [{
+                name : "From any school",
+                "class" : "sorcerer",
+                level : [1,4],
+                times : levels.map(function(n) {
+                    return n < 3 ? 0 : n < 8 ? 1 : n < 14 ? 2 : n < 20 ? 3 : 4
+                })
+            }]
+        },
+        "subclassfeature6" : {
+            name : "Arcane Rampage",
+            source : ["VSoS", 197],
+            minlevel : 6,
+            description : desc([
+                "If I take the atk action while raging and atk recklessly, I can",
+                "use my bns action to cast a spell in place of one of my atks.",
+                "The spell must have a casting time of 1 action or bns action"
+            ]),
+            action : ["bonus action", " (in rage)"]
+        },
+        "subclassfeature10" : {
+            name : "Supernatural Exploits",
+            source : ["VSoS", 197],
+            minlevel : 10,
+            description : desc([
+                "I can cast the following spells even if I'm not raging, at will, w/o material comp. or SS:",
+                "\u25C6 darkvision, feather fall, jump, see invisibility",
+                "Casting these spells this way has a target of self"
+            ]),
+            spellcastingBonus : [{
+                name : "Supernatural Exploits",
+                spells : ["darkvision", "feather fall", "jump", "see invisibility"],
+                selection : ["darkvision", "feather fall", "jump", "see invisibility"],
+                times : 4,
+                firstCol : "atwill"
+            }],
+            spellChanges : {
+                "darkvision" : {
+                    range : "Self",
+                    compMaterial : "",
+                    changes : "Casting darkvision at will has a target of self"
+                },
+                "feather fall" : {
+                    range : "Self",
+                    compMaterial : "",
+                    changes : "Casting feather fall at will has a target of self"
+                },
+                "jump" : {
+                    range : "Self",
+                    compMaterial : "",
+                    changes : "Casting jump at will has a target of self"
+                },
+                "see invisibility" : {
+                    range : "Self",
+                    compMaterial : "",
+                    changes : "Casting see invisibility at will has a target of self"
+                }
+            }
+        },
+        "subclassfeature14" : {
+            name : "Eldritch Explosions",
+            source : ["VSoS", 197],
+            minlevel : 14,
+            description : desc([
+                "Once per turn when I hit a crea w/ a melee atk, I can expend a SS to create an explosion",
+                "I choose w/in 10 ft of me. Each crea other than myself w/in a 10-ft rad. of that point",
+                "must make a Dex save vs my Spell Save DC, taking 2d6/SS force dmg; save halves",
+            ])
+        }
+    }
+})
+
+AddSubClass("barbarian", "tranquility", {
+    regExpSearch : /^((?=.*(marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n))|((?=.*(warrior|fighter))(?=.*(feral|tribal))))(?=.*tranquility).*$/i,
+    subname : "Path of Tranquility",
+    source : ["VSoS", 197],
+    features : {
+        "subclassfeature3" : {
+            name : "Mantra",
+            source : ["VSoS", 197],
+            minlevel : 3,
+            description : desc([
+                "When I take the Dodge action on my turn, it counts as atking",
+                "a hostile crea for the purposes of maintaining my rage"
+            ])
+        },
+        "subclassfeature3.1" : {
+            name : "Anticipate",
+            source : ["VSoS", 197],
+            minlevel : 3,
+            description : desc([
+                "Whenever I do not make an atk roll on my turn, I can prepare for blows",
+                "Until the start of my next turn, whenever a crea makes a melee atk vs me",
+                "I can use my rea. to make one melee wea. atk against them"
+            ]),
+            action : ["reaction", ""]
+        },
+        "subclassfeature6" : {
+            name : "Battle Trance",
+            source : ["VSoS", 197],
+            minlevel : 6,
+            description : desc([
+                "Whenever I use my rea. to make an atk, I can make two atks instead of 1"
+            ])
+        },
+        "subclassfeature10" : {
+            name : "Tranquility",
+            source : ["VSoS", 197],
+            minlevel : 10,
+            description : desc([
+                "While raging, I can cast calm emotions, enthrall, and sanctuary once per long rest",
+                "Con is my spellcasting ability, and I can do so w/o components or expending a SS",
+            ]),
+            spellcastingBonus : [{
+                name : "Tranquility",
+                spells : ["calm emotions", "enthrall", "sanctuary"],
+                selection : ["calm emotions", "enthrall", "sanctuary"],
+                times : 3,
+                spellcastingAbility : 3,
+                firstCol : "oncelr"
+            }],
+            action : ["action", " (in rage)"],
+            spellChanges : {
+                "calm emotions" : {
+                    components : "",
+                    compMaterial : "",
+                    changes : "I can cast calm emotions once per long rest without components or expending a spell slot"
+                },
+                "enthrall" : {
+                    components : "",
+                    compMaterial : "",
+                    changes : "I can cast enthrall once per long rest without components or expending a spell slot"
+                },
+                "sanctuary" : {
+                    components : "",
+                    compMaterial : "",
+                    changes : "I can cast sanctuary once per long rest without components or expending a spell slot"
+                }
+            }
+        },
+        "subclassfeature14" : {
+            name : "Zen State",
+            source : ["VSoS", 197],
+            minlevel : 14,
+            description : desc([
+                "Whenever a crea misses me w/ a melee atk, I gain a +2 bonus to AC (max +6)",
+                "This bonus resets to 0 if I take dmg or at the start of my turn"
+            ])
+        }
+    }
+})
 
 // * Monk subclasses
 AddSubClass("monk", "way of the bow", {
