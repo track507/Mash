@@ -30825,6 +30825,149 @@ AddSubClass("barbarian", "tranquility", {
     }
 })
 
+// * Bard subclasses
+AddSubClass("bard", "college of cantors", {
+    regExpSearch : /^(?=.*(college|bard|minstrel|troubadour|jongleur))(?=.*cantors).*$/i,
+    subname : "College of Cantors",
+    source : ["VSoS", 198],
+    features : {
+        "subclassfeature3" : {
+            name : "Heavenly Voice",
+            source : ["VSoS", 198],
+            minlevel : 3,
+            description : desc([
+                "I learn thaumaturgy which counts as a bard spell, and doesn't count against me"
+            ]),
+            spellcastingBonus : [{
+                name : "Heavenly Voice",
+                spells : ["thaumaturgy"],
+                selection : ["thaumaturgy"],
+                times : 1
+            }]
+        },
+        "subclassfeature3.1" : {
+            name : "Healing Hymn",
+            source : ["VSoS", 198],
+            minlevel : 3,
+            description : desc([
+                "When I cast a spell of 1st lvl or higher that restores hp, I can expend a Bardic Inspiration",
+                "Each crea that regains hp can add the die + half my bard lvl to the number of hp restored"
+            ]),
+            additional : levels.map(function(n) {
+                bardIn = ["d6", "d6", "d6", "d6", "d8", "d8", "d8", "d8", "d8", "d10", "d10", "d10", "d10", "d10", "d12", "d12", "d12", "d12", "d12", "d12"];
+                // Offset for index based 0, add half the bard level in favor of the player. 
+                return [n+1] + (n < 14 ? " (Bardic Inspiration)" : "") + " + " + Math.ceil(n/2) + " hp restored"; 
+            })
+        },
+        "subclassfeature6" : {
+            name : "Angelic Chorus",
+            source : ["VSoS", 198],
+            minlevel : 6,
+            description : desc([
+                "When I cast thaumaturgy, I can create the following additional effects:",
+                "\u2022 As part of casting this spell, I can use the Help action to aid 2 allies",
+                "  If I aid them with an atk vs a crea, the target of the atk can be w/in 30 ft",
+                "  instead of 5 ft. The target must be visible or w/in audible distance",
+                "\u2022 I ward 1 willing crea w/in 30 ft for 1 min; Only 1 crea can be warded at a time",
+                "  When a crea hits an atk vs the warded crea, the target can use its rea to deal radiant",
+                "  dmg equal to half my bard lvl to the atker"
+            ])
+        },
+        "subclassfeature14" : {
+            name : "Song of the Divines",
+            source : ["VSoS", 198],
+            minlevel : 14,
+            description : desc([
+                "I can use Healing Hymn without expending a use of my Bardic Inspiration"
+            ])
+        }
+    }
+});
+
+AddSubClass("bard", "college of graffiti", {
+    regExpSearch : /^(?=.*(college|bard|minstrel|troubadour|jongleur))(?=.*graffiti).*$/i,
+    subname : "College of Graffiti",
+    source : ["VSoS", 199],
+    features : {
+        "subclassfeature3" : {
+            name : "Bonus Proficiencies",
+            source : ["VSoS", 199],
+            minlevel : 3,
+            description : desc([
+                "I gain proficiency with painter's supplies and either Stealth or Sleight of hand"
+            ]),
+            toolProfs : ["Painter's Supplies"],
+            choices : ["Stealth Proficiency", "Sleight of Hand Proficiency"],
+            "stealth proficiency" : {
+                name : "Stealth Proficiency",
+                description : desc([
+                    "I gain proficiency with Stealth"
+                ]),
+                skills : ["Stealth"]
+            },
+            "sleight of hand proficiency" : {
+                name : "Sleight of Hand Proficiency",
+                description : desc([
+                    "I gain proficiency with Sleight of Hand"
+                ]),
+                skills : ["Sleight of Hand"]
+            }
+        },
+        "subclassfeature3.1" : {
+            name : "Street Art",
+            source : ["VSoS", 199],
+            minlevel : 3,
+            description : desc([
+                "I learn the tag cantrip, and doesn't count against me",
+                "When I cast tag, I can expend a use of Bardic Inspiration to spray a mural",
+                "For the next min, all allies w/in 30 ft that can see the mural gain the following:",
+                "\u2022 +1 bonus to ability checks, atk rolls, and saving throws",
+                "\u2022 This can stack up to a +3 bonus"
+            ]),
+            spellcastingBonus : [{
+                name : "Street Art",
+                spells : ["tag"],
+                selection : ["tag"],
+                times : 1
+            }]
+        },
+        "subclassfeature6" : {
+            name : "Signature Mark",
+            source : ["VSoS", 199],
+            minlevel : 6,
+            description : desc([
+                "As a bns action, I can mark a crea w/in 5 ft",
+                "I make spell atk vs the crea., and on a hit, the crea. is marked",
+                "I deal +1d8 to the dmg roll when I hit a marked crea w/ a melee wpn atk",
+                "When an ally makes an atk vs a marked crea, I can use my rea. to grant adv.",
+            ]),
+            calcChanges : {
+                atkAdd : [
+                    function(fields, v) {
+                        if(fields.Proficiency && !v.isSpell && !v.isDC && !v.isRangedWeapon && v.isMeleeWeapon) {
+                            fields.Description += (fields.Description ? "; " : "") + "Once per turn +1d8 dmg vs marked crea."
+                        }
+                    }
+                ]
+            },
+            usages : 1,
+            recovery : "Turn"
+        },
+        "subclassfeature14" : {
+            name : "Kaleidoscopic Spray",
+            source : ["VSoS", 199],
+            minlevel : 14,
+            description : desc([
+                "Each crea I choose w/in 15 ft cone must make a Dex save",
+                "On a fail, the crea. is blinded until the end of its next turn",
+                "Each crea in the area is marked by me regardless if it succeeds the save",
+            ]),
+            usages : 1,
+            recovery : "short rest"
+        }
+    }
+})
+
 // * Monk subclasses
 AddSubClass("monk", "way of the bow", {
     regExpSearch : /^(?=.*bow)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
