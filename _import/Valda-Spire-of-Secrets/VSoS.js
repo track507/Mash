@@ -28497,7 +28497,30 @@ ClassList["warmage"] = {
 	subclasses : ["Warmage House", []],
     attacks : [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     abilitySave : 4,
-    spellcastingFactor : 3, //when multiclassing, use 1/3 factor
+    spellcastingFactor : 3, // used for multiclassing
+    spellcastingTable : [   // Define a custom spell table so that the house of bishops can overwrite this with it's own.
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 0
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 1
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 2
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 3
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 4
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 5
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 6
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 7
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 8
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 9
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 10
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 11
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 12
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 13
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 14
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 15
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 16
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 17
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 18
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 19
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]  // level 20
+    ],
     spellcastingKnown : {
         cantrips : [4,4,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,10],
 		spells : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -29438,6 +29461,37 @@ AddSubClass("warmage", "house of bishops", {
 	subname : "House of Bishops",
 	fullname : "House of Bishops",
 	source : [["VSoS", 165]],
+    spellcastingTable : [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 0
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 1
+        [0, 0, 0, 0, 0, 0, 0, 0, 0], // level 2
+        [2, 0, 0, 0, 0, 0, 0, 0, 0], // level 3
+        [3, 0, 0, 0, 0, 0, 0, 0, 0], // level 4
+        [3, 0, 0, 0, 0, 0, 0, 0, 0], // level 5
+        [3, 0, 0, 0, 0, 0, 0, 0, 0], // level 6
+        [4, 2, 0, 0, 0, 0, 0, 0, 0], // level 7
+        [4, 2, 0, 0, 0, 0, 0, 0, 0], // level 8
+        [4, 2, 0, 0, 0, 0, 0, 0, 0], // level 9
+        [4, 3, 0, 0, 0, 0, 0, 0, 0], // level 10
+        [4, 3, 0, 0, 0, 0, 0, 0, 0], // level 11
+        [4, 3, 0, 0, 0, 0, 0, 0, 0], // level 12
+        [4, 3, 2, 0, 0, 0, 0, 0, 0], // level 13
+        [4, 3, 2, 0, 0, 0, 0, 0, 0], // level 14
+        [4, 3, 2, 0, 0, 0, 0, 0, 0], // level 15
+        [4, 3, 3, 0, 0, 0, 0, 0, 0], // level 16
+        [4, 3, 3, 0, 0, 0, 0, 0, 0], // level 17
+        [4, 3, 3, 0, 0, 0, 0, 0, 0], // level 18
+        [4, 3, 3, 1, 0, 0, 0, 0, 0], // level 19
+        [4, 3, 3, 1, 0, 0, 0, 0, 0]  // level 20
+    ],
+    spellcastingKnown : {
+        cantrips : [4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 10],
+		spells : [0, 0, 2, 3, 3, 3, 4, 4, 4, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9]
+    },
+    spellcastingList : {
+        "class" : "warmage",
+        level : [0, 4]
+    },
 	features : {
 		"subclassfeature3" : {
 			name : "Spellcasting",
@@ -29459,14 +29513,6 @@ AddSubClass("warmage", "house of bishops", {
                     },
                 ]
             },
-			eval: function() { 
-				ClassList.warmage.spellcastingKnown.spells = [0, 0, 2, 3, 3, 3, 4, 4, 4, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9];
-				ClassList.warmage.spellcastingList.level = [0, 4];		
-			},
-			removeeval: function() {
-				ClassList.warmage.spellcastingKnown.spells = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-                ClassList.warmage.spellcastingList.level = [0, 0]
-			},
 			spellcastingBonus : [{ // the spells gained at level 3, 8, 14, 20
 				name : "From any school",
 				"class" : "wizard",
