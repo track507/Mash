@@ -31206,25 +31206,17 @@ AddSubClass("bard", "masks", {
                 eval : function() {
                     CurrentSpells["bard-archmage"] = {
                         name : "Archmage",
-                        ability : 6,
-                        list : { 
-                            spells : ["gust of wind", "scorching ray", "lightning bolt", "protection from energy", "dimension door", "ice storm", "scrying", "wall of stone"]
-                        },
-                        known : {cantrips : 0, spells : 'list'},
+                        ability : "bard",
                         bonus : {
-                            bon1 : {
-                                name : 'Just select "Full List"',
-                                spells : ["fire bolt"],
-                                selection : ["fire bolt"],
-                                times : 1
-                            },
-                            bon2 : {
-                                name : 'on the bottom left',
-                                spells : []
-                            }
+                            "archmage mask" : [{
+                                name : 'Archmage Mask',
+                                spells : ["fire bolt", "gust of wind", "scorching ray", "lightning bolt", "protection from energy", "dimension door", "ice storm", "scrying", "wall of stone"],
+                                selection : ["fire bolt", "gust of wind", "scorching ray", "lightning bolt", "protection from energy", "dimension door", "ice storm", "scrying", "wall of stone"],
+                                times : 9
+                            }],
                         },
-                        typeList : 4,
                         refType : "class",
+                        typeSp : "class",
                         allowUpCasting : true,
                         firstCol : ""
                     }
@@ -31234,20 +31226,6 @@ AddSubClass("bard", "masks", {
                     delete CurrentSpells["bard-high priest"];
                     SetStringifieds('spells'); CurrentUpdates.types.push('spells');
                 },
-                calcChanges : {
-                    spellAdd : [
-                        function(spellKey, spellObj, spName) {
-                            if(spName === "bard-archmage") {
-                                if(spellKey === "fire bolt") {
-                                    spellObj.firstCol = "atwill"
-                                }
-                                else {
-                                    spellObj.firstCol = "markedbox"
-                                }
-                            }
-                        }
-                    ]
-                }
             },
             "devil" : {
                 name : "Devil",
@@ -31334,27 +31312,19 @@ AddSubClass("bard", "masks", {
                 eval : function() {
                     CurrentSpells["bard-high priest"] = {
                         name : "High Priest",
-                        ability : 6,
-                        list : { 
-                            spells : ["aid", "lesser restoration", "mass healing word", "tongues", "banishment", "death ward", "greater restoration", "mass cure wounds"],
-                        },
-                        known : {cantrips : 0, spells : 'list'},
+                        ability : "bard",
                         bonus : {
-                            bon1 : {
-                                name : 'Just select "Full List"',
-                                spells : ["sacred flame"],
-                                selection : ["sacred flame"],
-                                times : 1
-                            },
-                            bon2 : {
-                                name : 'on the bottom left',
-                                spells : []
-                            }
+                            "high priest mask" : [{
+                                name : 'High Priest Mask',
+                                spells : ["sacred flame", "aid", "lesser restoration", "mass healing word", "tongues", "banishment", "death ward", "greater restoration", "mass cure wounds"],
+                                selection : ["sacred flame", "aid", "lesser restoration", "mass healing word", "tongues", "banishment", "death ward", "greater restoration", "mass cure wounds"],
+                                times : 9
+                            }],
                         },
-                        typeList : 4,
                         refType : "class",
+                        typeSp : "class",
+                        firstCol : "",
                         allowUpCasting : true,
-                        firstCol : ""
                     }
                     SetStringifieds('spells'); CurrentUpdates.types.push('spells');
                 },
@@ -31362,20 +31332,6 @@ AddSubClass("bard", "masks", {
                     delete CurrentSpells["bard-high priest"];
                     SetStringifieds('spells'); CurrentUpdates.types.push('spells');
                 },
-                calcChanges : {
-                    spellAdd : [
-                        function(spellKey, spellObj, spName) {
-                            if(spName === "bard-high priest") {
-                                if(spellKey === "sacred flame") {
-                                    spellObj.firstCol = "atwill"
-                                } 
-                                else {
-                                    spellObj.firstCol = "markedbox"
-                                }
-                            }
-                        }
-                    ]
-                }
             },
             "lord": {
                 name: "Lord",
