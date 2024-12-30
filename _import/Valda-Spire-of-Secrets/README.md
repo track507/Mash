@@ -30,8 +30,8 @@ Everything in this script has been updated to v13.2.1 for MPMB's Sheet and 1.4 o
   - Warden Class and Subclasses (written by nanur, edited/updated by trackatnite)
   - Witch Class and Subclasses (written by PoetGod, edited/changed by trackatnite)
   - Warmage Class and Subclasses (written by trackatnite)
-  - All spells (written by trackatnite)
-  - Barbarian Subclasses
+  - All spells (written by u/Anasurimborlnnrilatas, updated/edited by trackatnite)
+  - Subclasses (written ny trackatnite)
   
 ### WIP: 
   - Investigator Class and Subclasses (seaw0rld)
