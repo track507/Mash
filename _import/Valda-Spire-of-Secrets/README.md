@@ -16,9 +16,12 @@ I am also going to go through the process of adding each class/subclass and ensu
 I am going page by page and adding/updating content. I will be providing updates through the README.md 
 
 ## Important
+  - **THIS ONLY ADDS THE CONTENT FROM VALDA'S SPIRE OF SECRETS V1.4, NOT THE "COMPLETE" VERSIONS OF MAGE HAND PRESS' BOOKS**
+    - This is because Valda does not include all of a class's guide, and doesn't include some of the content from the complete class' books.
+    - I will make separate scripts for the separate scripts for the complete class guide's after I'm finished with Valda's
   - Due to the "witch" being considered part of the sorcerer `regExpSearch`, I've overwritten the regEx to only include sorcerer so that the witch class can be properly added.
   - I've also overwritten the tempest domain cleric `regExpSearch` so that the destruction domain cleric can be added
-  - Due to specific wording for the Investigator archivist subclass "witness" is specifically include (whatever that may mean)
+  - Due to specific wording for the Investigator archivist subclass "witness" is specifically included(whatever that may mean)
 
 Everything in this script has been updated to v13.2.1 for MPMB's Sheet and 1.4 of the PDF.
 
