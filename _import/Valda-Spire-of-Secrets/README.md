@@ -17,6 +17,8 @@ I am going page by page and adding/updating content. I will be providing updates
 
 ## Important
   - Due to the "witch" being considered part of the sorcerer `regExpSearch`, I've overwritten the regEx to only include sorcerer so that the witch class can be properly added.
+  - I've also overwritten the tempest domain cleric `regExpSearch` so that the destruction domain cleric can be added
+  - Due to specific wording for the Investigator archivist subclass "witness" is specifically include (whatever that may mean)
 
 Everything in this script has been updated to v13.2.1 for MPMB's Sheet and 1.4 of the PDF.
 
@@ -25,34 +27,20 @@ Everything in this script has been updated to v13.2.1 for MPMB's Sheet and 1.4 o
   - Captain Class and Subclasses Finished (written by seaw0rld)
   - Craftsman Class and Subclasses Finished (originally written by aelartheelfrogue, updated by seaw0rld)
   - Gunslinger Class and Subclasses (written by seaw0rld)
+  - Investigator Class (written by trackatnite)
   - Necromancer Class and Subclasses (written by seaw0rld)
   - Martyr Class and Subclasses (written by trackatnite)
   - Warden Class and Subclasses (written by nanur, edited/updated by trackatnite)
   - Witch Class and Subclasses (written by PoetGod, edited/changed by trackatnite)
   - Warmage Class and Subclasses (written by trackatnite)
   - All spells (written by u/Anasurimborlnnrilatas, updated/edited by trackatnite)
-  - Subclasses (written ny trackatnite)
+  - Subclasses (written by trackatnite)
   
 ### WIP: 
-  - Investigator Class and Subclasses (seaw0rld)
   - Adding Subclasses
+   - Currently Adding Druid
 
 ### TODO: 
   - Add Investigator Class (this is on the back burner until I get the subclasses finished or more demand for this class)
   - Add all magic items and update
   - Add all equipment and update
-
-### All Current Fixes and Changes
-  - Updated and removed `weaponsAdd` to prevent up to 13 attacks being automatically added to the sheet. It now appears in the attack drop down
-  - All bombs now use Int as the modifier to show the DC. 
-    - Primed bombs can now choose between Str, Dex, or Int, whichever is higher
-    - Non-primed bombs will now use Str/Dex instead of Int to determine damage bonus
-  - Non-damaging bombs now use `ability : 0` and `abilitytodamage : false` to stop the sheet from adding damage
-    - Added `excludeBombDamage` to prevent Int being added to damage bonus. If this is true, no calculation is done and it will use whatever is in the `damage` array.
-  - Fixed Xenoalchemist "Oversized Arms" for "Alchemy Golem" not changing newly added weapons' range correctly.
-    - Each choice that adds a weapon now calls on a `commoneval` and "Oversized Arms" now calls on a `commonremoveeval` to reset ranges with the exception of "Tentacles"
-  - Removed `weaponsAdd` from "Underbarrel Grenade Launcher"
-  - Fixed `CompanionList` for Mystical Companion House of Bishops feature not getting familiar notes, attributes, header, or actions.
-  - Revamped House of Bishops spellcasting to change as little as possible. Now it only changes the `level` and `spells` array in `spellcatingList` and `spellcastingKnown`.
-    - It now uses calcChanges.spellList to add the wizard evoc and conj spells to the class
-  - A lot of wording and script changes to Warmage for readability
