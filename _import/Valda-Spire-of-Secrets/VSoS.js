@@ -29153,6 +29153,7 @@ AddSubClass("witch", "black magic", {
 			minlevel : 3,
 			additional : "See third page",
 			spellcastingExtra : ["exhume", "inflict wounds", "gentle repose", "magic weapon", "animate dead", "vampiric touch", "blight", "death ward", "cloudkill", "contagion"],
+            spellcastingExtraApplyNonconform : true,
 			"decay" : {
 				name : "Decay",
 				extraname : "Black Magic Hex",
@@ -29217,6 +29218,7 @@ AddSubClass("witch", "blood magic", {
 			minlevel : 3,
 			additional : "See third page",
 			spellcastingExtra : ["hellish rebuke", "hollowing curse", "melf's acid arrow", "hold person", "ruby-eye curse", "vampiric touch", "blight", "dominate beast", "dominate person", "hold monster"],
+            spellcastingExtraApplyNonconform : true,
 			"blood curse" : {
 				name : "Blood Curse",
 				extraname : "Blood Magic Hex",
@@ -29299,7 +29301,8 @@ AddSubClass("witch", "green magic", {
 			minlevel : 3,
 			additional : "See third page",
 			spellcastingExtra : ["entangle", "goodberry", "barkskin", "locate animals or plants", "conjure animals", "plant growth", "conjure woodland beings", "stoneskin", "awaken", "tree stride"],
-			"elder tongue" : {
+			spellcastingExtraApplyNonconform : true,
+            "elder tongue" : {
 				name : "Elder Tongue",
 				extraname : "Green Magic Hex",
 				source : ["VSoS", 184],
@@ -29367,7 +29370,8 @@ AddSubClass("witch", "purple magic", {
 			minlevel : 3,
 			additional : "See third page",
 			spellcastingExtra : ["charm person", "silent image", "enthrall", "invisibility", "hypnotic pattern", "major image", "confusion", "private sanctum", "modify memory", "seeming"],
-			"hallucination" : {
+			spellcastingExtraApplyNonconform : true,
+            "hallucination" : {
 				name : "Hallucination",
 				extraname : "Purple Magic Hex",
 				source : ["VSoS", 185],
@@ -29433,7 +29437,8 @@ AddSubClass("witch", "red magic", {
 			minlevel : 3,
 			additional : "See third page",
 			spellcastingExtra : ["burning hands", "magic missile", "melf's acid arrow", "scorching ray", "fireball", "protection from energy", "ice storm", "wall of fire", "cone of cold", "telekinesis"],
-			"imperil" : {
+			spellcastingExtraApplyNonconform : true,
+            "imperil" : {
 				name : "Imperil",
 				extraname : "Red Magic Hex",
 				source : ["VSoS", 186],
@@ -29481,7 +29486,8 @@ AddSubClass("witch", "steel magic", {
 			minlevel : 3,
 			additional : "See third page",
 			spellcastingExtra : ["heroism", "shield", "heat metal", "magic weapon", "blink", "haste", "death ward", "freedom of movement", "flame strike", "telekinesis"],
-			"malevolence" : {
+			spellcastingExtraApplyNonconform : true,
+            "malevolence" : {
 				name : "Malevolence",
 				extraname : "Steel Magic Hex",
 				source : ["VSoS", 187],
@@ -29584,7 +29590,8 @@ AddSubClass("witch", "tea magic", {
 			minlevel : 3,
 			additional : "See third page",
 			spellcastingExtra : ["tasha's hideous laughter", "sanctuary", "augury", "calm emotions", "clairvoyance", "sending", "divination", "private sanctum", "legend lore", "scrying"],
-			"tasseography" : {
+			spellcastingExtraApplyNonconform : true,
+            "tasseography" : {
 				name : "Tasseography",
 				extraname : "Tea Magic Hex",
 				source : ["VSoS", 188],
@@ -29647,7 +29654,8 @@ AddSubClass("witch", "technicolor magic", {
 			minlevel : 3,
 			additional : "See third page",
 			spellcastingExtra : ["color spray", "speak with animals", "animal messenger", "warding bond", "fly", "sending", "freedom of movement", "mandy's marvelous dress", "awaken", "teleportation circle"],
-			"musical interlude" : {
+			spellcastingExtraApplyNonconform : true,
+            "musical interlude" : {
 				name : "Musical Interlude",
 				extraname : "Technicolor Magic Hex",
 				source : ["VSoS", 189],
@@ -29702,7 +29710,8 @@ AddSubClass("witch", "white magic", {
 			minlevel : 3,
 			additional : "See third page",
 			spellcastingExtra : ["bless", "cure wounds", "lesser restoration", "prayer of healing", "beacon of hope", "revivify", "death ward", "guardian of faith", "mass cure wounds", "raise dead"],
-			"remedy" : {
+			spellcastingExtraApplyNonconform : true,
+            "remedy" : {
 				name : "Remedy",
 				extraname : "White Magic Hex",
 				source : ["VSoS", 189],
