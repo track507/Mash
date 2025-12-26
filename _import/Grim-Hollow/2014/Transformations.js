@@ -32,7 +32,7 @@ FeatsList["aberrant horror level 1"] = {
 		{
 			name: "Aberrant Horror",
 			source: [["GH", 33]],
-			note: desc(AberrantHorror)
+			note: desc(AberrantHorror1)
 				.replace(/>>(.*?)<</g, function (a, match) {
 					return match.toUpperCase();
 				})
@@ -53,7 +53,7 @@ FeatsList["aberrant horror level 1"] = {
 			selectNow: true,
 		},
 	],
-	prereqeval: function (v) {
+	prereqeval: function () {
 		return Number(What("Con Mod")) > 12;
 	},
 };
@@ -103,7 +103,7 @@ FeatsList["aberrant horror level 2"] = {
 				.replace(/you /gi, "I "),
 		},
 	],
-	prereqeval: function (v) {
+	prereqeval: function () {
 		return CurrentFeats.known.indexOf("aberrant horror level 1") !== -1;
 	},
 	speed: {
@@ -126,5 +126,3 @@ FeatsList["aberrant horror level 2"] = {
 		],
 	},
 };
-
-const a = [];

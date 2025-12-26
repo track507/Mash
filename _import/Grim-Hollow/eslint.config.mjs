@@ -108,6 +108,23 @@ export default [
 				undefined: "readonly",
 				NaN: "readonly",
 				Infinity: "readonly",
+
+				// MPMB Character Sheet API globals
+				RequiredSheetVersion: "readonly",
+				SourceList: "readonly",
+				RaceList: "readonly",
+				AddSubClass: "readonly",
+				desc: "readonly",
+				FightingStyles: "readonly",
+				SpellsList: "readonly",
+				WeaponsList: "readonly",
+				MagicItemsList: "readonly",
+				classes: "readonly",
+				levels: "readonly",
+				What: "readonly",
+				genericSpellDmgEdit: "readonly",
+				FeatsList: "readonly",
+				CurrentFeats: "readonly",
 			},
 
 			parserOptions: {
@@ -142,7 +159,7 @@ export default [
 					vars: "all",
 					args: "after-used",
 					argsIgnorePattern: "^_",
-					varsIgnorePattern: "^_",
+					varsIgnorePattern: "^_|^iFileName$",
 				},
 			],
 			"require-atomic-updates": "off", // async/await doesn't exist in ES5

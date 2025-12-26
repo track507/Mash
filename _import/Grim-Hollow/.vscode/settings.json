@@ -26,7 +26,5 @@
 		"terminal.ansiBlue": "#0000ff",
 		"terminal.ansiCyan": "#00ffff"
 	},
-	"eslint.validate": [
-		"javascript"
-	]
+  	"eslint.validate": ["javascript"]
 }
