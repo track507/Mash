@@ -126,3 +126,63 @@ FeatsList["aberrant horror level 2"] = {
 		],
 	},
 };
+
+var AberrantHorror3 = [
+	">>Boon: Wings<<",
+	"As a bns action, I can manifest a pair of distorted, fleshy wings. I gain a fly speed equal to my current speed",
+	"These wings recede after 10 min. I can reabsorb them as a bns action on my turn, and they reabsorb",
+	"automatically if I am knocked unconscious. I can manifest my wings while wearing medium or light armor",
+	"if it is made to accommodate them. I cannot manifest my wings while wearing heavy armor",
+	"Once I use this Adaptation, I cannot use it again until I complete a short rest",
+	">>Boon: Additional Tendrils<<",
+	"Prerequisite: Otherworldly Tendrils",
+	"I am able to grow an additional tendril. On subsequent turns, I may use a bns action to atk with each tendril",
+	"I have grown. The tendrils can all atk the same target or different ones. Make a separate atk roll for each tendril",
+	"When I reach the 4th lvl of this transformation, the number of tendrils I can manifest is increased to three",
+	">>Boon: Enhanced Hypertrophy<<",
+	"I may roll a d8 in place of normal dmg for unarmed strikes. The base dmg dice for my adaptations, like",
+	"Efficient Killer and Otherworldly Tendrils becomes one base die higher. For example, an adaptation that deals",
+	"2d6 dmg would become 2d8 dmg instead",
+	">>Flaw: Unstable Existence<<",
+	"The nature of magic is beginning to unravel my material form. Whenever I roll a nat 1, 2, or 3 on a saving",
+	"throw against a spell or magical ability, I reveal my Hideous Appearance",
+];
+
+FeatsList["aberrant horror level 3"] = {
+	name: "Aberrant Horror (Level 3)",
+	source: [["GH", 35]],
+	description:
+		"I gain the Wings, Additional Tendrils, and Enhanced Hypertrophy boons, as well as the Unstable Existence flaw, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "Aberrant Horror",
+			source: [["GH", 35]],
+			note: desc(AberrantHorror3)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("aberrant horror level 2") !== -1;
+	},
+	speed: {
+		fly: { spd: "walk", enc: 0 },
+	},
+	weaponOptions: [
+		{
+			baseWeapon: "unarmed strike",
+			regExpSearch: /^(?=.*enhanced)(?=.*hypertrophy).*$/i,
+			name: "Enhanced Hypertrophy",
+			source: [["GH", 36]],
+			damage: [1, 8, "Bludgeoning"],
+			description: "Enhanced unarmed strike damage",
+			selectNow: true,
+		},
+	],
+	action: [["bonus action", "Wings (manifest/reabsorb)"]],
+};
