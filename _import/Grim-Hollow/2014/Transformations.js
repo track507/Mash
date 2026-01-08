@@ -106,6 +106,7 @@ FeatsList["aberrant horror level 1"] = {
 			amendTo: "Unstable Mutation Table",
 		},
 	],
+	scorestxt: "+2 Con, +1 Str (max 16)",
 	weaponOptions: [
 		{
 			baseWeapon: "unarmed strike",
@@ -662,4 +663,412 @@ FeatsList["aberrant horror: extremophilic conditioning (level 4)"] = {
 		);
 	},
 	action: [["action", "Extremophilic Conditioning (Metamorphosis)"]],
+};
+
+var Fiend1_GiftsOfDamnation = [
+	"\u25C6 >>Boon: Gifts of Damnation<<",
+	"  I have acquired the ability to bind my first mortal to my will. I can create",
+	"  a contract to bind their soul to me, feeding on its power. However, I will",
+	"  not gain the benefits of this gift until I have bound a mortal with a contract",
+	"  To bind a mortal's soul and grant them a Gift of Damnation, I must first",
+	"  create a contract for that gift. A contract requires magical ink and paper",
+	"  worth 50gp for each Transformation level I have acquired, and I must meet",
+	"  the prerequisites listed. In addition, the mortal and I must both sign the",
+	"  contract willingly, fully aware of the costs involved. Once signed,",
+	"  Netherworld entities give the benefits of the gift to me, and the mortal",
+	"  receives the named benefit within 7 days. I do not have to provide this",
+	"  benefit myself. For example, upon signing a contract for a Gift of",
+	"  Unfettered Glory, I will receive the benefits listed under the gift. The",
+	"  mortal who signs will receive glory and no in-game mechanical bonuses,",
+	"  provided by the dubious powers of the Netherworld",
+	"  While I may have any number of contracts in my possession, I can only",
+	"  benefit from one at a time. Upon the completion of a long rest, I may swap",
+	"  the contract I am currently benefiting from for an alternate contract that",
+	"  I have bound a mortal to and signed",
+	"\u25C6 >>Boon: Fiendish Form<<",
+	"  My Cha score increases by 2 and my Int score increases by 1. An ability",
+	"  score cannot be increased beyond 16 this way. I become a Fiend in addition",
+	"  to any other creature types I am. Spells and abilities that affect Fiends",
+	"  of a specific CR have no effect on me",
+	"\u25C6 >>Flaw: Planar Binding<<",
+	"  My body and soul are bound to a fiendish plane of existence. I have disadv.",
+	"  on death saving throws as the plane attempts to pull me back to it. If I",
+	"  would be killed, my soul has been dragged back to a plane of existence of",
+	"  the GM's choice. This plane is my new home, and I become an NPC under the",
+	"  GM's control",
+	"  If I am on the fiendish plane responsible for my transformation, this flaw",
+	"  has no effect",
+	"I gain more boons and flaws as I gain levels (Recommended lvls 5, 11, and 17)",
+];
+
+FeatsList["fiend level 1"] = {
+	name: "Fiend (Level 1)",
+	source: [["GH", 40]],
+	description:
+		"I gain the Fiend transformation, which grants me various boons and flaws as detailed below on the notes page. I can gain additional boons and flaws as I reach certain levels, or during level milestones (GM's discretion).",
+	toNotesPage: [
+		{
+			name: "Fiend",
+			source: [["GH", 40]],
+			note: desc(Fiend1_GiftsOfDamnation)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	scorestxt: "+2 Cha, +1 Int (max 16)",
+	prerequisite: "Charisma 13 or higher",
+	prereqeval: function () {
+		return Number(What("Cha")) > 12;
+	},
+	savetxt: { text: ["Disadv. on death saves (Planar Binding)"] },
+};
+
+var Fiend2_BrandChainersGaze = [
+	"\u25C6 >>Boon: Brand of the Chainer's Gaze<<",
+	"  As a bns action on my turn, I can brand a crea. within 60 ft of me with a",
+	"  fiery mark that diminishes their resolve. The target must make a Wis save,",
+	"  and on a failed save they are branded. Whenever a crea. branded in this way",
+	"  makes a saving throw, they must roll 1d6 and subtract the result from their",
+	"  saving throw. A crea. remains branded this way for 1 min. The brand",
+	"  disappears if the crea. is knocked unconscious, enters hallowed ground, or",
+	"  is targeted by the remove curse spell. I may use this feature a number of",
+	"  times = to my Cha mod (minimum of 1). I regain all uses of this feature",
+	"  when I finish a long rest",
+	"\u25C6 >>Flaw: Hideous Appearance<<",
+	"  My appearance has grotesquely transformed. My skin becomes red and leathery,",
+	"  and vicious horns, teeth and nails erupt through the surface of my skin. I",
+	"  can suppress this form and present the appearance of the humanoid I once",
+	"  were, but this is taxing and requires conc. Moments of stress are likely to",
+	"  reveal my true nature. In the following situations my true form is revealed:",
+	"    \u2022 Concentrating on a spell",
+	"    \u2022 Gaining the unconscious condition",
+	"    \u2022 Entering hallowed ground",
+	"    \u2022 Choosing to reveal myself",
+	"  In events of extreme emotional or physical stress, a GM may call for a Con",
+	"  save with a DC of their choosing to see if I maintain my humanoid form",
+	"  Non-evil crea. that witness my true form become instantly hostile to me,",
+	"  unless the GM decides otherwise",
+];
+
+FeatsList["fiend: brand of the chainer's gaze (level 2)"] = {
+	name: "Fiend: Brand of the Chainer's Gaze (Level 2)",
+	source: [["GH", 41]],
+	description:
+		"I gain the Brand of the Chainer's Gaze boon and Hideous Appearance flaw for the Fiend transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 41]],
+			note: desc(Fiend2_BrandChainersGaze)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Fiend Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("fiend level 1") !== -1;
+	},
+	action: [["bonus action", "Brand of the Chainer's Gaze"]],
+	usages: "Charisma modifier per ",
+	usagescalc: "event.value = Math.max(1, What('Cha Mod'));",
+	recovery: "long rest",
+};
+
+var Fiend2_BrandTyrantsHellfire = [
+	"\u25C6 >>Boon: Brand of the Tyrant's Hellfire<<",
+	"  As a bns action on my turn, I can brand a crea. within 60 ft of me with a",
+	"  fiery mark that exudes hellfire. The target must make a Cha save, and on a",
+	"  failed save they are branded. Whenever I hit a crea. branded in this way",
+	"  with an atk, I deal an additional 1d6 fire dmg",
+	"  A crea. remains branded for 1 min. The brand disappears if the crea. is",
+	"  knocked unconscious, enters hallowed ground, or is targeted by the remove",
+	"  curse spell. I may use this feature a number of times = to my Cha mod",
+	"  (minimum of 1). I regain all uses of this feature when I finish a long rest",
+	"\u25C6 >>Flaw: Hideous Appearance<<",
+	"  My appearance has grotesquely transformed. My skin becomes red and leathery,",
+	"  and vicious horns, teeth and nails erupt through the surface of my skin. I",
+	"  can suppress this form and present the appearance of the humanoid I once",
+	"  were, but this is taxing and requires conc. Moments of stress are likely to",
+	"  reveal my true nature. In the following situations my true form is revealed:",
+	"    \u2022 Concentrating on a spell",
+	"    \u2022 Gaining the unconscious condition",
+	"    \u2022 Entering hallowed ground",
+	"    \u2022 Choosing to reveal myself",
+	"  In events of extreme emotional or physical stress, a GM may call for a Con",
+	"  save with a DC of their choosing to see if I maintain my humanoid form",
+	"  Non-evil crea. that witness my true form become instantly hostile to me,",
+	"  unless the GM decides otherwise",
+];
+
+FeatsList["fiend: brand of the tyrant's hellfire (level 2)"] = {
+	name: "Fiend: Brand of the Tyrant's Hellfire (Level 2)",
+	source: [["GH", 41]],
+	description:
+		"I gain the Brand of the Tyrant's Hellfire boon and Hideous Appearance flaw for the Fiend transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 41]],
+			note: desc(Fiend2_BrandTyrantsHellfire)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Fiend Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("fiend level 1") !== -1;
+	},
+	action: [["bonus action", "Brand of the Tyrant's Hellfire"]],
+	usages: "Charisma modifier per ",
+	usagescalc: "event.value = Math.max(1, What('Cha Mod'));",
+	recovery: "long rest",
+};
+
+var Fiend2_BrandDeceiversGuile = [
+	"\u25C6 >>Boon: Brand of the Deceiver's Guile<<",
+	"  As a bns action on my turn, I can brand a crea. within 60 ft of me with a",
+	"  fiery mark that twists their senses and perspective. The target must make",
+	"  an Int save, and on a failed save they are branded. Whenever a crea.",
+	"  branded in this way attempts to atk me, they must roll 1d6 and subtract the",
+	"  result from their atk roll",
+	"  A crea. remains branded this way for 1 min. The brand disappears if the",
+	"  crea. is knocked unconscious, enters hallowed ground, or is targeted by the",
+	"  remove curse spell. I may use this feature a number of times = to my Cha",
+	"  mod (minimum of 1). I regain all uses of this feature when I finish a long",
+	"  rest",
+	"\u25C6 >>Flaw: Hideous Appearance<<",
+	"  My appearance has grotesquely transformed. My skin becomes red and leathery,",
+	"  and vicious horns, teeth and nails erupt through the surface of my skin. I",
+	"  can suppress this form and present the appearance of the humanoid I once",
+	"  were, but this is taxing and requires conc. Moments of stress are likely to",
+	"  reveal my true nature. In the following situations my true form is revealed:",
+	"    \u2022 Concentrating on a spell",
+	"    \u2022 Gaining the unconscious condition",
+	"    \u2022 Entering hallowed ground",
+	"    \u2022 Choosing to reveal myself",
+	"  In events of extreme emotional or physical stress, a GM may call for a Con",
+	"  save with a DC of their choosing to see if I maintain my humanoid form",
+	"  Non-evil crea. that witness my true form become instantly hostile to me,",
+	"  unless the GM decides otherwise",
+];
+
+FeatsList["fiend: brand of the deceiver's guile (level 2)"] = {
+	name: "Fiend: Brand of the Deceiver's Guile (Level 2)",
+	source: [["GH", 41]],
+	description:
+		"I gain the Brand of the Deceiver's Guile boon and Hideous Appearance flaw for the Fiend transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 41]],
+			note: desc(Fiend2_BrandDeceiversGuile)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Fiend Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("fiend level 1") !== -1;
+	},
+	action: [["bonus action", "Brand of the Deceiver's Guile"]],
+	usages: "Charisma modifier per ",
+	usagescalc: "event.value = Math.max(1, What('Cha Mod'));",
+	recovery: "long rest",
+};
+
+var Fiend3_AlluringDeceit = [
+	"\u25C6 >>Boon: Alluring Deceit<<",
+	"  I gain prof. in Deception and Persuasion.",
+	"  If I am already prof. in either of these skills, then my prof.",
+	"  bns is doubled for ability checks using that skill",
+	"  This has no effect on a skill if the prof. bns is already \xD72",
+	"  Magic that would determine if I am telling the truth always indicates I am",
+	"  being truthful, and I cannot be magically compelled to tell the truth",
+	"\u25C6 >>Flaw: True Name<<",
+	"  My fiendish transformation is complete, and I am reborn. I must choose a",
+	"  new name for myself, which becomes my true name. I receive a talisman of",
+	"  brimstone and brass with my true name inscribed in infernal on it. A crea.",
+	"  within 10 ft of me that knows my true name, can use an action and speak my",
+	"  true name in an attempt to bind me to their will. If they do, I must make",
+	"  a DC 20 Wis save. On a failed save, I become charmed by the crea., and must",
+	"  complete all commands they issue to me to the best of my ability. I remain",
+	"  charmed for 8 hours. If the crea. that bound me dies, this effect ends",
+];
+
+FeatsList["fiend: alluring deceit (level 3)"] = {
+	name: "Fiend: Alluring Deceit (Level 3)",
+	source: [["GH", 42]],
+	description:
+		"I gain the Alluring Deceit boon and True Name flaw for the Fiend transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 42]],
+			note: desc(Fiend3_AlluringDeceit)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Fiend Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("fiend level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("fiend: brand of the chainer's gaze (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brand of the tyrant's hellfire (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brand of the deceiver's guile (level 2)") !== -1)
+		);
+	},
+	skills: [
+		["Deception", "increment"],
+		["Persuasion", "increment"],
+	],
+	skillstxt: "Proficiency in Deception and Persuasion, or expertise if already proficient",
+};
+
+var Fiend3_InfernalResistance = [
+	"\u25C6 >>Boon: Infernal Resistance<<",
+	"  I gain an imposing fortitude, drawing on Netherworld energy. If I would",
+	"  take magical dmg from a spell, ability, or wea., I can use my rea. and take",
+	"  half the amount of dmg instead. I cannot use this feature against dmg from",
+	"  silvered wea.",
+	"\u25C6 >>Flaw: True Name<<",
+	"  My fiendish transformation is complete, and I am reborn. I must choose a",
+	"  new name for myself, which becomes my true name. I receive a talisman of",
+	"  brimstone and brass with my true name inscribed in infernal on it. A crea.",
+	"  within 10 ft of me that knows my true name, can use an action and speak my",
+	"  true name in an attempt to bind me to their will. If they do, I must make",
+	"  a DC 20 Wis save. On a failed save, I become charmed by the crea., and must",
+	"  complete all commands they issue to me to the best of my ability. I remain",
+	"  charmed for 8 hours. If the crea. that bound me dies, this effect ends",
+];
+
+FeatsList["fiend: infernal resistance (level 3)"] = {
+	name: "Fiend: Infernal Resistance (Level 3)",
+	source: [["GH", 42]],
+	description:
+		"I gain the Infernal Resistance boon and True Name flaw for the Fiend transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 42]],
+			note: desc(Fiend3_InfernalResistance)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Fiend Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("fiend level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("fiend: brand of the chainer's gaze (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brand of the tyrant's hellfire (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brand of the deceiver's guile (level 2)") !== -1)
+		);
+	},
+	action: [["reaction", "Infernal Resistance (half magical damage)"]],
+};
+
+var Fiend3_NetherBlade = [
+	"\u25C6 >>Boon: Nether Blade<<",
+	"  I can use a bns action to summon a dreaded Nether Blade. The blade takes",
+	"  the form of a simple or martial wea. that deals slash. dmg of my choice.",
+	"  Atks made with the blade deal fire dmg and gain the following features:",
+	"    \u2022 Atks I make with the blade deal an additional 2d6 fire dmg",
+	"    \u2022 The blade emits flames that create bright light in a 5 ft radius and",
+	"      dim light for an additional 5 ft",
+	"    \u2022 I cannot be disarmed of the blade",
+	"  I can unsummon the blade at any time by using an action. If I unwield the",
+	"  blade, it immediately unsummons",
+	"\u25C6 >>Flaw: True Name<<",
+	"  My fiendish transformation is complete, and I am reborn. I must choose a",
+	"  new name for myself, which becomes my true name. I receive a talisman of",
+	"  brimstone and brass with my true name inscribed in infernal on it. A crea.",
+	"  within 10 ft of me that knows my true name, can use an action and speak my",
+	"  true name in an attempt to bind me to their will. If they do, I must make",
+	"  a DC 20 Wis save. On a failed save, I become charmed by the crea., and must",
+	"  complete all commands they issue to me to the best of my ability. I remain",
+	"  charmed for 8 hours. If the crea. that bound me dies, this effect ends",
+];
+
+FeatsList["fiend: nether blade (level 3)"] = {
+	name: "Fiend: Nether Blade (Level 3)",
+	source: [["GH", 42]],
+	description:
+		"I gain the Nether Blade boon and True Name flaw for the Fiend transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 42]],
+			note: desc(Fiend3_NetherBlade)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Fiend Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("fiend level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("fiend: brand of the chainer's gaze (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brand of the tyrant's hellfire (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brand of the deceiver's guile (level 2)") !== -1)
+		);
+	},
+	action: [
+		["bonus action", "Nether Blade (summon)"],
+		["action", "Nether Blade (unsummon)"],
+	],
+	calcChanges: {
+		atkAdd: [
+			function (fields, v) {
+				if (
+					/^(?=.*nether)(?=.*blade).*$/i.test(fields.WeaponTextName) &&
+					/(simple|martial)/i.test(v.theWea.type + " " + v.theWea.list)
+				) {
+					fields.Description += (fields.Description ? "; " : "") + "+2d6 fire dmg";
+				}
+			},
+		],
+	},
 };
