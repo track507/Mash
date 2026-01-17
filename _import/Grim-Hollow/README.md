@@ -1,6 +1,6 @@
 # Grim Hollow
 
-A VS Code workspace for developing content for [MorePurpleMoreBetter's D&D 5e Character Tools](https://www.dmsguild.com/product/232835/). This project focuses on implementing the Grim Hollow campaign setting transformations and features.
+A VS Code workspace for developing content for [MorePurpleMoreBetter's D&D 5e Character Tools](https://www.flapkan.com/). This project focuses on implementing the Grim Hollow campaign setting transformations and features.
 
 ## Overview
 

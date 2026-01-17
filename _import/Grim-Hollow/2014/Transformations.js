@@ -662,7 +662,7 @@ FeatsList["fiend level 1"] = {
 	name: "Fiend (Level 1)",
 	source: [["GH", 40]],
 	description:
-		"I gain the Fiend transformation, which grants me various boons and flaws as detailed below on the notes page. I can gain additional boons and flaws as I reach certain levels, or during level milestones (GM's discretion).",
+		"I gain the Fiend transformation, which grants me various boons and flaws as detailed below on the notes page. I can select a Gift of Damnation contract to benefit from, and can swap contracts after a long rest.",
 	toNotesPage: [
 		{
 			name: "Fiend",
@@ -682,6 +682,144 @@ FeatsList["fiend level 1"] = {
 	prerequisite: "Charisma 13 or higher",
 	prereqeval: function () {
 		return Number(What("Cha")) > 12;
+	},
+	choices: [
+		"Gift of Unfettered Glory",
+		"Gift of Joyous Youth",
+		"Gift of Unsurpassed Fortune",
+		"Gift of Liberating Freedom (Lvl 2)",
+		"Gift of Prodigious Talent (Lvl 2)",
+		"Gift of Unconditional Love (Lvl 3)",
+		"Gift of Second Chances (Lvl 3)",
+		"Gift of Unbridled Power (Lvl 4)",
+		"Gift of Expansive Knowledge (Lvl 4)",
+	],
+	"gift of unfettered glory": {
+		name: "Gift of Unfettered Glory",
+		description: "When I hit with a melee atk or melee spell atk, I can add my Cha mod to the dmg dealt",
+		calcChanges: {
+			atkCalc: [
+				function (fields, v, output) {
+					if (v.isMeleeWeapon || (v.isSpell && /\bmelee\b/i.test(fields.Range) && !v.isDC)) {
+						output.extraDmg += Math.max(What("Cha Mod"), 0);
+					}
+				},
+				"I add my Charisma modifier to damage dealt with melee attacks and melee spell attacks.",
+			],
+		},
+	},
+	"gift of joyous youth": {
+		name: "Gift of Joyous Youth",
+		description:
+			"At the start of my turn, if I have no remaining HD, I can make a DC 10 Cha save. On success, I regain 1 spent HD. On fail, I take 1d6 psychic dmg",
+		usages: 1,
+		recovery: "Turn",
+	},
+	"gift of unsurpassed fortune": {
+		name: "Gift of Unsurpassed Fortune",
+		description:
+			"When a crea. makes an atk roll, skill check, or save w/in 20 ft, after GM rolls but before result, I can use rea. to roll d20. If 10+, it fails",
+		action: [["reaction", "Unsurpassed Fortune"]],
+		usages: 1,
+		recovery: "long rest",
+	},
+	"gift of liberating freedom (lvl 2)": {
+		name: "Gift of Liberating Freedom (Lvl 2)",
+		description:
+			"As a bns action, I manifest leathery wings and gain fly speed = current speed. Wings recede if dismissed (bns action), I'm unconscious, or wearing heavy armor",
+		action: [
+			["bonus action", "Liberating Freedom (manifest)"],
+			["bonus action", "Liberating Freedom (dismiss)"],
+		],
+		speed: { fly: { spd: "walk", enc: "walk" } },
+		prerequisite: "2nd lvl Fiend Transformation",
+		prereqeval: function () {
+			return (
+				CurrentFeats.known.indexOf("fiend: brand of the chainer's gaze (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brand of the tyrant's hellfire (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brand of the deceiver's guile (level 2)") !== -1
+			);
+		},
+	},
+	"gift of prodigious talent (lvl 2)": {
+		name: "Gift of Prodigious Talent (Lvl 2)",
+		description:
+			"Choose 2 skill proficiencies. My prof. bns is doubled for ability checks using either. Can't double a prof. bns already being doubled",
+		skillstxt: "Choose 2 skills; proficiency bonus doubled for those skills",
+		prerequisite: "2nd lvl Fiend Transformation",
+		prereqeval: function () {
+			return (
+				CurrentFeats.known.indexOf("fiend: brand of the chainer's gaze (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brand of the tyrant's hellfire (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brand of the deceiver's guile (level 2)") !== -1
+			);
+		},
+	},
+	"gift of unconditional love (lvl 3)": {
+		name: "Gift of Unconditional Love (Lvl 3)",
+		description:
+			"When a crea. fails a Cha save vs a spell or ability I control, I can use rea. to gain temp hp = 1d10 + my char. lvl",
+		action: [["reaction", "Unconditional Love"]],
+		usages: 1,
+		recovery: "short rest",
+		prerequisite: "3rd lvl Fiend Transformation",
+		prereqeval: function () {
+			return (
+				CurrentFeats.known.indexOf("fiend: alluring deceit (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: infernal resistance (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: nether blade (level 3)") !== -1
+			);
+		},
+	},
+	"gift of second chances (lvl 3)": {
+		name: "Gift of Second Chances (Lvl 3)",
+		description: "If I'm reduced to 0 hp, I can use rea. to roll a HD. My hp total becomes the HD result instead",
+		action: [["reaction", "Second Chances"]],
+		usages: 1,
+		recovery: "long rest",
+		prerequisite: "3rd lvl Fiend Transformation",
+		prereqeval: function () {
+			return (
+				CurrentFeats.known.indexOf("fiend: alluring deceit (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: infernal resistance (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: nether blade (level 3)") !== -1
+			);
+		},
+	},
+	"gift of unbridled power (lvl 4)": {
+		name: "Gift of Unbridled Power (Lvl 4)",
+		description:
+			"After a short rest, I can spend 1 HD and regain spell slots with total lvl \u2264 HD result. I take psychic dmg = spell slot lvls regained",
+		usages: 1,
+		recovery: "long rest",
+		prerequisite: "4th lvl Fiend Transformation",
+		prereqeval: function () {
+			return (
+				CurrentFeats.known.indexOf("fiend: infernal summoning (level 4)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: commanding obedience (level 4)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brimstone pyrolysis (level 4)") !== -1
+			);
+		},
+	},
+	"gift of expansive knowledge (lvl 4)": {
+		name: "Gift of Expansive Knowledge (Lvl 4)",
+		description:
+			"When I complete this contract for the first time, I learn additional spells from cleric, warlock, or wizard list = Cha mod. Must have spell slot for each. While this contract is active and no other contract active, I know these spells in addition to total Spells Known",
+		spellcastingBonus: [
+			{
+				name: "Gift of Expansive Knowledge",
+				class: ["cleric", "warlock", "wizard"],
+				level: [0, 9],
+			},
+		],
+		prerequisite: "4th lvl Fiend Transformation",
+		prereqeval: function () {
+			return (
+				CurrentFeats.known.indexOf("fiend: infernal summoning (level 4)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: commanding obedience (level 4)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: brimstone pyrolysis (level 4)") !== -1
+			);
+		},
 	},
 	savetxt: { text: ["Disadv. on death saves (Planar Binding)"] },
 };
@@ -994,4 +1132,149 @@ FeatsList["fiend: nether blade (level 3)"] = {
 			},
 		],
 	},
+};
+
+var Fiend4_CommandingObedience = [
+	"\u25C6 >>Boon: Commanding Obedience<<",
+	"  When a hostile crea. I can see w/in 30 ft fails a save vs a spell of 1st lvl",
+	"  or higher I control, I can command it to kneel. On that crea's turn, it must",
+	"  face me, then kneel and end its turn. While kneeling, the crea. is proned.",
+	"  If the crea. is immune to prone, it just ends its turn",
+	"\u25C6 >>Flaw: Pull of the Netherworld<<",
+	"  When I roll a nat 1 on a save vs a spell or magical ability, I take 1d6 force",
+	"  dmg per 2 char. lvls in addition to other dmg or effects as my native plane",
+	"  attempts to unbind me from the Material Plane. This dmg ignores resistances",
+	"  and immunities",
+];
+
+FeatsList["fiend: commanding obedience (level 4)"] = {
+	name: "Fiend: Commanding Obedience (Level 4)",
+	source: [["GH", 43]],
+	description:
+		"I gain the Commanding Obedience boon and Pull of the Netherworld flaw for the Fiend transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 43]],
+			note: desc(Fiend4_CommandingObedience)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Fiend Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("fiend level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("fiend: alluring deceit (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: infernal resistance (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: nether blade (level 3)") !== -1)
+		);
+	},
+};
+
+var Fiend4_BrimstonePyrolysis = [
+	"\u25C6 >>Boon: Brimstone Pyrolysis<<",
+	"  When I deal fire dmg to a hostile crea. and reduce it to 0 hp, I can",
+	"  immolate it and turn it into a Brimstone Statue",
+	"  Brimstone Statue: AC 10, HP 10, Speed 0, immune to poison and psychic dmg.",
+	"  A Brimstone Statue reduced to 0 hp falls apart and is destroyed. It doesn't",
+	"  detonate",
+	"  Detonate: On my turn as an action, I can detonate one or more Brimstone",
+	"  Statues I created. When a statue detonates, it's destroyed. Each crea. other",
+	"  than me w/in 10 ft must make a Dex save. They take fire dmg on a fail, or",
+	"  half on a success",
+	"\u25C6 >>Flaw: Pull of the Netherworld<<",
+	"  When I roll a nat 1 on a save vs a spell or magical ability, I take 1d6 force",
+	"  dmg per 2 char. lvls in addition to other dmg or effects as my native plane",
+	"  attempts to unbind me from the Material Plane. This dmg ignores resistances",
+	"  and immunities",
+];
+
+FeatsList["fiend: brimstone pyrolysis (level 4)"] = {
+	name: "Fiend: Brimstone Pyrolysis (Level 4)",
+	source: [["GH", 43]],
+	description:
+		"I gain the Brimstone Pyrolysis boon and Pull of the Netherworld flaw for the Fiend transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 43]],
+			note: desc(Fiend4_BrimstonePyrolysis)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Fiend Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("fiend level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("fiend: alluring deceit (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: infernal resistance (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: nether blade (level 3)") !== -1)
+		);
+	},
+	action: [["action", "Brimstone Pyrolysis (detonate)"]],
+};
+
+var Fiend4_InfernalSummoning = [
+	"\u25C6 >>Boon: Infernal Summoning<<",
+	"  On my turn as an action, I tear open a portal to the Netherworld and summon",
+	"  up to 4 Imps. Each is summoned into its own unoccupied space w/in 30 ft of me",
+	"  The summoned Imps are friendly to me. They all act directly after me in",
+	"  initiative. They obey verbal commands I issue (no action required).",
+	"  If I don't issue commands, they defend themselves from hostile",
+	"  crea., but otherwise take no actions. The Imps disappears after 1 hr",
+	"  or if reduced to 0 hp. The GM has the Imps' statistics",
+	"  Once per long rest",
+	"\u25C6 >>Flaw: Pull of the Netherworld<<",
+	"  When I roll a nat 1 on a save vs a spell or magical ability, I take 1d6 force",
+	"  dmg per 2 char. lvls in addition to other dmg or effects as my native plane",
+	"  attempts to unbind me from the Material Plane. This dmg ignores resistances",
+	"  and immunities",
+];
+
+FeatsList["fiend: infernal summoning (level 4)"] = {
+	name: "Fiend: Infernal Summoning (Level 4)",
+	source: [["GH", 43]],
+	description:
+		"I gain the Infernal Summoning boon and Pull of the Netherworld flaw for the Fiend transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 43]],
+			note: desc(Fiend4_InfernalSummoning)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Fiend Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("fiend level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("fiend: alluring deceit (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: infernal resistance (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("fiend: nether blade (level 3)") !== -1)
+		);
+	},
+	action: [["action", "Infernal Summoning (summon Imps)"]],
+	usages: 1,
+	recovery: "long rest",
 };
