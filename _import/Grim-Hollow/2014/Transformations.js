@@ -251,7 +251,7 @@ FeatsList["aberrant horror: other-worldly tendrils (level 2)"] = {
 			regExpSearch: /^(?=.*(otherworldly|aberrant))(?=.*(tendril)).*$/i,
 			name: "Otherworldly Tendril",
 			source: [["GH", 34]],
-			damage: [1, 4, "Bludgeoning"],
+			damage: [1, 4, "bludgeoning"],
 			range: "Melee (10 ft)",
 			description: "Can use Toxic Spray, Constrict, or Hypnotic Trance adaptations",
 			abilitytodamage: true,
@@ -1807,5 +1807,524 @@ FeatsList["lich: deathly being (level 4)"] = {
 			"frightened",
 			"poison, bludg., pierce., and slash. dmg from non-magical atks",
 		],
+	},
+};
+
+var Lycanthrope1 = [
+	"\u25C6 >>Boon: Hybrid Transformation<<",
+	"  As an action, I transform into hybrid form. While transformed, the following apply:",
+	"    \u2022 I can't cast spells or concentrate on spells. I can only speak in short,",
+	"      guttural responses",
+	"    \u2022 My stats remain the same as my humanoid stats",
+	"    \u2022 Armor merges into my Hybrid Form or drops to the ground (GM decides if",
+	"      armor is too large to merge)",
+	"    \u2022 While transformed and not wearing armor or using a shield, my AC = 10 +",
+	"      Con mod + Dex mod",
+	"    \u2022 I can use weapons and equipment as normal unless specified otherwise",
+	"    \u2022 I roll d6 in place of normal dmg for unarmed strikes. Atks with claws",
+	"      deal slash. dmg instead of bludg. dmg",
+	"    \u2022 When making the atk action, I can substitute one atk to make an unarmed",
+	"      bite atk. On hit, I deal pierce. dmg = 1d8 + Str mod. If I make a bite",
+	"      atk, I can't make another until the start of my next turn",
+	"    \u2022 As a bns action, I can make an unarmed claw or bite atk if I haven't",
+	"      already used my bns action",
+	"  My hybrid form lasts for hours = Con mod (min 1) and ends early if I'm knocked",
+	"  unconscious or reduced to 0 hp. I can end my Hybrid Form by using an action",
+	"  on my turn",
+	"\u25C6 >>Boon: Shapechanger's Form<<",
+	"  My Str score increases by 2 and my Con score increases by 1 (max 16)",
+	"\u25C6 >>Flaw: Lust for the Hunt<<",
+	"  The savage nature of my curse causes me to lose control. When in hybrid form,",
+	"  I must succeed at a DC 10 Wis save at the start of each turn or lose control.",
+	"  If in the light of a full moon, I automatically fail this save. On fail, I'm",
+	"  subjected to the following until I succeed:",
+	"    \u2022 I must move toward the closest non-player crea. I can see, smell or",
+	"      hear, prioritising helpless crea. If I end my movement and no non-player",
+	"      crea. is w/in 5 ft of me, I must use my action to dash toward one",
+	"    \u2022 If a non-player crea. is w/in 5 ft of me and I haven't used my action,",
+	"      I must make a melee atk vs it, prioritising helpless crea.",
+	"    \u2022 If I made a melee atk vs a crea. and that crea. is still alive, I must",
+	"      use my bns action to make an unarmed claw or bite atk vs that crea.",
+	"  Additionally, if subjected to the light of a full moon, I must succeed at a DC 20",
+	"  Wis save or automatically turn into my hybrid form and can't transform back until",
+	"  dawn. If I succeed, I'm immune to its effects for 24 hrs",
+	"I gain more boons and flaws as I gain levels (Recommended lvls 5, 11, and 17)",
+];
+
+FeatsList["lycanthrope level 1"] = {
+	name: "Lycanthrope (Level 1)",
+	source: [["GH", 53]],
+	description:
+		"I gain the Lycanthrope transformation, which grants me various boons and flaws as detailed below on the notes page. I can gain additional boons and flaws as I reach certain levels, or during level milestones (GM's discretion).",
+	toNotesPage: [
+		{
+			name: "Lycanthrope",
+			source: [["GH", 53]],
+			note: desc(Lycanthrope1)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	scorestxt: "+2 Str, +1 Con (max 16)",
+	prerequisite: "Strength 13 or higher",
+	prereqeval: function () {
+		return Number(What("Str")) > 12;
+	},
+	action: [["action", "Hybrid Transformation (transform/end)"]],
+	weaponOptions: [
+		{
+			baseWeapon: "unarmed strike",
+			regExpSearch: /^(?=.*(hybrid|lycanthrope))(?=.*(claw)).*$/i,
+			name: "Hybrid Claws",
+			source: [["GH", 53]],
+			damage: [1, 6, "slashing"],
+			selectNow: true,
+		},
+		{
+			baseWeapon: "unarmed strike",
+			regExpSearch: /^(?=.*(hybrid|lycanthrope))(?=.*(bite)).*$/i,
+			name: "Hybrid Bite",
+			source: [["GH", 53]],
+			ability: 1,
+			damage: [1, 8, "piercing"],
+			description: "Can't make another bite until my next SOT",
+			selectNow: true,
+		},
+	],
+	armorOptions: [
+		{
+			regExpSearch: /^(?=.*(hybrid|lycanthrope))(?=.*(unarmored)).*$/i,
+			name: "Hybrid Unarmored (Con)",
+			source: [["GH", 53]],
+			type: "natural",
+			ac: "10+Con",
+			selectNow: true,
+		},
+	],
+	calcChanges: {
+		atkAdd: [
+			function (fields, v) {
+				if (v.baseWeaponName === "unarmed strike" && (fields.Damage_Die === 1 || fields.Damage_Die === "1d4")) {
+					fields.Damage_Die = "1d6";
+				}
+			},
+		],
+	},
+};
+
+var Lycanthrope2_IronPelt = [
+	"\u25C6 >>Boon: Iron Pelt<<",
+	"  While in hybrid form, I have resistance to bludg., pierce., and slash. dmg",
+	"  from non-silvered, non-magical sources",
+	"\u25C6 >>Flaw: Silver Sensitivity<<",
+	"  While in Hybrid or Kindred form, I have vulnerability to silvered wea. In",
+	"  addition, I can't have resistance to atks made with a silvered wea.",
+];
+
+FeatsList["lycanthrope: iron pelt (level 2)"] = {
+	name: "Lycanthrope: Iron Pelt (Level 2)",
+	source: [["GH", 54]],
+	description:
+		"I gain the Iron Pelt boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 54]],
+			note: desc(Lycanthrope2_IronPelt)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lycanthrope Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("lycanthrope level 1") !== -1;
+	},
+	dmgres: [
+		["Bludgeoning", "Bludg. (non-silver, non-magic)"],
+		["Piercing", "Pierce. (non-silver, non-magic)"],
+		["Slashing", "Slash. (non-silver, non-magic)"],
+	],
+};
+
+var Lycanthrope2_HuntersHowl = [
+	"\u25C6 >>Boon: Hunter's Howl<<",
+	"  While in hybrid form, I can use a bns action to let out a loud howl and mark",
+	"  a crea. w/in 60 ft as my prey. A crea. remains marked this way for 1 hr or",
+	"  until it dies. While marked as my prey, I gain the following:",
+	"    \u2022 When I hit the marked crea. with a melee atk, I deal an additional",
+	"      1d6 dmg. This dmg is the same type as the atk",
+	"    \u2022 I have adv. on Wis (Perception) or Wis (Survival) checks I make to",
+	"      track my prey",
+	"  I can use this feature a number of times = Str mod (min 1). I regain all",
+	"  expended uses upon a short or long rest",
+	"\u25C6 >>Flaw: Silver Sensitivity<<",
+	"  While in Hybrid or Kindred form, I have vulnerability to silvered wea. In",
+	"  addition, I can't have resistance to atks made with a silvered wea.",
+];
+
+FeatsList["lycanthrope: hunter's howl (level 2)"] = {
+	name: "Lycanthrope: Hunter's Howl (Level 2)",
+	source: [["GH", 54]],
+	description:
+		"I gain the Hunter's Howl boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 54]],
+			note: desc(Lycanthrope2_HuntersHowl)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lycanthrope Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("lycanthrope level 1") !== -1;
+	},
+	action: [["bonus action", "Hunter's Howl"]],
+	usages: "Strength modifier per ",
+	usagescalc: "event.value = Math.max(1, What('Str Mod'));",
+	recovery: "short rest",
+};
+
+var Lycanthrope2_KindredForm = [
+	"\u25C6 >>Boon: Kindred Form<<",
+	"  I gain the ability to transform into the animal form representative of my",
+	"  Lycanthropy type, known as my Kindred Form. I follow the same rules as the",
+	"  Hybrid Transformation feature and any feature that specifies the hybrid",
+	"  transformation, unless specified otherwise. I can only transform into the",
+	"  kindred form representative of my Lycanthropy. Each Kindred Form gains the",
+	"  following:",
+	"    \u2022 I can't speak",
+	"    \u2022 I can't take any actions requiring hands, except my Transformation",
+	"      capabilities",
+	"    \u2022 I can only use unarmed claw and bite atks",
+	"  Other than being larger, I'm indistinguishable from a regular animal of my",
+	"  Kindred Form",
+	"  >>Kindred Form - Bear<<",
+	"    \u2022 I can speak to and understand other bears",
+	"    \u2022 When I make any save, I can add my Con mod to the result",
+	"    \u2022 My hp max increases by 15 hp",
+	"  >>Kindred Form - Wolf<<",
+	"    \u2022 I can speak to and understand other wolves",
+	"    \u2022 When making an atk vs a crea., if an ally is w/in 5 ft of that crea.",
+	"      and not incapacitated, I have adv. on that atk roll",
+	"    \u2022 My spd increases by 20 ft, to a max of 60 ft",
+	"  I automatically succeed at all saves relating to the Lust for the Hunt flaw",
+	"\u25C6 >>Flaw: Silver Sensitivity<<",
+	"  While in Hybrid or Kindred form, I have vulnerability to silvered wea. In",
+	"  addition, I can't have resistance to atks made with a silvered wea.",
+];
+
+FeatsList["lycanthrope: kindred form (level 2)"] = {
+	name: "Lycanthrope: Kindred Form (Level 2)",
+	source: [["GH", 54]],
+	description:
+		"I gain the Kindred Form boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 54]],
+			note: desc(Lycanthrope2_KindredForm)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lycanthrope Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("lycanthrope level 1") !== -1;
+	},
+	choices: ["Bear", "Wolf"],
+	bear: {
+		name: "Lycanthrope: Kindred Form - Bear (Level 2)",
+		description: "I gain Kindred Form (Bear) boon and Silver Sensitivity flaw",
+	},
+	wolf: {
+		name: "Lycanthrope: Kindred Form - Wolf (Level 2)",
+		description: "I gain Kindred Form (Wolf) boon and Silver Sensitivity flaw",
+		speed: { walk: { spd: "+20", enc: "+20" } },
+	},
+};
+
+var Lycanthrope3_TitanicVigor = [
+	"\u25C6 >>Boon: Titanic Vigor<<",
+	"  My hp max increases by an amount = twice my char. lvl, and it increases by 2",
+	"  every time I gain a char. lvl. Additionally, when in hybrid form, I gain 5",
+	"  temp hp at the start of my turn",
+	"\u25C6 >>Flaw: Silver Sensitivity<<",
+	"  While in Hybrid or Kindred form, I have vulnerability to silvered wea. In",
+	"  addition, I can't have resistance to atks made with a silvered wea.",
+];
+
+FeatsList["lycanthrope: titanic vigor (level 3)"] = {
+	name: "Lycanthrope: Titanic Vigor (Level 3)",
+	source: [["GH", 55]],
+	description:
+		"I gain the Titanic Vigor boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 55]],
+			note: desc(Lycanthrope3_TitanicVigor)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lycanthrope Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("lycanthrope level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("lycanthrope: iron pelt (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("lycanthrope: hunter's howl (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("lycanthrope: kindred form (level 2)") !== -1)
+		);
+	},
+	calcChanges: {
+		hp: function (totalHD, HDobj, prefix) {
+			return [(classes.totallevel ? classes.totallevel : 0) * 2, "Titanic Vigor (2\u00BD character level)"];
+		},
+	},
+};
+
+var Lycanthrope3_PredatoryLeap = [
+	"\u25C6 >>Boon: Predatory Leap<<",
+	"  My jump distance is doubled. In addition, in hybrid form, if I jumped more",
+	"  than 5 ft and land w/in 5 ft of a crea., I can immediately take the atk",
+	"  action to atk that crea. On a hit, the target must make a Str save or become",
+	"  prone on a failed save. I can decide to automatically grapple the target if",
+	"  they fail their save",
+	"\u25C6 >>Flaw: Silver Sensitivity<<",
+	"  While in Hybrid or Kindred form, I have vulnerability to silvered wea. In",
+	"  addition, I can't have resistance to atks made with a silvered wea.",
+];
+
+FeatsList["lycanthrope: predatory leap (level 3)"] = {
+	name: "Lycanthrope: Predatory Leap (Level 3)",
+	source: [["GH", 55]],
+	description:
+		"I gain the Predatory Leap boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 55]],
+			note: desc(Lycanthrope3_PredatoryLeap)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lycanthrope Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("lycanthrope level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("lycanthrope: iron pelt (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("lycanthrope: hunter's howl (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("lycanthrope: kindred form (level 2)") !== -1)
+		);
+	},
+};
+
+var Lycanthrope4_BestialSavagery = [
+	"\u25C6 >>Boon: Bestial Savagery<<",
+	"  While in Hybrid Form, I gain the following:",
+	"    \u2022 My unarmed atks deal 1d8 slash. dmg and are considered magic atks",
+	"    \u2022 My AC increases by 1",
+	"    \u2022 I'm immune to the charmed and frightened conditions",
+	"\u25C6 >>Flaw: Predatory Nature<<",
+	"  The beast w/in has gained more control of my body than I have. While I can",
+	"  control it at times, I know it can't be contained forever, and when it breaks",
+	"  free, it will delight in any slaughter it can find. I gain the following:",
+	"    \u2022 If I can see, hear or smell a helpless crea., I gain disadv. on all",
+	"      Wis saves",
+	"    \u2022 At the start of my turn, if I can see, hear or smell a hostile or",
+	"      helpless non-player crea., I must succeed at a DC 10 Wis save or be",
+	"      transformed into my Hybrid Form. If I succeed this save, I become immune",
+	"      to this effect until dawn",
+	"    \u2022 Whenever I kill a crea. and I'm in my Hybrid Form, I can't transform",
+	"      back into my humanoid form until dawn the next day. Although I can",
+	"      transform into my Kindred Form",
+];
+
+FeatsList["lycanthrope: bestial savagery (level 4)"] = {
+	name: "Lycanthrope: Bestial Savagery (Level 4)",
+	source: [["GH", 56]],
+	description:
+		"I gain the Bestial Savagery boon and Predatory Nature flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 56]],
+			note: desc(Lycanthrope4_BestialSavagery)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lycanthrope Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("lycanthrope level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("lycanthrope: titanic vigor (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("lycanthrope: predatory leap (level 3)") !== -1)
+		);
+	},
+	calcChanges: {
+		atkAdd: [
+			function (fields, v) {
+				if (
+					v.baseWeaponName === "unarmed strike" &&
+					(fields.Damage_Die === 1 || fields.Damage_Die === "1d4" || fields.Damage_Die === "1d6")
+				) {
+					fields.Damage_Die = "1d8";
+				}
+			},
+		],
+	},
+	savetxt: { immune: ["charmed (in hybrid)", "frightened (in hybrid)"] },
+};
+
+var Lycanthrope4_UnstoppableRage = [
+	"\u25C6 >>Boon: Unstoppable Rage<<",
+	"  When I'm reduced to 0 hp and I'm not killed outright, I'm not knocked",
+	"  unconscious. I can take my future turns as though I were not at 0 hp and are",
+	"  affected by all spells, abilities and features as normal. While I have 0 hp,",
+	"  taking dmg causes death save failures as normal, and three death save failures",
+	"  can still kill me",
+	"\u25C6 >>Flaw: Predatory Nature<<",
+	"  The beast w/in has gained more control of my body than I have. While I can",
+	"  control it at times, I know it can't be contained forever, and when it breaks",
+	"  free, it will delight in any slaughter it can find. I gain the following:",
+	"    \u2022 If I can see, hear or smell a helpless crea., I gain disadv. on all",
+	"      Wis saves",
+	"    \u2022 At the start of my turn, if I can see, hear or smell a hostile or",
+	"      helpless non-player crea., I must succeed at a DC 10 Wis save or be",
+	"      transformed into my Hybrid Form. If I succeed this save, I become immune",
+	"      to this effect until dawn",
+	"    \u2022 Whenever I kill a crea. and I'm in my Hybrid Form, I can't transform",
+	"      back into my humanoid form until dawn the next day. Although I can",
+	"      transform into my Kindred Form",
+];
+
+FeatsList["lycanthrope: unstoppable rage (level 4)"] = {
+	name: "Lycanthrope: Unstoppable Rage (Level 4)",
+	source: [["GH", 56]],
+	description:
+		"I gain the Unstoppable Rage boon and Predatory Nature flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 56]],
+			note: desc(Lycanthrope4_UnstoppableRage)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lycanthrope Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("lycanthrope level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("lycanthrope: titanic vigor (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("lycanthrope: predatory leap (level 3)") !== -1)
+		);
+	},
+};
+
+var Lycanthrope4_KindredAffinity = [
+	"\u25C6 >>Boon: Kindred Affinity<<",
+	"  Prerequisite: Kindred Form Transformation feature",
+	"  I've reached true harmony with my Kindred Form, achieving a state of peace",
+	"  most Lycanthropes never find. I gain the following while in my Kindred Form:",
+	"    \u2022 I can speak",
+	"    \u2022 I can cast spells w/out needing to provide their verbal or somatic",
+	"      components. Additionally, I can cast spells w/out needing to provide",
+	"      material components, provided they do not have a gold cost",
+	"    \u2022 Friendly crea. w/in 20 ft of me have adv. on Wis ability checks and",
+	"      saves",
+	"\u25C6 >>Flaw: Predatory Nature<<",
+	"  The beast w/in has gained more control of my body than I have. While I can",
+	"  control it at times, I know it can't be contained forever, and when it breaks",
+	"  free, it will delight in any slaughter it can find. I gain the following:",
+	"    \u2022 If I can see, hear or smell a helpless crea., I gain disadv. on all",
+	"      Wis saves",
+	"    \u2022 At the start of my turn, if I can see, hear or smell a hostile or",
+	"      helpless non-player crea., I must succeed at a DC 10 Wis save or be",
+	"      transformed into my Hybrid Form. If I succeed this save, I become immune",
+	"      to this effect until dawn",
+	"    \u2022 Whenever I kill a crea. and I'm in my Hybrid Form, I can't transform",
+	"      back into my humanoid form until dawn the next day. Although I can",
+	"      transform into my Kindred Form",
+];
+
+FeatsList["lycanthrope: kindred affinity (level 4)"] = {
+	name: "Lycanthrope: Kindred Affinity (Level 4)",
+	source: [["GH", 56]],
+	description:
+		"I gain the Kindred Affinity boon and Predatory Nature flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 56]],
+			note: desc(Lycanthrope4_KindredAffinity)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lycanthrope Level 1 and Kindred Form",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("lycanthrope level 1") !== -1 &&
+			CurrentFeats.known.indexOf("lycanthrope: kindred form (level 2)") !== -1
+		);
 	},
 };
