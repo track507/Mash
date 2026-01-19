@@ -125,6 +125,9 @@ export default [
 				genericSpellDmgEdit: "readonly",
 				FeatsList: "readonly",
 				CurrentFeats: "readonly",
+				SetStringifieds: "readonly",
+				CurrentUpdates: "readonly",
+				CurrentSpells: "readonly",
 			},
 
 			parserOptions: {

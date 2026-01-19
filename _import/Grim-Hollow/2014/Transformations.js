@@ -8,6 +8,7 @@ if (!SourceList["GH"]) {
 	};
 }
 
+/* eslint-disable-next-line no-undef */
 UPGRADE_DIE_MAP = {
 	1: 2,
 	2: 4,
@@ -474,6 +475,7 @@ FeatsList["aberrant horror: enhanced hypertrophy (level 3)"] = {
 					if (match) {
 						var numDice = match[1];
 						var dieSize = parseInt(match[2]);
+						/* eslint-disable-next-line no-undef */
 						var upgradedDie = UPGRADE_DIE_MAP[dieSize];
 						if (upgradedDie) {
 							fields.Damage_Die = numDice + "d" + upgradedDie;
@@ -1277,4 +1279,533 @@ FeatsList["fiend: infernal summoning (level 4)"] = {
 	action: [["action", "Infernal Summoning (summon Imps)"]],
 	usages: 1,
 	recovery: "long rest",
+};
+
+var Lich1 = [
+	"\u25C6 >>Boon: Harvester of Souls<<",
+	"  When I reduce a crea. to 0 hp on the same plane as my phylactery, its soul",
+	"  is captured and my phylactery becomes charged. On my turn as an action, I",
+	"  can consume any number of charge lvls from my phylactery to regain a single",
+	"  spell slot. The spell slot's lvl = 1/3 of the charge consumed (round down)",
+	"\u25C6 >>Boon: Undead Form<<",
+	"  My Int increases by 4 and my Wis by 2 (max 22). I become Undead in addition",
+	"  to other crea. types. Spells and abilities that affect Undead of a certain",
+	"  CR have no effect on me",
+	"  If a spell or ability would cause me to gain HP, I gain temp HP instead.",
+	"  If I'm reduced to 0 hp and unconscious, healing stabilizes me and leaves",
+	"  me on 1 hp and unconscious. I stop aging, am immune to aging effects, and",
+	"  cannot die from old age. I don't require air, food, drink, or sleep",
+	"\u25C6 >>Flaw: Phylactery<<",
+	"  I've torn my soul from my body and trapped it in an object no larger than",
+	"  1 sq ft. This is my phylactery: AC 18, HP 90, Speed 0, immune to poison",
+	"  and psychic dmg. While a soul is stored, the phylactery is charged. Its",
+	"  charge lvl = CR of all crea. whose soul I captured. Souls of crea. with",
+	"  CR < 1/4 aren't great enough to charge my phylactery. Max charge: 27",
+	"  If my phylactery is reduced to 0 hp, my soul is lost and I crumble to",
+	"  dust and am killed. If I'm killed and control a charged phylactery on the",
+	"  same plane, the phylactery's charge is consumed and my body is reconstructed",
+	"  at 5 ft of my phylactery 7 days later. If killed and phylactery has no",
+	"  charge, I'm reanimated 7 days later as Demilich under GM's control",
+	"I gain more boons and flaws as I gain levels (Recommended lvls 5, 11, and 17)",
+];
+
+FeatsList["lich level 1"] = {
+	name: "Lich (Level 1)",
+	source: [["GH", 47]],
+	description:
+		"I gain the Lich transformation, which grants me various boons and flaws as detailed below on the notes page. I can gain additional boons and flaws as I reach certain levels, or during level milestones (GM's discretion).",
+	toNotesPage: [
+		{
+			name: "Lich",
+			source: [["GH", 47]],
+			note: desc(Lich1)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	scores: [0, 0, 0, 4, 2, 0],
+	scoresmax: [0, 0, 0, 22, 22, 0],
+	prerequisite: "Intelligence 16 or higher, ability to cast 7th level spells, complete the Ritual of Dread",
+	prereqeval: function () {
+		return Number(What("Int")) > 15;
+	},
+	savetxt: {
+		text: ["Immune to aging effects"],
+		immune: ["Spells and abilities that affect Undead of a certain CR"],
+	},
+	action: [["action", "Harvester of Souls (consume charge)"]],
+};
+
+var Lich2_PuppetMaster = [
+	"\u25C6 >>Boon: Puppet Master<<",
+	"  Undead crea. of CR 1 or less that I animate with spells or abilities become",
+	"  permanently under my control. Other crea. cannot gain control of undead I raised",
+	"\u25C6 >>Flaw: Hideous Appearance<<",
+	"  My skin becomes rotten and pale, while my figure becomes gaunt and hunched.",
+	"  I can hide this and appear as the humanoid I once were, but this requires conc.",
+	"  Moments of stress can reveal my true nature, such as the following:",
+	"    \u2022 Concentrating on a spell",
+	"    \u2022 Gaining the unconscious condition",
+	"    \u2022 Entering hallowed ground",
+	"    \u2022 Choosing to reveal myself",
+	"  In extreme emotional or physical stress, the GM may call for a Con",
+	"  save with a DC of their choice. On a fail, I reveal my true form.",
+	"  Non-evil crea. that see this are hostile to me, unless decided otherwise",
+];
+
+FeatsList["lich: puppet master (level 2)"] = {
+	name: "Lich: Puppet Master (Level 2)",
+	source: [["GH", 48]],
+	description:
+		"I gain the Puppet Master boon and Hideous Appearance flaw for the Lich transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 48]],
+			note: desc(Lich2_PuppetMaster)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lich Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("lich level 1") !== -1;
+	},
+};
+
+var Lich2_LichdomArcane = [
+	"\u25C6 >>Boon: Lichdom of the Arcane<<",
+	"  When I kill a crea. with a spell, I can apply an additional effect depending",
+	"  on dmg type. Effects with range are centered on the killed target:",
+	"    \u2022 Fire: The space and each space w/in 5 ft are heavily obscured for 1 min.",
+	"      Winds (10+ mph) disperse the cloud",
+	"    \u2022 Necrotic: I regain hp = my Int mod (min 1) + my char. lvl",
+	"    \u2022 Poison: Target crea. w/in 10 ft. They make a Con save or become poisoned",
+	"      for 1 min",
+	"\u25C6 >>Flaw: Hideous Appearance<<",
+	"  My skin becomes rotten and pale, while my figure becomes gaunt and hunched.",
+	"  I can hide this and appear as the humanoid I once were, but this requires conc.",
+	"  Moments of stress can reveal my true nature, such as the following:",
+	"    \u2022 Concentrating on a spell",
+	"    \u2022 Gaining the unconscious condition",
+	"    \u2022 Entering hallowed ground",
+	"    \u2022 Choosing to reveal myself",
+	"  In extreme emotional or physical stress, the GM may call for a Con",
+	"  save with a DC of their choice. On a fail, I reveal my true form.",
+	"  Non-evil crea. that see this are hostile to me, unless decided otherwise",
+];
+
+FeatsList["lich: lichdom of the arcane (level 2)"] = {
+	name: "Lich: Lichdom of the Arcane (Level 2)",
+	source: [["GH", 48]],
+	description:
+		"I gain the Lichdom of the Arcane boon and Hideous Appearance flaw for the Lich transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 48]],
+			note: desc(Lich2_LichdomArcane)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lich Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("lich level 1") !== -1;
+	},
+};
+
+var Lich2_RiftDreadscapes = [
+	"\u25C6 >>Boon: Rift to the Dreadscapes<<",
+	"  I can open a rift to the Dreadscapes. As an action, I choose a point w/in",
+	"  5 ft to open the rift. Once opened, the rift stretches out from that point",
+	"  to a 20 ft rad sphere. When a crea. other than me enters the rift's area",
+	"  for the first time on its turn, or starts its turn there, it must make a",
+	"  Con save vs my Transformation DC. On a fail, it suffers 10d10 necrotic dmg,",
+	"  or half on success. Undead are immune to dmg from this ability. The rift",
+	"  remains open for 1 min, but closes if I become unconscious",
+	"\u25C6 >>Flaw: Hideous Appearance<<",
+	"  My skin becomes rotten and pale, while my figure becomes gaunt and hunched.",
+	"  I can hide this and appear as the humanoid I once were, but this requires conc.",
+	"  Moments of stress can reveal my true nature, such as the following:",
+	"    \u2022 Concentrating on a spell",
+	"    \u2022 Gaining the unconscious condition",
+	"    \u2022 Entering hallowed ground",
+	"    \u2022 Choosing to reveal myself",
+	"  In extreme emotional or physical stress, the GM may call for a Con",
+	"  save with a DC of their choice. On a fail, I reveal my true form.",
+	"  Non-evil crea. that see this are hostile to me, unless decided otherwise",
+];
+
+FeatsList["lich: rift to the dreadscapes (level 2)"] = {
+	name: "Lich: Rift to the Dreadscapes (Level 2)",
+	source: [["GH", 48]],
+	description:
+		"I gain the Rift to the Dreadscapes boon and Hideous Appearance flaw for the Lich transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 48]],
+			note: desc(Lich2_RiftDreadscapes)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lich Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("lich level 1") !== -1;
+	},
+	action: [["action", "Rift to the Dreadscapes"]],
+	usages: 1,
+	recovery: "long rest",
+};
+
+var Lich3_RelentlessUndead = [
+	"\u25C6 >>Boon: Relentless Undead<<",
+	"  When an undead crea. I control is reduced to 0 hp, it may immediately move",
+	"  up to its full speed and make an atk action before dying. This has no effect",
+	"  if the crea. is reduced to 0 hp by radiant dmg",
+	"\u25C6 >>Flaw: Necromantic Dystrophy<<",
+	"  My body is dependent on consuming souls. If I go more than 24 hrs without",
+	"  converting 4 CR worth of souls from my Phylactery into spell slots, I gain:",
+	"    \u2022 Cannot use dash, dodge, or disengage actions or bonus actions",
+	"    \u2022 Cannot use my rea. to make opp. atks",
+	"    \u2022 Cannot disguise my hideous form",
+	"  Upon converting the required souls, I'm no longer affected",
+];
+
+FeatsList["lich: relentless undead (level 3)"] = {
+	name: "Lich: Relentless Undead (Level 3)",
+	source: [["GH", 49]],
+	description:
+		"I gain the Relentless Undead boon and Necromantic Dystrophy flaw for the Lich transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 49]],
+			note: desc(Lich3_RelentlessUndead)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lich Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("lich level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("lich: puppet master (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: lichdom of the arcane (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: rift to the dreadscapes (level 2)") !== -1)
+		);
+	},
+};
+
+var Lich3_ArcaneSupremacy = [
+	"\u25C6 >>Boon: Arcane Supremacy<<",
+	"  I become an exemplar of arcane power. When I cast a conc. spell, if I'm",
+	"  already concentrating on one conc. spell, I don't lose conc. on that spell",
+	"  instead I gain one lvl of exhaustion. If I'm already concentrating on more",
+	"  than one spell, this has no effect. If I lose a third conc. spell during",
+	"  this time, I lose conc. on one of the two spells",
+	"\u25C6 >>Flaw: Necromantic Dystrophy<<",
+	"  My body is dependent on consuming souls. If I go more than 24 hrs without",
+	"  converting 4 CR worth of souls from my Phylactery into spell slots, I gain:",
+	"    \u2022 Cannot use dash, dodge, or disengage actions or bonus actions",
+	"    \u2022 Cannot use my rea. to make opp. atks",
+	"    \u2022 Cannot disguise my hideous form",
+	"  Upon converting the required souls, I'm no longer affected",
+];
+
+FeatsList["lich: arcane supremacy (level 3)"] = {
+	name: "Lich: Arcane Supremacy (Level 3)",
+	source: [["GH", 49]],
+	description:
+		"I gain the Arcane Supremacy boon and Necromantic Dystrophy flaw for the Lich transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 49]],
+			note: desc(Lich3_ArcaneSupremacy)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lich Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("lich level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("lich: puppet master (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: lichdom of the arcane (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: rift to the dreadscapes (level 2)") !== -1)
+		);
+	},
+	usages: 1,
+	recovery: "long rest",
+};
+
+var Lich3_StaffDreadscapes = [
+	"\u25C6 >>Boon: Staff of the Dreadscapes<<",
+	"  As an action, I summon a deathly staff made of blackened bone and twisted",
+	"  rotwood. The staff is the same as a quarterstaff with the following:",
+	"    \u2022 Necrotic dmg I deal ignores resistance to necrotic dmg",
+	"    \u2022 My Spell Save DC and Transformation DC are both increased by 2",
+	"    \u2022 Food and non-crea. plants the staff touches wither and decay",
+	"  I can unsummon it at any time with an action. If I unwield it, it",
+	"  immediately unsummons",
+	"\u25C6 >>Flaw: Necromantic Dystrophy<<",
+	"  My body is dependent on consuming souls. If I go more than 24 hrs without",
+	"  converting 4 CR worth of souls from my Phylactery into spell slots, I gain:",
+	"    \u2022 Cannot use dash, dodge, or disengage actions or bonus actions",
+	"    \u2022 Cannot use my rea. to make opp. atks",
+	"    \u2022 Cannot disguise my hideous form",
+	"  Upon converting the required souls, I'm no longer affected",
+];
+
+FeatsList["lich: staff of the dreadscapes (level 3)"] = {
+	name: "Lich: Staff of the Dreadscapes (Level 3)",
+	source: [["GH", 49]],
+	description:
+		"I gain the Staff of the Dreadscapes boon and Necromantic Dystrophy flaw for the Lich transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 49]],
+			note: desc(Lich3_StaffDreadscapes)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	weaponOptions: {
+		baseWeapon: "quarterstaff",
+		regExpSearch: /^(?=.*staff)(?=.*dreadscapes).*$/i,
+		name: "Staff of the Dreadscapes",
+		source: [["GH", 49]],
+	},
+	calcChanges: {
+		spellCalc: [
+			function (type, spellcasters, ability) {
+				if (type === "dc") return 2;
+			},
+			"If using the Staff of the Dreadscapes, my Spell Save DC and Transformation DC are both increased by 2.",
+		],
+	},
+	prerequisite: "Lich Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("lich level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("lich: puppet master (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: lichdom of the arcane (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: rift to the dreadscapes (level 2)") !== -1)
+		);
+	},
+	action: [
+		["action", "Staff of the Dreadscapes (summon)"],
+		["action", "Staff of the Dreadscapes (unsummon)"],
+	],
+};
+
+var Lich4_LordUndeath = [
+	"\u25C6 >>Boon: Lord of Undeath<<",
+	"  When I reduce a humanoid to 0 hp, I can choose to reanimate it. If I do,",
+	"  the crea. rises at the beginning of its next turn as a zombie permanently",
+	"  under my control, following verbal commands to the best of its ability",
+	"\u25C6 >>Flaw: Weight of Ages<<",
+	"  The weight of time is degrading my Lich form. If I go more than 24 hrs",
+	"  without converting 8 CR worth of souls from my Phylactery into spell slots:",
+	"    \u2022 Cannot use the atk action",
+	"    \u2022 If I move on my turn, I can't use bns action or rea. until next turn",
+	"    \u2022 If I use bns action on my turn, my speed becomes 0 until next turn",
+	"  Upon converting the required souls, I'm no longer affected",
+];
+
+FeatsList["lich: lord of undeath (level 4)"] = {
+	name: "Lich: Lord of Undeath (Level 4)",
+	source: [["GH", 49]],
+	description:
+		"I gain the Lord of Undeath boon and Weight of Ages flaw for the Lich transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 49]],
+			note: desc(Lich4_LordUndeath)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lich Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("lich level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("lich: relentless undead (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: arcane supremacy (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: staff of the dreadscapes (level 3)") !== -1)
+		);
+	},
+};
+
+var Lich4_ArcaneOmniscience = [
+	"\u25C6 >>Boon: Arcane Omniscience<<",
+	"  I've mastered the arcane arts. I know every spell from the wizard's spell",
+	"  list and can prepare a number of these = my Int mod. Spells prepared this",
+	"  way don't count towards max spells I can prepare. Upon completing a short",
+	"  rest, I can change one or more of these prepared spells for another from",
+	"  the wizard's spell list",
+	"\u25C6 >>Flaw: Weight of Ages<<",
+	"  The weight of time is degrading my Lich form. If I go more than 24 hrs",
+	"  without converting 8 CR worth of souls from my Phylactery into spell slots:",
+	"    \u2022 Cannot use the atk action",
+	"    \u2022 If I move on my turn, I can't use bns action or rea. until next turn",
+	"    \u2022 If I use bns action on my turn, my speed becomes 0 until next turn",
+	"  Upon converting the required souls, I'm no longer affected",
+];
+
+FeatsList["lich: arcane omniscience (level 4)"] = {
+	name: "Lich: Arcane Omniscience (Level 4)",
+	source: [["GH", 49]],
+	description:
+		"I gain the Arcane Omniscience boon and Weight of Ages flaw for the Lich transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 49]],
+			note: desc(Lich4_ArcaneOmniscience)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lich Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("lich level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("lich: relentless undead (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: arcane supremacy (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: staff of the dreadscapes (level 3)") !== -1)
+		);
+	},
+	eval: function () {
+		CurrentSpells["arcane omniscience"] = {
+			name: "Arcane Omniscience",
+			source: [["GH", 49]],
+			ability: 4,
+			list: {
+				class: "wizard",
+				level: [0, 9],
+			},
+			known: { spells: "book" },
+			refType: "feat",
+		};
+		SetStringifieds("spells");
+		CurrentUpdates.types.push("spells");
+	},
+	removeeval: function () {
+		delete CurrentSpells["arcane omniscience"];
+		SetStringifieds("spells");
+		CurrentUpdates.types.push("spells");
+	},
+};
+
+var Lich4_DeathlyBeing = [
+	"\u25C6 >>Boon: Deathly Being<<",
+	"  I'm immune to poison, bludg., pierce., and slash. dmg from non-magical",
+	"  atks. I can't become charmed, poisoned, paralysed, or frightened",
+	"\u25C6 >>Flaw: Weight of Ages<<",
+	"  The weight of time is degrading my Lich form. If I go more than 24 hrs",
+	"  without converting 8 CR worth of souls from my Phylactery into spell slots:",
+	"    \u2022 Cannot use the atk action",
+	"    \u2022 If I move on my turn, I can't use bns action or rea. until next turn",
+	"    \u2022 If I use bns action on my turn, my speed becomes 0 until next turn",
+	"  Upon converting the required souls, I'm no longer affected",
+];
+
+FeatsList["lich: deathly being (level 4)"] = {
+	name: "Lich: Deathly Being (Level 4)",
+	source: [["GH", 50]],
+	description:
+		"I gain the Deathly Being boon and Weight of Ages flaw for the Lich transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 50]],
+			note: desc(Lich4_DeathlyBeing)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Lich Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("lich level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("lich: relentless undead (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: arcane supremacy (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("lich: staff of the dreadscapes (level 3)") !== -1)
+		);
+	},
+	savetxt: {
+		immune: [
+			"charmed",
+			"poisoned",
+			"paralysed",
+			"frightened",
+			"poison, bludg., pierce., and slash. dmg from non-magical atks",
+		],
+	},
 };
