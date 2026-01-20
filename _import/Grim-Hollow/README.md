@@ -118,16 +118,11 @@ npx prettier --write "**/*.js"
 
 ### Critical Fixes Needed
 
-**Duplicate Keys in GH-Complete.js:**
+**GH-Complete.js:**
 
-- Lines 1197, 1436, 2358, 3300: Multiple `note` keys in objects
+- Lines 1197, 1436, 2358, 3300: Duplicate `note` keys in objects (no-dupe-keys)
 
-### Non-Critical Warnings
-
-- Unused function parameters (lines 2960, 3166, 3402, 5036)
-- `==` vs `===` comparisons (lines 1266, 1273, 5037)
-
-These warnings can be ignored if the code functions correctly with MPMB's sheet. This is just my stylistic approach of using strict comparison.
+These warnings can be ignored if the code functions correctly with MPMB's sheet. The unused parameters may be required by MPMB's function signatures even if not used in the implementation.
 
 ## Contributing
 
