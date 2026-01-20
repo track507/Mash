@@ -2328,3 +2328,1055 @@ FeatsList["lycanthrope: kindred affinity (level 4)"] = {
 		);
 	},
 };
+
+var Seraph1 = [
+	"\u25C6 >>Boon: Celestial Form<<",
+	"  My Wis increases by 2 and my Con by 1 (max 16). I become a Celestial in addition",
+	"  to any other crea. types. Spells and abilities that affect Celestials of a certain",
+	"  CR have no effect on me",
+	"\u25C6 >>Boon: Angelic Wings<<",
+	"  I have manifested feathered wings and have a fly speed = my normal speed. I can't",
+	"  wear armor or clothing that has not been modified to accommodate my wings",
+	"\u25C6 >>Flaw: Planar Binding<<",
+	"  My body and soul are bound to a divine plane of existence. I have disadv. on death",
+	"  saving throws as the plane attempts to pull me back to it. If I would be killed,",
+	"  my soul has been taken back to a plane of existence of the GM's choice. This plane",
+	"  is my new home, and I become an NPC under the GM's control",
+	"  If I'm on the divine plane responsible for my transformation, this flaw has no effect",
+	"I gain more boons and flaws as I gain levels (Recommended lvls 5, 11, and 17)",
+];
+
+FeatsList["seraph level 1"] = {
+	name: "Seraph (Level 1)",
+	source: [["GH", 59]],
+	description:
+		"I gain the Seraph transformation, which grants me various boons and flaws as detailed below on the notes page. I can gain additional boons and flaws as I reach certain levels, or during level milestones (GM's discretion).",
+	toNotesPage: [
+		{
+			name: "Seraph",
+			source: [["GH", 59]],
+			note: desc(Seraph1)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	scorestxt: "+2 Wis, +1 Con (max 16)",
+	prerequisite: "Wisdom 13 or higher",
+	prereqeval: function () {
+		return Number(What("Wis")) > 12;
+	},
+	speed: {
+		fly: { spd: "walk", enc: "walk" },
+	},
+	savetxt: { text: ["Disadv. on death saves (Planar Binding)"] },
+};
+
+var Seraph2_DivineRetribution = [
+	"\u25C6 >>Boon: Divine Retribution<<",
+	"  When I or an allied crea. I can see w/in 30 ft takes the atk action, I can use",
+	"  my rea. to imbue them with holy zeal. Immediately after the target completes the",
+	"  atk action, they can make an additional atk as a bns action. On a hit, the hit",
+	"  target takes an additional 1d8 radiant dmg. I can use this a number of times",
+	"  = my Wis mod (min 1). I regain all uses when I finish a long rest",
+	"\u25C6 >>Flaw: Divine Appearance<<",
+	"  My appearance has radically transformed. My body radiates a divine glow, while",
+	"  my wings are prominent and powerful appendages. I can contain this form and present",
+	"  the appearance of the humanoid I once were, but this is taxing and requires conc.",
+	"  Moments of stress are likely to reveal my true nature. In the following situations,",
+	"  my true form is revealed:",
+	"    \u2022 Concentrating on a spell",
+	"    \u2022 Gaining the unconscious condition",
+	"    \u2022 Entering desecrated ground",
+	"    \u2022 Choosing to reveal myself",
+	"  In extreme emotional or physical stress, the GM may call for a Con save with a DC",
+	"  of their choosing to see if I maintain my humanoid form. Evil humanoid crea. that",
+	"  witness or hear about my true form become instantly hostile to me and are compelled",
+	"  by malice to destroy me, unless the GM decides otherwise",
+	"  If the crea. is scared of me or decides I'm too powerful to fight, it will attempt",
+	"  to harm me in another way, but won't give up on destroying me",
+];
+
+FeatsList["seraph: divine retribution (level 2)"] = {
+	name: "Seraph: Divine Retribution (Level 2)",
+	source: [["GH", 59]],
+	description:
+		"I gain the Divine Retribution boon and Divine Appearance flaw for the Seraph transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 59]],
+			note: desc(Seraph2_DivineRetribution)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Seraph Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("seraph level 1") !== -1;
+	},
+	action: [["reaction", "Divine Retribution"]],
+	usages: "Wisdom modifier per ",
+	usagescalc: "event.value = Math.max(1, What('Wis Mod'));",
+	recovery: "long rest",
+};
+
+var Seraph2_DivineClemency = [
+	"\u25C6 >>Boon: Divine Clemency<<",
+	"  When I or a crea. I can see w/in 60 ft takes dmg, I can use my rea. to cast a",
+	"  spell of 1st lvl or higher. This spell must target the damaged crea. and restore",
+	"  hp to it. I can use this a number of times = my Wis mod (min 1). I regain all",
+	"  uses when I finish a long rest",
+	"\u25C6 >>Flaw: Divine Appearance<<",
+	"  My appearance has radically transformed. My body radiates a divine glow, while",
+	"  my wings are prominent and powerful appendages. I can contain this form and present",
+	"  the appearance of the humanoid I once were, but this is taxing and requires conc.",
+	"  Moments of stress are likely to reveal my true nature. In the following situations,",
+	"  my true form is revealed:",
+	"    \u2022 Concentrating on a spell",
+	"    \u2022 Gaining the unconscious condition",
+	"    \u2022 Entering desecrated ground",
+	"    \u2022 Choosing to reveal myself",
+	"  In extreme emotional or physical stress, the GM may call for a Con save with a DC",
+	"  of their choosing to see if I maintain my humanoid form. Evil humanoid crea. that",
+	"  witness or hear about my true form become instantly hostile to me and are compelled",
+	"  by malice to destroy me, unless the GM decides otherwise",
+	"  If the crea. is scared of me or decides I'm too powerful to fight, it will attempt",
+	"  to harm me in another way, but won't give up on destroying me",
+];
+
+FeatsList["seraph: divine clemency (level 2)"] = {
+	name: "Seraph: Divine Clemency (Level 2)",
+	source: [["GH", 60]],
+	description:
+		"I gain the Divine Clemency boon and Divine Appearance flaw for the Seraph transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 60]],
+			note: desc(Seraph2_DivineClemency)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Seraph Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("seraph level 1") !== -1;
+	},
+	action: [["reaction", "Divine Clemency"]],
+	usages: "Wisdom modifier per ",
+	usagescalc: "event.value = Math.max(1, What('Wis Mod'));",
+	recovery: "long rest",
+};
+
+var Seraph2_DivineExpedition = [
+	"\u25C6 >>Boon: Divine Expedition<<",
+	"  At the beginning of another crea's turn, I can use my rea. to move myself up to",
+	"  my spd or allow an ally that I can see, w/in 60 ft, to move up to their spd.",
+	"  Movement made this way doesn't cause atks of opportunity. I can use this a number",
+	"  of times = my Wis mod (min 1). I regain all uses when I finish a long rest",
+	"\u25C6 >>Flaw: Divine Appearance<<",
+	"  My appearance has radically transformed. My body radiates a divine glow, while",
+	"  my wings are prominent and powerful appendages. I can contain this form and present",
+	"  the appearance of the humanoid I once were, but this is taxing and requires conc.",
+	"  Moments of stress are likely to reveal my true nature. In the following situations,",
+	"  my true form is revealed:",
+	"    \u2022 Concentrating on a spell",
+	"    \u2022 Gaining the unconscious condition",
+	"    \u2022 Entering desecrated ground",
+	"    \u2022 Choosing to reveal myself",
+	"  In extreme emotional or physical stress, the GM may call for a Con save with a DC",
+	"  of their choosing to see if I maintain my humanoid form. Evil humanoid crea. that",
+	"  witness or hear about my true form become instantly hostile to me and are compelled",
+	"  by malice to destroy me, unless the GM decides otherwise",
+	"  If the crea. is scared of me or decides I'm too powerful to fight, it will attempt",
+	"  to harm me in another way, but won't give up on destroying me",
+];
+
+FeatsList["seraph: divine expedition (level 2)"] = {
+	name: "Seraph: Divine Expedition (Level 2)",
+	source: [["GH", 60]],
+	description:
+		"I gain the Divine Expedition boon and Divine Appearance flaw for the Seraph transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 60]],
+			note: desc(Seraph2_DivineExpedition)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Seraph Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("seraph level 1") !== -1;
+	},
+	action: [["reaction", "Divine Expedition"]],
+	usages: "Wisdom modifier per ",
+	usagescalc: "event.value = Math.max(1, What('Wis Mod'));",
+	recovery: "long rest",
+};
+
+var Seraph3_RadiantStrike = [
+	"\u25C6 >>Boon: Radiant Strike<<",
+	"  Whenever I hit a target with a melee atk, I deal an additional 1d6 radiant dmg",
+	"  to the target. This dmg increases to 2d6 if the target is a Fiend, Fey, or Undead",
+	"\u25C6 >>Flaw: Beacon to Darkness<<",
+	"  I've become a Seraph of noted virtue and divinity. This has made me a target for",
+	"  all that is dark in the world. Whenever I or an ally w/in 30 ft commits an act",
+	"  of greater evil, such as murdering a helpless innocent, a small amount of darkness",
+	"  attaches itself to me, and I gain 1 corruption point (max 5). Whether the act",
+	"  constitutes greater evil is determined by the GM. Whenever I make an atk roll",
+	"  against an evil crea., or make a saving throw against a spell or ability from an",
+	"  evil crea., subtract the number of corruption points I have from the roll. Whenever",
+	"  I complete a short or long rest, and have prayed for at least 1 hr, I can reduce",
+	"  the number of corruption points I have by 1",
+];
+
+FeatsList["seraph: radiant strike (level 3)"] = {
+	name: "Seraph: Radiant Strike (Level 3)",
+	source: [["GH", 60]],
+	description:
+		"I gain the Radiant Strike boon and Beacon to Darkness flaw for the Seraph transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 60]],
+			note: desc(Seraph3_RadiantStrike)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Seraph Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("seraph level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("seraph: divine retribution (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("seraph: divine clemency (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("seraph: divine expedition (level 2)") !== -1)
+		);
+	},
+	calcChanges: {
+		atkAdd: [
+			function (fields, v) {
+				if (v.isMeleeWeapon) {
+					fields.Description += (fields.Description ? "; " : "") + "+1d6 rad dmg (+2d6 vs Fiend/Fey/Undead)";
+				}
+			},
+			"My melee attacks deal an additional 1d6 radiant damage (2d6 vs Fiend, Fey, or Undead).",
+		],
+	},
+};
+
+var Seraph3_CleanseAffliction = [
+	"\u25C6 >>Boon: Cleanse Affliction<<",
+	"  When I cast a spell that restores hp to an ally, I can also remove one condition",
+	"  being inflicted on them by a spell or ability. Once a crea. has benefited from",
+	"  this feature, they can't benefit from it again until they have completed a long rest",
+	"\u25C6 >>Flaw: Beacon to Darkness<<",
+	"  I've become a Seraph of noted virtue and divinity. This has made me a target for",
+	"  all that is dark in the world. Whenever I or an ally w/in 30 ft commits an act",
+	"  of greater evil, such as murdering a helpless innocent, a small amount of darkness",
+	"  attaches itself to me, and I gain 1 corruption point (max 5). Whether the act",
+	"  constitutes greater evil is determined by the GM. Whenever I make an atk roll",
+	"  against an evil crea., or make a saving throw against a spell or ability from an",
+	"  evil crea., subtract the number of corruption points I have from the roll. Whenever",
+	"  I complete a short or long rest, and have prayed for at least 1 hr, I can reduce",
+	"  the number of corruption points I have by 1",
+];
+
+FeatsList["seraph: cleanse affliction (level 3)"] = {
+	name: "Seraph: Cleanse Affliction (Level 3)",
+	source: [["GH", 60]],
+	description:
+		"I gain the Cleanse Affliction boon and Beacon to Darkness flaw for the Seraph transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 60]],
+			note: desc(Seraph3_CleanseAffliction)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Seraph Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("seraph level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("seraph: divine retribution (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("seraph: divine clemency (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("seraph: divine expedition (level 2)") !== -1)
+		);
+	},
+};
+
+var Seraph4_BowCelestialJudgement = [
+	"\u25C6 >>Boon: Bow of Celestial Judgement<<",
+	"  I can use a bns action to summon a powerful bow made of divine light. The bow",
+	"  is the same as a longbow, except atks made with it deal radiant dmg and have",
+	"  the following features:",
+	"    \u2022 The bow doesn't use ammunition. Instead, when the wielder draws the bowstring,",
+	"      an ethereal arrow of radiant light forms",
+	"    \u2022 Atks with the bow deal an additional 1d8 radiant dmg. Against fiends, fey",
+	"      and undead, the bow deals an additional 2d8 radiant dmg instead",
+	"    \u2022 The bow's radiant form emits bright light in a 5-ft rad and dim light for",
+	"      an additional 5 ft",
+	"  I can unsummon the bow at any time with the use of an action. If I unwield the",
+	"  bow, it immediately unsummons",
+	"\u25C6 >>Flaw: Pull of the Empyrean<<",
+	"  My new native plane attempts to draw me to it, laying claim to my form. Whenever",
+	"  I roll a nat 1 for a saving throw against a magical spell or ability, I take 1d6",
+	"  force dmg per 2 class lvls in addition to any other dmg or effects I would suffer,",
+	"  as my native plane attempts to unbind me from the material plane. For example,",
+	"  a 6th lvl Fighter would take 3d6 force dmg. This dmg ignores resistances and",
+	"  immunities",
+];
+
+FeatsList["seraph: bow of celestial judgement (level 4)"] = {
+	name: "Seraph: Bow of Celestial Judgement (Level 4)",
+	source: [["GH", 61]],
+	description:
+		"I gain the Bow of Celestial Judgement boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 61]],
+			note: desc(Seraph4_BowCelestialJudgement)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Seraph Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("seraph level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
+		);
+	},
+	action: [
+		["bonus action", "Bow of Celestial Judgement (summon)"],
+		["action", "Bow of Celestial Judgement (unsummon)"],
+	],
+	weaponOptions: [
+		{
+			baseWeapon: "longbow",
+			regExpSearch: /^(?=.*bow)(?=.*(celestial|judgement)).*$/i,
+			name: "Bow of Celestial Judgement",
+			source: [["GH", 61]],
+			damage: [1, 8, "radiant"],
+			description:
+				"+1d8 radiant dmg (+2d8 vs Fiend/Fey/Undead); Bright light 5 ft, dim light 5 ft; No ammo needed",
+			selectNow: true,
+		},
+	],
+};
+
+var Seraph4_AuraHolyPurge = [
+	"\u25C6 >>Boon: Aura of Holy Purge<<",
+	"  I emit an aura of righteous fervour. This aura radiates up to 20 ft from me",
+	"  while I'm conscious. When I or an ally w/in range of my aura hits a hostile crea.,",
+	"  they can choose for that hit to be a crit. hit instead. Once a crea. has benefited",
+	"  from this feature, they can't benefit from it again until they have completed a",
+	"  long rest",
+	"\u25C6 >>Flaw: Pull of the Empyrean<<",
+	"  My new native plane attempts to draw me to it, laying claim to my form. Whenever",
+	"  I roll a nat 1 for a saving throw against a magical spell or ability, I take 1d6",
+	"  force dmg per 2 class lvls in addition to any other dmg or effects I would suffer,",
+	"  as my native plane attempts to unbind me from the material plane. For example,",
+	"  a 6th lvl Fighter would take 3d6 force dmg. This dmg ignores resistances and",
+	"  immunities",
+];
+
+FeatsList["seraph: aura of holy purge (level 4)"] = {
+	name: "Seraph: Aura of Holy Purge (Level 4)",
+	source: [["GH", 61]],
+	description:
+		"I gain the Aura of Holy Purge boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 61]],
+			note: desc(Seraph4_AuraHolyPurge)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Seraph Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("seraph level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
+		);
+	},
+};
+
+var Seraph4_AuraMercifulBlessing = [
+	"\u25C6 >>Boon: Aura of Merciful Blessing<<",
+	"  I emit an aura of invigoration and fortitude. This aura radiates up to 20 ft",
+	"  from me while I'm conscious. When I or an ally w/in range of my aura is reduced",
+	"  to 0 hp, they're reduced to 1 hp instead. Once a crea. has benefited from this",
+	"  feature, they can't benefit again until they have completed a long rest",
+	"\u25C6 >>Flaw: Pull of the Empyrean<<",
+	"  My new native plane attempts to draw me to it, laying claim to my form. Whenever",
+	"  I roll a nat 1 for a saving throw against a magical spell or ability, I take 1d6",
+	"  force dmg per 2 class lvls in addition to any other dmg or effects I would suffer,",
+	"  as my native plane attempts to unbind me from the material plane. For example,",
+	"  a 6th lvl Fighter would take 3d6 force dmg. This dmg ignores resistances and",
+	"  immunities",
+];
+
+FeatsList["seraph: aura of merciful blessing (level 4)"] = {
+	name: "Seraph: Aura of Merciful Blessing (Level 4)",
+	source: [["GH", 61]],
+	description:
+		"I gain the Aura of Merciful Blessing boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 61]],
+			note: desc(Seraph4_AuraMercifulBlessing)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Seraph Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("seraph level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
+		);
+	},
+};
+
+var Seraph4_AuraEmpyrealValor = [
+	"\u25C6 >>Boon: Aura of Empyreal Valor<<",
+	"  I emit an aura of swiftness and bravery. This aura radiates up to 20 ft from me",
+	"  while I'm conscious. When I or an ally w/in range of my aura makes a Dex ability",
+	"  check to determine initiative, they can add +5 to the result. In addition, on",
+	"  that crea's turn they gain adv. on atk rolls against any crea. that hasn't taken",
+	"  a turn in the combat yet. Once a crea. has benefited from this feature, they",
+	"  can't benefit again until they have completed a long rest",
+	"\u25C6 >>Flaw: Pull of the Empyrean<<",
+	"  My new native plane attempts to draw me to it, laying claim to my form. Whenever",
+	"  I roll a nat 1 for a saving throw against a magical spell or ability, I take 1d6",
+	"  force dmg per 2 class lvls in addition to any other dmg or effects I would suffer,",
+	"  as my native plane attempts to unbind me from the material plane. For example,",
+	"  a 6th lvl Fighter would take 3d6 force dmg. This dmg ignores resistances and",
+	"  immunities",
+];
+
+FeatsList["seraph: aura of empyreal valor (level 4)"] = {
+	name: "Seraph: Aura of Empyreal Valor (Level 4)",
+	source: [["GH", 61]],
+	description:
+		"I gain the Aura of Empyreal Valor boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 61]],
+			note: desc(Seraph4_AuraEmpyrealValor)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Seraph Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("seraph level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
+		);
+	},
+};
+
+var Vampire1 = [
+	"\u25C6 >>Boon: Blood Fury<<",
+	"  When I deal combat dmg w/ unarmed strike or melee/ranged wea. to a target that",
+	"  can bleed (not undead/construct), I gain 1 Fury Point (max 4). Upon completing",
+	"  short or long rest, Fury Points reset to 0",
+	"  >>Blood Fury Abilities<<",
+	"  I can spend Fury Points (FP) to use:",
+	"    \u2022 Fanged Bite (1FP): On my turn, after atk action, use bns action to make",
+	"      special unarmed bite atk. Use Dex mod instead of Str to hit. Deals 1d4 +",
+	"      Str or Dex mod pierce. dmg. Target must succeed Con save or take 2d6 necrotic",
+	"      dmg. I regain hp = necrotic dmg dealt. If atk reduces humanoid Med. or smaller",
+	"      to 0 hp, gain 3 FP instead",
+	"    \u2022 Calculated Strike (1FP): When I hit w/ melee wea. atk, before dmg is dealt,",
+	"      add 1d6 dmg (same type as wea.). No FP generated for this atk",
+	"    \u2022 Vampiric Mist (2FP): Bns action, teleport up to 30 ft to unoccupied space",
+	"      I can see",
+	"    \u2022 Unearthly Reflexes (1FP): After Dex save roll but before result, use rea.",
+	"      to take half dmg on fail, no dmg on success",
+	"    \u2022 Deathly Horror (3FP): Bns action, crea. of my choice w/in 30 ft must succeed",
+	"      Wis save or become Frightened for 1 min. Crea. repeats save at end of each",
+	"      turn, ending on success. Crea. that succeeds is immune 24 hrs",
+	"\u25C6 >>Boon: Undead Form<<",
+	"  Dex +2, Cha +1 (max 16). Crea. type becomes undead. Spells/abilities regarding",
+	"  Undead of specific CR have no effect. If spell/ability (not my own) would grant",
+	"  HP, gain temp HP instead. If reduced to 0 hp and unconscious, healing stabilizes",
+	"  me at 1 hp and unconscious. Don't age, immune to aging effects, can't die from",
+	"  old age. Don't require air, food, drink, or sleep",
+	"\u25C6 >>Flaw: The Sanguine Curse<<",
+	"    \u2022 Can't enter residence I don't own w/out invitation. If enter involuntarily,",
+	"      take 1d10 psychic dmg at start of turn while inside",
+	"    \u2022 Gain Darkvision 60 ft if don't have it",
+	"    \u2022 In sunlight: disadv. on atk rolls and ability checks",
+	"    \u2022 Must feed every 7 days",
+];
+
+var VampireFeeding = [
+	"\u25C6 >>Feeding<<",
+	"  As an action, make unarmed bite atk vs unconscious, restrained or charmed humanoid.",
+	"  Target drained 1 pint blood, bears bite mark. Doesn't wake sleeping crea. or end",
+	"  spell/ability effects. Crea. gains 1 exhaustion lvl (only removed w/ greater",
+	"  restoration)",
+	"  Vampire not feeding w/in required time enters unconscious feeding frenzy (GM",
+	"  control). Next time sleep/trance, atk all nearby living crea. to feed. Remains",
+	"  in state until drain crea. completely (killing), then falls unconscious 4 hrs",
+];
+
+FeatsList["vampire level 1"] = {
+	name: "Vampire (Level 1)",
+	source: [["GH", 64]],
+	description:
+		"I gain the Vampire transformation, which grants me various boons and flaws as detailed below on the notes page. I gain the Blood Fury mechanic, allowing me to use Fury Points for special abilities.",
+	toNotesPage: [
+		{
+			name: "Feeding",
+			source: [["GH", 65]],
+			note: desc(VampireFeeding)
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+		{
+			name: "Vampire",
+			source: [["GH", 64]],
+			note: desc(Vampire1)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+			amendTo: "Feeding",
+		},
+	],
+	scorestxt: "+2 Dex, +1 Cha (max 16)",
+	prerequisite: "Dexterity 13 or higher, contracted the Sanguine Curse",
+	prereqeval: function () {
+		return Number(What("Dex")) > 12;
+	},
+	vision: [["Darkvision", 60]],
+	action: [
+		["bonus action", "Fanged Bite (1 FP)"],
+		["bonus action", "Vampiric Mist (2 FP)"],
+		["reaction", "Unearthly Reflexes (1 FP)"],
+		["bonus action", "Deathly Horror (3 FP)"],
+		["action", "Feeding (bite unconscious/restrained/charmed)"],
+	],
+	extraLimitedFeatures: [
+		{
+			name: "Fury Points",
+			usages: 4,
+			recovery: "short rest",
+		},
+	],
+	weaponOptions: [
+		{
+			baseWeapon: "unarmed strike",
+			regExpSearch: /^(?=.*fanged?)(?=.*bite).*$/i,
+			name: "Fanged Bite (Blood Fury)",
+			source: [["GH", 64]],
+			ability: 2,
+			damage: [1, 4, "piercing"],
+			description: "1 FP; Con save or 2d6 necro dmg (I heal); If kill humanoid Med/smaller: gain 3 FP",
+			abilitytodamage: true,
+			selectNow: true,
+		},
+	],
+};
+
+var Vampire2_DreadKnight = [
+	"\u25C6 >>Boon: Dread Knight Combat Training<<",
+	"  Bns action to enter, exit, or change combat stance. While in stance, gain:",
+	"  >>Offensive<<: Deal additional dmg w/ melee wea. = FP I possess (min 1)",
+	"  >>Defensive<<: AC bns = \u00BD FP I possess (min 1)",
+	"  >>Accuracy<<: Bns to hit w/ wea. atks = \u00BD FP I possess (min 1)",
+	"  Use Dex instead of Str for atk/dmg rolls of melee wea. w/ slashing dmg",
+	"\u25C6 >>Flaw: Hideous Appearance<<",
+	"  No reflection in mirrors/reflective surfaces. Can hide true appearance by conc.",
+	"  Following situations reveal true form:",
+	"    \u2022 Concentrating on spell",
+	"    \u2022 Unconscious condition",
+	"    \u2022 Entering hallowed ground",
+	"    \u2022 Taking dmg from sunlight or free-flowing water",
+	"    \u2022 Choosing to reveal",
+	"  In extreme stress, GM may call Con save (DC their choice) to maintain form",
+];
+
+FeatsList["vampire: dread knight combat training (level 2)"] = {
+	name: "Vampire: Dread Knight Combat Training (Level 2)",
+	source: [["GH", 65]],
+	description:
+		"I gain the Dread Knight Combat Training boon and Hideous Appearance flaw for the Vampire transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 65]],
+			note: desc(Vampire2_DreadKnight)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Vampire Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("vampire level 1") !== -1;
+	},
+	action: [["bonus action", "Dread Knight Stance (enter/exit/change)"]],
+};
+
+var Vampire2_SanguineMagic = [
+	"\u25C6 >>Boon: Sanguine Magic<<",
+	"  Prerequisite: Ability to cast spells",
+	"  When I deal non-necrotic dmg w/ spell/cantrip, can deal necrotic dmg instead.",
+	"  When I deal dmg w/ spell/cantrip, gain 1 FP (max 1/turn)",
+	"  Gain Blood Fury abilities:",
+	"    \u2022 Cast in Blood (1 FP): Next dmg-dealing cantrip, add Cha mod to dmg",
+	"    \u2022 Sanguine Spellbinding (3 FP): Next crea. making Cha/Int/Wis save vs my",
+	"      spell has disadv. If spell affects multiple crea., I choose which affected",
+	"\u25C6 >>Flaw: Hideous Appearance<<",
+	"  No reflection in mirrors/reflective surfaces. Can hide true appearance by conc.",
+	"  Following situations reveal true form:",
+	"    \u2022 Concentrating on spell",
+	"    \u2022 Unconscious condition",
+	"    \u2022 Entering hallowed ground",
+	"    \u2022 Taking dmg from sunlight or free-flowing water",
+	"    \u2022 Choosing to reveal",
+	"  In extreme stress, GM may call Con save (DC their choice) to maintain form",
+];
+
+FeatsList["vampire: sanguine magic (level 2)"] = {
+	name: "Vampire: Sanguine Magic (Level 2)",
+	source: [["GH", 66]],
+	description:
+		"I gain the Sanguine Magic boon and Hideous Appearance flaw for the Vampire transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 66]],
+			note: desc(Vampire2_SanguineMagic)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Vampire Level 1, ability to cast spells",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("vampire level 1") !== -1;
+	},
+};
+
+var Vampire2_Shapechanger = [
+	"\u25C6 >>Boon: Shapechanger<<",
+	"  Action to polymorph into Tiny bat or back. In bat form:",
+	"    \u2022 Walking speed 5 ft, flying speed 30 ft",
+	"    \u2022 If sunlight hypersensitivity, reduced to sensitivity: disadv. on atks/",
+	"      ability checks in sunlight, no dmg from direct sunlight contact",
+	"    \u2022 Can't speak. Held obj./armor merges or drops (GM decides)",
+	"  If unconscious in bat, revert to vampiric form",
+	"  Action to turn into mist. In mist form:",
+	"    \u2022 Can't take actions, speak, or manipulate obj.",
+	"    \u2022 Weightless, flying speed 20 ft, hover, enter hostile crea. space",
+	"    \u2022 If air fits through space, I can. Can't pass through liquid/cross running",
+	"      water",
+	"    \u2022 Adv. on Str/Dex/Con saves, immune to nonmagical dmg (except sunlight)",
+	"    \u2022 Held obj./armor merges or drops (GM decides)",
+	"  If unconscious in mist, revert to vampiric form",
+	"\u25C6 >>Flaw: Hideous Appearance<<",
+	"  No reflection in mirrors/reflective surfaces. Can hide true appearance by conc.",
+	"  Following situations reveal true form:",
+	"    \u2022 Concentrating on spell",
+	"    \u2022 Unconscious condition",
+	"    \u2022 Entering hallowed ground",
+	"    \u2022 Taking dmg from sunlight or free-flowing water",
+	"    \u2022 Choosing to reveal",
+	"  In extreme stress, GM may call Con save (DC their choice) to maintain form",
+];
+
+FeatsList["vampire: shapechanger (level 2)"] = {
+	name: "Vampire: Shapechanger (Level 2)",
+	source: [["GH", 66]],
+	description:
+		"I gain the Shapechanger boon and Hideous Appearance flaw for the Vampire transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 66]],
+			note: desc(Vampire2_Shapechanger)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Vampire Level 1",
+	prereqeval: function () {
+		return CurrentFeats.known.indexOf("vampire level 1") !== -1;
+	},
+	action: [
+		["action", "Shapechanger (bat form)"],
+		["action", "Shapechanger (mist form)"],
+	],
+	speed: {
+		fly: { spd: 30, enc: 0 },
+	},
+};
+
+var Vampire3_CruelRiposte = [
+	"\u25C6 >>Boon: Cruel Riposte<<",
+	"  When crea. w/in 5 ft atks me, use rea. to make melee wea. atk vs attacker. Uses",
+	"  = Dex mod (min 1), regain all on long rest",
+	"\u25C6 >>Flaw: Greater Sanguine Curse<<",
+	"    \u2022 Take 1d10 acid dmg if end turn in running water",
+	"    \u2022 Gain superior Darkvision 120 ft if don't have it",
+	"    \u2022 Take 1d10 radiant dmg when start turn in sunlight",
+	"    \u2022 Must feed every 3 days",
+];
+
+FeatsList["vampire: cruel riposte (level 3)"] = {
+	name: "Vampire: Cruel Riposte (Level 3)",
+	source: [["GH", 67]],
+	description:
+		"I gain the Cruel Riposte boon and Greater Sanguine Curse flaw for the Vampire transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 67]],
+			note: desc(Vampire3_CruelRiposte)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Vampire Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("vampire level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("vampire: dread knight combat training (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("vampire: sanguine magic (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("vampire: shapechanger (level 2)") !== -1)
+		);
+	},
+	action: [["reaction", "Cruel Riposte"]],
+	usages: "Dexterity modifier per ",
+	usagescalc: "event.value = Math.max(1, What('Dex Mod'));",
+	recovery: "long rest",
+	vision: [["Superior Darkvision", 120]],
+};
+
+var Vampire3_CreaturesNight = [
+	"\u25C6 >>Boon: Creatures of the Night<<",
+	"  I call 2d4 swarms of bats or 2d4 swarms of rats (outdoors: 2d4",
+	"  wolves instead of rats). Arrive end of my next turn at GM's choice w/in 30 ft,",
+	"  under my control. Act after me in initiative, remain 1 hr/until I die/dismissed",
+	"  (bns action). Can't use if in direct sunlight",
+	"\u25C6 >>Flaw: Greater Sanguine Curse<<",
+	"    \u2022 Take 1d10 acid dmg if end turn in running water",
+	"    \u2022 Gain superior Darkvision 120 ft if don't have it",
+	"    \u2022 Take 1d10 radiant dmg when start turn in sunlight",
+	"    \u2022 Must feed every 3 days",
+];
+
+FeatsList["vampire: creatures of the night (level 3)"] = {
+	name: "Vampire: Creatures of the Night (Level 3)",
+	source: [["GH", 67]],
+	description:
+		"I gain the Creatures of the Night boon and Greater Sanguine Curse flaw for the Vampire transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 67]],
+			note: desc(Vampire3_CreaturesNight)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Vampire Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("vampire level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("vampire: dread knight combat training (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("vampire: sanguine magic (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("vampire: shapechanger (level 2)") !== -1)
+		);
+	},
+	usages: 1,
+	recovery: "long rest",
+	vision: [["Superior Darkvision", 120]],
+};
+
+var Vampire3_CaptivatingGlance = [
+	"\u25C6 >>Boon: Captivating Glance<<",
+	"  Prof. in Deception and Persuasion. If already prof., double prof. bns for those",
+	"  skills. If have/gain double prof., gain +2 instead",
+	"  Thoughts can't be read by any means",
+	"\u25C6 >>Flaw: Greater Sanguine Curse<<",
+	"    \u2022 Take 1d10 acid dmg if end turn in running water",
+	"    \u2022 Gain superior Darkvision 120 ft if don't have it",
+	"    \u2022 Take 1d10 radiant dmg when start turn in sunlight",
+	"    \u2022 Must feed every 3 days",
+];
+
+FeatsList["vampire: captivating glance (level 3)"] = {
+	name: "Vampire: Captivating Glance (Level 3)",
+	source: [["GH", 67]],
+	description:
+		"I gain the Captivating Glance boon and Greater Sanguine Curse flaw for the Vampire transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 67]],
+			note: desc(Vampire3_CaptivatingGlance)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Vampire Level 1 and one Level 2 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("vampire level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("vampire: dread knight combat training (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("vampire: sanguine magic (level 2)") !== -1 ||
+				CurrentFeats.known.indexOf("vampire: shapechanger (level 2)") !== -1)
+		);
+	},
+	skills: [
+		["Deception", "increment"],
+		["Persuasion", "increment"],
+	],
+	skillstxt: "Proficiency in Deception and Persuasion, or expertise if already proficient",
+	vision: [["Superior Darkvision", 120]],
+};
+
+var Vampire4_GrimExecutioner = [
+	"\u25C6 >>Boon: Grim Executioner<<",
+	"  On crit. hit w/ melee/ranged wea.: if target has \u226450 hp, kill outright. If",
+	"  >50 hp, deal extra 6d6 dmg (same type as wea.)",
+	"\u25C6 >>Flaw: Stake to Heart<<",
+	"  When attacked w/ wooden/silvered wea., if attacker rolls nat 20 and I have \u226450",
+	"  hp, paralyzed 1 hr or until wea. removed (whichever longer)",
+];
+
+FeatsList["vampire: grim executioner (level 4)"] = {
+	name: "Vampire: Grim Executioner (Level 4)",
+	source: [["GH", 67]],
+	description:
+		"I gain the Grim Executioner boon and Stake to Heart flaw for the Vampire transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 67]],
+			note: desc(Vampire4_GrimExecutioner)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Vampire Level 1 and Dread Knight Combat Training",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("vampire level 1") !== -1 &&
+			CurrentFeats.known.indexOf("vampire: dread knight combat training (level 2)") !== -1
+		);
+	},
+};
+
+var Vampire4_BeguilersEntrancement = [
+	"\u25C6 >>Boon: Beguiler's Entrancement<<",
+	"  As an action to charm incapacitated humanoid 24 hrs or until target",
+	"  different humanoid. If use on same target 30 consecutive days, permanently charmed",
+	"  Can use on another humanoid after permanently charming previous. Max enthralled",
+	"  = Cha mod (min 1). If exceed Cha mod, lose connection to all",
+	"  Remove curse or similar removes charm",
+	"\u25C6 >>Flaw: Stake to Heart<<",
+	"  When attacked w/ wooden/silvered wea., if attacker rolls nat 20 and I have \u226450",
+	"  hp, paralyzed 1 hr or until wea. removed (whichever longer)",
+];
+
+FeatsList["vampire: beguiler's entrancement (level 4)"] = {
+	name: "Vampire: Beguiler's Entrancement (Level 4)",
+	source: [["GH", 68]],
+	description:
+		"I gain the Beguiler's Entrancement boon and Stake to Heart flaw for the Vampire transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 68]],
+			note: desc(Vampire4_BeguilersEntrancement)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	prerequisite: "Vampire Level 1 and Captivating Glance",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("vampire level 1") !== -1 &&
+			CurrentFeats.known.indexOf("vampire: captivating glance (level 3)") !== -1
+		);
+	},
+	action: [["action", "Beguiler's Entrancement"]],
+	usages: 1,
+	recovery: "long rest",
+};
+
+var Vampire4_Regenerate = [
+	"\u25C6 >>Boon: Regenerate<<",
+	"  Regain 10 hp at start of turn if \u22651 hp and not in sunlight/over running water",
+	"  If take radiant dmg or holy water dmg, doesn't function start of next turn",
+	"\u25C6 >>Flaw: Stake to Heart<<",
+	"  When attacked w/ wooden/silvered wea., if attacker rolls nat 20 and I have \u226450",
+	"  hp, paralyzed 1 hr or until wea. removed (whichever longer)",
+];
+
+FeatsList["vampire: regenerate (level 4)"] = {
+	name: "Vampire: Regenerate (Level 4)",
+	source: [["GH", 68]],
+	description:
+		"I gain the Regenerate boon and Stake to Heart flaw for the Vampire transformation, as detailed below on the notes page.",
+	toNotesPage: [
+		{
+			name: "",
+			source: [["GH", 68]],
+			note: desc(Vampire4_Regenerate)
+				.replace(/>>(.*?)<</g, function (a, match) {
+					return match.toUpperCase();
+				})
+				.replace(/your/g, "my")
+				.replace(/Your/g, "My")
+				.replace(/you are /gi, "I am ")
+				.replace(/(of|on|reduces|grants) you/gi, "$1 me")
+				.replace(/you /gi, "I "),
+		},
+	],
+	usages: 1,
+	recovery: "Turn",
+	prerequisite: "Vampire Level 1 and one Level 3 Adaptation",
+	prereqeval: function () {
+		return (
+			CurrentFeats.known.indexOf("vampire level 1") !== -1 &&
+			(CurrentFeats.known.indexOf("vampire: cruel riposte (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("vampire: creatures of the night (level 3)") !== -1 ||
+				CurrentFeats.known.indexOf("vampire: captivating glance (level 3)") !== -1)
+		);
+	},
+};
