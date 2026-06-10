@@ -30,7 +30,7 @@ Download the latest stable JavaScript files for use with MPMB Character Sheet:
 ## Tech Stack
 
 - **Language**: Adobe Acrobat JavaScript (ECMAScript 5)
-- **Linting**: ESLint 9.x with ES5 configuration
+- **Linting**: ESLint 10.x with ES5 configuration
 - **Formatting**: Prettier 3.x
 - **Editor**: VS Code with custom settings
 
@@ -40,7 +40,8 @@ For contributors who want to modify or extend the scripts:
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18 or higher)
+- [Node.js](https://nodejs.org/) (v20.19 or higher — required by ESLint 10)
+- [pnpm](https://pnpm.io/) (v9 or higher)
 - [VS Code](https://code.visualstudio.com/)
 
 ### Installation
@@ -50,10 +51,10 @@ For contributors who want to modify or extend the scripts:
 3. Install dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
-1. Open in VS Code:
+4. Open in VS Code:
 
 ```bash
 code .
@@ -98,13 +99,13 @@ This project strictly follows ECMAScript 5 conventions required by Adobe Acrobat
 ### Running Linter
 
 ```bash
-npx eslint .
+pnpm lint
 ```
 
 ### Formatting Code
 
 ```bash
-npx prettier --write "**/*.js"
+pnpm format
 ```
 
 ### MPMB Conventions
@@ -127,8 +128,8 @@ These warnings can be ignored if the code functions correctly with MPMB's sheet.
 ## Contributing
 
 1. Follow the established code style (ES5 only)
-2. Run linter before committing: `npx eslint .`
-3. Format code with Prettier: `npx prettier --write "**/*.js"`
+2. Run linter before committing: `pnpm lint`
+3. Format code with Prettier: `pnpm format`
 4. Test changes in MPMB Character Sheet before submitting
 5. Update documentation for new features
 

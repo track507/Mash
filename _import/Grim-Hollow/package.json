@@ -1,6 +1,39 @@
 {
-  "dependencies": {
-    "eslint": "^9.39.2",
+  "name": "grim-hollow",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Grim Hollow campaign setting content for MorePurpleMoreBetter's D&D 5e Character Tools (MPMB Character Sheet).",
+  "keywords": [
+    "dnd",
+    "5e",
+    "grim-hollow",
+    "mpmb",
+    "character-sheet"
+  ],
+  "homepage": "https://github.com/track507/Grim-Hollow#readme",
+  "bugs": {
+    "url": "https://github.com/track507/Grim-Hollow/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/track507/Grim-Hollow.git"
+  },
+  "license": "SEE LICENSE IN README.md",
+  "author": "track507",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write \"**/*.js\"",
+    "format:check": "prettier --check \"**/*.js\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.1",
     "prettier": "^3.7.4"
-  }
+  },
+  "engines": {
+    "node": ">=20.19.0",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@11.5.1"
 }
