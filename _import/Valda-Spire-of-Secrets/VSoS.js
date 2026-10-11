@@ -34418,14 +34418,33 @@ CompanionList["mystical companion"] = {
     nameTooltip : "for Mystical Companion",
     nameOrigin : "7th level Warmage House of Bishops Feature",
 	nameMenu : "Familiar (Warmage House of Bishops)",
-	source : ["VSoS", 166],
+	source : [["VSoS", 166]],
 	includeCheck : function(sCrea, objCrea, iCreaCR) { //only imp, pseudodragon, quasit, or sprite
 		return /^(imp|pseudodragon|quasit|sprite)$/i.test(sCrea);
 	},
     action : CompanionList.familiar.action,
-    attributesAdd : CompanionList.familiar.attributesAdd,
     attributesChange : CompanionList.familiar.attributesChange,
+    attributesAdd : function() {
+        if (!CompanionList.familiar.attributesAdd) return undefined;
+        // Deep-copy the familiar's attributesAdd so we don't mutate the original
+        var a = newObj(CompanionList.familiar.attributesAdd);
+        // 2024 sheet: attributesAdd.notes[0] uses useSpellDescription
+        if (a.notes && a.notes[0] && a.notes[0].useSpellDescription === "find familiar") {
+            a.notes[0].name = "Mystical Companion \u2014 Find Familiar";
+            a.notes[0].formatSpellDescription = function(str) {
+                // Restrict to the four allowed forms and update the type-change language
+                return str.replace(/an animal form I choose[^.]+\./, "the form of an Imp, Pseudodragon, Quasit, or Sprite.").replace("though it is a Celestial, Fey, or Fiend (my choice)", "though it is a Celestial, Fey, or Fiend (my choice) instead of a Beast");
+            };
+        }
+        // Override the feature description for both editions
+        if (a.features && a.features[0]) {
+            a.features[0].name = "Mystical Companion";
+            a.features[0].description = "If dropped to 0 HP, the familiar disappears, leaving behind no physical form. The familiar must obey all commands of its master.";
+        }
+        return a;
+    }(),
     notes : function() {
+        if (!CompanionList.familiar.notes) return undefined;
         var a = newObj(CompanionList.familiar.notes);
         a[0].description = [
             "appearing in an unoccupied space within 10 ft",
