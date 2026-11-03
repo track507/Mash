@@ -28194,7 +28194,6 @@ AddSubClass("craftsman", "mechanaut", {
 					calcChanges: {
 						hp: function (totalHD, HDobj, prefix) {
 							if (!classes.known.craftsman) return;
-							conMod = 0;
 							HDobj.fixed = 10 * classes.known.craftsman.level;
 							HDobj.max = 10 * classes.known.craftsman.level;
 						},
@@ -32283,7 +32282,7 @@ AddSubClass("investigator", "occultist", {
 	subname: "Occultist",
 	source: ["VSoS", 112],
 	spellcastingTable: [
-		,
+		undefined,
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -42881,7 +42880,6 @@ AddSubClass("bard", "college of cantors", {
                 "Each crea that regains hp can add the die + half my bard lvl to the number of hp restored"
             ]),
             additional : levels.map(function(n) {
-                bardIn = ["d6", "d6", "d6", "d6", "d8", "d8", "d8", "d8", "d8", "d10", "d10", "d10", "d10", "d10", "d12", "d12", "d12", "d12", "d12", "d12"];
                 // Offset for index based 0, add half the bard level in favor of the player. 
                 return [n+1] + (n < 14 ? " (Bardic Inspiration)" : "") + " + " + Math.ceil(n/2) + " hp restored"; 
             })

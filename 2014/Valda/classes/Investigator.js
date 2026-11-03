@@ -1311,7 +1311,7 @@ AddSubClass("investigator", "occultist", {
 	subname: "Occultist",
 	source: ["VSoS", 112],
 	spellcastingTable: [
-		,
+		undefined,
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0],

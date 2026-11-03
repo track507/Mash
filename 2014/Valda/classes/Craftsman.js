@@ -20441,7 +20441,6 @@ AddSubClass("craftsman", "mechanaut", {
 					calcChanges: {
 						hp: function (totalHD, HDobj, prefix) {
 							if (!classes.known.craftsman) return;
-							conMod = 0;
 							HDobj.fixed = 10 * classes.known.craftsman.level;
 							HDobj.max = 10 * classes.known.craftsman.level;
 						},
