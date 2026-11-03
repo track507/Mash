@@ -1,6 +1,6 @@
 var iFileName = "GH-Complete.js";
 
-RequiredSheetVersion(13);
+RequiredSheetVersion("13.2.3");
 // This file adds the content from the Grim Hollows Player Guide
 
 // Define the sources
@@ -1193,8 +1193,9 @@ AddSubClass("cleric", "eldritch", {
 			toNotesPage: [
 				{
 					name: "Eldritch Effects Table",
-					note: "\n   Various effects of the Eldritch Contagion.",
 					note: [
+						"Various effects of the Eldritch Contagion.",
+						"",
 						"d8  Effect",
 						"01 The creature cannot speak or cast spells that have verbal components.",
 						"02 The creature takes 1d8 psychic damage at the start of each of its turns.",
@@ -1263,14 +1264,14 @@ AddSubClass("cleric", "eldritch", {
 				spellAdd: [
 					function (spellKey, spellObj, spName) {
 						if (
-							spName.indexOf("cleric") == -1 ||
+							spName.indexOf("cleric") === -1 ||
 							!What("Wis Mod") ||
 							Number(What("Wis Mod")) <= 0 ||
 							spellObj.psionic ||
 							spellObj.level !== 0
 						)
 							return;
-						if (spellKey == "shillelagh") {
+						if (spellKey === "shillelagh") {
 							spellObj.description = spellObj.description.replace("1d8", "1d8+" + What("Wis Mod"));
 							return true;
 						}
@@ -1432,8 +1433,9 @@ AddSubClass("druid", "circle of blood", {
 			toNotesPage: [
 				{
 					name: "Rite of the Blood Moon Effects",
-					note: "\n   Various effects of the Rite of the Blood Moon.",
 					note: [
+						"Various effects of the Rite of the Blood Moon.",
+						"",
 						"Effects",
 						"It gains resistance to bludgeoning, piercing, and slashing damage against weapons which are not magical.",
 						"It gains darkvision to a range of 60 feet and advantage on Wisdom (Perception) checks.",
@@ -2354,8 +2356,9 @@ AddSubClass("ranger", "green reaper", {
 			toNotesPage: [
 				{
 					name: "Toxic Tradecraft Effects Table",
-					note: "\n   Various effects of the Toxic Tradecraft.",
 					note: [
+						"Various effects of the Toxic Tradecraft.",
+						"",
 						"SL  Effect",
 						"1a Attenuate. While a creature is poisoned by this toxin, it has disadvantage on Strength and Dexterity saving throws.",
 						"1b Befuddled. While a creature is poisoned by this toxin, it cannot speak, read, or write any language and it has disadvantage on saving throws made to maintain concentration on spells.",
@@ -3296,8 +3299,9 @@ AddSubClass("wizard", "plague doctor", {
 			toNotesPage: [
 				{
 					name: "Bad Medicine Effects Table",
-					note: "\n   Various effects of Bad Medicine.",
 					note: [
+						"Various effects of Bad Medicine.",
+						"",
 						"Effects Available",
 						"The creature is poisoned",
 						"The creature’s movement speeds are halved",
@@ -5034,7 +5038,7 @@ SpellsList["wrack"] = {
 			"The fin cannot be removed while you’re attuned to it, and you can’t voluntarily end your attunement to it. If the tentacle is sliced from your body, it grows back in 1d4 hours.",
 		spellCalc: [
 			function (type, spellcasters, ability) {
-				if (type == "dc") return 2;
+				if (type === "dc") return 2;
 			},
 			"I add +2 to all the saving throw DC of my Transformation Save.",
 		],
