@@ -1,0 +1,6 @@
+pnpm-lock.yaml
+*.md
+node_modules/
+docs/superpowers/
+2014/Valda/VSoS.js
+2014/Ariadne/Ariadne's Codex of Strings.js

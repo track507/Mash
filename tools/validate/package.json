@@ -1,0 +1,17 @@
+{
+	"name": "@mash/validate",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"description": "ES5 and Acrobat static validator for MPMB scripts",
+	"scripts": {
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"@eslint/js": "catalog:",
+		"eslint": "catalog:"
+	},
+	"devDependencies": {
+		"vitest": "catalog:"
+	}
+}
