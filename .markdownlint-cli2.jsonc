@@ -1,4 +1,4 @@
 {
-	// Working plans/specs under docs/superpowers are internal scratch docs, not published documentation
-	"ignores": ["docs/superpowers/**"],
+	// Working files under superpowers folders are internal scratch docs, not published documentation
+	"ignores": ["**/superpowers/**", ".superpowers/**"],
 }
