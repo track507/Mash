@@ -9,7 +9,8 @@
 	},
 	"dependencies": {
 		"@eslint/js": "catalog:",
-		"eslint": "catalog:"
+		"eslint": "catalog:",
+		"prettier": "catalog:"
 	},
 	"devDependencies": {
 		"vitest": "catalog:"

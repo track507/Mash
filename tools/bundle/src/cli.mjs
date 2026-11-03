@@ -75,6 +75,11 @@ function rebuildStaged(root, files) {
 		git(root, "add", "--", target);
 		console.log(`Built ${target}`);
 	}
+
+	// ! git still records a commit when a hook empties the index, so a hand edit alone stops here
+	if (staged.length > 0 && git(root, "diff", "--cached", "--name-only").trim() === "") {
+		throw new Error("Nothing left to commit: generated files were restored from their inputs");
+	}
 	return 0;
 }
 

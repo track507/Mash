@@ -1,4 +1,5 @@
 // Validates MPMB scripts under 2014/ and 2024/ against the rules of their edition
+import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { lint } from "./lint.mjs";
@@ -41,6 +42,20 @@ function isGenerated(file) {
 }
 
 /**
+ * Lists the scripts a commit in progress adds or changes
+ *
+ * ! Names come from git and never through the hook runner, which breaks on an apostrophe on Windows
+ *
+ * @param {(...args: string[]) => string} git
+ * @returns {string[]} Staged .js paths under the edition folders, relative to the root
+ */
+function stagedScripts(git) {
+	return git("diff", "--cached", "--name-only", "--diff-filter=ACMR", "-z")
+		.split("\0")
+		.filter((file) => file.endsWith(".js") && EDITIONS.includes(file.split("/")[0]));
+}
+
+/**
  * @param {number} count
  * @param {string} noun
  * @returns {string}
@@ -57,14 +72,24 @@ function main(argv) {
 	const rootFlag = args.indexOf("--root");
 	if (rootFlag !== -1) [, root] = args.splice(rootFlag, 2);
 
-	const requested = args.length > 0 ? args.map((file) => path.resolve(root, file)) : EDITIONS.flatMap((edition) => walk(path.join(root, edition)));
+	const stagedFlag = args.indexOf("--staged");
+	const staged = stagedFlag !== -1;
+	if (staged) args.splice(stagedFlag, 1);
+
+	const git = (...gitArgs) => execFileSync("git", gitArgs, { cwd: root, encoding: "utf8", maxBuffer: 2 ** 30 });
+	const requested = staged
+		? stagedScripts(git).map((file) => path.resolve(root, file))
+		: args.length > 0
+			? args.map((file) => path.resolve(root, file))
+			: EDITIONS.flatMap((edition) => walk(path.join(root, edition)));
 	const files = requested.filter((file) => !isGenerated(file)).sort();
 
 	let errors = 0;
 	let warnings = 0;
 	for (const file of files) {
 		const relative = path.relative(root, file).split(path.sep).join("/");
-		const { findings } = lint(readFileSync(file, "utf8"), editionFor(relative));
+		const source = staged ? git("show", `:${relative}`) : readFileSync(file, "utf8");
+		const { findings } = lint(source, editionFor(relative));
 		for (const finding of findings) {
 			if (finding.severity === "error") {
 				errors++;

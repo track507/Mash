@@ -11,14 +11,15 @@ pre-commit:
     jobs:
         - name: prettier
           glob: ["{2014,2024}/**/*.js", "tools/**/*.{mjs,json}", "*.{json,jsonc,yml,yaml,mjs}"]
-          run: pnpm exec prettier --write --ignore-unknown {staged_files}
+          run: node tools/validate/src/format-staged.mjs
           stage_fixed: true
-        # ! No glob or file list, because the tool reads staged deletions from git and lefthook leaves them out
+        # ! Tools read staged names from git, because lefthook on Windows breaks on an apostrophe in {staged_files}
+        # ! The bundle job has no glob, because lefthook leaves staged deletions out of its file list
         - name: bundle
           run: node tools/bundle/src/cli.mjs --staged
         - name: validate
           glob: ["{2014,2024}/**/*.js"]
-          run: node tools/validate/src/cli.mjs {staged_files}
+          run: node tools/validate/src/cli.mjs --staged
         - name: eslint
           glob: ["tools/**/*.mjs", "*.mjs"]
           run: pnpm exec eslint {staged_files}

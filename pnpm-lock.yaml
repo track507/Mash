@@ -201,6 +201,9 @@ catalogs:
     globals:
       specifier: 17.13.0
       version: 17.13.0
+    prettier:
+      specifier: 3.9.10
+      version: 3.9.10
     vitest:
       specifier: 5.0.5
       version: 5.0.5
@@ -231,7 +234,7 @@ importers:
         specifier: 0.24.0
         version: 0.24.0
       prettier:
-        specifier: 3.9.10
+        specifier: 'catalog:'
         version: 3.9.10
 
   tools/bundle:
@@ -252,6 +255,9 @@ importers:
       eslint:
         specifier: 'catalog:'
         version: 10.13.0(jiti@2.7.0)
+      prettier:
+        specifier: 'catalog:'
+        version: 3.9.10
     devDependencies:
       vitest:
         specifier: 'catalog:'

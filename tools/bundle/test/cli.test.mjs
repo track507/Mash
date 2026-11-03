@@ -89,10 +89,30 @@ describe("bundle cli", () => {
 		git("add", "-A");
 		git("commit", "-qm", "base");
 		stage("out.js", "hand edit\n");
-		const { code } = await bundle("--staged", `${BOOK}/out.js`);
-		expect(code).toBe(0);
+		const { code, stderr } = await bundle("--staged", `${BOOK}/out.js`);
+		expect(code).toBe(1);
+		expect(stderr).toContain("Nothing left to commit");
 		expect(read("out.js")).toContain("var a = 1;");
 		expect(git("diff", "--cached", "--name-only")).toBe("");
+	});
+
+	it("--staged keeps a hand-edited output staged with another change", async () => {
+		await bundle();
+		git("add", "-A");
+		git("commit", "-qm", "base");
+		stage("out.js", "hand edit\n");
+		stage("other.js", "var other = 1;\n");
+		const { code } = await bundle("--staged");
+		expect(code).toBe(0);
+		expect(read("out.js")).toContain("var a = 1;");
+		expect(git("diff", "--cached", "--name-only").trim()).toBe(`${BOOK}/other.js`);
+	});
+
+	it("--staged leaves an empty commit alone", async () => {
+		await bundle();
+		git("add", "-A");
+		git("commit", "-qm", "base");
+		expect((await bundle("--staged")).code).toBe(0);
 	});
 
 	it("--staged rebuilds when bundle.json itself is staged", async () => {
