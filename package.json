@@ -15,7 +15,10 @@
 		"lint": "eslint tools *.mjs && pnpm run lint:md",
 		"lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
 		"format": "prettier --write \"2014/**/*.js\" \"2024/**/*.js\" \"tools/**/*.{mjs,json}\" \"*.{json,jsonc,yml,yaml,mjs}\"",
-		"format:check": "prettier --check \"2014/**/*.js\" \"2024/**/*.js\" \"tools/**/*.{mjs,json}\" \"*.{json,jsonc,yml,yaml,mjs}\""
+		"format:check": "prettier --check \"2014/**/*.js\" \"2024/**/*.js\" \"tools/**/*.{mjs,json}\" \"*.{json,jsonc,yml,yaml,mjs}\"",
+		"bundle": "node tools/bundle/src/cli.mjs",
+		"bundle:check": "node tools/bundle/src/cli.mjs --check",
+		"compare": "node tools/bundle/src/compare-cli.mjs"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "21.2.4",

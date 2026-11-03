@@ -1,0 +1,16 @@
+{
+	"name": "@mash/bundle",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"description": "Generates whole-book MPMB scripts from their parts and compares scripts by parsed statements",
+	"scripts": {
+		"test": "vitest run"
+	},
+	"dependencies": {
+		"acorn": "catalog:"
+	},
+	"devDependencies": {
+		"vitest": "catalog:"
+	}
+}
