@@ -13,7 +13,7 @@
 		"validate": "node tools/validate/src/cli.mjs",
 		"test": "pnpm -r --workspace-concurrency=1 test",
 		"lint": "eslint tools *.mjs && pnpm run lint:md",
-		"lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
+		"lint:md": "markdownlint-cli2 \"**/*.md\" \"#**/node_modules\"",
 		"format": "prettier --write \"2014/**/*.js\" \"2024/**/*.js\" \"tools/**/*.{mjs,json}\" \"*.{json,jsonc,yml,yaml,mjs}\"",
 		"format:check": "prettier --check \"2014/**/*.js\" \"2024/**/*.js\" \"tools/**/*.{mjs,json}\" \"*.{json,jsonc,yml,yaml,mjs}\"",
 		"bundle": "node tools/bundle/src/cli.mjs",

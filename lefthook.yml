@@ -29,13 +29,18 @@ pre-commit:
 
 pre-push:
     jobs:
+        # ! An explicit file list, because lefthook skips a job with no push files, as on the first push of a branch
         - name: lint
+          files: git ls-files
           run: pnpm run lint
         - name: format
+          files: git ls-files
           run: pnpm run format:check
         - name: bundle
+          files: git ls-files
           run: pnpm run bundle:check
         - name: validate
+          files: git ls-files
           run: pnpm run validate
         - name: test
           glob: ["tools/**"]
