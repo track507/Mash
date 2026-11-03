@@ -58,7 +58,7 @@ ClassList["spellblade"] = {
     attacks : [1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
     abilitySave : 4,
     spellcastingAbility : 4,
-    spellcastingFactor : 2,
+    spellcastingFactor : 1,
     spellcastingTable : [
         [0, 0, 0, 0, 0, 0, 0, 0, 0], //lvl 0
 		[2, 0, 0, 0, 0, 0, 0, 0, 0], //lvl 1
@@ -71,20 +71,21 @@ ClassList["spellblade"] = {
 		[4, 3, 0, 0, 0, 0, 0, 0, 0], //lvl 8
 		[4, 3, 2, 0, 0, 0, 0, 0, 0], //lvl 9
 		[4, 3, 2, 0, 0, 0, 0, 0, 0], //lvl10
-		[4, 3, 2, 0, 0, 0, 0, 0, 0], //lvl11
-		[4, 3, 2, 0, 0, 0, 0, 0, 0], //lvl12
-		[4, 3, 2, 1, 0, 0, 0, 0, 0], //lvl13
-		[4, 3, 2, 1, 0, 0, 0, 0, 0], //lvl14
-		[4, 3, 2, 2, 0, 0, 0, 0, 0], //lvl15
-		[4, 3, 2, 2, 0, 0, 0, 0, 0], //lvl16
-		[4, 3, 2, 2, 1, 0, 0, 0, 0], //lvl17
-		[4, 3, 2, 2, 1, 0, 0, 0, 0], //lvl18
-		[4, 3, 2, 2, 2, 0, 0, 0, 0], //lvl19
-		[4, 3, 2, 2, 2, 0, 0, 0, 0]  //lvl20
+		[4, 3, 3, 0, 0, 0, 0, 0, 0], //lvl11
+		[4, 3, 3, 0, 0, 0, 0, 0, 0], //lvl12
+		[4, 3, 3, 1, 0, 0, 0, 0, 0], //lvl13
+		[4, 3, 3, 1, 0, 0, 0, 0, 0], //lvl14
+		[4, 3, 3, 2, 0, 0, 0, 0, 0], //lvl15
+		[4, 3, 3, 2, 0, 0, 0, 0, 0], //lvl16
+		[4, 3, 3, 2, 1, 0, 0, 0, 0], //lvl17
+		[4, 3, 3, 2, 1, 0, 0, 0, 0], //lvl18
+		[4, 3, 3, 2, 2, 0, 0, 0, 0], //lvl19
+		[4, 3, 3, 2, 2, 0, 0, 0, 0]  //lvl20
     ],
     spellcastingKnown : {
         cantrips : [3,4,4,4,4,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6],
-        spells : [2,3,4,5,6,7,8,8,9,9,10,10,11,11,12,12,13,13,13,13]
+        spells : [3,4,4,4,4,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6],
+        prepared : true
     },
     spellcastingList : {
         class : "spellblade",
@@ -116,18 +117,13 @@ ClassList["spellblade"] = {
         "might and magic" : {
             name : "Might and Magic",
             source : [["WSB",3]],
+            additional : ["", "2 Arcane Points", "3 Arcane Points", "4 Arcane Points", "4 Arcane Points", "5 Arcane Points", "6 Arcane Points", "7 Arcane Points", "7 Arcane Points", "8 Arcane Points", "8 Arcane Points", "9 Arcane Points", "9 Arcane Points", "10 Arcane Points", "10 Arcane Points", "10 Arcane Points", "11 Arcane Points", "11 Arcane Points", "11 Arcane Points", ""],
             minlevel : 2,
             description : desc([
                 "Starting at 2nd level, you gain 2 Arcane Points and gain more as you reach higher levels. You can never have more Arcane Points than your level permits. You regain all spent Arcane Points when you finish a short or long rest.",
                 "\u2022 Spell Slinger: Before, during, or after you take the Attack action on your turn, you may choose to spend an Arcane point to also cast a spell as part of the same action",
                 "\u2022 Disrupt Magic: When you hit a creature with a weapon attack, you may expend an Arcane Point to muddle the mind of enemy spellcasters. When you do, the DC of any concentration checks that are caused by your weapon attacks is increased by your Intelligence modifier (minimum of 1) until the end of your next turn."
-            ]),
-            extraLimitedFeatures : [{
-                name : "Arcane Points",
-                usages : "My Level", 
-                usagescalc : "event.value = classes.known.spellblade.level;",
-                recovery : "short rest"
-            }]
+            ])
         },
         "eldritch studies" : {
             name : "Eldritch Studies",
