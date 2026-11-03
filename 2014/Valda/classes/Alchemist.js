@@ -2,12 +2,12 @@ var iFileName = "VSoS_Alchemist.js";
 RequiredSheetVersion("13.2.3");
 
 if (!SourceList["VSoS"]) {
-    SourceList["VSoS"] = {
-        name : "Valda's Spire of Secrets",
-        abbreviation : "VSoS",
-        abbreviationSpellsheet : "V",
-        date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
-    };
+	SourceList["VSoS"] = {
+		name: "Valda's Spire of Secrets",
+		abbreviation: "VSoS",
+		abbreviationSpellsheet: "V",
+		date: "2022/12/30", // ! Updated as of 12-30-2022 (Version 1.4)
+	};
 }
 
 // * Alchemist class
@@ -22,8 +22,7 @@ ClassList["alchemist"] = {
 	saves: ["Dex", "Int"],
 	abilitySave: 4,
 	skillstxt: {
-		primary:
-			"Choose three from Arcana, History, Insight, Medicine, Nature, Perception, Sleight of Hand, Survival",
+		primary: "Choose three from Arcana, History, Insight, Medicine, Nature, Perception, Sleight of Hand, Survival",
 	},
 	toolProfs: {
 		primary: ["Alchemist's supplies", "herbalism kit"],
@@ -83,8 +82,7 @@ ClassList["alchemist"] = {
 					regExpSearch: /bomb \(alchemist\)/i,
 					source: ["VSoS", 29],
 					baseWeapon: "bomb",
-					description:
-						"Finesse, special, Dex save or \u00BD dmg to all in 7.5 ft; See tool tip",
+					description: "Finesse, special, Dex save or \u00BD dmg to all in 7.5 ft; See tool tip",
 					tooltip:
 						"   Special: When a bomb hits a target, it explodes in a 5-foot radius and is destroyed. The bomb can be thrown at an unoccupied space within its range. Each creature other than the target within the blast radius must succeed on an Intelligence saving throw, taking half the damage rolled on a failed save or no damage on a successful one.\n   Additionally, as a bonus action, you can empty some of the bomb's explosive material to permanently remove the blast radius from this bomb, dealing damage only to the bomb's target.",
 					damage: ["C", 10, "Fire"],
@@ -97,15 +95,8 @@ ClassList["alchemist"] = {
 						if (/bomb/i.test(v.WeaponTextName)) {
 							// * Proficient in all bombs
 							// * This replaces the bombs normal Dex save to an Int save
-							fields.Description = fields.Description.replace(
-								/dc \d+ dex save/i,
-								"Dex save"
-							);
-							fields.Description_Tooltip =
-								fields.Description_Tooltip.replace(
-									/on a DC 11 Dexterity/i,
-									"an Intelligence"
-								);
+							fields.Description = fields.Description.replace(/dc \d+ dex save/i, "Dex save");
+							fields.Description_Tooltip = fields.Description_Tooltip.replace(/on a DC 11 Dexterity/i, "an Intelligence");
 							fields.Proficiency = true;
 							fields.Mod = 4;
 						}
@@ -113,11 +104,7 @@ ClassList["alchemist"] = {
 				],
 				atkCalc: [
 					function (fields, v, output) {
-						if (
-							(/bomb/i.test(v.WeaponTextName) ||
-								v.baseWeapon == "bomb") &&
-							/\(?primed\)?/i.test(v.WeaponTextName)
-						) {
+						if ((/bomb/i.test(v.WeaponTextName) || v.baseWeapon == "bomb") && /\(?primed\)?/i.test(v.WeaponTextName)) {
 							// * Only applies to primed bombs
 							/*
 							 * Since this only applies to primed bombs, abilitytodamage is set to true
@@ -125,27 +112,14 @@ ClassList["alchemist"] = {
 							 * So currently primed bombs are adding int mod to the damage instead of dex from the original
 							 * We need to change it back to Dex if it is higher than Int
 							 */
-							var mod =
-								What("Str Mod") > What("Dex Mod")
-									? What("Str Mod")
-									: What("Dex Mod");
+							var mod = What("Str Mod") > What("Dex Mod") ? What("Str Mod") : What("Dex Mod");
 							if (What("Int Mod") < mod) {
-								output.extraDmg = Math.max(
-									mod - What("Int Mod"),
-									0
-								);
+								output.extraDmg = Math.max(mod - What("Int Mod"), 0);
 							}
 						}
-						if (
-							/bomb/i.test(v.WeaponTextName) &&
-							!/\(?primed\)?/i.test(v.WeaponTextName) &&
-							!v.theWea.excludeBombDamage
-						) {
+						if (/bomb/i.test(v.WeaponTextName) && !/\(?primed\)?/i.test(v.WeaponTextName) && !v.theWea.excludeBombDamage) {
 							// * Only applies to non-primed bombs that CAN do damage
-							output.extraDmg =
-								(What("Str Mod") > What("Dex Mod")
-									? What("Str Mod")
-									: What("Dex Mod")) - What("Int Mod");
+							output.extraDmg = (What("Str Mod") > What("Dex Mod") ? What("Str Mod") : What("Dex Mod")) - What("Int Mod");
 						}
 					},
 					"When priming a bomb, I can add my Intelligence modifier instead of my Dexterity to the bomb's damage roll.",
@@ -176,23 +150,8 @@ ClassList["alchemist"] = {
 			additional: levels.map(function (n) {
 				return n < 2
 					? ""
-					: (n < 5
-							? "3"
-							: n < 7
-							? "4"
-							: n < 9
-							? "5"
-							: n < 11
-							? "6"
-							: n < 13
-							? "7"
-							: n < 15
-							? "8"
-							: n < 17
-							? "9"
-							: n < 19
-							? "10"
-							: "11") + " bomb formulae known";
+					: (n < 5 ? "3" : n < 7 ? "4" : n < 9 ? "5" : n < 11 ? "6" : n < 13 ? "7" : n < 15 ? "8" : n < 17 ? "9" : n < 19 ? "10" : "11") +
+							" bomb formulae known";
 			}),
 			description: desc([
 				"I learn bomb formulae I can use once per turn to modify my bombs when I prime them.",
@@ -205,8 +164,7 @@ ClassList["alchemist"] = {
 					source: ["VSoS", 29],
 					note: [
 						"I know these formulae and can apply them once per turn when I prime a bomb.",
-						"Known Bomb formulae are written here as follows:\n" +
-							"\u25C6Bomb Formula [Damage Die, Type - Saving Throw]",
+						"Known Bomb formulae are written here as follows:\n" + "\u25C6Bomb Formula [Damage Die, Type - Saving Throw]",
 						"Description of additional effects written here.",
 					],
 				},
@@ -235,25 +193,7 @@ ClassList["alchemist"] = {
 				"Withering Bomb",
 			],
 			extraTimes: levels.map(function (n) {
-				return n < 2
-					? 0
-					: n < 5
-					? 3
-					: n < 7
-					? 4
-					: n < 9
-					? 5
-					: n < 11
-					? 6
-					: n < 13
-					? 7
-					: n < 15
-					? 8
-					: n < 17
-					? 9
-					: n < 19
-					? 10
-					: 11;
+				return n < 2 ? 0 : n < 5 ? 3 : n < 7 ? 4 : n < 9 ? 5 : n < 11 ? 6 : n < 13 ? 7 : n < 15 ? 8 : n < 17 ? 9 : n < 19 ? 10 : 11;
 			}),
 			"acid bomb": {
 				name: "Acid Bomb Formula",
@@ -277,13 +217,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bacid\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"Crea(s) take same dmg at end of next turn";
+							if (/\bacid\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description += (fields.Description ? "; " : "") + "Crea(s) take same dmg at end of next turn";
 							}
 						},
 						"When the word 'Acid' is added to the title one of my Bomb attacks, the attack is treated as one of my Acid Bombs.",
@@ -315,10 +250,7 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bbramble\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
+							if (/\bbramble\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
 								fields.Description = fields.Description.replace(
 									/dex save or \u00BD dmg to all in 7\.5 ft/i,
 									"Diff. terrain in 7.5 ft for 1 min, if prone on detonate, Str save to move or stand"
@@ -351,22 +283,9 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bcryo\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description = fields.Description.replace(
-									/dex save/i,
-									"Con save"
-								).replace(
-									/dmg to all/i,
-									"dmg and -10 ft speed to all"
-								);
-								fields.Description_Tooltip =
-									fields.Description_Tooltip.replace(
-										/an intelligence/i,
-										"on a Constitution"
-									);
+							if (/\bcryo\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(/dmg to all/i, "dmg and -10 ft speed to all");
+								fields.Description_Tooltip = fields.Description_Tooltip.replace(/an intelligence/i, "on a Constitution");
 							}
 						},
 						"When the word 'Cryo' is added to the title one of my Bomb attacks, the attack is treated as one of my Cryo Bombs.",
@@ -395,13 +314,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bholy\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"d6 vs Celestials; d12 vs Fiends/Undead";
+							if (/\bholy\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description += (fields.Description ? "; " : "") + "d6 vs Celestials; d12 vs Fiends/Undead";
 							}
 						},
 						"When the word 'Holy' is added to the title one of my Bomb attacks, the attack is treated as one of my Holy Bombs",
@@ -430,14 +344,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bimpact\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description = fields.Description.replace(
-									/dmg to all/i,
-									"dmg and pushed 5 ft away to all"
-								);
+							if (/\bimpact\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/dmg to all/i, "dmg and pushed 5 ft away to all");
 							}
 						},
 						"When the word 'Impact' is added to the title one of my Bomb attacks, the attack is treated as one of my Impact Bombs.",
@@ -468,13 +376,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bincendiary\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"Crea(s) still in rad. next turn take \u00BD dmg";
+							if (/\bincendiary\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description += (fields.Description ? "; " : "") + "Crea(s) still in rad. next turn take \u00BD dmg";
 							}
 						},
 						"When the word 'Incendiary' is added to the title one of my Bomb attacks, the attack is treated as one of my Incendiary Bombs.",
@@ -503,17 +406,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\blaughing gas\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description = fields.Description.replace(
-									/dex save/i,
-									"Con save"
-								).replace(
-									/dmg to all/i,
-									"dmg and fall prone to all"
-								);
+							if (/\blaughing gas\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(/dmg to all/i, "dmg and fall prone to all");
 							}
 						},
 						"When the word 'Laughing Gas' is added to the title one of my Bomb attacks, the attack is treated as one of my Laughing Gas Bombs.",
@@ -542,14 +436,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\blightning\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description = fields.Description.replace(
-									/in 7\.5 ft/i,
-									"in 7.5 ft and no rea. til end of next turn"
-								);
+							if (/\blightning\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/in 7\.5 ft/i, "in 7.5 ft and no rea. til end of next turn");
 							}
 						},
 						"When the word 'Lightning' is added to the title one of my Bomb attacks, the attack is treated as one of my Lightning Bombs.",
@@ -578,13 +466,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bnonlethal\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"Blast ignores all but full cover";
+							if (/\bnonlethal\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description += (fields.Description ? "; " : "") + "Blast ignores all but full cover";
 							}
 						},
 						"When the word 'Nonlethal' is added to the title one of my Bomb attacks, the attack is treated as one of my Nonlethal Bombs.",
@@ -621,10 +504,7 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\boil\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
+							if (/\boil\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
 								fields.Description = fields.Description.replace(
 									/dex save or \u00BD dmg to all in 7\.5 ft/i,
 									"Dex save or covered in oil to all in 7.5 ft"
@@ -665,17 +545,9 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bprismatic\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
+							if (/\bprismatic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
 								fields.Description =
-									fields.Description.replace(
-										/dex save/i,
-										"Save"
-									) +
-									(fields.Description ? "; " : "") +
-									"See Table for dmg & save type";
+									fields.Description.replace(/dex save/i, "Save") + (fields.Description ? "; " : "") + "See Table for dmg & save type";
 							}
 						},
 						"When the word 'Prismatic' is added to the title one of my Bomb attacks, the attack is treated as one of my Prismatic Bombs.",
@@ -704,14 +576,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bpsionic\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description = fields.Description.replace(
-									/dex save/i,
-									"Wis save"
-								).replace(
+							if (/\bpsionic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/dex save/i, "Wis save").replace(
 									/dmg to all/i,
 									"dmg and disadv. on Conc. saves til end of next turn to all"
 								);
@@ -743,13 +609,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bquiet\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"Disadv. on ability checks to detect blast";
+							if (/\bquiet\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description += (fields.Description ? "; " : "") + "Disadv. on ability checks to detect blast";
 							}
 						},
 						"When the word 'Quiet' is added to the title one of my Bomb attacks, the attack is treated as one of my Quiet Bombs.",
@@ -778,13 +639,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bseeking\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"No disadv. when within 5 ft of a hostile";
+							if (/\bseeking\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description += (fields.Description ? "; " : "") + "No disadv. when within 5 ft of a hostile";
 							}
 						},
 						"When the word 'Seeking' is added to the title one of my Bomb attacks, the attack is treated as one of my Seeking Bombs.",
@@ -816,15 +672,9 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bsmoke\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
+							if (/\bsmoke\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
 								fields.Description =
-									fields.Description.replace(
-										/dex save or \u00BD dmg to all in 7\.5 ft/i,
-										"Smoke fills 10 ft rad. sphere"
-									) +
+									fields.Description.replace(/dex save or \u00BD dmg to all in 7\.5 ft/i, "Smoke fills 10 ft rad. sphere") +
 									(fields.Description ? "; " : "") +
 									"Lasts " +
 									Math.max(What("Int Mod"), 1) +
@@ -857,14 +707,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bsonic\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description = fields.Description.replace(
-									/dex save/i,
-									"Con save"
-								).replace(
+							if (/\bsonic\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(
 									/dmg to all/i,
 									"dmg and deaf til end of next turn to all"
 								);
@@ -896,14 +740,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bstink\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description = fields.Description.replace(
-									/dex save/i,
-									"Con save"
-								).replace(
+							if (/\bstink\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(
 									/dmg to all/i,
 									"dmg and disadv. on ability checks til end of next turn to all"
 								);
@@ -938,14 +776,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bteleportation\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description = fields.Description.replace(
-									/dex save or \u00BD dmg to all in 7\.5 ft/i,
-									"Teleport to where it explodes"
-								);
+							if (/\bteleportation\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/dex save or \u00BD dmg to all in 7\.5 ft/i, "Teleport to where it explodes");
 								fields.Range = "30 ft";
 							}
 						},
@@ -975,14 +807,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bthermobaric\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description = fields.Description.replace(
-									/7\.5 ft/i,
-									"10 ft"
-								);
+							if (/\bthermobaric\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/7\.5 ft/i, "10 ft");
 							}
 						},
 						"When the word 'Thermobaric' is added to the title one of my Bomb attacks, the attack is treated as one of my Thermobaric Bombs.",
@@ -1011,14 +837,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bwithering\b/i.test(v.WeaponTextName) &&
-								/\bbomb\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description = fields.Description.replace(
-									/dex save/i,
-									"Con save"
-								).replace(
+							if (/\bwithering\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(
 									/dmg to all/i,
 									"dmg and can't regain HP til end of next turn to all"
 								);
@@ -1033,8 +853,7 @@ ClassList["alchemist"] = {
 			name: "Field of Study",
 			source: ["VSoS", 29],
 			minlevel: 2,
-			description:
-				"\n    " + 'Choose a Field of Study in the "Class" field.',
+			description: "\n    " + 'Choose a Field of Study in the "Class" field.',
 		},
 		reagent: {
 			name: "Reagent",
@@ -1085,8 +904,7 @@ ClassList["alchemist"] = {
 				{
 					name: "Reagent Dice (d10)",
 					usages: "Alchemist level",
-					usagescalc:
-						"event.value = classes.known.alchemist.level < 3 ? 0 : classes.known.alchemist.level;",
+					usagescalc: "event.value = classes.known.alchemist.level < 3 ? 0 : classes.known.alchemist.level;",
 					recovery: "long rest",
 				},
 			],
@@ -1096,17 +914,7 @@ ClassList["alchemist"] = {
 			source: ["VSoS", 30],
 			minlevel: 4,
 			additional: levels.map(function (n) {
-				return n < 4
-					? ""
-					: (n < 6
-							? "2"
-							: n < 9
-							? "3"
-							: n < 13
-							? "4"
-							: n < 17
-							? "5"
-							: "6") + " discoveries known";
+				return n < 4 ? "" : (n < 6 ? "2" : n < 9 ? "3" : n < 13 ? "4" : n < 17 ? "5" : "6") + " discoveries known";
 			}),
 			description: desc([
 				'Choose discoveries to learn by clicking the "Choose Feature" button above.',
@@ -1144,24 +952,15 @@ ClassList["alchemist"] = {
 				"Syringe",
 				"Tri-Mutation (prereq: 13th level Mutagenist)",
 			],
-			extraTimes: [
-				0, 0, 0, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6,
-			],
+			extraTimes: [0, 0, 0, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6],
 			"advanced poisoner (prereq: 13th level venomsmith)": {
 				name: "Advanced Poisoner",
 				source: ["VSoS", 34],
 				submenu: "[13th Level]",
 				prereqeval: function (v) {
-					return (
-						classes.known.alchemist.level >= 13 &&
-						classes.known.alchemist.subclass.indexOf(
-							"venomsmith"
-						) !== -1
-					);
+					return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("venomsmith") !== -1;
 				},
-				description:
-					"\n   " +
-					"I can brew the poisons found on the notes page using reagent dice.",
+				description: "\n   " + "I can brew the poisons found on the notes page using reagent dice.",
 				toNotesPage: [
 					{
 						name: "Advanced Poisons Table",
@@ -1187,9 +986,7 @@ ClassList["alchemist"] = {
 				prereqeval: function (v) {
 					return classes.known.alchemist.level >= 17;
 				},
-				description:
-					"\n   " +
-					"I can brew new potions found on the notes page using reagent dice.",
+				description: "\n   " + "I can brew new potions found on the notes page using reagent dice.",
 				toNotesPage: [
 					{
 						name: "Alchemy of Ascendancy Potions Table",
@@ -1213,9 +1010,7 @@ ClassList["alchemist"] = {
 				prereqeval: function (v) {
 					return classes.known.alchemist.level >= 13;
 				},
-				description:
-					"\n   " +
-					"I can brew new potions found on the notes page using reagent dice.",
+				description: "\n   " + "I can brew new potions found on the notes page using reagent dice.",
 				toNotesPage: [
 					{
 						name: "Alchemy of Influence Potions Table",
@@ -1239,9 +1034,7 @@ ClassList["alchemist"] = {
 				prereqeval: function (v) {
 					return classes.known.alchemist.level >= 13;
 				},
-				description:
-					"\n   " +
-					"I can brew new potions found on the notes page using reagent dice.",
+				description: "\n   " + "I can brew new potions found on the notes page using reagent dice.",
 				toNotesPage: [
 					{
 						name: "Alchemy of Transformation Potions Table",
@@ -1262,8 +1055,7 @@ ClassList["alchemist"] = {
 			"arcane study": {
 				name: "Arcane Study",
 				source: ["VSoS", 34],
-				description:
-					"\n   I learn 3 wizard cantrips. Intelligence is my Spellcasting ability for these cantrips.",
+				description: "\n   I learn 3 wizard cantrips. Intelligence is my Spellcasting ability for these cantrips.",
 				spellcastingBonus: [
 					{
 						name: "Arcane Study",
@@ -1291,8 +1083,7 @@ ClassList["alchemist"] = {
 			"battle training": {
 				name: "Battle Training",
 				source: ["VSoS", 34],
-				description:
-					" I gain proficiency with martial weapons and shields.",
+				description: " I gain proficiency with martial weapons and shields.",
 				weaponProfs: [true, true],
 				armorProfs: [true, false, false, true],
 			},
@@ -1301,11 +1092,7 @@ ClassList["alchemist"] = {
 				source: ["VSoS", 34],
 				submenu: "[13th Level]",
 				prereqeval: function (v) {
-					return (
-						classes.known.alchemist.level >= 13 &&
-						classes.known.alchemist.subclass.indexOf("amorist") !==
-							-1
-					);
+					return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("amorist") !== -1;
 				},
 				description:
 					"\n   When I charm a creature, I can choose to place it in a dreamy state." +
@@ -1318,12 +1105,7 @@ ClassList["alchemist"] = {
 				source: ["VSoS", 35],
 				submenu: "[13th Level]",
 				prereqeval: function (v) {
-					return (
-						classes.known.alchemist.level >= 13 &&
-						classes.known.alchemist.subclass.indexOf(
-							"xenoalchemist"
-						) !== -1
-					);
+					return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("xenoalchemist") !== -1;
 				},
 				description:
 					"\n   When I take damage, I can use my reaction and reagent dice (max prof. bonus)." +
@@ -1333,8 +1115,7 @@ ClassList["alchemist"] = {
 			"clotting agent": {
 				name: "Clotting Agent",
 				source: ["VSoS", 35],
-				description:
-					" My hit point max is increased by my alchemist level.",
+				description: " My hit point max is increased by my alchemist level.",
 				calcChanges: {
 					hp: function (totalHD) {
 						return [
@@ -1363,12 +1144,7 @@ ClassList["alchemist"] = {
 				source: ["VSoS", 35],
 				submenu: "[13th Level]",
 				prereqeval: function (v) {
-					return (
-						classes.known.alchemist.level >= 13 &&
-						classes.known.alchemist.subclass.indexOf(
-							"mad bomber"
-						) !== -1
-					);
+					return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("mad bomber") !== -1;
 				},
 				description:
 					"\n   When priming a bomb, I can throw bombs equal to the # of damage dice of the original" +
@@ -1394,14 +1170,8 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bexplosive\b/i.test(v.WeaponTextName) &&
-								/\bmissile\b/i.test(v.WeaponTextName)
-							) {
-								fields.Description = fields.Description.replace(
-									/dmg to all in 7\.5 ft/i,
-									"dmg"
-								);
+							if (/\bexplosive\b/i.test(v.WeaponTextName) && /\bmissile\b/i.test(v.WeaponTextName)) {
+								fields.Description = fields.Description.replace(/dmg to all in 7\.5 ft/i, "dmg");
 							}
 						},
 						"When the word 'Explosive' is added to the title one of my Bomb attacks, the attack is treated as one of my Explosive missile.",
@@ -1416,30 +1186,15 @@ ClassList["alchemist"] = {
 					"\n   As a bonus action, until the end of my turn, one of my melee weapons deals an extra 1d6 fire" +
 					"\n   damage on hit. This extra damage increases by 1d6 at 5th, 11th, and 17th level.",
 				additional: levels.map(function (n) {
-					return (
-						(n < 5 ? "1" : n < 11 ? "2" : n < 17 ? "3" : "4") +
-						"d6 additional fire damage"
-					);
+					return (n < 5 ? "1" : n < 11 ? "2" : n < 17 ? "3" : "4") + "d6 additional fire damage";
 				}),
 				action: ["bonus action", ""],
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								v.isMeleeWeapon &&
-								/fire\s*brand/i.test(v.WeaponTextName)
-							) {
+							if (v.isMeleeWeapon && /fire\s*brand/i.test(v.WeaponTextName)) {
 								var n = classes.known.alchemist.level;
-								fields.Description +=
-									"; +" +
-									(n < 5
-										? "1"
-										: n < 11
-										? "2"
-										: n < 17
-										? "3"
-										: "4") +
-									"d6 fire dmg";
+								fields.Description += "; +" + (n < 5 ? "1" : n < 11 ? "2" : n < 17 ? "3" : "4") + "d6 fire dmg";
 							}
 						},
 						"If the phrase 'Fire Brand' is included in the title of a weapon attack, it is treated as a weapon coated in one of my bomb's contents, as per my Fire Brand discovery.",
@@ -1460,8 +1215,7 @@ ClassList["alchemist"] = {
 						regExpSearch: /fire eater \(primed\)/i,
 						baseWeapon: "bomb",
 						range: "15 ft cone",
-						description:
-							"Finesse, special, \u00BD on Dex save, or full on fail; See tool tip; I take 1d4 fire dmg per dmg die",
+						description: "Finesse, special, \u00BD on Dex save, or full on fail; See tool tip; I take 1d4 fire dmg per dmg die",
 					},
 				],
 			},
@@ -1472,8 +1226,7 @@ ClassList["alchemist"] = {
 				prereqeval: function (v) {
 					return classes.known.alchemist.level >= 9;
 				},
-				description:
-					"\n   My bomb save DC increases by half of my proficiency bonus, rounded down.",
+				description: "\n   My bomb save DC increases by half of my proficiency bonus, rounded down.",
 				addMod: [
 					{
 						type: "dc",
@@ -1485,13 +1238,7 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					spellCalc: [
 						function (type, spellcasters, ability) {
-							if (
-								type == "dc" &&
-								spellcasters.indexOf("alchemist") !== -1
-							)
-								return Math.floor(
-									Number(How("Proficiency Bonus") / 2)
-								);
+							if (type == "dc" && spellcasters.indexOf("alchemist") !== -1) return Math.floor(Number(How("Proficiency Bonus") / 2));
 						},
 						"My bomb save DC increases by half of my proficiency bonus, rounded down.",
 						750,
@@ -1503,12 +1250,7 @@ ClassList["alchemist"] = {
 				source: ["VSoS", 35],
 				submenu: "[13th Level]",
 				prereqeval: function (v) {
-					return (
-						classes.known.alchemist.level >= 13 &&
-						classes.known.alchemist.subclass.indexOf(
-							"apothecary"
-						) !== -1
-					);
+					return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("apothecary") !== -1;
 				},
 				description:
 					"\n   When a creature regains hit points by drinking my potions, they gain resistance to" +
@@ -1517,9 +1259,7 @@ ClassList["alchemist"] = {
 			grenadier: {
 				name: "Grenadier",
 				source: ["VSoS", 35],
-				description:
-					"\n   When I prime & throw a bomb, I can use my bonus action to make an attack with a weapon" +
-					"\n   that isn't two handed.",
+				description: "\n   When I prime & throw a bomb, I can use my bonus action to make an attack with a weapon" + "\n   that isn't two handed.",
 				action: ["bonus action", "Grenadier (Non Two-Handed)"],
 			},
 			"dynamo charger (prereq: 13th level dynamo engineer)": {
@@ -1527,12 +1267,7 @@ ClassList["alchemist"] = {
 				source: ["VSoS", 35],
 				submenu: "[13th Level]",
 				prereqeval: function (v) {
-					return (
-						classes.known.alchemist.level >= 13 &&
-						classes.known.alchemist.subclass.indexOf(
-							"dynamo engineer"
-						) !== -1
-					);
+					return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("dynamo engineer") !== -1;
 				},
 				description:
 					"\n   When I finish a short rest, I can regain 2 expended spell slots stored in dynamos." +
@@ -1573,20 +1308,14 @@ ClassList["alchemist"] = {
 					return classes.known.alchemist.level >= 17;
 				},
 				description:
-					"\n   Whenever I add reagent dice to a bomb's damage, I can also expand the blast radius by 5 ft" +
-					"\n   per 2 reagent dice spent.",
+					"\n   Whenever I add reagent dice to a bomb's damage, I can also expand the blast radius by 5 ft" + "\n   per 2 reagent dice spent.",
 			},
 			"ooze cowboy (prereq: 13th level ooze rancher)": {
 				name: "Ooze Cowboy",
 				source: ["VSoS", 36],
 				submenu: "[13th Level]",
 				prereqeval: function (v) {
-					return (
-						classes.known.alchemist.level >= 13 &&
-						classes.known.alchemist.subclass.indexOf(
-							"ooze rancher"
-						) !== -1
-					);
+					return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("ooze rancher") !== -1;
 				},
 				description:
 					"\n   Slimes I make have a minimum speed of 30 ft. I can ride any Medium or larger Ooze as a" +
@@ -1595,30 +1324,12 @@ ClassList["alchemist"] = {
 				calcChanges: {
 					creatureCallback: [
 						function (prefix, oCrea, bAdd) {
-							if (
-								!/ooze/i.test(
-									oCrea.type +
-										What(prefix + "Comp.Desc.MonsterType")
-								)
-							)
-								return;
-							Value(
-								prefix + "Comp.Use.Combat.Init.Bonus",
-								"oProf"
-							);
+							if (!/ooze/i.test(oCrea.type + What(prefix + "Comp.Desc.MonsterType"))) return;
+							Value(prefix + "Comp.Use.Combat.Init.Bonus", "oProf");
 							for (var i = 1; i < 3; ++i) {
-								Value(
-									prefix +
-										"BlueText.Comp.Use.Attack." +
-										i +
-										".Damage Bonus",
-									"oProf"
-								);
+								Value(prefix + "BlueText.Comp.Use.Attack." + i + ".Damage Bonus", "oProf");
 							}
-							Value(
-								prefix + "Comp.Use.Speed",
-								"30 ft,\nclimb 30 ft"
-							);
+							Value(prefix + "Comp.Use.Speed", "30 ft,\nclimb 30 ft");
 						},
 						"Oozes I create add my proficiency bonus to their damage and initiative rolls.",
 					],
@@ -1663,9 +1374,7 @@ ClassList["alchemist"] = {
 				prereqeval: function (v) {
 					return classes.known.alchemist.level >= 17;
 				},
-				description:
-					"\n   " +
-					"Immediately after taking damage, I can use my reaction to drink a potion.",
+				description: "\n   " + "Immediately after taking damage, I can use my reaction to drink a potion.",
 				action: ["reaction", ""],
 			},
 			"recycled potions": {
@@ -1693,8 +1402,7 @@ ClassList["alchemist"] = {
 						abilitytodamage: false,
 						damage: [0, 0, ""],
 						range: "Melee",
-						description:
-							"Finesse; on hit, administer potion or poison to target",
+						description: "Finesse; on hit, administer potion or poison to target",
 						list: "melee",
 					},
 				],
@@ -1704,12 +1412,7 @@ ClassList["alchemist"] = {
 				source: ["VSoS", 36],
 				submenu: "[13th Level]",
 				prereqeval: function (v) {
-					return (
-						classes.known.alchemist.level >= 13 &&
-						classes.known.alchemist.subclass.indexOf(
-							"mutagenist"
-						) !== -1
-					);
+					return classes.known.alchemist.level >= 13 && classes.known.alchemist.subclass.indexOf("mutagenist") !== -1;
 				},
 				description:
 					"\n   I can inject myself with a tri-mutagen, which grants me the benefit of all mutagens at once" +
@@ -1732,22 +1435,16 @@ ClassList["alchemist"] = {
 			name: "Evasion",
 			source: ["VSoS", 30],
 			minlevel: 11,
-			description: desc(
-				"My Dexterity saves vs. areas of effect negate damage on success and halve it on failure"
-			),
+			description: desc("My Dexterity saves vs. areas of effect negate damage on success and halve it on failure"),
 			savetxt: {
-				text: [
-					"Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg",
-				],
+				text: ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"],
 			},
 		},
 		"blast coating": {
 			name: "Blast Coating",
 			source: ["VSoS", 30],
 			minlevel: 15,
-			description: desc(
-				"I automatically succeed on saves against my own bombs and never take damage from them."
-			),
+			description: desc("I automatically succeed on saves against my own bombs and never take damage from them."),
 			savetxt: {
 				text: ["Saves vs. my own bombs"],
 			},
@@ -1780,8 +1477,7 @@ ClassList["alchemist"] = {
 					ability: 0,
 					abilitytodamage: false,
 					excludeBombDamage: true,
-					description:
-						"Finesse, special, \u00BD on Dex save, or full on fail to all; Can't evade for Crea(s) in 60 ft",
+					description: "Finesse, special, \u00BD on Dex save, or full on fail to all; Can't evade for Crea(s) in 60 ft",
 					selectNow: true,
 				},
 			],
@@ -1828,10 +1524,7 @@ AddSubClass("alchemist", "amorist", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/\bpheromone\b/i.test(v.WeaponTextName) &&
-							/\bbomb\b/i.test(v.WeaponTextName)
-						) {
+						if (/\bpheromone\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
 							fields.Description = fields.Description.replace(
 								/dex save or \u00BD dmg to all in 7\.5 ft/i,
 								"Wis save to all in 7.5 ft or charmed til end of next turn or dmg taken"
@@ -1846,15 +1539,8 @@ AddSubClass("alchemist", "amorist", {
 			name: "Magnetic Personality",
 			source: ["VSoS", 38],
 			minlevel: 6,
-			description: desc(
-				"I can add my Int mod to Charisma ability checks."
-			),
-			addMod: [
-				"Deception",
-				"Intimidation",
-				"Performance",
-				"Persuasion",
-			].map(function (skill) {
+			description: desc("I can add my Int mod to Charisma ability checks."),
+			addMod: ["Deception", "Intimidation", "Performance", "Persuasion"].map(function (skill) {
 				return {
 					type: "skill",
 					field: skill,
@@ -1918,14 +1604,8 @@ AddSubClass("alchemist", "apothecary", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/\bpainkiller\b/i.test(v.WeaponTextName) &&
-							/\bbomb\b/i.test(v.WeaponTextName)
-						) {
-							fields.Description = fields.Description.replace(
-								/dex save or \u00BD dmg to all in 7\.5 ft/i,
-								"Target heals for dmg rolled"
-							);
+						if (/\bpainkiller\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+							fields.Description = fields.Description.replace(/dex save or \u00BD dmg to all in 7\.5 ft/i, "Target heals for dmg rolled");
 						}
 					},
 					"When the word 'Painkiller' is added to the title one of my Bomb attacks, the attack is treated as one of my Painkiller Bombs.",
@@ -1936,18 +1616,14 @@ AddSubClass("alchemist", "apothecary", {
 			name: "Potion Toss",
 			source: ["VSoS", 38],
 			minlevel: 6,
-			description: desc(
-				"As an action, administer a potion to a willing/unconscious creature within 20 ft of me."
-			),
+			description: desc("As an action, administer a potion to a willing/unconscious creature within 20 ft of me."),
 			action: ["action", ""],
 		},
 		subclassfeature10: {
 			name: "Self-Medication",
 			source: ["VSoS", 38],
 			minlevel: 10,
-			description: desc(
-				"When I drink a potion that restores hp, I gain adv. on saves until the end of my next turn."
-			),
+			description: desc("When I drink a potion that restores hp, I gain adv. on saves until the end of my next turn."),
 		},
 		subclassfeature18: {
 			name: "Alchemical Resurrection",
@@ -2008,9 +1684,7 @@ AddSubClass("alchemist", "dynamo engineer", {
 			name: "Spectrum Analyzer",
 			source: ["VSoS", 39],
 			minlevel: 2,
-			description: desc(
-				"Once per short or long rest, I can cast detect magic at will."
-			),
+			description: desc("Once per short or long rest, I can cast detect magic at will."),
 			spellcastingBonus: {
 				spells: ["detect magic"],
 				name: "Spectrum Analyzer",
@@ -2033,43 +1707,17 @@ AddSubClass("alchemist", "dynamo engineer", {
 			]),
 			limfeaname: "Spell Dynamos",
 			usages: levels.map(function (n) {
-				n < 2
-					? ""
-					: n < 4
-					? 2
-					: n < 7
-					? 3
-					: n < 10
-					? 4
-					: n < 16
-					? 5
-					: n < 19
-					? 6
-					: 7;
+				n < 2 ? "" : n < 4 ? 2 : n < 7 ? 3 : n < 10 ? 4 : n < 16 ? 5 : n < 19 ? 6 : 7;
 			}),
 			recovery: "short rest",
 			additional: levels.map(function (n) {
-				return n < 2
-					? ""
-					: (n < 4
-							? "2"
-							: n < 7
-							? "3"
-							: n < 10
-							? "4"
-							: n < 16
-							? "5"
-							: n < 19
-							? "6"
-							: "7") + " total spell dynamos";
+				return n < 2 ? "" : (n < 4 ? "2" : n < 7 ? "3" : n < 10 ? "4" : n < 16 ? "5" : n < 19 ? "6" : "7") + " total spell dynamos";
 			}),
 			spellcastingBonus: {
 				// the spells gained at level 2, 8, 14, 20
 				name: "From any school",
 				class: "wizard",
-				times: [
-					0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4,
-				],
+				times: [0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4],
 				level: [1, 4],
 			},
 			extraLimitedFeatures: [
@@ -2120,9 +1768,7 @@ AddSubClass("alchemist", "dynamo engineer", {
 			name: "Arcane Recycler",
 			source: ["VSoS", 40],
 			minlevel: 18,
-			description: desc(
-				"When I miss with an arcano bomb, I reuse the spell slot, transferring it to an empty dynamo."
-			),
+			description: desc("When I miss with an arcano bomb, I reuse the spell slot, transferring it to an empty dynamo."),
 		},
 	},
 });
@@ -2138,9 +1784,7 @@ AddSubClass("alchemist", "mad bomber", {
 			name: "Blasting Specialty",
 			source: ["VSoS", 40],
 			minlevel: 2,
-			description: desc(
-				"My bombs deal double damage to objects and structures."
-			),
+			description: desc("My bombs deal double damage to objects and structures."),
 		},
 		"subclassfeature2.1": {
 			name: "Shrapnel Bomb Formula",
@@ -2167,17 +1811,9 @@ AddSubClass("alchemist", "mad bomber", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/\bshrapnel\b/i.test(v.WeaponTextName) &&
-							/\bbomb\b/i.test(v.WeaponTextName)
-						) {
+						if (/\bshrapnel\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
 							fields.Description =
-								fields.Description.replace(
-									/in 7\.5 ft/,
-									"in 10 ft"
-								) +
-								(fields.Description ? "; " : "") +
-								"\xD72 damage against obj/structures";
+								fields.Description.replace(/in 7\.5 ft/, "in 10 ft") + (fields.Description ? "; " : "") + "\xD72 damage against obj/structures";
 						}
 					},
 					"When the word 'Shrapnel' is added to the title one of my Bomb attacks, the attack is treated as one of my Shrapnel Bombs.",
@@ -2282,9 +1918,7 @@ AddSubClass("alchemist", "mutagenist", {
 			name: "Bonus Proficiencies",
 			source: ["VSoS", 40],
 			minlevel: 2,
-			description: desc([
-				"Gain a proficiency in either Acrobatics or Athletics, and shields.",
-			]),
+			description: desc(["Gain a proficiency in either Acrobatics or Athletics, and shields."]),
 			skillstxt: "Choose either Acrobatics or Athletics",
 			armorProfs: [true, false, false, true],
 		},
@@ -2327,22 +1961,19 @@ AddSubClass("alchemist", "mutagenist", {
 			choices: ["Strength", "Dexterity", "Constitution"],
 			strength: {
 				name: "Mutated Blood: Strength",
-				description:
-					"\n   My Strength score increases by 2, and my maximum Strength score increases to 22.",
+				description: "\n   My Strength score increases by 2, and my maximum Strength score increases to 22.",
 				scoresMaximum: [22, 0, 0, 0, 0, 0],
 				scores: [2, 0, 0, 0, 0, 0],
 			},
 			dexterity: {
 				name: "Mutated Blood: Dexterity",
-				description:
-					"\n   My Dexterity score increases by 2, and my maximum Dexterity score increases to 22.",
+				description: "\n   My Dexterity score increases by 2, and my maximum Dexterity score increases to 22.",
 				scoresMaximum: [0, 22, 0, 0, 0, 0],
 				scores: [0, 2, 0, 0, 0, 0],
 			},
 			constitution: {
 				name: "Mutated Blood: Constitution",
-				description:
-					"\n   My Constitution score increases by 2, and my maximum Constitution score increases to 22.",
+				description: "\n   My Constitution score increases by 2, and my maximum Constitution score increases to 22.",
 				scoresMaximum: [0, 0, 22, 0, 0, 0],
 				scores: [0, 0, 2, 0, 0, 0],
 			},
@@ -2394,10 +2025,7 @@ AddSubClass("alchemist", "ooze rancher", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/\bslime\b/i.test(v.WeaponTextName) &&
-							/\bbomb\b/i.test(v.WeaponTextName)
-						) {
+						if (/\bslime\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
 							fields.Description = fields.Description.replace(
 								/dex save or \u00BD dmg to all/i,
 								"Dex save or coat all in slime and no Dash/Disengage"
@@ -2431,8 +2059,7 @@ AddSubClass("alchemist", "ooze rancher", {
 					speed: "10 ft, climb 10 ft",
 					scores: [12, 6, 16, 1, 6, 2],
 					damage_resistances: "acid, cold, fire",
-					condition_immunities:
-						"blinded, charmed, deafened, exhaustion, frightened, prone",
+					condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
 					senses: "blindsight 60 ft (blind beyond this radius)",
 					passivePerception: 8,
 					challengeRating: "1/2",
@@ -2444,8 +2071,7 @@ AddSubClass("alchemist", "ooze rancher", {
 							ability: 1,
 							damage: [1, 6, "bludgeoning"],
 							range: "Melee (5 ft)",
-							description:
-								"Deals +2d6 acid damage, permanent -1 AC cumulatively to nonmagical metal armors",
+							description: "Deals +2d6 acid damage, permanent -1 AC cumulatively to nonmagical metal armors",
 							modifiers: ["(oInt+oProf)-(Str+Prof)", ""],
 							abilitytodamage: true,
 							tooltip:
@@ -2456,8 +2082,7 @@ AddSubClass("alchemist", "ooze rancher", {
 					traits: [
 						{
 							name: "Amorphous",
-							description:
-								"The ooze can move through a space as narrow as 1 inch wide without squeezing.",
+							description: "The ooze can move through a space as narrow as 1 inch wide without squeezing.",
 						},
 						{
 							name: "Corrode Metal",
@@ -2466,8 +2091,7 @@ AddSubClass("alchemist", "ooze rancher", {
 						},
 						{
 							name: "False Appearance",
-							description:
-								"While the ooze remains motionless, it is indistinguishable from an oily pool or wet rock.",
+							description: "While the ooze remains motionless, it is indistinguishable from an oily pool or wet rock.",
 						},
 					],
 					eval: function (prefix, lvl) {
@@ -2497,9 +2121,7 @@ AddSubClass("alchemist", "ooze rancher", {
 			name: "Ooze Jug",
 			source: ["VSoS", 41],
 			minlevel: 18,
-			description: desc(
-				"I have new options for creating an ooze bottle. May only have 1 ooze jug at a time. See notes."
-			),
+			description: desc("I have new options for creating an ooze bottle. May only have 1 ooze jug at a time. See notes."),
 			toNotesPage: [
 				{
 					name: "Ooze Rancher's Oozes Table",
@@ -2528,8 +2150,7 @@ AddSubClass("alchemist", "ooze rancher", {
 					scores: [15, 6, 14, 2, 6, 1],
 					damage_resistances: "acid",
 					damage_immunities: "lightning, slashing",
-					condition_immunities:
-						"blinded, charmed, deafened, exhaustion, frightened, prone",
+					condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
 					senses: "blindsight 60 ft (blind beyond this radius)",
 					passivePerception: 8,
 					challengeRating: "2",
@@ -2549,13 +2170,11 @@ AddSubClass("alchemist", "ooze rancher", {
 					traits: [
 						{
 							name: "Amorphous",
-							description:
-								"The jelly can move through a space as narrow as 1 inch wide without squeezing.,",
+							description: "The jelly can move through a space as narrow as 1 inch wide without squeezing.,",
 						},
 						{
 							name: "Spider Climb",
-							description:
-								"The jelly can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.",
+							description: "The jelly can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.",
 						},
 					],
 					actions: [
@@ -2589,8 +2208,7 @@ AddSubClass("alchemist", "ooze rancher", {
 					hd: [8, 10],
 					speed: "15 ft",
 					scores: [14, 3, 20, 1, 6, 1],
-					condition_immunities:
-						"blinded, charmed, deafened, exhaustion, frightened, prone",
+					condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
 					senses: "blindsight 60 ft (blind beyond this radius)",
 					passivePerception: 8,
 					challengeRating: "2",
@@ -2652,8 +2270,7 @@ AddSubClass("alchemist", "ooze rancher", {
 					speed: "20 ft, climb 20 ft",
 					scores: [16, 5, 16, 1, 6, 1],
 					damage_resistances: "acid, cold, lightning, slashing",
-					condition_immunities:
-						"blinded, charmed, deafened, exhaustion, frightened, prone",
+					condition_immunities: "blinded, charmed, deafened, exhaustion, frightened, prone",
 					senses: "blindsight 60 ft (blind beyond this radius)",
 					passivePerception: 8,
 					challengeRating: "4",
@@ -2665,8 +2282,7 @@ AddSubClass("alchemist", "ooze rancher", {
 							ability: 1,
 							damage: [1, 6, "bludgeoning"],
 							range: "Melee (5 ft)",
-							description:
-								"Deals +4d8 acid damage, permanent -1 AC cumulatively to nonmagical metal armors",
+							description: "Deals +4d8 acid damage, permanent -1 AC cumulatively to nonmagical metal armors",
 							modifiers: ["(oInt+oProf)-(Str+Prof)", ""],
 							abilitytodamage: true,
 							tooltip:
@@ -2696,8 +2312,7 @@ AddSubClass("alchemist", "ooze rancher", {
 						},
 						{
 							name: "Amorphous",
-							description:
-								"The pudding can move through a space as narrow as 1 inch wide without squeezing.",
+							description: "The pudding can move through a space as narrow as 1 inch wide without squeezing.",
 						},
 					],
 					eval: function (prefix, lvl) {
@@ -2795,14 +2410,8 @@ AddSubClass("alchemist", "venomsmith", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/\bvenom\b/i.test(v.WeaponTextName) &&
-							/\bbomb\b/i.test(v.WeaponTextName)
-						) {
-							fields.Description = fields.Description.replace(
-								/dex save/i,
-								"Con save"
-							).replace(
+						if (/\bvenom\b/i.test(v.WeaponTextName) && /\bbomb\b/i.test(v.WeaponTextName)) {
+							fields.Description = fields.Description.replace(/dex save/i, "Con save").replace(
 								/dmg to all/i,
 								"dmg to all and disadv. on next Str/Dex/Con save til end of next turn"
 							);
@@ -2825,9 +2434,7 @@ AddSubClass("alchemist", "venomsmith", {
 			name: "Mithridatism",
 			source: ["VSoS", 42],
 			minlevel: 10,
-			description: desc(
-				"I gain immunity to poison & the poisoned condition."
-			),
+			description: desc("I gain immunity to poison & the poisoned condition."),
 			savetxt: {
 				immune: ["poison", "poisoned condition"],
 			},
@@ -2857,9 +2464,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 			name: "Xenobiology",
 			source: ["VSoS", 42],
 			minlevel: 2,
-			description: desc(
-				"I have advantage on all ability checks I make to identify/research monsters."
-			),
+			description: desc("I have advantage on all ability checks I make to identify/research monsters."),
 		},
 		"subclassfeature2.1": {
 			name: "Mad Scientist",
@@ -2904,15 +2509,12 @@ AddSubClass("alchemist", "xenoalchemist", {
 				"Voice Box (Donor: has the Mimicry trait)",
 				"Webspinner Apparatus (Donor: has a Web action)",
 			],
-			extraTimes: [
-				0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-			],
+			extraTimes: [0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 			"amphibious adaptation (donor: has amphibious trait)": {
 				name: "Amphibious Adaptation",
 				source: ["VSoS", 370],
 				submenu: "[Head Grafts]",
-				description:
-					"\n   I can breathe both air and water. I gain a swim speed equal to my walking speed.",
+				description: "\n   I can breathe both air and water. I gain a swim speed equal to my walking speed.",
 				speed: {
 					swim: { spd: "walk", enc: "walk" },
 				},
@@ -2941,8 +2543,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 				name: "Beast's Hide",
 				source: ["VSoS", 370],
 				submenu: "[External Grafts]",
-				description:
-					"\n   My AC is 13 + Dex mod, if higher than the armor I am wearing. Shields may still apply.",
+				description: "\n   My AC is 13 + Dex mod, if higher than the armor I am wearing. Shields may still apply.",
 				armorAdd: "Beast's Hide",
 				armorOptions: [
 					{
@@ -2958,9 +2559,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 				name: "Bestial Weapons (Arms)",
 				source: ["VSoS", 370],
 				submenu: "[Arms Grafts]",
-				description: desc(
-					"I gain claws I can use to make unarmed strikes: Finesse, 1d6+Str/Dex slashing damage."
-				),
+				description: desc("I gain claws I can use to make unarmed strikes: Finesse, 1d6+Str/Dex slashing damage."),
 				weaponOptions: [
 					{
 						name: "Claws",
@@ -2981,8 +2580,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 				name: "Bestial Weapons (Head)",
 				source: ["VSoS", 370],
 				submenu: "[Head Grafts]",
-				description:
-					"\n   I gain teeth I can use to make unarmed strikes: Finesse, 1d6+Str/Dex piercing damage.",
+				description: "\n   I gain teeth I can use to make unarmed strikes: Finesse, 1d6+Str/Dex piercing damage.",
 				weaponOptions: [
 					{
 						name: "Teest",
@@ -3003,15 +2601,13 @@ AddSubClass("alchemist", "xenoalchemist", {
 				name: "Charging Hooves",
 				source: ["VSoS", 370],
 				submenu: "[Legs Grafts]",
-				description:
-					"\n   Once on each of my turns, if I move 15 ft in straight line, I can move +10 ft in that direction.",
+				description: "\n   Once on each of my turns, if I move 15 ft in straight line, I can move +10 ft in that direction.",
 			},
 			"climbing apparatus (donor: bst/humn/mons with climb speed)": {
 				name: "Climbing Apparatus",
 				source: ["VSoS", 370],
 				submenu: "[Legs Grafts]",
-				description:
-					"\n    I gain a climb speed equal to my walking speed.",
+				description: "\n    I gain a climb speed equal to my walking speed.",
 				speed: {
 					climb: { spd: "walk", enc: "walk" },
 				},
@@ -3039,51 +2635,45 @@ AddSubClass("alchemist", "xenoalchemist", {
 					},
 				],
 			},
-			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)":
-				{
-					name: "Draconis Fundamentum",
-					source: ["VSoS", 371],
-					submenu: "[Internal Grafts]",
-					additional: "1 x short rest",
-					description:
-						"\n   As an action, each creature in a 15 ft cone makes a Dex save against 8+Con+Prof." +
-						"\n   Each creature takes (Prof)d6 damage or half on save, same damage type as donor's.",
-					weaponOptions: [
-						{
-							name: "Draconis Fundamentum",
-							source: ["VSoS", 371],
-							regExpSearch: /\bdraconis fundamentum\b/i,
-							type: "Natural",
-							ability: 3,
-							abilitytodamage: false,
-							damage: [1, 6, ""],
-							range: "15 ft cone",
-							description: "\u00BD on Dex save",
-							dc: true,
-						},
-					],
-					calcChanges: {
-						atkAdd: [
-							function (fields, v) {
-								if (
-									/\bdraconis fundamentum\b/i.test(
-										v.WeaponTextName
-									)
-								) {
-									fields.Damage_Die =
-										How("Proficiency Bonus") + "d6";
-								}
-							},
-							"My Draconis Fundamentum attack deals 1d6 damage for each point of my proficiency bonus.",
-						],
-					},
-					action: ["action", "Draconis Fundamentum"],
-					extraLimitedFeatures: {
+			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)": {
+				name: "Draconis Fundamentum",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description:
+					"\n   As an action, each creature in a 15 ft cone makes a Dex save against 8+Con+Prof." +
+					"\n   Each creature takes (Prof)d6 damage or half on save, same damage type as donor's.",
+				weaponOptions: [
+					{
 						name: "Draconis Fundamentum",
-						usages: 1,
-						recovery: "short rest",
+						source: ["VSoS", 371],
+						regExpSearch: /\bdraconis fundamentum\b/i,
+						type: "Natural",
+						ability: 3,
+						abilitytodamage: false,
+						damage: [1, 6, ""],
+						range: "15 ft cone",
+						description: "\u00BD on Dex save",
+						dc: true,
 					},
+				],
+				calcChanges: {
+					atkAdd: [
+						function (fields, v) {
+							if (/\bdraconis fundamentum\b/i.test(v.WeaponTextName)) {
+								fields.Damage_Die = How("Proficiency Bonus") + "d6";
+							}
+						},
+						"My Draconis Fundamentum attack deals 1d6 damage for each point of my proficiency bonus.",
+					],
 				},
+				action: ["action", "Draconis Fundamentum"],
+				extraLimitedFeatures: {
+					name: "Draconis Fundamentum",
+					usages: 1,
+					recovery: "short rest",
+				},
+			},
 			"dragon's hide (donor: large or larger dragon)": {
 				name: "Dragon's Hide",
 				source: ["VSoS", 371],
@@ -3104,60 +2694,53 @@ AddSubClass("alchemist", "xenoalchemist", {
 					},
 				],
 			},
-			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to acid damage.",
-					dmgres: ["Acid"],
-				},
-			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to cold damage.",
-					dmgres: ["Cold"],
-				},
-			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to fire damage.",
-					dmgres: ["Fire"],
-				},
-			"energetic suture (lightning) (donor: clst/drgn/elem/fey/fnd with imm/res to lightning damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to lightning damage.",
-					dmgres: ["Lightning"],
-				},
-			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to poison damage.",
-					dmgres: ["Poison"],
-				},
-			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to thunder damage.",
-					dmgres: ["Thunder"],
-				},
+			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to acid damage.",
+				dmgres: ["Acid"],
+			},
+			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to cold damage.",
+				dmgres: ["Cold"],
+			},
+			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to fire damage.",
+				dmgres: ["Fire"],
+			},
+			"energetic suture (lightning) (donor: clst/drgn/elem/fey/fnd with imm/res to lightning damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to lightning damage.",
+				dmgres: ["Lightning"],
+			},
+			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to poison damage.",
+				dmgres: ["Poison"],
+			},
+			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to thunder damage.",
+				dmgres: ["Thunder"],
+			},
 			"fiend's hide (donor: medium or larger fiend)": {
 				name: "Fiend's Hide",
 				source: ["VSoS", 371],
 				submenu: "[External Grafts]",
-				description:
-					"\n   My AC is 15 + Dex (max 2) if higher than the armor I am wearing. Shields may still apply.",
+				description: "\n   My AC is 15 + Dex (max 2) if higher than the armor I am wearing. Shields may still apply.",
 				armorOptions: [
 					{
 						name: "Fiend's Hide",
@@ -3173,8 +2756,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 				name: "Heart of Steel",
 				source: ["VSoS", 371],
 				submenu: "[Internal Grafts]",
-				description:
-					"\n    I may ignore the effects of 1 level of exhaustion & finish a long rest in 4 hours.",
+				description: "\n    I may ignore the effects of 1 level of exhaustion & finish a long rest in 4 hours.",
 				savetxt: {
 					immune: ["1st level exhaustion"],
 				},
@@ -3205,25 +2787,21 @@ AddSubClass("alchemist", "xenoalchemist", {
 				name: "Indiscernible Anatomy",
 				source: ["VSoS", 372],
 				submenu: "[Internal Grafts]",
-				description:
-					"\n    Critical hits against me become normal hits.",
+				description: "\n    Critical hits against me become normal hits.",
 			},
 			"leaping legs (donor: has the pounce/standing leap trait)": {
 				name: "Leaping Legs",
 				source: ["VSoS", 372],
 				submenu: "[Legs Grafts]",
-				description:
-					"\n    My jump distance doubles. I can jump my full distance without a running start.",
+				description: "\n    My jump distance doubles. I can jump my full distance without a running start.",
 			},
-			"olfactory implants (donor: has keen smell/keen hearing and smell trait)":
-				{
-					name: "Olfactory Implants",
-					source: ["VSoS", 372],
-					submenu: "[Head Grafts]",
-					description:
-						"\n   I gain advantage on Wisdom (Perception) checks that rely on smell.",
-					vision: [["Keen Smell", 0]],
-				},
+			"olfactory implants (donor: has keen smell/keen hearing and smell trait)": {
+				name: "Olfactory Implants",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "\n   I gain advantage on Wisdom (Perception) checks that rely on smell.",
+				vision: [["Keen Smell", 0]],
+			},
 			"oversized arms (donor: giant)": {
 				name: "Oversized Arms",
 				source: ["VSoS", 372],
@@ -3238,28 +2816,16 @@ AddSubClass("alchemist", "xenoalchemist", {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								v.isMeleeWeapon &&
-								/\d+\s?(ft|m)/i.test(fields.Range) &&
-								!/reach/i.test(fields.Description)
-							) {
+							if (v.isMeleeWeapon && /\d+\s?(ft|m)/i.test(fields.Range) && !/reach/i.test(fields.Description)) {
 								// * Checks for "Melee (x ft)"
 								var rNum = fields.Range.match(/\d+\s?(ft|m)/i);
 								var unit = rNum[2];
 								var curRange = parseInt(rNum[1], 10);
-								fields.Range = fields.Range.replace(
-									/\d+\s?(ft|m)/i,
-									curRange + 5 + " " + unit
-								);
+								fields.Range = fields.Range.replace(/\d+\s?(ft|m)/i, curRange + 5 + " " + unit);
 							}
-							if (
-								v.isMeleeWeapon &&
-								!/\(\d+\s?(ft|m)\)/i.test(fields.Range) &&
-								!/reach/i.test(fields.Description)
-							) {
+							if (v.isMeleeWeapon && !/\(\d+\s?(ft|m)\)/i.test(fields.Range) && !/reach/i.test(fields.Description)) {
 								fields.Range = "Melee (10 ft)";
-								fields.Description +=
-									(fields.Description ? "; " : "") + "Reach";
+								fields.Description += (fields.Description ? "; " : "") + "Reach";
 							}
 						},
 						"My melee reach increases by 5 ft, unless the weapon I am using has Reach.",
@@ -3293,8 +2859,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 				source: ["VSoS", 373],
 				submenu: "[Internal Grafts]",
 				additional: "1 x short rest",
-				description:
-					"\n    I can use a bonus action to regain hit points equal to 1d10 + Constitution modifier.",
+				description: "\n    I can use a bonus action to regain hit points equal to 1d10 + Constitution modifier.",
 				action: ["bonus action", ""],
 				extraLimitedFeatures: [
 					{
@@ -3308,9 +2873,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 				name: "Replacement",
 				source: ["VSoS", 373],
 				submenu: "[Any Grafts]",
-				description: desc(
-					"A replacement limb/organ functions identically. It takes up the most relevant body slot."
-				),
+				description: desc("A replacement limb/organ functions identically. It takes up the most relevant body slot."),
 			},
 			"stench (donor: has the stench trait)": {
 				name: "Stench",
@@ -3347,29 +2910,26 @@ AddSubClass("alchemist", "xenoalchemist", {
 						abilitytodamage: true,
 						damage: [1, 6, "Bludgeoning"],
 						range: "Melee (10 ft)",
-						description:
-							"Finesse, Reach, on hit, may use bonus action to attempt a grapple on target",
+						description: "Finesse, Reach, on hit, may use bonus action to attempt a grapple on target",
 						selectNow: true,
 					},
 				],
 			},
-			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)":
-				{
-					name: "Venom Sac",
-					source: ["VSoS", 373],
-					submenu: "[Internal Grafts]",
-					additional: "1 x short rest",
-					description:
-						"\n    As a bonus action, I can coat a weapon in basic poison. the save DC = 8+Prof+Con mod.",
-					action: ["bonus action", ""],
-					extraLimitedFeatures: [
-						{
-							name: "Venom Sac",
-							usages: 1,
-							recovery: "short rest",
-						},
-					],
-				},
+			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)": {
+				name: "Venom Sac",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n    As a bonus action, I can coat a weapon in basic poison. the save DC = 8+Prof+Con mod.",
+				action: ["bonus action", ""],
+				extraLimitedFeatures: [
+					{
+						name: "Venom Sac",
+						usages: 1,
+						recovery: "short rest",
+					},
+				],
+			},
 			"voice box (donor: has the mimicry trait)": {
 				name: "Voice Box",
 				source: ["VSoS", 373],
@@ -3383,8 +2943,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 				source: ["VSoS", 373],
 				submenu: "[Internal Grafts]",
 				additional: "1 x short rest",
-				description:
-					"\n    I can cast the web spell without using a spell slot or components: DC 8+Prof+Con mod.",
+				description: "\n    I can cast the web spell without using a spell slot or components: DC 8+Prof+Con mod.",
 				extraLimitedFeatures: [
 					{
 						name: "Webspinner Apparatus",
@@ -3417,9 +2976,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 			name: "Necromantic Organs",
 			source: ["VSoS", 42],
 			minlevel: 10,
-			description: desc(
-				"When I am reduced to 0 hit points but not killed, I can drop to 1 hit point instead."
-			),
+			description: desc("When I am reduced to 0 hit points but not killed, I can drop to 1 hit point instead."),
 			usages: 1,
 			recovery: "long rest",
 		},
@@ -3444,11 +3001,9 @@ AddSubClass("alchemist", "xenoalchemist", {
 					hd: [9, 8],
 					speed: "30 ft",
 					scores: [17, 9, 18, 6, 10, 5],
-					damage_resistances:
-						"bludgeoning, piercing and slashing from nonmagical attacks that aren't adamantine",
+					damage_resistances: "bludgeoning, piercing and slashing from nonmagical attacks that aren't adamantine",
 					damage_immunities: "lightning",
-					condition_immunities:
-						"charm, exhaustion, fright, paralysis, petrify, poison",
+					condition_immunities: "charm, exhaustion, fright, paralysis, petrify, poison",
 					proficiencyBonus: 3,
 					languages: "same as creator (can't speak)",
 					senses: "Darkvision 60 ft",
@@ -3502,8 +3057,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 							range: "Melee (5 ft)",
 							abilitytodamage: false,
 							modifiers: ["(oInt+oProf)-(Str+Prof)", "5"],
-							description:
-								"Counts as magical; if moved 10 ft in a straight line before attacking, may attempt to knock prone",
+							description: "Counts as magical; if moved 10 ft in a straight line before attacking, may attempt to knock prone",
 							tooltip:
 								"Horns are a natural weapon that you can use to make unarmed strikes. If you move in a straight line for 10 feet immediately before hitting a creature with your horns, that creature must make a Strength check contested by your Strength check. If you succeed, the creature is knocked prone.",
 						},
@@ -3514,8 +3068,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 							range: "Melee (5 ft)",
 							abilitytodamage: false,
 							modifiers: ["(oInt+oProf)-(Str+Prof)", "5"],
-							description:
-								"Counts as magical; if moved 10 ft in a straight line, may STR contest to knock prone",
+							description: "Counts as magical; if moved 10 ft in a straight line, may STR contest to knock prone",
 						},
 						{
 							name: "Prehensile Tail",
@@ -3533,20 +3086,17 @@ AddSubClass("alchemist", "xenoalchemist", {
 							range: "Melee (10 ft)",
 							abilitytodamage: false,
 							modifiers: ["(oInt+oProf)-(Str+Prof)", "5"],
-							description:
-								"Finesse, Reach; Counts as magical; may use bonus action to attempt grapple",
+							description: "Finesse, Reach; Counts as magical; may use bonus action to attempt grapple",
 						},
 					],
 					traits: [
 						{
 							name: "Aversion to Fire",
-							description:
-								"If the golem takes fire damage, it has disadv. on ability checks and attack rolls until the end of its next turn.",
+							description: "If the golem takes fire damage, it has disadv. on ability checks and attack rolls until the end of its next turn.",
 						},
 						{
 							name: "Immutable Form",
-							description:
-								"The golem is immune to any spell or effect that would alter its form.",
+							description: "The golem is immune to any spell or effect that would alter its form.",
 						},
 						{
 							name: "Lightning Absorption",
@@ -3555,13 +3105,11 @@ AddSubClass("alchemist", "xenoalchemist", {
 						},
 						{
 							name: "Magic Resistance",
-							description:
-								"The golem has advantage on saves vs spells and other magical effects.",
+							description: "The golem has advantage on saves vs spells and other magical effects.",
 						},
 						{
 							name: "Multiattack",
-							description:
-								"The golem can make two melee weapon attacks",
+							description: "The golem can make two melee weapon attacks",
 						},
 					],
 					commoneval: function (prefix, oCrea, bAdd) {
@@ -3578,29 +3126,15 @@ AddSubClass("alchemist", "xenoalchemist", {
 							var strRange = What(range);
 							var strDescription = What(description);
 
-							if (
-								/^\d+\s?(ft|m)/i.test(strRange) &&
-								/melee/i.test(strRange) &&
-								!/reach/.test(strDescription)
-							) {
+							if (/^\d+\s?(ft|m)/i.test(strRange) && /melee/i.test(strRange) && !/reach/.test(strDescription)) {
 								var rNum = strRange.match(/\d+\s?(ft|m)/i);
 								var unit = rNum[1];
 								var curRange = parseInt(rNum[0], 10);
 
-								Value(
-									range,
-									strRange.replace(
-										/\d+\s?(ft|m)/i,
-										curRange + 5 + " " + unit
-									)
-								);
+								Value(range, strRange.replace(/\d+\s?(ft|m)/i, curRange + 5 + " " + unit));
 								AddString(description, "Reach", "; ");
 							}
-							if (
-								!/^\d+\s?(ft|m)/i.test(strRange) &&
-								/melee/i.test(strRange) &&
-								!/reach/.test(strDescription)
-							) {
+							if (!/^\d+\s?(ft|m)/i.test(strRange) && /melee/i.test(strRange) && !/reach/.test(strDescription)) {
 								Value(range, "Melee (10 ft)");
 								AddString(description, "Reach", "; ");
 							}
@@ -3619,28 +3153,13 @@ AddSubClass("alchemist", "xenoalchemist", {
 							var strRange = What(range);
 							var strDescription = What(description);
 
-							if (
-								/\d+\s?(ft|m)/i.test(strRange) &&
-								/melee/i.test(strRange) &&
-								!/tentacles?/i.test(
-									What(baseField + ".Weapon Selection")
-								)
-							) {
+							if (/\d+\s?(ft|m)/i.test(strRange) && /melee/i.test(strRange) && !/tentacles?/i.test(What(baseField + ".Weapon Selection"))) {
 								var rNum = strRange.match(/\d+\s?(ft|m)/i);
 								var unit = rNum[1];
 								var curRange = parseInt(rNum[0], 10);
 
-								Value(
-									range,
-									strRange.replace(
-										/\d+\s?(ft|m)/i,
-										Math.max(curRange - 5, 5) + " " + unit
-									)
-								);
-								Value(
-									description,
-									strDescription.replace(/(,|;)? ?reach/i, "")
-								);
+								Value(range, strRange.replace(/\d+\s?(ft|m)/i, Math.max(curRange - 5, 5) + " " + unit));
+								Value(description, strDescription.replace(/(,|;)? ?reach/i, ""));
 							}
 						}
 					},
@@ -3653,14 +3172,8 @@ AddSubClass("alchemist", "xenoalchemist", {
 							prefix + "Cnote.Left",
 							"\n\u25C6 Monsterous Grafts: The golem may have up to three Monstrous Grafts attached to it by its creator. The golem's weapon attacks, including monsterous grafts added by its creator, are magical. Monsterous grafts have a +6 attack bonus, deal twice the normal number of damage dice, and have a +5 bonus to their damage rolls. The golem can only have 1 graft in each slot."
 						);
-						Value(
-							prefix + "Comp.Use.Attack.2.Weapon Selection",
-							""
-						);
-						Value(
-							prefix + "Comp.Use.Attack.3.Weapon Selection",
-							""
-						);
+						Value(prefix + "Comp.Use.Attack.2.Weapon Selection", "");
+						Value(prefix + "Comp.Use.Attack.3.Weapon Selection", "");
 					},
 					removeeval: function (prefix, lvl) {
 						RemoveString(
@@ -3707,9 +3220,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 				"Voice Box (Donor: has the Mimicry trait)",
 				"Webspinner Apparatus (Donor: has a Web action)",
 			],
-			extraTimes: [
-				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3,
-			],
+			extraTimes: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3],
 			"amphibious adaptation (donor: has amphibious trait)": {
 				name: "Amphibious Adaptation",
 				source: ["VSoS", 370],
@@ -3720,10 +3231,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 						function (prefix, oCrea, bAdd) {
 							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
 							var aFnc = bAdd ? AddString : RemoveString;
-							aFnc(
-								prefix + "Comp.Use.Traits",
-								"\n\u25C6 Amphibious Adaptation: The golem can breathe both air and water."
-							);
+							aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Amphibious Adaptation: The golem can breathe both air and water.");
 							aFnc(prefix + "Comp.Use.Speed", ",\nswim 30 ft");
 						},
 						"My alchemy golem gains the Monsterous Graft: Amphibious Adaptation.",
@@ -3786,45 +3294,13 @@ AddSubClass("alchemist", "xenoalchemist", {
 							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
 							if (bAdd) {
 								AddWeapon("Bestial Weapon: Claws", "", prefix);
-								if (
-									GetFeatureChoice(
-										"classes",
-										"alchemist",
-										"subclassfeature18",
-										true
-									).indexOf(
-										"oversized arms (donor: giant)"
-									) !== -1
-								) {
-									ClassSubList[
-										"alchemist-xenoalchemist"
-									].features[
-										"subclassfeature18"
-									].creatureOptions[0].commoneval(
-										prefix,
-										oCrea,
-										bAdd
-									);
+								if (GetFeatureChoice("classes", "alchemist", "subclassfeature18", true).indexOf("oversized arms (donor: giant)") !== -1) {
+									ClassSubList["alchemist-xenoalchemist"].features["subclassfeature18"].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
 								}
 							} else {
 								for (i = 1; i < 3; ++i) {
-									if (
-										/bestial weapon: claws/i.test(
-											What(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection"
-											)
-										)
-									)
-										Value(
-											prefix +
-												"Comp.Use.Attack." +
-												i +
-												".Weapon Selection",
-											""
-										);
+									if (/bestial weapon: claws/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
 								}
 							}
 						},
@@ -3844,45 +3320,13 @@ AddSubClass("alchemist", "xenoalchemist", {
 							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
 							if (bAdd) {
 								AddWeapon("Bestial Weapon: Teeth", "", prefix);
-								if (
-									GetFeatureChoice(
-										"classes",
-										"alchemist",
-										"subclassfeature18",
-										true
-									).indexOf(
-										"oversized arms (donor: giant)"
-									) !== -1
-								) {
-									ClassSubList[
-										"alchemist-xenoalchemist"
-									].features[
-										"subclassfeature18"
-									].creatureOptions[0].commoneval(
-										prefix,
-										oCrea,
-										bAdd
-									);
+								if (GetFeatureChoice("classes", "alchemist", "subclassfeature18", true).indexOf("oversized arms (donor: giant)") !== -1) {
+									ClassSubList["alchemist-xenoalchemist"].features["subclassfeature18"].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
 								}
 							} else {
 								for (i = 1; i < 3; ++i) {
-									if (
-										/bestial weapon: teeth/i.test(
-											What(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection"
-											)
-										)
-									)
-										Value(
-											prefix +
-												"Comp.Use.Attack." +
-												i +
-												".Weapon Selection",
-											""
-										);
+									if (/bestial weapon: teeth/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
 								}
 							}
 						},
@@ -3920,10 +3364,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
 							var aFnc = bAdd ? AddString : RemoveString;
 							aFnc(prefix + "Comp.Use.Speed", ",\nclimb 30 ft");
-							aFnc(
-								prefix + "Comp.Use.Traits",
-								"\n\u25C6 Climbing Apparatus: The golem gains a climb speed equal to its walking speed."
-							);
+							aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Climbing Apparatus: The golem gains a climb speed equal to its walking speed.");
 						},
 					],
 				},
@@ -3946,70 +3387,32 @@ AddSubClass("alchemist", "xenoalchemist", {
 					],
 				},
 			},
-			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)":
-				{
-					name: "Draconis Fundamentum",
-					source: ["VSoS", 371],
-					submenu: "[Internal Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/\balchemy golem\b/i.test(oCrea.name))
-									return;
-								if (bAdd) {
-									AddWeapon(
-										"Draconis Fundamentum",
-										"",
-										prefix
-									);
-									if (
-										GetFeatureChoice(
-											"classes",
-											"alchemist",
-											"subclassfeature18",
-											true
-										).indexOf(
-											"oversized arms (donor: giant)"
-										) !== -1
-									) {
-										ClassSubList[
-											"alchemist-xenoalchemist"
-										].features[
-											"subclassfeature18"
-										].creatureOptions[0].commoneval(
-											prefix,
-											oCrea,
-											bAdd
-										);
-									}
-								} else {
-									for (i = 1; i < 3; ++i) {
-										if (
-											/Draconis Fundamentum/i.test(
-												What(
-													prefix +
-														"Comp.Use.Attack." +
-														i +
-														".Weapon Selection"
-												)
-											)
-										)
-											Value(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection",
-												""
-											);
-									}
+			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)": {
+				name: "Draconis Fundamentum",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+							if (bAdd) {
+								AddWeapon("Draconis Fundamentum", "", prefix);
+								if (GetFeatureChoice("classes", "alchemist", "subclassfeature18", true).indexOf("oversized arms (donor: giant)") !== -1) {
+									ClassSubList["alchemist-xenoalchemist"].features["subclassfeature18"].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
 								}
-							},
-							"My alchemy golem gains the Monsterous Graft: Draconis Fundamentum.",
-							900,
-						],
-					},
+							} else {
+								for (i = 1; i < 3; ++i) {
+									if (/Draconis Fundamentum/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+								}
+							}
+						},
+						"My alchemy golem gains the Monsterous Graft: Draconis Fundamentum.",
+						900,
+					],
 				},
+			},
 			"dragon's hide (donor: large or larger dragon)": {
 				name: "Dragon's Hide",
 				source: ["VSoS", 371],
@@ -4026,166 +3429,81 @@ AddSubClass("alchemist", "xenoalchemist", {
 					],
 				},
 			},
-			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/\balchemy golem\b/i.test(oCrea.name))
-									return;
-								if (bAdd)
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(
-											"adamantine.",
-											"adamantine, acid"
-										)
-									);
-								else
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(", acid", ".")
-									);
-							},
-						],
-					},
+			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+							if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, acid"));
+							else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", acid", "."));
+						},
+					],
 				},
-			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/\balchemy golem\b/i.test(oCrea.name))
-									return;
-								if (bAdd)
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(
-											"adamantine.",
-											"adamantine, cold"
-										)
-									);
-								else
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(", cold", ".")
-									);
-							},
-						],
-					},
+			},
+			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+							if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, cold"));
+							else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", cold", "."));
+						},
+					],
 				},
-			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/\balchemy golem\b/i.test(oCrea.name))
-									return;
-								if (bAdd)
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(
-											"adamantine.",
-											"adamantine, fire"
-										)
-									);
-								else
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(", fire", ".")
-									);
-							},
-						],
-					},
+			},
+			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+							if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, fire"));
+							else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", fire", "."));
+						},
+					],
 				},
-			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/\balchemy golem\b/i.test(oCrea.name))
-									return;
-								if (bAdd)
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(
-											"adamantine.",
-											"adamantine, poison"
-										)
-									);
-								else
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(", poison", ".")
-									);
-							},
-						],
-					},
+			},
+			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+							if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, poison"));
+							else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", poison", "."));
+						},
+					],
 				},
-			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/\balchemy golem\b/i.test(oCrea.name))
-									return;
-								if (bAdd)
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(
-											"adamantine.",
-											"adamantine, thunder"
-										)
-									);
-								else
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(", thunder", ".")
-									);
-							},
-						],
-					},
+			},
+			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+							if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, thunder"));
+							else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", thunder", "."));
+						},
+					],
 				},
+			},
 			"fiend's hide (donor: medium or larger fiend)": {
 				name: "Fiend's Hide",
 				source: ["VSoS", 371],
@@ -4195,8 +3513,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 					creatureCallback: [
 						function (prefix, oCrea, bAdd) {
 							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
-							if (bAdd)
-								Value(prefix + "Comp.Use.AC", "15+min(Dex|2)");
+							if (bAdd) Value(prefix + "Comp.Use.AC", "15+min(Dex|2)");
 							else Value(prefix + "Comp.Use.AC", "14+Dex");
 						},
 						"My alchemy golem's AC is equal to 15 + its Dexterity Modifier, max 2, if its worn armor isn't higher. It may benefit from a shield.",
@@ -4232,45 +3549,13 @@ AddSubClass("alchemist", "xenoalchemist", {
 							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
 							if (bAdd) {
 								AddWeapon("Horns", "", prefix);
-								if (
-									GetFeatureChoice(
-										"classes",
-										"alchemist",
-										"subclassfeature18",
-										true
-									).indexOf(
-										"oversized arms (donor: giant)"
-									) !== -1
-								) {
-									ClassSubList[
-										"alchemist-xenoalchemist"
-									].features[
-										"subclassfeature18"
-									].creatureOptions[0].commoneval(
-										prefix,
-										oCrea,
-										bAdd
-									);
+								if (GetFeatureChoice("classes", "alchemist", "subclassfeature18", true).indexOf("oversized arms (donor: giant)") !== -1) {
+									ClassSubList["alchemist-xenoalchemist"].features["subclassfeature18"].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
 								}
 							} else {
 								for (i = 1; i < 3; ++i) {
-									if (
-										/horns/i.test(
-											What(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection"
-											)
-										)
-									)
-										Value(
-											prefix +
-												"Comp.Use.Attack." +
-												i +
-												".Weapon Selection",
-											""
-										);
+									if (/horns/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
 								}
 							}
 						},
@@ -4289,10 +3574,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 						function (prefix, oCrea, bAdd) {
 							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
 							var aFnc = bAdd ? AddString : RemoveString;
-							aFnc(
-								prefix + "Comp.Use.Traits",
-								"\n\u25C6 Indiscernible Anatomy: Critical hits against the golem become normal hits."
-							);
+							aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Indiscernible Anatomy: Critical hits against the golem become normal hits.");
 						},
 					],
 				},
@@ -4301,8 +3583,7 @@ AddSubClass("alchemist", "xenoalchemist", {
 				name: "Leaping Legs",
 				source: ["VSoS", 372],
 				submenu: "[Legs Grafts]",
-				description:
-					" My jump distance doubles. I can jump my full distance without a running start.",
+				description: " My jump distance doubles. I can jump my full distance without a running start.",
 				calcChanges: {
 					creatureCallback: [
 						function (prefix, oCrea, bAdd) {
@@ -4316,23 +3597,21 @@ AddSubClass("alchemist", "xenoalchemist", {
 					],
 				},
 			},
-			"olfactory implants (donor: has keen smell/keen hearing and smell trait)":
-				{
-					name: "Olfactory Implants",
-					source: ["VSoS", 372],
-					submenu: "[Head Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/\balchemy golem\b/i.test(oCrea.name))
-									return;
-								var aFnc = bAdd ? AddString : RemoveString;
-								aFnc(prefix + "Comp.Use.Senses", "Keen Smell");
-							},
-						],
-					},
+			"olfactory implants (donor: has keen smell/keen hearing and smell trait)": {
+				name: "Olfactory Implants",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+							var aFnc = bAdd ? AddString : RemoveString;
+							aFnc(prefix + "Comp.Use.Senses", "Keen Smell");
+						},
+					],
 				},
+			},
 			"oversized arms (donor: giant)": {
 				name: "Oversized Arms",
 				source: ["VSoS", 372],
@@ -4343,26 +3622,10 @@ AddSubClass("alchemist", "xenoalchemist", {
 						function (prefix, oCrea, bAdd) {
 							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
 							if (bAdd) {
-								ClassSubList[
-									"alchemist-xenoalchemist"
-								].features[
-									"subclassfeature18"
-								].creatureOptions[0].commoneval(
-									prefix,
-									oCrea,
-									bAdd
-								);
+								ClassSubList["alchemist-xenoalchemist"].features["subclassfeature18"].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
 							}
 							if (!bAdd) {
-								ClassSubList[
-									"alchemist-xenoalchemist"
-								].features[
-									"subclassfeature18"
-								].creatureOptions[0].commonremoveeval(
-									prefix,
-									oCrea,
-									bAdd
-								);
+								ClassSubList["alchemist-xenoalchemist"].features["subclassfeature18"].creatureOptions[0].commonremoveeval(prefix, oCrea, bAdd);
 							}
 							var aFnc = bAdd ? AddString : RemoveString;
 							aFnc(
@@ -4390,45 +3653,13 @@ AddSubClass("alchemist", "xenoalchemist", {
 									prefix + "Comp.Use.Features",
 									"\n\u25C6 Prehensile Tail: The golem's tail can hold and manipulate objects, but cannot use weapons/shields"
 								);
-								if (
-									GetFeatureChoice(
-										"classes",
-										"alchemist",
-										"subclassfeature18",
-										true
-									).indexOf(
-										"oversized arms (donor: giant)"
-									) !== -1
-								) {
-									ClassSubList[
-										"alchemist-xenoalchemist"
-									].features[
-										"subclassfeature18"
-									].creatureOptions[0].commoneval(
-										prefix,
-										oCrea,
-										bAdd
-									);
+								if (GetFeatureChoice("classes", "alchemist", "subclassfeature18", true).indexOf("oversized arms (donor: giant)") !== -1) {
+									ClassSubList["alchemist-xenoalchemist"].features["subclassfeature18"].creatureOptions[0].commoneval(prefix, oCrea, bAdd);
 								}
 							} else {
 								for (i = 1; i < 3; ++i) {
-									if (
-										/Prehensile Tail/i.test(
-											What(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection"
-											)
-										)
-									)
-										Value(
-											prefix +
-												"Comp.Use.Attack." +
-												i +
-												".Weapon Selection",
-											""
-										);
+									if (/Prehensile Tail/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
 								}
 								RemoveString(
 									prefix + "Comp.Use.Features",
@@ -4509,23 +3740,8 @@ AddSubClass("alchemist", "xenoalchemist", {
 							} // * no need to call commoneval
 							else {
 								for (i = 1; i < 3; ++i) {
-									if (
-										/tentacles/i.test(
-											What(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection"
-											)
-										)
-									)
-										Value(
-											prefix +
-												"Comp.Use.Attack." +
-												i +
-												".Weapon Selection",
-											""
-										);
+									if (/tentacles/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
 								}
 							}
 						},
@@ -4534,26 +3750,24 @@ AddSubClass("alchemist", "xenoalchemist", {
 					],
 				},
 			},
-			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)":
-				{
-					name: "Venom Sac",
-					source: ["VSoS", 373],
-					submenu: "[Internal Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/\balchemy golem\b/i.test(oCrea.name))
-									return;
-								var aFnc = bAdd ? AddString : RemoveString;
-								aFnc(
-									prefix + "Comp.Use.Features",
-									"\n\u25C6 Venom Sac: Once per short rest, as a bonus action, the golem can coat a weapon in basic poison. The save DC for this poison is 15."
-								);
-							},
-						],
-					},
+			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)": {
+				name: "Venom Sac",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/\balchemy golem\b/i.test(oCrea.name)) return;
+							var aFnc = bAdd ? AddString : RemoveString;
+							aFnc(
+								prefix + "Comp.Use.Features",
+								"\n\u25C6 Venom Sac: Once per short rest, as a bonus action, the golem can coat a weapon in basic poison. The save DC for this poison is 15."
+							);
+						},
+					],
 				},
+			},
 			"voice box (donor: has the mimicry trait)": {
 				name: "Voice Box",
 				source: ["VSoS", 373],

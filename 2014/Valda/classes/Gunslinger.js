@@ -2,12 +2,12 @@ var iFileName = "VSoS_Gunslinger.js";
 RequiredSheetVersion("13.2.3");
 
 if (!SourceList["VSoS"]) {
-    SourceList["VSoS"] = {
-        name : "Valda's Spire of Secrets",
-        abbreviation : "VSoS",
-        abbreviationSpellsheet : "V",
-        date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
-    };
+	SourceList["VSoS"] = {
+		name: "Valda's Spire of Secrets",
+		abbreviation: "VSoS",
+		abbreviationSpellsheet: "V",
+		date: "2022/12/30", // ! Updated as of 12-30-2022 (Version 1.4)
+	};
 }
 
 // * Gunslinger class
@@ -22,8 +22,7 @@ ClassList["gunslinger"] = {
 	saves: ["Dex", "Cha"],
 	abilitySave: 2,
 	skillstxt: {
-		primary:
-			"Choose two from Acrobatics, Animal Handling, Athletics, Deception, Persuasion, Sleight of Hand, Stealth",
+		primary: "Choose two from Acrobatics, Animal Handling, Athletics, Deception, Persuasion, Sleight of Hand, Stealth",
 	},
 	armorProfs: {
 		primary: [true, false, false, false],
@@ -49,16 +48,11 @@ ClassList["gunslinger"] = {
 			name: "Fighting Style",
 			minlevel: 1,
 			source: ["VSoS", 92],
-			description: desc([
-				'Choose a Fighting Style for the gunslinger using the "Choose Feature" button above.',
-			]),
+			description: desc(['Choose a Fighting Style for the gunslinger using the "Choose Feature" button above.']),
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/firearms?/i.test(v.theWea.type) ||
-							/firearms?/i.test(v.theWea.list)
-						) {
+						if (/firearms?/i.test(v.theWea.type) || /firearms?/i.test(v.theWea.list)) {
 							fields.Proficiency = true;
 						}
 					},
@@ -68,26 +62,16 @@ ClassList["gunslinger"] = {
 			akimbo: {
 				name: "Akimbo Fighting Style",
 				source: ["VSoS", 92],
-				description: desc([
-					"I don't take the -2 damage penalty of off-hand firearm attacks when two-weapon fighting.",
-				]),
+				description: desc(["I don't take the -2 damage penalty of off-hand firearm attacks when two-weapon fighting."]),
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/^(?!.*(spell|cantrip))(?=.*(off.{0,3}hand|secondary))(?=.*\-\d+\s?dmg)(?=.*\(min\.\s?1\)).*$/i.test(
-									fields.Description
-								)
-							) {
-								fields.Description = fields.Description.replace(
-									/^(?=.*\-\d+\s?dmg)(?=.*\(min\.\s?1\)).*$/i,
+							if (/^(?!.*(spell|cantrip))(?=.*(off.{0,3}hand|secondary))(?=.*\-\d+\s?dmg)(?=.*\(min\.\s?1\)).*$/i.test(fields.Description)) {
+								fields.Description = fields.Description.replace(/^(?=.*\-\d+\s?dmg)(?=.*\(min\.\s?1\)).*$/i, "");
+								fields.Description_Tooltip = fields.Description_Tooltip.replace(
+									/When you engage in two-weapon fighting with two light firearms, you subtract 2 from the damage roll of the bonus attack, to a minimum of 1 damage./,
 									""
 								);
-								fields.Description_Tooltip =
-									fields.Description_Tooltip.replace(
-										/When you engage in two-weapon fighting with two light firearms, you subtract 2 from the damage roll of the bonus attack, to a minimum of 1 damage./,
-										""
-									);
 							}
 						},
 						"I don't take the -2 damage penalty of off-hand firearm attacks when two-weapon fighting.",
@@ -106,22 +90,12 @@ ClassList["gunslinger"] = {
 					atkCalc: [
 						function (fields, v, output) {
 							// check if the archery fighting style is here, back out
-							if (
-								!/Archery Fighting Style/i.test(
-									What("Class Features")
-								) ||
-								!/\d+\/\d+/i.test(fields.Range)
-							)
-								return;
+							if (!/Archery Fighting Style/i.test(What("Class Features")) || !/\d+\/\d+/i.test(fields.Range)) return;
 							var rangeFld = fields.Range.match(/(\d+)\/(\d+)/i);
 							var shortRange = parseInt(rangeNmbr[1]);
 							if (
-								!(
-									/firearm/i.test(v.theWea.list) ||
-									!/firearm/i.test(fields.Description)
-								) &&
-								(!/sighted/i.test(fields.Description) ||
-									!shortRange >= 80)
+								!(/firearm/i.test(v.theWea.list) || !/firearm/i.test(fields.Description)) &&
+								(!/sighted/i.test(fields.Description) || !shortRange >= 80)
 							)
 								return;
 							output.extraHit += 2;
@@ -141,8 +115,7 @@ ClassList["gunslinger"] = {
 					atkAdd: [
 						function (fields, v) {
 							if (
-								(/firearm/i.test(v.theWea.list) ||
-									/\bfirearm\b/i.test(fields.Description)) &&
+								(/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) &&
 								!/\btwo-handed\b/i.test(fields.Description) &&
 								/(\d+)d(\d+)/.test(fields.Damage_Die)
 							) {
@@ -150,10 +123,7 @@ ClassList["gunslinger"] = {
 								var dieSplit = fields.Damage_Die.split("d");
 								if (dieSplit.length < 2) return;
 								var die = "1d" + dieSplit[1];
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"Duelist +" +
-									die;
+								fields.Description += (fields.Description ? "; " : "") + "Duelist +" + die;
 							}
 						},
 						"Once per round, when wielding a firearm in one hand and nothing in the other, I deal 1 extra die of weapon damage if my attack roll exceeds the target's AC by 5 or more.",
@@ -163,20 +133,12 @@ ClassList["gunslinger"] = {
 			shotgunner: {
 				name: "Shotgunner Fighting Style",
 				source: ["VSoS", 93],
-				description: desc([
-					"When I hit on a ranged firearm attack with Scatter, I can reroll the lowest damage die.",
-				]),
+				description: desc(["When I hit on a ranged firearm attack with Scatter, I can reroll the lowest damage die."]),
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								(/firearm/i.test(v.theWea.list) ||
-									/\bfirearm\b/i.test(fields.Description)) &&
-								/\bscatter\b/i.test(fields.Description)
-							) {
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"reroll lowest dmg die";
+							if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) && /\bscatter\b/i.test(fields.Description)) {
+								fields.Description += (fields.Description ? "; " : "") + "reroll lowest dmg die";
 							}
 						},
 						"When I hit with a ranged weapon attack using a firearm that has the Scatter property, I can reroll the lowest damage die.",
@@ -188,41 +150,24 @@ ClassList["gunslinger"] = {
 			name: "Quick Draw",
 			source: ["VSoS", 93],
 			minlevel: 1,
-			description: desc([
-				"Adv. on initiative rolls. I can draw/stow 2 weapons when I roll initiative as part of my action.",
-			]),
+			description: desc(["Adv. on initiative rolls. I can draw/stow 2 weapons when I roll initiative as part of my action."]),
 		},
 		"critical shot": {
 			name: "Critical Shot",
 			source: ["VSoS", 93],
 			minlevel: 2,
-			description: desc([
-				"My ranged firearm attacks score a critical hit on a roll of 19-20, increasing at 9th & 17th level.",
-			]),
+			description: desc(["My ranged firearm attacks score a critical hit on a roll of 19-20, increasing at 9th & 17th level."]),
 			additional: levels.map(function (n) {
-				return n < 2
-					? ""
-					: "critical hit range: " + n < 9
-					? "19-20"
-					: n < 17
-					? "18-20"
-					: "17-20";
+				return n < 2 ? "" : "critical hit range: " + n < 9 ? "19-20" : n < 17 ? "18-20" : "17-20";
 			}),
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/firearm/i.test(v.theWea.list) ||
-							/\bfirearm\b/i.test(fields.Description)
-						) {
+						if (/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) {
 							fields.Description +=
 								(fields.Description ? "; " : "") +
 								"crit on " +
-								(classes.known.gunslinger.level < 9
-									? "19-20"
-									: classes.known.gunslinger.level < 17
-									? "18-20"
-									: "17-20");
+								(classes.known.gunslinger.level < 9 ? "19-20" : classes.known.gunslinger.level < 17 ? "18-20" : "17-20");
 						}
 					},
 					"At 2nd level, my ranged firearm attacks score a crit on a roll of 19-20; at 9th level, 18-20; and at 17th level, 17-20.",
@@ -233,9 +178,7 @@ ClassList["gunslinger"] = {
 			name: "Poker Face",
 			source: ["VSoS", 93],
 			minlevel: 2,
-			description: desc([
-				"Advantage on checks/saves vs others trying to sense my motives, emotions, or thoughts.",
-			]),
+			description: desc(["Advantage on checks/saves vs others trying to sense my motives, emotions, or thoughts."]),
 			savetxt: {
 				adv_vs: ["others sensing my motives, emotions, thoughts"],
 			},
@@ -261,10 +204,7 @@ ClassList["gunslinger"] = {
 			bitethebullet: {
 				name: "Bite the Bullet",
 				source: ["VSoS", 94],
-				description: desc([
-					"As a bonus action, I can expend 1 risk die to gain temporary hit points equal to the roll + my",
-					"Constitution modifier.",
-				]),
+				description: desc(["As a bonus action, I can expend 1 risk die to gain temporary hit points equal to the roll + my", "Constitution modifier."]),
 			},
 			coveringfire: {
 				name: "Covering Fire",
@@ -333,9 +273,7 @@ ClassList["gunslinger"] = {
 			name: "Gunslinger's Creed",
 			minlevel: 3,
 			source: ["VSoS", 93],
-			description: desc([
-				'Choose a Gunslinger\'s Creed and put it in the "Class" field.',
-			]),
+			description: desc(['Choose a Gunslinger\'s Creed and put it in the "Class" field.']),
 		},
 		gutshot: {
 			name: "Gut Shot",
@@ -351,31 +289,22 @@ ClassList["gunslinger"] = {
 			name: "Evasion",
 			minlevel: 7,
 			source: ["VSoS", 94],
-			description: desc([
-				"My Dexterity saves vs. areas of effect negate damage on success and halve it on failure.",
-			]),
+			description: desc(["My Dexterity saves vs. areas of effect negate damage on success and halve it on failure."]),
 			savetxt: {
-				text: [
-					"Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg",
-				],
+				text: ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"],
 			},
 		},
 		mankiller: {
 			name: "Mankiller",
 			minlevel: 11,
 			source: ["VSoS", 94],
-			description: desc([
-				"I add my ability modifier to damage rolls of ranged firearm attacks I make using my action.",
-			]),
+			description: desc(["I add my ability modifier to damage rolls of ranged firearm attacks I make using my action."]),
 			calcChanges: {
 				atkCalc: [
 					function (fields, v, output) {
 						if (
-							(/firearms?/i.test(v.theWea.list) ||
-								/firearms?/i.test(fields.Description)) &&
-							!/((^|[^+-]\b)off).?hand(ed)?\b/i.test(
-								v.WeaponTextName
-							)
+							(/firearms?/i.test(v.theWea.list) || /firearms?/i.test(fields.Description)) &&
+							!/((^|[^+-]\b)off).?hand(ed)?\b/i.test(v.WeaponTextName)
 						) {
 							output.modToDmg = true;
 						}
@@ -388,9 +317,7 @@ ClassList["gunslinger"] = {
 			name: "Dire Gambit",
 			minlevel: 13,
 			source: ["VSoS", 94],
-			description: desc(
-				"I regain 1 expended risk die whenever I score a critical hit."
-			),
+			description: desc("I regain 1 expended risk die whenever I score a critical hit."),
 		},
 		cheatdeath: {
 			name: "Cheat Death",
@@ -408,9 +335,7 @@ ClassList["gunslinger"] = {
 			name: "Maverick",
 			minlevel: 18,
 			source: ["VSoS", 94],
-			description: desc(
-				"I have advantage on Constitution checks and saving throws."
-			),
+			description: desc("I have advantage on Constitution checks and saving throws."),
 			savetxt: { adv_vs: ["Constitution"] },
 			advantages: [["Constitution", true]],
 		},
@@ -447,13 +372,8 @@ AddSubClass("gunslinger", "gun tank", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							(/firearms?/i.test(v.theWea.type) ||
-								/firearms?/i.test(v.theWea.list)) &&
-							/heavy/i.test(fields.Description)
-						) {
-							fields.Mod =
-								What("Str Mod") > What("Dex Mod") ? 1 : 2;
+						if ((/firearms?/i.test(v.theWea.type) || /firearms?/i.test(v.theWea.list)) && /heavy/i.test(fields.Description)) {
+							fields.Mod = What("Str Mod") > What("Dex Mod") ? 1 : 2;
 						}
 					},
 					"I can use Strength instead of Dexterity for attack & damage rolls using heavy firearms.",
@@ -464,17 +384,12 @@ AddSubClass("gunslinger", "gun tank", {
 			name: "Tough As Nails",
 			minlevel: 3,
 			source: ["VSoS", 95],
-			description: desc([
-				"My hp max increases by my gunslinger level. I gain proficiency with medium & heavy armor.",
-			]),
+			description: desc(["My hp max increases by my gunslinger level. I gain proficiency with medium & heavy armor."]),
 			armorProfs: [true, true, true, false],
 			calcChanges: {
 				hp: function (totalHD, HDobj, prefix) {
 					if (classes.known.gunslinger) {
-						return [
-							classes.known.gunslinger.level,
-							"Tough As Nails",
-						];
+						return [classes.known.gunslinger.level, "Tough As Nails"];
 					}
 				},
 			},
@@ -483,9 +398,7 @@ AddSubClass("gunslinger", "gun tank", {
 			name: "Thick-Headed",
 			minlevel: 7,
 			source: ["VSoS", 95],
-			description: desc([
-				"I have advantage on saves made to avoid or end the charmed condition on myself.",
-			]),
+			description: desc(["I have advantage on saves made to avoid or end the charmed condition on myself."]),
 			savetxt: { adv_vs: ["charmed"] },
 		},
 		subclassfeature10: {
@@ -503,17 +416,11 @@ AddSubClass("gunslinger", "gun tank", {
 				atkAdd: [
 					function (fields, v, output) {
 						if (
-							/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i.test(
-								fields.Description
-							) &&
-							(/firearms?/i.test(v.theWea.list) ||
-								/firearms?/i.test(fields.Description)) &&
+							/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i.test(fields.Description) &&
+							(/firearms?/i.test(v.theWea.list) || /firearms?/i.test(fields.Description)) &&
 							fields.Proficiency
 						) {
-							fields.Description = fields.Description.replace(
-								/([;,]? ?((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b[;,]? ?)/i,
-								""
-							);
+							fields.Description = fields.Description.replace(/([;,]? ?((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b[;,]? ?)/i, "");
 						}
 					},
 					"I ignore the two-handed property of firearms I am proficient in.",
@@ -556,9 +463,7 @@ AddSubClass("gunslinger", "gun-ko master", {
 			name: "Point-Blank Shot",
 			source: ["VSoS", 96],
 			minlevel: 3,
-			description: desc([
-				"Being in 5 ft of a hostile creature doesn't impose disadvantage on my ranged firearm attacks.",
-			]),
+			description: desc(["Being in 5 ft of a hostile creature doesn't impose disadvantage on my ranged firearm attacks."]),
 		},
 		"subclassfeature3.1": {
 			name: "Gun-Ko",
@@ -574,24 +479,13 @@ AddSubClass("gunslinger", "gun-ko master", {
 				atkAdd: [
 					function (fields, v) {
 						if (
-							/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i.test(
-								fields.Description
-							) &&
-							(/firearm/i.test(v.theWea.list) ||
-								/firearm/i.test(fields.Description))
+							/((^|[^+-]\b)2|\btwo).?hand(ed)?s?\b/i.test(fields.Description) &&
+							(/firearm/i.test(v.theWea.list) || /firearm/i.test(fields.Description))
 						) {
-							fields.Description +=
-								(fields.Description ? ", " : "") +
-								"Melee (1d8)";
+							fields.Description += (fields.Description ? ", " : "") + "Melee (1d8)";
 						}
-						if (
-							/finesse/i.test(fields.Description) &&
-							(/firearms?/i.test(v.theWea.list) ||
-								/firearms?/i.test(fields.Description))
-						) {
-							fields.Description +=
-								(fields.Description ? ", " : "") +
-								"Melee (1d6)";
+						if (/finesse/i.test(fields.Description) && (/firearms?/i.test(v.theWea.list) || /firearms?/i.test(fields.Description))) {
+							fields.Description += (fields.Description ? ", " : "") + "Melee (1d6)";
 						}
 					},
 				],
@@ -652,9 +546,7 @@ AddSubClass("gunslinger", "high roller", {
 			name: "Bonus Proficiencies",
 			source: ["VSoS", 96],
 			minlevel: 3,
-			description: desc([
-				"I gain proficiency in all gaming sets and in either Deception, Insight or Perception.",
-			]),
+			description: desc(["I gain proficiency in all gaming sets and in either Deception, Insight or Perception."]),
 			toolProfs: ["All gaming sets"],
 			skillstxt: ["Choose one from Deception, Insight, or Perception."],
 		},
@@ -695,20 +587,9 @@ AddSubClass("gunslinger", "high roller", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/firearms?/i.test(v.theWea.list) ||
-							/firearms?/i.test(fields.Description)
-						) {
-							var die =
-								classes.known.gunslinger.level < 10
-									? "+1d8"
-									: classes.known.gunslinger.level < 18
-									? "+1d10"
-									: "+1d12";
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"Boom or Bust " +
-								die;
+						if (/firearms?/i.test(v.theWea.list) || /firearms?/i.test(fields.Description)) {
+							var die = classes.known.gunslinger.level < 10 ? "+1d8" : classes.known.gunslinger.level < 18 ? "+1d10" : "+1d12";
+							fields.Description += (fields.Description ? "; " : "") + "Boom or Bust " + die;
 							fields.Description_Tooltip +=
 								(fields.Description_Tooltip ? "" : "\n") +
 								"Boom or Bust: when you hit with a ranged firearm attack, you can expend a risk die and add it to the weapon's damage roll. After this attack, the weapon jams. A jammed weapon can't be used to make an attack until a creature uses its action to clear the weapon malfunction.";
@@ -750,14 +631,8 @@ AddSubClass("gunslinger", "musketeer", {
 			name: "Bonus Proficiencies",
 			minlevel: 3,
 			source: ["VSoS", 97],
-			description: desc([
-				"I gain proficiency with the bayonet, cutlass, halberd, rapier, and shortsword.",
-			]),
-			weaponProfs: [
-				true,
-				false,
-				["bayonet", "cutlass", "halberd", "rapier", "shortsword"],
-			],
+			description: desc(["I gain proficiency with the bayonet, cutlass, halberd, rapier, and shortsword."]),
+			weaponProfs: [true, false, ["bayonet", "cutlass", "halberd", "rapier", "shortsword"]],
 		},
 		"subclassfeature3.1": {
 			name: "Heavy Shot",
@@ -771,19 +646,12 @@ AddSubClass("gunslinger", "musketeer", {
 				atkCalc: [
 					function (fields, v, output) {
 						if (
-							(/\bblunderbuss\b/i.test(
-								v.WeaponTextName + v.baseWeaponName
-							) ||
-								/\bflintlock\b/i.test(
-									v.WeaponTextName + v.baseWeaponName
-								) ||
-								/\bmusket\b/i.test(
-									v.WeaponTextName + v.baseWeaponName
-								)) &&
+							(/\bblunderbuss\b/i.test(v.WeaponTextName + v.baseWeaponName) ||
+								/\bflintlock\b/i.test(v.WeaponTextName + v.baseWeaponName) ||
+								/\bmusket\b/i.test(v.WeaponTextName + v.baseWeaponName)) &&
 							fields.Damage_Die.match(/(\d+)d(\d+)/i)
 						) {
-							var dmgDie =
-								fields.Damage_Die.match(/(\d+)d(\d+)/i);
+							var dmgDie = fields.Damage_Die.match(/(\d+)d(\d+)/i);
 							var dieAmt = parseInt(dmgDie[1]);
 							output.extraDmg += dieAmt;
 						}
@@ -796,27 +664,19 @@ AddSubClass("gunslinger", "musketeer", {
 			name: "Lock, Stock, And Barrel",
 			minlevel: 7,
 			source: ["VSoS", 97],
-			description: desc([
-				"I ignore the Loading and Misfire properties of the blunderbuss, flintlock, and musket.",
-			]),
+			description: desc(["I ignore the Loading and Misfire properties of the blunderbuss, flintlock, and musket."]),
 			calcChanges: {
 				atkAdd: [
 					function (fields, v, output) {
 						if (
-							/\bblunderbuss\b/i.test(
-								v.WeaponTextName + v.baseWeaponName
-							) ||
-							/\bflintlock\b/i.test(
-								v.WeaponTextName + v.baseWeaponName
-							) ||
-							/\bmusket\b/i.test(
-								v.WeaponTextName + v.baseWeaponName
-							)
+							/\bblunderbuss\b/i.test(v.WeaponTextName + v.baseWeaponName) ||
+							/\bflintlock\b/i.test(v.WeaponTextName + v.baseWeaponName) ||
+							/\bmusket\b/i.test(v.WeaponTextName + v.baseWeaponName)
 						) {
-							fields.Description = fields.Description.replace(
-								/([;,]? ?loading|loading[;,]? ?)/i,
+							fields.Description = fields.Description.replace(/([;,]? ?loading|loading[;,]? ?)/i, "").replace(
+								/([;,]? ?misfire|misfire[;,]? ?)/i,
 								""
-							).replace(/([;,]? ?misfire|misfire[;,]? ?)/i, "");
+							);
 						}
 					},
 					"I ignore the Loading and Misfire properties of the blunderbuss, flintlock, and musket.",
@@ -857,9 +717,7 @@ AddSubClass("gunslinger", "pistolero", {
 			name: "Point-Blank Shot",
 			minlevel: 3,
 			source: ["VSoS", 97],
-			description: desc([
-				"I don't get disadvantage on ranged firearm attacks from being within 5 ft of a hostile creature",
-			]),
+			description: desc(["I don't get disadvantage on ranged firearm attacks from being within 5 ft of a hostile creature"]),
 		},
 		"subclassfeature3.1": {
 			name: "Fan The Hammer",
@@ -879,17 +737,13 @@ AddSubClass("gunslinger", "pistolero", {
 			name: "Speed Loader",
 			minlevel: 7,
 			source: ["VSoS", 97],
-			description: desc([
-				"On my turn, I can reload 1 one-handed firearm as a free action.",
-			]),
+			description: desc(["On my turn, I can reload 1 one-handed firearm as a free action."]),
 		},
 		subclassfeature10: {
 			name: "Bullet Time",
 			minlevel: 10,
 			source: ["VSoS", 97],
-			description: desc([
-				"As a bonus action, I can gain advantage on a ranged, one-handed firearm attack roll.",
-			]),
+			description: desc(["As a bonus action, I can gain advantage on a ranged, one-handed firearm attack roll."]),
 			usages: 1,
 			recovery: "short rest",
 			action: ["bonus action", ""],
@@ -898,10 +752,7 @@ AddSubClass("gunslinger", "pistolero", {
 			name: "Swift Vengeance",
 			minlevel: 14,
 			source: ["VSoS", 97],
-			description: desc([
-				"As a reaction to taking damage from a creature within 15 ft of me, I make a firearm attack",
-				"against that creature.",
-			]),
+			description: desc(["As a reaction to taking damage from a creature within 15 ft of me, I make a firearm attack", "against that creature."]),
 			action: ["reaction", ""],
 		},
 	},
@@ -927,9 +778,7 @@ AddSubClass("gunslinger", "sharpshooter", {
 			name: "Sniper's Stance",
 			minlevel: 3,
 			source: ["VSoS", 98],
-			description: desc([
-				"No disadv. on ranged firearm attacks from being prone. Standing up uses 5 ft of movement.",
-			]),
+			description: desc(["No disadv. on ranged firearm attacks from being prone. Standing up uses 5 ft of movement."]),
 		},
 		subclassfeature7: {
 			name: "Camouflage",
@@ -1007,9 +856,7 @@ AddSubClass("gunslinger", "spellslinger", {
 			name: "Spellcasting",
 			source: ["VSoS", 98],
 			minlevel: 3,
-			description: desc([
-				"I can cast wizard cantrips/spells that I know, using Intelligence as my spellcasting ability",
-			]),
+			description: desc(["I can cast wizard cantrips/spells that I know, using Intelligence as my spellcasting ability"]),
 			additional: levels.map(function (n) {
 				if (n < 3) return "";
 				var cantrips = n < 10 ? "3" : "4";
@@ -1017,24 +864,24 @@ AddSubClass("gunslinger", "spellslinger", {
 					n < 4
 						? "3"
 						: n < 7
-						? "4"
-						: n < 8
-						? "5"
-						: n < 10
-						? "6"
-						: n < 11
-						? "7"
-						: n < 13
-						? "8"
-						: n < 14
-						? "9"
-						: n < 16
-						? "10"
-						: n < 19
-						? "11"
-						: n < 20
-						? "12"
-						: "13";
+							? "4"
+							: n < 8
+								? "5"
+								: n < 10
+									? "6"
+									: n < 11
+										? "7"
+										: n < 13
+											? "8"
+											: n < 14
+												? "9"
+												: n < 16
+													? "10"
+													: n < 19
+														? "11"
+														: n < 20
+															? "12"
+															: "13";
 				return cantrips + " cantrips & " + spells + " spells known";
 			}),
 			spellcastingBonus: [
@@ -1042,10 +889,7 @@ AddSubClass("gunslinger", "spellslinger", {
 					// the spells gained at level 8, 14, and 20
 					name: "From any school",
 					class: "wizard",
-					times: [
-						0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
-						3,
-					],
+					times: [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3],
 					level: [1, 4],
 				},
 				{
@@ -1070,9 +914,7 @@ AddSubClass("gunslinger", "spellslinger", {
 				atkAdd: [
 					function (fields, v) {
 						if (/\bfinger guns\b/i.test(v.WeaponTextName)) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"can use Deeds; Bang +1d8 force damage";
+							fields.Description += (fields.Description ? "; " : "") + "can use Deeds; Bang +1d8 force damage";
 						}
 					},
 					"I can use Deeds with finger guns spell attacks. When I hit with a finger guns attack, I can spend a risk die as a bonus action to deal an extra 1d8 force damage.",
@@ -1093,9 +935,7 @@ AddSubClass("gunslinger", "spellslinger", {
 			name: "Rune-Carved Cartridges",
 			source: ["VSoS", 99],
 			minlevel: 7,
-			description: desc([
-				"My ranged firearm attacks count as magical for overcoming resistance & immunity.",
-			]),
+			description: desc(["My ranged firearm attacks count as magical for overcoming resistance & immunity."]),
 		},
 		subclassfeature10: {
 			name: "Magic Bullet",
@@ -1108,13 +948,8 @@ AddSubClass("gunslinger", "spellslinger", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/firearms?/i.test(v.theWea.type) ||
-							/firearms?/i.test(v.theWea.list)
-						) {
-							fields.Description +=
-								(fields.Description == "" ? "" : "; ") +
-								"Magic Bullet (+3d4+3 force)";
+						if (/firearms?/i.test(v.theWea.type) || /firearms?/i.test(v.theWea.list)) {
+							fields.Description += (fields.Description == "" ? "" : "; ") + "Magic Bullet (+3d4+3 force)";
 						}
 					},
 					"As a bonus action, A ranged weapon attack I make on my turn vs a target at normal range automatically hits, and deals an extra 3d4 + 3 force damage.",
@@ -1161,13 +996,8 @@ AddSubClass("gunslinger", "trick shot", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/firearms?/i.test(v.theWea.list) ||
-							/firearms?/i.test(fields.Description)
-						) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"Ricochet \u00BD";
+						if (/firearms?/i.test(v.theWea.list) || /firearms?/i.test(fields.Description)) {
+							fields.Description += (fields.Description ? "; " : "") + "Ricochet \u00BD";
 						}
 					},
 					"As a bonus action, on a miss with a ranged firearm attack without disadvantage I can reroll the attack roll. On hit, the attack deals half damage.",
@@ -1178,9 +1008,7 @@ AddSubClass("gunslinger", "trick shot", {
 			name: "Light-Footed",
 			minlevel: 7,
 			source: ["VSoS", 100],
-			description: desc([
-				"Difficult terrain costs me no extra movement.",
-			]),
+			description: desc(["Difficult terrain costs me no extra movement."]),
 		},
 		subclassfeature10: {
 			name: "Deft Deflectionist",

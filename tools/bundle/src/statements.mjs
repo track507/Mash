@@ -72,7 +72,9 @@ export function normalize(node) {
 	}
 	if (node.type === "LogicalExpression") return { logical: node.operator, parts: flattenChain(node, node.operator).map(normalize) };
 	if (node.type === "ObjectExpression") {
-		const entries = new Map(node.properties.map((property) => [propertyKey(property), normalize(property.type === "Property" ? property.value : property)]));
+		const entries = new Map(
+			node.properties.map((property) => [propertyKey(property), normalize(property.type === "Property" ? property.value : property)])
+		);
 		return { object: [...entries].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)) };
 	}
 	if (node.type === "MemberExpression") {
@@ -92,7 +94,10 @@ export function normalize(node) {
  * @returns {string} First 8 hex characters of the sha1 of the normalized AST
  */
 function hashOf(node) {
-	return createHash("sha1").update(JSON.stringify(normalize(node))).digest("hex").slice(0, 8);
+	return createHash("sha1")
+		.update(JSON.stringify(normalize(node)))
+		.digest("hex")
+		.slice(0, 8);
 }
 
 /**
@@ -145,7 +150,8 @@ function canonicalText(node, source) {
  * @returns {string} The key that identifies the statement across versions of a script
  */
 function keyOf(node, source) {
-	if (node.type === "VariableDeclaration") return `${node.kind} ${node.declarations.map((declaration) => source.slice(declaration.id.start, declaration.id.end)).join(", ")}`;
+	if (node.type === "VariableDeclaration")
+		return `${node.kind} ${node.declarations.map((declaration) => source.slice(declaration.id.start, declaration.id.end)).join(", ")}`;
 	if (node.type === "IfStatement") return `if (${canonicalText(node.test, source)})`;
 	const expression = node.type === "ExpressionStatement" ? node.expression : null;
 	if (expression?.type === "AssignmentExpression" && expression.operator === "=") {

@@ -420,8 +420,7 @@ RaceList["disembodied"] = {
 //Barbarian Subclasses
 
 AddSubClass("barbarian", "fractured", {
-	regExpSearch:
-		/^(?=.*fractured)(?=.*(warrior|fighter|marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n)).*$/i,
+	regExpSearch: /^(?=.*fractured)(?=.*(warrior|fighter|marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n)).*$/i,
 	subname: "Path of the Fractured",
 	source: ["GH", 39],
 	features: {
@@ -451,8 +450,7 @@ AddSubClass("barbarian", "fractured", {
 			source: ["GH", 39],
 			minlevel: 6,
 			description:
-				"\n   " +
-				"While I am not raging I have resistance to psychic damage. While I am raging I have resistance to all damage except psychic damage.",
+				"\n   " + "While I am not raging I have resistance to psychic damage. While I am raging I have resistance to all damage except psychic damage.",
 			dmgres: [["Psychic", "All -Psychic (rage)"]],
 		},
 		subclassfeature10: {
@@ -479,8 +477,7 @@ AddSubClass("barbarian", "fractured", {
 	},
 });
 AddSubClass("barbarian", "primal", {
-	regExpSearch:
-		/^(?=.*primal)(?=.*(warrior|fighter|marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n)).*$/i,
+	regExpSearch: /^(?=.*primal)(?=.*(warrior|fighter|marauder|barbarian|viking|(norse|tribes?|clans?)(wo)?m(a|e)n)).*$/i,
 	subname: "Path of the Primal Spirit",
 	source: ["GH", 40],
 	features: {
@@ -499,9 +496,7 @@ AddSubClass("barbarian", "primal", {
 			name: "Shared Rage",
 			source: ["GH", 41],
 			minlevel: 3,
-			description:
-				"\n   " +
-				"While I am raging, my primal companion has resistance to bludgeoning, piercing, and slashing damage.",
+			description: "\n   " + "While I am raging, my primal companion has resistance to bludgeoning, piercing, and slashing damage.",
 		},
 		subclassfeature6: {
 			name: "Kin to Beasts",
@@ -570,19 +565,7 @@ AddSubClass("bard", "adventurers", {
 				"I gain an adventurer's talent of my choice.",
 				"I gain an additional adventurer's talent of my choice at 6th level and again at 14th level.",
 			]),
-			choices: [
-				"Barbarian",
-				"Cleric",
-				"Druid",
-				"Fighter",
-				"Monk",
-				"Paladin",
-				"Ranger",
-				"Rogue",
-				"Sorcerer",
-				"Warlock",
-				"Wizard",
-			],
+			choices: ["Barbarian", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"],
 			barbarian: {
 				name: "Barbarian",
 				description:
@@ -618,14 +601,7 @@ AddSubClass("bard", "adventurers", {
 					"I can proficiency with martial weapons and shields. I also can choose to learn one of the Fighting Styles available to the Fighter class",
 				weaponProfs: [false, true],
 				armorProfs: [false, false, false, true],
-				choices: [
-					"Archery",
-					"Defense",
-					"Dueling",
-					"Great Weapon Fighting",
-					"Protection",
-					"Two-Weapon Fighting",
-				],
+				choices: ["Archery", "Defense", "Dueling", "Great Weapon Fighting", "Protection", "Two-Weapon Fighting"],
 				archery: FightingStyles.archery,
 				defense: FightingStyles.defense,
 				dueling: FightingStyles.dueling,
@@ -675,14 +651,7 @@ AddSubClass("bard", "adventurers", {
 					"\n   " +
 					"I have 2 sorcery points and learn one of the following Metamagic options available to the sorcerer class: Careful Spell, Distant Spell, Empowered Spell, Extedned Spell, Quickened Spell, or Subtle Spell. In addition, I can use an action and expend a spell slot to gain sorcery points equal to the level of the spell slot expended. When I finish a long rest, I reset to 2 sorcery points. When I gain a level in this class I can replace the Metamagic option I know, with another Metamagic from the list.",
 				extraname: "Metamagic Option",
-				extrachoices: [
-					"Careful Spell",
-					"Distant Spell",
-					"Empowered Spell",
-					"Extended Spell",
-					"Quickened Spell",
-					"Subtle Spell",
-				],
+				extrachoices: ["Careful Spell", "Distant Spell", "Empowered Spell", "Extended Spell", "Quickened Spell", "Subtle Spell"],
 			},
 			warlock: {
 				name: "Warlock",
@@ -770,19 +739,7 @@ AddSubClass("bard", "adventurers", {
 			source: ["GH", 42],
 			minlevel: 6,
 			description: desc(["I gain an adventurer's talent of my choice."]),
-			choices: [
-				"Barbarian",
-				"Cleric",
-				"Druid",
-				"Fighter",
-				"Monk",
-				"Paladin",
-				"Ranger",
-				"Rogue",
-				"Sorcerer",
-				"Warlock",
-				"Wizard",
-			],
+			choices: ["Barbarian", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"],
 			barbarian: {
 				name: "Barbarian",
 				description:
@@ -818,14 +775,7 @@ AddSubClass("bard", "adventurers", {
 					"I can proficiency with martial weapons and shields. I also can choose to learn one of the Fighting Styles available to the Fighter class",
 				weaponProfs: [false, true],
 				armorProfs: [false, false, false, true],
-				choices: [
-					"Archery",
-					"Defense",
-					"Dueling",
-					"Great Weapon Fighting",
-					"Protection",
-					"Two-Weapon Fighting",
-				],
+				choices: ["Archery", "Defense", "Dueling", "Great Weapon Fighting", "Protection", "Two-Weapon Fighting"],
 				archery: FightingStyles.archery,
 				defense: FightingStyles.defense,
 				dueling: FightingStyles.dueling,
@@ -875,14 +825,7 @@ AddSubClass("bard", "adventurers", {
 					"\n   " +
 					"I have 2 sorcery points and learn one of the following Metamagic options available to the sorcerer class: Careful Spell, Distant Spell, Empowered Spell, Extedned Spell, Quickened Spell, or Subtle Spell. In addition, I can use an action and expend a spell slot to gain sorcery points equal to the level of the spell slot expended. When I finish a long rest, I reset to 2 sorcery points. When I gain a level in this class I can replace the Metamagic option I know, with another Metamagic from the list.",
 				extraname: "Metamagic Option",
-				extrachoices: [
-					"Careful Spell",
-					"Distant Spell",
-					"Empowered Spell",
-					"Extended Spell",
-					"Quickened Spell",
-					"Subtle Spell",
-				],
+				extrachoices: ["Careful Spell", "Distant Spell", "Empowered Spell", "Extended Spell", "Quickened Spell", "Subtle Spell"],
 			},
 			warlock: {
 				name: "Warlock",
@@ -951,19 +894,7 @@ AddSubClass("bard", "adventurers", {
 			source: ["GH", 42],
 			minlevel: 14,
 			description: desc(["I gain an adventurer's talen of my choice."]),
-			choices: [
-				"Barbarian",
-				"Cleric",
-				"Druid",
-				"Fighter",
-				"Monk",
-				"Paladin",
-				"Ranger",
-				"Rogue",
-				"Sorcerer",
-				"Warlock",
-				"Wizard",
-			],
+			choices: ["Barbarian", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"],
 			barbarian: {
 				name: "Barbarian",
 				description:
@@ -1000,14 +931,7 @@ AddSubClass("bard", "adventurers", {
 					"I can proficiency with martial weapons and shields. I also can choose to learn one of the Fighting Styles available to the Fighter class",
 				weaponProfs: [false, true],
 				armorProfs: [true, false, false, true],
-				choices: [
-					"Archery",
-					"Defense",
-					"Dueling",
-					"Great Weapon Fighting",
-					"Protection",
-					"Two-Weapon Fighting",
-				],
+				choices: ["Archery", "Defense", "Dueling", "Great Weapon Fighting", "Protection", "Two-Weapon Fighting"],
 				archery: FightingStyles.archery,
 				defense: FightingStyles.defense,
 				dueling: FightingStyles.dueling,
@@ -1263,13 +1187,7 @@ AddSubClass("cleric", "eldritch", {
 				],
 				spellAdd: [
 					function (spellKey, spellObj, spName) {
-						if (
-							spName.indexOf("cleric") === -1 ||
-							!What("Wis Mod") ||
-							Number(What("Wis Mod")) <= 0 ||
-							spellObj.psionic ||
-							spellObj.level !== 0
-						)
+						if (spName.indexOf("cleric") === -1 || !What("Wis Mod") || Number(What("Wis Mod")) <= 0 || spellObj.psionic || spellObj.level !== 0)
 							return;
 						if (spellKey === "shillelagh") {
 							spellObj.description = spellObj.description.replace("1d8", "1d8+" + What("Wis Mod"));
@@ -1361,10 +1279,7 @@ AddSubClass("cleric", "inquisition", {
 					function (fields, v) {
 						if (classes.known.cleric && classes.known.cleric.level > 7 && !v.isSpell) {
 							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"Once per turn +" +
-								(classes.known.cleric.level < 14 ? 1 : 2) +
-								"d8 force damage";
+								(fields.Description ? "; " : "") + "Once per turn +" + (classes.known.cleric.level < 14 ? 1 : 2) + "d8 force damage";
 						}
 					},
 					"Once per turn, I can have one of my weapon attacks that hit do extra force damage.",
@@ -1511,8 +1426,7 @@ AddSubClass("druid", "circle of mutation", {
 			"creature of the sky": {
 				name: "Creature of the Sky",
 				description:
-					"\n   " +
-					"For 3 mutation points, I gain a fly speed of 30ft. For an additional 2 mutation points, my fly speed increases to 60ft.",
+					"\n   " + "For 3 mutation points, I gain a fly speed of 30ft. For an additional 2 mutation points, my fly speed increases to 60ft.",
 				speed: {
 					fly: { spd: 30, enc: 20 },
 				},
@@ -1524,9 +1438,7 @@ AddSubClass("druid", "circle of mutation", {
 			},
 			echolocation: {
 				name: "Echolocation",
-				description:
-					"\n   " +
-					"For 4 mutation points, I have blindsight out to a distance of 30ft while I am not deafened.",
+				description: "\n   " + "For 4 mutation points, I have blindsight out to a distance of 30ft while I am not deafened.",
 				vision: [["Blindsight", 30]],
 			},
 			"enchanted attacks": {
@@ -1565,9 +1477,7 @@ AddSubClass("druid", "circle of mutation", {
 			},
 			"venomous attacks": {
 				name: "Venomous Attacks",
-				description:
-					"\n   " +
-					"For 2 mutation points, attacks I make with my natural weapons deal an additional 1d4 poison damage.",
+				description: "\n   " + "For 2 mutation points, attacks I make with my natural weapons deal an additional 1d4 poison damage.",
 			},
 		},
 		"subclassfeature2.1": {
@@ -1664,9 +1574,7 @@ AddSubClass("fighter", "bulwark warrior", {
 			name: "Improved Second Wind",
 			source: ["GH", 51],
 			minlevel: 15,
-			description:
-				"\n   " +
-				"When I gain health from my Second Wind feature, I can also gain temporary hit points equal to the amount healed.",
+			description: "\n   " + "When I gain health from my Second Wind feature, I can also gain temporary hit points equal to the amount healed.",
 		},
 		subclassfeature18: {
 			name: "Halt the Assault",
@@ -1719,9 +1627,7 @@ AddSubClass("fighter", "living crucible", {
 			],
 			"adrenal injection": {
 				name: "Adrenal Injection",
-				description:
-					"\n   " +
-					"For the next minute, your movement speed is increased by 10 feet and your jumping distances are tripled.",
+				description: "\n   " + "For the next minute, your movement speed is increased by 10 feet and your jumping distances are tripled.",
 			},
 			"allsense injection": {
 				name: "Allsense Injection",
@@ -1729,44 +1635,31 @@ AddSubClass("fighter", "living crucible", {
 			},
 			"arcane eye oil": {
 				name: "Arcane Eye Oil",
-				description:
-					"\n   " +
-					"For the next hour, you can sense magic as if you were under the effects of the detect magic spell.",
+				description: "\n   " + "For the next hour, you can sense magic as if you were under the effects of the detect magic spell.",
 			},
 			"draught of bull's strength": {
 				name: "Draught of Bull's Strength",
-				description:
-					"\n   " +
-					"For the next 10 minutes, you have advantage on Strength ability checks and saving throws.",
+				description: "\n   " + "For the next 10 minutes, you have advantage on Strength ability checks and saving throws.",
 			},
 			"draught of cat's grace": {
 				name: "Draught of Cat's Grace",
-				description:
-					"\n   " +
-					"For the next 10 minutes, you have advantage on Dexterity ability checks and saving throws.",
+				description: "\n   " + "For the next 10 minutes, you have advantage on Dexterity ability checks and saving throws.",
 			},
 			"draught of bear's endurance": {
 				name: "Draught of Bear's Endurance",
-				description:
-					"\n   " +
-					"For the next 10 minutes, you have advantage on Constitution ability checks and saving throws.",
+				description: "\n   " + "For the next 10 minutes, you have advantage on Constitution ability checks and saving throws.",
 			},
 			"draught of fox's cunning": {
 				name: "Draught of Fox's Cunning",
-				description:
-					"\n   " +
-					"For the next 10 minutes, you have advantage on Intelligence ability checks and saving throws.",
+				description: "\n   " + "For the next 10 minutes, you have advantage on Intelligence ability checks and saving throws.",
 			},
 			"draught of owl's wisdom": {
 				name: "Draught of Owl's Wisdom",
-				description:
-					"\n   " + "For the next 10 minutes, you have advantage on Wisdom ability checks and saving throws.",
+				description: "\n   " + "For the next 10 minutes, you have advantage on Wisdom ability checks and saving throws.",
 			},
 			"draught of eagle's splendor": {
 				name: "Draught of Eagle's Splendor",
-				description:
-					"\n   " +
-					"For the next 10 minutes, you have advantage on Charisma ability checks and saving throws.",
+				description: "\n   " + "For the next 10 minutes, you have advantage on Charisma ability checks and saving throws.",
 			},
 			"elfsight oil": {
 				name: "Elfsight Oil",
@@ -1780,9 +1673,7 @@ AddSubClass("fighter", "living crucible", {
 			},
 			"ironmind injection": {
 				name: "Ironmind Injection",
-				description:
-					"\n   " +
-					"For the next hour, you have advantage on saving throws made against being charmed or frightened.",
+				description: "\n   " + "For the next hour, you have advantage on saving throws made against being charmed or frightened.",
 			},
 			"liquid courage": {
 				name: "Liquid Courage",
@@ -1806,8 +1697,7 @@ AddSubClass("fighter", "living crucible", {
 			},
 			"steelskin ointment": {
 				name: "Steelskin Ointment",
-				description:
-					"\n   " + "For the next minute, you have resistance to bludgeoning, piercing, and slashing damage.",
+				description: "\n   " + "For the next minute, you have resistance to bludgeoning, piercing, and slashing damage.",
 			},
 			"tenmen tincture": {
 				name: "Tenmen Tincture",
@@ -1833,9 +1723,7 @@ AddSubClass("fighter", "living crucible", {
 			usage: 1,
 			recovery: "long rest",
 			minlevel: 7,
-			description:
-				"\n   " +
-				"Once per long rest I can use an action to quickly create and consume one compound that I already know how to make.",
+			description: "\n   " + "Once per long rest I can use an action to quickly create and consume one compound that I already know how to make.",
 		},
 		subclassfeature10: {
 			name: "Living Cauldron",
@@ -1859,8 +1747,7 @@ AddSubClass("fighter", "living crucible", {
 			name: "Living Catalyst",
 			source: ["GH", 53],
 			minlevel: 18,
-			description:
-				"\n   " + "When I finish a long rest I can choose to replace one compound I know with another one.",
+			description: "\n   " + "When I finish a long rest I can choose to replace one compound I know with another one.",
 			action: ["reaction", ""],
 		},
 	},
@@ -1869,8 +1756,7 @@ AddSubClass("fighter", "living crucible", {
 //Monk Subclasses
 
 AddSubClass("monk", "way of the leaden crown", {
-	regExpSearch:
-		/^(?=.*crown)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
+	regExpSearch: /^(?=.*crown)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
 	subname: "Way of the Leaden Crown",
 	source: ["GH", 54],
 	features: {
@@ -1901,10 +1787,7 @@ AddSubClass("monk", "way of the leaden crown", {
 			"psionic spells": {
 				name: "Psionic Spells",
 				source: ["GH", 54],
-				description:
-					" [1 ki points]" +
-					"\n   " +
-					"As an action, I can cast Detect Evil and Good or Protection from Evil and Good.",
+				description: " [1 ki points]" + "\n   " + "As an action, I can cast Detect Evil and Good or Protection from Evil and Good.",
 				action: ["action", ""],
 				spellcastingBonus: {
 					name: "Psionic Prowess 1",
@@ -1998,9 +1881,7 @@ AddSubClass("monk", "way of the leaden crown", {
 			name: "Psionic Mastery",
 			source: ["GH", 54],
 			minlevel: 17,
-			description:
-				"\n   " +
-				"As an action, I can spend 5 ki points to cast Dispel Evil and Good, Hold Monster, Telekinesis, or Wall of Force. Wisdom",
+			description: "\n   " + "As an action, I can spend 5 ki points to cast Dispel Evil and Good, Hold Monster, Telekinesis, or Wall of Force. Wisdom",
 			spellFirstColTitle: "Ki",
 			extraname: "Psionic Prowess",
 			"psionic spells": {
@@ -2049,8 +1930,7 @@ AddSubClass("monk", "way of the leaden crown", {
 	},
 });
 AddSubClass("monk", "way of pride", {
-	regExpSearch:
-		/^(?=.*pride)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
+	regExpSearch: /^(?=.*pride)((?=.*(monk|monastic))|(((?=.*martial)(?=.*(artist|arts)))|((?=.*spiritual)(?=.*warrior)))).*$/i,
 	subname: "Way of Pride",
 	source: ["GH", 55],
 	features: {
@@ -2058,9 +1938,7 @@ AddSubClass("monk", "way of pride", {
 			name: "Tall Tales",
 			source: ["GH", 55],
 			minlevel: 3,
-			description:
-				"\n   " +
-				"I gain proficiency in my choice of one of the following skills: Deception, Intimidation, Performance, or Persuasion.",
+			description: "\n   " + "I gain proficiency in my choice of one of the following skills: Deception, Intimidation, Performance, or Persuasion.",
 			skillstxt: "Choose one from Deception, Intimidation, Performance, or Persuasion",
 		},
 		"subclassfeature3.1": {
@@ -2336,13 +2214,7 @@ AddSubClass("ranger", "green reaper", {
 				"I add a spell to my known spells at level 3, 5, 9, 13, and 17",
 				"These count as ranger spells, but do not count against the number of spells I can know",
 			]),
-			spellcastingExtra: [
-				"detect poison and disease",
-				"hold person",
-				"bestow curse",
-				"greater invisibility",
-				"cloudkill",
-			],
+			spellcastingExtra: ["detect poison and disease", "hold person", "bestow curse", "greater invisibility", "cloudkill"],
 			spellcastingExtraApplyNonconform: true,
 		},
 		"subclassfeature3.2": {
@@ -2731,9 +2603,7 @@ AddSubClass("rogue", "misfortune bringer", {
 			action: ["reaction", ""],
 			usages: 3,
 			recovery: "short rest",
-			description: desc([
-				"I can use this feature three times, regaining all uses when I finish a short or long rest.",
-			]),
+			description: desc(["I can use this feature three times, regaining all uses when I finish a short or long rest."]),
 		},
 	},
 });
@@ -2786,9 +2656,7 @@ AddSubClass("sorcerer", "haunted", {
 			name: "Sixth Sense",
 			source: ["GH", 69],
 			minlevel: 1,
-			description: desc([
-				"When I make a Dexterity ability check to determine initiative, I gain a bonus to the roll equal to my Charisma modifier.",
-			]),
+			description: desc(["When I make a Dexterity ability check to determine initiative, I gain a bonus to the roll equal to my Charisma modifier."]),
 		},
 		subclassfeature3: {
 			name: "Haunted Spells 3",
@@ -2950,9 +2818,7 @@ AddSubClass("sorcerer", "wretched", {
 			name: "Wretched Curse",
 			source: ["GH", 71],
 			minlevel: 1,
-			description: desc([
-				"I suffer from a curse inherited from an ancestor who failed to uphold their end of a bargain with an otherworldly power.",
-			]),
+			description: desc(["I suffer from a curse inherited from an ancestor who failed to uphold their end of a bargain with an otherworldly power."]),
 			choices: ["Hulking", "Nocturnal", "Plaguebearer"],
 			hulking: {
 				name: "Hulking",
@@ -3069,9 +2935,7 @@ AddSubClass("warlock", "the first vampire", {
 			name: "Nocturnal Predator",
 			source: ["GH", 72],
 			minlevel: 1,
-			description:
-				"\n   " +
-				"I have darkvision out to a range of 60 feet. If I already have darkvision, increase the range by 60 feet.",
+			description: "\n   " + "I have darkvision out to a range of 60 feet. If I already have darkvision, increase the range by 60 feet.",
 			vision: [
 				["Darkvision", "fixed 60"],
 				["Darkvision", "+60"],
@@ -3154,14 +3018,7 @@ AddSubClass("warlock", "the parasite", {
 				"When I hit a creature with this feature, I can expend a warlock spell slot to deal an extra 1d8 necrotic damage to the target, plus another 1d8 per level of the spell slot. When I expend a spell slot to enhance the attack in this way, I regain hit points equal to the total damage dealt.",
 			]),
 			extraname: "Physical Specimen",
-			extrachoices: [
-				"Hit Points",
-				"Darkvision",
-				"Movement",
-				"Disease/Poison",
-				"Jump/Climb",
-				"Athletics/Acrobatics",
-			],
+			extrachoices: ["Hit Points", "Darkvision", "Movement", "Disease/Poison", "Jump/Climb", "Athletics/Acrobatics"],
 			"hit points": {
 				name: "Hit Points",
 				description: "\n   " + "My maximum hit points increase by 1 for each level I have in this class.",
@@ -3175,9 +3032,7 @@ AddSubClass("warlock", "the parasite", {
 			},
 			darkvision: {
 				name: "Darkvision",
-				description:
-					"\n   " +
-					"I gain darkvision out to a distance of 60 feet. If I already have darkvision, its range increases by 30 feet.",
+				description: "\n   " + "I gain darkvision out to a distance of 60 feet. If I already have darkvision, its range increases by 30 feet.",
 				vision: [
 					["Darkvision", "fixed 60"],
 					["Darkvision", "+30"],
@@ -3197,8 +3052,7 @@ AddSubClass("warlock", "the parasite", {
 			},
 			"jump/climb": {
 				name: "Jump/Climb",
-				description:
-					"\n   " + "My jump distances are tripled and I gain a climb speed equal to my walking speed.",
+				description: "\n   " + "My jump distances are tripled and I gain a climb speed equal to my walking speed.",
 				speed: {
 					climb: { spd: "walk", enc: 0 },
 				},
@@ -3525,8 +3379,7 @@ SpellsList["circle of scarlet"] = {
 	components: "V,S,M",
 	compMaterial: "A piece of parchment with a circle drawn in humanoid blood",
 	duration: "Instantaneous",
-	description:
-		"Expend 4 hit dice 15ft rad, 100ft high pillar on point, dmg= hit dice + 4 of its hit dice Necrotic, save just hit dice.",
+	description: "Expend 4 hit dice 15ft rad, 100ft high pillar on point, dmg= hit dice + 4 of its hit dice Necrotic, save just hit dice.",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"As part of casting this spell, you must expend four hit dice or the spell automatically fails. If you do, choose a point on the ground within range and roll the expended hit dice. A crimson pillar erupts from the ground in a 15-foot radius and 100-foot high cylinder centered on the point you chose. Each creature within the cylinder must make a Constitution saving throw. On a success, the creature takes necrotic damage equal to the total of the expended hit dice. On a failure, the creature takes necrotic damage equal to the total of the expended hit dice and must expend and roll four hit dice of its own, taking additional necrotic damage equal to the result. For each creature who fails the saving throw against this spell, you gain 5 temporary hit points.",
@@ -3559,8 +3412,7 @@ SpellsList["consumption"] = {
 	compMaterial: "A malnourished leech",
 	duration: "1 hour",
 	save: "Con",
-	description:
-		"Expend a hit die, target takes dmg = to roll and rerolls each turn, save effect ends. +SL = more targets",
+	description: "Expend a hit die, target takes dmg = to roll and rerolls each turn, save effect ends. +SL = more targets",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"As part of casting this spell, you must expend a hit die or the spell automatically fails. If you do, choose a creature within range and roll the hit die. The creature loses a number of hit points equal to the result. For the duration of the spell, the creature must make a Constitution saving throw at the end of each of its turns. On a failure, roll the hit die expended to cast this spell again, and the creature loses hit points equal to the result. On a success, this effect ends for the creature. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, choose an additional target for the spell for each slot level above 1st.",
@@ -3576,8 +3428,7 @@ SpellsList["creeping death"] = {
 	components: "S",
 	duration: "Concentration, up to 1 minute",
 	save: "Con",
-	description:
-		"Expend 8 hit dice, target dies if lower than total, ba save add 2d6 per fail,save add half, save 3 times ends spell",
+	description: "Expend 8 hit dice, target dies if lower than total, ba save add 2d6 per fail,save add half, save 3 times ends spell",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"As part of casting this spell, you must expend eight hit dice or the spell automatically fails. When you do, roll the eight hit dice expended to cast this spell and total them to determine the creature’s creeping death threshold. While the spell remains active, if the creature’s current hit points ever equal or are less than the creeping death threshold, the creature immediately dies. As a bonus action on each of your turns while this spell is active, you can force the target to make a Constitution saving throw. On a failure, roll 2d6 and add the result to the creature’s creeping death threshold. On a success, add half the result instead. If the creature succeeds on three saving throws, which do not have to be consecutive, this spell ends early.",
@@ -3607,8 +3458,7 @@ SpellsList["crimson lash"] = {
 	range: "Self",
 	components: "S",
 	duration: "10 minutes",
-	description:
-		"Expend hit die, magic weapon of blood dmg=hit die Necrotic, Max HP reduced by damage, SL3-4, 2 attacks, SL5+, 3 attacks",
+	description: "Expend hit die, magic weapon of blood dmg=hit die Necrotic, Max HP reduced by damage, SL3-4, 2 attacks, SL5+, 3 attacks",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"As part of casting this spell, you must expend a hit die or the spell automatically fails. If you do, a writhing lash of coagulated blood springs from your hand. This magic weapon lasts until the spell ends. It counts as a simple weapon with which you are proficient, and it has the light, finesse, and reach properties. You can choose to add your spellcasting modifier, instead of your Strength or Dexterity modifier, to attack and damage rolls with this weapon. Its damage die is equivalent to the hit die expended casting this spell, and the damage dealt is necrotic. Each time a creature takes damage from this magic weapon, its maximum hit points are reduced by an amount equal to the damage it took. At Higher Levels. When you cast this spell using a spell slot of 3rd or 4th level, when you take the Attack action, you can make two weapon attacks, provided both are with this magic weapon. When you use a spell slot of 5th level or higher, when you take the Attack action you make three weapon attacks, provided all are with this magic weapon.",
@@ -3639,8 +3489,7 @@ SpellsList["dark sacrament"] = {
 	components: "V,S,M",
 	compMaterial: "A dagger encrusted in jewels worth at least 100 gp",
 	duration: "Instantaneous",
-	description:
-		"Expend 4 hit dice, melee SA within 5ft, on hit dmg=HD+4d8 +1d8 per SL Necrotic, Benefits if target is killed.",
+	description: "Expend 4 hit dice, melee SA within 5ft, on hit dmg=HD+4d8 +1d8 per SL Necrotic, Benefits if target is killed.",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"As part of casting this spell you must expend four hit dice or the spell automatically fails. If you do, make a melee spell attack against a creature within 5 feet usinthe material component of this spell. On a hit, roll the hit dice expended casting this spell plus an additional 4d8 and deal necrotic damage equal to the result. If this damage causes the creature to be reduced to 0 hit points, it immediately dies and you gain one of the following dark blessings of your choice. Unassailable. You have advantage on all saving throws. Unbreakable. Your size increases by one category (from Medium to Large, for example), you gain a number of temporary hit points equal to your Constitution modifier (minimum 1) at the start of each of your turns, and your weapon attacks deal an additional 1d4 damage. Unerring. Your proficiency bonus increases by 2. Your dark blessing ends after 10 minutes or when you are reduced to 0 hit points, whichever happens first. When you take radiant damage while you have a dark blessing, you take an additional 1d4 damage. At Higher Levels. When you cast this spell using a spell slot of 5th level or higher, the melee spell attack damage increases by 1d8 for each slot level above 4th.",
@@ -3707,8 +3556,7 @@ SpellsList["flense"] = {
 	compMaterial: "A scalpel",
 	duration: "Concentration, up to 1 minute",
 	save: "Con",
-	description:
-		"8d6 Necrotic, a each turn to make save again, save half dmg. Ends if 0HP, out of range, or total cover.",
+	description: "8d6 Necrotic, a each turn to make save again, save half dmg. Ends if 0HP, out of range, or total cover.",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"You target a creature you can see within range, using necromantic force to slice the skin from its body. Make a ranged spell attack against that creature. The target must succeed on a Constitution saving throw, taking 8d6 necrotic damage on a failure or half as much damage on a success. On each of your turns for the duration, you can use your action to force the same target to make another Constitution saving throw and repeat the damage. The spell also ends if the target is ever outside the spell’s range, if the target is reduced to 0 hp, or if it has total cover from you.",
@@ -3839,8 +3687,7 @@ SpellsList["mortality"] = {
 	compMaterial: "The skull of a humanoid encrusted in gems worth at least 200 gp",
 	duration: "Concentration, up to 1 minute",
 	save: "Cha",
-	description:
-		"Expend 5 hit dice, reduce target max hp by HD total, loses all Res/Immune, becomes humanoid, and adds 1d4 Necrotic to dmg.",
+	description: "Expend 5 hit dice, reduce target max hp by HD total, loses all Res/Immune, becomes humanoid, and adds 1d4 Necrotic to dmg.",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"As part of casting this spell you must expend five hit dice or the spell automatically fails. When you do, choose an aberration, celestial, elemental, fey, or fiend within range and condemn it to a taste of mortality. The creature must succeed on a Charisma saving throw or have its current and maximum hit points reduced. Roll the hit dice expended to cast this spell to determine the amount the creature’s current and maximum hit points are reduced by. Additionally, for the duration of the spell, a creature that fails the saving throw loses all damage immunities and resistances, its creature type changes to humanoid, and takes an additional 1d4 necrotic damage each time it takes damage. If a creature affected by this spell is reduced to 0 hit points, these changes become permanent and the creature dies. This final effect of the spell can only be reversed if the creature is restored to life and targeted by a remove curse spell or similar magic.",
@@ -3886,11 +3733,9 @@ SpellsList["reanimate"] = {
 	time: "1 a",
 	range: "Touch",
 	components: "V,S,M",
-	compMaterial:
-		"A melange of wilted daisies and other herbal powders worth at least 300 gp, which this spell consumes",
+	compMaterial: "A melange of wilted daisies and other herbal powders worth at least 300 gp, which this spell consumes",
 	duration: "Instantaneous",
-	description:
-		"Expend 3 hit dice, revive target with 1 hp + HD total Temp, lose 1 temp each turn, when 0 temp gain 1 lvl exhaustion",
+	description: "Expend 3 hit dice, revive target with 1 hp + HD total Temp, lose 1 temp each turn, when 0 temp gain 1 lvl exhaustion",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"As part of casting this spell you must expend three hit dice or the spell automatically fails. If you do, you can touch a creature who has died within the last 10 minutes and return it to life with 1 hit point. In addition, roll the hit dice you expended casting this spell, and the creature gains temporary hit points equal to the result. At the start of each of the target creature’s turns, it loses 1 temporary hit point granted by this spell. While the creature has any temporary hit points granted by this spell it moves with unnatural vigor, gaining a +2 bonus to all ability checks, attack rolls, and saving throws. Once it loses all remaining temporary hit points granted by this spell, the creature gains a level of exhaustion. This spell can’t return to life a creature who has died of old age, nor can it restore missing body parts.",
@@ -3941,8 +3786,7 @@ SpellsList["sanguine poppet"] = {
 	compMaterial: "An object shaped like a creature worth 1 cp or more",
 	duration: "Concentration, up to 1 hour",
 	save: "Con",
-	description:
-		"Expend 3 hit dice, creates construct, can explode for HD + 1HD per SL total Necrotic dmg, half on save",
+	description: "Expend 3 hit dice, creates construct, can explode for HD + 1HD per SL total Necrotic dmg, half on save",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"As part of casting this spell, you must expend three hit dice or the spell automatically fails. When you do, you smear the material component used to cast this spell with your blood. The object shudders and becomes a sanguine poppet under your control. Your sanguine poppet has an AC equal to 10 + your proficiency bonus + your spellcasting ability modifier and 30 hp. If your sanguine poppet is ever reduced to 0 hp or more than a mile away, the spell ends immediately. As a bonus action on your turn, your sanguine poppet can walk or climb up to 30 feet, and you can see and hear through them until the start of your next turn. As an action, you can cause the poppet to selfdestruct in an explosion of blood, ending this spell. Roll the hit dice expended casting this spell, and each creature within 30 feet of the poppet must succeed on a Constitution saving throw or take necrotic damage equal to the result. Creatures who succeed on the saving throw take half as much damage. At Higher Levels. When you cast this spell using a spell slot of 4th level or higher, you can expend an additional hit die for each spell slot level above 3rd. Additionally, the duration of this spell increases by one hour for each spell slot level above 3rd.",
@@ -3957,8 +3801,7 @@ SpellsList["sanguine shield"] = {
 	range: "Self",
 	components: "V,S",
 	duration: "Concentration, up to 1 minute",
-	description:
-		"Expend 2 hit dice, gain 5 temp HP per creature within 30ft(max 15HP +5HP per SL) Considered to have half cover when still have temp HP",
+	description: "Expend 2 hit dice, gain 5 temp HP per creature within 30ft(max 15HP +5HP per SL) Considered to have half cover when still have temp HP",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"As part of casting this spell, you must expend two hit dice or the spell automatically fails. You draw lifeforce from those injured around you to create a swirling shield of blood. You gain 5 temporary hit points for each creature within a 30 feet radius that is below its hit point maximum (including you) to a maximum of 15. While you have these hit points, you are considered to be behind half cover for any ranged attack made against you. When this spell ends, all remaining temporary hit points provided by it are lost. At Higher Levels. When you cast this spell using a spell slot of 4th level or higher, the maximum number of temporary hit points you can gain from casting it increases by 5 for each two slot levels above 2nd.",
@@ -4039,8 +3882,7 @@ SpellsList["suffocate"] = {
 	compMaterial: "A leather glove",
 	duration: "Concentration, up to 1 minute",
 	save: "Str/Dex",
-	description:
-		"Melee SA, on hit target restrained, target has 1+Con Mod rounds before unconcious, on save effect ends ",
+	description: "Melee SA, on hit target restrained, target has 1+Con Mod rounds before unconcious, on save effect ends ",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"You create a pair of grasping hands made from invisible forces. Make a spell attack against one creature that you can see within range. On a hit, the creature is restrained as the hands crush their throat or bodily equivalent. If the creature requires air to breathe, it begins to suffocate. A suffocating creature can survive for a number of rounds equal to 1 + its Constitution modifier (minimum of 1 round). At the start of its next turn after those rounds are over, it becomes unconscious, and it can’t regain hit points until it can breathe again. A conscious creature restrained by the hands can use its action to make a Strength or Dexterity check (its choice) against your spell save DC. On a success, the spell ends on the target.",
@@ -4055,8 +3897,7 @@ SpellsList["supernal smite"] = {
 	range: "Self",
 	components: "V",
 	duration: "Concentration, up to 1 minute",
-	description:
-		"Add 4d6 Force dmg to attacks, Concentration is broken on hit, SL3 and lower effects end, SL4+ roll check to end spell effects",
+	description: "Add 4d6 Force dmg to attacks, Concentration is broken on hit, SL3 and lower effects end, SL4+ roll check to end spell effects",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"The next time you hit a creature with a melee weapon attack during this spell’s duration, your weapon shatters the ambient magic surrounding the creature, and the attack deals an extra 4d6 force damage. If the creature is concentrating on a spell, that concentration is broken. In addition, any spell of 3rd level or lower on the target ends. For each spell of 4th level or higher on the target, make an ability check using your spellcasting ability. The DC equals 10 + the spells’ level. On a successful check, the spell ends.",
@@ -4071,8 +3912,7 @@ SpellsList["theft of vitae"] = {
 	range: "Self",
 	components: "V,S",
 	duration: "Instantaneous",
-	description:
-		"Expend 2 hit dice, target takes HD total Necrotic dmg, gain temp HP equal to dmg recieved + HD total (max 25+ 10 per SL)",
+	description: "Expend 2 hit dice, target takes HD total Necrotic dmg, gain temp HP equal to dmg recieved + HD total (max 25+ 10 per SL)",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"As part of casting this spell, you must expend two hit dice or the spell automatically fails. If you do, roll the hit dice and the creature takes necrotic damage equal to the result, then you gain a number of temporary hit points equal to the triggering damage plus this necrotic damage you dealt, to a maximum of 25. At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the maximum number of temporary hit points you can gain from casting it increases by 10 for each slot level above 2nd.",
@@ -4105,8 +3945,7 @@ SpellsList["wilting smite"] = {
 	range: "Self",
 	components: "V",
 	duration: "Concentration, up to 1 minute",
-	description:
-		"Expend 2 hit dice, on next hit, deals HD total Necrotic dmg, and target loses all dmg res until next turn",
+	description: "Expend 2 hit dice, on next hit, deals HD total Necrotic dmg, and target loses all dmg res until next turn",
 	descriptionCantripDie: "",
 	descriptionFull:
 		"As part of casting this spell, you must expend two hit dice or the spell automatically fails. If you do, the next time you hit a creature with a melee weapon attack during this spell’s duration, blood flows over your weapon then desiccates into black spores falling onto the attack’s target, and the attack deals an extra necrotic damage to the target. Roll the hit dice expended to cast this spell, and the total equals the amount of this extra necrotic damage. Additionally, the creature loses all damage resistances it has until the start of your next turn.",
@@ -5032,8 +4871,7 @@ SpellsList["wrack"] = {
 		attunement: true,
 		prerequisite: "Requires attunement by an Aberrant Horror",
 		allowDuplicates: false,
-		description:
-			"While attuned to this item, you gain a +2 bonus to the saving throw DC of your Transformation Save.",
+		description: "While attuned to this item, you gain a +2 bonus to the saving throw DC of your Transformation Save.",
 		descriptionLong:
 			"The fin cannot be removed while you’re attuned to it, and you can’t voluntarily end your attunement to it. If the tentacle is sliced from your body, it grows back in 1d4 hours.",
 		spellCalc: [
@@ -5060,9 +4898,7 @@ SpellsList["wrack"] = {
 			"This tendril of flesh harvested from a living aberration can be embedded into the skull of an aberrant horror. To attune to this item, you must stitch it onto your scalp and leave it for the entire attunement period, during which the stalk burrows into your skull to bond with your brain. While attuned to this item, you have advantage on Wisdom (Perception) checks. In addition, you and any of your allies within 30 feet of you can’t be surprised, except when incapacitated by something other than nonmagical sleep. The stalk can’t be removed while you’re attuned to it, and you can’t voluntarily end your attunement to it. If the stalk is sliced from your body, it grows back in 1d4 hours.",
 		advantages: [["Perception", true]],
 		savetxt: {
-			text: [
-				"You and any of your allies within 30 feet of you can’t be surprised, except when incapacitated by something other than nonmagical sleep.",
-			],
+			text: ["You and any of your allies within 30 feet of you can’t be surprised, except when incapacitated by something other than nonmagical sleep."],
 		},
 	}),
 	(MagicItemsList["straitjacket"] = {
@@ -5076,8 +4912,7 @@ SpellsList["wrack"] = {
 		attunement: true,
 		prerequisite: "Requires attunement by an Aberrant Horror",
 		allowDuplicates: false,
-		description:
-			"While wearing the straitjacket, an aberrant horror rolls twice on the Unstable Mutations table and can choose which result occurs.",
+		description: "While wearing the straitjacket, an aberrant horror rolls twice on the Unstable Mutations table and can choose which result occurs.",
 		descriptionLong:
 			"This stained grey jacket has arms that reach to the floor and dozens of restraining straps. While wearing the straitjacket, an aberrant horror rolls twice on the Unstable Mutations table and can choose which result occurs. The straitjacket takes 10 minutes to don or doff. A creature wearing the straitjacket has disadvantage on attack rolls.",
 	}),
@@ -5161,8 +4996,7 @@ SpellsList["wrack"] = {
 		notLegalAL: true,
 		attunement: false,
 		allowDuplicates: false,
-		description:
-			"A fey who drinks this potion can withstand 3 additional days in an urban environment without suffering exhaustion or penalties to rest.",
+		description: "A fey who drinks this potion can withstand 3 additional days in an urban environment without suffering exhaustion or penalties to rest.",
 		descriptionLong:
 			"This carbonated liquid, a potent distillation of faerie magic, is bright fuchsia and tastes of autumn rain. A fey who drinks this potion can withstand 3 additional days in an urban environment without suffering exhaustion or penalties to rest.",
 	}),
@@ -5463,8 +5297,7 @@ SpellsList["wrack"] = {
 			regExpSearch: /^(?=.*bow)(?=.*four).*$/i,
 			name: "Bow of Four",
 			source: ["GH", 136],
-			description:
-				"Heavy, two-handed, 2d8 dmg based off arrow type; Air: Lightning, Earth: Bludgeoning, Fire: Fire (3d8), Water: Cold",
+			description: "Heavy, two-handed, 2d8 dmg based off arrow type; Air: Lightning, Earth: Bludgeoning, Fire: Fire (3d8), Water: Cold",
 		},
 	}),
 	(MagicItemsList["lodestone armor"] = {
@@ -5615,8 +5448,7 @@ SpellsList["wrack"] = {
 		attunement: true,
 		prerequisite: "Requires attunement by a Seraph",
 		allowDuplicates: false,
-		description:
-			"While wearing the frock and no other armor or clothing, a seraph automatically succeeds on checks to conceal their divine appearance.",
+		description: "While wearing the frock and no other armor or clothing, a seraph automatically succeeds on checks to conceal their divine appearance.",
 		descriptionLong:
 			"This rough spawn frock is weather-worn and full of holes. While wearing the frock and no other armor or clothing, a seraph automatically succeeds on checks to conceal their divine appearance.",
 	}),
@@ -5656,8 +5488,7 @@ SpellsList["wrack"] = {
 		attunement: true,
 		prerequisite: "Requires attunement by a Spectre",
 		allowDuplicates: false,
-		description:
-			"When a creature attuned to the box opens the lid, they can mentally command the box to make a sound of their choosing.",
+		description: "When a creature attuned to the box opens the lid, they can mentally command the box to make a sound of their choosing.",
 		descriptionLong:
 			"This ivory music box is inlaid with silver decorations depicting tiny scenes of gruesome violence. When a creature attuned to the box opens the lid, they can mentally command the box to make a sound of their choosing. Once the lid is open, the sound continues to play until the box is closed. If the attuned user closes the lid then opens it again, they can mentally command the box to play a different sound. If the attuned user travels more than 300 feet away from the box, the lid closes and the music box ceases to play. The box can create any soundscape, like haunting piano music, the sounds of a lively party, or a continuous series of screams. When the box is opened, the user can choose whether the sound is audible in a sphere with a 5-foot radius, a 30-foot radius, or a 120-foot radius.",
 	}),
@@ -5719,8 +5550,7 @@ SpellsList["wrack"] = {
 		attunement: false,
 		prerequisite: "",
 		allowDuplicates: false,
-		description:
-			"While wearing these dark lenses, you do not have disadvantage on attack rolls and ability checks made while in sunlight.",
+		description: "While wearing these dark lenses, you do not have disadvantage on attack rolls and ability checks made while in sunlight.",
 		descriptionLong:
 			"These black leather goggles are set with cloudy glass that completely obscure the eyes of the wearer. While wearing these dark lenses, you do not have disadvantage on attack rolls and ability checks made while in sunlight. You also cannot see in complete darkness while wearing the shades, even if you have darkvision.",
 	}),
@@ -5802,8 +5632,7 @@ SpellsList["wrack"] = {
 		attunement: false,
 		prerequisite: "",
 		allowDuplicates: false,
-		description:
-			"When a celestial, fiend, undead, or fey comes within 120 feet of the candle, it lights and burns with a purple flame.",
+		description: "When a celestial, fiend, undead, or fey comes within 120 feet of the candle, it lights and burns with a purple flame.",
 		descriptionLong:
 			"This black tapered candle cannot be lit. When a celestial, fiend, undead, or fey comes within 120 feet of the candle, it lights and burns with a purple flame. Once the candle has caught flame, it burns for one hour, and it cannot be used again. Watcher’s candles cannot function if they are wrapped in packaging or stowed in a container.",
 	}),
@@ -5818,8 +5647,7 @@ SpellsList["wrack"] = {
 		attunement: false,
 		prerequisite: "",
 		allowDuplicates: false,
-		description:
-			"The mirror’s reflection always shows the true form of any creature viewed in it as if it were seen by the truesight spell.",
+		description: "The mirror’s reflection always shows the true form of any creature viewed in it as if it were seen by the truesight spell.",
 		descriptionLong:
 			"This ornate silver hand mirror is decorated with a motif of withered roses. The mirror’s reflection always shows the true form of any creature viewed in it as if it were seen by the truesight spell. You can see invisible creatures, the true form of shapechanger, and the true faces of creatures attempting to disguise their hideous appearance. If the seeing glass is turned upon a vampire, the glass immediately shatters and is destroyed.",
 	}),

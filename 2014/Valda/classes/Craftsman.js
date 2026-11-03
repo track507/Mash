@@ -2,12 +2,12 @@ var iFileName = "VSoS_Craftsman.js";
 RequiredSheetVersion("13.2.3");
 
 if (!SourceList["VSoS"]) {
-    SourceList["VSoS"] = {
-        name : "Valda's Spire of Secrets",
-        abbreviation : "VSoS",
-        abbreviationSpellsheet : "V",
-        date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
-    };
+	SourceList["VSoS"] = {
+		name: "Valda's Spire of Secrets",
+		abbreviation: "VSoS",
+		abbreviationSpellsheet: "V",
+		date: "2022/12/30", // ! Updated as of 12-30-2022 (Version 1.4)
+	};
 }
 
 // * Craftsman - Masterwork Weapon Properties Options
@@ -95,9 +95,7 @@ function GenerateMasterworkWeaponOptions() {
 	var options = [];
 	for (var i = 0; i < WeaponSlots.length; ++i) {
 		for (var o = 0; o < MasterworkWeaponPropertyOptions.length; ++o) {
-			options.push(
-				MasterworkWeaponPropertyOptions[o] + " " + WeaponSlots[i]
-			);
+			options.push(MasterworkWeaponPropertyOptions[o] + " " + WeaponSlots[i]);
 		}
 	}
 	return options;
@@ -249,12 +247,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(
-						fields,
-						v,
-						output,
-						"A"
-					);
+					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(fields, v, output, "A");
 				},
 			],
 		},
@@ -563,11 +556,7 @@ var MasterworkWeaponProperties = {
 		submenu: "Weapon Slot A",
 		additional: "Prereq: Exotic, Two-handed",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Counterweighted A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Counterweighted A/.exec(What("Extra.Notes")));
 		},
 		description: "",
 		calcChanges: {
@@ -586,11 +575,7 @@ var MasterworkWeaponProperties = {
 		submenu: "Weapon Slot A",
 		additional: "Prereq: Exotic, Melee, no Heavy",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Double A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Double A/.exec(What("Extra.Notes")));
 		},
 		description: "",
 		calcChanges: {
@@ -608,11 +593,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Explosive A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Explosive A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged",
 		description: "",
@@ -631,11 +612,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Heat A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Heat A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Firearm",
 		description: "",
@@ -654,11 +631,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Journeyman: Magical A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Journeyman: Magical A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -672,12 +645,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"A"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "A");
 				},
 				"",
 				103,
@@ -689,11 +657,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Massive A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Massive A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Superheavy",
 		description: "",
@@ -712,11 +676,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Mounted A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Mounted A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Heavy",
 		description: "",
@@ -735,11 +695,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Precision A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Precision A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -758,11 +714,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Rocket A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Rocket A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -781,11 +733,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Sniper A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Sniper A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Ammunition, no Scatter",
 		description: "",
@@ -804,11 +752,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Tension A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Tension A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, no Firearm/Thrown",
 		description: "",
@@ -827,11 +771,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Twinshot A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Twinshot A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -850,11 +790,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Adamantine A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Adamantine A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Heavy/Versatile",
 		description: "",
@@ -873,11 +809,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Blessed A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Blessed A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -896,11 +828,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Earthshatter A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Earthshatter A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Massive",
 		description: "",
@@ -919,11 +847,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Elemental \(Acid\) A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Elemental \(Acid\) A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -942,11 +866,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/\(Cold\) A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /\(Cold\) A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -965,11 +885,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/\(Fire\) A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /\(Fire\) A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -988,23 +904,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/\(Lightning\) A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /\(Lightning\) A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"A",
-						"Lightning"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "A", "Lightning");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 lightning damage on a hit.',
 				102,
@@ -1016,23 +923,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/\(Thunder\) A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /\(Thunder\) A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"A",
-						"Thunder"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "A", "Thunder");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 thunder damage on a hit.',
 				102,
@@ -1044,11 +942,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Keen A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Keen A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse/Versatile",
 		description: "",
@@ -1067,11 +961,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Master: Magical A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Master: Magical A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -1085,12 +975,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"A"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "A");
 				},
 				"",
 				102,
@@ -1102,11 +987,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Mithral A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Mithral A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -1125,11 +1006,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Serrated A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Serrated A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals Slashing",
 		description: "",
@@ -1147,23 +1024,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"of a chosen type"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "of a chosen type");
 				},
 				'Choose a creature type when you add this property. If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to creatures of the chosen type.',
 				102,
@@ -1175,23 +1043,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Aberration Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Aberration Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"aberrations"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "aberrations");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Aberrations.',
 				102,
@@ -1203,11 +1062,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Beast Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Beast Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -1226,23 +1081,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Celestial Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Celestial Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"celestials"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "celestials");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Celestials.',
 				102,
@@ -1254,23 +1100,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Construct Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Construct Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"constructs"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "constructs");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Constructs.',
 				102,
@@ -1282,23 +1119,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Dragon Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Dragon Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"dragons"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "dragons");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Dragons.',
 				102,
@@ -1310,23 +1138,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Elemental Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Elemental Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"elementals"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "elementals");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Elementals.',
 				102,
@@ -1338,11 +1157,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Fey Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Fey Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -1361,11 +1176,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Fiend Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Fiend Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -1384,11 +1195,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Giant Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Giant Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -1407,23 +1214,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Monstrosity Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Monstrosity Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"monstrosities"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "monstrosities");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Monstrosities.',
 				102,
@@ -1435,11 +1233,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Ooze Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Ooze Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -1458,11 +1252,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Plant Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Plant Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -1481,11 +1271,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Undead Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Undead Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -1504,11 +1290,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Vampiric A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Vampiric A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -1527,11 +1309,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Venom A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Venom A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -1550,11 +1328,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Crushing A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Crushing A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals bludgeoning",
 		description: "",
@@ -1573,23 +1347,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Deadly A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Deadly A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Firearm",
 		description: "",
 		calcChanges: {
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddDeadlyCalc(
-						fields,
-						v,
-						output,
-						"A"
-					);
+					ClassList["craftsman"].AddDeadlyCalc(fields, v, output, "A");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic ranged firearm attack, you can add your ability modifier to its attack and damage rolls, instead of just to its attack rolls.',
 				106,
@@ -1601,11 +1366,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Legendary: Magical A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Legendary: Magical A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -1619,12 +1380,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"A"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "A");
 				},
 				"",
 				102,
@@ -1636,11 +1392,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Penetrating A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Penetrating A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ammunition/Thrown, deals piercing",
 		description: "",
@@ -1659,11 +1411,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Seeking A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Seeking A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -1682,11 +1430,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Threatening A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Threatening A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee",
 		description: "",
@@ -1705,11 +1449,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Vorpal A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Vorpal A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals slashing",
 		description: "",
@@ -1728,11 +1468,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Whirlwind A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Whirlwind A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse, Double/Light",
 		description: "",
@@ -1893,12 +1629,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(
-						fields,
-						v,
-						output,
-						"B"
-					);
+					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(fields, v, output, "B");
 				},
 			],
 		},
@@ -2206,11 +1937,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Counterweighted B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Counterweighted B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Two-handed",
 		description: "",
@@ -2229,11 +1956,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Double B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Double B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, no Heavy",
 		description: "",
@@ -2252,11 +1975,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Explosive B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Explosive B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged",
 		description: "",
@@ -2275,11 +1994,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Heat B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Heat B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Firearm",
 		description: "",
@@ -2298,11 +2013,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Journeyman: Magical B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Journeyman: Magical B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -2316,12 +2027,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"B"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "B");
 				},
 				"",
 				102,
@@ -2333,11 +2039,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Massive B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Massive B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Superheavy",
 		description: "",
@@ -2356,11 +2058,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Mounted B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Mounted B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Heavy",
 		description: "",
@@ -2379,11 +2077,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Precision B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Precision B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -2402,11 +2096,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Rocket B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Rocket B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -2425,11 +2115,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Sniper B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Sniper B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Ammunition, no Scatter",
 		description: "",
@@ -2448,11 +2134,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Tension B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Tension B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, no Firearm/Thrown",
 		description: "",
@@ -2471,11 +2153,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Twinshot B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Twinshot B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -2494,11 +2172,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Adamantine B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Adamantine B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Heavy/Versatile",
 		description: "",
@@ -2517,11 +2191,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Blessed B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Blessed B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -2540,11 +2210,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Earthshatter B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Earthshatter B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Massive",
 		description: "",
@@ -2563,11 +2229,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Elemental \(Acid\) B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Elemental \(Acid\) B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -2586,11 +2248,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/\(Cold\) B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /\(Cold\) B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -2609,11 +2267,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/\(Fire\) B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /\(Fire\) B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -2632,23 +2286,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/\(Lightning\) B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /\(Lightning\) B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"B",
-						"Lightning"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "B", "Lightning");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 lightning damage on a hit.',
 				102,
@@ -2660,23 +2305,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/\(Thunder\) B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /\(Thunder\) B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"B",
-						"Thunder"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "B", "Thunder");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 thunder damage on a hit.',
 				102,
@@ -2688,11 +2324,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Keen B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Keen B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse/Versatile",
 		description: "",
@@ -2711,11 +2343,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Master: Magical B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Master: Magical B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -2729,12 +2357,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"B"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "B");
 				},
 				"",
 				102,
@@ -2746,11 +2369,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Mithral B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Mithral B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -2769,11 +2388,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Serrated B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Serrated B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals Slashing",
 		description: "",
@@ -2791,23 +2406,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"of a chosen type"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "of a chosen type");
 				},
 				'Choose a creature type when you add this property. If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to creatures of the chosen type.',
 				102,
@@ -2819,23 +2425,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Aberration Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Aberration Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"aberrations"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "aberrations");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Aberrations.',
 				102,
@@ -2847,11 +2444,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Beast Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Beast Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -2870,23 +2463,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Celestial Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Celestial Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"celestials"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "celestials");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Celestials.',
 				102,
@@ -2898,23 +2482,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Construct Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Construct Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"constructs"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "constructs");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Constructs.',
 				102,
@@ -2926,23 +2501,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Dragon Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Dragon Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"dragons"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "dragons");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Dragons.',
 				102,
@@ -2954,23 +2520,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Elemental Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Elemental Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"elementals"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "elementals");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Elementals.',
 				102,
@@ -2982,11 +2539,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Fey Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Fey Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -3005,11 +2558,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Fiend Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Fiend Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -3028,11 +2577,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Giant Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Giant Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -3051,23 +2596,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Monstrosity Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Monstrosity Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"monstrosities"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "monstrosities");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Monstrosities.',
 				102,
@@ -3079,11 +2615,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Ooze Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Ooze Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -3102,11 +2634,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Plant Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Plant Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -3125,11 +2653,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Undead Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Undead Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -3148,11 +2672,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Vampiric B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Vampiric B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -3171,11 +2691,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Venom B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Venom B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -3194,11 +2710,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Crushing B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Crushing B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals bludgeoning",
 		description: "",
@@ -3217,23 +2729,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Deadly B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Deadly B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Firearm",
 		description: "",
 		calcChanges: {
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddDeadlyCalc(
-						fields,
-						v,
-						output,
-						"B"
-					);
+					ClassList["craftsman"].AddDeadlyCalc(fields, v, output, "B");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic ranged firearm attack, you can add your ability modifier to its attack and damage rolls, instead of just to its attack rolls.',
 				106,
@@ -3245,11 +2748,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Legendary: Magical B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Legendary: Magical B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -3263,12 +2762,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"B"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "B");
 				},
 				"",
 				102,
@@ -3280,11 +2774,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Penetrating B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Penetrating B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ammunition/Thrown, deals piercing",
 		description: "",
@@ -3303,11 +2793,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Seeking B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Seeking B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -3326,11 +2812,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Threatening B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Threatening B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee",
 		description: "",
@@ -3349,11 +2831,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Vorpal B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Vorpal B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals slashing",
 		description: "",
@@ -3372,11 +2850,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Whirlwind B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Whirlwind B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse, Double/Light",
 		description: "",
@@ -3537,12 +3011,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(
-						fields,
-						v,
-						output,
-						"C"
-					);
+					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(fields, v, output, "C");
 				},
 			],
 		},
@@ -3850,11 +3319,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Counterweighted C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Counterweighted C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Two-handed",
 		description: "",
@@ -3873,11 +3338,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Double C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Double C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, no Heavy",
 		description: "",
@@ -3896,11 +3357,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Explosive C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Explosive C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged",
 		description: "",
@@ -3919,11 +3376,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Heat C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Heat C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Firearm",
 		description: "",
@@ -3942,11 +3395,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Journeyman: Magical C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Journeyman: Magical C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -3960,12 +3409,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"C"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "C");
 				},
 				"",
 				102,
@@ -3977,11 +3421,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Massive C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Massive C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Superheavy",
 		description: "",
@@ -4000,11 +3440,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Mounted C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Mounted C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Heavy",
 		description: "",
@@ -4023,11 +3459,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Precision C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Precision C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -4046,11 +3478,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Rocket C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Rocket C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4069,11 +3497,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Sniper C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Sniper C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Ammunition, no Scatter",
 		description: "",
@@ -4092,11 +3516,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Tension C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Tension C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, no Firearm/Thrown",
 		description: "",
@@ -4115,11 +3535,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Twinshot C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Twinshot C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -4138,11 +3554,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Adamantine C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Adamantine C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Heavy/Versatile",
 		description: "",
@@ -4161,11 +3573,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Blessed C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Blessed C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4184,11 +3592,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Earthshatter C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Earthshatter C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Massive",
 		description: "",
@@ -4207,11 +3611,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Elemental \(Acid\) C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Elemental \(Acid\) C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4230,11 +3630,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/\(Cold\) C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /\(Cold\) C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4253,11 +3649,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/\(Fire\) C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /\(Fire\) C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4276,23 +3668,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/\(Lightning\) C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /\(Lightning\) C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"C",
-						"Lightning"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "C", "Lightning");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 lightning damage on a hit.',
 				102,
@@ -4304,23 +3687,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/\(Thunder\) C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /\(Thunder\) C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"C",
-						"Thunder"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "C", "Thunder");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 thunder damage on a hit.',
 				102,
@@ -4332,11 +3706,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Keen C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Keen C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse/Versatile",
 		description: "",
@@ -4355,11 +3725,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Master: Magical C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Master: Magical C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4373,12 +3739,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"C"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "C");
 				},
 				"",
 				102,
@@ -4390,11 +3751,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Mithral C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Mithral C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -4413,11 +3770,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Serrated C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Serrated C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals Slashing",
 		description: "",
@@ -4435,23 +3788,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"of a chosen type"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "of a chosen type");
 				},
 				'Choose a creature type when you add this property. If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to creatures of the chosen type.',
 				102,
@@ -4463,23 +3807,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Aberration Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Aberration Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"aberrations"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "aberrations");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Aberrations.',
 				102,
@@ -4491,11 +3826,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Beast Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Beast Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4514,23 +3845,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Celestial Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Celestial Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"celestials"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "celestials");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Celestials.',
 				102,
@@ -4542,23 +3864,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Dragon Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Dragon Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"dragons"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "dragons");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Dragons.',
 				102,
@@ -4570,23 +3883,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Construct Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Construct Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"constructs"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "constructs");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Constructs.',
 				102,
@@ -4598,23 +3902,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Elemental Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Elemental Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"elementals"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "elementals");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Elementals.',
 				102,
@@ -4626,11 +3921,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Fey Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Fey Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4649,11 +3940,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Fiend Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Fiend Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4672,11 +3959,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Giant Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Giant Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4695,23 +3978,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Monstrosity Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Monstrosity Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"monstrosities"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "monstrosities");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Monstrosities.',
 				102,
@@ -4723,11 +3997,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Ooze Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Ooze Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4746,11 +4016,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Plant Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Plant Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4769,11 +4035,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Undead Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Undead Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4792,11 +4054,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Vampiric C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Vampiric C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4815,11 +4073,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Venom C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Venom C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4838,11 +4092,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Crushing C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Crushing C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals bludgeoning",
 		description: "",
@@ -4861,23 +4111,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Deadly C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Deadly C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Firearm",
 		description: "",
 		calcChanges: {
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddDeadlyCalc(
-						fields,
-						v,
-						output,
-						"C"
-					);
+					ClassList["craftsman"].AddDeadlyCalc(fields, v, output, "C");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic ranged firearm attack, you can add your ability modifier to its attack and damage rolls, instead of just to its attack rolls.',
 				106,
@@ -4889,11 +4130,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Legendary: Magical C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Legendary: Magical C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -4907,12 +4144,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"C"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "C");
 				},
 				"",
 				102,
@@ -4924,11 +4156,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Penetrating C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Penetrating C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ammunition/Thrown, deals piercing",
 		description: "",
@@ -4947,11 +4175,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Seeking C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Seeking C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -4970,11 +4194,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Threatening C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Threatening C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee",
 		description: "",
@@ -4993,11 +4213,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Vorpal C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Vorpal C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals slashing",
 		description: "",
@@ -5016,11 +4232,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Whirlwind C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Whirlwind C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse, Double/Light",
 		description: "",
@@ -5181,12 +4393,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(
-						fields,
-						v,
-						output,
-						"D"
-					);
+					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(fields, v, output, "D");
 				},
 			],
 		},
@@ -5494,11 +4701,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Counterweighted D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Counterweighted D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Two-handed",
 		description: "",
@@ -5517,11 +4720,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Double D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Double D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, no Heavy",
 		description: "",
@@ -5540,11 +4739,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Explosive D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Explosive D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged",
 		description: "",
@@ -5563,11 +4758,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Heat D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Heat D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Firearm",
 		description: "",
@@ -5586,11 +4777,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Journeyman: Magical D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Journeyman: Magical D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -5604,12 +4791,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"D"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "D");
 				},
 				"",
 				102,
@@ -5621,11 +4803,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Massive D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Massive D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Superheavy",
 		description: "",
@@ -5644,11 +4822,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Mounted D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Mounted D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Heavy",
 		description: "",
@@ -5667,11 +4841,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Precision D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Precision D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -5690,11 +4860,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Rocket D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Rocket D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -5713,11 +4879,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Sniper D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Sniper D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Ammunition, no Scatter",
 		description: "",
@@ -5736,11 +4898,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Tension D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Tension D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, no Firearm/Thrown",
 		description: "",
@@ -5759,11 +4917,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Twinshot D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Twinshot D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -5782,11 +4936,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Adamantine D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Adamantine D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Heavy/Versatile",
 		description: "",
@@ -5805,11 +4955,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Blessed D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Blessed D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -5828,11 +4974,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Earthshatter D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Earthshatter D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Massive",
 		description: "",
@@ -5851,11 +4993,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Elemental \(Acid\) D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Elemental \(Acid\) D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -5874,11 +5012,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/\(Cold\) D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /\(Cold\) D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -5897,11 +5031,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/\(Fire\) D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /\(Fire\) D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -5920,23 +5050,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/\(Lightning\) D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /\(Lightning\) D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"D",
-						"Lightning"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "D", "Lightning");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 lightning damage on a hit.',
 				102,
@@ -5948,23 +5069,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/\(Thunder\) D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /\(Thunder\) D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"D",
-						"Thunder"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "D", "Thunder");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 thunder damage on a hit.',
 				102,
@@ -5976,11 +5088,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Keen D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Keen D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse/Versatile",
 		description: "",
@@ -5999,11 +5107,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Master: Magical D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Master: Magical D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -6017,12 +5121,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"D"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "D");
 				},
 				"",
 				102,
@@ -6034,11 +5133,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Mithral D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Mithral D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -6057,11 +5152,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Serrated D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Serrated D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals Slashing",
 		description: "",
@@ -6079,23 +5170,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"of a chosen type"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "of a chosen type");
 				},
 				'Choose a creature type when you add this property. If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to creatures of the chosen type.',
 				102,
@@ -6107,23 +5189,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Aberration Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Aberration Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"aberrations"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "aberrations");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Aberrations.',
 				102,
@@ -6135,11 +5208,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Beast Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Beast Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -6158,23 +5227,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Celestial Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Celestial Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"celestials"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "celestials");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Celestials.',
 				102,
@@ -6186,23 +5246,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Construct Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Construct Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"constructs"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "constructs");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Constructs.',
 				102,
@@ -6214,23 +5265,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Dragon Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Dragon Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"dragons"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "dragons");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Dragons.',
 				102,
@@ -6242,23 +5284,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Elemental Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Elemental Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"elementals"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "elementals");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Elementals.',
 				102,
@@ -6270,11 +5303,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Fey Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Fey Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -6293,11 +5322,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Fiend Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Fiend Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -6316,11 +5341,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Giant Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Giant Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -6339,23 +5360,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Monstrosity Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Monstrosity Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"monstrosities"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "monstrosities");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Monstrosities.',
 				102,
@@ -6367,11 +5379,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Ooze Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Ooze Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -6390,11 +5398,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Plant Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Plant Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -6413,11 +5417,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Undead Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Undead Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -6436,11 +5436,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Vampiric D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Vampiric D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -6459,11 +5455,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Venom D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Venom D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -6482,11 +5474,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Crushing D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Crushing D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals bludgeoning",
 		description: "",
@@ -6505,23 +5493,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Deadly D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Deadly D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Firearm",
 		description: "",
 		calcChanges: {
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddDeadlyCalc(
-						fields,
-						v,
-						output,
-						"D"
-					);
+					ClassList["craftsman"].AddDeadlyCalc(fields, v, output, "D");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic ranged firearm attack, you can add your ability modifier to its attack and damage rolls, instead of just to its attack rolls.',
 				106,
@@ -6533,11 +5512,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Legendary: Magical D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Legendary: Magical D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -6551,12 +5526,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"D"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "D");
 				},
 				"",
 				102,
@@ -6568,11 +5538,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Penetrating D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Penetrating D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ammunition/Thrown, deals piercing",
 		description: "",
@@ -6591,11 +5557,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Seeking D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Seeking D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -6614,11 +5576,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Threatening D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Threatening D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee",
 		description: "",
@@ -6637,11 +5595,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Vorpal D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Vorpal D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals slashing",
 		description: "",
@@ -6660,11 +5614,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 1 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Whirlwind D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 1 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Whirlwind D/.exec(What("Extra.Notes")));
 			7;
 		},
 		additional: "Prereq: Exotic, Melee, Finesse, Double/Light",
@@ -6826,12 +5776,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(
-						fields,
-						v,
-						output,
-						"E"
-					);
+					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(fields, v, output, "E");
 				},
 			],
 		},
@@ -7139,11 +6084,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Counterweighted E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Counterweighted E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Two-handed",
 		description: "",
@@ -7162,11 +6103,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Double E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Double E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, no Heavy",
 		description: "",
@@ -7185,11 +6122,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Explosive E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Explosive E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged",
 		description: "",
@@ -7208,11 +6141,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Heat E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Heat E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Firearm",
 		description: "",
@@ -7231,11 +6160,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Journeyman: Magical E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Journeyman: Magical E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -7249,12 +6174,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"E"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "E");
 				},
 				"",
 				102,
@@ -7266,11 +6186,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Massive E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Massive E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Superheavy",
 		description: "",
@@ -7289,11 +6205,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Mounted E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Mounted E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Heavy",
 		description: "",
@@ -7312,11 +6224,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Precision E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Precision E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -7335,11 +6243,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Rocket E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Rocket E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -7358,11 +6262,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Sniper E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Sniper E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Ammunition, no Scatter",
 		description: "",
@@ -7381,11 +6281,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Tension E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Tension E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, no Firearm/Thrown",
 		description: "",
@@ -7404,11 +6300,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Twinshot E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Twinshot E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -7427,11 +6319,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Adamantine E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Adamantine E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Heavy/Versatile",
 		description: "",
@@ -7450,11 +6338,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Blessed E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Blessed E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -7473,11 +6357,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Earthshatter E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Earthshatter E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Massive",
 		description: "",
@@ -7496,11 +6376,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Elemental \(Acid\) E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Elemental \(Acid\) E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -7519,11 +6395,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/\(Cold\) E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /\(Cold\) E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -7542,11 +6414,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/\(Fire\) E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /\(Fire\) E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -7565,23 +6433,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/\(Lightning\) E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /\(Lightning\) E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"E",
-						"Lightning"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "E", "Lightning");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 lightning damage on a hit.',
 				102,
@@ -7593,23 +6452,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/\(Thunder\) E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /\(Thunder\) E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"E",
-						"Thunder"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "E", "Thunder");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 thunder damage on a hit.',
 				102,
@@ -7621,11 +6471,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Keen E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Keen E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse/Versatile",
 		description: "",
@@ -7644,11 +6490,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Master: Magical E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Master: Magical E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -7662,12 +6504,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"E"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "E");
 				},
 				"",
 				102,
@@ -7679,11 +6516,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Mithral E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Mithral E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -7702,11 +6535,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Serrated E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Serrated E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals Slashing",
 		description: "",
@@ -7724,23 +6553,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"of a chosen type"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "of a chosen type");
 				},
 				'Choose a creature type when you add this property. If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to creatures of the chosen type.',
 				102,
@@ -7752,23 +6572,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Aberration Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Aberration Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"aberrations"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "aberrations");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Aberrations.',
 				102,
@@ -7780,11 +6591,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Beast Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Beast Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -7803,23 +6610,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Celestial Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Celestial Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"celestials"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "celestials");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Celestials.',
 				102,
@@ -7831,23 +6629,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Construct Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Construct Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"constructs"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "constructs");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Constructs.',
 				102,
@@ -7859,23 +6648,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Dragon Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Dragon Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"dragons"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "dragons");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Dragons.',
 				102,
@@ -7887,23 +6667,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Elemental Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Elemental Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"elementals"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "elementals");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Elementals.',
 				102,
@@ -7915,11 +6686,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Fey Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Fey Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -7938,11 +6705,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Fiend Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Fiend Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -7961,11 +6724,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Giant Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Giant Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -7984,23 +6743,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Monstrosity Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Monstrosity Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"monstrosities"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "monstrosities");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Monstrosities.',
 				102,
@@ -8012,11 +6762,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Ooze Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Ooze Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -8035,11 +6781,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Plant Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Plant Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -8058,11 +6800,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Undead Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Undead Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -8081,11 +6819,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Vampiric E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Vampiric E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -8104,11 +6838,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Venom E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Venom E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -8127,11 +6857,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Crushing E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Crushing E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals bludgeoning",
 		description: "",
@@ -8150,23 +6876,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Deadly E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Deadly E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Firearm",
 		description: "",
 		calcChanges: {
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddDeadlyCalc(
-						fields,
-						v,
-						output,
-						"E"
-					);
+					ClassList["craftsman"].AddDeadlyCalc(fields, v, output, "E");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic ranged firearm attack, you can add your ability modifier to its attack and damage rolls, instead of just to its attack rolls.',
 				106,
@@ -8178,11 +6895,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Legendary: Magical E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Legendary: Magical E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -8196,12 +6909,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"E"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "E");
 				},
 				"",
 				102,
@@ -8213,11 +6921,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Penetrating E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Penetrating E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ammunition/Thrown, deals piercing",
 		description: "",
@@ -8236,11 +6940,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Seeking E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Seeking E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -8259,11 +6959,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Threatening E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Threatening E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee",
 		description: "",
@@ -8282,11 +6978,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Vorpal E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Vorpal E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals slashing",
 		description: "",
@@ -8305,11 +6997,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Whirlwind E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Whirlwind E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse, Double/Light",
 		description: "",
@@ -8472,12 +7160,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(
-						fields,
-						v,
-						output,
-						"A"
-					);
+					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(fields, v, output, "A");
 				},
 			],
 		},
@@ -8786,11 +7469,7 @@ var MasterworkWeaponProperties = {
 		submenu: "Weapon Slot A",
 		additional: "Prereq: Exotic, Two-handed",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Counterweighted A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Counterweighted A/.exec(What("Extra.Notes")));
 		},
 		description: "",
 		calcChanges: {
@@ -8809,11 +7488,7 @@ var MasterworkWeaponProperties = {
 		submenu: "Weapon Slot A",
 		additional: "Prereq: Exotic, Melee, no Heavy",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Double A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Double A/.exec(What("Extra.Notes")));
 		},
 		description: "",
 		calcChanges: {
@@ -8831,11 +7506,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Explosive A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Explosive A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged",
 		description: "",
@@ -8854,11 +7525,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Heat A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Heat A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Firearm",
 		description: "",
@@ -8877,11 +7544,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Journeyman: Magical A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Journeyman: Magical A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -8895,12 +7558,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"A"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "A");
 				},
 				"",
 				103,
@@ -8912,11 +7570,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Massive A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Massive A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Superheavy",
 		description: "",
@@ -8935,11 +7589,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Mounted A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Mounted A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Heavy",
 		description: "",
@@ -8958,11 +7608,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Precision A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Precision A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -8981,11 +7627,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Rocket A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Rocket A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9004,11 +7646,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Sniper A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Sniper A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Ammunition, no Scatter",
 		description: "",
@@ -9027,11 +7665,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Tension A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Tension A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, no Firearm/Thrown",
 		description: "",
@@ -9050,11 +7684,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ A/.exec(What("Extra.Notes")) ||
-					/Twinshot A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ A/.exec(What("Extra.Notes")) || /Twinshot A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -9073,11 +7703,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Adamantine A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Adamantine A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Heavy/Versatile",
 		description: "",
@@ -9096,11 +7722,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Blessed A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Blessed A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9119,11 +7741,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Earthshatter A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Earthshatter A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Massive",
 		description: "",
@@ -9142,11 +7760,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Elemental \(Acid\) A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Elemental \(Acid\) A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9165,11 +7779,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/\(Cold\) A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /\(Cold\) A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9188,11 +7798,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/\(Fire\) A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /\(Fire\) A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9211,23 +7817,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/\(Lightning\) A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /\(Lightning\) A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"A",
-						"Lightning"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "A", "Lightning");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 lightning damage on a hit.',
 				102,
@@ -9239,23 +7836,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/\(Thunder\) A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /\(Thunder\) A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"A",
-						"Thunder"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "A", "Thunder");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 thunder damage on a hit.',
 				102,
@@ -9267,11 +7855,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Keen A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Keen A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse/Versatile",
 		description: "",
@@ -9290,11 +7874,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Master: Magical A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Master: Magical A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9308,12 +7888,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"A"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "A");
 				},
 				"",
 				102,
@@ -9325,11 +7900,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Mithral A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Mithral A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -9348,11 +7919,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Serrated A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Serrated A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals Slashing",
 		description: "",
@@ -9370,23 +7937,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"of a chosen type"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "of a chosen type");
 				},
 				'Choose a creature type when you add this property. If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to creatures of the chosen type.',
 				102,
@@ -9398,23 +7956,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Aberration Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Aberration Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"aberrations"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "aberrations");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Aberrations.',
 				102,
@@ -9426,11 +7975,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Beast Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Beast Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9449,23 +7994,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Celestial Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Celestial Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"celestials"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "celestials");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Celestials.',
 				102,
@@ -9477,23 +8013,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Construct Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Construct Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"constructs"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "constructs");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Constructs.',
 				102,
@@ -9505,23 +8032,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Dragon Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Dragon Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"dragons"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "dragons");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Dragons.',
 				102,
@@ -9533,23 +8051,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Elemental Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Elemental Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"elementals"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "elementals");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Elementals.',
 				102,
@@ -9561,11 +8070,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Fey Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Fey Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9584,11 +8089,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Fiend Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Fiend Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9607,11 +8108,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Giant Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Giant Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9630,23 +8127,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Monstrosity Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Monstrosity Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"A",
-						"monstrosities"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "A", "monstrosities");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Monstrosities.',
 				102,
@@ -9658,11 +8146,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Ooze Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Ooze Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9681,11 +8165,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Plant Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Plant Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9704,11 +8184,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Undead Slaying A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Undead Slaying A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9727,11 +8203,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Vampiric A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Vampiric A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9750,11 +8222,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ A/.exec(What("Extra.Notes")) ||
-					/Venom A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ A/.exec(What("Extra.Notes")) || /Venom A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9773,11 +8241,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Crushing A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Crushing A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals bludgeoning",
 		description: "",
@@ -9796,23 +8260,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Deadly A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Deadly A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Firearm",
 		description: "",
 		calcChanges: {
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddDeadlyCalc(
-						fields,
-						v,
-						output,
-						"A"
-					);
+					ClassList["craftsman"].AddDeadlyCalc(fields, v, output, "A");
 				},
 				'If the letter "A" is included in the description of a masterwork exotic ranged firearm attack, you can add your ability modifier to its attack and damage rolls, instead of just to its attack rolls.',
 				106,
@@ -9824,11 +8279,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Legendary: Magical A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Legendary: Magical A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -9842,12 +8293,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"A"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "A");
 				},
 				"",
 				102,
@@ -9859,11 +8305,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Penetrating A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Penetrating A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ammunition/Thrown, deals piercing",
 		description: "",
@@ -9882,11 +8324,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Seeking A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Seeking A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -9905,11 +8343,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Threatening A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Threatening A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee",
 		description: "",
@@ -9928,11 +8362,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Vorpal A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Vorpal A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals slashing",
 		description: "",
@@ -9951,11 +8381,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot A",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ A/.exec(What("Extra.Notes")) ||
-					/Whirlwind A/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ A/.exec(What("Extra.Notes")) || /Whirlwind A/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse, Double/Light",
 		description: "",
@@ -10116,12 +8542,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(
-						fields,
-						v,
-						output,
-						"B"
-					);
+					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(fields, v, output, "B");
 				},
 			],
 		},
@@ -10429,11 +8850,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Counterweighted B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Counterweighted B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Two-handed",
 		description: "",
@@ -10452,11 +8869,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Double B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Double B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, no Heavy",
 		description: "",
@@ -10475,11 +8888,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Explosive B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Explosive B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged",
 		description: "",
@@ -10498,11 +8907,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Heat B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Heat B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Firearm",
 		description: "",
@@ -10521,11 +8926,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Journeyman: Magical B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Journeyman: Magical B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -10539,12 +8940,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"B"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "B");
 				},
 				"",
 				102,
@@ -10556,11 +8952,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Massive B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Massive B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Superheavy",
 		description: "",
@@ -10579,11 +8971,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Mounted B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Mounted B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Heavy",
 		description: "",
@@ -10602,11 +8990,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Precision B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Precision B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -10625,11 +9009,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Rocket B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Rocket B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -10648,11 +9028,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Sniper B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Sniper B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Ammunition, no Scatter",
 		description: "",
@@ -10671,11 +9047,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Tension B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Tension B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, no Firearm/Thrown",
 		description: "",
@@ -10694,11 +9066,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ B/.exec(What("Extra.Notes")) ||
-					/Twinshot B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ B/.exec(What("Extra.Notes")) || /Twinshot B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -10717,11 +9085,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Adamantine B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Adamantine B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Heavy/Versatile",
 		description: "",
@@ -10740,11 +9104,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Blessed B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Blessed B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -10763,11 +9123,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Earthshatter B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Earthshatter B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Massive",
 		description: "",
@@ -10786,11 +9142,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Elemental \(Acid\) B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Elemental \(Acid\) B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -10809,11 +9161,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/\(Cold\) B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /\(Cold\) B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -10832,11 +9180,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/\(Fire\) B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /\(Fire\) B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -10855,23 +9199,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/\(Lightning\) B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /\(Lightning\) B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"B",
-						"Lightning"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "B", "Lightning");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 lightning damage on a hit.',
 				102,
@@ -10883,23 +9218,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/\(Thunder\) B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /\(Thunder\) B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"B",
-						"Thunder"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "B", "Thunder");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 thunder damage on a hit.',
 				102,
@@ -10911,11 +9237,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Keen B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Keen B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse/Versatile",
 		description: "",
@@ -10934,11 +9256,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Master: Magical B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Master: Magical B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -10952,12 +9270,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"B"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "B");
 				},
 				"",
 				102,
@@ -10969,11 +9282,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Mithral B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Mithral B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -10992,11 +9301,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Serrated B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Serrated B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals Slashing",
 		description: "",
@@ -11014,23 +9319,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"of a chosen type"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "of a chosen type");
 				},
 				'Choose a creature type when you add this property. If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to creatures of the chosen type.',
 				102,
@@ -11042,23 +9338,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Aberration Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Aberration Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"aberrations"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "aberrations");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Aberrations.',
 				102,
@@ -11070,11 +9357,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Beast Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Beast Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -11093,23 +9376,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Celestial Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Celestial Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"celestials"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "celestials");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Celestials.',
 				102,
@@ -11121,23 +9395,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Construct Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Construct Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"constructs"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "constructs");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Constructs.',
 				102,
@@ -11149,23 +9414,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Dragon Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Dragon Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"dragons"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "dragons");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Dragons.',
 				102,
@@ -11177,23 +9433,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Elemental Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Elemental Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"elementals"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "elementals");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Elementals.',
 				102,
@@ -11205,11 +9452,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Fey Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Fey Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -11228,11 +9471,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Fiend Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Fiend Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -11251,11 +9490,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Giant Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Giant Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -11274,23 +9509,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Monstrosity Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Monstrosity Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"B",
-						"monstrosities"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "B", "monstrosities");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Monstrosities.',
 				102,
@@ -11302,11 +9528,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Ooze Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Ooze Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -11325,11 +9547,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Plant Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Plant Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -11348,11 +9566,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Undead Slaying B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Undead Slaying B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -11371,11 +9585,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Vampiric B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Vampiric B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -11394,11 +9604,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ B/.exec(What("Extra.Notes")) ||
-					/Venom B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ B/.exec(What("Extra.Notes")) || /Venom B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -11417,11 +9623,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Crushing B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Crushing B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals bludgeoning",
 		description: "",
@@ -11440,23 +9642,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Deadly B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Deadly B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Firearm",
 		description: "",
 		calcChanges: {
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddDeadlyCalc(
-						fields,
-						v,
-						output,
-						"B"
-					);
+					ClassList["craftsman"].AddDeadlyCalc(fields, v, output, "B");
 				},
 				'If the letter "B" is included in the description of a masterwork exotic ranged firearm attack, you can add your ability modifier to its attack and damage rolls, instead of just to its attack rolls.',
 				106,
@@ -11468,11 +9661,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Legendary: Magical B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Legendary: Magical B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -11486,12 +9675,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"B"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "B");
 				},
 				"",
 				102,
@@ -11503,11 +9687,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Penetrating B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Penetrating B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ammunition/Thrown, deals piercing",
 		description: "",
@@ -11526,11 +9706,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Seeking B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Seeking B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -11549,11 +9725,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Threatening B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Threatening B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee",
 		description: "",
@@ -11572,11 +9744,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Vorpal B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Vorpal B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals slashing",
 		description: "",
@@ -11595,11 +9763,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot B",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ B/.exec(What("Extra.Notes")) ||
-					/Whirlwind B/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ B/.exec(What("Extra.Notes")) || /Whirlwind B/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse, Double/Light",
 		description: "",
@@ -11760,12 +9924,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(
-						fields,
-						v,
-						output,
-						"C"
-					);
+					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(fields, v, output, "C");
 				},
 			],
 		},
@@ -12073,11 +10232,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Counterweighted C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Counterweighted C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Two-handed",
 		description: "",
@@ -12096,11 +10251,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Double C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Double C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, no Heavy",
 		description: "",
@@ -12119,11 +10270,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Explosive C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Explosive C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged",
 		description: "",
@@ -12142,11 +10289,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Heat C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Heat C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Firearm",
 		description: "",
@@ -12165,11 +10308,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Journeyman: Magical C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Journeyman: Magical C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12183,12 +10322,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"C"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "C");
 				},
 				"",
 				102,
@@ -12200,11 +10334,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Massive C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Massive C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Superheavy",
 		description: "",
@@ -12223,11 +10353,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Mounted C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Mounted C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Heavy",
 		description: "",
@@ -12246,11 +10372,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Precision C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Precision C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -12269,11 +10391,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Rocket C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Rocket C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12292,11 +10410,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Sniper C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Sniper C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Ammunition, no Scatter",
 		description: "",
@@ -12315,11 +10429,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Tension C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Tension C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, no Firearm/Thrown",
 		description: "",
@@ -12338,11 +10448,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ C/.exec(What("Extra.Notes")) ||
-					/Twinshot C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ C/.exec(What("Extra.Notes")) || /Twinshot C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -12361,11 +10467,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Adamantine C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Adamantine C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Heavy/Versatile",
 		description: "",
@@ -12384,11 +10486,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Blessed C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Blessed C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12407,11 +10505,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Earthshatter C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Earthshatter C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Massive",
 		description: "",
@@ -12430,11 +10524,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Elemental \(Acid\) C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Elemental \(Acid\) C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12453,11 +10543,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/\(Cold\) C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /\(Cold\) C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12476,11 +10562,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/\(Fire\) C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /\(Fire\) C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12499,23 +10581,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/\(Lightning\) C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /\(Lightning\) C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"C",
-						"Lightning"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "C", "Lightning");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 lightning damage on a hit.',
 				102,
@@ -12527,23 +10600,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/\(Thunder\) C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /\(Thunder\) C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"C",
-						"Thunder"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "C", "Thunder");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 thunder damage on a hit.',
 				102,
@@ -12555,11 +10619,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Keen C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Keen C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse/Versatile",
 		description: "",
@@ -12578,11 +10638,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Master: Magical C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Master: Magical C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12596,12 +10652,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"C"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "C");
 				},
 				"",
 				102,
@@ -12613,11 +10664,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Mithral C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Mithral C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -12636,11 +10683,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Serrated C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Serrated C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals Slashing",
 		description: "",
@@ -12658,23 +10701,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"of a chosen type"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "of a chosen type");
 				},
 				'Choose a creature type when you add this property. If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to creatures of the chosen type.',
 				102,
@@ -12686,23 +10720,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Aberration Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Aberration Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"aberrations"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "aberrations");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Aberrations.',
 				102,
@@ -12714,11 +10739,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Beast Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Beast Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12737,23 +10758,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Celestial Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Celestial Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"celestials"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "celestials");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Celestials.',
 				102,
@@ -12765,23 +10777,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Dragon Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Dragon Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"dragons"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "dragons");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Dragons.',
 				102,
@@ -12793,23 +10796,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Construct Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Construct Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"constructs"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "constructs");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Constructs.',
 				102,
@@ -12821,23 +10815,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Elemental Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Elemental Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"elementals"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "elementals");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Elementals.',
 				102,
@@ -12849,11 +10834,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Fey Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Fey Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12872,11 +10853,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Fiend Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Fiend Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12895,11 +10872,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Giant Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Giant Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12918,23 +10891,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Monstrosity Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Monstrosity Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"C",
-						"monstrosities"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "C", "monstrosities");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Monstrosities.',
 				102,
@@ -12946,11 +10910,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Ooze Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Ooze Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12969,11 +10929,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Plant Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Plant Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -12992,11 +10948,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Undead Slaying C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Undead Slaying C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -13015,11 +10967,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Vampiric C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Vampiric C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -13038,11 +10986,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ C/.exec(What("Extra.Notes")) ||
-					/Venom C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ C/.exec(What("Extra.Notes")) || /Venom C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -13061,11 +11005,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Crushing C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Crushing C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals bludgeoning",
 		description: "",
@@ -13084,23 +11024,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Deadly C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Deadly C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Firearm",
 		description: "",
 		calcChanges: {
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddDeadlyCalc(
-						fields,
-						v,
-						output,
-						"C"
-					);
+					ClassList["craftsman"].AddDeadlyCalc(fields, v, output, "C");
 				},
 				'If the letter "C" is included in the description of a masterwork exotic ranged firearm attack, you can add your ability modifier to its attack and damage rolls, instead of just to its attack rolls.',
 				106,
@@ -13112,11 +11043,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Legendary: Magical C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Legendary: Magical C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -13130,12 +11057,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"C"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "C");
 				},
 				"",
 				102,
@@ -13147,11 +11069,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Penetrating C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Penetrating C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ammunition/Thrown, deals piercing",
 		description: "",
@@ -13170,11 +11088,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Seeking C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Seeking C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -13193,11 +11107,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Threatening C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Threatening C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee",
 		description: "",
@@ -13216,11 +11126,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Vorpal C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Vorpal C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals slashing",
 		description: "",
@@ -13239,11 +11145,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot C",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ C/.exec(What("Extra.Notes")) ||
-					/Whirlwind C/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ C/.exec(What("Extra.Notes")) || /Whirlwind C/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse, Double/Light",
 		description: "",
@@ -13404,12 +11306,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(
-						fields,
-						v,
-						output,
-						"D"
-					);
+					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(fields, v, output, "D");
 				},
 			],
 		},
@@ -13717,11 +11614,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Counterweighted D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Counterweighted D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Two-handed",
 		description: "",
@@ -13740,11 +11633,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Double D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Double D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, no Heavy",
 		description: "",
@@ -13763,11 +11652,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Explosive D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Explosive D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged",
 		description: "",
@@ -13786,11 +11671,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Heat D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Heat D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Firearm",
 		description: "",
@@ -13809,11 +11690,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Journeyman: Magical D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Journeyman: Magical D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -13827,12 +11704,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"D"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "D");
 				},
 				"",
 				102,
@@ -13844,11 +11716,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Massive D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Massive D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Superheavy",
 		description: "",
@@ -13867,11 +11735,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Mounted D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Mounted D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Heavy",
 		description: "",
@@ -13890,11 +11754,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Precision D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Precision D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -13913,11 +11773,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Rocket D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Rocket D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -13936,11 +11792,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Sniper D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Sniper D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Ammunition, no Scatter",
 		description: "",
@@ -13959,11 +11811,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Tension D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Tension D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, no Firearm/Thrown",
 		description: "",
@@ -13982,11 +11830,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ D/.exec(What("Extra.Notes")) ||
-					/Twinshot D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ D/.exec(What("Extra.Notes")) || /Twinshot D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -14005,11 +11849,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Adamantine D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Adamantine D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Heavy/Versatile",
 		description: "",
@@ -14028,11 +11868,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Blessed D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Blessed D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14051,11 +11887,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Earthshatter D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Earthshatter D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Massive",
 		description: "",
@@ -14074,11 +11906,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Elemental \(Acid\) D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Elemental \(Acid\) D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14097,11 +11925,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/\(Cold\) D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /\(Cold\) D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14120,11 +11944,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/\(Fire\) D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /\(Fire\) D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14143,23 +11963,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/\(Lightning\) D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /\(Lightning\) D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"D",
-						"Lightning"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "D", "Lightning");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 lightning damage on a hit.',
 				102,
@@ -14171,23 +11982,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/\(Thunder\) D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /\(Thunder\) D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"D",
-						"Thunder"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "D", "Thunder");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 thunder damage on a hit.',
 				102,
@@ -14199,11 +12001,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Keen D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Keen D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse/Versatile",
 		description: "",
@@ -14222,11 +12020,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Master: Magical D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Master: Magical D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14240,12 +12034,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"D"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "D");
 				},
 				"",
 				102,
@@ -14257,11 +12046,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Mithral D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Mithral D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -14280,11 +12065,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Serrated D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Serrated D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals Slashing",
 		description: "",
@@ -14302,23 +12083,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"of a chosen type"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "of a chosen type");
 				},
 				'Choose a creature type when you add this property. If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to creatures of the chosen type.',
 				102,
@@ -14330,23 +12102,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Aberration Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Aberration Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"aberrations"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "aberrations");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Aberrations.',
 				102,
@@ -14358,11 +12121,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Beast Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Beast Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14381,23 +12140,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Celestial Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Celestial Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"celestials"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "celestials");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Celestials.',
 				102,
@@ -14409,23 +12159,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Construct Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Construct Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"constructs"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "constructs");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Constructs.',
 				102,
@@ -14437,23 +12178,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Dragon Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Dragon Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"dragons"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "dragons");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Dragons.',
 				102,
@@ -14465,23 +12197,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Elemental Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Elemental Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"elementals"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "elementals");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Elementals.',
 				102,
@@ -14493,11 +12216,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Fey Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Fey Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14516,11 +12235,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Fiend Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Fiend Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14539,11 +12254,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Giant Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Giant Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14562,23 +12273,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Monstrosity Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Monstrosity Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"D",
-						"monstrosities"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "D", "monstrosities");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Monstrosities.',
 				102,
@@ -14590,11 +12292,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Ooze Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Ooze Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14613,11 +12311,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Plant Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Plant Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14636,11 +12330,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Undead Slaying D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Undead Slaying D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14659,11 +12349,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Vampiric D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Vampiric D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14682,11 +12368,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ D/.exec(What("Extra.Notes")) ||
-					/Venom D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ D/.exec(What("Extra.Notes")) || /Venom D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14705,11 +12387,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Crushing D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Crushing D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals bludgeoning",
 		description: "",
@@ -14728,23 +12406,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Deadly D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Deadly D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Firearm",
 		description: "",
 		calcChanges: {
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddDeadlyCalc(
-						fields,
-						v,
-						output,
-						"D"
-					);
+					ClassList["craftsman"].AddDeadlyCalc(fields, v, output, "D");
 				},
 				'If the letter "D" is included in the description of a masterwork exotic ranged firearm attack, you can add your ability modifier to its attack and damage rolls, instead of just to its attack rolls.',
 				106,
@@ -14756,11 +12425,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Legendary: Magical D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Legendary: Magical D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -14774,12 +12439,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"D"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "D");
 				},
 				"",
 				102,
@@ -14791,11 +12451,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Penetrating D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Penetrating D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ammunition/Thrown, deals piercing",
 		description: "",
@@ -14814,11 +12470,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Seeking D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Seeking D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -14837,11 +12489,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Threatening D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Threatening D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee",
 		description: "",
@@ -14860,11 +12508,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Vorpal D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Vorpal D/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals slashing",
 		description: "",
@@ -14883,11 +12527,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot D",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 1 &&
-				(!/Legendary: .+ D/.exec(What("Extra.Notes")) ||
-					/Whirlwind D/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 1 && (!/Legendary: .+ D/.exec(What("Extra.Notes")) || /Whirlwind D/.exec(What("Extra.Notes")));
 			7;
 		},
 		additional: "Prereq: Exotic, Melee, Finesse, Double/Light",
@@ -15049,12 +12689,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(
-						fields,
-						v,
-						output,
-						"E"
-					);
+					ClassList["craftsman"].AddFirearmRemoveAbilityModToDamage(fields, v, output, "E");
 				},
 			],
 		},
@@ -15362,11 +12997,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Counterweighted E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Counterweighted E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Two-handed",
 		description: "",
@@ -15385,11 +13016,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Double E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Double E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, no Heavy",
 		description: "",
@@ -15408,11 +13035,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Explosive E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Explosive E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged",
 		description: "",
@@ -15431,11 +13054,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Heat E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Heat E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Firearm",
 		description: "",
@@ -15454,11 +13073,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Journeyman: Magical E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Journeyman: Magical E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -15472,12 +13087,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"E"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "E");
 				},
 				"",
 				102,
@@ -15489,11 +13099,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Massive E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Massive E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Superheavy",
 		description: "",
@@ -15512,11 +13118,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Mounted E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Mounted E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Martial/Exotic, Ranged, Heavy",
 		description: "",
@@ -15535,11 +13137,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Precision E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Precision E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -15558,11 +13156,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Rocket E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Rocket E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -15581,11 +13175,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Sniper E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Sniper E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Ammunition, no Scatter",
 		description: "",
@@ -15604,11 +13194,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Tension E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Tension E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, no Firearm/Thrown",
 		description: "",
@@ -15627,11 +13213,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 5 &&
-				(!/Journeyman: .+ E/.exec(What("Extra.Notes")) ||
-					/Twinshot E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 5 && (!/Journeyman: .+ E/.exec(What("Extra.Notes")) || /Twinshot E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -15650,11 +13232,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Adamantine E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Adamantine E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Heavy/Versatile",
 		description: "",
@@ -15673,11 +13251,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Blessed E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Blessed E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -15696,11 +13270,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Earthshatter E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Earthshatter E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Massive",
 		description: "",
@@ -15719,11 +13289,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Elemental \(Acid\) E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Elemental \(Acid\) E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -15742,11 +13308,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/\(Cold\) E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /\(Cold\) E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -15765,11 +13327,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/\(Fire\) E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /\(Fire\) E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -15788,23 +13346,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/\(Lightning\) E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /\(Lightning\) E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"E",
-						"Lightning"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "E", "Lightning");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 lightning damage on a hit.',
 				102,
@@ -15816,23 +13365,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/\(Thunder\) E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /\(Thunder\) E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddElemental(
-						fields,
-						v,
-						"E",
-						"Thunder"
-					);
+					ClassList["craftsman"].AddElemental(fields, v, "E", "Thunder");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, this weapon deals +1d6 thunder damage on a hit.',
 				102,
@@ -15844,11 +13384,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Keen E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Keen E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse/Versatile",
 		description: "",
@@ -15867,11 +13403,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Master: Magical E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Master: Magical E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -15885,12 +13417,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"E"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "E");
 				},
 				"",
 				102,
@@ -15902,11 +13429,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Mithral E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Mithral E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse",
 		description: "",
@@ -15925,11 +13448,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Serrated E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Serrated E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals Slashing",
 		description: "",
@@ -15947,23 +13466,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"of a chosen type"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "of a chosen type");
 				},
 				'Choose a creature type when you add this property. If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to creatures of the chosen type.',
 				102,
@@ -15975,23 +13485,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Aberration Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Aberration Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"aberrations"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "aberrations");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Aberrations.',
 				102,
@@ -16003,11 +13504,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Beast Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Beast Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -16026,23 +13523,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Celestial Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Celestial Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"celestials"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "celestials");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Celestials.',
 				102,
@@ -16054,23 +13542,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Construct Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Construct Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"constructs"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "constructs");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Constructs.',
 				102,
@@ -16082,23 +13561,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Dragon Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Dragon Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"dragons"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "dragons");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Dragons.',
 				102,
@@ -16110,23 +13580,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Elemental Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Elemental Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"elementals"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "elementals");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Elementals.',
 				102,
@@ -16138,11 +13599,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Fey Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Fey Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -16161,11 +13618,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Fiend Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Fiend Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -16184,11 +13637,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Giant Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Giant Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -16207,23 +13656,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Monstrosity Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Monstrosity Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
 		calcChanges: {
 			atkAdd: [
 				function (fields, v) {
-					ClassList["craftsman"].AddSlaying(
-						fields,
-						v,
-						"E",
-						"monstrosities"
-					);
+					ClassList["craftsman"].AddSlaying(fields, v, "E", "monstrosities");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic weapon attack, it deals an extra 1d12 damage to Monstrosities.',
 				102,
@@ -16235,11 +13675,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Ooze Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Ooze Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -16258,11 +13694,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Plant Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Plant Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -16281,11 +13713,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Undead Slaying E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Undead Slaying E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -16304,11 +13732,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Vampiric E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Vampiric E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -16327,11 +13751,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 11 &&
-				(!/Master: .+ E/.exec(What("Extra.Notes")) ||
-					/Venom E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 11 && (!/Master: .+ E/.exec(What("Extra.Notes")) || /Venom E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -16350,11 +13770,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Crushing E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Crushing E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals bludgeoning",
 		description: "",
@@ -16373,23 +13789,14 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Deadly E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Deadly E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged, Firearm",
 		description: "",
 		calcChanges: {
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddDeadlyCalc(
-						fields,
-						v,
-						output,
-						"E"
-					);
+					ClassList["craftsman"].AddDeadlyCalc(fields, v, output, "E");
 				},
 				'If the letter "E" is included in the description of a masterwork exotic ranged firearm attack, you can add your ability modifier to its attack and damage rolls, instead of just to its attack rolls.',
 				106,
@@ -16401,11 +13808,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Legendary: Magical E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Legendary: Magical E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic",
 		description: "",
@@ -16419,12 +13822,7 @@ var MasterworkWeaponProperties = {
 			],
 			atkCalc: [
 				function (fields, v, output) {
-					ClassList["craftsman"].AddMagicalBonus(
-						fields,
-						v,
-						output,
-						"E"
-					);
+					ClassList["craftsman"].AddMagicalBonus(fields, v, output, "E");
 				},
 				"",
 				102,
@@ -16436,11 +13834,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Penetrating E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Penetrating E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ammunition/Thrown, deals piercing",
 		description: "",
@@ -16459,11 +13853,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Seeking E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Seeking E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Ranged",
 		description: "",
@@ -16482,11 +13872,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Threatening E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Threatening E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee",
 		description: "",
@@ -16505,11 +13891,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Vorpal E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Vorpal E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, deals slashing",
 		description: "",
@@ -16528,11 +13910,7 @@ var MasterworkWeaponProperties = {
 		source: ["VSoS", 81],
 		submenu: "Weapon Slot E",
 		prereqeval: function (v) {
-			return (
-				classes.known.craftsman.level >= 17 &&
-				(!/Legendary: .+ E/.exec(What("Extra.Notes")) ||
-					/Whirlwind E/.exec(What("Extra.Notes")))
-			);
+			return classes.known.craftsman.level >= 17 && (!/Legendary: .+ E/.exec(What("Extra.Notes")) || /Whirlwind E/.exec(What("Extra.Notes")));
 		},
 		additional: "Prereq: Exotic, Melee, Finesse, Double/Light",
 		description: "",
@@ -16568,10 +13946,7 @@ ClassList["craftsman"] = {
 			// if we're meant to increase
 			if (direction) {
 				// if we find we are at the end of the track, increase the bonus
-				if (
-					/1d12\/2d6\+\d+/.test(newDice) ||
-					/2d12\+\d+/.test(newDice)
-				) {
+				if (/1d12\/2d6\+\d+/.test(newDice) || /2d12\+\d+/.test(newDice)) {
 					var bonus = newDice.match(/\+\d+/);
 					var increase = parseInt(bonus[0]) + 1;
 					newDice = newDice.replace(/\+\d+/, "") + "+" + increase;
@@ -16630,10 +14005,7 @@ ClassList["craftsman"] = {
 			// if we're meant to decrease
 			else {
 				// if we find we are at the end of the track, decrease the bonus
-				if (
-					/1d12\/2d6\+\d+/.test(newDice) ||
-					/2d12\+\d+/.test(newDice)
-				) {
+				if (/1d12\/2d6\+\d+/.test(newDice) || /2d12\+\d+/.test(newDice)) {
 					var bonus = newDice.match(/\+\d+/);
 					var decrease = parseInt(bonus[0]) - 1;
 					newDice = newDice.replace(/\+\d+/, "");
@@ -16723,20 +14095,13 @@ ClassList["craftsman"] = {
 			!/\baerodynamic\b/i.test(fields.Description)
 		) {
 			// get the range, increase the normal by 40
-			var newRange = ClassList["craftsman"].CalcNewRange(
-				fields.Range,
-				40
-			);
+			var newRange = ClassList["craftsman"].CalcNewRange(fields.Range, 40);
 			fields.Range = fields.Range.replace(/\d+(\/\d+)*/i, newRange);
 		}
 	},
 	AddBalanced: function (fields, v, letter) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
-		if (
-			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description))
-		) {
+		if (new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) && (/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description))) {
 			// remove the heavy property description
 			fields.Description = fields.Description.replace(/heavy[,; ]*/i, "");
 		}
@@ -16750,23 +14115,15 @@ ClassList["craftsman"] = {
 			!/\bautomatic\b/i.test(fields.Description)
 		) {
 			// get the range, decrease by 20
-			var newRange = ClassList["craftsman"].CalcNewRange(
-				fields.Range,
-				-20
-			);
+			var newRange = ClassList["craftsman"].CalcNewRange(fields.Range, -20);
 			fields.Range = fields.Range.replace(/\d+(\/\d+)*/, newRange);
 
 			// step the dice down
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				false,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, false, 1);
 			fields.Damage_Die = newDice;
 
 			// add automatic property description & tooltip
-			fields.Description +=
-				(fields.Description == "" ? "" : "; ") + "Automatic";
+			fields.Description += (fields.Description == "" ? "" : "; ") + "Automatic";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "\n" : "") +
 				"Automatic: When you make an attack with this weapon on your turn, you can choose to make two attacks instead. These attacks are always made with disadvantage, regardless of circumstance. These attacks use twice the normal amount of ammunition.";
@@ -16780,8 +14137,7 @@ ClassList["craftsman"] = {
 			!/\bconcealable\b/i.test(fields.Description)
 		) {
 			// add to description + tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Concealable";
+			fields.Description += (fields.Description ? "; " : "") + "Concealable";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip ? "\n" : "") +
 				"Concealable: While stowed, you have advantage on Dexterity (Stealth) checks made to conceal this weapon.";
@@ -16792,18 +14148,12 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			/light/i.test(fields.Description) &&
-			(v.isMeleeWeapon ||
-				(v.isRangedWeapon && /thrown/i.test(fields.Description))) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(v.isMeleeWeapon || (v.isRangedWeapon && /thrown/i.test(fields.Description))) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			!/\belegant\b/i.test(fields.Description)
 		) {
 			// step up damage dice
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 1);
 			fields.Damage_Die = newDice;
 
 			// add to description + tooltip
@@ -16817,17 +14167,12 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/martial/i.test(v.theWea.type) ||
-				/martial/i.test(fields.Description)) &&
+			(/martial/i.test(v.theWea.type) || /martial/i.test(fields.Description)) &&
 			!/exotic/i.test(v.theWea.type) &&
 			!/exotic/i.test(fields.Description)
 		) {
 			// step up damage dice
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 1);
 			fields.Damage_Die = newDice;
 
 			// add exotic to the description and possibly remove martial
@@ -16840,33 +14185,24 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			/reload/i.test(fields.Description) &&
-			(/martial/i.test(v.theWea.type) ||
-				/martial/i.test(fields.Description) ||
-				/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description))
+			(/martial/i.test(v.theWea.type) || /martial/i.test(fields.Description) || /exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description))
 		) {
 			// seek reload property to change capacity
 			var reloadNum = fields.Description.match(/reload \(\d+/i);
 			reloadNum = reloadNum.replace(/reload \(/i, "");
 			var newReload = parseInt(reloadNum) * 2;
-			fields.Description = fields.Description.replace(
-				/reload \(\d+/i,
-				"Reload (" + newReload
-			);
+			fields.Description = fields.Description.replace(/reload \(\d+/i, "Reload (" + newReload);
 		}
 	},
 	AddFinesse: function (fields, v, letter) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			((v.isMeleeWeapon && !/two-handed/i.test(fields.Description)) ||
-				(v.isRangedWeapon && /thrown/i.test(fields.Description))) &&
+			((v.isMeleeWeapon && !/two-handed/i.test(fields.Description)) || (v.isRangedWeapon && /thrown/i.test(fields.Description))) &&
 			!/finesse/i.test(fields.Description)
 		) {
 			// add finesse property
-			if (!/finesse/i.test(fields.Description))
-				fields.Description +=
-					(fields.Description ? "; " : "") + "Finesse";
+			if (!/finesse/i.test(fields.Description)) fields.Description += (fields.Description ? "; " : "") + "Finesse";
 
 			fields.Mod = What("Str Mod") < What("Dex Mod") ? 2 : 1;
 		}
@@ -16875,8 +14211,7 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/loading/i.test(fields.Description) ||
-				/reload/i.test(fields.Description)) &&
+			(/loading/i.test(fields.Description) || /reload/i.test(fields.Description)) &&
 			v.isRangedWeapon &&
 			!/tension/i.test(fields.Description) &&
 			!/firearm/i.test(v.theWea.list)
@@ -16885,16 +14220,11 @@ ClassList["craftsman"] = {
 			var die = fields.Damage_Die.match(/\d+d\d+/i);
 			var dieSplit = die[0].split("d");
 			if (dieSplit[0] == 1) dieSplit[0] = "2";
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				dieSplit[0] + "d" + dieSplit[1],
-				true,
-				4
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(dieSplit[0] + "d" + dieSplit[1], true, 4);
 			fields.Damage_Die = newDice;
 
 			// add firearm to the description & tooltip
-			fields.Description +=
-				(fields.Description == "" ? "" : "; ") + "Firearm";
+			fields.Description += (fields.Description == "" ? "" : "; ") + "Firearm";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip ? "\n" : "") +
 				"Firearm: You don't add your ability modifier to this weapon's damage rolls. Firearm ammunition can't be recovered once used.";
@@ -16904,8 +14234,7 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/loading/i.test(fields.Description) ||
-				/reload/i.test(fields.Description)) &&
+			(/loading/i.test(fields.Description) || /reload/i.test(fields.Description)) &&
 			v.isRangedWeapon &&
 			!/tension/i.test(fields.Description) &&
 			!/firearm/i.test(v.theWea.list)
@@ -16923,9 +14252,7 @@ ClassList["craftsman"] = {
 		) {
 			// add fist to description & tooltip
 			fields.Description += (fields.Description ? "; " : "") + "Fist";
-			fields.Description_Tooltip +=
-				(fields.Description_Tooltip ? "\n" : "") +
-				"Fist: Attacks made with this weapon are treated as unarmed strikes.";
+			fields.Description_Tooltip += (fields.Description_Tooltip ? "\n" : "") + "Fist: Attacks made with this weapon are treated as unarmed strikes.";
 		}
 	},
 	AddForegrip: function (fields, v, letter) {
@@ -16951,10 +14278,7 @@ ClassList["craftsman"] = {
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			/two-handed/i.test(fields.Description) &&
 			!/double/i.test(fields.Description) &&
-			(/martial/i.test(v.theWea.type) ||
-				/martial/i.test(fields.Description) ||
-				/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/martial/i.test(v.theWea.type) || /martial/i.test(fields.Description) || /exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			!/\bheavy\b/i.test(fields.Description)
 		) {
 			// add heavy to description & tooltip
@@ -16962,20 +14286,13 @@ ClassList["craftsman"] = {
 
 			// increase damage if melee
 			if (v.isMeleeWeapon) {
-				var newDice = ClassList["craftsman"].CalcDieStep(
-					fields.Damage_Die,
-					true,
-					1
-				);
+				var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 1);
 				fields.Damage_Die = newDice;
 			}
 
 			// if this is ranged, increase the range by 20
 			if (v.isRangedWeapon) {
-				var newRange = ClassList["craftsman"].CalcNewRange(
-					fields.Range,
-					20
-				);
+				var newRange = ClassList["craftsman"].CalcNewRange(fields.Range, 20);
 				fields.Range = fields.Range.replace(/\d+(\/\d+)*/, newRange);
 			}
 		}
@@ -16992,11 +14309,7 @@ ClassList["craftsman"] = {
 			fields.Description += (fields.Description ? "; " : "") + "Light";
 
 			// decrease damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				false,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, false, 1);
 			fields.Damage_Die = newDice;
 		}
 	},
@@ -17013,29 +14326,18 @@ ClassList["craftsman"] = {
 			fields.Description += (fields.Description ? "; " : "") + "Loading";
 
 			// increase damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 1);
 			fields.Damage_Die = newDice;
 		}
 	},
 	AddMartial: function (fields, v, letter) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
-		if (
-			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			/simple/i.test(v.theWea.type)
-		) {
+		if (new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) && /simple/i.test(v.theWea.type)) {
 			// add martial to description & tooltip
 			fields.Description += (fields.Description ? "; " : "") + "Martial";
 
 			// step up damage dice
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 1);
 			fields.Damage_Die = newDice;
 		}
 	},
@@ -17044,10 +14346,8 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isMeleeWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
-			(/finesse/i.test(fields.Description) ||
-				/light/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
+			(/finesse/i.test(fields.Description) || /light/i.test(fields.Description)) &&
 			!/parrying/i.test(fields.Description)
 		) {
 			// todo: add parrying AC bonus?
@@ -17057,11 +14357,7 @@ ClassList["craftsman"] = {
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Parrying: While wielding this weapon and not wielding a shield, you gain a +1 bonus to your AC.";
 			// decrease damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				false,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, false, 1);
 			fields.Damage_Die = newDice;
 		}
 	},
@@ -17070,23 +14366,15 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isMeleeWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description) ||
-				/martial/i.test(v.theWea.type) ||
-				/martial/i.test(fields.Description)) &&
-			(/finesse/i.test(fields.Description) ||
-				/two-handed/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description) || /martial/i.test(v.theWea.type) || /martial/i.test(fields.Description)) &&
+			(/finesse/i.test(fields.Description) || /two-handed/i.test(fields.Description)) &&
 			!/reach/i.test(fields.Description)
 		) {
 			// add reach to description
 			fields.Description += (fields.Description ? "; " : "") + "Reach";
 
 			// decrease damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				false,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, false, 1);
 			fields.Damage_Die = newDice;
 		}
 	},
@@ -17095,38 +14383,25 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isRangedWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description) ||
-				/martial/i.test(v.theWea.type) ||
-				/martial/i.test(fields.Description)) &&
-			(/ammunition/i.test(fields.Description) ||
-				!/loading/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description) || /martial/i.test(v.theWea.type) || /martial/i.test(fields.Description)) &&
+			(/ammunition/i.test(fields.Description) || !/loading/i.test(fields.Description)) &&
 			!/reload/i.test(fields.Description)
 		) {
 			// handle the longer reload if we find "long reload" in the title
-			if (
-				/\blong reload\b/i.test(v.WeaponTextName) &&
-				/mounted/i.test(fields.Description)
-			) {
+			if (/\blong reload\b/i.test(v.WeaponTextName) && /mounted/i.test(fields.Description)) {
 				// add reload to description
-				fields.Description +=
-					(fields.Description ? "; " : "") + "Reload (1; 2 actions)";
+				fields.Description += (fields.Description ? "; " : "") + "Reload (1; 2 actions)";
 				fields.Description_Tooltip +=
 					(fields.Description_Tooltip ? "\n" : "") +
 					"Reload: This weapon can be used to make a number of attacks before it must be reloaded. If you are proficient with the weapon, reloading it takes a bonus action; otherwise, reloading it takes an action. Some weapons require an action or longer to reload, even if you have proficiency, which is specified in the Reload property. If reloading a weapon requires longer than one action, the weapon can't be used to make attacks until reloading is finished.";
 				// increase damage by 3
-				var newDice = ClassList["craftsman"].CalcDieStep(
-					fields.Damage_Die,
-					true,
-					3
-				);
+				var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 3);
 				fields.Damage_Die = newDice;
 			}
 			// otherwise handle the regular reload
 			else {
 				// add reload to description
-				fields.Description +=
-					(fields.Description ? "; " : "") + "Reload (5)";
+				fields.Description += (fields.Description ? "; " : "") + "Reload (5)";
 				fields.Description_Tooltip +=
 					(fields.Description_Tooltip ? "\n" : "") +
 					"Reload: This weapon can be used to make a number of attacks before it must be reloaded. If you are proficient with the weapon, reloading it takes a bonus action; otherwise, reloading it takes an action. Some weapons require an action or longer to reload, even if you have proficiency, which is specified in the Reload property. If reloading a weapon requires longer than one action, the weapon can't be used to make attacks until reloading is finished.";
@@ -17137,20 +14412,14 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description) ||
-				/martial/i.test(v.theWea.type) ||
-				/martial/i.test(fields.Description)) &&
-			(/light/i.test(fields.Description) ||
-				/thrown/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description) || /martial/i.test(v.theWea.type) || /martial/i.test(fields.Description)) &&
+			(/light/i.test(fields.Description) || /thrown/i.test(fields.Description)) &&
 			!/returning/i.test(fields.Description)
 		) {
 			// add returning to description + tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Returning";
+			fields.Description += (fields.Description ? "; " : "") + "Returning";
 			fields.Description_Tooltip +=
-				(fields.Description_Tooltip ? "\n" : "") +
-				"Returning: After being thrown, this weapon returns to your hand at the end of your turn.";
+				(fields.Description_Tooltip ? "\n" : "") + "Returning: After being thrown, this weapon returns to your hand at the end of your turn.";
 		}
 	},
 	AddScatter: function (fields, v, letter) {
@@ -17158,17 +14427,12 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isRangedWeapon &&
-			(/ammunition/i.test(fields.Description) ||
-				/two-handed/i.test(fields.Description)) &&
+			(/ammunition/i.test(fields.Description) || /two-handed/i.test(fields.Description)) &&
 			!/sighted/i.test(fields.Description) &&
 			!/scatter/i.test(fields.Description)
 		) {
 			// descrease damage 1 step
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				false,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, false, 1);
 			fields.Damage_Die = newDice;
 
 			// add description + tooltip
@@ -17178,10 +14442,7 @@ ClassList["craftsman"] = {
 				"Scatter: If you make an attack against a target that is within half this weapon's normal range, you deal the damage value listed in parentheses instead of the weapon's normal damage dice.";
 
 			// calculate new range
-			var newRange = ClassList["craftsman"].CalcNewRange(
-				fields.Range,
-				-70
-			);
+			var newRange = ClassList["craftsman"].CalcNewRange(fields.Range, -70);
 			fields.Range = fields.Range.replace(/\d+(\/\d+)*/, newRange);
 		}
 	},
@@ -17190,10 +14451,7 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isRangedWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description) ||
-				/martial/i.test(v.theWea.type) ||
-				/martial/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description) || /martial/i.test(v.theWea.type) || /martial/i.test(fields.Description)) &&
 			/ammunition/i.test(fields.Description) &&
 			!/scatter/i.test(fields.Description) &&
 			!/sighted/i.test(fields.Description)
@@ -17201,14 +14459,10 @@ ClassList["craftsman"] = {
 			// add to description + tooltip
 			fields.Description += (fields.Description ? "; " : "") + "Sighted";
 			fields.Description_Tooltip +=
-				(fields.Description_Tooltip ? "\n" : "") +
-				"Sighted: This weapon has disadvantage on attack rolls made against targets within 20 feet of you.";
+				(fields.Description_Tooltip ? "\n" : "") + "Sighted: This weapon has disadvantage on attack rolls made against targets within 20 feet of you.";
 
 			// calculate new range
-			var newRange = ClassList["craftsman"].CalcNewRange(
-				fields.Range,
-				50
-			);
+			var newRange = ClassList["craftsman"].CalcNewRange(fields.Range, 50);
 			fields.Range = fields.Range.replace(/\d+(\/\d+)*/, newRange);
 		}
 	},
@@ -17217,22 +14471,16 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isMeleeWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			/\bheavy\b/i.test(fields.Description) &&
 			!/superheavy/i.test(fields.Description)
 		) {
 			// increase damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 1);
 			fields.Damage_Die = newDice;
 
 			// add to description + tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Superheavy";
+			fields.Description += (fields.Description ? "; " : "") + "Superheavy";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip ? "\n" : "") +
 				"Superheavy: This weapon is unusually large for its type. You must have a Strength score of 16 or higher to wield a superheavy weapon.";
@@ -17242,16 +14490,11 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			!/switch/i.test(fields.Description)
 		) {
 			// decrease damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				false,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, false, 1);
 			fields.Damage_Die = newDice;
 
 			// add to description + tooltip
@@ -17263,11 +14506,7 @@ ClassList["craftsman"] = {
 	},
 	AddThrown: function (fields, v, letter) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
-		if (
-			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			!/two-handed/i.test(fields.Description) &&
-			!/thrown/i.test(fields.Description)
-		) {
+		if (new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) && !/two-handed/i.test(fields.Description) && !/thrown/i.test(fields.Description)) {
 			// add thrown to description + tooltip
 			fields.Description += (fields.Description ? "; " : "") + "Thrown";
 
@@ -17279,10 +14518,7 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description) ||
-				/martial/i.test(v.theWea.type) ||
-				/martial/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description) || /martial/i.test(v.theWea.type) || /martial/i.test(fields.Description)) &&
 			!/trip/i.test(fields.Description)
 		) {
 			// add trip to description + tooltip
@@ -17304,23 +14540,15 @@ ClassList["craftsman"] = {
 			!/two-handed/i.test(fields.Description)
 		) {
 			// add twohanded to description
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Two-handed";
+			fields.Description += (fields.Description ? "; " : "") + "Two-handed";
 
 			// increase damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 1);
 			fields.Damage_Die = newDice;
 
 			// if this weapon is ranged, increase that range
 			if (v.isRangedWeapon) {
-				var newRange = ClassList["craftsman"].CalcNewRange(
-					fields.Range,
-					50
-				);
+				var newRange = ClassList["craftsman"].CalcNewRange(fields.Range, 50);
 				fields.Range = fields.Range.replace(/\d+(\/\d+)*/, newRange);
 			}
 		}
@@ -17335,33 +14563,21 @@ ClassList["craftsman"] = {
 			!/versatile/i.test(fields.Description)
 		) {
 			// calculate two-handed damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 1);
 
 			// add versatile to description
-			if (!/versatile/i.test(fields.Description))
-				fields.Description +=
-					(fields.Description ? "; " : "") +
-					"Versatile (" +
-					newDice +
-					")";
+			if (!/versatile/i.test(fields.Description)) fields.Description += (fields.Description ? "; " : "") + "Versatile (" + newDice + ")";
 		}
 	},
 	AddCounterweighted: function (fields, v, letter) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			/two-handed/i.test(fields.Description)
 		) {
 			// add counterweighted to description & tooltip
-			if (!/counterweighted/i.test(fields.Description))
-				fields.Description +=
-					(fields.Description ? "; " : "") + "Counterweighted";
+			if (!/counterweighted/i.test(fields.Description)) fields.Description += (fields.Description ? "; " : "") + "Counterweighted";
 
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
@@ -17373,23 +14589,16 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isMeleeWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			!/heavy/i.test(fields.Description) &&
 			!/double/i.test(fields.Description)
 		) {
 			// decrease damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				false,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, false, 1);
 			fields.Damage_Die = newDice;
 
 			// add double to description & tooltip
-			if (!/double/i.test(fields.Description))
-				fields.Description +=
-					(fields.Description ? "; " : "") + "Double";
+			if (!/double/i.test(fields.Description)) fields.Description += (fields.Description ? "; " : "") + "Double";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Double: This weapon has two damage-dealing ends. When you take the Attack action and make an attack with this weapon, you can use your bonus action to make an additional attack with it; you don't add your ability modifier to the damage roll of this additional attack.";
@@ -17400,31 +14609,19 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isRangedWeapon &&
-			(/martial/i.test(v.theWea.type) ||
-				/martial/i.test(fields.Description) ||
-				/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/martial/i.test(v.theWea.type) || /martial/i.test(fields.Description) || /exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			!/explosive/i.test(fields.Description)
 		) {
 			// decrease damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				false,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, false, 1);
 			fields.Damage_Die = newDice;
 
 			// change damage type
-			if (
-				/bludgeoning/i.test(fields.Damage_Type) ||
-				/piercing/i.test(fields.Damage_Type) ||
-				/slashing/i.test(fields.Damage_Type)
-			)
+			if (/bludgeoning/i.test(fields.Damage_Type) || /piercing/i.test(fields.Damage_Type) || /slashing/i.test(fields.Damage_Type))
 				fields.Damage_Type = "Fire";
 
 			// add double to description & tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Explosive";
+			fields.Description += (fields.Description ? "; " : "") + "Explosive";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Explosive: When this weapon's projectile hits a target, it explodes in a 15-foot diameter sphere. The projectile can target an unoccupied space within its range. Each creature other than the target within the blast radius (for a Medium or smaller target, each creature within 5 feet of it) must make a Dexterity saving throw, taking half the damage rolled on a failed save or no damage on a successful one.";
@@ -17435,25 +14632,16 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isRangedWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description) ||
-				/martial/i.test(v.theWea.type) ||
-				/martial/i.test(fields.Description)) &&
-			(/firearm/i.test(v.theWea.list) ||
-				/firearm/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description) || /martial/i.test(v.theWea.type) || /martial/i.test(fields.Description)) &&
+			(/firearm/i.test(v.theWea.list) || /firearm/i.test(fields.Description)) &&
 			!/\bheat\b/i.test(fields.Description)
 		) {
 			// increase damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 1);
 			fields.Damage_Die = newDice;
 
 			// add heat to description & tooltip
-			if (!/heat/i.test(fields.Description))
-				fields.Description += (fields.Description ? "; " : "") + "Heat";
+			if (!/heat/i.test(fields.Description)) fields.Description += (fields.Description ? "; " : "") + "Heat";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Heat: This weapon gains 1 heat point whenever an attack is made with it, and it loses 1 heat point at the start of each of your turns. If the weapon has 3 heat points, it overheats and loses all heat points. An overheated weapon can't be used to make an attack again until the end of your next turn.";
@@ -17461,22 +14649,14 @@ ClassList["craftsman"] = {
 	},
 	AddMagical: function (fields, v, letter) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
-		if (
-			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description))
-		) {
+		if (new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) && (/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description))) {
 			// remove 'counts as', because it is
 			fields.Description = fields.Description.replace(/counts as /i, "");
 		}
 	},
 	AddMagicalBonus: function (fields, v, output, letter) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
-		if (
-			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description))
-		) {
+		if (new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) && (/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description))) {
 			// add +1s
 			output.extraHit += 1;
 			output.extraDmg += 1;
@@ -17486,18 +14666,13 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			v.isMeleeWeapon &&
 			/superheavy/i.test(fields.Description) &&
 			!/massive/i.test(fields.Description)
 		) {
 			// increase damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				2
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 2);
 			fields.Damage_Die = newDice;
 
 			// add massive to description & tooltip
@@ -17511,20 +14686,13 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description) ||
-				/martial/i.test(v.theWea.type) ||
-				/martial/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description) || /martial/i.test(v.theWea.type) || /martial/i.test(fields.Description)) &&
 			v.isRangedWeapon &&
 			/heavy/i.test(fields.Description) &&
 			!/mounted/i.test(fields.Description)
 		) {
 			// increase damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				2
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 2);
 			fields.Damage_Die = newDice;
 
 			// add mounted to description & tooltip
@@ -17538,15 +14706,13 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			v.isMeleeWeapon &&
 			/finesse/i.test(fields.Description) &&
 			!/precision/i.test(fields.Description)
 		) {
 			// add precision to description & tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Precision +1d6";
+			fields.Description += (fields.Description ? "; " : "") + "Precision +1d6";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Precision. Once per turn, when you hit a creature with this weapon and have advantage on the attack roll, the target takes an extra 1d6 damage.";
@@ -17556,21 +14722,15 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			!/rocket/i.test(fields.Description)
 		) {
 			// decrease damage
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				false,
-				1
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, false, 1);
 			fields.Damage_Die = newDice;
 
 			// add rocket to description & tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Rocket +1d4";
+			fields.Description += (fields.Description ? "; " : "") + "Rocket +1d4";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Rocket: This weapon has a small propulsive engine attached to it or its projectiles. Once per turn, when you hit a creature with this weapon, you can deal an extra 1d4 damage to the target.";
@@ -17581,8 +14741,7 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isRangedWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			/ammunition/i.test(fields.Description) &&
 			!/scatter/i.test(fields.Description) &&
 			!/sniper/i.test(fields.Description)
@@ -17599,8 +14758,7 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isRangedWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			!/firearm/i.test(fields.Description) &&
 			!/firearm/i.test(v.theWea.list) &&
 			!/thrown/i.test(fields.Description) &&
@@ -17623,8 +14781,7 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isRangedWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			!/twinshot/i.test(fields.Description)
 		) {
 			// add twinshot to description & tooltip
@@ -17639,62 +14796,43 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isMeleeWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
-			(/heavy/i.test(fields.Description) ||
-				/versatile/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
+			(/heavy/i.test(fields.Description) || /versatile/i.test(fields.Description)) &&
 			!/adamantine/i.test(fields.Description)
 		) {
 			// increase damage 2 steps
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				2
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 2);
 			fields.Damage_Die = newDice;
 
 			// add adamantine to description & tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Adamantine";
+			fields.Description += (fields.Description ? "; " : "") + "Adamantine";
 			fields.Description_Tooltip +=
-				(fields.Description_Tooltip == "" ? "" : "\n") +
-				"Adamantine: This weapon deals double damage to objects and structures.";
+				(fields.Description_Tooltip == "" ? "" : "\n") + "Adamantine: This weapon deals double damage to objects and structures.";
 		}
 	},
 	AddBlessed: function (fields, v, letter) {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
-			!/\+1d4 radiant \(1d10 vs Fiends\/Undead\)/i.test(
-				fields.Description
-			)
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
+			!/\+1d4 radiant \(1d10 vs Fiends\/Undead\)/i.test(fields.Description)
 		) {
 			// add blessed to description
-			fields.Description +=
-				(fields.Description ? "; " : "") +
-				"+1d4 radiant (1d10 vs Fiends/Undead)";
+			fields.Description += (fields.Description ? "; " : "") + "+1d4 radiant (1d10 vs Fiends/Undead)";
 		}
 	},
 	AddEarthshatter: function (fields, v, letter) {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			/massive/i.test(fields.Description) &&
 			!/earthshatter/i.test(fields.Description)
 		) {
 			// increase damage 2 steps
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				2
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 2);
 			fields.Damage_Die = newDice;
 
 			// add earthshatter to description
-			fields.Description +=
-				(fields.Description == "" ? "" : "; ") + "Earthshatter";
+			fields.Description += (fields.Description == "" ? "" : "; ") + "Earthshatter";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Earthshatter: On a hit with this weapon, the target must make a Strength saving throw. On a failed save, the target is knocked prone or pushed 10 feet away from you (your choice). ";
@@ -17702,14 +14840,9 @@ ClassList["craftsman"] = {
 	},
 	AddElemental: function (fields, v, letter, damageType) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
-		if (
-			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description))
-		) {
+		if (new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) && (/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description))) {
 			// add elemental to description
-			fields.Description +=
-				(fields.Description ? "; " : "") + "+1d6 " + damageType;
+			fields.Description += (fields.Description ? "; " : "") + "+1d6 " + damageType;
 		}
 	},
 	AddKeen: function (fields, v, letter) {
@@ -17717,15 +14850,11 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isMeleeWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
-			(/finesse/i.test(fields.Description) ||
-				/versatile/i.test(fields.Description))
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
+			(/finesse/i.test(fields.Description) || /versatile/i.test(fields.Description))
 		) {
 			// add keen to description
-			if (!/crit on/i.test(fields.Description))
-				fields.Description +=
-					(fields.Description ? "; " : "") + "Crit on 19-20";
+			if (!/crit on/i.test(fields.Description)) fields.Description += (fields.Description ? "; " : "") + "Crit on 19-20";
 		}
 	},
 	AddMithral: function (fields, v, letter) {
@@ -17733,16 +14862,11 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isMeleeWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			/finesse/i.test(fields.Description)
 		) {
 			// increase damage 2 steps
-			var newDice = ClassList["craftsman"].CalcDieStep(
-				fields.Damage_Die,
-				true,
-				2
-			);
+			var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 2);
 			fields.Damage_Die = newDice;
 
 			// halve weight
@@ -17753,14 +14877,12 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			/slashing/i.test(fields.Damage_Type) &&
 			!/serrated/i.test(fields.Description)
 		) {
 			// add serrated to description
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Serrated +1d8";
+			fields.Description += (fields.Description ? "; " : "") + "Serrated +1d8";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Serrated: When a creature takes damage from serrated weapons twice or more in a single turn, it takes an extra 1d8 slashing damage.";
@@ -17768,52 +14890,35 @@ ClassList["craftsman"] = {
 	},
 	AddSlaying: function (fields, v, letter, creaType) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
-		if (
-			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description))
-		) {
+		if (new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) && (/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description))) {
 			// add slaying to description
-			fields.Description +=
-				(fields.Description ? "; " : "") + "+1d12 vs " + creaType;
+			fields.Description += (fields.Description ? "; " : "") + "+1d12 vs " + creaType;
 		}
 	},
 	AddVampiric: function (fields, v, letter) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
-		if (
-			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description))
-		) {
+		if (new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) && (/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description))) {
 			// add vampiric to description
-			fields.Description +=
-				(fields.Description ? "; " : "") + "+1d4 necrotic, heal result";
+			fields.Description += (fields.Description ? "; " : "") + "+1d4 necrotic, heal result";
 		}
 	},
 	AddVenom: function (fields, v, letter) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
-		if (
-			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description))
-		) {
+		if (new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) && (/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description))) {
 			// add venom to description
-			fields.Description +=
-				(fields.Description == "" ? "" : "; ") + "+1d8 poison";
+			fields.Description += (fields.Description == "" ? "" : "; ") + "+1d8 poison";
 		}
 	},
 	AddCrushing: function (fields, v, letter) {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			/bludgeoning/i.test(fields.Damage_Type) &&
 			!/\-1 to target's AC/i.test(fields.Description_Tooltip)
 		) {
 			// add crushing to description + tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "-1 to target's AC";
+			fields.Description += (fields.Description ? "; " : "") + "-1 to target's AC";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Crushing: When you hit a creature that has natural armor or is wearing armor, the target takes a cumulative −1 penalty to the AC its armor offers. Armor reduced to an AC of 10 in this way is destroyed. A creature can repair its armor or heal the damage dealt to its natural armor over the course of a long rest.";
@@ -17823,11 +14928,9 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			v.isRangedWeapon &&
-			(/firearm/i.test(fields.Description) ||
-				/firearm/i.test(v.theWea.list))
+			(/firearm/i.test(fields.Description) || /firearm/i.test(v.theWea.list))
 		) {
 			output.modToDmg = true;
 		}
@@ -17836,16 +14939,13 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
-			(/ammunition/i.test(fields.Description) ||
-				/thrown/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
+			(/ammunition/i.test(fields.Description) || /thrown/i.test(fields.Description)) &&
 			/piercing/i.test(fields.Damage_Type) &&
 			!/penetrating/i.test(fields.Description)
 		) {
 			// add penetrating to description + tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Penetrating (Dex save)";
+			fields.Description += (fields.Description ? "; " : "") + "Penetrating (Dex save)";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Penetrating: This weapon pierces through its targets. When you make a ranged attack with this weapon and don't have disadvantage, you can target all creatures in a straight line within this weapon's normal range. You don't make an attack roll for this attack. Instead, each creature in the line must succeed on a Dexterity saving throw or take damage as if it were hit by the weapon.";
@@ -17855,13 +14955,11 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			v.isRangedWeapon
 		) {
 			// add seeking to description + tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "5 dmg on miss";
+			fields.Description += (fields.Description ? "; " : "") + "5 dmg on miss";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Seeking: When you make an attack roll that doesn't have disadvantage with this weapon and miss, you instead hit the target and deal 5 damage of the weapon's type. This damage can't be increased in any way, and no other effects can be applied to the hit.";
@@ -17871,14 +14969,12 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			v.isMeleeWeapon &&
 			!/threatening/i.test(fields.Description)
 		) {
 			// add seeking to description + tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Threatening";
+			fields.Description += (fields.Description ? "; " : "") + "Threatening";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Threatening: When you make an opportunity attack with a threatening weapon, you can do so without using your reaction. You can't make more than one opportunity attack per turn.";
@@ -17888,15 +14984,12 @@ ClassList["craftsman"] = {
 		if (!ClassList["craftsman"].CheckViable(v)) return;
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			/slashing/i.test(fields.Damage_Type) &&
 			!/On nat 20: cut off head/.test(fields.Description_Tooltip)
 		) {
 			// add seeking to description + tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") +
-				"On 20 to hit: cut off head or +6d8";
+			fields.Description += (fields.Description ? "; " : "") + "On 20 to hit: cut off head or +6d8";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Vorpal: When you attack a creature that has at least one head with this weapon and roll a 20 on the attack roll, you cut off one of the creature's heads. The creature dies if it can't survive without the lost head. A creature is immune to this effect if it is immune to slashing damage, doesn't have or need a head, has legendary actions, or the GM decides that the creature is too big for its head to be cut off with this weapon. Such a creature instead takes an extra 6d8 slashing damage from the hit.";
@@ -17907,16 +15000,13 @@ ClassList["craftsman"] = {
 		if (
 			new RegExp("\\b" + letter + "\\b", "i").test(v.WeaponTextName) &&
 			v.isMeleeWeapon &&
-			(/exotic/i.test(v.theWea.type) ||
-				/exotic/i.test(fields.Description)) &&
+			(/exotic/i.test(v.theWea.type) || /exotic/i.test(fields.Description)) &&
 			/finesse/i.test(fields.Description) &&
-			(/double/i.test(fields.Description) ||
-				/light/i.test(fields.Description)) &&
+			(/double/i.test(fields.Description) || /light/i.test(fields.Description)) &&
 			!/whirlwind/i.test(fields.Description)
 		) {
 			// add whirlwind to description + tooltip
-			fields.Description +=
-				(fields.Description ? "; " : "") + "Whirlwind";
+			fields.Description += (fields.Description ? "; " : "") + "Whirlwind";
 			fields.Description_Tooltip +=
 				(fields.Description_Tooltip == "" ? "" : "\n") +
 				"Whirlwind: When you use your bonus action to make an additional melee attack with this weapon—such as when you engage with two-weapon fighting or use a double weapon—you can make an attack with it against any number of creatures within 5 feet of you, with a separate attack roll for each target. You can't move between these bonus attacks.";
@@ -17932,8 +15022,7 @@ ClassList["craftsman"] = {
 	improvements: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5],
 	saves: ["Int", "Con"],
 	skillstxt: {
-		primary:
-			"Choose two from Arcana, Athletics, History, Investigation, Medicine, Perception, and Persuasion",
+		primary: "Choose two from Arcana, Athletics, History, Investigation, Medicine, Perception, and Persuasion",
 	},
 	toolProfs: {
 		primary: [["Craftsman's tools", "Int"], "All artisan's tools"],
@@ -17956,9 +15045,7 @@ ClassList["craftsman"] = {
 			name: "Bonus Proficiencies",
 			source: ["VSoS", 65],
 			minlevel: 1,
-			description: desc([
-				"I am proficient with exotic weapons and armor, as well as all artisan's tools",
-			]),
+			description: desc(["I am proficient with exotic weapons and armor, as well as all artisan's tools"]),
 		},
 		"active crafting": {
 			name: "Active Crafting",
@@ -17991,16 +15078,7 @@ ClassList["craftsman"] = {
 			source: ["VSoS", 65],
 			minlevel: 2,
 			additional: levels.map(function (n) {
-				return n <= 1
-					? ""
-					: "Max Masterwork Property Level: " +
-							(n < 5
-								? "Apprentice"
-								: n < 11
-								? "Journeyman"
-								: n < 17
-								? "Master"
-								: "Legendary");
+				return n <= 1 ? "" : "Max Masterwork Property Level: " + (n < 5 ? "Apprentice" : n < 11 ? "Journeyman" : n < 17 ? "Master" : "Legendary");
 			}),
 			description: desc([
 				"I can craft masterwork weapons & armor for 50 gp plus the normal cost and time.",
@@ -18010,16 +15088,13 @@ ClassList["craftsman"] = {
 			]),
 			extrachoices: MasterworkWeaponChoices,
 			extraname: "Masterwork Weapon Properties",
-			"apprentice: aerodynamic a":
-				MasterworkWeaponProperties.aerodynamicA,
+			"apprentice: aerodynamic a": MasterworkWeaponProperties.aerodynamicA,
 			"apprentice: automatic a": MasterworkWeaponProperties.automaticA,
 			"apprentice: balanced a": MasterworkWeaponProperties.balancedA,
-			"apprentice: concealable a":
-				MasterworkWeaponProperties.concealableA,
+			"apprentice: concealable a": MasterworkWeaponProperties.concealableA,
 			"apprentice: elegant a": MasterworkWeaponProperties.elegantA,
 			"apprentice: exotic a": MasterworkWeaponProperties.exoticA,
-			"apprentice: extended magazine a":
-				MasterworkWeaponProperties.extendedmagA,
+			"apprentice: extended magazine a": MasterworkWeaponProperties.extendedmagA,
 			"apprentice: finesse a": MasterworkWeaponProperties.finesseA,
 			"apprentice: firearm a": MasterworkWeaponProperties.firearmA,
 			"apprentice: fist a": MasterworkWeaponProperties.fistA,
@@ -18040,13 +15115,11 @@ ClassList["craftsman"] = {
 			"apprentice: trip a": MasterworkWeaponProperties.tripA,
 			"apprentice: two-handed a": MasterworkWeaponProperties.twohandedA,
 			"apprentice: versatile a": MasterworkWeaponProperties.versatileA,
-			"journeyman: counterweighted a":
-				MasterworkWeaponProperties.counterweightedA,
+			"journeyman: counterweighted a": MasterworkWeaponProperties.counterweightedA,
 			"journeyman: double a": MasterworkWeaponProperties.doubleA,
 			"journeyman: explosive a": MasterworkWeaponProperties.explosiveA,
 			"journeyman: heat a": MasterworkWeaponProperties.heatA,
-			"journeyman: magical a":
-				MasterworkWeaponProperties.journeymanmagicalA,
+			"journeyman: magical a": MasterworkWeaponProperties.journeymanmagicalA,
 			"journeyman: massive a": MasterworkWeaponProperties.massiveA,
 			"journeyman: mounted a": MasterworkWeaponProperties.mountedA,
 			"journeyman: precision a": MasterworkWeaponProperties.precisionA,
@@ -18057,68 +15130,47 @@ ClassList["craftsman"] = {
 			"master: adamantine a": MasterworkWeaponProperties.adamantineA,
 			"master: blessed a": MasterworkWeaponProperties.blessedA,
 			"master: earthshatter a": MasterworkWeaponProperties.earthshatterA,
-			"master: elemental (acid) a":
-				MasterworkWeaponProperties.elementalacidA,
-			"master: elemental (cold) a":
-				MasterworkWeaponProperties.elementalcoldA,
-			"master: elemental (fire) a":
-				MasterworkWeaponProperties.elementalfireA,
-			"master: elemental (lightning) a":
-				MasterworkWeaponProperties.elementallightningA,
-			"master: elemental (thunder) a":
-				MasterworkWeaponProperties.elementalthunderA,
+			"master: elemental (acid) a": MasterworkWeaponProperties.elementalacidA,
+			"master: elemental (cold) a": MasterworkWeaponProperties.elementalcoldA,
+			"master: elemental (fire) a": MasterworkWeaponProperties.elementalfireA,
+			"master: elemental (lightning) a": MasterworkWeaponProperties.elementallightningA,
+			"master: elemental (thunder) a": MasterworkWeaponProperties.elementalthunderA,
 			"master: keen a": MasterworkWeaponProperties.keenA,
 			"master: magical a": MasterworkWeaponProperties.mastermagicalA,
 			"master: mithral a": MasterworkWeaponProperties.mithralA,
 			"master: serrated a": MasterworkWeaponProperties.serratedA,
 			"master: slaying a": MasterworkWeaponProperties.slayingSpecialA,
-			"master: slaying (aberrations) a":
-				MasterworkWeaponProperties.slayingAberrationA,
-			"master: slaying (beasts) a":
-				MasterworkWeaponProperties.slayingBeastA,
-			"master: slaying (celestials) a":
-				MasterworkWeaponProperties.slayingCelestialA,
-			"master: slaying (constructs) a":
-				MasterworkWeaponProperties.slayingConstructA,
-			"master: slaying (dragons) a":
-				MasterworkWeaponProperties.slayingDragonA,
-			"master: slaying (elementals) a":
-				MasterworkWeaponProperties.slayingElementalA,
+			"master: slaying (aberrations) a": MasterworkWeaponProperties.slayingAberrationA,
+			"master: slaying (beasts) a": MasterworkWeaponProperties.slayingBeastA,
+			"master: slaying (celestials) a": MasterworkWeaponProperties.slayingCelestialA,
+			"master: slaying (constructs) a": MasterworkWeaponProperties.slayingConstructA,
+			"master: slaying (dragons) a": MasterworkWeaponProperties.slayingDragonA,
+			"master: slaying (elementals) a": MasterworkWeaponProperties.slayingElementalA,
 			"master: slaying (fey) a": MasterworkWeaponProperties.slayingFeyA,
-			"master: slaying (fiends) a":
-				MasterworkWeaponProperties.slayingFiendA,
-			"master: slaying (giants) a":
-				MasterworkWeaponProperties.slayingGiantA,
-			"master: slaying (monstrosities) a":
-				MasterworkWeaponProperties.slayingMonstrosityA,
-			"master: slaying (oozes) a":
-				MasterworkWeaponProperties.slayingOozeA,
-			"master: slaying (plants) a":
-				MasterworkWeaponProperties.slayingPlantA,
-			"master: slaying (undead) a":
-				MasterworkWeaponProperties.slayingUndeadA,
+			"master: slaying (fiends) a": MasterworkWeaponProperties.slayingFiendA,
+			"master: slaying (giants) a": MasterworkWeaponProperties.slayingGiantA,
+			"master: slaying (monstrosities) a": MasterworkWeaponProperties.slayingMonstrosityA,
+			"master: slaying (oozes) a": MasterworkWeaponProperties.slayingOozeA,
+			"master: slaying (plants) a": MasterworkWeaponProperties.slayingPlantA,
+			"master: slaying (undead) a": MasterworkWeaponProperties.slayingUndeadA,
 			"master: vampiric a": MasterworkWeaponProperties.vampiricA,
 			"master: venom a": MasterworkWeaponProperties.venomA,
 			"legendary: crushing a": MasterworkWeaponProperties.crushingA,
 			"legendary: deadly a": MasterworkWeaponProperties.deadlyA,
-			"legendary: magical a":
-				MasterworkWeaponProperties.legendarymagicalA,
+			"legendary: magical a": MasterworkWeaponProperties.legendarymagicalA,
 			"legendary: penetrating a": MasterworkWeaponProperties.penetratingA,
 			"legendary: seeking a": MasterworkWeaponProperties.seekingA,
 			"legendary: threatening a": MasterworkWeaponProperties.threateningA,
 			"legendary: vorpal a": MasterworkWeaponProperties.vorpalA,
 			"legendary: whirlwind a": MasterworkWeaponProperties.whirlwindA,
 
-			"apprentice: aerodynamic b":
-				MasterworkWeaponProperties.aerodynamicB,
+			"apprentice: aerodynamic b": MasterworkWeaponProperties.aerodynamicB,
 			"apprentice: automatic b": MasterworkWeaponProperties.automaticB,
 			"apprentice: balanced b": MasterworkWeaponProperties.balancedB,
-			"apprentice: concealable b":
-				MasterworkWeaponProperties.concealableB,
+			"apprentice: concealable b": MasterworkWeaponProperties.concealableB,
 			"apprentice: elegant b": MasterworkWeaponProperties.elegantB,
 			"apprentice: exotic b": MasterworkWeaponProperties.exoticB,
-			"apprentice: extended magazine b":
-				MasterworkWeaponProperties.extendedmagB,
+			"apprentice: extended magazine b": MasterworkWeaponProperties.extendedmagB,
 			"apprentice: finesse b": MasterworkWeaponProperties.finesseB,
 			"apprentice: firearm b": MasterworkWeaponProperties.firearmB,
 			"apprentice: fist b": MasterworkWeaponProperties.fistB,
@@ -18139,13 +15191,11 @@ ClassList["craftsman"] = {
 			"apprentice: trip b": MasterworkWeaponProperties.tripB,
 			"apprentice: two-handed b": MasterworkWeaponProperties.twohandedB,
 			"apprentice: versatile b": MasterworkWeaponProperties.versatileB,
-			"journeyman: counterweighted b":
-				MasterworkWeaponProperties.counterweightedB,
+			"journeyman: counterweighted b": MasterworkWeaponProperties.counterweightedB,
 			"journeyman: double b": MasterworkWeaponProperties.doubleB,
 			"journeyman: explosive b": MasterworkWeaponProperties.explosiveB,
 			"journeyman: heat b": MasterworkWeaponProperties.heatB,
-			"journeyman: magical b":
-				MasterworkWeaponProperties.journeymanmagicalB,
+			"journeyman: magical b": MasterworkWeaponProperties.journeymanmagicalB,
 			"journeyman: massive b": MasterworkWeaponProperties.massiveB,
 			"journeyman: mounted b": MasterworkWeaponProperties.mountedB,
 			"journeyman: precision b": MasterworkWeaponProperties.precisionB,
@@ -18156,68 +15206,47 @@ ClassList["craftsman"] = {
 			"master: adamantine b": MasterworkWeaponProperties.adamantineB,
 			"master: blessed b": MasterworkWeaponProperties.blessedB,
 			"master: earthshatter b": MasterworkWeaponProperties.earthshatterB,
-			"master: elemental (acid) b":
-				MasterworkWeaponProperties.elementalacidB,
-			"master: elemental (cold) b":
-				MasterworkWeaponProperties.elementalcoldB,
-			"master: elemental (fire) b":
-				MasterworkWeaponProperties.elementalfireB,
-			"master: elemental (lightning) b":
-				MasterworkWeaponProperties.elementallightningB,
-			"master: elemental (thunder) b":
-				MasterworkWeaponProperties.elementalthunderB,
+			"master: elemental (acid) b": MasterworkWeaponProperties.elementalacidB,
+			"master: elemental (cold) b": MasterworkWeaponProperties.elementalcoldB,
+			"master: elemental (fire) b": MasterworkWeaponProperties.elementalfireB,
+			"master: elemental (lightning) b": MasterworkWeaponProperties.elementallightningB,
+			"master: elemental (thunder) b": MasterworkWeaponProperties.elementalthunderB,
 			"master: keen b": MasterworkWeaponProperties.keenB,
 			"master: magical b": MasterworkWeaponProperties.mastermagicalB,
 			"master: mithral b": MasterworkWeaponProperties.mithralB,
 			"master: serrated b": MasterworkWeaponProperties.serratedB,
 			"master: slaying b": MasterworkWeaponProperties.slayingSpecialB,
-			"master: slaying (aberrations) b":
-				MasterworkWeaponProperties.slayingAberrationB,
-			"master: slaying (beasts) b":
-				MasterworkWeaponProperties.slayingBeastB,
-			"master: slaying (celestials) b":
-				MasterworkWeaponProperties.slayingCelestialB,
-			"master: slaying (constructs) b":
-				MasterworkWeaponProperties.slayingConstructB,
-			"master: slaying (dragons) b":
-				MasterworkWeaponProperties.slayingDragonB,
-			"master: slaying (elementals) b":
-				MasterworkWeaponProperties.slayingElementalB,
+			"master: slaying (aberrations) b": MasterworkWeaponProperties.slayingAberrationB,
+			"master: slaying (beasts) b": MasterworkWeaponProperties.slayingBeastB,
+			"master: slaying (celestials) b": MasterworkWeaponProperties.slayingCelestialB,
+			"master: slaying (constructs) b": MasterworkWeaponProperties.slayingConstructB,
+			"master: slaying (dragons) b": MasterworkWeaponProperties.slayingDragonB,
+			"master: slaying (elementals) b": MasterworkWeaponProperties.slayingElementalB,
 			"master: slaying (fey) b": MasterworkWeaponProperties.slayingFeyB,
-			"master: slaying (fiends) b":
-				MasterworkWeaponProperties.slayingFiendB,
-			"master: slaying (giants) b":
-				MasterworkWeaponProperties.slayingGiantB,
-			"master: slaying (monstrosities) b":
-				MasterworkWeaponProperties.slayingMonstrosityB,
-			"master: slaying (oozes) b":
-				MasterworkWeaponProperties.slayingOozeB,
-			"master: slaying (plants) b":
-				MasterworkWeaponProperties.slayingPlantB,
-			"master: slaying (undead) b":
-				MasterworkWeaponProperties.slayingUndeadB,
+			"master: slaying (fiends) b": MasterworkWeaponProperties.slayingFiendB,
+			"master: slaying (giants) b": MasterworkWeaponProperties.slayingGiantB,
+			"master: slaying (monstrosities) b": MasterworkWeaponProperties.slayingMonstrosityB,
+			"master: slaying (oozes) b": MasterworkWeaponProperties.slayingOozeB,
+			"master: slaying (plants) b": MasterworkWeaponProperties.slayingPlantB,
+			"master: slaying (undead) b": MasterworkWeaponProperties.slayingUndeadB,
 			"master: vampiric b": MasterworkWeaponProperties.vampiricB,
 			"master: venom b": MasterworkWeaponProperties.venomB,
 			"legendary: crushing b": MasterworkWeaponProperties.crushingB,
 			"legendary: deadly b": MasterworkWeaponProperties.deadlyB,
-			"legendary: magical b":
-				MasterworkWeaponProperties.legendarymagicalB,
+			"legendary: magical b": MasterworkWeaponProperties.legendarymagicalB,
 			"legendary: penetrating b": MasterworkWeaponProperties.penetratingB,
 			"legendary: seeking b": MasterworkWeaponProperties.seekingB,
 			"legendary: threatening b": MasterworkWeaponProperties.threateningB,
 			"legendary: vorpal b": MasterworkWeaponProperties.vorpalB,
 			"legendary: whirlwind b": MasterworkWeaponProperties.whirlwindB,
 
-			"apprentice: aerodynamic c":
-				MasterworkWeaponProperties.aerodynamicC,
+			"apprentice: aerodynamic c": MasterworkWeaponProperties.aerodynamicC,
 			"apprentice: automatic c": MasterworkWeaponProperties.automaticC,
 			"apprentice: balanced c": MasterworkWeaponProperties.balancedC,
-			"apprentice: concealable c":
-				MasterworkWeaponProperties.concealableC,
+			"apprentice: concealable c": MasterworkWeaponProperties.concealableC,
 			"apprentice: elegant c": MasterworkWeaponProperties.elegantC,
 			"apprentice: exotic c": MasterworkWeaponProperties.exoticC,
-			"apprentice: extended magazine c":
-				MasterworkWeaponProperties.extendedmagC,
+			"apprentice: extended magazine c": MasterworkWeaponProperties.extendedmagC,
 			"apprentice: finesse c": MasterworkWeaponProperties.finesseC,
 			"apprentice: firearm c": MasterworkWeaponProperties.firearmC,
 			"apprentice: fist c": MasterworkWeaponProperties.fistC,
@@ -18238,13 +15267,11 @@ ClassList["craftsman"] = {
 			"apprentice: trip c": MasterworkWeaponProperties.tripC,
 			"apprentice: two-handed c": MasterworkWeaponProperties.twohandedC,
 			"apprentice: versatile c": MasterworkWeaponProperties.versatileC,
-			"journeyman: counterweighted c":
-				MasterworkWeaponProperties.counterweightedC,
+			"journeyman: counterweighted c": MasterworkWeaponProperties.counterweightedC,
 			"journeyman: double c": MasterworkWeaponProperties.doubleC,
 			"journeyman: explosive c": MasterworkWeaponProperties.explosiveC,
 			"journeyman: heat c": MasterworkWeaponProperties.heatC,
-			"journeyman: magical c":
-				MasterworkWeaponProperties.journeymanmagicalC,
+			"journeyman: magical c": MasterworkWeaponProperties.journeymanmagicalC,
 			"journeyman: massive c": MasterworkWeaponProperties.massiveC,
 			"journeyman: mounted c": MasterworkWeaponProperties.mountedC,
 			"journeyman: precision c": MasterworkWeaponProperties.precisionC,
@@ -18255,68 +15282,47 @@ ClassList["craftsman"] = {
 			"master: adamantine c": MasterworkWeaponProperties.adamantineC,
 			"master: blessed c": MasterworkWeaponProperties.blessedC,
 			"master: earthshatter c": MasterworkWeaponProperties.earthshatterC,
-			"master: elemental (acid) c":
-				MasterworkWeaponProperties.elementalacidC,
-			"master: elemental (cold) c":
-				MasterworkWeaponProperties.elementalcoldC,
-			"master: elemental (fire) c":
-				MasterworkWeaponProperties.elementalfireC,
-			"master: elemental (lightning) c":
-				MasterworkWeaponProperties.elementallightningC,
-			"master: elemental (thunder) c":
-				MasterworkWeaponProperties.elementalthunderC,
+			"master: elemental (acid) c": MasterworkWeaponProperties.elementalacidC,
+			"master: elemental (cold) c": MasterworkWeaponProperties.elementalcoldC,
+			"master: elemental (fire) c": MasterworkWeaponProperties.elementalfireC,
+			"master: elemental (lightning) c": MasterworkWeaponProperties.elementallightningC,
+			"master: elemental (thunder) c": MasterworkWeaponProperties.elementalthunderC,
 			"master: keen c": MasterworkWeaponProperties.keenC,
 			"master: magical c": MasterworkWeaponProperties.mastermagicalC,
 			"master: mithral c": MasterworkWeaponProperties.mithralC,
 			"master: serrated c": MasterworkWeaponProperties.serratedC,
 			"master: slaying c": MasterworkWeaponProperties.slayingSpecialC,
-			"master: slaying (aberrations) c":
-				MasterworkWeaponProperties.slayingAberrationC,
-			"master: slaying (beasts) c":
-				MasterworkWeaponProperties.slayingBeastC,
-			"master: slaying (celestials) c":
-				MasterworkWeaponProperties.slayingCelestialC,
-			"master: slaying (constructs) c":
-				MasterworkWeaponProperties.slayingConstructC,
-			"master: slaying (dragons) c":
-				MasterworkWeaponProperties.slayingDragonC,
-			"master: slaying (elementals) c":
-				MasterworkWeaponProperties.slayingElementalC,
+			"master: slaying (aberrations) c": MasterworkWeaponProperties.slayingAberrationC,
+			"master: slaying (beasts) c": MasterworkWeaponProperties.slayingBeastC,
+			"master: slaying (celestials) c": MasterworkWeaponProperties.slayingCelestialC,
+			"master: slaying (constructs) c": MasterworkWeaponProperties.slayingConstructC,
+			"master: slaying (dragons) c": MasterworkWeaponProperties.slayingDragonC,
+			"master: slaying (elementals) c": MasterworkWeaponProperties.slayingElementalC,
 			"master: slaying (fey) c": MasterworkWeaponProperties.slayingFeyC,
-			"master: slaying (fiends) c":
-				MasterworkWeaponProperties.slayingFiendC,
-			"master: slaying (giants) c":
-				MasterworkWeaponProperties.slayingGiantC,
-			"master: slaying (monstrosities) c":
-				MasterworkWeaponProperties.slayingMonstrosityC,
-			"master: slaying (oozes) c":
-				MasterworkWeaponProperties.slayingOozeC,
-			"master: slaying (plants) c":
-				MasterworkWeaponProperties.slayingPlantC,
-			"master: slaying (undead) c":
-				MasterworkWeaponProperties.slayingUndeadC,
+			"master: slaying (fiends) c": MasterworkWeaponProperties.slayingFiendC,
+			"master: slaying (giants) c": MasterworkWeaponProperties.slayingGiantC,
+			"master: slaying (monstrosities) c": MasterworkWeaponProperties.slayingMonstrosityC,
+			"master: slaying (oozes) c": MasterworkWeaponProperties.slayingOozeC,
+			"master: slaying (plants) c": MasterworkWeaponProperties.slayingPlantC,
+			"master: slaying (undead) c": MasterworkWeaponProperties.slayingUndeadC,
 			"master: vampiric c": MasterworkWeaponProperties.vampiricC,
 			"master: venom c": MasterworkWeaponProperties.venomC,
 			"legendary: crushing c": MasterworkWeaponProperties.crushingC,
 			"legendary: deadly c": MasterworkWeaponProperties.deadlyC,
-			"legendary: magical c":
-				MasterworkWeaponProperties.legendarymagicalC,
+			"legendary: magical c": MasterworkWeaponProperties.legendarymagicalC,
 			"legendary: penetrating c": MasterworkWeaponProperties.penetratingC,
 			"legendary: seeking c": MasterworkWeaponProperties.seekingC,
 			"legendary: threatening c": MasterworkWeaponProperties.threateningC,
 			"legendary: vorpal c": MasterworkWeaponProperties.vorpalC,
 			"legendary: whirlwind c": MasterworkWeaponProperties.whirlwindC,
 
-			"apprentice: aerodynamic d":
-				MasterworkWeaponProperties.aerodynamicD,
+			"apprentice: aerodynamic d": MasterworkWeaponProperties.aerodynamicD,
 			"apprentice: automatic d": MasterworkWeaponProperties.automaticD,
 			"apprentice: balanced d": MasterworkWeaponProperties.balancedD,
-			"apprentice: concealable d":
-				MasterworkWeaponProperties.concealableD,
+			"apprentice: concealable d": MasterworkWeaponProperties.concealableD,
 			"apprentice: elegant d": MasterworkWeaponProperties.elegantD,
 			"apprentice: exotic d": MasterworkWeaponProperties.exoticD,
-			"apprentice: extended magazine d":
-				MasterworkWeaponProperties.extendedmagD,
+			"apprentice: extended magazine d": MasterworkWeaponProperties.extendedmagD,
 			"apprentice: finesse d": MasterworkWeaponProperties.finesseD,
 			"apprentice: firearm d": MasterworkWeaponProperties.firearmD,
 			"apprentice: fist d": MasterworkWeaponProperties.fistD,
@@ -18337,13 +15343,11 @@ ClassList["craftsman"] = {
 			"apprentice: trip d": MasterworkWeaponProperties.tripD,
 			"apprentice: two-handed d": MasterworkWeaponProperties.twohandedD,
 			"apprentice: versatile d": MasterworkWeaponProperties.versatileD,
-			"journeyman: counterweighted d":
-				MasterworkWeaponProperties.counterweightedD,
+			"journeyman: counterweighted d": MasterworkWeaponProperties.counterweightedD,
 			"journeyman: double d": MasterworkWeaponProperties.doubleD,
 			"journeyman: explosive d": MasterworkWeaponProperties.explosiveD,
 			"journeyman: heat d": MasterworkWeaponProperties.heatD,
-			"journeyman: magical d":
-				MasterworkWeaponProperties.journeymanmagicalD,
+			"journeyman: magical d": MasterworkWeaponProperties.journeymanmagicalD,
 			"journeyman: massive d": MasterworkWeaponProperties.massiveD,
 			"journeyman: mounted d": MasterworkWeaponProperties.mountedD,
 			"journeyman: precision d": MasterworkWeaponProperties.precisionD,
@@ -18354,68 +15358,47 @@ ClassList["craftsman"] = {
 			"master: adamantine d": MasterworkWeaponProperties.adamantineD,
 			"master: blessed d": MasterworkWeaponProperties.blessedD,
 			"master: earthshatter d": MasterworkWeaponProperties.earthshatterD,
-			"master: elemental (acid) d":
-				MasterworkWeaponProperties.elementalacidD,
-			"master: elemental (cold) d":
-				MasterworkWeaponProperties.elementalcoldD,
-			"master: elemental (fire) d":
-				MasterworkWeaponProperties.elementalfireD,
-			"master: elemental (lightning) d":
-				MasterworkWeaponProperties.elementallightningD,
-			"master: elemental (thunder) d":
-				MasterworkWeaponProperties.elementalthunderD,
+			"master: elemental (acid) d": MasterworkWeaponProperties.elementalacidD,
+			"master: elemental (cold) d": MasterworkWeaponProperties.elementalcoldD,
+			"master: elemental (fire) d": MasterworkWeaponProperties.elementalfireD,
+			"master: elemental (lightning) d": MasterworkWeaponProperties.elementallightningD,
+			"master: elemental (thunder) d": MasterworkWeaponProperties.elementalthunderD,
 			"master: keen d": MasterworkWeaponProperties.keenD,
 			"master: magical d": MasterworkWeaponProperties.mastermagicalD,
 			"master: mithral d": MasterworkWeaponProperties.mithralD,
 			"master: serrated d": MasterworkWeaponProperties.serratedD,
 			"master: slaying d": MasterworkWeaponProperties.slayingSpecialD,
-			"master: slaying (aberrations) d":
-				MasterworkWeaponProperties.slayingAberrationD,
-			"master: slaying (beasts) d":
-				MasterworkWeaponProperties.slayingBeastD,
-			"master: slaying (celestials) d":
-				MasterworkWeaponProperties.slayingCelestialD,
-			"master: slaying (constructs) d":
-				MasterworkWeaponProperties.slayingConstructD,
-			"master: slaying (dragons) d":
-				MasterworkWeaponProperties.slayingDragonD,
-			"master: slaying (elementals) d":
-				MasterworkWeaponProperties.slayingElementalD,
+			"master: slaying (aberrations) d": MasterworkWeaponProperties.slayingAberrationD,
+			"master: slaying (beasts) d": MasterworkWeaponProperties.slayingBeastD,
+			"master: slaying (celestials) d": MasterworkWeaponProperties.slayingCelestialD,
+			"master: slaying (constructs) d": MasterworkWeaponProperties.slayingConstructD,
+			"master: slaying (dragons) d": MasterworkWeaponProperties.slayingDragonD,
+			"master: slaying (elementals) d": MasterworkWeaponProperties.slayingElementalD,
 			"master: slaying (fey) d": MasterworkWeaponProperties.slayingFeyD,
-			"master: slaying (fiends) d":
-				MasterworkWeaponProperties.slayingFiendD,
-			"master: slaying (giants) d":
-				MasterworkWeaponProperties.slayingGiantD,
-			"master: slaying (monstrosities) d":
-				MasterworkWeaponProperties.slayingMonstrosityD,
-			"master: slaying (oozes) d":
-				MasterworkWeaponProperties.slayingOozeD,
-			"master: slaying (plants) d":
-				MasterworkWeaponProperties.slayingPlantD,
-			"master: slaying (undead) d":
-				MasterworkWeaponProperties.slayingUndeadD,
+			"master: slaying (fiends) d": MasterworkWeaponProperties.slayingFiendD,
+			"master: slaying (giants) d": MasterworkWeaponProperties.slayingGiantD,
+			"master: slaying (monstrosities) d": MasterworkWeaponProperties.slayingMonstrosityD,
+			"master: slaying (oozes) d": MasterworkWeaponProperties.slayingOozeD,
+			"master: slaying (plants) d": MasterworkWeaponProperties.slayingPlantD,
+			"master: slaying (undead) d": MasterworkWeaponProperties.slayingUndeadD,
 			"master: vampiric d": MasterworkWeaponProperties.vampiricD,
 			"master: venom d": MasterworkWeaponProperties.venomD,
 			"legendary: crushing d": MasterworkWeaponProperties.crushingD,
 			"legendary: deadly d": MasterworkWeaponProperties.deadlyD,
-			"legendary: magical d":
-				MasterworkWeaponProperties.legendarymagicalD,
+			"legendary: magical d": MasterworkWeaponProperties.legendarymagicalD,
 			"legendary: penetrating d": MasterworkWeaponProperties.penetratingD,
 			"legendary: seeking d": MasterworkWeaponProperties.seekingD,
 			"legendary: threatening d": MasterworkWeaponProperties.threateningD,
 			"legendary: vorpal d": MasterworkWeaponProperties.vorpalD,
 			"legendary: whirlwind d": MasterworkWeaponProperties.whirlwindD,
 
-			"apprentice: aerodynamic e":
-				MasterworkWeaponProperties.aerodynamicE,
+			"apprentice: aerodynamic e": MasterworkWeaponProperties.aerodynamicE,
 			"apprentice: automatic e": MasterworkWeaponProperties.automaticE,
 			"apprentice: balanced e": MasterworkWeaponProperties.balancedE,
-			"apprentice: concealable e":
-				MasterworkWeaponProperties.concealableE,
+			"apprentice: concealable e": MasterworkWeaponProperties.concealableE,
 			"apprentice: elegant e": MasterworkWeaponProperties.elegantE,
 			"apprentice: exotic e": MasterworkWeaponProperties.exoticE,
-			"apprentice: extended magazine e":
-				MasterworkWeaponProperties.extendedmagE,
+			"apprentice: extended magazine e": MasterworkWeaponProperties.extendedmagE,
 			"apprentice: finesse e": MasterworkWeaponProperties.finesseE,
 			"apprentice: firearm e": MasterworkWeaponProperties.firearmE,
 			"apprentice: fist e": MasterworkWeaponProperties.fistE,
@@ -18436,13 +15419,11 @@ ClassList["craftsman"] = {
 			"apprentice: trip e": MasterworkWeaponProperties.tripE,
 			"apprentice: two-handed e": MasterworkWeaponProperties.twohandedE,
 			"apprentice: versatile e": MasterworkWeaponProperties.versatileE,
-			"journeyman: counterweighted e":
-				MasterworkWeaponProperties.counterweightedE,
+			"journeyman: counterweighted e": MasterworkWeaponProperties.counterweightedE,
 			"journeyman: double e": MasterworkWeaponProperties.doubleE,
 			"journeyman: explosive e": MasterworkWeaponProperties.explosiveE,
 			"journeyman: heat e": MasterworkWeaponProperties.heatE,
-			"journeyman: magical e":
-				MasterworkWeaponProperties.journeymanmagicalE,
+			"journeyman: magical e": MasterworkWeaponProperties.journeymanmagicalE,
 			"journeyman: massive e": MasterworkWeaponProperties.massiveE,
 			"journeyman: mounted e": MasterworkWeaponProperties.mountedE,
 			"journeyman: precision e": MasterworkWeaponProperties.precisionE,
@@ -18453,52 +15434,34 @@ ClassList["craftsman"] = {
 			"master: adamantine e": MasterworkWeaponProperties.adamantineE,
 			"master: blessed e": MasterworkWeaponProperties.blessedE,
 			"master: earthshatter e": MasterworkWeaponProperties.earthshatterE,
-			"master: elemental (acid) e":
-				MasterworkWeaponProperties.elementalacidE,
-			"master: elemental (cold) e":
-				MasterworkWeaponProperties.elementalcoldE,
-			"master: elemental (fire) e":
-				MasterworkWeaponProperties.elementalfireE,
-			"master: elemental (lightning) e":
-				MasterworkWeaponProperties.elementallightningE,
-			"master: elemental (thunder) e":
-				MasterworkWeaponProperties.elementalthunderE,
+			"master: elemental (acid) e": MasterworkWeaponProperties.elementalacidE,
+			"master: elemental (cold) e": MasterworkWeaponProperties.elementalcoldE,
+			"master: elemental (fire) e": MasterworkWeaponProperties.elementalfireE,
+			"master: elemental (lightning) e": MasterworkWeaponProperties.elementallightningE,
+			"master: elemental (thunder) e": MasterworkWeaponProperties.elementalthunderE,
 			"master: keen e": MasterworkWeaponProperties.keenE,
 			"master: magical e": MasterworkWeaponProperties.mastermagicalE,
 			"master: mithral e": MasterworkWeaponProperties.mithralE,
 			"master: serrated e": MasterworkWeaponProperties.serratedE,
 			"master: slaying e": MasterworkWeaponProperties.slayingSpecialE,
-			"master: slaying (aberrations) e":
-				MasterworkWeaponProperties.slayingAberrationE,
-			"master: slaying (beasts) e":
-				MasterworkWeaponProperties.slayingBeastE,
-			"master: slaying (celestials) e":
-				MasterworkWeaponProperties.slayingCelestialE,
-			"master: slaying (constructs) e":
-				MasterworkWeaponProperties.slayingConstructE,
-			"master: slaying (dragons) e":
-				MasterworkWeaponProperties.slayingDragonE,
-			"master: slaying (elementals) e":
-				MasterworkWeaponProperties.slayingElementalE,
+			"master: slaying (aberrations) e": MasterworkWeaponProperties.slayingAberrationE,
+			"master: slaying (beasts) e": MasterworkWeaponProperties.slayingBeastE,
+			"master: slaying (celestials) e": MasterworkWeaponProperties.slayingCelestialE,
+			"master: slaying (constructs) e": MasterworkWeaponProperties.slayingConstructE,
+			"master: slaying (dragons) e": MasterworkWeaponProperties.slayingDragonE,
+			"master: slaying (elementals) e": MasterworkWeaponProperties.slayingElementalE,
 			"master: slaying (fey) e": MasterworkWeaponProperties.slayingFeyE,
-			"master: slaying (fiends) e":
-				MasterworkWeaponProperties.slayingFiendE,
-			"master: slaying (giants) e":
-				MasterworkWeaponProperties.slayingGiantE,
-			"master: slaying (monstrosities) e":
-				MasterworkWeaponProperties.slayingMonstrosityE,
-			"master: slaying (oozes) e":
-				MasterworkWeaponProperties.slayingOozeE,
-			"master: slaying (plants) e":
-				MasterworkWeaponProperties.slayingPlantE,
-			"master: slaying (undead) e":
-				MasterworkWeaponProperties.slayingUndeadE,
+			"master: slaying (fiends) e": MasterworkWeaponProperties.slayingFiendE,
+			"master: slaying (giants) e": MasterworkWeaponProperties.slayingGiantE,
+			"master: slaying (monstrosities) e": MasterworkWeaponProperties.slayingMonstrosityE,
+			"master: slaying (oozes) e": MasterworkWeaponProperties.slayingOozeE,
+			"master: slaying (plants) e": MasterworkWeaponProperties.slayingPlantE,
+			"master: slaying (undead) e": MasterworkWeaponProperties.slayingUndeadE,
 			"master: vampiric e": MasterworkWeaponProperties.vampiricE,
 			"master: venom e": MasterworkWeaponProperties.venomE,
 			"legendary: crushing e": MasterworkWeaponProperties.crushingE,
 			"legendary: deadly e": MasterworkWeaponProperties.deadlyE,
-			"legendary: magical e":
-				MasterworkWeaponProperties.legendarymagicalE,
+			"legendary: magical e": MasterworkWeaponProperties.legendarymagicalE,
 			"legendary: penetrating e": MasterworkWeaponProperties.penetratingE,
 			"legendary: seeking e": MasterworkWeaponProperties.seekingE,
 			"legendary: threatening e": MasterworkWeaponProperties.threateningE,
@@ -18509,20 +15472,12 @@ ClassList["craftsman"] = {
 					function (fields, v) {
 						if (/\b[a-e]\b/i.test(v.WeaponTextName) && v.isWeapon) {
 							// add magical property if correct level
-							if (
-								classes.known.craftsman.level >= 6 &&
-								!/magical/i.test(fields.Description)
-							)
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"Counts as magical";
+							if (classes.known.craftsman.level >= 6 && !/magical/i.test(fields.Description))
+								fields.Description += (fields.Description ? "; " : "") + "Counts as magical";
 
 							// remove special properties
 							if (/special/i.test(fields.Description)) {
-								fields.Description = fields.Description.replace(
-									/special[,; ]*/i,
-									""
-								);
+								fields.Description = fields.Description.replace(/special[,; ]*/i, "");
 								fields.Description_Tooltip = "";
 							}
 
@@ -18531,11 +15486,9 @@ ClassList["craftsman"] = {
 								fields.Damage_Die = "2d6+1";
 
 								// seek reload property to change capacity to 10
-								var split =
-									fields.Description.split("reload (");
+								var split = fields.Description.split("reload (");
 								split[1] = split[1].replace(/\d+/, "");
-								fields.Description =
-									split[0] + "reload (10" + split[1];
+								fields.Description = split[0] + "reload (10" + split[1];
 							}
 
 							// rebalance bayonet
@@ -18551,10 +15504,7 @@ ClassList["craftsman"] = {
 							}
 
 							// rebalance the boomerang/doomerang/throwing dagger
-							else if (
-								/[bd]oomerang/i.test(v.WeaponTextName) ||
-								/throwing dagger/i.test(v.WeaponTextName)
-							) {
+							else if (/[bd]oomerang/i.test(v.WeaponTextName) || /throwing dagger/i.test(v.WeaponTextName)) {
 								// change the range
 								var rangeFld = fields.Range;
 								rangeFld = rangeFld.replace("Melee", "");
@@ -18571,15 +15521,10 @@ ClassList["craftsman"] = {
 								var oldL = ranges[1];
 								var newN = parseInt(ranges[0]) + 40;
 								var newL = parseInt(ranges[1]) + 120;
-								fields.Range = fields.Range.replace(
-									oldN + "/" + oldL,
-									newN + "/" + newL + " "
-								);
+								fields.Range = fields.Range.replace(oldN + "/" + oldL, newN + "/" + newL + " ");
 
 								// add aerodynamic to the description
-								fields.Description +=
-									(fields.description == "" ? "" : "; ") +
-									"Aerodynamic";
+								fields.Description += (fields.description == "" ? "" : "; ") + "Aerodynamic";
 							}
 
 							// rebalance the catchpole
@@ -18599,11 +15544,9 @@ ClassList["craftsman"] = {
 								fields.Damage_Die = "2d8+1";
 
 								// seek reload property to change capacity to 10
-								var split =
-									fields.Description.split("reload (");
+								var split = fields.Description.split("reload (");
 								split[1] = split[1].replace(/\d+/, "");
-								fields.Description =
-									split[0] + "reload (10" + split[1];
+								fields.Description = split[0] + "reload (10" + split[1];
 							}
 
 							// rebalance handaxe
@@ -18612,10 +15555,7 @@ ClassList["craftsman"] = {
 							}
 
 							// rebalance handgun/revolver
-							else if (
-								/handgun/i.test(v.WeaponTextName) ||
-								/revolver/i.test(v.WeaponTextName)
-							) {
+							else if (/handgun/i.test(v.WeaponTextName) || /revolver/i.test(v.WeaponTextName)) {
 								fields.Range = "50/200 ft";
 							}
 
@@ -18637,9 +15577,7 @@ ClassList["craftsman"] = {
 							}
 
 							// rebalance light cannon
-							else if (
-								/\blight cannon\b/i.test(v.WeaponTextName)
-							) {
+							else if (/\blight cannon\b/i.test(v.WeaponTextName)) {
 								fields.Damage_Die = "2d12+1";
 							}
 
@@ -18650,17 +15588,12 @@ ClassList["craftsman"] = {
 
 							// rebalance magnum/explosive magnum
 							else if (/magnum/i.test(v.WeaponTextName)) {
-								fields.Description +=
-									(fields.Description == "" ? "" : "; ") +
-									"two-handed";
+								fields.Description += (fields.Description == "" ? "" : "; ") + "two-handed";
 								fields.Range = "100/400 ft";
 							}
 
 							// rebalance musket/volley gun
-							else if (
-								/musket/i.test(v.WeaponTextName) ||
-								/volley gun/i.test(v.WeaponTextName)
-							) {
+							else if (/musket/i.test(v.WeaponTextName) || /volley gun/i.test(v.WeaponTextName)) {
 								fields.Damage_Die = "2d8+1";
 							}
 
@@ -18670,17 +15603,11 @@ ClassList["craftsman"] = {
 							}
 
 							// rebalance rocket launcher
-							else if (
-								/rocket launcher/i.test(v.WeaponTextName)
-							) {
+							else if (/rocket launcher/i.test(v.WeaponTextName)) {
 								fields.Damage_Die = "2d12+1";
-								fields.Description +=
-									(fields.Description == "" ? "" : "; ") +
-									"Mounted";
+								fields.Description += (fields.Description == "" ? "" : "; ") + "Mounted";
 								fields.Description_Tooltip +=
-									(fields.Description_Tooltip == ""
-										? ""
-										: "\n") +
+									(fields.Description_Tooltip == "" ? "" : "\n") +
 									"Mounted: This weapon is normally used while attached to a tripod, vehicle, or other bracing mount. You can mount or unmount this weapon as an action. While it is mounted, it can't be moved. It can only be used to make an attack while unmounted if held by a Medium or larger creature with a Strength score of at least 15.";
 							}
 						}
@@ -18691,11 +15618,7 @@ ClassList["craftsman"] = {
 				// this calc adds a +1 to hit to a weapon assumed to a masterwork.
 				atkCalc: [
 					function (fields, v, output) {
-						if (
-							/\b[a-e]\b/i.test(v.WeaponTextName) &&
-							v.isWeapon &&
-							!/\+[\d]/.test(v.WeaponTextName)
-						) {
+						if (/\b[a-e]\b/i.test(v.WeaponTextName) && v.isWeapon && !/\+[\d]/.test(v.WeaponTextName)) {
 							output.extraHit += 1;
 						}
 					},
@@ -18796,8 +15719,7 @@ ClassList["craftsman"] = {
 				"belt. The item cannot be a weapon/armor/shield/potion, and disappears after a long rest.",
 			]),
 			usages: "Int mod (minimum of 1) x per ",
-			usagescalc:
-				'event.value = Math.max(1, this.getField("Int Mod").value);',
+			usagescalc: 'event.value = Math.max(1, this.getField("Int Mod").value);',
 			recovery: "long rest",
 			action: ["action", " (Retrieve item)"],
 
@@ -18849,41 +15771,30 @@ ClassList["craftsman"] = {
 				source: ["VSoS", 86],
 				additional: "Prereq: Medium/Heavy",
 				prereqeval: function (v) {
-					if (/Apprentice: Cleated/.test(What("Extra.Notes")))
-						return true;
+					if (/Apprentice: Cleated/.test(What("Extra.Notes"))) return true;
 					else {
-						var foundAppArmor = What("Extra.Notes").match(
-							/Apprentice: .+ \(Masterwork Armor/g
-						);
+						var foundAppArmor = What("Extra.Notes").match(/Apprentice: .+ \(Masterwork Armor/g);
 
 						if (foundAppArmor) return foundAppArmor.length < 3;
 						else return true;
 					}
 				},
-				description: desc([
-					"Movement against my will while wearing this armor is reduced by 10 feet.",
-				]),
+				description: desc(["Movement against my will while wearing this armor is reduced by 10 feet."]),
 			},
 			"apprentice: climbing": {
 				name: "Apprentice: Climbing",
 				source: ["VSoS", 86],
 				additional: "Prereq: Exotic, Light",
 				prereqeval: function (v) {
-					if (/Apprentice: Climbing/.test(What("Extra.Notes")))
-						return true;
+					if (/Apprentice: Climbing/.test(What("Extra.Notes"))) return true;
 					else {
-						var foundAppArmor = What("Extra.Notes").match(
-							/Apprentice: .+ \(Masterwork Armor/g
-						);
+						var foundAppArmor = What("Extra.Notes").match(/Apprentice: .+ \(Masterwork Armor/g);
 
 						if (foundAppArmor) return foundAppArmor.length < 3;
 						else return true;
 					}
 				},
-				description: desc([
-					"While wearing this armor, I gain a climbing speed equal to my walking speed, as long as",
-					"I have 1 hand free.",
-				]),
+				description: desc(["While wearing this armor, I gain a climbing speed equal to my walking speed, as long as", "I have 1 hand free."]),
 				speed: { climb: { spd: "walk" } },
 			},
 			"apprentice: comfortable": {
@@ -18891,60 +15802,45 @@ ClassList["craftsman"] = {
 				source: ["VSoS", 86],
 				additional: "Prereq: None",
 				prereqeval: function (v) {
-					if (/Apprentice: Comfortable/.test(What("Extra.Notes")))
-						return true;
+					if (/Apprentice: Comfortable/.test(What("Extra.Notes"))) return true;
 					else {
-						var foundAppArmor = What("Extra.Notes").match(
-							/Apprentice: .+ \(Masterwork Armor/g
-						);
+						var foundAppArmor = What("Extra.Notes").match(/Apprentice: .+ \(Masterwork Armor/g);
 
 						if (foundAppArmor) return foundAppArmor.length < 3;
 						else return true;
 					}
 				},
-				description: desc([
-					"I can sleep in this armor with no ill effect.",
-				]),
+				description: desc(["I can sleep in this armor with no ill effect."]),
 			},
 			"apprentice: environmental": {
 				name: "Apprentice: Environmental",
 				source: ["VSoS", 86],
 				additional: "Prereq: None",
 				prereqeval: function (v) {
-					if (/Apprentice: Environmental/.test(What("Extra.Notes")))
-						return true;
+					if (/Apprentice: Environmental/.test(What("Extra.Notes"))) return true;
 					else {
-						var foundAppArmor = What("Extra.Notes").match(
-							/Apprentice: .+ \(Masterwork Armor/g
-						);
+						var foundAppArmor = What("Extra.Notes").match(/Apprentice: .+ \(Masterwork Armor/g);
 
 						if (foundAppArmor) return foundAppArmor.length < 3;
 						else return true;
 					}
 				},
-				description: desc([
-					"While wearing this armor, I can tolerate temperatures within -100°F and 200°F.",
-				]),
+				description: desc(["While wearing this armor, I can tolerate temperatures within -100°F and 200°F."]),
 			},
 			"apprentice: exotic": {
 				name: "Apprentice: Exotic",
 				source: ["VSoS", 86],
 				additional: "Prereq: Not exotic",
 				prereqeval: function (v) {
-					if (/Apprentice: Exotic/.test(What("Extra.Notes")))
-						return true;
+					if (/Apprentice: Exotic/.test(What("Extra.Notes"))) return true;
 					else {
-						var foundAppArmor = What("Extra.Notes").match(
-							/Apprentice: .+ \(Masterwork Armor/g
-						);
+						var foundAppArmor = What("Extra.Notes").match(/Apprentice: .+ \(Masterwork Armor/g);
 
 						if (foundAppArmor) return foundAppArmor.length < 3;
 						else return true;
 					}
 				},
-				description: desc([
-					"This armor becomes exotic armor, and it has a +1 bonus to AC.",
-				]),
+				description: desc(["This armor becomes exotic armor, and it has a +1 bonus to AC."]),
 				extraAC: [
 					{
 						mod: 1,
@@ -18952,9 +15848,7 @@ ClassList["craftsman"] = {
 						magic: false,
 						text: "This armor has the Exotic masterwork property and grants a +1 bonus to its wearer's AC.",
 						stopeval: function (v) {
-							return !/masterwork/i.test(
-								What("AC Armor Description")
-							);
+							return !/masterwork/i.test(What("AC Armor Description"));
 						},
 					},
 				],
@@ -18964,16 +15858,9 @@ ClassList["craftsman"] = {
 				source: ["VSoS", 86],
 				additional: "Prereq: Exotic",
 				prereqeval: function (v) {
-					if (
-						/Apprentice: Integrated \(Masterwork Armor/g.test(
-							What("Extra.Notes")
-						)
-					)
-						return true;
+					if (/Apprentice: Integrated \(Masterwork Armor/g.test(What("Extra.Notes"))) return true;
 					else {
-						var foundAppArmor = What("Extra.Notes").match(
-							/Apprentice: .+ \(Masterwork Armor/g
-						);
+						var foundAppArmor = What("Extra.Notes").match(/Apprentice: .+ \(Masterwork Armor/g);
 
 						if (foundAppArmor) return foundAppArmor.length < 3;
 						else return true;
@@ -18990,20 +15877,15 @@ ClassList["craftsman"] = {
 				source: ["VSoS", 86],
 				additional: "Prereq: None",
 				prereqeval: function (v) {
-					if (/Apprentice: Quick-Change/.test(What("Extra.Notes")))
-						return true;
+					if (/Apprentice: Quick-Change/.test(What("Extra.Notes"))) return true;
 					else {
-						var foundAppArmor = What("Extra.Notes").match(
-							/Apprentice: .+ \(Masterwork Armor/g
-						);
+						var foundAppArmor = What("Extra.Notes").match(/Apprentice: .+ \(Masterwork Armor/g);
 
 						if (foundAppArmor) return foundAppArmor.length < 3;
 						else return true;
 					}
 				},
-				description: desc([
-					"I can don or doff this suit of armor as an action.",
-				]),
+				description: desc(["I can don or doff this suit of armor as an action."]),
 				action: ["action", "Don/Doff Quick-Change Armor"],
 			},
 			"apprentice: retractable": {
@@ -19011,21 +15893,16 @@ ClassList["craftsman"] = {
 				source: ["VSoS", 86],
 				additional: "Prereq: Exotic, Medium/Heavy",
 				prereqeval: function (v) {
-					if (/Apprentice: Retractable/.test(What("Extra.Notes")))
-						return true;
+					if (/Apprentice: Retractable/.test(What("Extra.Notes"))) return true;
 					else {
-						var foundAppArmor = What("Extra.Notes").match(
-							/Apprentice: .+ \(Masterwork Armor/g
-						);
+						var foundAppArmor = What("Extra.Notes").match(/Apprentice: .+ \(Masterwork Armor/g);
 
 						if (foundAppArmor) return foundAppArmor.length < 3;
 						else return true;
 					}
 				},
 
-				description: desc([
-					"While wearing this armor, I can don/doff the armor's retractable shield as a bonus action.",
-				]),
+				description: desc(["While wearing this armor, I can don/doff the armor's retractable shield as a bonus action."]),
 				action: ["bonus action", "Don/Doff Retractable Shield"],
 			},
 			"apprentice: scaled": {
@@ -19033,21 +15910,16 @@ ClassList["craftsman"] = {
 				source: ["VSoS", 86],
 				additional: "Prereq: Exotic, Light",
 				prereqeval: function (v) {
-					if (/Apprentice: Scaled/.test(What("Extra.Notes")))
-						return true;
+					if (/Apprentice: Scaled/.test(What("Extra.Notes"))) return true;
 					else {
-						var foundAppArmor = What("Extra.Notes").match(
-							/Apprentice: .+ \(Masterwork Armor/g
-						);
+						var foundAppArmor = What("Extra.Notes").match(/Apprentice: .+ \(Masterwork Armor/g);
 
 						if (foundAppArmor) return foundAppArmor.length < 3;
 						else return true;
 					}
 				},
 
-				description: desc([
-					"This armor's AC increases by 3. My Dex mod can only add a max of +2 to this armor.",
-				]),
+				description: desc(["This armor's AC increases by 3. My Dex mod can only add a max of +2 to this armor."]),
 				extraAC: [
 					{
 						mod: "3",
@@ -19055,13 +15927,7 @@ ClassList["craftsman"] = {
 						magic: false,
 						text: "This armor has the Scaled masterwork property and grants a +3 bonus to its wearer's AC. The wearer's Dex mod can only add +2 to this armor's AC.",
 						stopeval: function (v) {
-							return (
-								!/masterwork/i.test(
-									What("AC Armor Description")
-								) ||
-								v.mediumArmor ||
-								v.heavyArmor
-							);
+							return !/masterwork/i.test(What("AC Armor Description")) || v.mediumArmor || v.heavyArmor;
 						},
 					},
 					{
@@ -19070,14 +15936,7 @@ ClassList["craftsman"] = {
 						magic: false,
 						text: "This armor has the Scaled masterwork property and grants a +3 bonus to its wearer's AC. The wearer's Dex mod can only add +2 to this armor's AC.",
 						stopeval: function (v) {
-							return (
-								!/masterwork/i.test(
-									What("AC Armor Description")
-								) ||
-								v.mediumArmor ||
-								v.heavyArmor ||
-								What("Dex Mod") <= 2
-							);
+							return !/masterwork/i.test(What("AC Armor Description")) || v.mediumArmor || v.heavyArmor || What("Dex Mod") <= 2;
 						},
 					},
 				],
@@ -19087,22 +15946,16 @@ ClassList["craftsman"] = {
 				source: ["VSoS", 86],
 				additional: "Prereq: Heavy",
 				prereqeval: function (v) {
-					if (/Apprentice: Spiked/.test(What("Extra.Notes")))
-						return true;
+					if (/Apprentice: Spiked/.test(What("Extra.Notes"))) return true;
 					else {
-						var foundAppArmor = What("Extra.Notes").match(
-							/Apprentice: .+ \(Masterwork Armor/g
-						);
+						var foundAppArmor = What("Extra.Notes").match(/Apprentice: .+ \(Masterwork Armor/g);
 
 						if (foundAppArmor) return foundAppArmor.length < 3;
 						else return true;
 					}
 				},
 
-				description: desc([
-					"While wearing this armor, creatures touching me take 1d4 + my STR mod piercing damage at",
-					"the start of my turn.",
-				]),
+				description: desc(["While wearing this armor, creatures touching me take 1d4 + my STR mod piercing damage at", "the start of my turn."]),
 			},
 			"journeyman: adamantine": {
 				name: "Journeyman: Adamantine",
@@ -19111,17 +15964,11 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Adamantine \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Adamantine \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, critical hits against me become normal hits.",
-				]),
+				description: desc(["While wearing this armor, critical hits against me become normal hits."]),
 			},
 			"journeyman: arcane": {
 				name: "Journeyman: Arcane",
@@ -19130,12 +15977,7 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Arcane \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Arcane \(Masterwork Armor/.test(What("Extra.Notes")) || !/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19160,12 +16002,8 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Arrow-Catching \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Arrow-Catching \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19181,12 +16019,7 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Diving \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Diving \(Masterwork Armor/.test(What("Extra.Notes")) || !/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19206,12 +16039,8 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Juggernaut \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Juggernaut \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19226,12 +16055,8 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Maneuvering \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Maneuvering \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19252,12 +16077,7 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Mithral \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Mithral \(Masterwork Armor/.test(What("Extra.Notes")) || !/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19273,14 +16093,7 @@ ClassList["craftsman"] = {
 						text: "This armor has the Mithral masterwork property. If it is medium armor, the maximum Dexterity modifier you can apply to your AC increases to 3, instead of 2.",
 						magic: false,
 						stopeval: function (v) {
-							return (
-								!/masterwork/i.test(
-									What("AC Armor Description")
-								) ||
-								!v.mediumArmor ||
-								v.heavyArmor ||
-								What("Dex Mod") <= 2
-							);
+							return !/masterwork/i.test(What("AC Armor Description")) || !v.mediumArmor || v.heavyArmor || What("Dex Mod") <= 2;
 						},
 					},
 				],
@@ -19292,17 +16105,11 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Acid Resistance \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Acid Resistance \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I have resistance to acid damage.",
-				]),
+				description: desc(["While wearing this armor, I have resistance to acid damage."]),
 				dmgres: [["Acid", "Acid (from armor)"]],
 			},
 			"journeyman: resistance, cold": {
@@ -19312,17 +16119,11 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Cold Resistance \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Cold Resistance \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I have resistance to cold damage.",
-				]),
+				description: desc(["While wearing this armor, I have resistance to cold damage."]),
 				dmgres: [["Cold", "Cold (from armor)"]],
 			},
 			"journeyman: resistance, fire": {
@@ -19332,17 +16133,11 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Fire Resistance \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Fire Resistance \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I have resistance to fire damage.",
-				]),
+				description: desc(["While wearing this armor, I have resistance to fire damage."]),
 				dmgres: [["Fire", "Fire (from armor)"]],
 			},
 			"journeyman: resistance, force": {
@@ -19352,17 +16147,11 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Force Resistance \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Force Resistance \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I have resistance to force damage.",
-				]),
+				description: desc(["While wearing this armor, I have resistance to force damage."]),
 				dmgres: [["Force", "Force (from armor)"]],
 			},
 			"journeyman: resistance, lightning": {
@@ -19372,17 +16161,11 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Lightning Resistance \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Lightning Resistance \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I have resistance to lightning damage.",
-				]),
+				description: desc(["While wearing this armor, I have resistance to lightning damage."]),
 				dmgres: [["Lightning", "Lightning (from armor)"]],
 			},
 			"journeyman: resistance, necrotic": {
@@ -19392,17 +16175,11 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Necrotic Resistance \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Necrotic Resistance \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I have resistance to necrotic damage.",
-				]),
+				description: desc(["While wearing this armor, I have resistance to necrotic damage."]),
 				dmgres: [["Necrotic", "Necrotic (from armor)"]],
 			},
 			"journeyman: resistance, poison": {
@@ -19412,17 +16189,11 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Poison Resistance \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Poison Resistance \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I have resistance to poison damage.",
-				]),
+				description: desc(["While wearing this armor, I have resistance to poison damage."]),
 				dmgres: [["Poison", "Poison (from armor)"]],
 			},
 			"journeyman: resistance, radiant": {
@@ -19432,17 +16203,11 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Radiant Resistance \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Radiant Resistance \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I have resistance to radiant damage.",
-				]),
+				description: desc(["While wearing this armor, I have resistance to radiant damage."]),
 				dmgres: [["Radiant", "Radiant (from armor)"]],
 			},
 			"journeyman: resistance, thunder": {
@@ -19452,17 +16217,11 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 5 &&
-						(/Journeyman: Thunder Resistance \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Journeyman: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Journeyman: Thunder Resistance \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Journeyman: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I have resistance to thunder damage.",
-				]),
+				description: desc(["While wearing this armor, I have resistance to thunder damage."]),
 				dmgres: [["Thunder", "Thunder (from armor)"]],
 			},
 			"master: animated": {
@@ -19472,12 +16231,7 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 11 &&
-						(/Master: Animated \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Master: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Master: Animated \(Masterwork Armor/.test(What("Extra.Notes")) || !/Master: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19507,17 +16261,10 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 11 &&
-						(/Master: Cloaking \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Master: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Master: Cloaking \(Masterwork Armor/.test(What("Extra.Notes")) || !/Master: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I can cast the invisibility spell at will.",
-				]),
+				description: desc(["While wearing this armor, I can cast the invisibility spell at will."]),
 				action: [["action", "Activate Cloaking"]],
 				extraLimitedFeatures: [
 					{
@@ -19537,8 +16284,7 @@ ClassList["craftsman"] = {
 				spellChanges: {
 					invisibility: {
 						components: "",
-						changes:
-							"When I cast this spell using my armor, I can cast it at will once per short rest.",
+						changes: "When I cast this spell using my armor, I can cast it at will once per short rest.",
 					},
 				},
 			},
@@ -19549,12 +16295,7 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 11 &&
-						(/Master: Clockwork \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Master: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Master: Clockwork \(Masterwork Armor/.test(What("Extra.Notes")) || !/Master: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19570,12 +16311,7 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 11 &&
-						(/Master: Glamoured \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Master: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Master: Glamoured \(Masterwork Armor/.test(What("Extra.Notes")) || !/Master: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19592,18 +16328,10 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 11 &&
-						(/Master: Trollskin \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Master: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Master: Trollskin \(Masterwork Armor/.test(What("Extra.Notes")) || !/Master: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I can use a bonus action to regain hit points equal to 1d10 + my",
-					"craftsman level.",
-				]),
+				description: desc(["While wearing this armor, I can use a bonus action to regain hit points equal to 1d10 + my", "craftsman level."]),
 				action: ["bonus action", "Activate Trollskin"],
 			},
 			"master: winged": {
@@ -19613,12 +16341,7 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 11 &&
-						(/Master: Winged \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Master: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Master: Winged \(Masterwork Armor/.test(What("Extra.Notes")) || !/Master: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19635,12 +16358,7 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 17 &&
-						(/Legendary: Colossal \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Legendary: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Legendary: Colossal \(Masterwork Armor/.test(What("Extra.Notes")) || !/Legendary: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19648,17 +16366,13 @@ ClassList["craftsman"] = {
 					"advantage on Strength saves & checks, and my weapons deal an extra +1d4 damage.",
 				]),
 				savetxt: {
-					text: [
-						"advantage on STR saves while wearing Colossal armor",
-					],
+					text: ["advantage on STR saves while wearing Colossal armor"],
 				},
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
 							if (v.isWeapon) {
-								fields.Description +=
-									(fields.Description == "" ? "" : "; ") +
-									"Colossal Armor +1d4 dmg";
+								fields.Description += (fields.Description == "" ? "" : "; ") + "Colossal Armor +1d4 dmg";
 							}
 						},
 					],
@@ -19671,12 +16385,8 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 17 &&
-						(/Legendary: Etherealness \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Legendary: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Legendary: Etherealness \(Masterwork Armor/.test(What("Extra.Notes")) ||
+							!/Legendary: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19701,11 +16411,9 @@ ClassList["craftsman"] = {
 				spellChanges: {
 					etherealness: {
 						duration: "10 min",
-						description:
-							"Go to Ethereal Plane; move there, but able to perceive 60 ft into the normal plane",
+						description: "Go to Ethereal Plane; move there, but able to perceive 60 ft into the normal plane",
 						components: "",
-						changes:
-							"When I cast Etherealness through my armor, it lasts up to 10 minutes instead of 8 hours.",
+						changes: "When I cast Etherealness through my armor, it lasts up to 10 minutes instead of 8 hours.",
 					},
 				},
 			},
@@ -19716,12 +16424,7 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 17 &&
-						(/Legendary: Fleet \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Legendary: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Legendary: Fleet \(Masterwork Armor/.test(What("Extra.Notes")) || !/Legendary: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19737,12 +16440,7 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 17 &&
-						(/Legendary: Immortal \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Legendary: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Legendary: Immortal \(Masterwork Armor/.test(What("Extra.Notes")) || !/Legendary: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
 				description: desc([
@@ -19765,17 +16463,10 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 17 &&
-						(/Legendary: Mirrored \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Legendary: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Legendary: Mirrored \(Masterwork Armor/.test(What("Extra.Notes")) || !/Legendary: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I can cast mirror image at will as a bonus action.",
-				]),
+				description: desc(["While wearing this armor, I can cast mirror image at will as a bonus action."]),
 				extraLimitedFeatures: [
 					{
 						name: "Activate Mirror Image",
@@ -19795,8 +16486,7 @@ ClassList["craftsman"] = {
 					"mirror image": {
 						time: "1 bns",
 						components: "",
-						changes:
-							"When I cast this spell through my armor, I can cast it as a bonus action.",
+						changes: "When I cast this spell through my armor, I can cast it as a bonus action.",
 					},
 				},
 				action: ["bonus action", "Activate Mirror Image"],
@@ -19808,17 +16498,10 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 17 &&
-						(/Legendary: Spellguard \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Legendary: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Legendary: Spellguard \(Masterwork Armor/.test(What("Extra.Notes")) || !/Legendary: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"While wearing this armor, I have advantage on saves against spells.",
-				]),
+				description: desc(["While wearing this armor, I have advantage on saves against spells."]),
 				savetxt: { adv_vs: ["spells"] },
 			},
 			"legendary: warding": {
@@ -19828,17 +16511,10 @@ ClassList["craftsman"] = {
 				prereqeval: function (v) {
 					return (
 						classes.known.craftsman.level >= 17 &&
-						(/Legendary: Warding \(Masterwork Armor/.test(
-							What("Extra.Notes")
-						) ||
-							!/Legendary: .+ \(Masterwork Armor/.test(
-								What("Extra.Notes")
-							))
+						(/Legendary: Warding \(Masterwork Armor/.test(What("Extra.Notes")) || !/Legendary: .+ \(Masterwork Armor/.test(What("Extra.Notes")))
 					);
 				},
-				description: desc([
-					"As a bonus action, I gain temporary hit points equal to half my craftsman level.",
-				]),
+				description: desc(["As a bonus action, I gain temporary hit points equal to half my craftsman level."]),
 				action: ["bonus action", "Activate Warding"],
 			},
 
@@ -19864,53 +16540,27 @@ ClassList["craftsman"] = {
 						// resolve foregrip range
 						if (/foregrip/i.test(fields.Description)) {
 							// calculate the range, increase by 50
-							var newRange = ClassList["craftsman"].CalcNewRange(
-								fields.Range,
-								50
-							);
-							fields.Description = fields.Description.replace(
-								"Foregrip",
-								"Foregrip (" + newRange + " ft)"
-							);
+							var newRange = ClassList["craftsman"].CalcNewRange(fields.Range, 50);
+							fields.Description = fields.Description.replace("Foregrip", "Foregrip (" + newRange + " ft)");
 						}
 
 						// resolve versatile dice
-						if (
-							/versatile \(\d+d\d+(\+\d+)*\)/i.test(
-								fields.Description
-							)
-						) {
-							var newVersDie = ClassList["craftsman"].CalcDieStep(
-								fields.Damage_Die,
-								true,
-								1
-							);
-							fields.Description = fields.Description.replace(
-								/versatile \(\d+d\d+(\+\d+)*\)/i,
-								"Versatile (" + newVersDie + ")"
-							);
+						if (/versatile \(\d+d\d+(\+\d+)*\)/i.test(fields.Description)) {
+							var newVersDie = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 1);
+							fields.Description = fields.Description.replace(/versatile \(\d+d\d+(\+\d+)*\)/i, "Versatile (" + newVersDie + ")");
 						}
 
 						// resolve scatter damage dice
 						if (/scatter/i.test(fields.Description)) {
-							var scatterDie = ClassList["craftsman"].CalcDieStep(
-								fields.Damage_Die,
-								true,
-								2
-							);
-							fields.Description = fields.Description.replace(
-								"Scatter",
-								"Scatter (" + scatterDie + ")"
-							);
+							var scatterDie = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 2);
+							fields.Description = fields.Description.replace("Scatter", "Scatter (" + scatterDie + ")");
 						}
 
 						// add dice from massive
 						if (/massive/i.test(fields.Description)) {
 							// add extra damage dice
 							var dieSplit = fields.Damage_Die.split("d");
-							dieSplit[0] =
-								parseInt(dieSplit[0]) +
-								(classes.attacks - 1) * 2;
+							dieSplit[0] = parseInt(dieSplit[0]) + (classes.attacks - 1) * 2;
 							fields.Damage_Die = dieSplit[0] + "d" + dieSplit[1];
 						}
 					},
@@ -19932,23 +16582,16 @@ ClassList["craftsman"] = {
 			name: "Folded Steel",
 			source: ["VSoS", 66],
 			minlevel: 6,
-			description: desc([
-				"Masterwork and exotic weapons I craft count as magical",
-			]),
+			description: desc(["Masterwork and exotic weapons I craft count as magical"]),
 			calcChanges: {
-				atkAdd: [
-					function (fields, v) {},
-					'Any non-magical weapon that I add the letters "A" to "E" to will become magical.',
-				],
+				atkAdd: [function (fields, v) {}, 'Any non-magical weapon that I add the letters "A" to "E" to will become magical.'],
 			},
 		},
 		"eye for quality": {
 			name: "Eye for Quality",
 			source: ["VSoS", 67],
 			minlevel: 9,
-			description: desc([
-				"I can cast the identify spell at will. When cast this way, I learn the item's market value in gp.",
-			]),
+			description: desc(["I can cast the identify spell at will. When cast this way, I learn the item's market value in gp."]),
 			spellcastingBonus: [
 				{
 					name: "Eye for Quality",
@@ -19960,10 +16603,8 @@ ClassList["craftsman"] = {
 			spellChanges: {
 				identify: {
 					components: "",
-					description:
-						"1 magic item or magic-imbued crea/obj; learn properties, how to use, spells affecting it, market value",
-					changes:
-						"When cast using this feature, I also appraise the item, learning its market value in gold pieces.",
+					description: "1 magic item or magic-imbued crea/obj; learn properties, how to use, spells affecting it, market value",
+					changes: "When cast using this feature, I also appraise the item, learning its market value in gold pieces.",
 				},
 			},
 			action: ["action", " (Identify)"],
@@ -20014,9 +16655,7 @@ AddSubClass("craftsman", "arcane maester", {
 			name: "Magic Item Crafting",
 			source: ["VSoS", 67],
 			minlevel: 3,
-			description: desc([
-				"Using Active Crafting, I can craft magic items. See the notes pages for details.",
-			]),
+			description: desc(["Using Active Crafting, I can craft magic items. See the notes pages for details."]),
 			toNotesPage: [
 				{
 					name: "Magic Item Crafting",
@@ -20058,8 +16697,7 @@ AddSubClass("craftsman", "arcane maester", {
 				name: "Enchanted",
 				additional: "Prereq: None",
 				source: ["VSoS", 68],
-				description:
-					"\n    I use Intelligence for this weapon's attack and damage rolls.",
+				description: "\n    I use Intelligence for this weapon's attack and damage rolls.",
 			},
 			autoSelectExtrachoices: [
 				{
@@ -20071,29 +16709,19 @@ AddSubClass("craftsman", "arcane maester", {
 					function (fields, v) {
 						if (/enchanted/i.test(v.WeaponTextName) && v.isWeapon) {
 							// treat attack like masterwork. add magical property if correct level
-							if (
-								classes.known.craftsman.level >= 6 &&
-								!/magical/i.test(fields.Description)
-							)
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"Counts as magical";
+							if (classes.known.craftsman.level >= 6 && !/magical/i.test(fields.Description))
+								fields.Description += (fields.Description ? "; " : "") + "Counts as magical";
 
 							if (fields.Mod == 1) {
-								if (What("Int Mod") >= What("Str Mod"))
-									fields.Mod = 4;
+								if (What("Int Mod") >= What("Str Mod")) fields.Mod = 4;
 							} else if (fields.Mod == 2) {
-								if (What("Int Mod") >= What("Dex Mod"))
-									fields.Mod = 4;
+								if (What("Int Mod") >= What("Dex Mod")) fields.Mod = 4;
 							} else if (fields.Mod == 3) {
-								if (What("Int Mod") >= What("Con Mod"))
-									fields.Mod = 4;
+								if (What("Int Mod") >= What("Con Mod")) fields.Mod = 4;
 							} else if (fields.Mod == 5) {
-								if (What("Int Mod") >= What("Wis Mod"))
-									fields.Mod = 4;
+								if (What("Int Mod") >= What("Wis Mod")) fields.Mod = 4;
 							} else if (fields.Mod == 6) {
-								if (What("Int Mod") >= What("Cha Mod"))
-									fields.Mod = 4;
+								if (What("Int Mod") >= What("Cha Mod")) fields.Mod = 4;
 							}
 						}
 					},
@@ -20102,12 +16730,7 @@ AddSubClass("craftsman", "arcane maester", {
 				atkCalc: [
 					function (fields, v, output) {
 						// only add the masterwork +1 if it fits and hasn't already been added by a slot application
-						if (
-							/enchanted/i.test(v.WeaponTextName) &&
-							!/\b[a-e]\b/i.test(v.WeaponTextName) &&
-							v.isWeapon &&
-							!/\+[\d]/.test(v.WeaponTextName)
-						) {
+						if (/enchanted/i.test(v.WeaponTextName) && !/\b[a-e]\b/i.test(v.WeaponTextName) && v.isWeapon && !/\+[\d]/.test(v.WeaponTextName)) {
 							output.extraHit += 1;
 						}
 					},
@@ -20118,9 +16741,7 @@ AddSubClass("craftsman", "arcane maester", {
 			name: "Instant Attunement",
 			source: ["VSoS", 68],
 			minlevel: 7,
-			description: desc([
-				"I can use my action to attune/end attunement to a magic item.",
-			]),
+			description: desc(["I can use my action to attune/end attunement to a magic item."]),
 			usages: "Int mod",
 			usagescalc: "event.value = What('Int Mod');",
 			recovery: "short rest",
@@ -20201,9 +16822,7 @@ AddSubClass("craftsman", "arcane maester", {
 			name: "Legendary Property",
 			source: ["VSoS", 69],
 			minlevel: 18,
-			description: desc([
-				"I learn a new masterwork armor property, which I can immediately apply: Resonant.",
-			]),
+			description: desc(["I learn a new masterwork armor property, which I can immediately apply: Resonant."]),
 			extraname: "Legendary Masterwork Armor Property",
 			resonant: {
 				name: "Resonant",
@@ -20236,9 +16855,7 @@ AddSubClass("craftsman", "armiger", {
 			name: "Fighting Style",
 			source: ["VSoS", 69],
 			minlevel: 3,
-			description: desc([
-				'Choose a Fighting Style using the "Choose Feature" button above',
-			]),
+			description: desc(['Choose a Fighting Style using the "Choose Feature" button above']),
 			choices: ["Defense", "Protection"],
 			defense: FightingStyles.defense,
 			protection: FightingStyles.protection,
@@ -20285,9 +16902,7 @@ AddSubClass("craftsman", "armiger", {
 			name: "Fortify",
 			source: ["VSoS", 69],
 			minlevel: 14,
-			description: desc([
-				"I can use a bonus action to gain resistance to all damage until the end of my next turn.",
-			]),
+			description: desc(["I can use a bonus action to gain resistance to all damage until the end of my next turn."]),
 			usages: 1,
 			recovery: "short rest",
 			action: ["bonus action", ""],
@@ -20296,9 +16911,7 @@ AddSubClass("craftsman", "armiger", {
 			name: "Legendary Property",
 			source: ["VSoS", 69],
 			minlevel: 18,
-			description: desc([
-				"I learn a new masterwork armor property, which I can immediately apply: Invincible.",
-			]),
+			description: desc(["I learn a new masterwork armor property, which I can immediately apply: Invincible."]),
 			extraname: "Legendary Masterwork Armor Property",
 			invincible: {
 				name: "Invincible",
@@ -20329,9 +16942,7 @@ AddSubClass("craftsman", "mechanaut", {
 			name: "Mechanaut's Apparatus",
 			source: ["VSoS", 73],
 			minlevel: 3,
-			description: desc([
-				"I complete the frame of a Mechanaut's Apparatus. See notes & companion pages.",
-			]),
+			description: desc(["I complete the frame of a Mechanaut's Apparatus. See notes & companion pages."]),
 			toNotesPage: [
 				{
 					name: "Mechanaut's Apparatus",
@@ -20371,12 +16982,8 @@ AddSubClass("craftsman", "mechanaut", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/\bintegrated\b/i.test(v.WeaponTextName) &&
-							v.isWeapon
-						) {
-							var maxMod =
-								What("Dex Mod") < What("Int Mod") ? 4 : 2;
+						if (/\bintegrated\b/i.test(v.WeaponTextName) && v.isWeapon) {
+							var maxMod = What("Dex Mod") < What("Int Mod") ? 4 : 2;
 							fields.Mod = maxMod;
 						}
 					},
@@ -20417,8 +17024,7 @@ AddSubClass("craftsman", "mechanaut", {
 						},
 					],
 					damage_immunities: "poison, psychic",
-					condition_immunities:
-						"blinded, charmed, deafened, frightened, paralyzed, petrified, poisoned",
+					condition_immunities: "blinded, charmed, deafened, frightened, paralyzed, petrified, poisoned",
 					traits: [
 						{
 							name: "Cockpit Cover",
@@ -20447,10 +17053,7 @@ AddSubClass("craftsman", "mechanaut", {
 					},
 					eval: function (prefix, lvl) {
 						//AddString(prefix + 'Cnote.Left', "◆ .");
-						Value(
-							prefix + "Comp.Use.Attack.1.Weapon Selection",
-							""
-						);
+						Value(prefix + "Comp.Use.Attack.1.Weapon Selection", "");
 					},
 				},
 			],
@@ -20459,23 +17062,18 @@ AddSubClass("craftsman", "mechanaut", {
 			name: "Cockpit Upgrade",
 			source: ["VSoS", 74],
 			minlevel: 3,
-			description: desc([
-				'Choose a cockpit upgrade for your apparatus by using the "Choose Feature" button above.',
-			]),
+			description: desc(['Choose a cockpit upgrade for your apparatus by using the "Choose Feature" button above.']),
 			choices: ["Comfortable Amenities", "Ejector Seat", "Loudspeaker"],
 			"comfortable amenities": {
 				name: "Comfortable Amenities Cockpit Upgrade",
 				source: ["VSoS", 74],
-				description: desc([
-					"I can sleep in the apparatus without ill effect.",
-				]),
+				description: desc(["I can sleep in the apparatus without ill effect."]),
 				calcChanges: {
 					companionCallback: [
 						function (prefix, oCrea, bAdd, sCompType) {
 							if (sCompType !== "mechanaut's apparatus") return;
 							var aFnc = bAdd ? AddString : RemoveString;
-							var str =
-								"\u25C6 Comfortable Amenities:\n   A creature can sleep in the apparatus\n   without ill effect.";
+							var str = "\u25C6 Comfortable Amenities:\n   A creature can sleep in the apparatus\n   without ill effect.";
 							aFnc(prefix + "Comp.Use.Features", str, true);
 						},
 						"Mechanaut's Apparatuses I create are comfortable enough to sleep in without ill effect.",
@@ -20491,8 +17089,7 @@ AddSubClass("craftsman", "mechanaut", {
 						function (prefix, oCrea, bAdd, sCompType) {
 							if (sCompType !== "mechanaut's apparatus") return;
 							var aFnc = bAdd ? AddString : RemoveString;
-							var str =
-								"\u25C6 Ejector's Seat:\n   Exiting the apparatus costs no\n   movement.";
+							var str = "\u25C6 Ejector's Seat:\n   Exiting the apparatus costs no\n   movement.";
 							aFnc(prefix + "Comp.Use.Features", str, true);
 						},
 						"Mechanaut's Apparatuses I create can be exited with no movement cost.",
@@ -20502,9 +17099,7 @@ AddSubClass("craftsman", "mechanaut", {
 			loudspeaker: {
 				name: "Loudspeaker Cockpit Upgrade",
 				source: ["VSoS", 74],
-				description: desc([
-					"The apparatus can amplify my voice up to 3 times louder than normal.",
-				]),
+				description: desc(["The apparatus can amplify my voice up to 3 times louder than normal."]),
 				calcChanges: {
 					companionCallback: [
 						function (prefix, oCrea, bAdd, sCompType) {
@@ -20523,27 +17118,18 @@ AddSubClass("craftsman", "mechanaut", {
 			name: "Limb Upgrade",
 			source: ["VSoS", 74],
 			minlevel: 7,
-			description: desc([
-				'Choose a Limb Upgrade for your apparatus by using the "Choose Feature" button above.',
-			]),
-			choices: [
-				"Arachnotron Legs",
-				"Heavy Suspension",
-				"Telescopic Frame",
-			],
+			description: desc(['Choose a Limb Upgrade for your apparatus by using the "Choose Feature" button above.']),
+			choices: ["Arachnotron Legs", "Heavy Suspension", "Telescopic Frame"],
 			"arachnotron legs": {
 				name: "Arachnotron Legs Limb Upgrade",
 				source: ["VSoS", 74],
-				description: desc([
-					"The apparatus has the Arachnotron Legs Limb Upgrade. See companion pages.",
-				]),
+				description: desc(["The apparatus has the Arachnotron Legs Limb Upgrade. See companion pages."]),
 				calcChanges: {
 					companionCallback: [
 						function (prefix, oCrea, bAdd, sCompType) {
 							if (sCompType !== "mechanaut's apparatus") return;
 							var aFnc = bAdd ? AddString : RemoveString;
-							var str =
-								"\u25C6 Arachnotron Legs:\n   The apparatus can move up, down, and\n   across vertical surfaces/ceilings.";
+							var str = "\u25C6 Arachnotron Legs:\n   The apparatus can move up, down, and\n   across vertical surfaces/ceilings.";
 							var spdStr = "climb 35 ft";
 							aFnc(prefix + "Comp.Use.Features", str, true);
 							aFnc(prefix + "Comp.Use.Speed", spdStr, true);
@@ -20555,9 +17141,7 @@ AddSubClass("craftsman", "mechanaut", {
 			"heavy suspension": {
 				name: "Heavy Suspension Limb Upgrade",
 				source: ["VSoS", 74],
-				description: desc([
-					"The apparatus has the Heavy Suspension Limb Upgrade. See companion pages.",
-				]),
+				description: desc(["The apparatus has the Heavy Suspension Limb Upgrade. See companion pages."]),
 				calcChanges: {
 					companionCallback: [
 						function (prefix, oCrea, bAdd, sCompType) {
@@ -20574,9 +17158,7 @@ AddSubClass("craftsman", "mechanaut", {
 			"telescopic frame": {
 				name: "Telescopic Frame Limb Upgrade",
 				source: ["VSoS", 74],
-				description: desc([
-					"The apparatus has the Telescopic Frame Limb Upgrade. See companion pages.",
-				]),
+				description: desc(["The apparatus has the Telescopic Frame Limb Upgrade. See companion pages."]),
 				calcChanges: {
 					companionCallback: [
 						function (prefix, oCrea, bAdd, sCompType) {
@@ -20595,9 +17177,7 @@ AddSubClass("craftsman", "mechanaut", {
 			name: "Passenger Seat",
 			source: ["VSoS", 74],
 			minlevel: 10,
-			description: desc([
-				"The apparatus gains a Passenger Seat. See companion pages.",
-			]),
+			description: desc(["The apparatus gains a Passenger Seat. See companion pages."]),
 			calcChanges: {
 				companionCallback: [
 					function (prefix, oCrea, bAdd, sCompType) {
@@ -20615,43 +17195,22 @@ AddSubClass("craftsman", "mechanaut", {
 			name: "Attachment Upgrade",
 			source: ["VSoS", 74],
 			minlevel: 14,
-			description: desc([
-				'Choose an Attachment Upgrade for your apparatus by using the "Choose Feature" button',
-				"above.",
-			]),
+			description: desc(['Choose an Attachment Upgrade for your apparatus by using the "Choose Feature" button', "above."]),
 			choices: ["Ballista Cannon", "Gyro Module", "Rocket Engine"],
 			"ballista cannon": {
 				name: "Ballista Cannon Attachment Upgrade",
 				source: ["VSoS", 75],
-				description: desc([
-					"As an action, I can fire the apparatus's integrated heavy ballista. See companion pages.",
-				]),
+				description: desc(["As an action, I can fire the apparatus's integrated heavy ballista. See companion pages."]),
 				calcChanges: {
 					creatureCallback: [
 						function (prefix, oCrea, bAdd) {
-							if (!/\bmechanaut's apparatus\b/i.test(oCrea.name))
-								return;
+							if (!/\bmechanaut's apparatus\b/i.test(oCrea.name)) return;
 							if (bAdd) {
 								AddWeapon("Ballista Cannon", "", prefix);
 							} else {
 								for (i = 1; i < 3; ++i) {
-									if (
-										/Ballista Cannon/i.test(
-											What(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection"
-											)
-										)
-									) {
-										Value(
-											prefix +
-												"Comp.Use.Attack." +
-												i +
-												".Weapon Selection",
-											""
-										);
+									if (/Ballista Cannon/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection"))) {
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
 									}
 								}
 							}
@@ -20664,9 +17223,7 @@ AddSubClass("craftsman", "mechanaut", {
 			"gyro module": {
 				name: "Gyro Module Attachment Upgrade",
 				source: ["VSoS", 75],
-				description: desc([
-					"The apparatus gains the Gyro Module Attachment Upgrade. See companion pages.",
-				]),
+				description: desc(["The apparatus gains the Gyro Module Attachment Upgrade. See companion pages."]),
 				calcChanges: {
 					companionCallback: [
 						function (prefix, oCrea, bAdd, sCompType) {
@@ -20680,17 +17237,10 @@ AddSubClass("craftsman", "mechanaut", {
 					],
 					atkAdd: [
 						function (fields, v) {
-							if (
-								/\bintegrated\b/i.test(v.WeaponTextName) &&
-								v.isMeleeWeapon
-							) {
-								fields.Description +=
-									(fields.Description == "" ? "" : "; ") +
-									"Gyro hits any # of crea in range";
+							if (/\bintegrated\b/i.test(v.WeaponTextName) && v.isMeleeWeapon) {
+								fields.Description += (fields.Description == "" ? "" : "; ") + "Gyro hits any # of crea in range";
 								fields.Description_Tooltip +=
-									(fields.Description_Tooltip == ""
-										? ""
-										: "\n") +
+									(fields.Description_Tooltip == "" ? "" : "\n") +
 									"Gyro Module: piloting creatures can use their action to make an attack using an integrated weapon against any number of creatures within 5 feet of the apparatus, making a separate attack roll against each target. The apparatus cannot move between these attacks.";
 							}
 						},
@@ -20701,9 +17251,7 @@ AddSubClass("craftsman", "mechanaut", {
 			"rocket engine": {
 				name: "Rocket Engine Attachment Upgrade",
 				source: ["VSoS", 75],
-				description: desc([
-					"As a bonus action, I can light the apparatus's rocket engine. See companion pages.",
-				]),
+				description: desc(["As a bonus action, I can light the apparatus's rocket engine. See companion pages."]),
 				action: ["bonus action", "Light Rocket Engine"],
 				calcChanges: {
 					companionCallback: [
@@ -20723,9 +17271,7 @@ AddSubClass("craftsman", "mechanaut", {
 			name: "Legendary Property",
 			source: ["VSoS", 75],
 			minlevel: 18,
-			description: desc([
-				"I learn a new masterwork weapon property, which I can immediately apply: Pneumatic.",
-			]),
+			description: desc(["I learn a new masterwork weapon property, which I can immediately apply: Pneumatic."]),
 			extraname: "Legendary Masterwork Weapon Property",
 			pneumatic: {
 				name: "Pneumatic",
@@ -20744,15 +17290,13 @@ AddSubClass("craftsman", "mechanaut", {
 							/\bpneumatic\b/i.test(v.WeaponTextName) &&
 							/\bintegrated\b/i.test(v.WeaponTextName) &&
 							v.isMeleeWeapon &&
-							(/bexotic\b/i.test(v.theWea.type) ||
-								/\bexotic\b/i.test(fields.Description))
+							(/bexotic\b/i.test(v.theWea.type) || /\bexotic\b/i.test(fields.Description))
 						) {
 							// get dice
 							var dieSplit = output.die.split("d");
 
 							if (dieSplit[0] > 1) {
-								var newDie =
-									dieSplit[0] - 1 + "d" + dieSplit[1];
+								var newDie = dieSplit[0] - 1 + "d" + dieSplit[1];
 								output.die = newDie;
 								output.extraDmg += parseInt(dieSplit[1]);
 							}
@@ -20782,17 +17326,12 @@ AddSubClass("craftsman", "Calibaron", {
 			name: "Fighting Style",
 			source: ["VSoS", 70],
 			minlevel: 3,
-			description: desc([
-				'Choose a Fighting Style using the "Choose Feature" button above',
-			]),
+			description: desc(['Choose a Fighting Style using the "Choose Feature" button above']),
 			choices: ["Akimbo", "Bullseye", "Duelist", "Shotgunner"],
 			akimbo: {
 				name: "Akimbo Fighting Style",
 				source: ["VSoS", 71],
-				description: desc([
-					"When I engage in two-weapon fighting with firearms, I don't take a penalty to the damage of",
-					"of the second attack.",
-				]),
+				description: desc(["When I engage in two-weapon fighting with firearms, I don't take a penalty to the damage of", "of the second attack."]),
 			},
 			bullseye: {
 				name: "Bullseye Fighting Style",
@@ -20810,10 +17349,8 @@ AddSubClass("craftsman", "Calibaron", {
 
 							// add to hit bonus
 							if (
-								(/firearm/i.test(v.theWea.list) ||
-									/\bfirearm\b/i.test(fields.Description)) &&
-								(/\bsighted\b/i.test(fields.Description) ||
-									ranges[0] >= 80)
+								(/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) &&
+								(/\bsighted\b/i.test(fields.Description) || ranges[0] >= 80)
 							) {
 								output.extraHit += 2;
 							}
@@ -20833,20 +17370,12 @@ AddSubClass("craftsman", "Calibaron", {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								(/firearm/i.test(v.theWea.list) ||
-									/\bfirearm\b/i.test(fields.Description)) &&
-								!/\btwo-handed\b/i.test(fields.Description)
-							) {
+							if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) && !/\btwo-handed\b/i.test(fields.Description)) {
 								// get the die type
 								var dieSplit = fields.Damage_Die.split("d");
 								if (dieSplit.length < 2) return;
 								var die = "1d" + dieSplit[1];
-								fields.Description +=
-									(fields.Description == "" ? "" : "; ") +
-									"Duelist +" +
-									die +
-									" extra dmg";
+								fields.Description += (fields.Description == "" ? "" : "; ") + "Duelist +" + die + " extra dmg";
 							}
 						},
 						"Once per round, when wielding a firearm in one hand and nothing in the other, I deal 1 extra die of weapon damage if my attack roll exceeds the target's AC by 5 or more.",
@@ -20863,14 +17392,8 @@ AddSubClass("craftsman", "Calibaron", {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								(/firearm/i.test(v.theWea.list) ||
-									/\bfirearm\b/i.test(fields.Description)) &&
-								/\bscatter\b/i.test(fields.Description)
-							) {
-								fields.Description +=
-									(fields.Description == "" ? "" : "; ") +
-									"reroll lowest dmg die";
+							if ((/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) && /\bscatter\b/i.test(fields.Description)) {
+								fields.Description += (fields.Description == "" ? "" : "; ") + "reroll lowest dmg die";
 							}
 						},
 						"When I hit with a ranged weapon attack using a firearm that has the Scatter property, I can reroll the lowest damage die.",
@@ -20882,9 +17405,7 @@ AddSubClass("craftsman", "Calibaron", {
 			name: "Apprentice Property",
 			source: ["VSoS", 71],
 			minlevel: 7,
-			description: desc([
-				"I learn a new masterwork weapon property: Suppressor.",
-			]),
+			description: desc(["I learn a new masterwork weapon property: Suppressor."]),
 			extraname: "Apprentice Masterwork Weapon Property",
 			suppressor: {
 				name: "Suppressor",
@@ -20903,14 +17424,8 @@ AddSubClass("craftsman", "Calibaron", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/\bsuppressor\b/i.test(v.WeaponTextName) &&
-							(/firearm/i.test(v.theWea.list) ||
-								/\bfirearm\b/i.test(fields.Description))
-						) {
-							fields.Description +=
-								(fields.Description == "" ? "" : "; ") +
-								"only audible 10 ft & no light";
+						if (/\bsuppressor\b/i.test(v.WeaponTextName) && (/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description))) {
+							fields.Description += (fields.Description == "" ? "" : "; ") + "only audible 10 ft & no light";
 							fields.Description_Tooltip +=
 								(fields.Description_Tooltip == "" ? "" : "\n") +
 								"Suppressor: Attacks with this weapon make only a low thud or a quiet clink, audible out to 10 feet, and release a puff of smoke to mask the light given off by the blast.";
@@ -20952,11 +17467,7 @@ AddSubClass("craftsman", "Calibaron", {
 						if (v.isRangedWeapon) {
 							// find out what damage die we are using
 							var die = fields.Damage_Die.match(/(?:d)\d+/i);
-							fields.Description +=
-								(fields.Description == "" ? "" : "; ") +
-								"Ballistic (+1" +
-								die[0] +
-								" dmg); Calibrated (crit on 18-20)";
+							fields.Description += (fields.Description == "" ? "" : "; ") + "Ballistic (+1" + die[0] + " dmg); Calibrated (crit on 18-20)";
 						}
 					},
 					"Ranged weapons I have calibrated gain either the Ballistic or Calibrated property, until they hit a target. Ballistic adds one extra damage die to the damage of the attack, and Calibrated allows the weapon to crit on a roll of 18-20.",
@@ -20982,8 +17493,7 @@ AddSubClass("craftsman", "Calibaron", {
 					abilitytodamage: false,
 					damage: [8, 6, "Fire"],
 					range: "60 ft, 10 ft rad",
-					description:
-						"Dexterity save; must be attached to two-handed firearm; save half damage",
+					description: "Dexterity save; must be attached to two-handed firearm; save half damage",
 					dc: true,
 					isNotWeapon: true,
 					selectNow: true,
@@ -21000,9 +17510,7 @@ AddSubClass("craftsman", "Calibaron", {
 			name: "Legendary Property",
 			source: ["VSoS", 71],
 			minlevel: 18,
-			description: desc([
-				"I learn a new masterwork weapon property, which I can immediately apply: Burst Fire.",
-			]),
+			description: desc(["I learn a new masterwork weapon property, which I can immediately apply: Burst Fire."]),
 			extraname: "Legendary Masterwork Weapon Property",
 			"burst fire": {
 				name: "Burst Fire",
@@ -21023,15 +17531,11 @@ AddSubClass("craftsman", "Calibaron", {
 					function (fields, v) {
 						if (
 							/\bburst fire\b/i.test(v.WeaponTextName) &&
-							(/firearm/i.test(v.theWea.list) ||
-								/\bfirearm\b/i.test(fields.Description)) &&
+							(/firearm/i.test(v.theWea.list) || /\bfirearm\b/i.test(fields.Description)) &&
 							/\bautomatic\b/i.test(fields.Description) &&
-							(/\bexotic\b/i.test(v.theWea.type) ||
-								/\bexotic\b/i.test(fields.Description))
+							(/\bexotic\b/i.test(v.theWea.type) || /\bexotic\b/i.test(fields.Description))
 						) {
-							fields.Description +=
-								(fields.Description == "" ? "" : "; ") +
-								"bonus action extra attack";
+							fields.Description += (fields.Description == "" ? "" : "; ") + "bonus action extra attack";
 						}
 					},
 					'When the phrase "Burst Fire" is included in the name of an exotic automatic firearm attack, it gains the Burst Fire property.',
@@ -21087,9 +17591,7 @@ AddSubClass("craftsman", "forgeknight", {
 					["VSoS", 82],
 				],
 				additional: ["Prereq: Exotic, Melee"],
-				description: desc([
-					"This weapon gains the Heat property and its damage dice increase by 1 step.",
-				]),
+				description: desc(["This weapon gains the Heat property and its damage dice increase by 1 step."]),
 			},
 			armoryexplosive: {
 				name: "Explosive",
@@ -21114,72 +17616,39 @@ AddSubClass("craftsman", "forgeknight", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							v.isWeapon &&
-							(/\bexotic\b/i.test(v.theWea.type) ||
-								/\bexotic\b/i.test(fields.Description)) &&
-							v.isMeleeWeapon
-						) {
+						if (v.isWeapon && (/\bexotic\b/i.test(v.theWea.type) || /\bexotic\b/i.test(fields.Description)) && v.isMeleeWeapon) {
 							if (/\bheat\b/i.test(v.WeaponTextName)) {
 								// add magical property if correct level
-								if (
-									classes.known.craftsman.level >= 6 &&
-									!/magical/i.test(fields.Description)
-								)
-									fields.Description +=
-										(fields.Description ? "; " : "") +
-										"Counts as magical";
+								if (classes.known.craftsman.level >= 6 && !/magical/i.test(fields.Description))
+									fields.Description += (fields.Description ? "; " : "") + "Counts as magical";
 
 								// increase damage
-								var newDice = ClassList[
-									"craftsman"
-								].CalcDieStep(fields.Damage_Die, true, 1);
+								var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, true, 1);
 								fields.Damage_Die = newDice;
 
 								// add heat to description & tooltip
-								if (!/\bheat\b/i.test(fields.Description))
-									fields.Description +=
-										(fields.Description ? "; " : "") +
-										"Heat";
+								if (!/\bheat\b/i.test(fields.Description)) fields.Description += (fields.Description ? "; " : "") + "Heat";
 								fields.Description_Tooltip +=
-									(fields.Description_Tooltip == ""
-										? ""
-										: "\n") +
+									(fields.Description_Tooltip == "" ? "" : "\n") +
 									"Heat: This weapon gains 1 heat point whenever an attack is made with it, and it loses 1 heat point at the start of each of your turns. If the weapon has 3 heat points, it overheats and loses all heat points. An overheated weapon can't be used to make an attack again until the end of your next turn.";
 							}
 							if (/\bexplosive\b/i.test(v.WeaponTextName)) {
 								// add magical property if correct level
-								if (
-									classes.known.craftsman.level >= 6 &&
-									!/magical/i.test(fields.Description)
-								)
-									fields.Description +=
-										(fields.Description ? "; " : "") +
-										"Counts as magical";
+								if (classes.known.craftsman.level >= 6 && !/magical/i.test(fields.Description))
+									fields.Description += (fields.Description ? "; " : "") + "Counts as magical";
 
 								// decrease damage
-								var newDice = ClassList[
-									"craftsman"
-								].CalcDieStep(fields.Damage_Die, false, 1);
+								var newDice = ClassList["craftsman"].CalcDieStep(fields.Damage_Die, false, 1);
 								fields.Damage_Die = newDice;
 
 								// change damage type
-								if (
-									/bludgeoning/i.test(fields.Damage_Type) ||
-									/piercing/i.test(fields.Damage_Type) ||
-									/slashing/i.test(fields.Damage_Type)
-								)
+								if (/bludgeoning/i.test(fields.Damage_Type) || /piercing/i.test(fields.Damage_Type) || /slashing/i.test(fields.Damage_Type))
 									fields.Damage_Type = "Fire";
 
 								// add explosive to description & tooltip
-								if (!/explosive/i.test(fields.Description))
-									fields.Description +=
-										(fields.Description ? "; " : "") +
-										"Explosive";
+								if (!/explosive/i.test(fields.Description)) fields.Description += (fields.Description ? "; " : "") + "Explosive";
 								fields.Description_Tooltip +=
-									(fields.Description_Tooltip == ""
-										? ""
-										: "\n") +
+									(fields.Description_Tooltip == "" ? "" : "\n") +
 									"Explosive: When this weapon hits a target, it explodes in a 15-foot diameter sphere. Each creature other than the target within the blast radius (for a Medium or smaller target, each creature within 5 feet of it) must make a Dexterity saving throw, taking half the damage rolled on a failed save or no damage on a successful one.";
 							}
 						}
@@ -21193,10 +17662,8 @@ AddSubClass("craftsman", "forgeknight", {
 							/\bexotic\b/i.test(v.theWea.type) &&
 							/\bexotic\b/i.test(fields.Description) &&
 							v.isMeleeWeapon &&
-							(/\bheat\b/i.test(v.WeaponTextName) ||
-								/\bexplosive\b/i.test(v.WeaponTextName)) &&
-							(!/\b[a-e]\b/i.test(v.WeaponTextName) ||
-								!/\+[\d]/.test(v.WeaponTextName))
+							(/\bheat\b/i.test(v.WeaponTextName) || /\bexplosive\b/i.test(v.WeaponTextName)) &&
+							(!/\b[a-e]\b/i.test(v.WeaponTextName) || !/\+[\d]/.test(v.WeaponTextName))
 						) {
 							output.extraHit += 1;
 						}
@@ -21219,9 +17686,7 @@ AddSubClass("craftsman", "forgeknight", {
 				atkAdd: [
 					function (fields, v) {
 						if (v.isWeapon) {
-							fields.Description +=
-								(fields.Description == "" ? "" : "; ") +
-								"Superheated +1d6 fire";
+							fields.Description += (fields.Description == "" ? "" : "; ") + "Superheated +1d6 fire";
 						}
 					},
 					"Weapons and ammunition that I superheat deal +1d6 fire damage the first time they hit a target.",
@@ -21251,8 +17716,7 @@ AddSubClass("craftsman", "forgeknight", {
 				fireball: {
 					components: "",
 					range: "Self",
-					changes:
-						"When I cast this spell via the Fire Burst feature, the spell is centered on myself, and I take no damage from it.",
+					changes: "When I cast this spell via the Fire Burst feature, the spell is centered on myself, and I take no damage from it.",
 				},
 			},
 			usages: 1,
@@ -21263,9 +17727,7 @@ AddSubClass("craftsman", "forgeknight", {
 			name: "Legendary Property",
 			source: ["VSoS", 72],
 			minlevel: 18,
-			description: desc([
-				"I learn a new masterwork weapon property, which I can immediately apply: Forge Plate.",
-			]),
+			description: desc(["I learn a new masterwork weapon property, which I can immediately apply: Forge Plate."]),
 			extraname: "Legendary Masterwork Armor Property",
 			"forge plate": {
 				name: "Forge Plate",
@@ -21309,8 +17771,7 @@ AddSubClass("craftsman", "forgeknight", {
 					components: "",
 					range: "",
 					time: "",
-					description:
-						"60×1×20ft (l×w×h) all in & 10 ft on 1 side 5d8 Fire dmg; save halves; see book",
+					description: "60×1×20ft (l×w×h) all in & 10 ft on 1 side 5d8 Fire dmg; save halves; see book",
 					changes:
 						"When cast via the Forge Plate Masterwork armor property, the wall appears at the end of the caster's turn, and follows a path along the ground over which the caster moved that turn.",
 				},
@@ -21341,26 +17802,12 @@ AddSubClass("craftsman", "thunderlord", {
 				"listed in the notes pages.",
 			]),
 			additional: levels.map(function (n) {
-				return (
-					Math.ceil(n / 2) +
-					" charge points, " +
-					(n < 4
-						? "2"
-						: n < 9
-						? "3"
-						: n < 13
-						? "4"
-						: n < 17
-						? "5"
-						: "6") +
-					" max points/turn"
-				);
+				return Math.ceil(n / 2) + " charge points, " + (n < 4 ? "2" : n < 9 ? "3" : n < 13 ? "4" : n < 17 ? "5" : "6") + " max points/turn";
 			}),
 			extraLimitedFeatures: [
 				{
 					name: "Charge Points",
-					usagescalc:
-						"event.value = Math.ceil(classes.known.craftsman.level/2);",
+					usagescalc: "event.value = Math.ceil(classes.known.craftsman.level/2);",
 					recovery: "short rest",
 				},
 			],
@@ -21380,13 +17827,8 @@ AddSubClass("craftsman", "thunderlord", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							!v.isDC &&
-							/\blightning\b/i.test(fields.Damage_Type)
-						) {
-							fields.Description +=
-								(fields.Description == "" ? "" : "; ") +
-								"Arc 1d6 + Int mod; Discharge +1d6/cpoint; Jolt";
+						if (!v.isDC && /\blightning\b/i.test(fields.Damage_Type)) {
+							fields.Description += (fields.Description == "" ? "" : "; ") + "Arc 1d6 + Int mod; Discharge +1d6/cpoint; Jolt";
 							fields.Description_Tooltip +=
 								(fields.Description_Tooltip == "" ? "" : "\n") +
 								"Arc: Lightning arcs to nearby targets. Spend charge points to choose a number of creatures equal to the number of charge points you expended that are within 15 feet of the target of your attack. Each of the chosen creatures must succeed on a Dexterity saving throw against your Masterwork save DC or take lightning damage equal to 1d6 + your Intelligence modifier.";
@@ -21479,9 +17921,7 @@ AddSubClass("craftsman", "thunderlord", {
 				atkAdd: [
 					function (fields, v) {
 						if (v.isWeapon) {
-							fields.Description +=
-								(fields.Description == "" ? "" : "; ") +
-								"Charged +1d6 lightning";
+							fields.Description += (fields.Description == "" ? "" : "; ") + "Charged +1d6 lightning";
 							fields.Description_Tooltip +=
 								(fields.Description_Tooltip == "" ? "" : "\n") +
 								"Charged Weapon: If I charged this weapon using my Static Charge feature within the last hour, On a hit, I can expend that charge to deal an extra 1d6 lightning damage to the target.";
@@ -21521,9 +17961,7 @@ AddSubClass("craftsman", "thunderlord", {
 			name: "Legendary Property",
 			source: ["VSoS", 76],
 			minlevel: 18,
-			description: desc([
-				"I learn a new masterwork weapon property, which I can immediately apply: Electroshock.",
-			]),
+			description: desc(["I learn a new masterwork weapon property, which I can immediately apply: Electroshock."]),
 			extraname: "Legendary Masterwork Weapon Property",
 			electroshock: {
 				name: "Electroshock",
@@ -21537,14 +17975,8 @@ AddSubClass("craftsman", "thunderlord", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/\belectroshock\b/i.test(v.WeaponTextName) &&
-							(/bexotic\b/i.test(v.theWea.type) ||
-								/\bexotic\b/i.test(fields.Description))
-						) {
-							fields.Description +=
-								(fields.Description == "" ? "" : "; ") +
-								"Electroshock 1/rest";
+						if (/\belectroshock\b/i.test(v.WeaponTextName) && (/bexotic\b/i.test(v.theWea.type) || /\bexotic\b/i.test(fields.Description))) {
+							fields.Description += (fields.Description == "" ? "" : "; ") + "Electroshock 1/rest";
 							fields.Description_Tooltip +=
 								(fields.Description_Tooltip == "" ? "" : "\n") +
 								"Electroshock: When you hit a creature with this weapon, you can expend the weapon's built-in power cell to shock the target. The target must succeed on a Constitution saving throw against your Masterwork save DC or be stunned until the end of your next turn. Once you use this property, you can't use it again with this weapon until you finish a short or long rest.";
@@ -21574,9 +18006,7 @@ AddSubClass("craftsman", "trapper", {
 			name: "Danger Sense",
 			source: ["VSoS", 76],
 			minlevel: 3,
-			description: desc([
-				"Adv. on Dexterity saves against seen effects (not blinded/deafened/incapacitated)",
-			]),
+			description: desc(["Adv. on Dexterity saves against seen effects (not blinded/deafened/incapacitated)"]),
 			savetxt: { text: ["Adv. on Dex saves vs. seen effects"] },
 		},
 		"subclassfeature3.1": {
@@ -21602,9 +18032,7 @@ AddSubClass("craftsman", "trapper", {
 				{
 					name: "Traps",
 					source: ["VSoS", 77],
-					note: [
-						"Craftsmen of the Trappers' Guild can build the following traps:",
-					],
+					note: ["Craftsmen of the Trappers' Guild can build the following traps:"],
 				},
 				{
 					name: "Ballista Trap",
@@ -21695,15 +18123,12 @@ AddSubClass("craftsman", "trapper", {
 			name: "Legendary Property",
 			source: ["VSoS", 77],
 			minlevel: 18,
-			description: desc([
-				"I learn a new masterwork weapon property, which I can immediately apply: Net.",
-			]),
+			description: desc(["I learn a new masterwork weapon property, which I can immediately apply: Net."]),
 			extraname: "Legendary Masterwork Weapon Property",
 			net: {
 				name: "Net",
 				source: ["VSoS", 76],
-				additional:
-					"Prereq: Exotic, Ranged, not Firearm;\n   1/short rest",
+				additional: "Prereq: Exotic, Ranged, not Firearm;\n   1/short rest",
 				description: desc([
 					"When I hit a Large or smaller creature with this weapon's projectile, it also deploys a net",
 					"that automatically hits the creature.",
@@ -21716,13 +18141,9 @@ AddSubClass("craftsman", "trapper", {
 							/\bnet\b/i.test(v.WeaponTextName) &&
 							v.isRangedWeapon &&
 							(/bexotic\b/i.test(v.theWea.type) ||
-								(/\bexotic\b/i.test(fields.Description) &&
-									!/firearm/i.test(v.theWea.list) &&
-									!/\bfirearm\b/i.test(fields.Description)))
+								(/\bexotic\b/i.test(fields.Description) && !/firearm/i.test(v.theWea.list) && !/\bfirearm\b/i.test(fields.Description)))
 						) {
-							fields.Description +=
-								(fields.Description == "" ? "" : "; ") +
-								"restrain on hit";
+							fields.Description += (fields.Description == "" ? "" : "; ") + "restrain on hit";
 							fields.Description_Tooltip +=
 								(fields.Description_Tooltip == "" ? "" : "\n") +
 								"Net: When this weapon hits a Large or smaller creature with its projectile, it also deploys a net that automatically hits the creature. A Large or smaller creature hit by the net is restrained until it is freed. A net has no effect on creatures that are formless, or creatures that are Huge or larger. A creature can use its action to make a DC 10 Strength check, freeing itself or another creature within its reach on a success. Dealing 5 slashing damage to the net (AC 10) also frees the creature without harming it, ending the effect and destroying the net.";
@@ -21752,15 +18173,8 @@ AddSubClass("craftsman", "bladeworker", {
 			name: "Fighting Style",
 			source: ["VSoS", 70],
 			minlevel: 3,
-			description: desc([
-				'Choose a Fighting Style using the "Choose Feature" button above',
-			]),
-			choices: [
-				"Dueling",
-				"Great Weapon Fighting",
-				"Half-and-a-Half",
-				"Two-Weapon Fighting",
-			],
+			description: desc(['Choose a Fighting Style using the "Choose Feature" button above']),
+			choices: ["Dueling", "Great Weapon Fighting", "Half-and-a-Half", "Two-Weapon Fighting"],
 			archery: FightingStyles.archery,
 			dueling: FightingStyles.dueling,
 			"great weapon fighting": FightingStyles.great_weapon,
@@ -21768,9 +18182,7 @@ AddSubClass("craftsman", "bladeworker", {
 			"half-and-a-half": {
 				name: "Half-and-a-Half Fighting Style",
 				source: ["VSoS", 70],
-				description: desc([
-					"   I gain +1 to attack & damage rolls with a versatile weapon that I am wielding in two hands.",
-				]),
+				description: desc(["   I gain +1 to attack & damage rolls with a versatile weapon that I am wielding in two hands."]),
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
@@ -21831,9 +18243,7 @@ AddSubClass("craftsman", "bladeworker", {
 				atkAdd: [
 					function (fields, v) {
 						if (v.isWeapon) {
-							fields.Description +=
-								(fields.Description == "" ? "" : "; ") +
-								"Honed +2 to hit; Sharpened +1d8 dmg";
+							fields.Description += (fields.Description == "" ? "" : "; ") + "Honed +2 to hit; Sharpened +1d8 dmg";
 						}
 					},
 					"Honed weapons gain a +2 bonus to hit until it hits a target. Sharpened weapons deal an extra +1d8 damage until it hits a target.",
@@ -21897,17 +18307,13 @@ AddSubClass("craftsman", "bladeworker", {
 			name: "Legendary Property",
 			source: ["VSoS", 70],
 			minlevel: 18,
-			description: desc([
-				"I learn a new masterwork weapon property, which I can immediately apply: Devastating.",
-			]),
+			description: desc(["I learn a new masterwork weapon property, which I can immediately apply: Devastating."]),
 			extraname: "Legendary Masterwork Weapon Property",
 			devastating: {
 				name: "Devastating",
 				additional: "Prereq: Exotic",
 				source: ["VSoS", 70],
-				description: desc([
-					"This weapon scores a critical hit on a roll of 18-20.",
-				]),
+				description: desc(["This weapon scores a critical hit on a roll of 18-20."]),
 			},
 			autoSelectExtrachoices: [
 				{
@@ -21920,22 +18326,13 @@ AddSubClass("craftsman", "bladeworker", {
 						if (
 							/\bdevastating\b/i.test(v.WeaponTextName) &&
 							!v.isDC &&
-							(/\bexotic\b/i.test(fields.Description) ||
-								/\bexotic\b/i.test(v.theWea.type))
+							(/\bexotic\b/i.test(fields.Description) || /\bexotic\b/i.test(v.theWea.type))
 						) {
 							if (!/crit/i.test(fields.Description)) {
-								fields.Description +=
-									(fields.Description == "" ? "" : "; ") +
-									"crit on 18-20";
+								fields.Description += (fields.Description == "" ? "" : "; ") + "crit on 18-20";
 							} else {
-								fields.Description = fields.Description.replace(
-									"19 or 20",
-									"18-20"
-								);
-								fields.Description = fields.Description.replace(
-									"19-20",
-									"18-20"
-								);
+								fields.Description = fields.Description.replace("19 or 20", "18-20");
+								fields.Description = fields.Description.replace("19-20", "18-20");
 							}
 						}
 					},

@@ -153,8 +153,7 @@ var AberrantHorror2_EfficientKiller = [
 FeatsList["aberrant horror: efficient killer (level 2)"] = {
 	name: "Aberrant Horror: Efficient Killer (Level 2)",
 	source: [["GH", 34]],
-	description:
-		"I gain the Efficient Killer boon and Hideous Appearance flaw for the Aberrant Horror transformation, as detailed below on the notes page.",
+	description: "I gain the Efficient Killer boon and Hideous Appearance flaw for the Aberrant Horror transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -179,8 +178,7 @@ FeatsList["aberrant horror: efficient killer (level 2)"] = {
 		atkAdd: [
 			function (fields, v) {
 				if (/^(?=.*(eldritch|aberrant))(?=.*(limb|arm|arms)).*$/i.test(v.WeaponTextName)) {
-					fields.Description =
-						"Range 30 ft (Pierc.), +1d6 dmg (Bludg. + bns action), or +1d6 dmg (Slash. + Con save or bleed 1 min; EOT save)";
+					fields.Description = "Range 30 ft (Pierc.), +1d6 dmg (Bludg. + bns action), or +1d6 dmg (Slash. + Con save or bleed 1 min; EOT save)";
 				}
 			},
 		],
@@ -340,8 +338,7 @@ var AberrantHorror3_Wings = [
 FeatsList["aberrant horror: wings (level 3)"] = {
 	name: "Aberrant Horror: Wings (Level 3)",
 	source: [["GH", 35]],
-	description:
-		"I gain the Wings boon and Unstable Existence flaw for the Aberrant Horror transformation, as detailed below on the notes page.",
+	description: "I gain the Wings boon and Unstable Existence flaw for the Aberrant Horror transformation, as detailed below on the notes page.",
 	extraLimitedFeatures: {
 		name: "Wings (Aberrant Horror)",
 		usages: 1,
@@ -396,8 +393,7 @@ var AberrantHorror3_AdditionalTendrils = [
 FeatsList["aberrant horror: additional tendrils (level 3)"] = {
 	name: "Aberrant Horror: Additional Tendrils (Level 3)",
 	source: [["GH", 35]],
-	description:
-		"I gain the Additional Tendrils boon and Unstable Existence flaw for the Aberrant Horror transformation, as detailed below on the notes page.",
+	description: "I gain the Additional Tendrils boon and Unstable Existence flaw for the Aberrant Horror transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -481,10 +477,7 @@ FeatsList["aberrant horror: enhanced hypertrophy (level 3)"] = {
 							fields.Damage_Die = numDice + "d" + upgradedDie;
 						}
 					}
-				} else if (
-					v.baseWeaponName === "unarmed strike" &&
-					(fields.Damage_Die === 1 || fields.Damage_Die === "1d4" || fields.Damage_Die === "1d6")
-				) {
+				} else if (v.baseWeaponName === "unarmed strike" && (fields.Damage_Die === 1 || fields.Damage_Die === "1d4" || fields.Damage_Die === "1d6")) {
 					fields.Damage_Die = "1d8";
 				}
 			},
@@ -507,8 +500,7 @@ var AberrantHorror4_SavagePredator = [
 FeatsList["aberrant horror: savage predator (level 4)"] = {
 	name: "Aberrant Horror: Savage Predator (Level 4)",
 	source: [["GH", 36]],
-	description:
-		"I gain the Savage Predator boon and Entropic Abomination flaw for the Aberrant Horror transformation, as detailed below on the notes page.",
+	description: "I gain the Savage Predator boon and Entropic Abomination flaw for the Aberrant Horror transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -574,8 +566,7 @@ FeatsList["aberrant horror: master of the deep (level 4)"] = {
 	prerequisite: "Aberrant Horror Level 1 and Additional Tendrils",
 	prereqeval: function () {
 		return (
-			CurrentFeats.known.indexOf("aberrant horror level 1") !== -1 &&
-			CurrentFeats.known.indexOf("aberrant horror: additional tendrils (level 3)") !== -1
+			CurrentFeats.known.indexOf("aberrant horror level 1") !== -1 && CurrentFeats.known.indexOf("aberrant horror: additional tendrils (level 3)") !== -1
 		);
 	},
 	action: [["action", "Master of the Deep (Tendrils)"]],
@@ -745,8 +736,7 @@ FeatsList["fiend level 1"] = {
 	},
 	"gift of prodigious talent (lvl 2)": {
 		name: "Gift of Prodigious Talent (Lvl 2)",
-		description:
-			"Choose 2 skill proficiencies. My prof. bns is doubled for ability checks using either. Can't double a prof. bns already being doubled",
+		description: "Choose 2 skill proficiencies. My prof. bns is doubled for ability checks using either. Can't double a prof. bns already being doubled",
 		skillstxt: "Choose 2 skills; proficiency bonus doubled for those skills",
 		prerequisite: "2nd lvl Fiend Transformation",
 		prereqeval: function () {
@@ -759,8 +749,7 @@ FeatsList["fiend level 1"] = {
 	},
 	"gift of unconditional love (lvl 3)": {
 		name: "Gift of Unconditional Love (Lvl 3)",
-		description:
-			"When a crea. fails a Cha save vs a spell or ability I control, I can use rea. to gain temp hp = 1d10 + my char. lvl",
+		description: "When a crea. fails a Cha save vs a spell or ability I control, I can use rea. to gain temp hp = 1d10 + my char. lvl",
 		action: [["reaction", "Unconditional Love"]],
 		usages: 1,
 		recovery: "short rest",
@@ -849,8 +838,7 @@ var Fiend2_BrandChainersGaze = [
 FeatsList["fiend: brand of the chainer's gaze (level 2)"] = {
 	name: "Fiend: Brand of the Chainer's Gaze (Level 2)",
 	source: [["GH", 41]],
-	description:
-		"I gain the Brand of the Chainer's Gaze boon and Hideous Appearance flaw for the Fiend transformation, as detailed below on the notes page.",
+	description: "I gain the Brand of the Chainer's Gaze boon and Hideous Appearance flaw for the Fiend transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -949,8 +937,7 @@ var Fiend2_BrandDeceiversGuile = [
 FeatsList["fiend: brand of the deceiver's guile (level 2)"] = {
 	name: "Fiend: Brand of the Deceiver's Guile (Level 2)",
 	source: [["GH", 41]],
-	description:
-		"I gain the Brand of the Deceiver's Guile boon and Hideous Appearance flaw for the Fiend transformation, as detailed below on the notes page.",
+	description: "I gain the Brand of the Deceiver's Guile boon and Hideous Appearance flaw for the Fiend transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -993,8 +980,7 @@ var Fiend3_AlluringDeceit = [
 FeatsList["fiend: alluring deceit (level 3)"] = {
 	name: "Fiend: Alluring Deceit (Level 3)",
 	source: [["GH", 42]],
-	description:
-		"I gain the Alluring Deceit boon and True Name flaw for the Fiend transformation, as detailed below on the notes page.",
+	description: "I gain the Alluring Deceit boon and True Name flaw for the Fiend transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1041,8 +1027,7 @@ var Fiend3_InfernalResistance = [
 FeatsList["fiend: infernal resistance (level 3)"] = {
 	name: "Fiend: Infernal Resistance (Level 3)",
 	source: [["GH", 42]],
-	description:
-		"I gain the Infernal Resistance boon and True Name flaw for the Fiend transformation, as detailed below on the notes page.",
+	description: "I gain the Infernal Resistance boon and True Name flaw for the Fiend transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1092,8 +1077,7 @@ var Fiend3_NetherBlade = [
 FeatsList["fiend: nether blade (level 3)"] = {
 	name: "Fiend: Nether Blade (Level 3)",
 	source: [["GH", 42]],
-	description:
-		"I gain the Nether Blade boon and True Name flaw for the Fiend transformation, as detailed below on the notes page.",
+	description: "I gain the Nether Blade boon and True Name flaw for the Fiend transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1125,10 +1109,7 @@ FeatsList["fiend: nether blade (level 3)"] = {
 	calcChanges: {
 		atkAdd: [
 			function (fields, v) {
-				if (
-					/^(?=.*nether)(?=.*blade).*$/i.test(fields.WeaponTextName) &&
-					/(simple|martial)/i.test(v.theWea.type + " " + v.theWea.list)
-				) {
+				if (/^(?=.*nether)(?=.*blade).*$/i.test(fields.WeaponTextName) && /(simple|martial)/i.test(v.theWea.type + " " + v.theWea.list)) {
 					fields.Description += (fields.Description ? "; " : "") + "+2d6 fire dmg";
 				}
 			},
@@ -1152,8 +1133,7 @@ var Fiend4_CommandingObedience = [
 FeatsList["fiend: commanding obedience (level 4)"] = {
 	name: "Fiend: Commanding Obedience (Level 4)",
 	source: [["GH", 43]],
-	description:
-		"I gain the Commanding Obedience boon and Pull of the Netherworld flaw for the Fiend transformation, as detailed below on the notes page.",
+	description: "I gain the Commanding Obedience boon and Pull of the Netherworld flaw for the Fiend transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1201,8 +1181,7 @@ var Fiend4_BrimstonePyrolysis = [
 FeatsList["fiend: brimstone pyrolysis (level 4)"] = {
 	name: "Fiend: Brimstone Pyrolysis (Level 4)",
 	source: [["GH", 43]],
-	description:
-		"I gain the Brimstone Pyrolysis boon and Pull of the Netherworld flaw for the Fiend transformation, as detailed below on the notes page.",
+	description: "I gain the Brimstone Pyrolysis boon and Pull of the Netherworld flaw for the Fiend transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1250,8 +1229,7 @@ var Fiend4_InfernalSummoning = [
 FeatsList["fiend: infernal summoning (level 4)"] = {
 	name: "Fiend: Infernal Summoning (Level 4)",
 	source: [["GH", 43]],
-	description:
-		"I gain the Infernal Summoning boon and Pull of the Netherworld flaw for the Fiend transformation, as detailed below on the notes page.",
+	description: "I gain the Infernal Summoning boon and Pull of the Netherworld flaw for the Fiend transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1362,8 +1340,7 @@ var Lich2_PuppetMaster = [
 FeatsList["lich: puppet master (level 2)"] = {
 	name: "Lich: Puppet Master (Level 2)",
 	source: [["GH", 48]],
-	description:
-		"I gain the Puppet Master boon and Hideous Appearance flaw for the Lich transformation, as detailed below on the notes page.",
+	description: "I gain the Puppet Master boon and Hideous Appearance flaw for the Lich transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1410,8 +1387,7 @@ var Lich2_LichdomArcane = [
 FeatsList["lich: lichdom of the arcane (level 2)"] = {
 	name: "Lich: Lichdom of the Arcane (Level 2)",
 	source: [["GH", 48]],
-	description:
-		"I gain the Lichdom of the Arcane boon and Hideous Appearance flaw for the Lich transformation, as detailed below on the notes page.",
+	description: "I gain the Lichdom of the Arcane boon and Hideous Appearance flaw for the Lich transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1458,8 +1434,7 @@ var Lich2_RiftDreadscapes = [
 FeatsList["lich: rift to the dreadscapes (level 2)"] = {
 	name: "Lich: Rift to the Dreadscapes (Level 2)",
 	source: [["GH", 48]],
-	description:
-		"I gain the Rift to the Dreadscapes boon and Hideous Appearance flaw for the Lich transformation, as detailed below on the notes page.",
+	description: "I gain the Rift to the Dreadscapes boon and Hideous Appearance flaw for the Lich transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1501,8 +1476,7 @@ var Lich3_RelentlessUndead = [
 FeatsList["lich: relentless undead (level 3)"] = {
 	name: "Lich: Relentless Undead (Level 3)",
 	source: [["GH", 49]],
-	description:
-		"I gain the Relentless Undead boon and Necromantic Dystrophy flaw for the Lich transformation, as detailed below on the notes page.",
+	description: "I gain the Relentless Undead boon and Necromantic Dystrophy flaw for the Lich transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1548,8 +1522,7 @@ var Lich3_ArcaneSupremacy = [
 FeatsList["lich: arcane supremacy (level 3)"] = {
 	name: "Lich: Arcane Supremacy (Level 3)",
 	source: [["GH", 49]],
-	description:
-		"I gain the Arcane Supremacy boon and Necromantic Dystrophy flaw for the Lich transformation, as detailed below on the notes page.",
+	description: "I gain the Arcane Supremacy boon and Necromantic Dystrophy flaw for the Lich transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1599,8 +1572,7 @@ var Lich3_StaffDreadscapes = [
 FeatsList["lich: staff of the dreadscapes (level 3)"] = {
 	name: "Lich: Staff of the Dreadscapes (Level 3)",
 	source: [["GH", 49]],
-	description:
-		"I gain the Staff of the Dreadscapes boon and Necromantic Dystrophy flaw for the Lich transformation, as detailed below on the notes page.",
+	description: "I gain the Staff of the Dreadscapes boon and Necromantic Dystrophy flaw for the Lich transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1662,8 +1634,7 @@ var Lich4_LordUndeath = [
 FeatsList["lich: lord of undeath (level 4)"] = {
 	name: "Lich: Lord of Undeath (Level 4)",
 	source: [["GH", 49]],
-	description:
-		"I gain the Lord of Undeath boon and Weight of Ages flaw for the Lich transformation, as detailed below on the notes page.",
+	description: "I gain the Lord of Undeath boon and Weight of Ages flaw for the Lich transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1709,8 +1680,7 @@ var Lich4_ArcaneOmniscience = [
 FeatsList["lich: arcane omniscience (level 4)"] = {
 	name: "Lich: Arcane Omniscience (Level 4)",
 	source: [["GH", 49]],
-	description:
-		"I gain the Arcane Omniscience boon and Weight of Ages flaw for the Lich transformation, as detailed below on the notes page.",
+	description: "I gain the Arcane Omniscience boon and Weight of Ages flaw for the Lich transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1773,8 +1743,7 @@ var Lich4_DeathlyBeing = [
 FeatsList["lich: deathly being (level 4)"] = {
 	name: "Lich: Deathly Being (Level 4)",
 	source: [["GH", 50]],
-	description:
-		"I gain the Deathly Being boon and Weight of Ages flaw for the Lich transformation, as detailed below on the notes page.",
+	description: "I gain the Deathly Being boon and Weight of Ages flaw for the Lich transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1800,13 +1769,7 @@ FeatsList["lich: deathly being (level 4)"] = {
 		);
 	},
 	savetxt: {
-		immune: [
-			"charmed",
-			"poisoned",
-			"paralysed",
-			"frightened",
-			"poison, bludg., pierce., and slash. dmg from non-magical atks",
-		],
+		immune: ["charmed", "poisoned", "paralysed", "frightened", "poison, bludg., pierce., and slash. dmg from non-magical atks"],
 	},
 };
 
@@ -1930,8 +1893,7 @@ var Lycanthrope2_IronPelt = [
 FeatsList["lycanthrope: iron pelt (level 2)"] = {
 	name: "Lycanthrope: Iron Pelt (Level 2)",
 	source: [["GH", 54]],
-	description:
-		"I gain the Iron Pelt boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	description: "I gain the Iron Pelt boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -1977,8 +1939,7 @@ var Lycanthrope2_HuntersHowl = [
 FeatsList["lycanthrope: hunter's howl (level 2)"] = {
 	name: "Lycanthrope: Hunter's Howl (Level 2)",
 	source: [["GH", 54]],
-	description:
-		"I gain the Hunter's Howl boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	description: "I gain the Hunter's Howl boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2036,8 +1997,7 @@ var Lycanthrope2_KindredForm = [
 FeatsList["lycanthrope: kindred form (level 2)"] = {
 	name: "Lycanthrope: Kindred Form (Level 2)",
 	source: [["GH", 54]],
-	description:
-		"I gain the Kindred Form boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	description: "I gain the Kindred Form boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2082,8 +2042,7 @@ var Lycanthrope3_TitanicVigor = [
 FeatsList["lycanthrope: titanic vigor (level 3)"] = {
 	name: "Lycanthrope: Titanic Vigor (Level 3)",
 	source: [["GH", 55]],
-	description:
-		"I gain the Titanic Vigor boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	description: "I gain the Titanic Vigor boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2130,8 +2089,7 @@ var Lycanthrope3_PredatoryLeap = [
 FeatsList["lycanthrope: predatory leap (level 3)"] = {
 	name: "Lycanthrope: Predatory Leap (Level 3)",
 	source: [["GH", 55]],
-	description:
-		"I gain the Predatory Leap boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	description: "I gain the Predatory Leap boon and Silver Sensitivity flaw for the Lycanthrope transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2182,8 +2140,7 @@ var Lycanthrope4_BestialSavagery = [
 FeatsList["lycanthrope: bestial savagery (level 4)"] = {
 	name: "Lycanthrope: Bestial Savagery (Level 4)",
 	source: [["GH", 56]],
-	description:
-		"I gain the Bestial Savagery boon and Predatory Nature flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	description: "I gain the Bestial Savagery boon and Predatory Nature flaw for the Lycanthrope transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2210,10 +2167,7 @@ FeatsList["lycanthrope: bestial savagery (level 4)"] = {
 	calcChanges: {
 		atkAdd: [
 			function (fields, v) {
-				if (
-					v.baseWeaponName === "unarmed strike" &&
-					(fields.Damage_Die === 1 || fields.Damage_Die === "1d4" || fields.Damage_Die === "1d6")
-				) {
+				if (v.baseWeaponName === "unarmed strike" && (fields.Damage_Die === 1 || fields.Damage_Die === "1d4" || fields.Damage_Die === "1d6")) {
 					fields.Damage_Die = "1d8";
 				}
 			},
@@ -2247,8 +2201,7 @@ var Lycanthrope4_UnstoppableRage = [
 FeatsList["lycanthrope: unstoppable rage (level 4)"] = {
 	name: "Lycanthrope: Unstoppable Rage (Level 4)",
 	source: [["GH", 56]],
-	description:
-		"I gain the Unstoppable Rage boon and Predatory Nature flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	description: "I gain the Unstoppable Rage boon and Predatory Nature flaw for the Lycanthrope transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2303,8 +2256,7 @@ var Lycanthrope4_KindredAffinity = [
 FeatsList["lycanthrope: kindred affinity (level 4)"] = {
 	name: "Lycanthrope: Kindred Affinity (Level 4)",
 	source: [["GH", 56]],
-	description:
-		"I gain the Kindred Affinity boon and Predatory Nature flaw for the Lycanthrope transformation, as detailed below on the notes page.",
+	description: "I gain the Kindred Affinity boon and Predatory Nature flaw for the Lycanthrope transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2322,10 +2274,7 @@ FeatsList["lycanthrope: kindred affinity (level 4)"] = {
 	],
 	prerequisite: "Lycanthrope Level 1 and Kindred Form",
 	prereqeval: function () {
-		return (
-			CurrentFeats.known.indexOf("lycanthrope level 1") !== -1 &&
-			CurrentFeats.known.indexOf("lycanthrope: kindred form (level 2)") !== -1
-		);
+		return CurrentFeats.known.indexOf("lycanthrope level 1") !== -1 && CurrentFeats.known.indexOf("lycanthrope: kindred form (level 2)") !== -1;
 	},
 };
 
@@ -2405,8 +2354,7 @@ var Seraph2_DivineRetribution = [
 FeatsList["seraph: divine retribution (level 2)"] = {
 	name: "Seraph: Divine Retribution (Level 2)",
 	source: [["GH", 59]],
-	description:
-		"I gain the Divine Retribution boon and Divine Appearance flaw for the Seraph transformation, as detailed below on the notes page.",
+	description: "I gain the Divine Retribution boon and Divine Appearance flaw for the Seraph transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2459,8 +2407,7 @@ var Seraph2_DivineClemency = [
 FeatsList["seraph: divine clemency (level 2)"] = {
 	name: "Seraph: Divine Clemency (Level 2)",
 	source: [["GH", 60]],
-	description:
-		"I gain the Divine Clemency boon and Divine Appearance flaw for the Seraph transformation, as detailed below on the notes page.",
+	description: "I gain the Divine Clemency boon and Divine Appearance flaw for the Seraph transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2513,8 +2460,7 @@ var Seraph2_DivineExpedition = [
 FeatsList["seraph: divine expedition (level 2)"] = {
 	name: "Seraph: Divine Expedition (Level 2)",
 	source: [["GH", 60]],
-	description:
-		"I gain the Divine Expedition boon and Divine Appearance flaw for the Seraph transformation, as detailed below on the notes page.",
+	description: "I gain the Divine Expedition boon and Divine Appearance flaw for the Seraph transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2559,8 +2505,7 @@ var Seraph3_RadiantStrike = [
 FeatsList["seraph: radiant strike (level 3)"] = {
 	name: "Seraph: Radiant Strike (Level 3)",
 	source: [["GH", 60]],
-	description:
-		"I gain the Radiant Strike boon and Beacon to Darkness flaw for the Seraph transformation, as detailed below on the notes page.",
+	description: "I gain the Radiant Strike boon and Beacon to Darkness flaw for the Seraph transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2617,8 +2562,7 @@ var Seraph3_CleanseAffliction = [
 FeatsList["seraph: cleanse affliction (level 3)"] = {
 	name: "Seraph: Cleanse Affliction (Level 3)",
 	source: [["GH", 60]],
-	description:
-		"I gain the Cleanse Affliction boon and Beacon to Darkness flaw for the Seraph transformation, as detailed below on the notes page.",
+	description: "I gain the Cleanse Affliction boon and Beacon to Darkness flaw for the Seraph transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2670,8 +2614,7 @@ var Seraph4_BowCelestialJudgement = [
 FeatsList["seraph: bow of celestial judgement (level 4)"] = {
 	name: "Seraph: Bow of Celestial Judgement (Level 4)",
 	source: [["GH", 61]],
-	description:
-		"I gain the Bow of Celestial Judgement boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
+	description: "I gain the Bow of Celestial Judgement boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2691,8 +2634,7 @@ FeatsList["seraph: bow of celestial judgement (level 4)"] = {
 	prereqeval: function () {
 		return (
 			CurrentFeats.known.indexOf("seraph level 1") !== -1 &&
-			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 ||
-				CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
+			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 || CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
 		);
 	},
 	action: [
@@ -2706,8 +2648,7 @@ FeatsList["seraph: bow of celestial judgement (level 4)"] = {
 			name: "Bow of Celestial Judgement",
 			source: [["GH", 61]],
 			damage: [1, 8, "radiant"],
-			description:
-				"+1d8 radiant dmg (+2d8 vs Fiend/Fey/Undead); Bright light 5 ft, dim light 5 ft; No ammo needed",
+			description: "+1d8 radiant dmg (+2d8 vs Fiend/Fey/Undead); Bright light 5 ft, dim light 5 ft; No ammo needed",
 			selectNow: true,
 		},
 	],
@@ -2732,8 +2673,7 @@ var Seraph4_AuraHolyPurge = [
 FeatsList["seraph: aura of holy purge (level 4)"] = {
 	name: "Seraph: Aura of Holy Purge (Level 4)",
 	source: [["GH", 61]],
-	description:
-		"I gain the Aura of Holy Purge boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
+	description: "I gain the Aura of Holy Purge boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2753,8 +2693,7 @@ FeatsList["seraph: aura of holy purge (level 4)"] = {
 	prereqeval: function () {
 		return (
 			CurrentFeats.known.indexOf("seraph level 1") !== -1 &&
-			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 ||
-				CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
+			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 || CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
 		);
 	},
 };
@@ -2777,8 +2716,7 @@ var Seraph4_AuraMercifulBlessing = [
 FeatsList["seraph: aura of merciful blessing (level 4)"] = {
 	name: "Seraph: Aura of Merciful Blessing (Level 4)",
 	source: [["GH", 61]],
-	description:
-		"I gain the Aura of Merciful Blessing boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
+	description: "I gain the Aura of Merciful Blessing boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2798,8 +2736,7 @@ FeatsList["seraph: aura of merciful blessing (level 4)"] = {
 	prereqeval: function () {
 		return (
 			CurrentFeats.known.indexOf("seraph level 1") !== -1 &&
-			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 ||
-				CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
+			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 || CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
 		);
 	},
 };
@@ -2824,8 +2761,7 @@ var Seraph4_AuraEmpyrealValor = [
 FeatsList["seraph: aura of empyreal valor (level 4)"] = {
 	name: "Seraph: Aura of Empyreal Valor (Level 4)",
 	source: [["GH", 61]],
-	description:
-		"I gain the Aura of Empyreal Valor boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
+	description: "I gain the Aura of Empyreal Valor boon and Pull of the Empyrean flaw for the Seraph transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -2845,8 +2781,7 @@ FeatsList["seraph: aura of empyreal valor (level 4)"] = {
 	prereqeval: function () {
 		return (
 			CurrentFeats.known.indexOf("seraph level 1") !== -1 &&
-			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 ||
-				CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
+			(CurrentFeats.known.indexOf("seraph: radiant strike (level 3)") !== -1 || CurrentFeats.known.indexOf("seraph: cleanse affliction (level 3)") !== -1)
 		);
 	},
 };
@@ -3031,8 +2966,7 @@ var Vampire2_SanguineMagic = [
 FeatsList["vampire: sanguine magic (level 2)"] = {
 	name: "Vampire: Sanguine Magic (Level 2)",
 	source: [["GH", 66]],
-	description:
-		"I gain the Sanguine Magic boon and Hideous Appearance flaw for the Vampire transformation, as detailed below on the notes page.",
+	description: "I gain the Sanguine Magic boon and Hideous Appearance flaw for the Vampire transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -3084,8 +3018,7 @@ var Vampire2_Shapechanger = [
 FeatsList["vampire: shapechanger (level 2)"] = {
 	name: "Vampire: Shapechanger (Level 2)",
 	source: [["GH", 66]],
-	description:
-		"I gain the Shapechanger boon and Hideous Appearance flaw for the Vampire transformation, as detailed below on the notes page.",
+	description: "I gain the Shapechanger boon and Hideous Appearance flaw for the Vampire transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -3128,8 +3061,7 @@ var Vampire3_CruelRiposte = [
 FeatsList["vampire: cruel riposte (level 3)"] = {
 	name: "Vampire: Cruel Riposte (Level 3)",
 	source: [["GH", 67]],
-	description:
-		"I gain the Cruel Riposte boon and Greater Sanguine Curse flaw for the Vampire transformation, as detailed below on the notes page.",
+	description: "I gain the Cruel Riposte boon and Greater Sanguine Curse flaw for the Vampire transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -3177,8 +3109,7 @@ var Vampire3_CreaturesNight = [
 FeatsList["vampire: creatures of the night (level 3)"] = {
 	name: "Vampire: Creatures of the Night (Level 3)",
 	source: [["GH", 67]],
-	description:
-		"I gain the Creatures of the Night boon and Greater Sanguine Curse flaw for the Vampire transformation, as detailed below on the notes page.",
+	description: "I gain the Creatures of the Night boon and Greater Sanguine Curse flaw for the Vampire transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -3223,8 +3154,7 @@ var Vampire3_CaptivatingGlance = [
 FeatsList["vampire: captivating glance (level 3)"] = {
 	name: "Vampire: Captivating Glance (Level 3)",
 	source: [["GH", 67]],
-	description:
-		"I gain the Captivating Glance boon and Greater Sanguine Curse flaw for the Vampire transformation, as detailed below on the notes page.",
+	description: "I gain the Captivating Glance boon and Greater Sanguine Curse flaw for the Vampire transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -3269,8 +3199,7 @@ var Vampire4_GrimExecutioner = [
 FeatsList["vampire: grim executioner (level 4)"] = {
 	name: "Vampire: Grim Executioner (Level 4)",
 	source: [["GH", 67]],
-	description:
-		"I gain the Grim Executioner boon and Stake to Heart flaw for the Vampire transformation, as detailed below on the notes page.",
+	description: "I gain the Grim Executioner boon and Stake to Heart flaw for the Vampire transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -3288,10 +3217,7 @@ FeatsList["vampire: grim executioner (level 4)"] = {
 	],
 	prerequisite: "Vampire Level 1 and Dread Knight Combat Training",
 	prereqeval: function () {
-		return (
-			CurrentFeats.known.indexOf("vampire level 1") !== -1 &&
-			CurrentFeats.known.indexOf("vampire: dread knight combat training (level 2)") !== -1
-		);
+		return CurrentFeats.known.indexOf("vampire level 1") !== -1 && CurrentFeats.known.indexOf("vampire: dread knight combat training (level 2)") !== -1;
 	},
 };
 
@@ -3310,8 +3236,7 @@ var Vampire4_BeguilersEntrancement = [
 FeatsList["vampire: beguiler's entrancement (level 4)"] = {
 	name: "Vampire: Beguiler's Entrancement (Level 4)",
 	source: [["GH", 68]],
-	description:
-		"I gain the Beguiler's Entrancement boon and Stake to Heart flaw for the Vampire transformation, as detailed below on the notes page.",
+	description: "I gain the Beguiler's Entrancement boon and Stake to Heart flaw for the Vampire transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",
@@ -3329,10 +3254,7 @@ FeatsList["vampire: beguiler's entrancement (level 4)"] = {
 	],
 	prerequisite: "Vampire Level 1 and Captivating Glance",
 	prereqeval: function () {
-		return (
-			CurrentFeats.known.indexOf("vampire level 1") !== -1 &&
-			CurrentFeats.known.indexOf("vampire: captivating glance (level 3)") !== -1
-		);
+		return CurrentFeats.known.indexOf("vampire level 1") !== -1 && CurrentFeats.known.indexOf("vampire: captivating glance (level 3)") !== -1;
 	},
 	action: [["action", "Beguiler's Entrancement"]],
 	usages: 1,
@@ -3351,8 +3273,7 @@ var Vampire4_Regenerate = [
 FeatsList["vampire: regenerate (level 4)"] = {
 	name: "Vampire: Regenerate (Level 4)",
 	source: [["GH", 68]],
-	description:
-		"I gain the Regenerate boon and Stake to Heart flaw for the Vampire transformation, as detailed below on the notes page.",
+	description: "I gain the Regenerate boon and Stake to Heart flaw for the Vampire transformation, as detailed below on the notes page.",
 	toNotesPage: [
 		{
 			name: "",

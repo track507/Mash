@@ -2,12 +2,12 @@ var iFileName = "VSoS_Martyr.js";
 RequiredSheetVersion("13.2.3");
 
 if (!SourceList["VSoS"]) {
-    SourceList["VSoS"] = {
-        name : "Valda's Spire of Secrets",
-        abbreviation : "VSoS",
-        abbreviationSpellsheet : "V",
-        date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
-    };
+	SourceList["VSoS"] = {
+		name: "Valda's Spire of Secrets",
+		abbreviation: "VSoS",
+		abbreviationSpellsheet: "V",
+		date: "2022/12/30", // ! Updated as of 12-30-2022 (Version 1.4)
+	};
 }
 
 [
@@ -76,12 +76,7 @@ if (!SourceList["VSoS"]) {
 	"mass cure wounds",
 	"raise dead",
 ].forEach(function (s) {
-	if (
-		SpellsList[s] &&
-		SpellsList[s].classes &&
-		SpellsList[s].classes.indexOf("martyr") === -1
-	)
-		SpellsList[s].classes.push("martyr");
+	if (SpellsList[s] && SpellsList[s].classes && SpellsList[s].classes.indexOf("martyr") === -1) SpellsList[s].classes.push("martyr");
 });
 
 ClassList["martyr"] = {
@@ -101,8 +96,7 @@ ClassList["martyr"] = {
 	},
 	saves: ["Wis", "Str"],
 	skillstxt: {
-		primary:
-			"Choose two from Athletics, History, Insight, Intimidation, Medicine, Persuasion, and Religion",
+		primary: "Choose two from Athletics, History, Insight, Intimidation, Medicine, Persuasion, and Religion",
 	},
 	equipment:
 		"Alchemist starting equipment: " +
@@ -145,9 +139,7 @@ ClassList["martyr"] = {
 			name: "Mask of the Herald",
 			source: ["VSoS", 117],
 			minlevel: 2,
-			description: desc([
-				"I have adv. on all ability checks to convince creatures to assist me in service of my holy cause",
-			]),
+			description: desc(["I have adv. on all ability checks to convince creatures to assist me in service of my holy cause"]),
 		},
 		spellcasting: {
 			name: "Spellcasting",
@@ -187,13 +179,7 @@ ClassList["martyr"] = {
 				"This increases by 1d6 when I reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).",
 			]),
 			additional: levels.map(function (n) {
-				return n < 5
-					? "1"
-					: n < 11
-					? "2"
-					: n < 17
-					? "3"
-					: "4" + "d6 radiant or necrotic";
+				return n < 5 ? "1" : n < 11 ? "2" : n < 17 ? "3" : "4" + "d6 radiant or necrotic";
 			}),
 			action: ["reaction", "Sainted Reprisal"],
 		},
@@ -201,9 +187,7 @@ ClassList["martyr"] = {
 			name: "Divine Healing",
 			source: ["VSoS", 117],
 			minlevel: 3,
-			description: desc([
-				"As an action, I can spend HD up to my proficiency bonus to regain hp",
-			]),
+			description: desc(["As an action, I can spend HD up to my proficiency bonus to regain hp"]),
 			action: ["action", "Divine Healing"],
 		},
 		torment: {
@@ -216,9 +200,7 @@ ClassList["martyr"] = {
 				"At 11th level, I can choose to sacrifice 10 hp to deal +20 bonus radiant or necrotic damage.",
 			]),
 			additional: levels.map(function (n) {
-				return n < 11
-					? "-5 hp, +10 radiant/necro"
-					: "-10 hp, +20 radiant/necro";
+				return n < 11 ? "-5 hp, +10 radiant/necro" : "-10 hp, +20 radiant/necro";
 			}),
 			usages: 1,
 			recovery: "Turn",
@@ -227,17 +209,13 @@ ClassList["martyr"] = {
 			name: "Respite",
 			source: ["VSoS", 118],
 			minlevel: 7,
-			description: desc([
-				"I regain all expended HD when I finish a long rest, instead of only half of them.",
-			]),
+			description: desc(["I regain all expended HD when I finish a long rest, instead of only half of them."]),
 		},
 		"undying conviction": {
 			name: "Undying Conviction",
 			source: ["VSoS", 118],
 			minlevel: 10,
-			description: desc([
-				"When I am reduced to 0 hp and not killed outright, I can drop to 1 hp instead.",
-			]),
+			description: desc(["When I am reduced to 0 hp and not killed outright, I can drop to 1 hp instead."]),
 			usages: 1,
 			recovery: "short rest",
 		},
@@ -245,9 +223,7 @@ ClassList["martyr"] = {
 			name: "March Unto Destiny",
 			source: ["VSoS", 118],
 			minlevel: 15,
-			description: desc([
-				"I no longer need to eat or drink, and can't be paralyzed, petrified, or stunned.",
-			]),
+			description: desc(["I no longer need to eat or drink, and can't be paralyzed, petrified, or stunned."]),
 			savetxt: {
 				immune: ["paralyzed", "petrified", "stunned"],
 			},
@@ -291,10 +267,7 @@ AddSubClass("martyr", "burden of atonement", {
 			name: "Burden Spells",
 			source: ["VSoS", 121],
 			minlevel: 1,
-			description: desc([
-				"I learn additional spells that is considered always prepared and doesn't count against",
-				"the total amount of spells I know.",
-			]),
+			description: desc(["I learn additional spells that is considered always prepared and doesn't count against", "the total amount of spells I know."]),
 		},
 		"subclassfeature1.1": {
 			name: "Bonus Proficiency",
@@ -318,9 +291,7 @@ AddSubClass("martyr", "burden of atonement", {
 			name: "Bloody Reprieve",
 			source: ["VSoS", 119],
 			minlevel: 6,
-			description: desc([
-				"When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead.",
-			]),
+			description: desc(["When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead."]),
 		},
 		subclassfeature14: {
 			name: "Draw Aggression",
@@ -382,18 +353,13 @@ AddSubClass("martyr", "burden of discord", {
 			name: "Burden Spells",
 			source: ["VSoS", 121],
 			minlevel: 1,
-			description: desc([
-				"I learn additional spells that is considered always prepared and doesn't count against the total amount of spells I know.",
-			]),
+			description: desc(["I learn additional spells that is considered always prepared and doesn't count against the total amount of spells I know."]),
 		},
 		"subclassfeature1.1": {
 			name: "Cantrips",
 			source: ["VSoS", 120],
 			minlevel: 1,
-			description: desc([
-				"I learn the shocking grasp and thaumaturgy cantrips, and one other cantrip",
-				"of my choice from the cleric's spell list.",
-			]),
+			description: desc(["I learn the shocking grasp and thaumaturgy cantrips, and one other cantrip", "of my choice from the cleric's spell list."]),
 			spellcastingBonus: [
 				{
 					name: "Cantrips",
@@ -446,9 +412,7 @@ AddSubClass("martyr", "burden of discord", {
 			name: "Bloody Reprieve",
 			source: ["VSoS", 121],
 			minlevel: 6,
-			description: desc([
-				"When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead.",
-			]),
+			description: desc(["When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead."]),
 		},
 		subclassfeature14: {
 			name: "Coin of Chaos",
@@ -505,19 +469,13 @@ AddSubClass("martyr", "burden of the end", {
 			name: "Burden Spells",
 			source: ["VSoS", 121],
 			minlevel: 1,
-			description: desc([
-				"I learn additional spells that is considered always prepared and doesn't count against the",
-				"total amount of spells I know.",
-			]),
+			description: desc(["I learn additional spells that is considered always prepared and doesn't count against the", "total amount of spells I know."]),
 		},
 		"subclassfeature1.1": {
 			name: "Cantrips",
 			source: ["VSoS", 121],
 			minlevel: 1,
-			description: desc([
-				"I know sacred flame, thaumaturgy, and one more cleric cantrip of my choice. Wisdom is my",
-				"spellcasting ability for this.",
-			]),
+			description: desc(["I know sacred flame, thaumaturgy, and one more cleric cantrip of my choice. Wisdom is my", "spellcasting ability for this."]),
 			spellcastingBonus: [
 				{
 					name: "Cantrips",
@@ -570,9 +528,7 @@ AddSubClass("martyr", "burden of the end", {
 			name: "Halt Apocalypse",
 			source: ["VSoS", 121],
 			minlevel: 18,
-			description: desc([
-				"Once per long rest, at the end of my turn, I can choose to immediately take an extra turn.",
-			]),
+			description: desc(["Once per long rest, at the end of my turn, I can choose to immediately take an extra turn."]),
 			usages: 1,
 			recovery: "long rest",
 		},
@@ -601,10 +557,7 @@ AddSubClass("martyr", "burden of mercy", {
 			name: "Burden Spells",
 			source: ["VSoS", 122],
 			minlevel: 1,
-			description: desc([
-				"I learn additional spells that is considered always prepared and doesn't count against the",
-				"total amount of spells I know.",
-			]),
+			description: desc(["I learn additional spells that is considered always prepared and doesn't count against the", "total amount of spells I know."]),
 		},
 		"subclassfeature1.1": {
 			name: "Cantrips",
@@ -700,10 +653,7 @@ AddSubClass("martyr", "burden of rebirth", {
 			name: "Burden Spells",
 			source: ["VSoS", 122],
 			minlevel: 1,
-			description: desc([
-				"I learn additional spells that is considered always prepared and doesn't count against the",
-				"total amount of spells I know.",
-			]),
+			description: desc(["I learn additional spells that is considered always prepared and doesn't count against the", "total amount of spells I know."]),
 		},
 		"subclassfeature1.1": {
 			name: "Cantrips",
@@ -795,10 +745,8 @@ AddSubClass("martyr", "burden of rebirth", {
 				reincarnate: {
 					compMaterial: "",
 					components: "V,S\u2020",
-					description:
-						"Brings humanoid that died in last 10 days to life, I choose its new body",
-					changes:
-						"No material components and I can choose what the target reincarnates as.",
+					description: "Brings humanoid that died in last 10 days to life, I choose its new body",
+					changes: "No material components and I can choose what the target reincarnates as.",
 				},
 			},
 			usages: 1,
@@ -829,10 +777,7 @@ AddSubClass("martyr", "burden of revolution", {
 			name: "Burden Spells",
 			source: ["VSoS", 123],
 			minlevel: 1,
-			description: desc([
-				"I learn additional spells that is considered always prepared and doesn't count against",
-				"the total amount of spells I know.",
-			]),
+			description: desc(["I learn additional spells that is considered always prepared and doesn't count against", "the total amount of spells I know."]),
 		},
 		"subclassfeature1.1": {
 			name: "Bonus Proficiency",
@@ -845,10 +790,7 @@ AddSubClass("martyr", "burden of revolution", {
 			name: "Bulwark of Rebellion",
 			source: ["VSoS", 123],
 			minlevel: 1,
-			description: desc([
-				"Once per short rest, I can use a bonus action to gain 1d12 + my martyr level temp hp, which",
-				"lasts for an hour.",
-			]),
+			description: desc(["Once per short rest, I can use a bonus action to gain 1d12 + my martyr level temp hp, which", "lasts for an hour."]),
 			action: ["bonus action", ""],
 			usages: 1,
 			recovery: "short rest",
@@ -857,18 +799,13 @@ AddSubClass("martyr", "burden of revolution", {
 			name: "Bloody Reprieve",
 			source: ["VSoS", 123],
 			minlevel: 6,
-			description: desc([
-				"When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead.",
-			]),
+			description: desc(["When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead."]),
 		},
 		subclassfeature14: {
 			name: "Unyielding Banner",
 			source: ["VSoS", 123],
 			minlevel: 14,
-			description: desc([
-				"All allies, including me, within 10 ft adds my Wis mod to initative rolls and immune to being",
-				"charmed or frightened.",
-			]),
+			description: desc(["All allies, including me, within 10 ft adds my Wis mod to initative rolls and immune to being", "charmed or frightened."]),
 			savetxt: {
 				immune: ["charmed", "frightened"],
 			},
@@ -917,10 +854,7 @@ AddSubClass("martyr", "burden of truth", {
 			name: "Burden Spells",
 			source: ["VSoS", 124],
 			minlevel: 1,
-			description: desc([
-				"I learn additional spells that is considered always prepared and doesn't count against",
-				"the total amount of spells I know.",
-			]),
+			description: desc(["I learn additional spells that is considered always prepared and doesn't count against", "the total amount of spells I know."]),
 		},
 		"subclassfeature1.1": {
 			name: "Moral Erudition",
@@ -960,12 +894,10 @@ AddSubClass("martyr", "burden of truth", {
 			],
 			spellchanges: {
 				"zone of truth": {
-					description:
-						"5 rad all in or enter save or unable to lie; I'm aware if saved or not; crea aware it cannot lie",
+					description: "5 rad all in or enter save or unable to lie; I'm aware if saved or not; crea aware it cannot lie",
 					duration: "1 min",
 					range: "5 ft",
-					changes:
-						"The range becomes 5 ft and the duration is 1 minute.",
+					changes: "The range becomes 5 ft and the duration is 1 minute.",
 				},
 			},
 		},
@@ -983,20 +915,14 @@ AddSubClass("martyr", "burden of truth", {
 			name: "Foretold Escape",
 			source: ["VSoS", 125],
 			minlevel: 14,
-			description: desc([
-				"When a crea I can see makes an attack roll against me, I can use my reaction to impose",
-				"diadvantage on that roll.",
-			]),
+			description: desc(["When a crea I can see makes an attack roll against me, I can use my reaction to impose", "diadvantage on that roll."]),
 			action: ["reaction", ""],
 		},
 		subclassfeature18: {
 			name: "Eyes of Prophecy",
 			source: ["VSoS", 125],
 			minlevel: 18,
-			description: desc([
-				"Once per short rest, I can replace one attack, ability check, or saving throw roll I make",
-				"with a 20.",
-			]),
+			description: desc(["Once per short rest, I can replace one attack, ability check, or saving throw roll I make", "with a 20."]),
 		},
 	},
 });
@@ -1006,28 +932,14 @@ AddSubClass("martyr", "burden of tyranny", {
 	regExpSearch: /burden of tyranny/i,
 	source: ["VSoS", 125],
 	subname: "Burden of Tyranny",
-	spellcastingExtra: [
-		"bane",
-		"command",
-		"find steed",
-		"hold person",
-		"bestow curse",
-		"fear",
-		"banishment",
-		"dominate beast",
-		"dominate person",
-		"geas",
-	],
+	spellcastingExtra: ["bane", "command", "find steed", "hold person", "bestow curse", "fear", "banishment", "dominate beast", "dominate person", "geas"],
 	abilitySave: 5,
 	features: {
 		subclassfeature1: {
 			name: "Burden Spells",
 			source: ["VSoS", 125],
 			minlevel: 1,
-			description: desc([
-				"I learn additional spells that is considered always prepared and doesn't count against",
-				"the total amount of spells I know.",
-			]),
+			description: desc(["I learn additional spells that is considered always prepared and doesn't count against", "the total amount of spells I know."]),
 		},
 		"subclassfeature1.1": {
 			name: "Bonus Proficiency",
@@ -1053,9 +965,7 @@ AddSubClass("martyr", "burden of tyranny", {
 			name: "Bloody Reprieve",
 			source: ["VSoS", 125],
 			minlevel: 6,
-			description: desc([
-				"When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead.",
-			]),
+			description: desc(["When I Torment a hostile crea and is reduced to 0 hp, I take no damage instead."]),
 		},
 		subclassfeature14: {
 			name: "Crush Resistance",

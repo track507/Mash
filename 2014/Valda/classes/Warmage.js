@@ -2,12 +2,12 @@ var iFileName = "VSoS_Warmage.js";
 RequiredSheetVersion("13.2.3");
 
 if (!SourceList["VSoS"]) {
-    SourceList["VSoS"] = {
-        name : "Valda's Spire of Secrets",
-        abbreviation : "VSoS",
-        abbreviationSpellsheet : "V",
-        date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
-    };
+	SourceList["VSoS"] = {
+		name: "Valda's Spire of Secrets",
+		abbreviation: "VSoS",
+		abbreviationSpellsheet: "V",
+		date: "2022/12/30", // ! Updated as of 12-30-2022 (Version 1.4)
+	};
 }
 
 // warmage spell list
@@ -46,12 +46,7 @@ if (!SourceList["VSoS"]) {
 	"thunderous distortion",
 	"true strike",
 ].forEach(function (s) {
-	if (
-		SpellsList[s] &&
-		SpellsList[s].classes &&
-		SpellsList[s].classes.indexOf("warmage") === -1
-	)
-		SpellsList[s].classes.push("warmage");
+	if (SpellsList[s] && SpellsList[s].classes && SpellsList[s].classes.indexOf("warmage") === -1) SpellsList[s].classes.push("warmage");
 });
 
 ClassList["warmage"] = {
@@ -64,8 +59,7 @@ ClassList["warmage"] = {
 	improvements: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5],
 	saves: ["Con", "Int"],
 	skillstxt: {
-		primary:
-			"Choose two from Acrobatics, Animal Handling, Arcana, Athletics, History, Investigation, Medicine, Perception, and Survival",
+		primary: "Choose two from Acrobatics, Animal Handling, Arcana, Athletics, History, Investigation, Medicine, Perception, and Survival",
 	},
 	toolProfs: {
 		primary: [
@@ -156,24 +150,11 @@ ClassList["warmage"] = {
 			name: "Arcane Initiation",
 			source: ["VSoS", 159],
 			minlevel: 1,
-			description: desc([
-				'Choose an Initiation using the "Choose Feature" button above',
-			]),
-			choices: [
-				"Adventurer",
-				"Circus Performer",
-				"Eldritch Event",
-				"Mercenary",
-				"Temple",
-				"Tower Apprentice",
-				"Self-Taught",
-				"Survival",
-			],
+			description: desc(['Choose an Initiation using the "Choose Feature" button above']),
+			choices: ["Adventurer", "Circus Performer", "Eldritch Event", "Mercenary", "Temple", "Tower Apprentice", "Self-Taught", "Survival"],
 			adventurer: {
 				name: "Arcane Initiation: Adventurer",
-				description: desc([
-					"I learn the mage hand and ray of frost cantrips.",
-				]),
+				description: desc(["I learn the mage hand and ray of frost cantrips."]),
 				spellcastingBonus: {
 					name: "Arcane Initiation: Adventurer",
 					spells: ["mage hand", "ray of frost"],
@@ -183,9 +164,7 @@ ClassList["warmage"] = {
 			},
 			"circus performer": {
 				name: "Arcane Initiation: Circus Performer",
-				description: desc([
-					"I learn the dancing lights and minor illusion cantrips.",
-				]),
+				description: desc(["I learn the dancing lights and minor illusion cantrips."]),
 				spellcastingBonus: {
 					name: "Arcane Initiation: Circus Performer",
 					spells: ["minor illusion", "dancing lights"],
@@ -195,9 +174,7 @@ ClassList["warmage"] = {
 			},
 			"eldritch event": {
 				name: "Arcane Initiation: Eldritch Event",
-				description: desc([
-					"I learn the chill touch and message cantrips.",
-				]),
+				description: desc(["I learn the chill touch and message cantrips."]),
 				spellcastingBonus: {
 					name: "Arcane Initiation: Eldritch Event",
 					spells: ["chill touch", "message"],
@@ -207,9 +184,7 @@ ClassList["warmage"] = {
 			},
 			mercenary: {
 				name: "Arcane Initiation: Mercenary",
-				description: desc([
-					"I learn the arc blade and true strike cantrips.",
-				]),
+				description: desc(["I learn the arc blade and true strike cantrips."]),
 				spellcastingBonus: {
 					name: "Arcane Initiation: Mercenary",
 					spells: ["arc blade", "true strike"],
@@ -219,9 +194,7 @@ ClassList["warmage"] = {
 			},
 			temple: {
 				name: "Arcane Initiation: Temple",
-				description: desc([
-					"I learn the sacred flame and spare the dying cantrips.",
-				]),
+				description: desc(["I learn the sacred flame and spare the dying cantrips."]),
 				spellcastingBonus: {
 					name: "Arcane Initiation: Temple",
 					spells: ["sacred flame", "spare the dying"],
@@ -231,9 +204,7 @@ ClassList["warmage"] = {
 			},
 			"tower apprentice": {
 				name: "Arcane Initiation: Tower Apprentice",
-				description: desc([
-					"I learn the prestidigitation and shocking grasp cantrips.",
-				]),
+				description: desc(["I learn the prestidigitation and shocking grasp cantrips."]),
 				spellcastingBonus: {
 					name: "Arcane Initiation: Tower Apprentice",
 					spells: ["prestidigitation", "shocking grasp"],
@@ -243,9 +214,7 @@ ClassList["warmage"] = {
 			},
 			"self-taught": {
 				name: "Arcane Initiation: Self-Taught",
-				description: desc([
-					"I learn the fire bolt and light cantrips.",
-				]),
+				description: desc(["I learn the fire bolt and light cantrips."]),
 				spellcastingBonus: {
 					name: "Arcane Initiation: Self-Taught",
 					spells: ["fire bolt", "light"],
@@ -268,27 +237,16 @@ ClassList["warmage"] = {
 			name: "Arcane Fighting Style",
 			source: ["VSoS", 159],
 			minlevel: 1,
-			description: desc([
-				'Choose an Arcane Fighting Style using the "Choose Feature" button above',
-			]),
+			description: desc(['Choose an Arcane Fighting Style using the "Choose Feature" button above']),
 			choices: ["Blaster", "Deflector", "Resistive", "Sniper", "Striker"],
 			blaster: {
 				name: "Arcane Blaster Fighting Style",
-				description: desc([
-					"The spell save DC for warmage spells increases by 1",
-				]),
+				description: desc(["The spell save DC for warmage spells increases by 1"]),
 				calcChanges: {
 					spellCalc: [
 						function (type, spellcasters, ability) {
 							//if we dont know the house of bishops feature, then we can just add +1 to our warmage saves.
-							if (
-								type == "dc" &&
-								(spellcasters.indexOf("warmage") !== -1 ||
-									spellcasters.indexOf(
-										"warmage-adaptive arcanist"
-									) !== -1)
-							)
-								return 1;
+							if (type == "dc" && (spellcasters.indexOf("warmage") !== -1 || spellcasters.indexOf("warmage-adaptive arcanist") !== -1)) return 1;
 						},
 						"I add +1 to all the saving throw DCs of my warmage spells.",
 					],
@@ -304,37 +262,25 @@ ClassList["warmage"] = {
 			},
 			resistive: {
 				name: "Resistive Arcane Fighting Style",
-				description: desc([
-					"I gain +1 AC while wearing light, or under the effects of Mage Armor.",
-				]),
+				description: desc(["I gain +1 AC while wearing light, or under the effects of Mage Armor."]),
 				extraAC: [
 					{
 						mod: 1,
 						name: "Resistive Fighting Style",
 						text: "I gain a +1 bonus AC while I'm wearing light, or if I'm under the effects of the Mage Armor spell.",
 						stopeval: function (v) {
-							return (
-								(!v.wearingArmor ||
-									v.heavyArmor ||
-									v.mediumArmor) &&
-								!/^mage armou?r$/.test(CurrentArmour.known)
-							);
+							return (!v.wearingArmor || v.heavyArmor || v.mediumArmor) && !/^mage armou?r$/.test(CurrentArmour.known);
 						},
 					},
 				],
 			},
 			sniper: {
 				name: "Arcane Sniper Fighting Style",
-				description: desc([
-					"I gain a +1 to ranged spell attacks. Additionally, I ignore half cover when casting a warmage cantrip",
-				]),
+				description: desc(["I gain a +1 to ranged spell attacks. Additionally, I ignore half cover when casting a warmage cantrip"]),
 				calcChanges: {
 					atkCalc: [
 						function (fields, v, output) {
-							if (
-								v.isSpell &&
-								/^(?!.*melee).*\d+.*$/i.test(fields.Range)
-							) {
+							if (v.isSpell && /^(?!.*melee).*\d+.*$/i.test(fields.Range)) {
 								output.extraHit += 1;
 							}
 						},
@@ -359,10 +305,7 @@ ClassList["warmage"] = {
 				"At 5th level, I can further this to add extra dice to my warmage cantrip damage.",
 			]),
 			additional: levels.map(function (n) {
-				return (
-					(n < 5 ? "" : n < 11 ? 1 : n < 17 ? 2 : 3) +
-					(n < 5 ? "" : n < 11 ? " extra die" : " extra dice")
-				);
+				return (n < 5 ? "" : n < 11 ? 1 : n < 17 ? 2 : 3) + (n < 5 ? "" : n < 11 ? " extra die" : " extra dice");
 			}),
 			calcChanges: {
 				atkAdd: [
@@ -376,18 +319,13 @@ ClassList["warmage"] = {
 							v.thisWeapon[4].indexOf("warmage") !== 1
 						) {
 							var lvl = classes.known.warmage.level;
-							var extraDie =
-								lvl < 5 ? 0 : lvl < 11 ? 1 : lvl < 17 ? 2 : 3; //The amount of die added based on level
-							var currentDieSize = parseInt(
-								fields.Damage_Die.split("d")[1]
-							);
+							var extraDie = lvl < 5 ? 0 : lvl < 11 ? 1 : lvl < 17 ? 2 : 3; //The amount of die added based on level
+							var currentDieSize = parseInt(fields.Damage_Die.split("d")[1]);
 							fields.Description +=
 								(fields.Description ? "; " : "+ ") +
 								"Once per turn " +
 								What("Int Mod") +
-								(extraDie
-									? " and +" + extraDie + "d" + currentDieSize
-									: "") +
+								(extraDie ? " and +" + extraDie + "d" + currentDieSize : "") +
 								" dmg";
 						}
 					},
@@ -403,32 +341,10 @@ ClassList["warmage"] = {
 				"Whenever I gain a warmage level, I can replace a trick I know with another.",
 			]),
 			additional: levels.map(function (n) {
-				return (
-					(n < 2
-						? ""
-						: n < 3
-						? 2
-						: n < 5
-						? 3
-						: n < 7
-						? 4
-						: n < 9
-						? 5
-						: n < 11
-						? 6
-						: n < 13
-						? 7
-						: n < 15
-						? 8
-						: n < 17
-						? 9
-						: 10) + " tricks known"
-				);
+				return (n < 2 ? "" : n < 3 ? 2 : n < 5 ? 3 : n < 7 ? 4 : n < 9 ? 5 : n < 11 ? 6 : n < 13 ? 7 : n < 15 ? 8 : n < 17 ? 9 : 10) + " tricks known";
 			}),
 			extraname: "Warmage Tricks",
-			extraTimes: [
-				0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 10, 10,
-			],
+			extraTimes: [0, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 10, 10],
 			extrachoices: [
 				"bishop's maneuver (prereq: level 10)",
 				"blasting cantrip",
@@ -478,18 +394,13 @@ ClassList["warmage"] = {
 				]),
 				action: ["bonus action", ""],
 				prereqeval: function (v) {
-					return (
-						classes.known.warmage.level >= 10 &&
-						/\bpawns|bishops\b/.test(classes.known.warmage.subclass)
-					);
+					return classes.known.warmage.level >= 10 && /\bpawns|bishops\b/.test(classes.known.warmage.subclass);
 				},
 			},
 			"blasting cantrip": {
 				name: "Blasting Cantrip",
 				source: ["VSoS", 161],
-				description: desc([
-					"When I deal force dmg with a warmage cantrip, I can push the target 10 ft away from me.",
-				]),
+				description: desc(["When I deal force dmg with a warmage cantrip, I can push the target 10 ft away from me."]),
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
@@ -504,9 +415,7 @@ ClassList["warmage"] = {
 								v.thisWeapon[4].indexOf("warmage") !== 1 &&
 								SpellsList[v.thisWeapon[3]].level === 0
 							) {
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"push 10ft";
+								fields.Description += (fields.Description ? "; " : "") + "push 10ft";
 							}
 						},
 					],
@@ -527,8 +436,7 @@ ClassList["warmage"] = {
 						description:
 							"1 obj up to 10-ft cube sheds bright light 20-ft rad and dim light 20-ft; cannot have multiple instances; Shoot flare at crea w/in 10 ft, save or blinded",
 						save: "Con",
-						changes:
-							"I can shoot a flare at a creature within 10-ft of me. The creature must make a Constitution saving throw or become blinded.",
+						changes: "I can shoot a flare at a creature within 10-ft of me. The creature must make a Constitution saving throw or become blinded.",
 					},
 				},
 				prereqeval: function (v) {
@@ -539,17 +447,12 @@ ClassList["warmage"] = {
 				name: "Castle",
 				source: ["VSoS", 161],
 				submenu: "[House of Rooks]",
-				description: desc([
-					"I can swap places with a small or mediumm willing crea w/in 120 ft",
-				]),
+				description: desc(["I can swap places with a small or mediumm willing crea w/in 120 ft"]),
 				usages: 1,
 				recovery: "short rest",
 				action: ["action", ""],
 				prereqeval: function (v) {
-					return (
-						classes.known.warmage.level >= 10 &&
-						/\bpawns|rooks\b/.test(classes.known.warmage.subclass)
-					);
+					return classes.known.warmage.level >= 10 && /\bpawns|rooks\b/.test(classes.known.warmage.subclass);
 				},
 			},
 			"chivalrous presence": {
@@ -562,21 +465,15 @@ ClassList["warmage"] = {
 				]),
 				skills: ["Insight", "Persuasion"],
 				prereqeval: function (v) {
-					return /\bpawns|knights\b/.test(
-						classes.known.warmage.subclass
-					);
+					return /\bpawns|knights\b/.test(classes.known.warmage.subclass);
 				},
 			},
 			"cloak of feathers": {
 				name: "Cloak of Feathers",
 				source: ["VSoS", 161],
-				description: desc([
-					"When wearing no armor, and no shield, my AC equals to 10 + Dex mod + Int mod",
-				]),
+				description: desc(["When wearing no armor, and no shield, my AC equals to 10 + Dex mod + Int mod"]),
 				prereqeval: function (v) {
-					return /\bpawns|rooks\b/.test(
-						classes.known.warmage.subclass
-					);
+					return /\bpawns|rooks\b/.test(classes.known.warmage.subclass);
 				},
 				armorOptions: [
 					{
@@ -609,16 +506,13 @@ ClassList["warmage"] = {
 						function (prefix, oCrea, bAdd, sCompType) {
 							if (!/mount/i.test(sCompType)) return;
 							var sHPfld = prefix + "Comp.Use.HP.Max";
-							var newHP =
-								classes.known.warmage.level + What(sHPfld);
+							var newHP = classes.known.warmage.level + What(sHPfld);
 							Value(sHPfld, newHP);
 						},
 					],
 				},
 				prereqeval: function (v) {
-					return /\bpawns|kings\b/.test(
-						classes.known.warmage.subclass
-					);
+					return /\bpawns|kings\b/.test(classes.known.warmage.subclass);
 				},
 			},
 			"corrosive cantrip": {
@@ -642,9 +536,7 @@ ClassList["warmage"] = {
 				]),
 				additional: ["+1d8 Force damage"],
 				prereqeval: function (v) {
-					return /\bpawns|lancers\b/.test(
-						classes.known.warmage.subclass
-					);
+					return /\bpawns|lancers\b/.test(classes.known.warmage.subclass);
 				},
 				usages: 1,
 				recovery: "Turn",
@@ -660,20 +552,16 @@ ClassList["warmage"] = {
 			"encryptogram (prereq: cryptogram)": {
 				name: "Encryptogram",
 				source: ["VSoS", 162],
-				description: desc([
-					"When I cast Cryptogram, its limit is 20 instead of 8; only the recipient can read the message",
-				]),
+				description: desc(["When I cast Cryptogram, its limit is 20 instead of 8; only the recipient can read the message"]),
 				prereqeval: function (v) {
 					return isSpellUsed("cryptogram", true);
 				},
 				spellChanges: {
 					cryptogram: {
-						description:
-							"Send a message up to 20 characters (incl. spaces) to known crea on same plane, 1/day; Only recip. can read the message",
+						description: "Send a message up to 20 characters (incl. spaces) to known crea on same plane, 1/day; Only recip. can read the message",
 						descriptionFull:
 							"You send a small scroll with a short message to a creature of your choice. The recipient must be a creature known to you and also be on the same plane of existence as you. This scroll will hover in front of the recipient, drop into their pocket, or appear sitting on something nearby. The scroll’s message can be up to 20 characters long (spaces count as characters). You can send only one scroll to a single target each day. Only the target is able to read the message.",
-						changes:
-							"The character limit is now 20 instead of 8 and only the recipient can read the message.",
+						changes: "The character limit is now 20 instead of 8 and only the recipient can read the message.",
 					},
 				},
 			},
@@ -690,9 +578,7 @@ ClassList["warmage"] = {
 			"extended range": {
 				name: "Extended Range",
 				source: ["VSoS", 162],
-				description: desc([
-					"My warmage cantrips that have a range of 5 ft or greater has its range doubled.",
-				]),
+				description: desc(["My warmage cantrips that have a range of 5 ft or greater has its range doubled."]),
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
@@ -701,27 +587,17 @@ ClassList["warmage"] = {
 								v.thisWeapon[3] &&
 								SpellsList[v.thisWeapon[3]].level === 0 &&
 								v.thisWeapon[4].indexOf("warmage") !== 1 &&
-								((/\d+ ?(f.{0,2}t|m)/i.test(fields.Range) &&
-									fields.Range.match(/\d+([.,]\d+)?/g) >=
-										5) ||
-									/melee/i.test(fields.Range))
+								((/\d+ ?(f.{0,2}t|m)/i.test(fields.Range) && fields.Range.match(/\d+([.,]\d+)?/g) >= 5) || /melee/i.test(fields.Range))
 							) {
-								var rngNum =
-									fields.Range.match(/\d+([.,]\d+)?/g);
+								var rngNum = fields.Range.match(/\d+([.,]\d+)?/g);
 								if (/melee/i.test(fields.Range) && !rngNum) {
 									fields.Range = "Melee (10 ft)";
 									return;
 								}
-								var oChar = fields.Range.split(
-									RegExp(rngNum.join("|"))
-								);
+								var oChar = fields.Range.split(RegExp(rngNum.join("|")));
 								fields.Range = "";
 								rngNum.forEach(function (dR, idx) {
-									fields.Range +=
-										(oChar[idx] ? oChar[idx] : "") +
-										parseFloat(
-											dR.toString().replace(",", ".") * 2
-										);
+									fields.Range += (oChar[idx] ? oChar[idx] : "") + parseFloat(dR.toString().replace(",", ".") * 2);
 								});
 								if (oChar.length > rngNum.length) {
 									fields.Range += oChar[oChar.length - 1];
@@ -738,27 +614,12 @@ ClassList["warmage"] = {
 					],
 					spellAdd: [
 						function (spellKey, spellObj, spName) {
-							if (
-								!spellObj.psionic &&
-								spName === "warmage" &&
-								spellObj.level === 0 &&
-								/\d+([.,]\d+)?[\- ]?(f.{0,2}t|m)/i.test(
-									spellObj.range
-								)
-							) {
-								var sRange =
-									spellObj.range.match(/\d+([.,]\d+)?/g);
-								var oChar = spellObj.range.split(
-									RegExp(sRange.join("|"))
-								);
+							if (!spellObj.psionic && spName === "warmage" && spellObj.level === 0 && /\d+([.,]\d+)?[\- ]?(f.{0,2}t|m)/i.test(spellObj.range)) {
+								var sRange = spellObj.range.match(/\d+([.,]\d+)?/g);
+								var oChar = spellObj.range.split(RegExp(sRange.join("|")));
 								spellObj.range = "";
 								sRange.forEach(function (dR, idx) {
-									spellObj.range +=
-										(oChar[idx] ? oChar[idx] : "") +
-										parseFloat(
-											dR.toString().replace(",", ".")
-										) *
-											2;
+									spellObj.range += (oChar[idx] ? oChar[idx] : "") + parseFloat(dR.toString().replace(",", ".")) * 2;
 								});
 								if (oChar.length > sRange.length) {
 									spellObj.range += oChar[oChar.length - 1];
@@ -781,9 +642,7 @@ ClassList["warmage"] = {
 				]),
 				submenu: "[House of Bishops]",
 				prereqeval: function (v) {
-					return /\bpawns|bishops\b/.test(
-						classes.known.warmage.subclass
-					);
+					return /\bpawns|bishops\b/.test(classes.known.warmage.subclass);
 				},
 				spellcastingBonus: {
 					name: "Field Medic",
@@ -792,12 +651,10 @@ ClassList["warmage"] = {
 				},
 				spellChanges: {
 					"spare the dying": {
-						description:
-							"1 living creature with 0 current HP regain 1 HP + warmage level temp HP",
+						description: "1 living creature with 0 current HP regain 1 HP + warmage level temp HP",
 						descriptionFull:
 							"You touch a living creature that has 0 hit points. The creature regains 1 hit point + my warmage level in temporary hit points which last for 1 minute. A creature that regains hit points this way can't do so again until it finishes a long rest. This spell has no effect on undead or constructs.",
-						changes:
-							"A creature with 0 current HP now regains 1 HP + my warmage level in temp HP",
+						changes: "A creature with 0 current HP now regains 1 HP + my warmage level in temp HP",
 					},
 				},
 			},
@@ -818,25 +675,17 @@ ClassList["warmage"] = {
 								v.thisWeapon[3] &&
 								SpellsList[v.thisWeapon[3]].level === 0 &&
 								v.thisWeapon[4].indexOf("warmage") !== 1 &&
-								(/melee/i.test(fields.Description) ||
-									/melee/.test(fields.Range))
+								(/melee/i.test(fields.Description) || /melee/.test(fields.Range))
 							) {
-								var sRange =
-									fields.Range.match(/\d+([.,]\d+)?/g); // Handles special cases like thorn whip or other 'ranged' melee spells
+								var sRange = fields.Range.match(/\d+([.,]\d+)?/g); // Handles special cases like thorn whip or other 'ranged' melee spells
 								if (/melee/i.test(fields.Range) && !sRange) {
 									fields.Range = "Melee (15 ft)";
 									return;
 								}
-								var oChar = fields.Range.split(
-									RegExp(sRange.join("|"))
-								);
+								var oChar = fields.Range.split(RegExp(sRange.join("|")));
 								fields.Range = "";
 								sRange.forEach(function (dR, idx) {
-									fields.Range +=
-										(oChar[idx] ? oChar[idx] : "") +
-										parseFloat(
-											dR.toString().replace(",", ".") + 10
-										);
+									fields.Range += (oChar[idx] ? oChar[idx] : "") + parseFloat(dR.toString().replace(",", ".") + 10);
 								});
 								if (oChar.length > sRange.length) {
 									fields.Range += oChar[oChar.length - 1];
@@ -853,27 +702,14 @@ ClassList["warmage"] = {
 								!spellObj.psionic &&
 								spName === "warmage" &&
 								spellObj.level === 0 &&
-								/melee/i.test(
-									spellObj.description +
-										spellObj.descriptionFull
-								) &&
-								/\d+([.,]\d+)?[\- ]?(f.{0,2}t|m)/i.test(
-									spellObj.range
-								)
+								/melee/i.test(spellObj.description + spellObj.descriptionFull) &&
+								/\d+([.,]\d+)?[\- ]?(f.{0,2}t|m)/i.test(spellObj.range)
 							) {
-								var sRange =
-									spellObj.range.match(/\d+([.,]\d+)?/g);
-								var oChar = spellObj.range.split(
-									RegExp(sRange.join("|"))
-								);
+								var sRange = spellObj.range.match(/\d+([.,]\d+)?/g);
+								var oChar = spellObj.range.split(RegExp(sRange.join("|")));
 								spellObj.range = "";
 								sRange.forEach(function (dR, idx) {
-									spellObj.range +=
-										(oChar[idx] ? oChar[idx] : "") +
-										(parseFloat(
-											dR.toString().replace(",", ".")
-										) +
-											10);
+									spellObj.range += (oChar[idx] ? oChar[idx] : "") + (parseFloat(dR.toString().replace(",", ".")) + 10);
 								});
 								if (oChar.length > sRange.length) {
 									spellObj.range += oChar[oChar.length - 1];
@@ -906,10 +742,7 @@ ClassList["warmage"] = {
 					},
 				],
 				prereqeval: function (v) {
-					return (
-						classes.known.warmage.level >= 10 &&
-						/\bpawns|cards\b/.test(classes.known.warmage.subclass)
-					);
+					return classes.known.warmage.level >= 10 && /\bpawns|cards\b/.test(classes.known.warmage.subclass);
 				},
 				action: ["reaction", ""],
 			},
@@ -924,12 +757,7 @@ ClassList["warmage"] = {
 				usages: 1,
 				recovery: "short rest",
 				prereqeval: function (v) {
-					return (
-						isSpellUsed("cheat", true) &&
-						/\bpawns|dice|cards\b/.test(
-							classes.known.warmage.subclass
-						)
-					);
+					return isSpellUsed("cheat", true) && /\bpawns|dice|cards\b/.test(classes.known.warmage.subclass);
 				},
 			},
 			"infinite variation (prereq: prestidigitation)": {
@@ -952,12 +780,10 @@ ClassList["warmage"] = {
 				},
 				spellChanges: {
 					prestidigitation: {
-						description:
-							"DC 15 Arcana check to emulate effects from non-damaging cantrip",
+						description: "DC 15 Arcana check to emulate effects from non-damaging cantrip",
 						descriptionFull:
 							"You emulate the effects from another non-damaging cantrip. To do this, you must roll a DC 15 Arcana check or the spell fails",
-						changes:
-							"I can emulate the effects from another non-damaging cantrip, but must roll a DC 15 Arcana check or the spell fails",
+						changes: "I can emulate the effects from another non-damaging cantrip, but must roll a DC 15 Arcana check or the spell fails",
 					},
 				},
 			},
@@ -980,12 +806,7 @@ ClassList["warmage"] = {
 								v.thisWeapon[4].indexOf("warmage") !== 1
 							) {
 								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"-" +
-									Math.floor(
-										classes.known.warmage.level / 2
-									) +
-									" on targets next atk roll";
+									(fields.Description ? "; " : "") + "-" + Math.floor(classes.known.warmage.level / 2) + " on targets next atk roll";
 							}
 						},
 					],
@@ -997,49 +818,34 @@ ClassList["warmage"] = {
 				name: "Knight's Aegis ",
 				source: ["VSoS", 162],
 				submenu: "[House of Knights]",
-				description: desc([
-					"When I cast force buckler, I can concentrate on it for 1 min.",
-					"The spell doesn't end early if I am hit by an attack.",
-				]),
+				description: desc(["When I cast force buckler, I can concentrate on it for 1 min.", "The spell doesn't end early if I am hit by an attack."]),
 				spellChanges: {
 					"force buckler": {
-						description:
-							"My AC gains +2 as if wielding a shield; doesn't end early if hit by an attack",
+						description: "My AC gains +2 as if wielding a shield; doesn't end early if hit by an attack",
 						descriptionFull:
 							"You summon a translucent yet visible field of force, which springs forth from the prepared gauntlet. While concentrating on this cantrip, this shield grants you a +2 bonus to your Armor Class, as if you were wielding a shield. This spell does not ends early if you are hit by an attack.",
 						duration: "Conc, 1 min",
-						changes:
-							"Being hit doesn't end this cantrip early. I can now concentrate on this cantrip.",
+						changes: "Being hit doesn't end this cantrip early. I can now concentrate on this cantrip.",
 					},
 				},
 				prereqeval: function (v) {
-					return (
-						isSpellUsed("force buckler", true) &&
-						classes.known.warmage.level >= 10 &&
-						/\bpawns|knights\b/.test(classes.known.warmage.subclass)
-					);
+					return isSpellUsed("force buckler", true) && classes.known.warmage.level >= 10 && /\bpawns|knights\b/.test(classes.known.warmage.subclass);
 				},
 			},
 			"leading edge tactics": {
 				name: "Leading Edge Tactics",
 				source: ["VSoS", 163],
 				submenu: "[House of Lancers]",
-				description: desc([
-					"If a crea atks me on the first round of combat, and I'm not surprised, it has disadv on the atk",
-				]),
+				description: desc(["If a crea atks me on the first round of combat, and I'm not surprised, it has disadv on the atk"]),
 				prereqeval: function (v) {
-					return /\bpawns|lancers\b/.test(
-						classes.known.warmage.subclass
-					);
+					return /\bpawns|lancers\b/.test(classes.known.warmage.subclass);
 				},
 			},
 			"lieutenant's demand (prereq: level 10)": {
 				name: "Lieutenant's Demand",
 				source: ["VSoS", 163],
 				submenu: "[House of Kings]",
-				description: desc([
-					"I can cast the command spell at will without expending a spell slot.",
-				]),
+				description: desc(["I can cast the command spell at will without expending a spell slot."]),
 				action: ["action", "Command"],
 				spellcastingBonus: [
 					{
@@ -1050,10 +856,7 @@ ClassList["warmage"] = {
 					},
 				],
 				prereqeval: function (v) {
-					return (
-						classes.known.warmage.level >= 10 &&
-						/\bpawns|kings\b/.test(classes.known.warmage.subclass)
-					);
+					return classes.known.warmage.level >= 10 && /\bpawns|kings\b/.test(classes.known.warmage.subclass);
 				},
 			},
 			"mage hand knack (prereq: mage hand)": {
@@ -1064,8 +867,7 @@ ClassList["warmage"] = {
 					"\u2022 Press: A crea < Huge w/in 5 ft spends 1 extra ft of movement per ft it moves",
 					"\u2022 Punch: Melee spell atk vs a crea or obj; 1d6 force dmg",
 					"\u2022 Seize: A crea < Medium grappled; Athletics/Acrobatics check (its choice) to escape",
-					"      " +
-						"Crea grappled until they use action to break it or spell ends",
+					"      " + "Crea grappled until they use action to break it or spell ends",
 					"An effect ends if I choose another effect, or as a bonus action",
 				]),
 				prereqeval: function (v) {
@@ -1073,8 +875,7 @@ ClassList["warmage"] = {
 				},
 				spellChanges: {
 					"mage hand": {
-						description:
-							"On cast, and as a bonus action each turn, I choose Press, Punch, or Sieze",
+						description: "On cast, and as a bonus action each turn, I choose Press, Punch, or Sieze",
 						descriptionFull:
 							"Create invisible spectral hand for simple tasks or carry up to 10 lb; 1 a to control; can't have multiples; Upon casting, and Upon casting, and as a bonus action on subsequent turns, You can choose one of the following effects: Press, Punch, Seize.\n   " +
 							toUni("Press") +
@@ -1115,8 +916,7 @@ ClassList["warmage"] = {
 							"When you create the image of an object in an unoccupied space, you can fill it with fibers of shadowstuff to become partially real. This image must not be larger than a 5 ft cube. It has AC 10 and 5 hit points, and it weighs 5lbs. Only one of these can exist at a time, and while it exists it requires concentration. This illusion can't replicate a creature, but it can deal damage to a creature within its 5 ft cube. If the illusion is an object that can deal damage, a creature that enters the object's 5 ft cube or begins its turn there must make an Intelligence saving throw. On a failed save, the creature takes 1d6 damge of a type appropriate to the illusion. This damage increases with my warmage level. This damage can't trigger Warmage Edge or any warmage tricks." +
 							"\n   " +
 							"If a creature uses its action to examine the sound or image, the creature can determine that it is an illusion with a successful Intelligence (Investigation) check against your spell save DC. If a creature discerns the illusion for what it is, the illusion becomes faint to the creature.",
-						descriptionCantripDie:
-							"5ft cube; creature enters or starts its turn in illus. save or 'CD'd6 Force dmg",
+						descriptionCantripDie: "5ft cube; creature enters or starts its turn in illus. save or 'CD'd6 Force dmg",
 						changes:
 							"When you create the image of an object in an unoccupied space, you can fill it with fibers of shadowstuff to become partially real. This image must not be larger than a 5 ft cube. It has AC 10 and 5 hit points, and it weighs 5lbs. Only one of these can exist at a time, and while it exists it requires concentration. This illusion can't replicate a creature, but it can deal damage to a creature within its 5 ft cube. If the illusion is an object that can deal damage, a creature that enters the object's 5 ft cube or begins its turn there must make an Intelligence saving throw. On a failed save, the creature takes 1d6 damge of a type appropriate to the illusion. This damage increases with my warmage level. This damage can't trigger Warmage Edge or any warmage tricks.",
 					},
@@ -1125,9 +925,7 @@ ClassList["warmage"] = {
 			"mystical armor": {
 				name: "Mystical Armor",
 				source: ["VSoS", 163],
-				description: desc([
-					"I can cast mage armor on myself at will w/out a spell slot or spell components.",
-				]),
+				description: desc(["I can cast mage armor on myself at will w/out a spell slot or spell components."]),
 				spellcastingBonus: {
 					name: "Mystical Armor",
 					spells: ["mage armor"],
@@ -1136,15 +934,13 @@ ClassList["warmage"] = {
 				},
 				spellChanges: {
 					"mage armor": {
-						description:
-							"my ac becomes 13 + Dex mod for the duration; spell ends if I don armor, or as an action",
+						description: "my ac becomes 13 + Dex mod for the duration; spell ends if I don armor, or as an action",
 						descriptionFull:
 							"If you are not wearing armor, a protective magical force surrounds you until the spell ends. Your base AC becomes 13 + your Dexterity modifier. The spell ends if you don armor or if you dismiss the spell as an action.",
 						compMaterial: "",
 						components: "",
 						range: "Self",
-						changes:
-							"I can cast mage armor on myself at will without expending a spell slot or spell components",
+						changes: "I can cast mage armor on myself at will without expending a spell slot or spell components",
 					},
 				},
 			},
@@ -1156,23 +952,18 @@ ClassList["warmage"] = {
 					"If I know both cantrips, I can cast both of them as a bonus action",
 				]),
 				prereqeval: function (v) {
-					return (
-						isSpellUsed("quickstep", true) ||
-						isSpellUsed("springheel", true)
-					);
+					return isSpellUsed("quickstep", true) || isSpellUsed("springheel", true);
 				},
 				spellChanges: {
 					quickstep: {
-						description:
-							"My walking speed increases by 20 ft until the start of my next turn",
+						description: "My walking speed increases by 20 ft until the start of my next turn",
 						descriptionFull:
 							"You call upon your inner reserves to give you a brief flash of speed. When you cast this spell, your walking speed increases by 20 feet until the start of your next turn.",
 						changes:
 							"When I cast this cantrip, my speed increases by 20 ft instead of 10. If I also know springheel, I can cast both using the same bonus action",
 					},
 					springheel: {
-						description:
-							"Jump speed increases by 20 ft., and can running high or long jump w/o running start",
+						description: "Jump speed increases by 20 ft., and can running high or long jump w/o running start",
 						descriptionFull:
 							"You flood magic into your legs, allowing you to bound high into the air from a standstill. When you cast this spell, your jump distance increases 20 feet until the start of your next turn, and you can make a running high jump or a running long jump without a running start.",
 						changes:
@@ -1183,14 +974,9 @@ ClassList["warmage"] = {
 			"mystical weaponmaster (prereq: force weapon or magic daggers)": {
 				name: "Mystical Weaponmaster",
 				source: ["VSoS", 163],
-				description: desc([
-					"I can reroll a 1 on an atk roll using force weapon or magic daggers, but must use the new roll",
-				]),
+				description: desc(["I can reroll a 1 on an atk roll using force weapon or magic daggers, but must use the new roll"]),
 				prereqeval: function (v) {
-					return (
-						isSpellUsed("force weapon", true) ||
-						isSpellUsed("magic daggers", true)
-					);
+					return isSpellUsed("force weapon", true) || isSpellUsed("magic daggers", true);
 				},
 				usages: 1,
 				recovery: "Turn",
@@ -1198,9 +984,7 @@ ClassList["warmage"] = {
 			"mystical vision": {
 				name: "Mystical Vision",
 				source: ["VSoS", 163],
-				description: desc([
-					"I can cast the detect magic spell at will w/out expending a spell slot.",
-				]),
+				description: desc(["I can cast the detect magic spell at will w/out expending a spell slot."]),
 				spellcastingBonus: {
 					name: "Mystical Vision",
 					spells: ["detect magic"],
@@ -1220,8 +1004,7 @@ ClassList["warmage"] = {
 				},
 				spellChanges: {
 					"phantom grapnel": {
-						description:
-							"Move to Huge or larger crea or empty space, or pull Large or smaller crea 20 ft. to me on failed save",
+						description: "Move to Huge or larger crea or empty space, or pull Large or smaller crea 20 ft. to me on failed save",
 						range: "15 ft",
 						descriptionFull:
 							"You conjure a chain and hook made of magical force, which you propel at a creature or unoccupied space you can see within range. When you target a space or a creature of Huge size or larger, your grapnel pulls you to that target in a straight line. You provoke opportunity attacks for this movement as normal. When you target a creature of Large size or smaller, you pull the target up to 20 feet towards you. A creature can make a Strength saving throw to resist this movement.",
@@ -1243,8 +1026,7 @@ ClassList["warmage"] = {
 				},
 				spellChanges: {
 					mending: {
-						description:
-							"I can cast mending as a bonus action, or choose to restore/create",
+						description: "I can cast mending as a bonus action, or choose to restore/create",
 						descriptionFull:
 							"I can cast mending as a bonus action, or I can choose one of the following. *Restore a single nonmagical object, such as a door, cart, or window, to pristine condition if at least half of its parts are present. This object can be no larger than 10 cubic feet, or 1 cubic foot if it exceptionally complex (such as a clock). *Create simple fortifications, such as sealing a door shut, adding wooden planks to a window, or building a short stone wall (no larger than 10 cubic feet). You must have the materials present to use this ability.",
 						chages: "You can now restore a single nonmagical object if at least half of its parts are present and must not be larger than 10 cubic ft or 1 cubic ft if its complex. You can also create simple fortications (no larger than 10 cubic ft) and must have materials present while doing this.",
@@ -1255,14 +1037,9 @@ ClassList["warmage"] = {
 				name: "Snake Eyes",
 				source: ["VSoS", 164],
 				submenu: "[House of Dice]",
-				description: desc([
-					"If I roll a 1 or 2 on a Die of Fate, I keep the die instead of giving it to the GM",
-				]),
+				description: desc(["If I roll a 1 or 2 on a Die of Fate, I keep the die instead of giving it to the GM"]),
 				prereqeval: function (v) {
-					return (
-						/\bpawns|dice\b/.test(classes.known.warmage.subclass) &&
-						classes.known.warmage.level >= 10
-					);
+					return /\bpawns|dice\b/.test(classes.known.warmage.subclass) && classes.known.warmage.level >= 10;
 				},
 			},
 			"severe cantrip": {
@@ -1294,17 +1071,10 @@ ClassList["warmage"] = {
 							//not a spell; can include signature, focus, or sigil to help sheet automate, must be a simple weapon, changes dex/str to int if applicable.
 							if (
 								!v.isSpell &&
-								/\b(signature|focus|sigil)\b/i.test(
-									v.WeaponTextName
-								) &&
+								/\b(signature|focus|sigil)\b/i.test(v.WeaponTextName) &&
 								/(simple|martial)/i.test(v.theWea.type) &&
 								(fields.Mod === 1 || fields.Mod === 2) &&
-								What("Int Mod") >
-									What(
-										AbilityScores.abbreviations[
-											fields.Mod - 1
-										] + " Mod"
-									)
+								What("Int Mod") > What(AbilityScores.abbreviations[fields.Mod - 1] + " Mod")
 							) {
 								fields.Mod = 4;
 							}
@@ -1355,10 +1125,7 @@ ClassList["warmage"] = {
 				name: "Unerring Strike",
 				source: [["VSoS", 164]],
 				prereqeval: function (v) {
-					return (
-						classes.known.warmage.level >= 10 &&
-						isSpellUsed("true strike", true)
-					);
+					return classes.known.warmage.level >= 10 && isSpellUsed("true strike", true);
 				},
 				description: desc([
 					"When I use true strike, I can concentrate on it for a number of rounds equal to my Int mod",
@@ -1366,8 +1133,7 @@ ClassList["warmage"] = {
 				]),
 				spellChanges: {
 					"true strike": {
-						description:
-							"1 crea; Conc. equals Int mod number of rounds; Adv. on first attack roll every turn",
+						description: "1 crea; Conc. equals Int mod number of rounds; Adv. on first attack roll every turn",
 						changes:
 							"I can concerntrate on it for a number of rounds equal to my Intelligence modifer. I gain advantage on the first attack roll I make against the target on each of my turns while maintaining concentration.",
 					},
@@ -1378,17 +1144,13 @@ ClassList["warmage"] = {
 			name: "Warmage House",
 			source: ["VSoS", 160],
 			minlevel: 3,
-			description: desc([
-				'I can choose a Warmage House by entering it into the "Class Field"',
-			]),
+			description: desc(['I can choose a Warmage House by entering it into the "Class Field"']),
 		},
 		"arcane surge": {
 			name: "Arcane Surge",
 			source: ["VSoS", 160],
 			minlevel: 5,
-			description: desc([
-				"On my turn when I deal dmg with a warmage cantrip, I can deal 2\xD7 the number of dmg dice",
-			]),
+			description: desc(["On my turn when I deal dmg with a warmage cantrip, I can deal 2\xD7 the number of dmg dice"]),
 			usages: levels.map(function (v) {
 				return v < 11 ? 1 : 2;
 			}),
@@ -1398,9 +1160,7 @@ ClassList["warmage"] = {
 			name: "Tactical Insight",
 			source: ["VSoS", 160],
 			minlevel: 6,
-			description: desc([
-				"I can add my Int mod to saves against spells and other magical effects that deal dmg",
-			]),
+			description: desc(["I can add my Int mod to saves against spells and other magical effects that deal dmg"]),
 		},
 		"stategic deflection": {
 			name: "Strategic Deflection",
@@ -1419,10 +1179,7 @@ ClassList["warmage"] = {
 			name: "Master Warmage",
 			source: ["VSoS", 160],
 			minlevel: 20,
-			description: desc([
-				"I deal an extra dmg die with a cantrip if it has 4 dmg dice",
-				"I deal an extra atk with a cantrip if it makes 4 atks",
-			]),
+			description: desc(["I deal an extra dmg die with a cantrip if it has 4 dmg dice", "I deal an extra atk with a cantrip if it makes 4 atks"]),
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
@@ -1435,12 +1192,8 @@ ClassList["warmage"] = {
 							v.thisWeapon[4].indexOf("warmage") !== -1 &&
 							fields.Damage_Die.match(/\b(\d+)d(\d+)\b/i)
 						) {
-							var oDie =
-								fields.Damage_Die.match(/\b(\d+)d(\d+)\b/i);
-							fields.Damge_Die.replace(
-								/\b(\d+)d(\d+)\b/i,
-								oDie[1] + 1 + "d" + oDie[2]
-							);
+							var oDie = fields.Damage_Die.match(/\b(\d+)d(\d+)\b/i);
+							fields.Damge_Die.replace(/\b(\d+)d(\d+)\b/i, oDie[1] + 1 + "d" + oDie[2]);
 						}
 					},
 				],
@@ -1501,36 +1254,32 @@ AddSubClass("warmage", "house of bishops", {
 					(n < 3
 						? ""
 						: n < 4
-						? 3
-						: n < 7
-						? 4
-						: n < 8
-						? 5
-						: n < 10
-						? 6
-						: n < 11
-						? 7
-						: n < 13
-						? 8
-						: n < 14
-						? 9
-						: n < 16
-						? 10
-						: n < 19
-						? 11
-						: n < 20
-						? 12
-						: 13) + " spells known"
+							? 3
+							: n < 7
+								? 4
+								: n < 8
+									? 5
+									: n < 10
+										? 6
+										: n < 11
+											? 7
+											: n < 13
+												? 8
+												: n < 14
+													? 9
+													: n < 16
+														? 10
+														: n < 19
+															? 11
+															: n < 20
+																? 12
+																: 13) + " spells known"
 				);
 			}),
 			calcChanges: {
 				spellList: [
 					function (spList, spName, spType) {
-						if (
-							spName !== "warmage" ||
-							spType.indexOf("bonus") !== -1
-						)
-							return;
+						if (spName !== "warmage" || spType.indexOf("bonus") !== -1) return;
 						spList.extraspells = spList.extraspells.concat(
 							CreateSpellList(
 								{
@@ -1551,10 +1300,7 @@ AddSubClass("warmage", "house of bishops", {
 					// the spells gained at level 3, 8, 14, 20
 					name: "From any school",
 					class: "wizard",
-					times: [
-						0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3,
-						4,
-					],
+					times: [0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4],
 					level: [1, 4],
 				},
 			],
@@ -1563,19 +1309,14 @@ AddSubClass("warmage", "house of bishops", {
 			name: "Arcane Study",
 			source: ["VSoS", 166],
 			minlevel: 3,
-			description: desc([
-				"I'm proficient with two of the following: Arcana, History, Investigation, Medicine, or Religion",
-			]),
-			skillstxt:
-				"Choose two of the following skills: Arcana, History, Investigation, Medicine, or Religion.",
+			description: desc(["I'm proficient with two of the following: Arcana, History, Investigation, Medicine, or Religion"]),
+			skillstxt: "Choose two of the following skills: Arcana, History, Investigation, Medicine, or Religion.",
 		},
 		subclassfeature7: {
 			name: "Mystical Companion",
 			source: ["VSoS", 166],
 			minlevel: 7,
-			description: desc([
-				"I can cast find familiar as a ritual; I can choose Imp, Pseudodragon, Quasit, or Sprite",
-			]),
+			description: desc(["I can cast find familiar as a ritual; I can choose Imp, Pseudodragon, Quasit, or Sprite"]),
 			spellcastingBonus: [
 				{
 					name: "Mystical Companion",
@@ -1589,9 +1330,7 @@ AddSubClass("warmage", "house of bishops", {
 			name: "Siege Casting",
 			source: ["VSoS", 166],
 			minlevel: 10,
-			description: desc([
-				"My warmage spells deals 2\xD7 to obj and structures; up to 2\xD7 range if it's a spell attack roll",
-			]),
+			description: desc(["My warmage spells deals 2\xD7 to obj and structures; up to 2\xD7 range if it's a spell attack roll"]),
 		},
 		subclassfeature15: {
 			name: "Spell Sculpting",
@@ -1626,10 +1365,7 @@ AddSubClass("warmage", "house of cards", {
 			name: "Bluff",
 			source: [["VSoS", 166]],
 			minlevel: 3,
-			description: desc([
-				"I gain proficiency with Deception and playing cards",
-				"I can use my Int instead of Cha for Deception checks",
-			]),
+			description: desc(["I gain proficiency with Deception and playing cards", "I can use my Int instead of Cha for Deception checks"]),
 			addMod: {
 				type: "skill",
 				field: "Deception",
@@ -1671,10 +1407,7 @@ AddSubClass("warmage", "house of cards", {
 			name: "High Stakes",
 			source: [["VSoS", 166]],
 			minlevel: 7,
-			description: desc([
-				"On my turn, I place cards from hand to the bottom of the desk. losing 2 hp per card",
-				"I draw until I have 5 cards again",
-			]),
+			description: desc(["On my turn, I place cards from hand to the bottom of the desk. losing 2 hp per card", "I draw until I have 5 cards again"]),
 		},
 		subclassfeature10: {
 			name: "Dealer's Choice",
@@ -1725,9 +1458,7 @@ AddSubClass("warmage", "house of dice", {
 			name: "Bonus Proficiencies",
 			source: [["VSoS", 167]],
 			minlevel: 3,
-			description: desc([
-				"I gain proficiency in Sleight of Hand and with the Dice Set",
-			]),
+			description: desc(["I gain proficiency in Sleight of Hand and with the Dice Set"]),
 			toolProfs: ["Dice Set"],
 			skills: ["Sleight of Hand"],
 		},
@@ -1746,8 +1477,7 @@ AddSubClass("warmage", "house of dice", {
 				{
 					name: "Dice of Fate",
 					usages: "4 at level 3, +2 at level 7",
-					usagescalc:
-						"event.value = classes.known.warmage.level < 7 ? 4 : 6;",
+					usagescalc: "event.value = classes.known.warmage.level < 7 ? 4 : 6;",
 					additional: "d6",
 					recovery: "long rest",
 				},
@@ -1757,9 +1487,7 @@ AddSubClass("warmage", "house of dice", {
 			name: "Chaos Roll",
 			source: [["VSoS", 167]],
 			minlevel: 3,
-			description: desc([
-				"I can use 2 Dice of Fate to create an effect of chaotic energy (see 3rd page notes)",
-			]),
+			description: desc(["I can use 2 Dice of Fate to create an effect of chaotic energy (see 3rd page notes)"]),
 			toNotesPage: [
 				{
 					name: "Chaos Rolls Table",
@@ -1794,27 +1522,21 @@ AddSubClass("warmage", "house of dice", {
 			name: "Twisted Fate",
 			source: [["VSoS", 168]],
 			minlevel: 10,
-			description: desc([
-				"If I make an atk or ability check w/disadv on my turn, I can use a die; 5-no disadv; 6-Gain adv",
-			]),
+			description: desc(["If I make an atk or ability check w/disadv on my turn, I can use a die; 5-no disadv; 6-Gain adv"]),
 			action: ["bonus action", ""],
 		},
 		subclassfeature15: {
 			name: "Roll the Bones",
 			source: [["VSoS", 168]],
 			minlevel: 15,
-			description: desc([
-				"When I take dmg from a visible crea, I can use 2 dice to make a Chaos Roll",
-			]),
+			description: desc(["When I take dmg from a visible crea, I can use 2 dice to make a Chaos Roll"]),
 			action: ["reaction", ""],
 		},
 		subclassfeature18: {
 			name: "Steal Luck",
 			source: [["VSoS", 168]],
 			minlevel: 18,
-			description: desc([
-				"When I roll initiative, roll a d6. I steal that many Dice of Fate back from the GM.",
-			]),
+			description: desc(["When I roll initiative, roll a d6. I steal that many Dice of Fate back from the GM."]),
 		},
 	},
 });
@@ -1830,21 +1552,9 @@ AddSubClass("warmage", "house of kings", {
 			name: "Bonus Proficiency",
 			source: [["VSoS", 168]],
 			minlevel: 3,
-			description: desc([
-				"I am proficient w/ medium armor, battleaxes, lances, longswords, tridents, and warhammers",
-			]),
+			description: desc(["I am proficient w/ medium armor, battleaxes, lances, longswords, tridents, and warhammers"]),
 			armorProfs: [true, true, false, false],
-			weaponProfs: [
-				true,
-				false,
-				[
-					"battleaxes",
-					"lances",
-					"longswords",
-					"tridents",
-					"warhammers",
-				],
-			],
+			weaponProfs: [true, false, ["battleaxes", "lances", "longswords", "tridents", "warhammers"]],
 		},
 		"subclassfeature3.1": {
 			name: "Battle Tactics",
@@ -1860,8 +1570,7 @@ AddSubClass("warmage", "house of kings", {
 
 			limefeaname: "Battle Die",
 			usages: "",
-			usagescalc:
-				"event.value = classes.known.warmage.level < 7 ? 2 : classes.known.warmage.level < 19 ? 3 : 4;",
+			usagescalc: "event.value = classes.known.warmage.level < 7 ? 2 : classes.known.warmage.level < 19 ? 3 : 4;",
 			recovery: "short rest",
 			toNotesPage: [
 				{
@@ -1886,17 +1595,13 @@ AddSubClass("warmage", "house of kings", {
 			name: "Leading from the Front",
 			source: [["VSoS", 168]],
 			minlevel: 7,
-			description: desc([
-				"Allies w/in 120 of me, includes myself, ignores nonmagical difficult terrain",
-			]),
+			description: desc(["Allies w/in 120 of me, includes myself, ignores nonmagical difficult terrain"]),
 		},
 		subclassfeature10: {
 			name: "Tactical Master",
 			source: [["VSoS", 168]],
 			minlevel: 10,
-			description: desc([
-				"Allies w/in 10 ft adds my Int mod to their saves vs spells and magical effects that deal dmg",
-			]),
+			description: desc(["Allies w/in 10 ft adds my Int mod to their saves vs spells and magical effects that deal dmg"]),
 			savetxt: {
 				text: ["Add Int mod to damaging spells and magical effects"],
 			},
@@ -1947,9 +1652,7 @@ AddSubClass("warmage", "house of knights", {
 			name: "Bonus Proficiency",
 			source: [["VSoS", 169]],
 			minlevel: 3,
-			description: desc([
-				"I gain proficiency with medium armor and martial weapons",
-			]),
+			description: desc(["I gain proficiency with medium armor and martial weapons"]),
 			armorProfs: [true, true, false, false],
 			weaponProfs: [true, true],
 		},
@@ -1957,9 +1660,7 @@ AddSubClass("warmage", "house of knights", {
 			name: "Force Breastplate",
 			source: [["VSoS", 169]],
 			minlevel: 3,
-			description: desc([
-				"I can add my Int mod instead of Dex to AC w/ medium, light, or mage armor",
-			]),
+			description: desc(["I can add my Int mod instead of Dex to AC w/ medium, light, or mage armor"]),
 			//from Joost
 			extraAC: [
 				{
@@ -1997,11 +1698,7 @@ AddSubClass("warmage", "house of knights", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							!v.isSpell &&
-							/\bforce\b/i.test(v.WeaponTextName) &&
-							/(simple|martial)/i.test(v.theWea.type)
-						) {
+						if (!v.isSpell && /\bforce\b/i.test(v.WeaponTextName) && /(simple|martial)/i.test(v.theWea.type)) {
 							fields.Damage_Type = "Force";
 						}
 					},
@@ -2012,18 +1709,14 @@ AddSubClass("warmage", "house of knights", {
 			name: "Flurry of Blades",
 			source: [["VSoS", 169]],
 			minlevel: 7,
-			description: desc([
-				"If I cast a cantrip w/ multiple atk rolls, I can make one additional atk with it",
-			]),
+			description: desc(["If I cast a cantrip w/ multiple atk rolls, I can make one additional atk with it"]),
 			action: ["bonus action", "Flurry of Blades"],
 		},
 		subclassfeature10: {
 			name: "Knight's Ward",
 			source: [["VSoS", 170]],
 			minlevel: 10,
-			description: desc([
-				"I gain temp hp equal to 2\xD7 my warmage level, which lasts for 1 min",
-			]),
+			description: desc(["I gain temp hp equal to 2\xD7 my warmage level, which lasts for 1 min"]),
 			usages: 1,
 			recovery: "short rest",
 			action: ["bonus action", ""],
@@ -2032,17 +1725,13 @@ AddSubClass("warmage", "house of knights", {
 			name: "Tactical Maneuver",
 			source: [["VSoS", 170]],
 			minlevel: 15,
-			description: desc([
-				"I can spend my whole movement to teleport up to half my spd to a visible space",
-			]),
+			description: desc(["I can spend my whole movement to teleport up to half my spd to a visible space"]),
 		},
 		subclassfeature18: {
 			name: "Field of Blades",
 			source: [["VSoS", 170]],
 			minlevel: 18,
-			description: desc([
-				"I can atk up to 5 visible creas w/in 30 ft with a melee spell atk; 2d10 + Int mod force dmg",
-			]),
+			description: desc(["I can atk up to 5 visible creas w/in 30 ft with a melee spell atk; 2d10 + Int mod force dmg"]),
 			weaponOptions: [
 				{
 					regExpSearch: /field of blades/i,
@@ -2053,8 +1742,7 @@ AddSubClass("warmage", "house of knights", {
 					ability: 4,
 					abilitytodamage: true,
 					range: "30 ft",
-					description:
-						"5 visible targets w/in range; atk roll for each",
+					description: "5 visible targets w/in range; atk roll for each",
 					special: true,
 					selectNow: true,
 				},
@@ -2075,10 +1763,7 @@ AddSubClass("warmage", "house of lancers", {
 			name: "Intercept Technique",
 			source: [["VSoS", 170]],
 			minlevel: 3,
-			description: desc([
-				"My AC becomes 10 + Dex + Int while w/out armor; or 13 + Dex + Int w/ mage armor",
-				"If I wield a shield, I lose this benefit",
-			]),
+			description: desc(["My AC becomes 10 + Dex + Int while w/out armor; or 13 + Dex + Int w/ mage armor", "If I wield a shield, I lose this benefit"]),
 			armorOptions: [
 				{
 					regExpSearch: /intercept technique/i,
@@ -2118,30 +1803,15 @@ AddSubClass("warmage", "house of lancers", {
 						}
 						if (
 							v.baseWeaponName == "unarmed strike" &&
-							What("Int Mod") >
-								What(
-									AbilityScores.abbreviations[
-										fields.Mod - 1
-									] + " Mod"
-								) &&
-							(fields.Damage_Die.match(/\b(\d+)d(\d+)\b/i) ||
-								fields.Damage_Die == 1)
+							What("Int Mod") > What(AbilityScores.abbreviations[fields.Mod - 1] + " Mod") &&
+							(fields.Damage_Die.match(/\b(\d+)d(\d+)\b/i) || fields.Damage_Die == 1)
 						) {
-							var oDmg =
-								fields.Damage_Die == 1
-									? 1
-									: fields.Damage_Die.match(
-											/\b(\d+)d(\d+)\b/i
-									  );
+							var oDmg = fields.Damage_Die == 1 ? 1 : fields.Damage_Die.match(/\b(\d+)d(\d+)\b/i);
 							fields.Mod = 4;
 							if (oDmg == 1) {
 								fields.Damage_Die = "1d6";
 							}
-							if (
-								oDmg[0] &&
-								Number(oDmg[1]) == 1 &&
-								Number(oDmg[2]) < 6
-							) {
+							if (oDmg[0] && Number(oDmg[1]) == 1 && Number(oDmg[2]) < 6) {
 								fields.Damage_Die = "1d6";
 							}
 						}
@@ -2166,19 +1836,11 @@ AddSubClass("warmage", "house of lancers", {
 				"When I make a Str, Dex, or Con check, I can add my Int instead of its normal modifier",
 				"In addition, moving through difficult terrain no longer costs me additional movement",
 			]),
-			addMod: [
-				"Acrobatics",
-				"Athletics",
-				"Sleight of Hand",
-				"Stealth",
-			].map(function (skill) {
+			addMod: ["Acrobatics", "Athletics", "Sleight of Hand", "Stealth"].map(function (skill) {
 				return {
 					type: "skill",
 					field: skill,
-					mod:
-						skill == "Acrobatics" || skill == "Sleight of Hand"
-							? "max(Int-Dex|0)"
-							: "max(Int-Str|0)",
+					mod: skill == "Acrobatics" || skill == "Sleight of Hand" ? "max(Int-Dex|0)" : "max(Int-Str|0)",
 					text: "I use my Intelligence modifier instead of its normal modifier",
 				};
 			}),
@@ -2231,9 +1893,7 @@ AddSubClass("warmage", "house of pawns", {
 			name: "Promotion",
 			source: [["VSoS", 171]],
 			minlevel: 3,
-			description: desc([
-				"I learn an additional warmage trick that can be from any house",
-			]),
+			description: desc(["I learn an additional warmage trick that can be from any house"]),
 			bonusClassExtrachoices: [
 				{
 					class: "warmage",
@@ -2251,7 +1911,7 @@ AddSubClass("warmage", "house of pawns", {
 				"This doesn't count against me; I know it until I pick a new one",
 			]),
 			eval: function () {
-				(CurrentSpells["warmage-adaptive arcanist"] = {
+				((CurrentSpells["warmage-adaptive arcanist"] = {
 					name: "Adaptive Arcanist",
 					ability: 4,
 					list: { class: "warmage" },
@@ -2271,7 +1931,7 @@ AddSubClass("warmage", "house of pawns", {
 					allowUpCasting: true,
 					firstCol: "",
 				}),
-					SetStringifieds("spells");
+					SetStringifieds("spells"));
 				CurrentUpdates.types.push("spells");
 			},
 			removeeval: function () {
@@ -2293,9 +1953,7 @@ AddSubClass("warmage", "house of pawns", {
 			name: "Additional Arcane Fighting Style",
 			source: [["VSoS", 171]],
 			minlevel: 10,
-			description: desc([
-				"I can choose an additional fighting style from the Arcane Fighting Style class feature.",
-			]),
+			description: desc(["I can choose an additional fighting style from the Arcane Fighting Style class feature."]),
 			bonusClassExtrachoices: [
 				{
 					class: "warmage",
@@ -2308,10 +1966,7 @@ AddSubClass("warmage", "house of pawns", {
 			name: "Opening Move",
 			source: [["VSoS", 171]],
 			minlevel: 15,
-			description: desc([
-				"I can add my Int mod to initiative rolls",
-				"When I roll initiative and not surprised, I can move up to my speed",
-			]),
+			description: desc(["I can add my Int mod to initiative rolls", "When I roll initiative and not surprised, I can move up to my speed"]),
 			addMod: {
 				type: "skill",
 				field: "Init",
@@ -2323,9 +1978,7 @@ AddSubClass("warmage", "house of pawns", {
 			name: "Fundamental Mastery",
 			source: [["VSoS", 171]],
 			minlevel: 18,
-			description: desc([
-				"When I roll dmg for a warmage cantrip, I can treat one of the die as its max value",
-			]),
+			description: desc(["When I roll dmg for a warmage cantrip, I can treat one of the die as its max value"]),
 			usages: 1,
 			recovery: "Turn",
 		},
@@ -2356,9 +2009,7 @@ AddSubClass("warmage", "house of rooks", {
 			name: "Rasp",
 			source: [["VSoS", 171]],
 			minlevel: 3,
-			description: desc([
-				"I can cast knock at will w/out a spell slot; casting time 1 min and it's completely silent",
-			]),
+			description: desc(["I can cast knock at will w/out a spell slot; casting time 1 min and it's completely silent"]),
 			spellcastingBonus: [
 				{
 					name: "Rasp",
@@ -2370,8 +2021,7 @@ AddSubClass("warmage", "house of rooks", {
 			spellChanges: {
 				knock: {
 					time: "1 min",
-					description:
-						"1 object is unlocked (1 lock), unstuck, unbarred, arcane lock suppressed for 10 min; Completely silent",
+					description: "1 object is unlocked (1 lock), unstuck, unbarred, arcane lock suppressed for 10 min; Completely silent",
 					descriptionFull:
 						"Choose an object that you can see within range. The object can be a door, a box, a chest, a set of manacles, a padlock, or another object that contains a mundane or magical means that prevents access." +
 						"\n   " +
@@ -2380,8 +2030,7 @@ AddSubClass("warmage", "house of rooks", {
 						"If you choose a target that is held shut with arcane lock, that spell is suppressed for 10 minutes, during which time the target can be opened and shut normally." +
 						"\n   " +
 						"When you cast the spell, it is completely silent, and no sound eminates.",
-					changes:
-						"I can cast knock at will. Doing so create no sound.",
+					changes: "I can cast knock at will. Doing so create no sound.",
 				},
 			},
 		},
@@ -2416,9 +2065,7 @@ AddSubClass("warmage", "house of rooks", {
 			name: "Elusive Step",
 			source: [["VSoS", 171]],
 			minlevel: 15,
-			description: desc([
-				"If I move 15 or more ft on my turn, additional movement doesn't provoke opportunity atks",
-			]),
+			description: desc(["If I move 15 or more ft on my turn, additional movement doesn't provoke opportunity atks"]),
 		},
 		subclassfeature18: {
 			name: "Flash of Feathers",

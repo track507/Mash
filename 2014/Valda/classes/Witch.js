@@ -2,12 +2,12 @@ var iFileName = "VSoS_Witch.js";
 RequiredSheetVersion("13.2.3");
 
 if (!SourceList["VSoS"]) {
-    SourceList["VSoS"] = {
-        name : "Valda's Spire of Secrets",
-        abbreviation : "VSoS",
-        abbreviationSpellsheet : "V",
-        date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
-    };
+	SourceList["VSoS"] = {
+		name: "Valda's Spire of Secrets",
+		abbreviation: "VSoS",
+		abbreviationSpellsheet: "V",
+		date: "2022/12/30", // ! Updated as of 12-30-2022 (Version 1.4)
+	};
 }
 
 [
@@ -185,12 +185,7 @@ if (!SourceList["VSoS"]) {
 	"true polymorph",
 	"weird",
 ].forEach(function (s) {
-	if (
-		SpellsList[s] &&
-		SpellsList[s].classes &&
-		SpellsList[s].classes.indexOf("witch") === -1
-	)
-		SpellsList[s].classes.push("witch");
+	if (SpellsList[s] && SpellsList[s].classes && SpellsList[s].classes.indexOf("witch") === -1) SpellsList[s].classes.push("witch");
 });
 
 ClassList["sorcerer"].regExpSearch = /sorcerer/i;
@@ -205,8 +200,7 @@ ClassList["witch"] = {
 	improvements: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5],
 	saves: ["Cha", "Wis"],
 	skillstxt: {
-		primary:
-			"Choose two from Arcana, Deception, Insight, Intimidation, Persuasion, Nature, Religion, and Survival.",
+		primary: "Choose two from Arcana, Deception, Insight, Intimidation, Persuasion, Nature, Religion, and Survival.",
 	},
 	toolProfs: {
 		primary: [["Alchemist supplies"], ["Poisoner's kit"]],
@@ -230,10 +224,7 @@ ClassList["witch"] = {
 	spellcastingFactor: 1,
 	spellcastingKnown: {
 		cantrips: [4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-		spells: [
-			2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15,
-			15,
-		],
+		spells: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15],
 	},
 	features: {
 		spellcasting: {
@@ -246,13 +237,8 @@ ClassList["witch"] = {
 				"I can cast my known witch spells as rituals if they have the ritual tag",
 			]),
 			additional: levels.map(function (n, idx) {
-				var cantr = [
-					4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
-				][idx];
-				var splls = [
-					2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15,
-					15, 15, 15,
-				][idx];
+				var cantr = [4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6][idx];
+				var splls = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15][idx];
 				return cantr + " cantrips \u0026 " + splls + " spells known";
 			}),
 		},
@@ -260,28 +246,12 @@ ClassList["witch"] = {
 			name: "Witch's Curse",
 			source: ["VSoS", 175],
 			minlevel: 1,
-			description: desc([
-				'Chose a Witch\'s Curse using the "Choose Feature" button above',
-			]),
-			choices: [
-				"Burned",
-				"Drowned",
-				"Feral",
-				"Hideous",
-				"Hollow",
-				"Infested",
-				"Loveless",
-				"Possessed",
-				"Starving",
-				"Visions",
-				"Whispers",
-			],
+			description: desc(['Chose a Witch\'s Curse using the "Choose Feature" button above']),
+			choices: ["Burned", "Drowned", "Feral", "Hideous", "Hollow", "Infested", "Loveless", "Possessed", "Starving", "Visions", "Whispers"],
 			burned: {
 				name: "Burned",
 				source: ["VSoS", 175],
-				description: desc([
-					"I have resistance to fire damage, and I know produce flame as a witch cantrip",
-				]),
+				description: desc(["I have resistance to fire damage, and I know produce flame as a witch cantrip"]),
 				dmgres: ["Fire"],
 				spellcastingBonus: [
 					{
@@ -295,16 +265,12 @@ ClassList["witch"] = {
 			drowned: {
 				name: "Drowned",
 				source: ["VSoS", 176],
-				description: desc([
-					"I can breathe air and water and I have a swim speed equal to my walking speed",
-				]),
+				description: desc(["I can breathe air and water and I have a swim speed equal to my walking speed"]),
 				speed: { swim: { spd: "walk", enc: "walk" } },
 			},
 			feral: {
 				name: "Feral",
-				description: desc([
-					"I gain proficiency in Survival and an AC of 13 + Dex without armor or a shield",
-				]),
+				description: desc(["I gain proficiency in Survival and an AC of 13 + Dex without armor or a shield"]),
 				skills: ["Survival"],
 				armorOptions: [
 					{
@@ -329,11 +295,7 @@ ClassList["witch"] = {
 				name: "Hollow",
 				source: ["VSoS", 176],
 				description: levels.map(function (n) {
-					return desc([
-						"When I or my familiar reduce an enemy to 0 HP, I gain " +
-							n +
-							" + Cha mod (min 1) temp HP",
-					]);
+					return desc(["When I or my familiar reduce an enemy to 0 HP, I gain " + n + " + Cha mod (min 1) temp HP"]);
 				}),
 			},
 			infested: {
@@ -341,13 +303,9 @@ ClassList["witch"] = {
 				source: ["VSoS", 176],
 				description: levels.map(function (n) {
 					if (n < 7) {
-						var descr = [
-							"I am immune to disease, my familiar can be a swarm of rats",
-						];
+						var descr = ["I am immune to disease, my familiar can be a swarm of rats"];
 					} else {
-						var descr = [
-							"I am immune to disease, my familiar can be a swarm of rats or insects",
-						];
+						var descr = ["I am immune to disease, my familiar can be a swarm of rats or insects"];
 					}
 					return desc(descr);
 				}),
@@ -362,22 +320,14 @@ ClassList["witch"] = {
 			possessed: {
 				name: "Possessed",
 				source: ["VSoS", 176],
-				description: desc([
-					"I learn additional witch spells at levels 1, 4, 8, and 12",
-				]),
+				description: desc(["I learn additional witch spells at levels 1, 4, 8, and 12"]),
 				additional: levels.map(function (n) {
-					return n < 2
-						? "1 additional spell"
-						: (n < 5 ? "2" : n < 9 ? "3" : "4") +
-								" additional spells";
+					return n < 2 ? "1 additional spell" : (n < 5 ? "2" : n < 9 ? "3" : "4") + " additional spells";
 				}),
 				spellcastingBonus: [
 					{
 						name: "Possessed",
-						times: [
-							1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4,
-							4, 4, 4,
-						],
+						times: [1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 						class: "witch",
 						level: [1, 9],
 					},
@@ -386,17 +336,13 @@ ClassList["witch"] = {
 			starving: {
 				name: "Starving",
 				source: ["VSoS", 176],
-				description: desc([
-					"I don't need to eat or drink and I am immune to being poisoned",
-				]),
+				description: desc(["I don't need to eat or drink and I am immune to being poisoned"]),
 				savetxt: { immune: ["poisoned"] },
 			},
 			visions: {
 				name: "Visions",
 				source: ["VSoS", 176],
-				description: desc([
-					"I can add my Charisma modifier to initiative rolls",
-				]),
+				description: desc(["I can add my Charisma modifier to initiative rolls"]),
 				addMod: {
 					type: "skill",
 					field: "Init",
@@ -407,10 +353,7 @@ ClassList["witch"] = {
 			whispers: {
 				name: "Whispers",
 				source: ["VSoS", 176],
-				description: desc([
-					"I can speak telepathically to a creature within 30 ft that I can see if",
-					"they can at least understand one language.",
-				]),
+				description: desc(["I can speak telepathically to a creature within 30 ft that I can see if", "they can at least understand one language."]),
 				languageProfs: ["Telepathy (30 ft)"],
 			},
 		},
@@ -426,19 +369,7 @@ ClassList["witch"] = {
 				"Whenever I gain a witch level, I can replace a hex I know with another",
 			]),
 			additional: levels.map(function (n) {
-				return (
-					(n < 2
-						? 2
-						: n < 5
-						? 3
-						: n < 9
-						? 4
-						: n < 13
-						? 5
-						: n < 17
-						? 6
-						: 7) + " hexes known"
-				);
+				return (n < 2 ? 2 : n < 5 ? 3 : n < 9 ? 4 : n < 13 ? 5 : n < 17 ? 6 : 7) + " hexes known";
 			}),
 			extraname: "Hexes",
 			extrachoices: [
@@ -470,17 +401,7 @@ ClassList["witch"] = {
 				"Ward",
 			],
 			extraTimes: levels.map(function (n) {
-				return n < 2
-					? 2
-					: n < 5
-					? 3
-					: n < 9
-					? 4
-					: n < 13
-					? 5
-					: n < 17
-					? 6
-					: 7;
+				return n < 2 ? 2 : n < 5 ? 3 : n < 9 ? 4 : n < 13 ? 5 : n < 17 ? 6 : 7;
 			}),
 			action: ["action", "Hex"],
 			abate: {
@@ -509,10 +430,7 @@ ClassList["witch"] = {
 				calcChanges: {
 					spellAdd: [
 						function (spellKey, spellObj, spName) {
-							if (
-								spName == "witch" &&
-								spellKey == "find familiar"
-							) {
+							if (spName == "witch" && spellKey == "find familiar") {
 								spellObj.time = "1 a";
 							}
 						},
@@ -632,10 +550,7 @@ ClassList["witch"] = {
 			mire: {
 				name: "Mire",
 				source: ["VSoS", 179],
-				description: desc([
-					"I create a 30 ft radius of difficult terrain until the end of my next turn",
-					"I can move freely in this area",
-				]),
+				description: desc(["I create a 30 ft radius of difficult terrain until the end of my next turn", "I can move freely in this area"]),
 			},
 			misfortune: {
 				name: "Misfortune",
@@ -691,9 +606,7 @@ ClassList["witch"] = {
 			},
 			shriek: {
 				name: "Shriek",
-				description: desc([
-					"As a bonus action, each large or smaller creature within 5 ft is pushed 5 ft away from you",
-				]),
+				description: desc(["As a bonus action, each large or smaller creature within 5 ft is pushed 5 ft away from you"]),
 				source: ["VSoS", 180],
 				action: ["bonus action", " (Hex)"],
 			},
@@ -716,9 +629,7 @@ ClassList["witch"] = {
 			},
 			tremors: {
 				name: "Tremors",
-				description: desc([
-					"Each creature within 10 ft must make a Dexterity save or be knocked prone",
-				]),
+				description: desc(["Each creature within 10 ft must make a Dexterity save or be knocked prone"]),
 				source: ["VSoS", 180],
 			},
 			ward: {
@@ -734,9 +645,7 @@ ClassList["witch"] = {
 			name: "Cackle",
 			source: ["VSoS", 176],
 			minlevel: 2,
-			description: desc([
-				"As a bonus action, my hex extends by 1 round for each hexed creature within 60 feet",
-			]),
+			description: desc(["As a bonus action, my hex extends by 1 round for each hexed creature within 60 feet"]),
 			action: [["bonus action", ""]],
 		},
 		familiar: {
@@ -761,8 +670,7 @@ ClassList["witch"] = {
 				"find familiar": {
 					components: "V,S",
 					compMaterial: "",
-					description:
-						"Gain the services of a familiar; can see through its eyes; it can deliver spells; see B",
+					description: "Gain the services of a familiar; can see through its eyes; it can deliver spells; see B",
 					descriptionFull:
 						"You gain the service of a familiar, a spirit that takes an animal form you choose - bat, cat, crab, frog (toad), hawk, lizard, octopus, owl, poisonous snake, fish (quipper), rat, raven, sea horse, spider, or weasel. Appearing in an unoccupied space within range, the familiar has the statistics of the chosen form, though it is a celestial, fey or fiend (your choice) instead of a beast." +
 						"\n   " +
@@ -777,8 +685,7 @@ ClassList["witch"] = {
 						"You can't have more than one familiar at a time. If you cast this spell while you already have a familiar, you instead cause it to adopt a new form. Choose one of the forms from the above list. Your familiar transforms into the chosen creature." +
 						"\n   " +
 						"Finally, when you cast a spell, your familiar can deliver the spell as if it had cast the spell. Your familiar must be within 100 feet of you, and it must use its reaction to deliver the spell when you cast it. If the spell requires an attack roll, you use your attack modifier for the roll.",
-					changes:
-						"I can cast Find Familiar without requiring material components, the familiar can deliver any spell I cast.",
+					changes: "I can cast Find Familiar without requiring material components, the familiar can deliver any spell I cast.",
 				},
 			},
 		},
@@ -786,17 +693,13 @@ ClassList["witch"] = {
 			name: "Witch's Craft",
 			source: ["VSoS", 177],
 			minlevel: 3,
-			description: desc([
-				'Choose your Craft, a learned variety of magic, and put it in the "Class" field',
-			]),
+			description: desc(['Choose your Craft, a learned variety of magic, and put it in the "Class" field']),
 		},
 		"insidious spell": {
 			name: "Insidious Spell",
 			source: ["VSoS", 177],
 			minlevel: 5,
-			description: desc([
-				"If an enemy is the sole target of my hex, it has disadv. on the first save of my witch spells",
-			]),
+			description: desc(["If an enemy is the sole target of my hex, it has disadv. on the first save of my witch spells"]),
 		},
 		"improved familiar": {
 			name: "Improved Familiar",
@@ -823,9 +726,7 @@ ClassList["witch"] = {
 			name: "Grand Hex",
 			source: ["VSoS", 177],
 			minlevel: 11,
-			description: desc([
-				'Use the "Choose Feature" button above to add Grand Hexes to the Notes page',
-			]),
+			description: desc(['Use the "Choose Feature" button above to add Grand Hexes to the Notes page']),
 			toNotesPage: [
 				{
 					name: "Grand Hex",
@@ -835,10 +736,7 @@ ClassList["witch"] = {
 				},
 			],
 			additional: levels.map(function (n) {
-				return n < 11
-					? ""
-					: (n < 13 ? 1 : n < 15 ? 2 : n < 18 ? 3 : 4) +
-							" grand hexes known";
+				return n < 11 ? "" : (n < 13 ? 1 : n < 15 ? 2 : n < 18 ? 3 : 4) + " grand hexes known";
 			}),
 			extraname: "Grand Hex",
 			extrachoices: [
@@ -963,9 +861,7 @@ ClassList["witch"] = {
 						name: "Forceful Personality",
 						source: ["VSoS", 181],
 						popupname: "Forceful Personality",
-						note: [
-							"My charisma score increases by 2, to a maximum of 22",
-						],
+						note: ["My charisma score increases by 2, to a maximum of 22"],
 						amendTo: "Grand Hex",
 					},
 				],
@@ -1005,8 +901,7 @@ ClassList["witch"] = {
 					type: "Natural",
 					damage: [1, 10, "My choice"],
 					range: "Melee",
-					description:
-						"Only while hybrid, choose between Bludg, Pierc, Slash",
+					description: "Only while hybrid, choose between Bludg, Pierc, Slash",
 					abilitytodamage: true,
 					selectNow: true,
 				},
@@ -1077,10 +972,7 @@ ClassList["witch"] = {
 						name: "War Hex",
 						source: ["VSoS", 182],
 						popupname: "War Hex",
-						note: [
-							"When I cast a single target hex, I can use my bonus action to cast a cantrip",
-							"This cantrip must target the same creature",
-						],
+						note: ["When I cast a single target hex, I can use my bonus action to cast a cantrip", "This cantrip must target the same creature"],
 						amendTo: "Grand Hex",
 					},
 				],
@@ -1132,17 +1024,14 @@ ClassList["witch"] = {
 			name: "Hexmaster",
 			source: ["VSoS", 177],
 			minlevel: 20,
-			description: desc([
-				"Creatures have disadv. on saves against my hexes",
-			]),
+			description: desc(["Creatures have disadv. on saves against my hexes"]),
 		},
 	},
 };
 
 // * black magic witch subclass
 AddSubClass("witch", "black magic", {
-	regExpSearch:
-		/^(((?=.*(black|pain|dark))(?=.*magic|artist|hexer|witch|coven|cabal))|(?=.*necromancer)).*$/i,
+	regExpSearch: /^(((?=.*(black|pain|dark))(?=.*magic|artist|hexer|witch|coven|cabal))|(?=.*necromancer)).*$/i,
 	subname: "Black Magic",
 	source: ["VSoS", 183],
 	features: {
@@ -1185,9 +1074,7 @@ AddSubClass("witch", "black magic", {
 			name: "Undeath Command",
 			source: ["VSoS", 183],
 			minlevel: 6,
-			description: desc([
-				"When I use a bonus action to command my familiar, I can also command an undead I control",
-			]),
+			description: desc(["When I use a bonus action to command my familiar, I can also command an undead I control"]),
 		},
 		subclassfeature10: {
 			name: "Life Tether",
@@ -1220,8 +1107,7 @@ AddSubClass("witch", "black magic", {
 
 // * blood magic witch subclass
 AddSubClass("witch", "blood magic", {
-	regExpSearch:
-		/^((?=.*(blood|crimson|mortality|essense|sacrifice|forbidden))(?=.*magic|artist|hexer|witch|coven|cabal)).*$/i,
+	regExpSearch: /^((?=.*(blood|crimson|mortality|essense|sacrifice|forbidden))(?=.*magic|artist|hexer|witch|coven|cabal)).*$/i,
 	subname: "Blood Magic",
 	source: ["VSoS", 184],
 	features: {
@@ -1272,9 +1158,7 @@ AddSubClass("witch", "blood magic", {
 			name: "Arcane Bloodletting",
 			source: ["VSoS", 184],
 			minlevel: 3,
-			description: desc([
-				"I can pay 5 HP to cast a spell with a casting time of an action as a bonus action",
-			]),
+			description: desc(["I can pay 5 HP to cast a spell with a casting time of an action as a bonus action"]),
 			action: ["bonus action", ""],
 			usages: "Charisma modifier per ",
 			usagescalc: "event.value = Math.max(1, What('Cha Mod'));",
@@ -1319,8 +1203,7 @@ AddSubClass("witch", "blood magic", {
 
 // * green magic witch subclass
 AddSubClass("witch", "green magic", {
-	regExpSearch:
-		/^(((?=.*(green|nature|druidic|elder|primal))(?=.*magic|artist|hexer|witch|coven|cabal))|(?=.*arborist)).*$/i,
+	regExpSearch: /^(((?=.*(green|nature|druidic|elder|primal))(?=.*magic|artist|hexer|witch|coven|cabal))|(?=.*arborist)).*$/i,
 	subname: "Green Magic",
 	source: ["VSoS", 184],
 	features: {
@@ -1363,9 +1246,7 @@ AddSubClass("witch", "green magic", {
 			name: "Primal Ally",
 			source: ["VSoS", 185],
 			minlevel: 3,
-			description:
-				"\n   " +
-				"My familiar gets three times my witch level as max HP instead of two",
+			description: "\n   " + "My familiar gets three times my witch level as max HP instead of two",
 		},
 		subclassfeature6: {
 			name: "Twin Familiar",
@@ -1408,8 +1289,7 @@ AddSubClass("witch", "green magic", {
 
 // * purple magic witch subclass
 AddSubClass("witch", "purple magic", {
-	regExpSearch:
-		/^(((?=.*(purple|illusory|enchant|puppet|mind|dream|nightmare))(?=.*magic|artist|hexer|witch|coven|cabal|master))|(?=.*enchanter)).*$/i,
+	regExpSearch: /^(((?=.*(purple|illusory|enchant|puppet|mind|dream|nightmare))(?=.*magic|artist|hexer|witch|coven|cabal|master))|(?=.*enchanter)).*$/i,
 	subname: "Purple Magic",
 	source: ["VSoS", 185],
 	features: {
@@ -1489,8 +1369,7 @@ AddSubClass("witch", "purple magic", {
 
 // * red magic witch subclass
 AddSubClass("witch", "red magic", {
-	regExpSearch:
-		/^(((?=.*(red|wrath|element))(?=.*magic|artist|hexer|witch|coven|cabal))|(?=.*elementalist)).*$/i,
+	regExpSearch: /^(((?=.*(red|wrath|element))(?=.*magic|artist|hexer|witch|coven|cabal))|(?=.*elementalist)).*$/i,
 	subname: "Red Magic",
 	source: ["VSoS", 186],
 	features: {
@@ -1544,9 +1423,7 @@ AddSubClass("witch", "red magic", {
 			name: "Invulnerability",
 			source: ["VSoS", 186],
 			minlevel: 10,
-			description:
-				"\n   " +
-				"When hit with an atk I can see, I can use my reaction to subtract 50 from the dmg (min 0)",
+			description: "\n   " + "When hit with an atk I can see, I can use my reaction to subtract 50 from the dmg (min 0)",
 			action: ["reaction", ""],
 			usages: 1,
 			recovery: "long rest",
@@ -1568,8 +1445,7 @@ AddSubClass("witch", "red magic", {
 
 // * steel magic witch subclass
 AddSubClass("witch", "steel magic", {
-	regExpSearch:
-		/^((?=.*(steel|metal|blade|battle))(?=.*magic|artist|hexer|witch|coven|cabal)).*$/i,
+	regExpSearch: /^((?=.*(steel|metal|blade|battle))(?=.*magic|artist|hexer|witch|coven|cabal)).*$/i,
 	subname: "Steel Magic",
 	source: ["VSoS", 187],
 	features: {
@@ -1616,15 +1492,8 @@ AddSubClass("witch", "steel magic", {
 								v.isMeleeWeapon &&
 								!/(heavy|special)/i.test(v.WeaponText) &&
 								!v.theWea.special &&
-								/(malevolence|steel magic ?(hex)?|hex)/i.test(
-									v.WeaponText
-								) &&
-								What("Cha Mod") >
-									What(
-										AbilityScores.abbreviations[
-											fields.Mod - 1
-										] + " Mod"
-									)
+								/(malevolence|steel magic ?(hex)?|hex)/i.test(v.WeaponText) &&
+								What("Cha Mod") > What(AbilityScores.abbreviations[fields.Mod - 1] + " Mod")
 							) {
 								fields.Mod = 6;
 							}
@@ -1644,32 +1513,12 @@ AddSubClass("witch", "steel magic", {
 			name: "Bonus Proficiencies",
 			source: ["VSoS", 187],
 			minlevel: 3,
-			description:
-				"\n   " +
-				"I gain proficiency with other weapons as shown on the first page",
-			weaponProfs: [
-				false,
-				false,
-				[
-					"battleaxe",
-					"flail",
-					"longsword",
-					"morningstar",
-					"rapier",
-					"scimitar",
-					"trident",
-					"warhammer",
-				],
-			],
+			description: "\n   " + "I gain proficiency with other weapons as shown on the first page",
+			weaponProfs: [false, false, ["battleaxe", "flail", "longsword", "morningstar", "rapier", "scimitar", "trident", "warhammer"]],
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							v.isMeleeWeapon &&
-							!/(heavy|special)/i.test(v.WeaponText) &&
-							/martial/i.test(v.theWea.type) &&
-							!v.theWea.special
-						) {
+						if (v.isMeleeWeapon && !/(heavy|special)/i.test(v.WeaponText) && /martial/i.test(v.theWea.type) && !v.theWea.special) {
 							fields.Proficiency = true;
 						}
 					},
@@ -1681,9 +1530,7 @@ AddSubClass("witch", "steel magic", {
 			name: "Cackling Killer",
 			source: ["VSoS", 187],
 			minlevel: 6,
-			description:
-				"\n   " +
-				"When I use my Cackle, I can atk twice instead of once when I use the atk action on my turn",
+			description: "\n   " + "When I use my Cackle, I can atk twice instead of once when I use the atk action on my turn",
 		},
 		subclassfeature10: {
 			name: "Soulsword Familiar",
@@ -1700,9 +1547,7 @@ AddSubClass("witch", "steel magic", {
 				atkAdd: [
 					function (fields, v) {
 						if (/soulsword/i.test(v.WeaponTextName)) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"+1d8 fire dmg";
+							fields.Description += (fields.Description ? "; " : "") + "+1d8 fire dmg";
 						}
 					},
 					"I can include soulsword into a weapons name to deal an extra 1d8 fire damage with it.",
@@ -1725,8 +1570,7 @@ AddSubClass("witch", "steel magic", {
 });
 
 AddSubClass("witch", "tea magic", {
-	regExpSearch:
-		/^(((?=.*(tea|caffiene|drink|calm|herb))(?=.*magic|artist|hexer|witch|coven|cabal))|(?=.*(herbalist|barista))).*$/i,
+	regExpSearch: /^(((?=.*(tea|caffiene|drink|calm|herb))(?=.*magic|artist|hexer|witch|coven|cabal))|(?=.*(herbalist|barista))).*$/i,
 	subname: "Tea Magic",
 	source: ["VSoS", 188],
 	features: {
@@ -1770,25 +1614,19 @@ AddSubClass("witch", "tea magic", {
 			name: "Tea Ceremony",
 			source: ["VSoS", 188],
 			minlevel: 3,
-			description:
-				"\n   " +
-				"My allies and I lose an additional level of exhaustion during a short or long rest",
+			description: "\n   " + "My allies and I lose an additional level of exhaustion during a short or long rest",
 		},
 		subclassfeature6: {
 			name: "Shapes and Omens",
 			source: ["VSoS", 188],
 			minlevel: 6,
-			description:
-				"\n   " +
-				"At the end of a long rest my tea leaves form a shape that hints at future events",
+			description: "\n   " + "At the end of a long rest my tea leaves form a shape that hints at future events",
 		},
 		subclassfeature10: {
 			name: "Herbal Remeby",
 			source: ["VSoS", 188],
 			minlevel: 10,
-			description:
-				"\n   " +
-				"Once per short rest, I can cast greater restoration without a spell slot or material components",
+			description: "\n   " + "Once per short rest, I can cast greater restoration without a spell slot or material components",
 			spellcastingBonus: [
 				{
 					spells: ["greater restoration"],
@@ -1801,8 +1639,7 @@ AddSubClass("witch", "tea magic", {
 				"greater restoration": {
 					compMaterial: "",
 					components: "V,S",
-					changes:
-						"I no longer need material components to cast greater restoration.",
+					changes: "I no longer need material components to cast greater restoration.",
 				},
 			},
 		},
@@ -1822,8 +1659,7 @@ AddSubClass("witch", "tea magic", {
 });
 
 AddSubClass("witch", "technicolor magic", {
-	regExpSearch:
-		/^((?=.*(technicolor|friend|positivity|positive|animal|companion|music))(?=.*magic|artist|hexer|witch|coven|cabal)).*$/i,
+	regExpSearch: /^((?=.*(technicolor|friend|positivity|positive|animal|companion|music))(?=.*magic|artist|hexer|witch|coven|cabal)).*$/i,
 	subname: "Technicolor Magic",
 	source: ["VSoS", 188],
 	features: {
@@ -1886,9 +1722,7 @@ AddSubClass("witch", "technicolor magic", {
 			name: "Positivity",
 			source: ["VSoS", 189],
 			minlevel: 10,
-			description:
-				"\n   " +
-				"When attacked by a visible crea, as a rea. my AC increases by +1 per ally w/in 5 ft (max 10)",
+			description: "\n   " + "When attacked by a visible crea, as a rea. my AC increases by +1 per ally w/in 5 ft (max 10)",
 			action: ["reaction", ""],
 			usages: 1,
 			recovery: "short rest",
@@ -1912,8 +1746,7 @@ AddSubClass("witch", "technicolor magic", {
 });
 
 AddSubClass("witch", "white magic", {
-	regExpSearch:
-		/^(((?=.*(white|heal|hope|gift))(?=.*magic|artist|hexer|witch|coven|cabal|guardian))|(?=.*guardian)).*$/i,
+	regExpSearch: /^(((?=.*(white|heal|hope|gift))(?=.*magic|artist|hexer|witch|coven|cabal|guardian))|(?=.*guardian)).*$/i,
 	subname: "White Magic",
 	source: ["VSoS", 189],
 	features: {
@@ -1980,9 +1813,7 @@ AddSubClass("witch", "white magic", {
 			name: "Witch's Gift",
 			source: ["VSoS", 189],
 			minlevel: 14,
-			description:
-				"\n   " +
-				"When I cast a spell or hex that heals HP, the target gains +3 AC until the end of my next turn",
+			description: "\n   " + "When I cast a spell or hex that heals HP, the target gains +3 AC until the end of my next turn",
 		},
 	},
 });

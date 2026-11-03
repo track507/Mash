@@ -2,12 +2,12 @@ var iFileName = "VSoS_Warden.js";
 RequiredSheetVersion("13.2.3");
 
 if (!SourceList["VSoS"]) {
-    SourceList["VSoS"] = {
-        name : "Valda's Spire of Secrets",
-        abbreviation : "VSoS",
-        abbreviationSpellsheet : "V",
-        date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
-    };
+	SourceList["VSoS"] = {
+		name: "Valda's Spire of Secrets",
+		abbreviation: "VSoS",
+		abbreviationSpellsheet: "V",
+		date: "2022/12/30", // ! Updated as of 12-30-2022 (Version 1.4)
+	};
 }
 
 ClassList["warden"] = {
@@ -19,8 +19,7 @@ ClassList["warden"] = {
 	die: 10,
 	saves: ["Str", "Con"],
 	skillstxt: {
-		primary:
-			"Choose two from Animal Handling, Athletics, Nature, Perception, and Survival",
+		primary: "Choose two from Animal Handling, Athletics, Nature, Perception, and Survival",
 	},
 	armorProfs: {
 		primary: [true, true, false, true],
@@ -44,15 +43,9 @@ ClassList["warden"] = {
 			name: "Sentinel's Stand",
 			source: ["VSoS", 146],
 			minlevel: 1,
-			description: desc([
-				'Wardens are towers that cannot easily be felled. Use the "Choose Features" button above to select an option.',
-			]),
+			description: desc(['Wardens are towers that cannot easily be felled. Use the "Choose Features" button above to select an option.']),
 			extraname: "Sentinel's Stand options",
-			choices: [
-				"Armor Proficiency",
-				"Primal Toughness",
-				"Stalwart Spirit",
-			],
+			choices: ["Armor Proficiency", "Primal Toughness", "Stalwart Spirit"],
 			"armor proficiency": {
 				name: "Armor Proficiency",
 				source: ["VSoS", 146],
@@ -63,16 +56,12 @@ ClassList["warden"] = {
 				name: "Primal Toughness",
 				source: ["VSoS", 146],
 				description: desc([
-					"My hit point maximum increases by 1 + my Con. modifier, and it increases " +
-						"by 1 every time I gain a level in this class.",
+					"My hit point maximum increases by 1 + my Con. modifier, and it increases " + "by 1 every time I gain a level in this class.",
 				]),
 				calcChanges: {
 					hp: function (totalHD, HDobj, prefix) {
 						if (classes.known.warden) {
-							return [
-								classes.known.warden.level + HDobj.conMod,
-								"Primal Toughness (Warden)",
-							];
+							return [classes.known.warden.level + HDobj.conMod, "Primal Toughness (Warden)"];
 						}
 					},
 				},
@@ -80,9 +69,7 @@ ClassList["warden"] = {
 			"stalwart spirit": {
 				name: "Stalwart Spirit",
 				source: ["VSoS", 146],
-				description: desc([
-					"I gain proficiency in one saving throw of my choice.",
-				]),
+				description: desc(["I gain proficiency in one saving throw of my choice."]),
 			},
 		},
 		"warden's grasp": {
@@ -109,12 +96,7 @@ ClassList["warden"] = {
 					'if I later get to choose again. Use the "Choose Features" button above to select a Fighting Style.',
 			]),
 			extraname: "Fighting Style",
-			choices: [
-				"Crippling",
-				"Great Weapon Fighting",
-				"Protection",
-				"Titan Fighting",
-			],
+			choices: ["Crippling", "Great Weapon Fighting", "Protection", "Titan Fighting"],
 			crippling: {
 				name: "Fighting Style: Crippling",
 				source: ["VSoS", 147],
@@ -125,13 +107,8 @@ ClassList["warden"] = {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								v.isMeleeWeapon &&
-								!/crippling/i.test(fields.Description)
-							) {
-								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"Crippling";
+							if (v.isMeleeWeapon && !/crippling/i.test(fields.Description)) {
+								fields.Description += (fields.Description ? "; " : "") + "Crippling";
 							}
 						},
 					],
@@ -142,9 +119,7 @@ ClassList["warden"] = {
 			"titan fighting": {
 				name: "Fighting Style: Titan Fighting",
 				source: ["VSoS", 147],
-				description: desc([
-					"I gain a +2 bonus to melee weapon attack rolls I make against Large or larger creatures.",
-				]),
+				description: desc(["I gain a +2 bonus to melee weapon attack rolls I make against Large or larger creatures."]),
 			},
 		},
 		"warden's mark": {
@@ -163,9 +138,7 @@ ClassList["warden"] = {
 			name: "Champion's Call",
 			source: ["VSoS", 148],
 			minlevel: 3,
-			description: desc([
-				'Choose a Champion\'s Call and put it in the "Class" field.',
-			]),
+			description: desc(['Choose a Champion\'s Call and put it in the "Class" field.']),
 		},
 		"warden's resolve": {
 			name: "Warden's Resolve",
@@ -184,8 +157,7 @@ ClassList["warden"] = {
 				"As an action, I end one disease or condition afflicting me. The condition " +
 					"can be blinded, charmed, deafened, frightened, paralyzed, or poisoned. I can do so even if the " +
 					"condition would prevent me otherwise.",
-				"At 15th level, 1/Day when I use " +
-					"this ability, my hit points are restored to half my max, if they're lower.",
+				"At 15th level, 1/Day when I use " + "this ability, my hit points are restored to half my max, if they're lower.",
 			]),
 			action: ["action", ""],
 			recovery: "short rest",
@@ -216,9 +188,7 @@ ClassList["warden"] = {
 			"thundering charge": {
 				name: "Sentinel's Step: Thundering Charge",
 				source: ["VSoS", 148],
-				description: desc([
-					"On my first round of combat, my speed increases by 30 feet and I have advantage on the first melee weapon attack I make.",
-				]),
+				description: desc(["On my first round of combat, my speed increases by 30 feet and I have advantage on the first melee weapon attack I make."]),
 			},
 			wildblood: {
 				name: "Sentinel's Step: Wildblood",
@@ -239,9 +209,7 @@ ClassList["warden"] = {
 			name: "Undying",
 			source: ["VSoS", 148],
 			minlevel: 9,
-			description: desc([
-				"When I am reduced to 0 hp and are not killed outright, I can choose to drop to 1 hp instead.",
-			]),
+			description: desc(["When I am reduced to 0 hp and are not killed outright, I can choose to drop to 1 hp instead."]),
 			recovery: "long rest",
 			usages: 1,
 		},
@@ -263,11 +231,7 @@ ClassList["warden"] = {
 				'Wardens are unshakable guardians that cannot be bowed. At 18th level, choose one of the following features from the "Choose Feature" button.',
 			]),
 			extraname: "Sentinel's Soul",
-			choices: [
-				"Ageless Guardian",
-				"Eyes of the Mountain",
-				"Impenetrable Mind",
-			],
+			choices: ["Ageless Guardian", "Eyes of the Mountain", "Impenetrable Mind"],
 			"ageless guardian": {
 				name: "Sentinel's Soul: Ageless Guardian",
 				source: ["VSoS", 148],
@@ -290,9 +254,7 @@ ClassList["warden"] = {
 			"impenetrable mind": {
 				name: "Sentinel's Soul: Impenetrable Mind",
 				source: ["VSoS", 148],
-				description: desc([
-					"My thoughts can't be read, and I can't be charmed or frightened. Additionally, I have advantage on Wisdom saving throws.",
-				]),
+				description: desc(["My thoughts can't be read, and I can't be charmed or frightened. Additionally, I have advantage on Wisdom saving throws."]),
 				savetxt: {
 					immune: ["charmed", "frightened"],
 				},
@@ -340,9 +302,7 @@ AddSubClass("warden", "bloodwrath guardian", {
 				["T", 144],
 			],
 			minlevel: 13,
-			description: desc([
-				"My Dexterity saves vs. areas of effect negate damage on success and halve it on failure.",
-			]),
+			description: desc(["My Dexterity saves vs. areas of effect negate damage on success and halve it on failure."]),
 			savetxt: {
 				text: "Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg",
 			},
@@ -351,9 +311,7 @@ AddSubClass("warden", "bloodwrath guardian", {
 			name: "Form of the Primal Beast",
 			source: ["VSoS", 149],
 			minlevel: 20,
-			description: desc([
-				"I tranform into a beast for 1 min and gain the following found on 3rd page notes.",
-			]),
+			description: desc(["I tranform into a beast for 1 min and gain the following found on 3rd page notes."]),
 			usages: 1,
 			recovery: "long rest",
 			toNotesPage: [
@@ -393,20 +351,11 @@ AddSubClass("warden", "grey watchman", {
 			]),
 			limfeaname: "Battle Dice",
 			recovery: "short rest",
-			usages: [
-				0, 0, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4,
-			],
+			usages: [0, 0, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4],
 			additional: levels.map(function (n) {
 				return n < 3 ? "" : n < 13 ? "d8" : n < 19 ? "d10" : "d10";
 			}),
-			extrachoices: [
-				"Bull Rush",
-				"Bulwark",
-				"Cleave",
-				"Heel-Cutter",
-				"Reckless Assault",
-				"Staggering Strike (Warden)",
-			],
+			extrachoices: ["Bull Rush", "Bulwark", "Cleave", "Heel-Cutter", "Reckless Assault", "Staggering Strike (Warden)"],
 			choicesNotInMenu: true,
 			"bull rush": {
 				name: "Bull Rush",
@@ -513,14 +462,9 @@ AddSubClass("warden", "grey watchman", {
 			name: "Mettle",
 			source: ["VSoS", 151],
 			minlevel: 13,
-			description: desc([
-				"Whenever I make a Con. save for \u00BD damage, I take no damage on a success and" +
-					" \u00BD on a fail.",
-			]),
+			description: desc(["Whenever I make a Con. save for \u00BD damage, I take no damage on a success and" + " \u00BD on a fail."]),
 			savetxt: {
-				text: [
-					"Con save vs. effects: fail \u2015 half dmg, success \u2015 no dmg",
-				],
+				text: ["Con save vs. effects: fail \u2015 half dmg, success \u2015 no dmg"],
 			},
 		},
 		subclassfeature20: {
@@ -581,13 +525,9 @@ AddSubClass("warden", "nightgaunt", {
 			name: "Evasion",
 			source: ["VSoS", 152],
 			minlevel: 13,
-			description: desc([
-				"My Dexterity saves vs. areas of effect negate damage on success and halve it on failure.",
-			]),
+			description: desc(["My Dexterity saves vs. areas of effect negate damage on success and halve it on failure."]),
 			savetxt: {
-				text: [
-					"Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg",
-				],
+				text: ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"],
 			},
 		},
 		subclassfeature20: {
@@ -661,15 +601,7 @@ AddSubClass("warden", "soulblood shaman", {
 					class: ["druid"],
 					level: [1, 4],
 					times: levels.map(function (n) {
-						return n < 3
-							? 0
-							: n < 8
-							? 1
-							: n < 14
-							? 2
-							: n < 20
-							? 3
-							: 4;
+						return n < 3 ? 0 : n < 8 ? 1 : n < 14 ? 2 : n < 20 ? 3 : 4;
 					}),
 				},
 			],
@@ -678,9 +610,7 @@ AddSubClass("warden", "soulblood shaman", {
 			name: "Soulblood",
 			source: ["VSoS", 153],
 			minlevel: 3,
-			description: desc([
-				"When a crea within 5 ft of me deals damage to me, I can use my reaction to mark the crea.",
-			]),
+			description: desc(["When a crea within 5 ft of me deals damage to me, I can use my reaction to mark the crea."]),
 			action: ["reaction", ""],
 		},
 		subclassfeature6: {
@@ -696,9 +626,7 @@ AddSubClass("warden", "soulblood shaman", {
 			name: "Spell Resistance",
 			source: ["VSoS", 153],
 			minlevel: 13,
-			description: desc([
-				"I have advantage on saves against spells and other magical effects.",
-			]),
+			description: desc(["I have advantage on saves against spells and other magical effects."]),
 			savetxt: {
 				adv_vs: ["spells", "magic"],
 			},
@@ -755,14 +683,9 @@ AddSubClass("warden", "stoneheart defender", {
 			name: "Mettle",
 			source: ["VSoS", 154],
 			minlevel: 13,
-			description: desc([
-				"Whenever I make a Con. save for \u00BD damage, I take no damage on a success and" +
-					" \u00BD on a fail.",
-			]),
+			description: desc(["Whenever I make a Con. save for \u00BD damage, I take no damage on a success and" + " \u00BD on a fail."]),
 			savetxt: {
-				text: [
-					"Con save vs. effects: fail \u2015 half dmg, success \u2015 no dmg",
-				],
+				text: ["Con save vs. effects: fail \u2015 half dmg, success \u2015 no dmg"],
 			},
 		},
 		subclassfeature20: {
@@ -808,21 +731,15 @@ AddSubClass("warden", "storm sentinel", {
 			name: "Static Blast",
 			source: ["VSoS", 155],
 			minlevel: 6,
-			description: desc([
-				"When I use Warden's Grasp as a bonus action, each creature affected can't take reactions until the start of my next turn.",
-			]),
+			description: desc(["When I use Warden's Grasp as a bonus action, each creature affected can't take reactions until the start of my next turn."]),
 		},
 		subclassfeature13: {
 			name: "Evasion",
 			source: ["VSoS", 155],
 			minlevel: 11,
-			description: desc(
-				"My Dexterity saves vs. areas of effect negate damage on success and halve it on failure"
-			),
+			description: desc("My Dexterity saves vs. areas of effect negate damage on success and halve it on failure"),
 			savetxt: {
-				text: [
-					"Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg",
-				],
+				text: ["Dex save vs. area effects: fail \u2015 half dmg, success \u2015 no dmg"],
 			},
 		},
 		subclassfeature20: {
@@ -851,10 +768,8 @@ AddSubClass("warden", "storm sentinel", {
 			},
 			spellChanges: {
 				"call lightning": {
-					description:
-						"60-ft rad 10-ft high cloud; 1 ba all in 5-ft rad under cloud 3d10+1d10/SL Lightning dmg; save half",
-					descriptionShorter:
-						"60-ft rad 10-ft high cloud; 1 ba all in 5-ft rad under it 3d10+1d10/SL Lightn. dmg; save half",
+					description: "60-ft rad 10-ft high cloud; 1 ba all in 5-ft rad under cloud 3d10+1d10/SL Lightning dmg; save half",
+					descriptionShorter: "60-ft rad 10-ft high cloud; 1 ba all in 5-ft rad under it 3d10+1d10/SL Lightn. dmg; save half",
 					descriptionFull:
 						"A storm cloud appears in the shape of a cylinder that is 10 feet tall with a 60-foot radius, centered on a point you can see within range directly above you. The spell fails if you can't see a point in the air where the storm cloud could appear (for example, if you are in a room that can't accommodate the cloud)." +
 						"\n   " +
@@ -863,8 +778,7 @@ AddSubClass("warden", "storm sentinel", {
 						"If you are outdoors in stormy conditions when you cast this spell, the spell gives you control over the existing storm instead of creating a new one. Under such conditions, the spell's damage increases by 1d10." +
 						AtHigherLevels +
 						"When you cast this spell using a spell slot of 4th level or higher level, the damage increases by 1d10 for each slot level above 3rd.",
-					changes:
-						"I can keep casting as a bonus action instead of an action.",
+					changes: "I can keep casting as a bonus action instead of an action.",
 				},
 			},
 		},
@@ -881,9 +795,7 @@ AddSubClass("warden", "verdant protector", {
 			name: "Green Mark",
 			source: ["VSoS", 155],
 			minlevel: 3,
-			description: desc([
-				"While a marked crea is within 30 ft of me, the ground it walks on is difficult terrain.",
-			]),
+			description: desc(["While a marked crea is within 30 ft of me, the ground it walks on is difficult terrain."]),
 		},
 		subclassfeature6: {
 			name: "Verdant Skin",
@@ -899,14 +811,9 @@ AddSubClass("warden", "verdant protector", {
 			name: "Mettle",
 			source: ["VSoS", 154],
 			minlevel: 13,
-			description: desc([
-				"Whenever I make a Con. save for \u00BD damage, I take no damage on a success and" +
-					" \u00BD on a fail.",
-			]),
+			description: desc(["Whenever I make a Con. save for \u00BD damage, I take no damage on a success and" + " \u00BD on a fail."]),
 			savetxt: {
-				text: [
-					"Con save vs. effects: fail \u2015 half dmg, success \u2015 no dmg",
-				],
+				text: ["Con save vs. effects: fail \u2015 half dmg, success \u2015 no dmg"],
 			},
 		},
 		subclassfeature20: {

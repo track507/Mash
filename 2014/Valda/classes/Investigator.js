@@ -2,12 +2,12 @@ var iFileName = "VSoS_Investigator.js";
 RequiredSheetVersion("13.2.3");
 
 if (!SourceList["VSoS"]) {
-    SourceList["VSoS"] = {
-        name : "Valda's Spire of Secrets",
-        abbreviation : "VSoS",
-        abbreviationSpellsheet : "V",
-        date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
-    };
+	SourceList["VSoS"] = {
+		name: "Valda's Spire of Secrets",
+		abbreviation: "VSoS",
+		abbreviationSpellsheet: "V",
+		date: "2022/12/30", // ! Updated as of 12-30-2022 (Version 1.4)
+	};
 }
 
 // Investigator SpellList
@@ -91,12 +91,7 @@ if (!SourceList["VSoS"]) {
 	"game of fate",
 	"instant summons",
 ].forEach(function (s) {
-	if (
-		SpellsList[s] &&
-		SpellsList[s].classes &&
-		SpellsList[s].classes.indexOf("investigator") === -1
-	)
-		SpellsList[s].classes.push("investigator");
+	if (SpellsList[s] && SpellsList[s].classes && SpellsList[s].classes.indexOf("investigator") === -1) SpellsList[s].classes.push("investigator");
 });
 
 ClassList["investigator"] = {
@@ -121,17 +116,7 @@ ClassList["investigator"] = {
 		primary: [true, false, false, false],
 	},
 	weaponProfs: {
-		primary: [
-			true,
-			false,
-			[
-				"Hand Crossbow",
-				"Heavy Crossbow",
-				"Longsword",
-				"Rapier",
-				"Shortsword",
-			],
-		],
+		primary: [true, false, ["Hand Crossbow", "Heavy Crossbow", "Longsword", "Rapier", "Shortsword"]],
 	},
 	equipment:
 		"Investigator starting equipment:" +
@@ -159,11 +144,8 @@ ClassList["investigator"] = {
 				name: "Expertise",
 				source: ["VSoS", 104],
 				minlevel: 1,
-				description: desc(
-					"I gain expertise with two skills I am proficient with; two more at 6th level"
-				),
-				skillstxt:
-					"Expertise with any two skill proficiencies, and two more at 6th level",
+				description: desc("I gain expertise with two skills I am proficient with; two more at 6th level"),
+				skillstxt: "Expertise with any two skill proficiencies, and two more at 6th level",
 				additional: levels.map(function (n) {
 					return "with " + (n < 6 ? 2 : 4) + " skills";
 				}),
@@ -201,11 +183,7 @@ ClassList["investigator"] = {
 					source: a.source,
 					skills: [[a.extrachoices[i], "only"]],
 					prereqeval: function (v) {
-						return v.skillProfsLC.indexOf(v.choice) === -1
-							? false
-							: v.skillExpertiseLC.indexOf(v.choice) === -1
-							? true
-							: "markButDisable";
+						return v.skillProfsLC.indexOf(v.choice) === -1 ? false : v.skillExpertiseLC.indexOf(v.choice) === -1 ? true : "markButDisable";
 					},
 				};
 			}
@@ -233,19 +211,7 @@ ClassList["investigator"] = {
 				},
 			],
 			additional: levels.map(function (n) {
-				return (
-					(n < 3
-						? 1
-						: n < 5
-						? 2
-						: n < 7
-						? 3
-						: n < 9
-						? 4
-						: n < 11
-						? 5
-						: 6) + "th level ritual spells"
-				);
+				return (n < 3 ? 1 : n < 5 ? 2 : n < 7 ? 3 : n < 9 ? 4 : n < 11 ? 5 : 6) + "th level ritual spells";
 			}),
 			spellcastingBonus: [
 				{
@@ -271,9 +237,7 @@ ClassList["investigator"] = {
 			name: "Myths and Legends",
 			source: ["VSoS", 105],
 			minlevel: 2,
-			description: desc([
-				"I have adv. on Int checks related to studying crea, spells, and ancient secrets/lore",
-			]),
+			description: desc(["I have adv. on Int checks related to studying crea, spells, and ancient secrets/lore"]),
 		},
 		"rushed incantation": {
 			name: "Rushed Incantation",
@@ -285,11 +249,7 @@ ClassList["investigator"] = {
 					"If the spell requires \u2264 100 gp of material comp., I can cast it w/out the comp.",
 				];
 				var uses = Math.floor((n + 3) / 4); // add uses based on level
-				base.push(
-					"I can use this feature a number of times equal to my Int mod (min 1) + " +
-						uses +
-						" per long rest"
-				);
+				base.push("I can use this feature a number of times equal to my Int mod (min 1) + " + uses + " per long rest");
 				return desc(base);
 			}),
 			usages: "Int mod per ",
@@ -330,9 +290,7 @@ ClassList["investigator"] = {
 			name: "Opportunistic Piety",
 			source: ["VSoS", 106],
 			minlevel: 7,
-			description: desc([
-				"When I use this feature, I can choose which effect from the 3rd page notes",
-			]),
+			description: desc(["When I use this feature, I can choose which effect from the 3rd page notes"]),
 			action: [
 				["action", "Miracle Healing"],
 				["action", "Warding"],
@@ -366,9 +324,7 @@ ClassList["investigator"] = {
 			name: "Supernatural Resolve",
 			source: ["VSoS", 106],
 			minlevel: 9,
-			description: desc([
-				"I can't be possessed or charmed, and gain resistance to necrotic and psychic dmg",
-			]),
+			description: desc(["I can't be possessed or charmed, and gain resistance to necrotic and psychic dmg"]),
 			savetxt: { immune: ["charmed", "possessed"] },
 			dmgres: ["Necrotic", "Psychic"],
 		},
@@ -423,26 +379,9 @@ ClassList["investigator"] = {
 							if (!classes.known.investigator) return;
 							var cLvl = classes.known.investigator.level;
 							if (cLvl > 12)
-								spList.extraspells = spList.extraspells.concat([
-									"mirage arcane",
-									"plane shift",
-									"reverse gravity",
-									"sequester",
-									"teleport",
-								]);
-							if (cLvl > 14)
-								spList.extraspells = spList.extraspells.concat([
-									"antimagic field",
-									"glibness",
-									"maze",
-									"mind blank",
-								]);
-							if (cLvl > 16)
-								spList.extraspells = spList.extraspells.concat([
-									"astral projection",
-									"gate",
-									"weird",
-								]);
+								spList.extraspells = spList.extraspells.concat(["mirage arcane", "plane shift", "reverse gravity", "sequester", "teleport"]);
+							if (cLvl > 14) spList.extraspells = spList.extraspells.concat(["antimagic field", "glibness", "maze", "mind blank"]);
+							if (cLvl > 16) spList.extraspells = spList.extraspells.concat(["astral projection", "gate", "weird"]);
 						}
 					},
 				],
@@ -483,15 +422,10 @@ ClassList["investigator"] = {
 					);
 				}
 				if (n > 16) {
-					base.push(
-						"Additionally at 17th level, I can cast one of the following once per long rest",
-						"   \u2022 astral projection, gate, or weird"
-					);
+					base.push("Additionally at 17th level, I can cast one of the following once per long rest", "   \u2022 astral projection, gate, or weird");
 				}
 
-				base.push(
-					"Casting spells this way doesn't expend a spell slot"
-				);
+				base.push("Casting spells this way doesn't expend a spell slot");
 
 				return desc(base);
 			}),
@@ -504,9 +438,7 @@ ClassList["investigator"] = {
 			name: "Exorcist",
 			source: ["VSoS", 106],
 			minlevel: 18,
-			description: desc([
-				"I can cast protection from evil and good w/out material comp. or a spell slot",
-			]),
+			description: desc(["I can cast protection from evil and good w/out material comp. or a spell slot"]),
 			spellcastingBonus: [
 				{
 					name: "Exorcist",
@@ -520,8 +452,7 @@ ClassList["investigator"] = {
 				"protection from evil and good": {
 					components: "",
 					compMaterial: "",
-					changes:
-						"I can cast protection from evil and good without expending a spell slot or material components",
+					changes: "I can cast protection from evil and good without expending a spell slot or material components",
 				},
 			},
 		},
@@ -548,10 +479,7 @@ AddSubClass("investigator", "antiquarian", {
 			name: "Artifact Historian",
 			source: ["VSoS", 107],
 			minlevel: 3,
-			description: desc([
-				"I add the identify spell to my grimoire",
-				"It doesn't require material comp. when I cast it",
-			]),
+			description: desc(["I add the identify spell to my grimoire", "It doesn't require material comp. when I cast it"]),
 			spellcastingBonus: [
 				{
 					name: "Artifact Historian",
@@ -565,8 +493,7 @@ AddSubClass("investigator", "antiquarian", {
 				identify: {
 					components: "",
 					compMaterial: "",
-					changes:
-						"I can cast identify without expending material components",
+					changes: "I can cast identify without expending material components",
 				},
 			},
 		},
@@ -574,9 +501,7 @@ AddSubClass("investigator", "antiquarian", {
 			name: "Trinkets",
 			source: ["VSoS", 107],
 			minlevel: 3,
-			description: desc([
-				"I've collected trinkets to help collect and unravel arcane secrets (page 3 notes)",
-			]),
+			description: desc(["I've collected trinkets to help collect and unravel arcane secrets (page 3 notes)"]),
 			usages: "1 + 1 at CL5/11/17 ",
 			usagescalc:
 				"event.value = 1 + (classes.known.investigator ? (classes.known.investigator.level >= 17 ? 3 : classes.known.investigator.level >= 11 ? 2 : classes.known.investigator.level >= 5 ? 1 : 0) : 0);",
@@ -597,22 +522,8 @@ AddSubClass("investigator", "antiquarian", {
 			spellcastingBonus: [
 				{
 					name: "Trinkets",
-					spells: [
-						"ray of enfeeblement",
-						"scorching ray",
-						"blur",
-						"mirror image",
-						"cure wounds",
-						"inflict wounds",
-					],
-					selection: [
-						"ray of enfeeblement",
-						"scorching ray",
-						"blur",
-						"mirror image",
-						"cure wounds",
-						"inflict wounds",
-					],
+					spells: ["ray of enfeeblement", "scorching ray", "blur", "mirror image", "cure wounds", "inflict wounds"],
+					selection: ["ray of enfeeblement", "scorching ray", "blur", "mirror image", "cure wounds", "inflict wounds"],
 					times: 6,
 					firstCol: "markedbox",
 				},
@@ -622,43 +533,37 @@ AddSubClass("investigator", "antiquarian", {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast ray of enfeeblement without expending a spell slot or material components",
+					changes: "I can cast ray of enfeeblement without expending a spell slot or material components",
 				},
 				"scorching ray": {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast scorching ray without expending a spell slot or material components",
+					changes: "I can cast scorching ray without expending a spell slot or material components",
 				},
 				blur: {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast blur without expending a spell slot or material components",
+					changes: "I can cast blur without expending a spell slot or material components",
 				},
 				"mirror image": {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast mirror image without expending a spell slot or material components",
+					changes: "I can cast mirror image without expending a spell slot or material components",
 				},
 				"cure wounds": {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast cure wounds without expending a spell slot or material components",
+					changes: "I can cast cure wounds without expending a spell slot or material components",
 				},
 				"inflict wounds": {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast inflict wounds without expending a spell slot or material components",
+					changes: "I can cast inflict wounds without expending a spell slot or material components",
 				},
 			},
 		},
@@ -681,9 +586,7 @@ AddSubClass("investigator", "antiquarian", {
 			name: "Magic Item Collection",
 			source: ["VSoS", 108],
 			minlevel: 10,
-			description: desc([
-				'When I finish a long rest, I can produce an item from the "Choose Feature" above',
-			]),
+			description: desc(['When I finish a long rest, I can produce an item from the "Choose Feature" above']),
 			usages: 1,
 			recovery: "long rest",
 			choices: [],
@@ -756,14 +659,7 @@ AddSubClass("investigator", "archivist", {
 					"If a spell isn't on my class's spell list, it's considered part of my class's spell list",
 					"I can use my Rushed Incantation feature to cast my thesis spells",
 				]),
-				spellcastingExtra: [
-					"jump",
-					"longstrider",
-					"alter self",
-					"heat metal",
-					"gaseous form",
-					"meld into stone",
-				],
+				spellcastingExtra: ["jump", "longstrider", "alter self", "heat metal", "gaseous form", "meld into stone"],
 				spellcastingExtraApplyNonconform: true,
 			},
 			ignis: {
@@ -775,14 +671,7 @@ AddSubClass("investigator", "archivist", {
 					"If a spell isn't on my class's spell list, it's considered part of my class's spell list",
 					"I can use my Rushed Incantation feature to cast my thesis spells",
 				]),
-				spellcastingExtra: [
-					"burning hands",
-					"thunderwave",
-					"gust of wind",
-					"scorching ray",
-					"call lightning",
-					"wind wall",
-				],
+				spellcastingExtra: ["burning hands", "thunderwave", "gust of wind", "scorching ray", "call lightning", "wind wall"],
 				spellcastingExtraApplyNonconform: true,
 			},
 			mortis: {
@@ -794,14 +683,7 @@ AddSubClass("investigator", "archivist", {
 					"If a spell isn't on my class's spell list, it's considered part of my class's spell list",
 					"I can use my Rushed Incantation feature to cast my thesis spells",
 				]),
-				spellcastingExtra: [
-					"bane",
-					"false life",
-					"blindness/deafness",
-					"darkness",
-					"revivify",
-					"vampiric touch",
-				],
+				spellcastingExtra: ["bane", "false life", "blindness/deafness", "darkness", "revivify", "vampiric touch"],
 				spellcastingExtraApplyNonconform: true,
 			},
 			regis: {
@@ -813,14 +695,7 @@ AddSubClass("investigator", "archivist", {
 					"If a spell isn't on my class's spell list, it's considered part of my class's spell list",
 					"I can use my Rushed Incantation feature to cast my thesis spells",
 				]),
-				spellcastingExtra: [
-					"charm person",
-					"tasha's hideous laughter",
-					"enthrall",
-					"suggestion",
-					"dispel magic",
-					"hypnotic pattern",
-				],
+				spellcastingExtra: ["charm person", "tasha's hideous laughter", "enthrall", "suggestion", "dispel magic", "hypnotic pattern"],
 				spellcastingExtraApplyNonconform: true,
 			},
 		},
@@ -869,18 +744,13 @@ AddSubClass("investigator", "detective", {
 			name: "Investigator's Hunch",
 			source: ["VSoS", 109],
 			minlevel: 3,
-			description: desc([
-				"I can unravel mysteries by studying clues and documents for 10 min",
-				"I make Int checks related to these clues with adv.",
-			]),
+			description: desc(["I can unravel mysteries by studying clues and documents for 10 min", "I make Int checks related to these clues with adv."]),
 		},
 		"subclassfeature3.1": {
 			name: "Trinkets",
 			source: ["VSoS", 109],
 			minlevel: 3,
-			description: desc([
-				"I collect magical trinkets that help in investigation and tracking (page 3 notes)",
-			]),
+			description: desc(["I collect magical trinkets that help in investigation and tracking (page 3 notes)"]),
 			toNotesPage: [
 				{
 					name: "Trinkets",
@@ -910,23 +780,20 @@ AddSubClass("investigator", "detective", {
 			spellChanges: {
 				"misty step": {
 					components: "",
-					changes:
-						"I can cast misty step as a bns action w/out a SS or spell components",
+					changes: "I can cast misty step as a bns action w/out a SS or spell components",
 				},
 				invisibility: {
 					components: "",
 					compMaterial: "",
 					range: "Self",
 					time: "1 bns",
-					changes:
-						"I can cast invisibility on myself as a bns action w/out a SS or spell components",
+					changes: "I can cast invisibility on myself as a bns action w/out a SS or spell components",
 				},
 				knock: {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast knock as a bns action w/out a SS or spell components",
+					changes: "I can cast knock as a bns action w/out a SS or spell components",
 				},
 			},
 		},
@@ -975,9 +842,7 @@ AddSubClass("investigator", "exterminator", {
 			name: "Bonus Proficiencies",
 			source: ["VSoS", 110],
 			minlevel: 3,
-			description: desc([
-				"I gain proficiancy with martial weapons and medium armor",
-			]),
+			description: desc(["I gain proficiancy with martial weapons and medium armor"]),
 			armorProfs: [true, true, false, false],
 			weaponProfs: [true, false],
 		},
@@ -985,9 +850,7 @@ AddSubClass("investigator", "exterminator", {
 			name: "Trinkets",
 			source: ["VSoS", 110],
 			minlevel: 3,
-			description: desc([
-				"I've collected trinkets to eliminate monsters and other threats (page 3 notes)",
-			]),
+			description: desc(["I've collected trinkets to eliminate monsters and other threats (page 3 notes)"]),
 			toNotesPage: [
 				{
 					name: "Trinkets",
@@ -1016,8 +879,7 @@ AddSubClass("investigator", "exterminator", {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast magic weapon as a bns action w/out a SS or spell components",
+					changes: "I can cast magic weapon as a bns action w/out a SS or spell components",
 				},
 			},
 		},
@@ -1025,9 +887,7 @@ AddSubClass("investigator", "exterminator", {
 			name: "Monster Slayer",
 			source: ["VSoS", 110],
 			minlevel: 6,
-			description: desc([
-				"When I take the atk action, I can make a wea atk as a bns action",
-			]),
+			description: desc(["When I take the atk action, I can make a wea atk as a bns action"]),
 			usages: "Int mod per ",
 			usagescalc: "event.value = Math.max(1, Number(What('Int Mod')));",
 			recovery: "short rest",
@@ -1048,10 +908,7 @@ AddSubClass("investigator", "exterminator", {
 			name: "Killer Instinct",
 			source: ["VSoS", 110],
 			minlevel: 14,
-			description: desc([
-				"I can use my Exploit Weakness feature twice on my turn",
-				"But I can't use it against the same target more than once",
-			]),
+			description: desc(["I can use my Exploit Weakness feature twice on my turn", "But I can't use it against the same target more than once"]),
 		},
 	},
 });
@@ -1079,9 +936,7 @@ AddSubClass("investigator", "inquisitor", {
 			name: "Trinkets",
 			source: ["VSoS", 110],
 			minlevel: 3,
-			description: desc([
-				"I've collected trinkets to banish restless spirits and demons (page 3 notes)",
-			]),
+			description: desc(["I've collected trinkets to banish restless spirits and demons (page 3 notes)"]),
 			usages: "1 + 1 at CL5/11/17 ",
 			usagescalc:
 				"event.value = 1 + (classes.known.investigator ? (classes.known.investigator.level >= 17 ? 3 : classes.known.investigator.level >= 11 ? 2 : classes.known.investigator.level >= 5 ? 1 : 0) : 0);",
@@ -1114,15 +969,13 @@ AddSubClass("investigator", "inquisitor", {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast lesser restoration as a bns action w/out a SS or spell components",
+					changes: "I can cast lesser restoration as a bns action w/out a SS or spell components",
 				},
 				"detect thoughts": {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast detect thoughts as a bns action w/out a SS or spell components",
+					changes: "I can cast detect thoughts as a bns action w/out a SS or spell components",
 				},
 			},
 			action: ["bonus action", ""],
@@ -1131,18 +984,14 @@ AddSubClass("investigator", "inquisitor", {
 			name: "Divine Strike",
 			source: ["VSoS", 110],
 			minlevel: 6,
-			description: desc([
-				"Once per turn when I hit a crea w/ a wea atk, I can deal an extra 1d6 radiant dmg",
-			]),
+			description: desc(["Once per turn when I hit a crea w/ a wea atk, I can deal an extra 1d6 radiant dmg"]),
 			usages: 1,
 			recovery: "Turn",
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
 						if (classes.known.investigator && v.isWeapon) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"Once per turn +1d6 radiant dmg";
+							fields.Description += (fields.Description ? "; " : "") + "Once per turn +1d6 radiant dmg";
 						}
 					},
 				],
@@ -1152,9 +1001,7 @@ AddSubClass("investigator", "inquisitor", {
 			name: "Rote Piety",
 			source: ["VSoS", 111],
 			minlevel: 10,
-			description: desc([
-				"I can use my Opportunistic Piety feature three times instead of once",
-			]),
+			description: desc(["I can use my Opportunistic Piety feature three times instead of once"]),
 			bonusClassExtrachoices: [
 				{
 					class: "investigator",
@@ -1207,9 +1054,7 @@ AddSubClass("investigator", "medium", {
 			name: "Trinkets",
 			source: ["VSoS", 111],
 			minlevel: 3,
-			description: desc([
-				"I've collected trinkets to help me attune to the afterlife (page 3 notes)",
-			]),
+			description: desc(["I've collected trinkets to help me attune to the afterlife (page 3 notes)"]),
 			usages: "1 + 1 at CL5/11/17 ",
 			usagescalc:
 				"event.value = 1 + (classes.known.investigator ? (classes.known.investigator.level >= 17 ? 3 : classes.known.investigator.level >= 11 ? 2 : classes.known.investigator.level >= 5 ? 1 : 0) : 0);",
@@ -1245,17 +1090,14 @@ AddSubClass("investigator", "medium", {
 					components: "",
 					compMaterial: "",
 					time: "1 action",
-					description:
-						"1 corpse with mouth answers a question with what it knew in life; can cast on same every 10 days",
-					changes:
-						"I can cast speak with dead as an action w/out a SS or spell components. I can only ask the corpse one question.",
+					description: "1 corpse with mouth answers a question with what it knew in life; can cast on same every 10 days",
+					changes: "I can cast speak with dead as an action w/out a SS or spell components. I can only ask the corpse one question.",
 				},
 				"see invisibility": {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast see invisibility as a bns action w/out a SS or spell components.",
+					changes: "I can cast see invisibility as a bns action w/out a SS or spell components.",
 				},
 			},
 			action: [
@@ -1279,9 +1121,7 @@ AddSubClass("investigator", "medium", {
 			name: "Whispers From Beyond",
 			source: ["VSoS", 112],
 			minlevel: 10,
-			description: desc([
-				"As an action I receive a one-word hint from the GM for the best course of action",
-			]),
+			description: desc(["As an action I receive a one-word hint from the GM for the best course of action"]),
 			usages: 1,
 			recovery: "long rest",
 		},
@@ -1289,9 +1129,7 @@ AddSubClass("investigator", "medium", {
 			name: "Third Eye",
 			source: ["VSoS", 112],
 			minlevel: 14,
-			description: desc([
-				"As a bns action, I can cast true seeing w/out a SS or spell components",
-			]),
+			description: desc(["As a bns action, I can cast true seeing w/out a SS or spell components"]),
 			action: ["bonus action", ""],
 			spellcastingBonus: [
 				{
@@ -1359,11 +1197,7 @@ AddSubClass("investigator", "occultist", {
 				"I regain expended spell slots on a short/long rest",
 			]),
 			eval: function () {
-				var lvl =
-					classes.known.investigator &&
-					classes.known.investigator.level
-						? classes.known.investigator.level
-						: 0;
+				var lvl = classes.known.investigator && classes.known.investigator.level ? classes.known.investigator.level : 0;
 				CurrentSpells["investigator-occultist"] = {
 					name: "Pact Magic (Investigator)",
 					ability: "investigator",
@@ -1374,14 +1208,8 @@ AddSubClass("investigator", "occultist", {
 						class: "warlock",
 					},
 					known: {
-						cantrips: [
-							0, 0, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3,
-							3, 3, 3,
-						],
-						spells: [
-							0, 0, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9,
-							9, 10, 11,
-						],
+						cantrips: [0, 0, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+						spells: [0, 0, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 11],
 						factor: [6, "warlock"],
 						spellsTable: false,
 					},
@@ -1398,9 +1226,7 @@ AddSubClass("investigator", "occultist", {
 			name: "Eldritch Ruin",
 			source: ["VSoS", 113],
 			minlevel: 6,
-			description: desc([
-				"I can forgo dealing extra dmg w/ Exploit Weakness to cast a cantrip as a bns action",
-			]),
+			description: desc(["I can forgo dealing extra dmg w/ Exploit Weakness to cast a cantrip as a bns action"]),
 			action: ["bonus action", " (w/Exploit Weakness)"],
 		},
 		subclassfeature10: {
@@ -1442,8 +1268,7 @@ AddSubClass("investigator", "occultist", {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast bestow curse without expending a spell slot or material components as a bonus action",
+					changes: "I can cast bestow curse without expending a spell slot or material components as a bonus action",
 				},
 			},
 		},
@@ -1459,9 +1284,7 @@ AddSubClass("investigator", "spy", {
 			name: "Bravado",
 			source: ["VSoS", 113],
 			minlevel: 3,
-			description: desc([
-				"I gain proficiency in Deception, and can use Int instead of Cha for Deception checks",
-			]),
+			description: desc(["I gain proficiency in Deception, and can use Int instead of Cha for Deception checks"]),
 			skills: ["Deception"],
 			addMod: {
 				type: "skill",
@@ -1473,9 +1296,7 @@ AddSubClass("investigator", "spy", {
 			name: "Trinkets",
 			source: ["VSoS", 113],
 			minlevel: 3,
-			description: desc([
-				"I've collected trinkets to aid in espionage (page 3 notes)",
-			]),
+			description: desc(["I've collected trinkets to aid in espionage (page 3 notes)"]),
 			action: ["bonus action", ""],
 			usages: "1 + 1 at CL5/11/17 ",
 			usagescalc:
@@ -1508,15 +1329,13 @@ AddSubClass("investigator", "spy", {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast disguise self without expending a spell slot or spell components as a bonus action",
+					changes: "I can cast disguise self without expending a spell slot or spell components as a bonus action",
 				},
 				suggestion: {
 					components: "",
 					compMaterial: "",
 					time: "1 bns",
-					changes:
-						"I can cast suggestion without expending a spell slot or spell components as a bonus action",
+					changes: "I can cast suggestion without expending a spell slot or spell components as a bonus action",
 				},
 			},
 		},
@@ -1533,9 +1352,7 @@ AddSubClass("investigator", "spy", {
 			name: "Shaken Not Stirred",
 			source: ["VSoS", 113],
 			minlevel: 10,
-			description: desc([
-				"I can reroll a failed Deception or Persuasion check, but must use the new roll",
-			]),
+			description: desc(["I can reroll a failed Deception or Persuasion check, but must use the new roll"]),
 			usages: 1,
 			recovery: "short rest",
 		},
@@ -1556,10 +1373,7 @@ AddSubClass("investigator", "spy", {
 
 RunFunctionAtEnd(function () {
 	if (ClassList["investigator"] && ClassSubList["investigator-antiquarian"]) {
-		var subclassFea =
-			ClassSubList["investigator-antiquarian"].features[
-				"subclassfeature10"
-			];
+		var subclassFea = ClassSubList["investigator-antiquarian"].features["subclassfeature10"];
 		var choices = [
 			"Carpet of Flying",
 			"Cloak of the Bat",
@@ -1582,22 +1396,15 @@ RunFunctionAtEnd(function () {
 				for (var j = 0; j < item.choices.length; j++) {
 					var cNameLC = item.choices[j].toLowerCase();
 					var theChoice = item[cNameLC];
-					if (
-						!theChoice.name ||
-						subclassFea[theChoice.name.toLowerCase()]
-					)
-						continue;
+					if (!theChoice.name || subclassFea[theChoice.name.toLowerCase()]) continue;
 					subclassFea[theChoice.name.toLowerCase()] = {
 						name: theChoice.name,
 						source: theChoice.source,
 						description: "",
 						magicitemsAdd: [theChoice.name],
-						additional: theChoice.attunement
-							? "requires attunement"
-							: undefined,
+						additional: theChoice.attunement ? "requires attunement" : undefined,
 					};
-					if (choices.indexOf(theChoice.name) === -1)
-						choices.push(theChoice.name);
+					if (choices.indexOf(theChoice.name) === -1) choices.push(theChoice.name);
 				}
 				// Remove the original choice, and instead add it's choices
 				if (choices.indexOf(choice) === -1) continue;
@@ -1612,9 +1419,7 @@ RunFunctionAtEnd(function () {
 					source: item.source,
 					description: "",
 					magicitemsAdd: [item.name],
-					additional: item.attunement
-						? "requires attunement"
-						: undefined,
+					additional: item.attunement ? "requires attunement" : undefined,
 				};
 			}
 		}

@@ -2,12 +2,12 @@ var iFileName = "VSoS_Necromancer.js";
 RequiredSheetVersion("13.2.3");
 
 if (!SourceList["VSoS"]) {
-    SourceList["VSoS"] = {
-        name : "Valda's Spire of Secrets",
-        abbreviation : "VSoS",
-        abbreviationSpellsheet : "V",
-        date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
-    };
+	SourceList["VSoS"] = {
+		name: "Valda's Spire of Secrets",
+		abbreviation: "VSoS",
+		abbreviationSpellsheet: "V",
+		date: "2022/12/30", // ! Updated as of 12-30-2022 (Version 1.4)
+	};
 }
 
 // Necromancer spell list
@@ -164,12 +164,7 @@ if (!SourceList["VSoS"]) {
 	"storm of vengeance",
 	"weird",
 ].forEach(function (s) {
-	if (
-		SpellsList[s] &&
-		SpellsList[s].classes &&
-		SpellsList[s].classes.indexOf("necromancer") === -1
-	)
-		SpellsList[s].classes.push("necromancer");
+	if (SpellsList[s] && SpellsList[s].classes && SpellsList[s].classes.indexOf("necromancer") === -1) SpellsList[s].classes.push("necromancer");
 });
 
 ClassList["necromancer"] = {
@@ -183,8 +178,7 @@ ClassList["necromancer"] = {
 	saves: ["Con", "Int"],
 	abilitySave: 4,
 	skillstxt: {
-		primary:
-			"Choose two from Arcana, Deception, History, Intimidation, Investigation, Medicine, Persuasion, or Religion",
+		primary: "Choose two from Arcana, Deception, History, Intimidation, Investigation, Medicine, Persuasion, or Religion",
 	},
 	armorProfs: {
 		primary: [false, false, false, false],
@@ -204,10 +198,7 @@ ClassList["necromancer"] = {
 	spellcastingFactor: 1,
 	spellcastingKnown: {
 		cantrips: [4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-		spells: [
-			2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15,
-			15,
-		],
+		spells: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15],
 		prepared: false,
 	},
 	spellcastingList: {
@@ -243,8 +234,7 @@ ClassList["necromancer"] = {
 					abilitytodamage: false,
 					damage: [0, 0, "Necrotic"],
 					range: "Melee",
-					description:
-						"Damage doubles on crit; Constructs are immune; heals Undead",
+					description: "Damage doubles on crit; Constructs are immune; heals Undead",
 					isNotWeapon: true,
 					useSpellcastingAbility: true,
 					useSpellMod: "necromancer",
@@ -260,11 +250,7 @@ ClassList["necromancer"] = {
 				atkAdd: [
 					function (fields, v) {
 						if (/charnel touch/i.test(v.WeaponTextName)) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"Max " +
-								How("Proficiency Bonus") * 5 +
-								" necrotic dmg";
+							fields.Description += (fields.Description ? "; " : "") + "Max " + How("Proficiency Bonus") * 5 + " necrotic dmg";
 						}
 					},
 				],
@@ -279,26 +265,12 @@ ClassList["necromancer"] = {
 				"corpses/remains within 30 feet of me into undead thralls. See notes for details.",
 			]),
 			additionaL: levels.map(function (n) {
-				return n < 2
-					? ""
-					: "Thrall CR total: " +
-							(n < 3
-								? "1/4"
-								: n < 5
-								? "1/2"
-								: n < 9
-								? "1"
-								: n < 13
-								? "2"
-								: n < 17
-								? "3"
-								: "4");
+				return n < 2 ? "" : "Thrall CR total: " + (n < 3 ? "1/4" : n < 5 ? "1/2" : n < 9 ? "1" : n < 13 ? "2" : n < 17 ? "3" : "4");
 			}),
 			spellChanges: {
 				"animate dead": {
 					time: "1 a",
-					description:
-						"Turn Small/Medium humanoid corpses into 1+2/SL Skeletons or Zombies, following Thralls rules",
+					description: "Turn Small/Medium humanoid corpses into 1+2/SL Skeletons or Zombies, following Thralls rules",
 					changes:
 						"I can cast this spell as an action instead of over the course of 1 minute. undead I create using this spell are treated as my thralls and use the appropriate Undead Thrall stat block.",
 				},
@@ -318,17 +290,13 @@ ClassList["necromancer"] = {
 			name: "Grave Ambition",
 			source: ["VSoS", 131],
 			minlevel: 3,
-			description: desc([
-				'Choose a Grave Ambition in the "Class" field.',
-			]),
+			description: desc(['Choose a Grave Ambition in the "Class" field.']),
 		},
 		"black arcana": {
 			name: "Black Arcana",
 			source: ["VSoS", 131],
 			minlevel: 3,
-			description: desc([
-				"As a bonus action I can expend a spell slot to regain 1d8 CT points/SS level (up to pool max).",
-			]),
+			description: desc(["As a bonus action I can expend a spell slot to regain 1d8 CT points/SS level (up to pool max)."]),
 			action: ["bonus action", "Replenish Charnel Touch"],
 		},
 		"critical spellcasting": {
@@ -344,32 +312,16 @@ ClassList["necromancer"] = {
 				atkAdd: [
 					function (fields, v) {
 						if (v.isSpell) {
-							if (
-								v.isDC &&
-								v.isSpell &&
-								SpellsList[v.thisWeapon[3]] &&
-								v.thisWeapon[4].indexOf("necromancer") !== -1
-							) {
+							if (v.isDC && v.isSpell && SpellsList[v.thisWeapon[3]] && v.thisWeapon[4].indexOf("necromancer") !== -1) {
 								fields.Description +=
 									(fields.Description ? "; " : "") +
 									"double dmg dice vs crea rolling " +
-									(classes.known.necromancer.level < 14
-										? "1"
-										: "1-2") +
+									(classes.known.necromancer.level < 14 ? "1" : "1-2") +
 									" vs save";
 							}
-							if (
-								!v.isDC &&
-								v.isSpell &&
-								SpellsList[v.thisWeapon[3]] &&
-								v.thisWeapon[4].indexOf("necromancer") !== -1
-							) {
+							if (!v.isDC && v.isSpell && SpellsList[v.thisWeapon[3]] && v.thisWeapon[4].indexOf("necromancer") !== -1) {
 								fields.Description +=
-									(fields.Description ? "; " : "") +
-									"crit on " +
-									(classes.known.necromancer.level < 14
-										? "19-20"
-										: "18-20");
+									(fields.Description ? "; " : "") + "crit on " + (classes.known.necromancer.level < 14 ? "19-20" : "18-20");
 							}
 						}
 					},
@@ -390,9 +342,7 @@ ClassList["necromancer"] = {
 			name: "Undying Servitude",
 			source: ["VSoS", 131],
 			minlevel: 18,
-			description: desc([
-				"When a thrall drops to 0 hp & not destroyed, I can use reaction to heal it for half its max hp.",
-			]),
+			description: desc(["When a thrall drops to 0 hp & not destroyed, I can use reaction to heal it for half its max hp."]),
 			usages: 1,
 			recovery: "long rest",
 			action: ["reaction", ""],
@@ -401,15 +351,10 @@ ClassList["necromancer"] = {
 			name: "Lichdom",
 			source: ["VSoS", 132],
 			minlevel: 20,
-			description: desc([
-				"I can undergo a rite to become a lich. See third page & notes pages.",
-			]),
+			description: desc(["I can undergo a rite to become a lich. See third page & notes pages."]),
 			savetxt: {
 				immune: ["necrotic damage", "poison", "effects of exhaustion"],
-				text: [
-					"I don't need to eat, drink, sleep, or breathe",
-					"Effects that affect undead affect me except turn undead",
-				],
+				text: ["I don't need to eat, drink, sleep, or breathe", "Effects that affect undead affect me except turn undead"],
 			},
 			toNotesPage: [
 				{
@@ -476,9 +421,7 @@ AddSubClass("necromancer", "blood ascendant", {
 			name: "Ascendant Spells",
 			minlevel: 3,
 			source: ["VSoS", 132],
-			description: desc([
-				"I learn additional spells, which do not count towards the number of spells I know.",
-			]),
+			description: desc(["I learn additional spells, which do not count towards the number of spells I know."]),
 			spellcastingExtra: [
 				"charm person",
 				"sleep",
@@ -507,11 +450,7 @@ AddSubClass("necromancer", "blood ascendant", {
 							fields.Description +=
 								(fields.Description ? "; " : "") +
 								"Drain (heal " +
-								Math.max(
-									parseInt(What("Int Mod")) +
-										classes.known.necromancer.level,
-									3
-								) +
+								Math.max(parseInt(What("Int Mod")) + classes.known.necromancer.level, 3) +
 								" hp)";
 							fields.Description_Tooltip =
 								"Charnel Drain: When you reduce a hostile creature to 0 hit points with your Charnel Touch, you regain hit points equal to your Intelligence modifier + your necromancer level (minimum 3).";
@@ -602,8 +541,7 @@ AddSubClass("necromancer", "blood ascendant", {
 							damage: [2, 4, "piercing"],
 							range: "Melee",
 							abilitytodamage: true,
-							description:
-								"If target is creature, must Strength save DC 11 or be knocked prone",
+							description: "If target is creature, must Strength save DC 11 or be knocked prone",
 							modifiers: ["(oInt+oProf)-(Dex+Prof)", ""],
 						},
 					],
@@ -614,8 +552,7 @@ AddSubClass("necromancer", "blood ascendant", {
 					traits: [
 						{
 							name: "Keen Hearing and Smell",
-							description:
-								"The wolf has advantage on Wisdom (Perception) checks that rely on hearing or smell.",
+							description: "The wolf has advantage on Wisdom (Perception) checks that rely on hearing or smell.",
 						},
 						{
 							name: "Pack Tactics",
@@ -643,8 +580,7 @@ AddSubClass("necromancer", "blood ascendant", {
 					senses: "Blindsight 60 ft",
 					attacksAction: 1,
 					damage_resistances: "bludgeoning, piercing, slashing",
-					condition_immunities:
-						"charmed, frightened, grappled, paralyzed, petrified, prone, restrained, stunned",
+					condition_immunities: "charmed, frightened, grappled, paralyzed, petrified, prone, restrained, stunned",
 					attacks: [
 						{
 							name: "Bite",
@@ -652,21 +588,18 @@ AddSubClass("necromancer", "blood ascendant", {
 							damage: [2, 4, "piercing"],
 							range: "Melee",
 							abilitytodamage: true,
-							description:
-								"reduce damage die to 1d4 if the swarm has less than half its max hit points",
+							description: "reduce damage die to 1d4 if the swarm has less than half its max hit points",
 							modifiers: ["(oInt+oProf)-(Dex+Prof)", ""],
 						},
 					],
 					traits: [
 						{
 							name: "Echolocation",
-							description:
-								"The swarm can't use its blindsight while deafened.",
+							description: "The swarm can't use its blindsight while deafened.",
 						},
 						{
 							name: "Keen Hearing",
-							description:
-								"The swarm has advantage on Wisdom (Perception) checks that rely on hearing.",
+							description: "The swarm has advantage on Wisdom (Perception) checks that rely on hearing.",
 						},
 						{
 							name: "Swarm",
@@ -694,8 +627,7 @@ AddSubClass("necromancer", "blood ascendant", {
 					senses: "Darkvision 60 ft",
 					attacksAction: 1,
 					damage_resistances: "bludgeoning, piercing, slashing",
-					condition_immunities:
-						"charmed, frightened, grappled, paralyzed, petrified, prone, restrained, stunned",
+					condition_immunities: "charmed, frightened, grappled, paralyzed, petrified, prone, restrained, stunned",
 					attacks: [
 						{
 							name: "Bite",
@@ -703,16 +635,14 @@ AddSubClass("necromancer", "blood ascendant", {
 							damage: [2, 6, "piercing"],
 							range: "Melee",
 							abilitytodamage: true,
-							description:
-								"reduce damage die to 1d6 if the swarm has less than half its max hit points",
+							description: "reduce damage die to 1d6 if the swarm has less than half its max hit points",
 							modifiers: ["(oInt+oProf)-(Dex+Prof)", ""],
 						},
 					],
 					traits: [
 						{
 							name: "Keen Smell",
-							description:
-								"The swarm has advantage on Wisdom (Perception) checks that rely on smell.",
+							description: "The swarm has advantage on Wisdom (Perception) checks that rely on smell.",
 						},
 						{
 							name: "Swarm",
@@ -727,9 +657,7 @@ AddSubClass("necromancer", "blood ascendant", {
 			name: "Lichdom: Nosferatu",
 			minlevel: 20,
 			source: ["VSoS", 133],
-			description: desc([
-				"I gain extra features when I undertake the rite to become a lich, found on the third page.",
-			]),
+			description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
 			phylactery: {
 				name: "Coffin Phylactery",
 				source: ["VSoS", 133],
@@ -802,21 +730,12 @@ AddSubClass("necromancer", "death knight", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							v.isMeleeWeapon &&
-							!v.isSpell &&
-							!SpellsList[v.thisWeapon[3]]
-						) {
+						if (v.isMeleeWeapon && !v.isSpell && !SpellsList[v.thisWeapon[3]]) {
 							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"Charnel Strike: +" +
-								parseInt(What("Proficiency Bonus")) * 5 +
-								" necrotic dmg & temp hp)";
+								(fields.Description ? "; " : "") + "Charnel Strike: +" + parseInt(What("Proficiency Bonus")) * 5 + " necrotic dmg & temp hp)";
 						}
 						if (/\bcharnel touch\b/i.test(v.WeaponTextName)) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"gain temp hp equal to dmg";
+							fields.Description += (fields.Description ? "; " : "") + "gain temp hp equal to dmg";
 						}
 					},
 					"Once per turn I can spend CT points & apply CT damage to a target I hit with a melee weapon attack I made as part of an Attack action. When I deal damage using Charnel Touch or Charnel Strike, I gain temp hp equal to the necrotic damage dealt, up to my hit point max.",
@@ -834,13 +753,8 @@ AddSubClass("necromancer", "death knight", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							v.isMeleeWeapon &&
-							!/\bcrit on\b/i.test(fields.Description)
-						) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"; crit on 19-20";
+						if (v.isMeleeWeapon && !/\bcrit on\b/i.test(fields.Description)) {
+							fields.Description += (fields.Description ? "; " : "") + "; crit on 19-20";
 						}
 					},
 					"My melee weapon attacks score a critical hit on a roll of 19-20.",
@@ -851,25 +765,19 @@ AddSubClass("necromancer", "death knight", {
 			name: "Overcharged Thralls",
 			minlevel: 10,
 			source: ["VSoS", 134],
-			description: desc([
-				"When 1 of my thralls dies/is released by me, I regain CT points equal to my necromancer level",
-			]),
+			description: desc(["When 1 of my thralls dies/is released by me, I regain CT points equal to my necromancer level"]),
 		},
 		subclassfeature20: {
 			name: "Lichdom: Imperator",
 			minlevel: 20,
 			source: ["VSoS", 134],
-			description: desc([
-				"I gain extra features when I undertake the rite to become a lich, found on the third page.",
-			]),
+			description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
 			armorProfs: [true, true, true, true],
 			dmgres: ["Bludgeoning", "Piercing", "Slashing"],
 			completedcombatresearch: {
 				name: "Completed Combat Research",
 				source: ["VSoS", 134],
-				description: desc([
-					"I gain proficiency with heavy armor & resistance to bludgeoning, piercing, and slashing dmg.",
-				]),
+				description: desc(["I gain proficiency with heavy armor & resistance to bludgeoning, piercing, and slashing dmg."]),
 			},
 			peerlesscharnelstrike: {
 				name: "Peerless Charnel Strike",
@@ -902,21 +810,8 @@ AddSubClass("necromancer", "overlord", {
 			name: "Overlord Spells",
 			minlevel: 3,
 			source: ["VSoS", 134],
-			description: desc([
-				"I learn additional spells, which do not count towards the number of spells I know.",
-			]),
-			spellcastingExtra: [
-				"bane",
-				"command",
-				"detect thoughts",
-				"hold person",
-				"haste",
-				"slow",
-				"compulsion",
-				"confusion",
-				"dominate person",
-				"geas",
-			],
+			description: desc(["I learn additional spells, which do not count towards the number of spells I know."]),
+			spellcastingExtra: ["bane", "command", "detect thoughts", "hold person", "haste", "slow", "compulsion", "confusion", "dominate person", "geas"],
 		},
 		"subclassfeature3.1": {
 			name: "Charnel Boon",
@@ -975,9 +870,7 @@ AddSubClass("necromancer", "overlord", {
 			name: "Lichdom: Tyrant",
 			minlevel: 20,
 			source: ["VSoS", 135],
-			description: desc([
-				"I gain extra features when I undertake the rite to become a lich, found on the third page.",
-			]),
+			description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
 			action: [["action", "Dominate Beast/Person/Monster (CT)"]],
 			spellcastingBonus: [
 				{
@@ -1049,9 +942,7 @@ AddSubClass("necromancer", "pale master", {
 			name: "Pale Master Spells",
 			minlevel: 3,
 			source: ["VSoS", 135],
-			description: desc([
-				"I learn additional spells, which do not count towards the number of spells I know.",
-			]),
+			description: desc(["I learn additional spells, which do not count towards the number of spells I know."]),
 			spellcastingExtra: [
 				"exhume",
 				"inflict wounds",
@@ -1091,17 +982,13 @@ AddSubClass("necromancer", "pale master", {
 			name: "Thrall Rush",
 			minlevel: 10,
 			source: ["VSoS", 136],
-			description: desc([
-				"If I roll initiative and am not surprised, each thrall can move up to its speed or make 1 attack.",
-			]),
+			description: desc(["If I roll initiative and am not surprised, each thrall can move up to its speed or make 1 attack."]),
 		},
 		subclassfeature20: {
 			name: "Lichdom: Archlich",
 			minlevel: 20,
 			source: ["VSoS", 136],
-			description: desc([
-				"I gain extra features when I undertake the rite to become a lich, found on the third page.",
-			]),
+			description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
 			devoursoul: {
 				name: "Devour Soul",
 				source: ["VSoS", 136],
@@ -1126,9 +1013,7 @@ AddSubClass("necromancer", "pale master", {
 				atkAdd: [
 					function (fields, v) {
 						if (/\bcharnel touch\b/i.test(v.WeaponTextName)) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"Paralyze (20 CT)";
+							fields.Description += (fields.Description ? "; " : "") + "Paralyze (20 CT)";
 							fields.Description_Tooltip =
 								"Paralyzing Touch: When you hit with a Charnel Touch attack and expend 20 or more points, the target must succeed on a Constitution saving throw against your spell save DC or be paralyzed for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success.";
 						}
@@ -1179,9 +1064,7 @@ AddSubClass("necromancer", "pharaoh", {
 			name: "Channel Divinity",
 			source: ["VSoS", 137],
 			minlevel: 3,
-			description: desc([
-				"I have 1 use of Channel Divinity. I can expend 15 Charnel Touch points to regain 1 use.",
-			]),
+			description: desc(["I have 1 use of Channel Divinity. I can expend 15 Charnel Touch points to regain 1 use."]),
 			usages: 1,
 			altResource: "15 CT",
 			recovery: "short rest",
@@ -1250,9 +1133,7 @@ AddSubClass("necromancer", "pharaoh", {
 			name: "Lichdom: God-King",
 			source: ["VSoS", 137],
 			minlevel: 20,
-			description: desc([
-				"I gain extra features when I undertake the rite to become a lich, found on the third page.",
-			]),
+			description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
 			canopicphylacteries: {
 				name: "Canopic Phylacteries",
 				source: ["VSoS", 137],
@@ -1287,9 +1168,7 @@ AddSubClass("necromancer", "pharaoh", {
 				atkAdd: [
 					function (fields, v) {
 						if (/\bcharnel touch\b/i.test(v.WeaponTextName)) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"Mummy Rot (20 CT)";
+							fields.Description += (fields.Description ? "; " : "") + "Mummy Rot (20 CT)";
 							fields.Description_Tooltip =
 								"Mummy Rot: When you hit with a Charnel Touch attack and expend 20 or more points, the target must succeed on a Constitution saving throw against your spell save DC or be cursed with mummy rot. The cursed target can't regain hit points, and its hit point maximum decreases by 3d6 for every 24 hours that elapse. If the curse reduces the target's hit point maximum to 0, the target dies, and its body turns to dust. The curse lasts until removed by the remove curse spell or other magic.";
 						}
@@ -1330,9 +1209,7 @@ AddSubClass("necromancer", "plague lord", {
 				atkAdd: [
 					function (fields, v) {
 						if (/\bcharnel touch\b/i.test(v.WeaponTextName)) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"Toxin (5 CT)";
+							fields.Description += (fields.Description ? "; " : "") + "Toxin (5 CT)";
 							fields.Description_Tooltip +=
 								"Charnel Toxin: When you hit with a Charnel Touch attack and expend 5 or more points, the target must succeed on a Constitution saving throw against your spell save DC or be poisoned until the start of your next turn.";
 						}
@@ -1354,9 +1231,7 @@ AddSubClass("necromancer", "plague lord", {
 			name: "Projectile Spew",
 			minlevel: 6,
 			source: ["VSoS", 138],
-			description: desc([
-				"My Charnel Touch, and my spells with a range of touch, now have a reach of 15 feet.",
-			]),
+			description: desc(["My Charnel Touch, and my spells with a range of touch, now have a reach of 15 feet."]),
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
@@ -1396,8 +1271,7 @@ AddSubClass("necromancer", "plague lord", {
 					abilitytodamage: false,
 					damage: [4, 6, "Poison"],
 					range: "5 ft rad",
-					description:
-						"On thrall death/release; All crea Dex save, targets poisoned until end of my next turn; save halves & no poison",
+					description: "On thrall death/release; All crea Dex save, targets poisoned until end of my next turn; save halves & no poison",
 					dc: true,
 					isNotWeapon: true,
 					selectNow: true,
@@ -1408,9 +1282,7 @@ AddSubClass("necromancer", "plague lord", {
 			name: "Lichdom: Corpulent Lich",
 			minlevel: 20,
 			source: ["VSoS", 138],
-			description: desc([
-				"I gain extra features when I undertake the rite to become a lich, found on the third page.",
-			]),
+			description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
 			goreburst: {
 				name: "Gore Burst",
 				source: ["VSoS", 138],
@@ -1440,9 +1312,7 @@ AddSubClass("necromancer", "plague lord", {
 				atkAdd: [
 					function (fields, v) {
 						if (/\bcharnel touch\b/i.test(v.WeaponTextName)) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"Curse (25 CT)";
+							fields.Description += (fields.Description ? "; " : "") + "Curse (25 CT)";
 							fields.Description_Tooltip +=
 								"\nMaster of Disease: When you use your Charnel Toxin feature and expend 25 or more points, the creature is poisoned and cursed for up to 1 minute on a failed save. Choose two of the following effects which afflict the target while it is cursed:\n\u2022 Choose one ability score. The target has disadvantage on ability checks and saving throws made with that ability score.\n\u2022 The target can only see out to a radius of 10 feet.\n\u2022 The target falls prone at the end of each of its turns.\n\u2022 The target loses an extra 1d6 hit points whenever it takes damage.\n\u2022 The target can speak only in a babblingnonsense language and can't perform the verbal components of spells.\nAt the end of each of its turns, the target makes a Constitution saving throw against your spell save DC, ending the curse and the poisoned condition on a success.";
 						}
@@ -1460,8 +1330,7 @@ AddSubClass("necromancer", "plague lord", {
 					abilitytodamage: false,
 					damage: [10, 10, "Necrotic"],
 					range: "20 ft rad",
-					description:
-						"On drop to 0 hp; all crea Dex save, targets poisoned until end of my next turn; 5d10 is poison type; save halves & no poison",
+					description: "On drop to 0 hp; all crea Dex save, targets poisoned until end of my next turn; 5d10 is poison type; save halves & no poison",
 					dc: true,
 					isNotWeapon: true,
 					selectNow: true,
@@ -1489,9 +1358,7 @@ AddSubClass("necromancer", "reanimator", {
 			name: "Skilled Surgeon",
 			minlevel: 3,
 			source: ["VSoS", 138],
-			description: desc([
-				"I gain proficiency in Medicine. I can use Intelligence instead of Wisdom for Medicine checks.",
-			]),
+			description: desc(["I gain proficiency in Medicine. I can use Intelligence instead of Wisdom for Medicine checks."]),
 			skills: ["Medicine"],
 			addMod: [
 				{
@@ -1553,10 +1420,7 @@ AddSubClass("necromancer", "reanimator", {
 						function (prefix, oCrea, bAdd) {
 							if (!/undead thrall/i.test(oCrea.companion)) return;
 							var aFnc = bAdd ? AddString : RemoveString;
-							aFnc(
-								prefix + "Comp.Use.Traits",
-								"\n\u25C6 Amphibious Adaptation: The undead thrall can breathe both air and water."
-							);
+							aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Amphibious Adaptation: The undead thrall can breathe both air and water.");
 							aFnc(prefix + "Comp.Use.Speed", ",\nswim 30 ft");
 						},
 						"My alchemy undead thrall gains the Monsterous Graft: Amphibious Adaptation.",
@@ -1619,41 +1483,13 @@ AddSubClass("necromancer", "reanimator", {
 							if (!/undead thrall/i.test(oCrea.companion)) return;
 							if (bAdd) {
 								AddWeapon("Bestial Weapon: Claws", "", prefix);
-								if (
-									GetFeatureChoice(
-										"classes",
-										"necromancer",
-										"subclassfeature3.1",
-										true
-									).indexOf(
-										"oversized arms (donor: giant)"
-									) !== -1
-								) {
-									CompanionList["undead thrall"].commoneval(
-										prefix,
-										oCrea,
-										bAdd
-									);
+								if (GetFeatureChoice("classes", "necromancer", "subclassfeature3.1", true).indexOf("oversized arms (donor: giant)") !== -1) {
+									CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
 								}
 							} else {
 								for (i = 1; i < 3; ++i) {
-									if (
-										/bestial weapon: claws/i.test(
-											What(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection"
-											)
-										)
-									)
-										Value(
-											prefix +
-												"Comp.Use.Attack." +
-												i +
-												".Weapon Selection",
-											""
-										);
+									if (/bestial weapon: claws/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
 								}
 							}
 						},
@@ -1673,41 +1509,13 @@ AddSubClass("necromancer", "reanimator", {
 							if (!/undead thrall/i.test(oCrea.companion)) return;
 							if (bAdd) {
 								AddWeapon("Bestial Weapon: Teeth", "", prefix);
-								if (
-									GetFeatureChoice(
-										"classes",
-										"necromancer",
-										"subclassfeature3.1",
-										true
-									).indexOf(
-										"oversized arms (donor: giant)"
-									) !== -1
-								) {
-									CompanionList["undead thrall"].commoneval(
-										prefix,
-										oCrea,
-										bAdd
-									);
+								if (GetFeatureChoice("classes", "necromancer", "subclassfeature3.1", true).indexOf("oversized arms (donor: giant)") !== -1) {
+									CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
 								}
 							} else {
 								for (i = 1; i < 3; ++i) {
-									if (
-										/bestial weapon: teeth/i.test(
-											What(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection"
-											)
-										)
-									)
-										Value(
-											prefix +
-												"Comp.Use.Attack." +
-												i +
-												".Weapon Selection",
-											""
-										);
+									if (/bestial weapon: teeth/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
 								}
 							}
 						},
@@ -1745,10 +1553,7 @@ AddSubClass("necromancer", "reanimator", {
 							if (!/undead thrall/i.test(oCrea.companion)) return;
 							var aFnc = bAdd ? AddString : RemoveString;
 							aFnc(prefix + "Comp.Use.Speed", ",\nclimb 30 ft");
-							aFnc(
-								prefix + "Comp.Use.Traits",
-								"\n\u25C6 Climbing Apparatus: The undead thrall gains a climb speed equal to its walking speed."
-							);
+							aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Climbing Apparatus: The undead thrall gains a climb speed equal to its walking speed.");
 						},
 					],
 				},
@@ -1771,64 +1576,32 @@ AddSubClass("necromancer", "reanimator", {
 					],
 				},
 			},
-			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)":
-				{
-					name: "Draconis Fundamentum",
-					source: ["VSoS", 371],
-					submenu: "[Internal Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/undead thrall/i.test(oCrea.companion))
-									return;
-								if (bAdd) {
-									AddWeapon(
-										"Draconis Fundamentum",
-										"",
-										prefix
-									);
-									if (
-										GetFeatureChoice(
-											"classes",
-											"necromancer",
-											"subclassfeature3.1",
-											true
-										).indexOf(
-											"oversized arms (donor: giant)"
-										) !== -1
-									) {
-										CompanionList[
-											"undead thrall"
-										].commoneval(prefix, oCrea, bAdd);
-									}
-								} else {
-									for (i = 1; i < 3; ++i) {
-										if (
-											/Draconis Fundamentum/i.test(
-												What(
-													prefix +
-														"Comp.Use.Attack." +
-														i +
-														".Weapon Selection"
-												)
-											)
-										)
-											Value(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection",
-												""
-											);
-									}
+			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)": {
+				name: "Draconis Fundamentum",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/undead thrall/i.test(oCrea.companion)) return;
+							if (bAdd) {
+								AddWeapon("Draconis Fundamentum", "", prefix);
+								if (GetFeatureChoice("classes", "necromancer", "subclassfeature3.1", true).indexOf("oversized arms (donor: giant)") !== -1) {
+									CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
 								}
-							},
-							"My undead thrall gains the Monsterous Graft: Draconis Fundamentum.",
-							900,
-						],
-					},
+							} else {
+								for (i = 1; i < 3; ++i) {
+									if (/Draconis Fundamentum/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
+								}
+							}
+						},
+						"My undead thrall gains the Monsterous Graft: Draconis Fundamentum.",
+						900,
+					],
 				},
+			},
 			"dragon's hide (donor: large or larger dragon)": {
 				name: "Dragon's Hide",
 				source: ["VSoS", 371],
@@ -1845,166 +1618,81 @@ AddSubClass("necromancer", "reanimator", {
 					],
 				},
 			},
-			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/undead thrall/i.test(oCrea.companion))
-									return;
-								if (bAdd)
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(
-											"adamantine.",
-											"adamantine, acid"
-										)
-									);
-								else
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(", acid", ".")
-									);
-							},
-						],
-					},
+			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/undead thrall/i.test(oCrea.companion)) return;
+							if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, acid"));
+							else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", acid", "."));
+						},
+					],
 				},
-			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/undead thrall/i.test(oCrea.companion))
-									return;
-								if (bAdd)
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(
-											"adamantine.",
-											"adamantine, cold"
-										)
-									);
-								else
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(", cold", ".")
-									);
-							},
-						],
-					},
+			},
+			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/undead thrall/i.test(oCrea.companion)) return;
+							if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, cold"));
+							else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", cold", "."));
+						},
+					],
 				},
-			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/undead thrall/i.test(oCrea.companion))
-									return;
-								if (bAdd)
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(
-											"adamantine.",
-											"adamantine, fire"
-										)
-									);
-								else
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(", fire", ".")
-									);
-							},
-						],
-					},
+			},
+			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/undead thrall/i.test(oCrea.companion)) return;
+							if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, fire"));
+							else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", fire", "."));
+						},
+					],
 				},
-			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/undead thrall/i.test(oCrea.companion))
-									return;
-								if (bAdd)
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(
-											"adamantine.",
-											"adamantine, poison"
-										)
-									);
-								else
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(", poison", ".")
-									);
-							},
-						],
-					},
+			},
+			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/undead thrall/i.test(oCrea.companion)) return;
+							if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, poison"));
+							else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", poison", "."));
+						},
+					],
 				},
-			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/undead thrall/i.test(oCrea.companion))
-									return;
-								if (bAdd)
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(
-											"adamantine.",
-											"adamantine, thunder"
-										)
-									);
-								else
-									Value(
-										prefix + "Comp.Use.Features",
-										What(
-											prefix + "Comp.Use.Features"
-										).replace(", thunder", ".")
-									);
-							},
-						],
-					},
+			},
+			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/undead thrall/i.test(oCrea.companion)) return;
+							if (bAdd) Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace("adamantine.", "adamantine, thunder"));
+							else Value(prefix + "Comp.Use.Features", What(prefix + "Comp.Use.Features").replace(", thunder", "."));
+						},
+					],
 				},
+			},
 			"fiend's hide (donor: medium or larger fiend)": {
 				name: "Fiend's Hide",
 				source: ["VSoS", 371],
@@ -2014,8 +1702,7 @@ AddSubClass("necromancer", "reanimator", {
 					creatureCallback: [
 						function (prefix, oCrea, bAdd) {
 							if (!/undead thrall/i.test(oCrea.companion)) return;
-							if (bAdd)
-								Value(prefix + "Comp.Use.AC", "15+min(Dex|2)");
+							if (bAdd) Value(prefix + "Comp.Use.AC", "15+min(Dex|2)");
 							else Value(prefix + "Comp.Use.AC", "14+Dex");
 						},
 						"My undead thrall's AC is equal to 15 + its Dexterity Modifier, max 2, if its worn armor isn't higher. It may benefit from a shield.",
@@ -2051,41 +1738,13 @@ AddSubClass("necromancer", "reanimator", {
 							if (!/undead thrall/i.test(oCrea.companion)) return;
 							if (bAdd) {
 								AddWeapon("Horns", "", prefix);
-								if (
-									GetFeatureChoice(
-										"classes",
-										"necromancer",
-										"subclassfeature3.1",
-										true
-									).indexOf(
-										"oversized arms (donor: giant)"
-									) !== -1
-								) {
-									CompanionList["undead thrall"].commoneval(
-										prefix,
-										oCrea,
-										bAdd
-									);
+								if (GetFeatureChoice("classes", "necromancer", "subclassfeature3.1", true).indexOf("oversized arms (donor: giant)") !== -1) {
+									CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
 								}
 							} else {
 								for (i = 1; i < 3; ++i) {
-									if (
-										/horns/i.test(
-											What(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection"
-											)
-										)
-									)
-										Value(
-											prefix +
-												"Comp.Use.Attack." +
-												i +
-												".Weapon Selection",
-											""
-										);
+									if (/horns/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
 								}
 							}
 						},
@@ -2104,10 +1763,7 @@ AddSubClass("necromancer", "reanimator", {
 						function (prefix, oCrea, bAdd) {
 							if (!/undead thrall/i.test(oCrea.companion)) return;
 							var aFnc = bAdd ? AddString : RemoveString;
-							aFnc(
-								prefix + "Comp.Use.Traits",
-								"\n\u25C6 Indiscernible Anatomy: Critical hits against the undead thrall become normal hits."
-							);
+							aFnc(prefix + "Comp.Use.Traits", "\n\u25C6 Indiscernible Anatomy: Critical hits against the undead thrall become normal hits.");
 						},
 					],
 				},
@@ -2116,8 +1772,7 @@ AddSubClass("necromancer", "reanimator", {
 				name: "Leaping Legs",
 				source: ["VSoS", 372],
 				submenu: "[Legs Grafts]",
-				description:
-					" My jump distance doubles. I can jump my full distance without a running start.",
+				description: " My jump distance doubles. I can jump my full distance without a running start.",
 				calcChanges: {
 					creatureCallback: [
 						function (prefix, oCrea, bAdd) {
@@ -2131,23 +1786,21 @@ AddSubClass("necromancer", "reanimator", {
 					],
 				},
 			},
-			"olfactory implants (donor: has keen smell/keen hearing and smell trait)":
-				{
-					name: "Olfactory Implants",
-					source: ["VSoS", 372],
-					submenu: "[Head Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/undead thrall/i.test(oCrea.companion))
-									return;
-								var aFnc = bAdd ? AddString : RemoveString;
-								aFnc(prefix + "Comp.Use.Senses", "Keen Smell");
-							},
-						],
-					},
+			"olfactory implants (donor: has keen smell/keen hearing and smell trait)": {
+				name: "Olfactory Implants",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/undead thrall/i.test(oCrea.companion)) return;
+							var aFnc = bAdd ? AddString : RemoveString;
+							aFnc(prefix + "Comp.Use.Senses", "Keen Smell");
+						},
+					],
 				},
+			},
 			"oversized arms (donor: giant)": {
 				name: "Oversized Arms",
 				source: ["VSoS", 372],
@@ -2158,18 +1811,10 @@ AddSubClass("necromancer", "reanimator", {
 						function (prefix, oCrea, bAdd) {
 							if (!/undead thrall/i.test(oCrea.companion)) return;
 							if (bAdd) {
-								CompanionList["undead thrall"].commoneval(
-									prefix,
-									oCrea,
-									bAdd
-								);
+								CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
 							}
 							if (!bAdd) {
-								CompanionList["undead thrall"].commonremoveeval(
-									prefix,
-									oCrea,
-									bAdd
-								);
+								CompanionList["undead thrall"].commonremoveeval(prefix, oCrea, bAdd);
 							}
 							var aFnc = bAdd ? AddString : RemoveString;
 							aFnc(
@@ -2197,41 +1842,13 @@ AddSubClass("necromancer", "reanimator", {
 									prefix + "Comp.Use.Features",
 									"\n\u25C6 Prehensile Tail: The undead thrall's tail can hold and manipulate objects, but cannot use weapons/shields"
 								);
-								if (
-									GetFeatureChoice(
-										"classes",
-										"necromancer",
-										"subclassfeature3.1",
-										true
-									).indexOf(
-										"oversized arms (donor: giant)"
-									) !== -1
-								) {
-									CompanionList["undead thrall"].commoneval(
-										prefix,
-										oCrea,
-										bAdd
-									);
+								if (GetFeatureChoice("classes", "necromancer", "subclassfeature3.1", true).indexOf("oversized arms (donor: giant)") !== -1) {
+									CompanionList["undead thrall"].commoneval(prefix, oCrea, bAdd);
 								}
 							} else {
 								for (i = 1; i < 3; ++i) {
-									if (
-										/Prehensile Tail/i.test(
-											What(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection"
-											)
-										)
-									)
-										Value(
-											prefix +
-												"Comp.Use.Attack." +
-												i +
-												".Weapon Selection",
-											""
-										);
+									if (/Prehensile Tail/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
 								}
 								RemoveString(
 									prefix + "Comp.Use.Features",
@@ -2312,23 +1929,8 @@ AddSubClass("necromancer", "reanimator", {
 							} // * no need to call commoneval
 							else {
 								for (i = 1; i < 3; ++i) {
-									if (
-										/tentacles/i.test(
-											What(
-												prefix +
-													"Comp.Use.Attack." +
-													i +
-													".Weapon Selection"
-											)
-										)
-									)
-										Value(
-											prefix +
-												"Comp.Use.Attack." +
-												i +
-												".Weapon Selection",
-											""
-										);
+									if (/tentacles/i.test(What(prefix + "Comp.Use.Attack." + i + ".Weapon Selection")))
+										Value(prefix + "Comp.Use.Attack." + i + ".Weapon Selection", "");
 								}
 							}
 						},
@@ -2337,26 +1939,24 @@ AddSubClass("necromancer", "reanimator", {
 					],
 				},
 			},
-			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)":
-				{
-					name: "Venom Sac",
-					source: ["VSoS", 373],
-					submenu: "[Internal Grafts]",
-					description: "",
-					calcChanges: {
-						creatureCallback: [
-							function (prefix, oCrea, bAdd) {
-								if (!/undead thrall/i.test(oCrea.companion))
-									return;
-								var aFnc = bAdd ? AddString : RemoveString;
-								aFnc(
-									prefix + "Comp.Use.Features",
-									"\n\u25C6 Venom Sac: Once per short rest, as a bonus action, the undead thrall can coat a weapon in basic poison. The save DC for this poison is 15."
-								);
-							},
-						],
-					},
+			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)": {
+				name: "Venom Sac",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				description: "",
+				calcChanges: {
+					creatureCallback: [
+						function (prefix, oCrea, bAdd) {
+							if (!/undead thrall/i.test(oCrea.companion)) return;
+							var aFnc = bAdd ? AddString : RemoveString;
+							aFnc(
+								prefix + "Comp.Use.Features",
+								"\n\u25C6 Venom Sac: Once per short rest, as a bonus action, the undead thrall can coat a weapon in basic poison. The save DC for this poison is 15."
+							);
+						},
+					],
 				},
+			},
 			"voice box (donor: has the mimicry trait)": {
 				name: "Voice Box",
 				source: ["VSoS", 373],
@@ -2417,9 +2017,7 @@ AddSubClass("necromancer", "reanimator", {
 				atkAdd: [
 					function (fields, v) {
 						if (/\bcharnel touch\b/i.test(v.WeaponTextName)) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"; Voltage (5 CT)";
+							fields.Description += (fields.Description ? "; " : "") + "; Voltage (5 CT)";
 							fields.Description_Tooltip +=
 								"Charnel Voltage: You can choose to deal lightning damage instead of necrotic damage with your Charnel Touch. When you hit with a Charnel Touch attack that deals lightning damage and expends 5 or more points, you can cause the energy to arc to a second creature within 5 feet of the target. The second creature must make a Dexterity saving throw against your spell save DC, taking lightning damage equal to half the number of Charnel Touch points expended on a failed save.";
 						}
@@ -2459,16 +2057,12 @@ AddSubClass("necromancer", "reanimator", {
 			bulwarkbackstitch: {
 				name: "Bulwark Backstitch",
 				source: ["VSoS", 139],
-				description: desc([
-					"The thrall can activate this stitch to cast the shield spell when it is hit by an attack.",
-				]),
+				description: desc(["The thrall can activate this stitch to cast the shield spell when it is hit by an attack."]),
 			},
 			fleetthreads: {
 				name: "Fleet Threads",
 				source: ["VSoS", 139],
-				description: desc([
-					"The thrall can activate this stitch to triple its speed until the end of its next turn.",
-				]),
+				description: desc(["The thrall can activate this stitch to triple its speed until the end of its next turn."]),
 			},
 			voltaicsuture: {
 				name: "Voltaic Suture",
@@ -2497,9 +2091,7 @@ AddSubClass("necromancer", "reanimator", {
 			name: "Lichdom: Patchwork Golem",
 			minlevel: 20,
 			source: ["VSoS", 139],
-			description: desc([
-				"I gain extra features when I undertake the rite to become a lich, found on the third page.",
-			]),
+			description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
 			scoresOverride: [20, 20, 20, 0, 0, 0],
 			dmgres: [
 				["Bludgeoning", "Bludg. (nonmagical)"],
@@ -2522,9 +2114,7 @@ AddSubClass("necromancer", "reanimator", {
 				{
 					name: "Magic Resistance",
 					source: ["VSoS", 139],
-					note: desc([
-						"I have advantage on saves against spells and other magical effects.",
-					]),
+					note: desc(["I have advantage on saves against spells and other magical effects."]),
 					page3notes: true,
 				},
 			],
@@ -2567,8 +2157,7 @@ AddSubClass("necromancer", "reanimator", {
 				name: "Amphibious Adaptation",
 				source: ["VSoS", 370],
 				submenu: "[Head Grafts]",
-				description:
-					"\n   I can breathe both air and water. I gain a swim speed equal to my walking speed.",
+				description: "\n   I can breathe both air and water. I gain a swim speed equal to my walking speed.",
 				speed: {
 					swim: { spd: "walk", enc: "walk" },
 				},
@@ -2597,8 +2186,7 @@ AddSubClass("necromancer", "reanimator", {
 				name: "Beast's Hide",
 				source: ["VSoS", 370],
 				submenu: "[External Grafts]",
-				description:
-					"\n   My AC is 13 + Dex mod, if higher than the armor I am wearing. Shields may still apply.",
+				description: "\n   My AC is 13 + Dex mod, if higher than the armor I am wearing. Shields may still apply.",
 				armorAdd: "Beast's Hide",
 				armorOptions: [
 					{
@@ -2614,9 +2202,7 @@ AddSubClass("necromancer", "reanimator", {
 				name: "Bestial Weapons (Arms)",
 				source: ["VSoS", 370],
 				submenu: "[Arms Grafts]",
-				description: desc(
-					"I gain claws I can use to make unarmed strikes: Finesse, 1d6+Str/Dex slashing damage."
-				),
+				description: desc("I gain claws I can use to make unarmed strikes: Finesse, 1d6+Str/Dex slashing damage."),
 				weaponOptions: [
 					{
 						name: "Claws",
@@ -2637,8 +2223,7 @@ AddSubClass("necromancer", "reanimator", {
 				name: "Bestial Weapons (Head)",
 				source: ["VSoS", 370],
 				submenu: "[Head Grafts]",
-				description:
-					"\n   I gain teeth I can use to make unarmed strikes: Finesse, 1d6+Str/Dex piercing damage.",
+				description: "\n   I gain teeth I can use to make unarmed strikes: Finesse, 1d6+Str/Dex piercing damage.",
 				weaponOptions: [
 					{
 						name: "Teest",
@@ -2659,15 +2244,13 @@ AddSubClass("necromancer", "reanimator", {
 				name: "Charging Hooves",
 				source: ["VSoS", 370],
 				submenu: "[Legs Grafts]",
-				description:
-					"\n   Once on each of my turns, if I move 15 ft in straight line, I can move +10 ft in that direction.",
+				description: "\n   Once on each of my turns, if I move 15 ft in straight line, I can move +10 ft in that direction.",
 			},
 			"climbing apparatus (donor: bst/humn/mons with climb speed)": {
 				name: "Climbing Apparatus",
 				source: ["VSoS", 370],
 				submenu: "[Legs Grafts]",
-				description:
-					"\n    I gain a climb speed equal to my walking speed.",
+				description: "\n    I gain a climb speed equal to my walking speed.",
 				speed: {
 					climb: { spd: "walk", enc: "walk" },
 				},
@@ -2695,51 +2278,45 @@ AddSubClass("necromancer", "reanimator", {
 					},
 				],
 			},
-			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)":
-				{
-					name: "Draconis Fundamentum",
-					source: ["VSoS", 371],
-					submenu: "[Internal Grafts]",
-					additional: "1 x short rest",
-					description:
-						"\n   As an action, each creature in a 15 ft cone makes a Dex save against 8+Con+Prof." +
-						"\n   Each creature takes (Prof)d6 damage or half on save, same damage type as donor's.",
-					weaponOptions: [
-						{
-							name: "Draconis Fundamentum",
-							source: ["VSoS", 371],
-							regExpSearch: /\bdraconis fundamentum\b/i,
-							type: "Natural",
-							ability: 3,
-							abilitytodamage: false,
-							damage: [1, 6, ""],
-							range: "15 ft cone",
-							description: "\u00BD on Dex save",
-							dc: true,
-						},
-					],
-					calcChanges: {
-						atkAdd: [
-							function (fields, v) {
-								if (
-									/\bdraconis fundamentum\b/i.test(
-										v.WeaponTextName
-									)
-								) {
-									fields.Damage_Die =
-										How("Proficiency Bonus") + "d6";
-								}
-							},
-							"My Draconis Fundamentum attack deals 1d6 damage for each point of my proficiency bonus.",
-						],
-					},
-					action: ["action", "Draconis Fundamentum"],
-					extraLimitedFeatures: {
+			"draconis fundamentum (donor: drgn/humn/mons with a breath weapon)": {
+				name: "Draconis Fundamentum",
+				source: ["VSoS", 371],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description:
+					"\n   As an action, each creature in a 15 ft cone makes a Dex save against 8+Con+Prof." +
+					"\n   Each creature takes (Prof)d6 damage or half on save, same damage type as donor's.",
+				weaponOptions: [
+					{
 						name: "Draconis Fundamentum",
-						usages: 1,
-						recovery: "short rest",
+						source: ["VSoS", 371],
+						regExpSearch: /\bdraconis fundamentum\b/i,
+						type: "Natural",
+						ability: 3,
+						abilitytodamage: false,
+						damage: [1, 6, ""],
+						range: "15 ft cone",
+						description: "\u00BD on Dex save",
+						dc: true,
 					},
+				],
+				calcChanges: {
+					atkAdd: [
+						function (fields, v) {
+							if (/\bdraconis fundamentum\b/i.test(v.WeaponTextName)) {
+								fields.Damage_Die = How("Proficiency Bonus") + "d6";
+							}
+						},
+						"My Draconis Fundamentum attack deals 1d6 damage for each point of my proficiency bonus.",
+					],
 				},
+				action: ["action", "Draconis Fundamentum"],
+				extraLimitedFeatures: {
+					name: "Draconis Fundamentum",
+					usages: 1,
+					recovery: "short rest",
+				},
+			},
 			"dragon's hide (donor: large or larger dragon)": {
 				name: "Dragon's Hide",
 				source: ["VSoS", 371],
@@ -2760,60 +2337,53 @@ AddSubClass("necromancer", "reanimator", {
 					},
 				],
 			},
-			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to acid damage.",
-					dmgres: ["Acid"],
-				},
-			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to cold damage.",
-					dmgres: ["Cold"],
-				},
-			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to fire damage.",
-					dmgres: ["Fire"],
-				},
-			"energetic suture (lightning) (donor: clst/drgn/elem/fey/fnd with imm/res to lightning damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to lightning damage.",
-					dmgres: ["Lightning"],
-				},
-			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to poison damage.",
-					dmgres: ["Poison"],
-				},
-			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)":
-				{
-					name: "Energetic Suture",
-					source: ["VSoS", 371],
-					submenu: "[External Grafts]",
-					description: " I gain resistance to thunder damage.",
-					dmgres: ["Thunder"],
-				},
+			"energetic suture (acid) (donor: clst/drgn/elem/fey/fnd with imm/res to acid damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to acid damage.",
+				dmgres: ["Acid"],
+			},
+			"energetic suture (cold) (donor: clst/drgn/elem/fey/fnd with imm/res to cold damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to cold damage.",
+				dmgres: ["Cold"],
+			},
+			"energetic suture (fire) (donor: clst/drgn/elem/fey/fnd with imm/res to fire damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to fire damage.",
+				dmgres: ["Fire"],
+			},
+			"energetic suture (lightning) (donor: clst/drgn/elem/fey/fnd with imm/res to lightning damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to lightning damage.",
+				dmgres: ["Lightning"],
+			},
+			"energetic suture (poison) (donor: clst/drgn/elem/fey/fnd with imm/res to poison damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to poison damage.",
+				dmgres: ["Poison"],
+			},
+			"energetic suture (thunder) (donor: clst/drgn/elem/fey/fnd with imm/res to thunder damage)": {
+				name: "Energetic Suture",
+				source: ["VSoS", 371],
+				submenu: "[External Grafts]",
+				description: " I gain resistance to thunder damage.",
+				dmgres: ["Thunder"],
+			},
 			"fiend's hide (donor: medium or larger fiend)": {
 				name: "Fiend's Hide",
 				source: ["VSoS", 371],
 				submenu: "[External Grafts]",
-				description:
-					"\n   My AC is 15 + Dex (max 2) if higher than the armor I am wearing. Shields may still apply.",
+				description: "\n   My AC is 15 + Dex (max 2) if higher than the armor I am wearing. Shields may still apply.",
 				armorOptions: [
 					{
 						name: "Fiend's Hide",
@@ -2829,8 +2399,7 @@ AddSubClass("necromancer", "reanimator", {
 				name: "Heart of Steel",
 				source: ["VSoS", 371],
 				submenu: "[Internal Grafts]",
-				description:
-					"\n    I may ignore the effects of 1 level of exhaustion & finish a long rest in 4 hours.",
+				description: "\n    I may ignore the effects of 1 level of exhaustion & finish a long rest in 4 hours.",
 				savetxt: {
 					immune: ["1st level exhaustion"],
 				},
@@ -2861,25 +2430,21 @@ AddSubClass("necromancer", "reanimator", {
 				name: "Indiscernible Anatomy",
 				source: ["VSoS", 372],
 				submenu: "[Internal Grafts]",
-				description:
-					"\n    Critical hits against me become normal hits.",
+				description: "\n    Critical hits against me become normal hits.",
 			},
 			"leaping legs (donor: has the pounce/standing leap trait)": {
 				name: "Leaping Legs",
 				source: ["VSoS", 372],
 				submenu: "[Legs Grafts]",
-				description:
-					"\n    My jump distance doubles. I can jump my full distance without a running start.",
+				description: "\n    My jump distance doubles. I can jump my full distance without a running start.",
 			},
-			"olfactory implants (donor: has keen smell/keen hearing and smell trait)":
-				{
-					name: "Olfactory Implants",
-					source: ["VSoS", 372],
-					submenu: "[Head Grafts]",
-					description:
-						"\n   I gain advantage on Wisdom (Perception) checks that rely on smell.",
-					vision: [["Keen Smell", 0]],
-				},
+			"olfactory implants (donor: has keen smell/keen hearing and smell trait)": {
+				name: "Olfactory Implants",
+				source: ["VSoS", 372],
+				submenu: "[Head Grafts]",
+				description: "\n   I gain advantage on Wisdom (Perception) checks that rely on smell.",
+				vision: [["Keen Smell", 0]],
+			},
 			"oversized arms (donor: giant)": {
 				name: "Oversized Arms",
 				source: ["VSoS", 372],
@@ -2894,28 +2459,16 @@ AddSubClass("necromancer", "reanimator", {
 				calcChanges: {
 					atkAdd: [
 						function (fields, v) {
-							if (
-								v.isMeleeWeapon &&
-								/\d+\s?(ft|m)/i.test(fields.Range) &&
-								!/reach/i.test(fields.Description)
-							) {
+							if (v.isMeleeWeapon && /\d+\s?(ft|m)/i.test(fields.Range) && !/reach/i.test(fields.Description)) {
 								// * Checks for "Melee (x ft)"
 								var rNum = fields.Range.match(/\d+\s?(ft|m)/i);
 								var unit = rNum[2];
 								var curRange = parseInt(rNum[1], 10);
-								fields.Range = fields.Range.replace(
-									/\d+\s?(ft|m)/i,
-									curRange + 5 + " " + unit
-								);
+								fields.Range = fields.Range.replace(/\d+\s?(ft|m)/i, curRange + 5 + " " + unit);
 							}
-							if (
-								v.isMeleeWeapon &&
-								!/\(\d+\s?(ft|m)\)/i.test(fields.Range) &&
-								!/reach/i.test(fields.Description)
-							) {
+							if (v.isMeleeWeapon && !/\(\d+\s?(ft|m)\)/i.test(fields.Range) && !/reach/i.test(fields.Description)) {
 								fields.Range = "Melee (10 ft)";
-								fields.Description +=
-									(fields.Description ? "; " : "") + "Reach";
+								fields.Description += (fields.Description ? "; " : "") + "Reach";
 							}
 						},
 						"My melee reach increases by 5 ft, unless the weapon I am using has Reach.",
@@ -2949,8 +2502,7 @@ AddSubClass("necromancer", "reanimator", {
 				source: ["VSoS", 373],
 				submenu: "[Internal Grafts]",
 				additional: "1 x short rest",
-				description:
-					"\n    I can use a bonus action to regain hit points equal to 1d10 + Constitution modifier.",
+				description: "\n    I can use a bonus action to regain hit points equal to 1d10 + Constitution modifier.",
 				action: ["bonus action", ""],
 				extraLimitedFeatures: [
 					{
@@ -2964,9 +2516,7 @@ AddSubClass("necromancer", "reanimator", {
 				name: "Replacement",
 				source: ["VSoS", 373],
 				submenu: "[Any Grafts]",
-				description: desc(
-					"A replacement limb/organ functions identically. It takes up the most relevant body slot."
-				),
+				description: desc("A replacement limb/organ functions identically. It takes up the most relevant body slot."),
 			},
 			"stench (donor: has the stench trait)": {
 				name: "Stench",
@@ -3003,29 +2553,26 @@ AddSubClass("necromancer", "reanimator", {
 						abilitytodamage: true,
 						damage: [1, 6, "Bludgeoning"],
 						range: "Melee (10 ft)",
-						description:
-							"Finesse, Reach, on hit, may use bonus action to attempt a grapple on target",
+						description: "Finesse, Reach, on hit, may use bonus action to attempt a grapple on target",
 						selectNow: true,
 					},
 				],
 			},
-			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)":
-				{
-					name: "Venom Sac",
-					source: ["VSoS", 373],
-					submenu: "[Internal Grafts]",
-					additional: "1 x short rest",
-					description:
-						"\n    As a bonus action, I can coat a weapon in basic poison. the save DC = 8+Prof+Con mod.",
-					action: ["bonus action", ""],
-					extraLimitedFeatures: [
-						{
-							name: "Venom Sac",
-							usages: 1,
-							recovery: "short rest",
-						},
-					],
-				},
+			"venom sac (donor: has a natural weapon/trait that deals poison/poisoned condition)": {
+				name: "Venom Sac",
+				source: ["VSoS", 373],
+				submenu: "[Internal Grafts]",
+				additional: "1 x short rest",
+				description: "\n    As a bonus action, I can coat a weapon in basic poison. the save DC = 8+Prof+Con mod.",
+				action: ["bonus action", ""],
+				extraLimitedFeatures: [
+					{
+						name: "Venom Sac",
+						usages: 1,
+						recovery: "short rest",
+					},
+				],
+			},
 			"voice box (donor: has the mimicry trait)": {
 				name: "Voice Box",
 				source: ["VSoS", 373],
@@ -3039,8 +2586,7 @@ AddSubClass("necromancer", "reanimator", {
 				source: ["VSoS", 373],
 				submenu: "[Internal Grafts]",
 				additional: "1 x short rest",
-				description:
-					"\n    I can cast the web spell without using a spell slot or components: DC 8+Prof+Con mod.",
+				description: "\n    I can cast the web spell without using a spell slot or components: DC 8+Prof+Con mod.",
 				extraLimitedFeatures: [
 					{
 						name: "Webspinner Apparatus",
@@ -3073,9 +2619,7 @@ AddSubClass("necromancer", "reaper", {
 			name: "Reaper Spells",
 			source: ["VSoS", 139],
 			minlevel: 3,
-			description: desc([
-				"I learn additional spells, which do not count towards the number of spells I know.",
-			]),
+			description: desc(["I learn additional spells, which do not count towards the number of spells I know."]),
 			spellcastingExtraApplyNonconform: true,
 			spellcastingExtra: [
 				"false life",
@@ -3131,27 +2675,15 @@ AddSubClass("necromancer", "reaper", {
 			name: "Wraith Flight",
 			source: ["VSoS", 140],
 			minlevel: 10,
-			description: desc([
-				"Thrall fly speeds double, and while flying, opportunity attacks against them have disadv.",
-			]),
+			description: desc(["Thrall fly speeds double, and while flying, opportunity attacks against them have disadv."]),
 			calcChanges: {
 				companionCallback: [
 					function (prefix, oCrea, bAdd, sCompType) {
-						if (
-							sCompType !== "undead thrall" &&
-							!/fly ?(\d+)/i.test(oCrea.speed)
-						)
-							return;
+						if (sCompType !== "undead thrall" && !/fly ?(\d+)/i.test(oCrea.speed)) return;
 						if (bAdd && /fly ?(\d+)/i.test(oCrea.speed)) {
 							var spd = oCrea.speed.match(/fly ?(\d+)/i);
 							var newSpd = parseInt(spd[1]) * 2;
-							Value(
-								prefix + "Comp.Use.Speed",
-								What(prefix + "Comp.Use.Speed").replace(
-									/fly ?(\d+)/i,
-									"fly " + newSpd
-								)
-							);
+							Value(prefix + "Comp.Use.Speed", What(prefix + "Comp.Use.Speed").replace(/fly ?(\d+)/i, "fly " + newSpd));
 						} else Value(prefix + "Comp.Use.Speed", oCrea.speed);
 					},
 				],
@@ -3161,16 +2693,11 @@ AddSubClass("necromancer", "reaper", {
 			name: "Lichdom: Grim Reaper",
 			source: ["VSoS", 140],
 			minlevel: 20,
-			description: desc([
-				"I gain extra features when I undertake the rite to become a lich, found on the third page.",
-			]),
+			description: desc(["I gain extra features when I undertake the rite to become a lich, found on the third page."]),
 			deathtouch: {
 				name: "Death's Touch",
 				source: ["VSoS", 140],
-				description: desc([
-					"When I use Charnel Touch and roll and 11 or higher on the attack roll, I hit the target,",
-					"regardless of its AC.",
-				]),
+				description: desc(["When I use Charnel Touch and roll and 11 or higher on the attack roll, I hit the target,", "regardless of its AC."]),
 			},
 			fellflight: {
 				name: "Fell Flight",
@@ -3200,9 +2727,7 @@ AddSubClass("necromancer", "reaper", {
 				atkAdd: [
 					function (fields, v) {
 						if (/\bcharnel touch\b/i.test(v.WeaponTextName)) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"hit on >10; Grim Harvest";
+							fields.Description += (fields.Description ? "; " : "") + "hit on >10; Grim Harvest";
 							fields.Description_Tooltip +=
 								(fields.Description_Tooltip ? "\n" : "") +
 								"Death's Touch: When you use your Charnel Touch against a creature you can see and roll an 11 or higher on the d20 for the attack roll, you hit the target, regardless of its AC.\nGrim Harvest: When you kill a Humanoid using Charnel Touch, you rip their soul from their body, which animates as a visage under your control, which counts as one of your thralls.";

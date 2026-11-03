@@ -4,12 +4,12 @@ RequiredSheetVersion("13.2.3");
 // ! INCOMPLETE
 
 if (!SourceList["VSoS"]) {
-    SourceList["VSoS"] = {
-        name : "Valda's Spire of Secrets",
-        abbreviation : "VSoS",
-        abbreviationSpellsheet : "V",
-        date : "2022/12/30" // ! Updated as of 12-30-2022 (Version 1.4)
-    };
+	SourceList["VSoS"] = {
+		name: "Valda's Spire of Secrets",
+		abbreviation: "VSoS",
+		abbreviationSpellsheet: "V",
+		date: "2022/12/30", // ! Updated as of 12-30-2022 (Version 1.4)
+	};
 }
 
 ClassList["captain"] = {
@@ -31,8 +31,7 @@ ClassList["captain"] = {
 		spells: [],
 	},
 	skillstxt: {
-		primary:
-			"Choose two from Animal Handling, Athletics, Deception, History, Insight, Intimidation, Perception, and Persuasion",
+		primary: "Choose two from Animal Handling, Athletics, Deception, History, Insight, Intimidation, Perception, and Persuasion",
 	},
 	armorProfs: {
 		primary: [true, true, false, true],
@@ -65,8 +64,7 @@ ClassList["captain"] = {
 			name: "Fighting Style",
 			source: ["VSoS", 47],
 			minlevel: 1,
-			description:
-				'\n    Choose a Fighting Style using the "Choose Feature" button above',
+			description: '\n    Choose a Fighting Style using the "Choose Feature" button above',
 			choices: ["Archery", "Defense", "Dueling", "Protection"],
 			archery: FightingStyles.archery,
 			defense: FightingStyles.defense,
@@ -101,17 +99,10 @@ ClassList["captain"] = {
 					"\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort." +
 					"\n    The previous cohort loses all abilities granted by this ability.",
 				prereqeval: function (v) {
-					if (
-						!(
-							classes.known.captain.level >= 6 &&
-							classes.known.captain.level < 14
-						)
-					)
-						return false;
+					if (!(classes.known.captain.level >= 6 && classes.known.captain.level < 14)) return false;
 
 					for (var entry in CurrentCompRace) {
-						if (/\babbot\b/i.test(CurrentCompRace[entry].known))
-							return true;
+						if (/\babbot\b/i.test(CurrentCompRace[entry].known)) return true;
 					}
 					return false;
 				},
@@ -127,12 +118,7 @@ ClassList["captain"] = {
 					spellCalc: [
 						function (type, spellcasters, ability) {
 							// Only do this for the 'captain' class, and not for prepared spells, and not if the selected ability score is "none"
-							if (
-								spellcasters.indexOf("captain") == -1 ||
-								type == "prepare" ||
-								ability === 0
-							)
-								return;
+							if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
 
 							// Find the "abbot" companion by looking at the known
 							// This means that "abbot" needs to be part of the Creature's object name
@@ -140,11 +126,7 @@ ClassList["captain"] = {
 							// when added through creatureOptions
 							var prefix = false;
 							for (var entry in CurrentCompRace) {
-								if (
-									/\babbot\b/i.test(
-										CurrentCompRace[entry].known
-									)
-								) {
+								if (/\babbot\b/i.test(CurrentCompRace[entry].known)) {
 									prefix = entry;
 									break;
 								}
@@ -158,11 +140,7 @@ ClassList["captain"] = {
 
 							// Get the modifier for the character and the found abbot creature
 							var charMod = Number(What(abi + " Mod"));
-							var creaMod = Number(
-								What(
-									prefix + "Comp.Use.Ability." + abi + ".Mod"
-								)
-							);
+							var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
 
 							// Return the difference between the two modifiers
 							return creaMod - charMod;
@@ -172,21 +150,9 @@ ClassList["captain"] = {
 				},
 				spellcastingBonus: [
 					{
-						spells: [
-							"guidance",
-							"spare the dying",
-							"bless",
-							"lesser restoration",
-							"protection from evil and good",
-						],
+						spells: ["guidance", "spare the dying", "bless", "lesser restoration", "protection from evil and good"],
 						name: "Abbot Cohort",
-						selection: [
-							"guidance",
-							"spare the dying",
-							"bless",
-							"lesser restoration",
-							"protection from evil and good",
-						],
+						selection: ["guidance", "spare the dying", "bless", "lesser restoration", "protection from evil and good"],
 						firstCol: "atwill",
 						times: 5,
 						magicitemComponents: true,
@@ -205,8 +171,7 @@ ClassList["captain"] = {
 					if (!(classes.known.captain.level >= 14)) return false;
 
 					for (var entry in CurrentCompRace) {
-						if (/\babbot\b/i.test(CurrentCompRace[entry].known))
-							return true;
+						if (/\babbot\b/i.test(CurrentCompRace[entry].known)) return true;
 					}
 					return false;
 				},
@@ -221,20 +186,11 @@ ClassList["captain"] = {
 				calcChanges: {
 					spellCalc: [
 						function (type, spellcasters, ability) {
-							if (
-								spellcasters.indexOf("captain") == -1 ||
-								type == "prepare" ||
-								ability === 0
-							)
-								return;
+							if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
 
 							var prefix = false;
 							for (var entry in CurrentCompRace) {
-								if (
-									/\babbot\b/i.test(
-										CurrentCompRace[entry].known
-									)
-								) {
+								if (/\babbot\b/i.test(CurrentCompRace[entry].known)) {
 									prefix = entry;
 									break;
 								}
@@ -243,11 +199,7 @@ ClassList["captain"] = {
 
 							var abi = AbilityScores.abbreviations[ability - 1];
 							var charMod = Number(What(abi + " Mod"));
-							var creaMod = Number(
-								What(
-									prefix + "Comp.Use.Ability." + abi + ".Mod"
-								)
-							);
+							var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
 
 							return creaMod - charMod;
 						},
@@ -295,8 +247,7 @@ ClassList["captain"] = {
 					if (!(classes.known.captain.level < 6)) return false;
 
 					for (var entry in CurrentCompRace) {
-						if (/\bcultist\b/i.test(CurrentCompRace[entry].known))
-							return true;
+						if (/\bcultist\b/i.test(CurrentCompRace[entry].known)) return true;
 					}
 					return false;
 				},
@@ -311,20 +262,11 @@ ClassList["captain"] = {
 				calcChanges: {
 					spellCalc: [
 						function (type, spellcasters, ability) {
-							if (
-								spellcasters.indexOf("captain") == -1 ||
-								type == "prepare" ||
-								ability === 0
-							)
-								return;
+							if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
 
 							var prefix = false;
 							for (var entry in CurrentCompRace) {
-								if (
-									/\bcultist\b/i.test(
-										CurrentCompRace[entry].known
-									)
-								) {
+								if (/\bcultist\b/i.test(CurrentCompRace[entry].known)) {
 									prefix = entry;
 									break;
 								}
@@ -333,11 +275,7 @@ ClassList["captain"] = {
 
 							var abi = AbilityScores.abbreviations[ability - 1];
 							var charMod = Number(What(abi + " Mod"));
-							var creaMod = Number(
-								What(
-									prefix + "Comp.Use.Ability." + abi + ".Mod"
-								)
-							);
+							var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
 
 							return creaMod - charMod;
 						},
@@ -346,21 +284,9 @@ ClassList["captain"] = {
 				},
 				spellcastingBonus: [
 					{
-						spells: [
-							"dancing lights",
-							"mage hand",
-							"minor illusion",
-							"charm person",
-							"detect magic",
-						],
+						spells: ["dancing lights", "mage hand", "minor illusion", "charm person", "detect magic"],
 						name: "Cultist Cohort",
-						selection: [
-							"dancing lights",
-							"mage hand",
-							"minor illusion",
-							"charm person",
-							"detect magic",
-						],
+						selection: ["dancing lights", "mage hand", "minor illusion", "charm person", "detect magic"],
 						firstCol: "atwill",
 						times: 5,
 						magicitemComponents: true,
@@ -379,8 +305,7 @@ ClassList["captain"] = {
 					if (!(classes.known.captain.level >= 6)) return false;
 
 					for (var entry in CurrentCompRace) {
-						if (/\bcultist\b/i.test(CurrentCompRace[entry].known))
-							return true;
+						if (/\bcultist\b/i.test(CurrentCompRace[entry].known)) return true;
 					}
 					return false;
 				},
@@ -395,20 +320,11 @@ ClassList["captain"] = {
 				calcChanges: {
 					spellCalc: [
 						function (type, spellcasters, ability) {
-							if (
-								spellcasters.indexOf("captain") == -1 ||
-								type == "prepare" ||
-								ability === 0
-							)
-								return;
+							if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
 
 							var prefix = false;
 							for (var entry in CurrentCompRace) {
-								if (
-									/\bcultist\b/i.test(
-										CurrentCompRace[entry].known
-									)
-								) {
+								if (/\bcultist\b/i.test(CurrentCompRace[entry].known)) {
 									prefix = entry;
 									break;
 								}
@@ -418,11 +334,7 @@ ClassList["captain"] = {
 							var abi = AbilityScores.abbreviations[ability - 1];
 
 							var charMod = Number(What(abi + " Mod"));
-							var creaMod = Number(
-								What(
-									prefix + "Comp.Use.Ability." + abi + ".Mod"
-								)
-							);
+							var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
 
 							return creaMod - charMod;
 						},
@@ -431,16 +343,7 @@ ClassList["captain"] = {
 				},
 				spellcastingBonus: [
 					{
-						spells: [
-							"dancing lights",
-							"mage hand",
-							"minor illusion",
-							"charm person",
-							"detect magic",
-							"disguise self",
-							"false life",
-							"suggestion",
-						],
+						spells: ["dancing lights", "mage hand", "minor illusion", "charm person", "detect magic", "disguise self", "false life", "suggestion"],
 						name: "Cultist Cohort",
 						selection: [
 							"dancing lights",
@@ -470,8 +373,7 @@ ClassList["captain"] = {
 					if (!(classes.known.captain.level < 6)) return false;
 
 					for (var entry in CurrentCompRace) {
-						if (/\bmage\b/i.test(CurrentCompRace[entry].known))
-							return true;
+						if (/\bmage\b/i.test(CurrentCompRace[entry].known)) return true;
 					}
 					return false;
 				},
@@ -486,20 +388,11 @@ ClassList["captain"] = {
 				calcChanges: {
 					spellCalc: [
 						function (type, spellcasters, ability) {
-							if (
-								spellcasters.indexOf("captain") == -1 ||
-								type == "prepare" ||
-								ability === 0
-							)
-								return;
+							if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
 
 							var prefix = false;
 							for (var entry in CurrentCompRace) {
-								if (
-									/\bmage\b/i.test(
-										CurrentCompRace[entry].known
-									)
-								) {
+								if (/\bmage\b/i.test(CurrentCompRace[entry].known)) {
 									prefix = entry;
 									break;
 								}
@@ -509,11 +402,7 @@ ClassList["captain"] = {
 							var abi = AbilityScores.abbreviations[ability - 1];
 
 							var charMod = Number(What(abi + " Mod"));
-							var creaMod = Number(
-								What(
-									prefix + "Comp.Use.Ability." + abi + ".Mod"
-								)
-							);
+							var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
 
 							return creaMod - charMod;
 						},
@@ -522,21 +411,9 @@ ClassList["captain"] = {
 				},
 				spellcastingBonus: [
 					{
-						spells: [
-							"mage hand",
-							"prestidigitation",
-							"floating disk",
-							"grease",
-							"mage armor",
-						],
+						spells: ["mage hand", "prestidigitation", "floating disk", "grease", "mage armor"],
 						name: "Mage Cohort",
-						selection: [
-							"mage hand",
-							"prestidigitation",
-							"floating disk",
-							"grease",
-							"mage armor",
-						],
+						selection: ["mage hand", "prestidigitation", "floating disk", "grease", "mage armor"],
 						firstCol: "atwill",
 						times: 5,
 						magicitemComponents: true,
@@ -552,17 +429,10 @@ ClassList["captain"] = {
 					"\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort." +
 					"\n    The previous cohort loses all abilities granted by this ability.",
 				prereqeval: function (v) {
-					if (
-						!(
-							classes.known.captain.level >= 6 &&
-							classes.known.captain.level < 14
-						)
-					)
-						return false;
+					if (!(classes.known.captain.level >= 6 && classes.known.captain.level < 14)) return false;
 
 					for (var entry in CurrentCompRace) {
-						if (/\bmage\b/i.test(CurrentCompRace[entry].known))
-							return true;
+						if (/\bmage\b/i.test(CurrentCompRace[entry].known)) return true;
 					}
 					return false;
 				},
@@ -577,20 +447,11 @@ ClassList["captain"] = {
 				calcChanges: {
 					spellCalc: [
 						function (type, spellcasters, ability) {
-							if (
-								spellcasters.indexOf("captain") == -1 ||
-								type == "prepare" ||
-								ability === 0
-							)
-								return;
+							if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
 
 							var prefix = false;
 							for (var entry in CurrentCompRace) {
-								if (
-									/\bmage\b/i.test(
-										CurrentCompRace[entry].known
-									)
-								) {
+								if (/\bmage\b/i.test(CurrentCompRace[entry].known)) {
 									prefix = entry;
 									break;
 								}
@@ -600,11 +461,7 @@ ClassList["captain"] = {
 							var abi = AbilityScores.abbreviations[ability - 1];
 
 							var charMod = Number(What(abi + " Mod"));
-							var creaMod = Number(
-								What(
-									prefix + "Comp.Use.Ability." + abi + ".Mod"
-								)
-							);
+							var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
 
 							return creaMod - charMod;
 						},
@@ -613,27 +470,9 @@ ClassList["captain"] = {
 				},
 				spellcastingBonus: [
 					{
-						spells: [
-							"mage hand",
-							"prestidigitation",
-							"floating disk",
-							"grease",
-							"mage armor",
-							"message",
-							"hold person",
-							"invisibility",
-						],
+						spells: ["mage hand", "prestidigitation", "floating disk", "grease", "mage armor", "message", "hold person", "invisibility"],
 						name: "Mage Cohort",
-						selection: [
-							"mage hand",
-							"prestidigitation",
-							"floating disk",
-							"grease",
-							"mage armor",
-							"message",
-							"hold person",
-							"invisibility",
-						],
+						selection: ["mage hand", "prestidigitation", "floating disk", "grease", "mage armor", "message", "hold person", "invisibility"],
 						firstCol: "atwill",
 						times: 8,
 						magicitemComponents: true,
@@ -649,17 +488,10 @@ ClassList["captain"] = {
 					"\n    cohort is slain, I can return my cohort to life by the usual methods, or initiate a new cohort." +
 					"\n    The previous cohort loses all abilities granted by this ability.",
 				prereqeval: function (v) {
-					if (
-						!(
-							classes.known.captain.level >= 14 &&
-							classes.known.captain.level < 18
-						)
-					)
-						return false;
+					if (!(classes.known.captain.level >= 14 && classes.known.captain.level < 18)) return false;
 
 					for (var entry in CurrentCompRace) {
-						if (/\bmage\b/i.test(CurrentCompRace[entry].known))
-							return true;
+						if (/\bmage\b/i.test(CurrentCompRace[entry].known)) return true;
 					}
 					return false;
 				},
@@ -674,20 +506,11 @@ ClassList["captain"] = {
 				calcChanges: {
 					spellCalc: [
 						function (type, spellcasters, ability) {
-							if (
-								spellcasters.indexOf("captain") == -1 ||
-								type == "prepare" ||
-								ability === 0
-							)
-								return;
+							if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
 
 							var prefix = false;
 							for (var entry in CurrentCompRace) {
-								if (
-									/\bmage\b/i.test(
-										CurrentCompRace[entry].known
-									)
-								) {
+								if (/\bmage\b/i.test(CurrentCompRace[entry].known)) {
 									prefix = entry;
 									break;
 								}
@@ -697,11 +520,7 @@ ClassList["captain"] = {
 							var abi = AbilityScores.abbreviations[ability - 1];
 
 							var charMod = Number(What(abi + " Mod"));
-							var creaMod = Number(
-								What(
-									prefix + "Comp.Use.Ability." + abi + ".Mod"
-								)
-							);
+							var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
 
 							return creaMod - charMod;
 						},
@@ -753,8 +572,7 @@ ClassList["captain"] = {
 					if (!(classes.known.captain.level >= 18)) return false;
 
 					for (var entry in CurrentCompRace) {
-						if (/\bmage\b/i.test(CurrentCompRace[entry].known))
-							return true;
+						if (/\bmage\b/i.test(CurrentCompRace[entry].known)) return true;
 					}
 					return false;
 				},
@@ -769,20 +587,11 @@ ClassList["captain"] = {
 				calcChanges: {
 					spellCalc: [
 						function (type, spellcasters, ability) {
-							if (
-								spellcasters.indexOf("captain") == -1 ||
-								type == "prepare" ||
-								ability === 0
-							)
-								return;
+							if (spellcasters.indexOf("captain") == -1 || type == "prepare" || ability === 0) return;
 
 							var prefix = false;
 							for (var entry in CurrentCompRace) {
-								if (
-									/\bmage\b/i.test(
-										CurrentCompRace[entry].known
-									)
-								) {
+								if (/\bmage\b/i.test(CurrentCompRace[entry].known)) {
 									prefix = entry;
 									break;
 								}
@@ -792,11 +601,7 @@ ClassList["captain"] = {
 							var abi = AbilityScores.abbreviations[ability - 1];
 
 							var charMod = Number(What(abi + " Mod"));
-							var creaMod = Number(
-								What(
-									prefix + "Comp.Use.Ability." + abi + ".Mod"
-								)
-							);
+							var creaMod = Number(What(prefix + "Comp.Use.Ability." + abi + ".Mod"));
 
 							return creaMod - charMod;
 						},
@@ -844,25 +649,14 @@ ClassList["captain"] = {
 			name: "Banner",
 			source: ["VSoS", 38],
 			minlevel: 3,
-			description:
-				'\n    Choose a Banner to fly by entering it in the "Class" field.',
+			description: '\n    Choose a Banner to fly by entering it in the "Class" field.',
 		},
 		"war tactics": {
 			name: "War Tactics",
 			source: ["VSoS", 38],
 			minlevel: 3,
 			additional: levels.map(function (n) {
-				return n < 3
-					? ""
-					: n < 6
-					? "d8"
-					: n < 10
-					? "d8"
-					: n < 14
-					? "d10"
-					: n < 18
-					? "d10"
-					: "d12";
+				return n < 3 ? "" : n < 6 ? "d8" : n < 10 ? "d8" : n < 14 ? "d10" : n < 18 ? "d10" : "d12";
 			}),
 			limfeaname: "Battle Dice",
 			usages: levels.map(function (n) {
@@ -935,37 +729,25 @@ ClassList["captain"] = {
 			"advanced brace": {
 				name: "Advanced Brace",
 				source: ["VSoS", 49],
-				description:
-					"\n    When I use Brace, affected allies also add the battle die to their ability checks.",
+				description: "\n    When I use Brace, affected allies also add the battle die to their ability checks.",
 			},
 			"advanced rally": {
 				name: "Advanced Rally",
 				source: ["VSoS", 49],
-				description:
-					"\n    When I use Rally, the chosen creature also gains temp hit points equal to my captain level.",
+				description: "\n    When I use Rally, the chosen creature also gains temp hit points equal to my captain level.",
 			},
 			"advanced staggering strike": {
 				name: "Advanced Staggering Strike",
 				source: ["VSoS", 49],
-				description:
-					"\n    When I use Staggering Strike, I also add the battle die to the damage roll.",
+				description: "\n    When I use Staggering Strike, I also add the battle die to the damage roll.",
 			},
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
 						if (!v.isDC && !v.isRangedWeapon && v.isMeleeWeapon) {
 							var lvl = classes.known.captain.level;
-							var die =
-								lvl < 9
-									? ""
-									: "Staggering Strike +" +
-									  (lvl < 10
-											? "1d8"
-											: lvl < 18
-											? "1d10"
-											: "1d12");
-							fields.Description +=
-								(fields.Description ? "; " : "") + die;
+							var die = lvl < 9 ? "" : "Staggering Strike +" + (lvl < 10 ? "1d8" : lvl < 18 ? "1d10" : "1d12");
+							fields.Description += (fields.Description ? "; " : "") + die;
 						}
 					},
 					"I add the battle die roll to my Staggering Strike damage.",
@@ -993,10 +775,7 @@ ClassList["captain"] = {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (!v.isDC)
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"Coordinated strike +2d8 w/Cohort";
+						if (!v.isDC) fields.Description += (fields.Description ? "; " : "") + "Coordinated strike +2d8 w/Cohort";
 					},
 					"Once on each of my turns, when I hit a creature with an attack, I can deal an extra 2d8 damage if my cohort has also hit that creature with an attack since the end of my last turn.",
 				],
@@ -1049,17 +828,7 @@ AddSubClass("captain", "dragon", {
 				return n < 3 ? 0 : 1;
 			}),
 			additional: levels.map(function (n) {
-				return n < 3
-					? ""
-					: n < 6
-					? "d8"
-					: n < 10
-					? "d8"
-					: n < 14
-					? "d10"
-					: n < 18
-					? "d10"
-					: "d12";
+				return n < 3 ? "" : n < 6 ? "d8" : n < 10 ? "d8" : n < 14 ? "d10" : n < 18 ? "d10" : "d12";
 			}),
 			recovery: "short rest",
 			limfeaAddToExisting: true,
@@ -1094,8 +863,7 @@ AddSubClass("captain", "dragon", {
 			"wade into battle": {
 				name: "Wade Into Battle",
 				source: ["VSoS", 49],
-				description:
-					"\n    I can expend a battle die to take the Dash or Disengage action as a bonus action.",
+				description: "\n    I can expend a battle die to take the Dash or Disengage action as a bonus action.",
 				action: [["bonus action", "Dash/Disengage (1 Battle Dice)"]],
 			},
 			autoSelectExtrachoices: [
@@ -1194,15 +962,9 @@ AddSubClass("captain", "eagle", {
 			calcChanges: {
 				atkAdd: [
 					function (fields, v) {
-						if (
-							/scattershot/i.test(v.WeaponTextName) &&
-							v.isRangedWeapon &&
-							!v.isDC
-						) {
+						if (/scattershot/i.test(v.WeaponTextName) && v.isRangedWeapon && !v.isDC) {
 							fields.Range = "15 ft cone";
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"1 atk per target; if only 1 target, +1 dmg die";
+							fields.Description += (fields.Description ? "; " : "") + "1 atk per target; if only 1 target, +1 dmg die";
 						}
 					},
 					'If the word "Scattershot" is included in a ranged weapon attack, it is treated as if it is using my Scattershot feature.',
@@ -1249,10 +1011,8 @@ AddSubClass("captain", "jolly roger", {
 							classes.known.captain.level > 2
 						) {
 							var lvl = classes.known.captain.level;
-							var die =
-								lvl < 10 ? "1d8" : lvl < 18 ? "1d10" : "1d12";
-							(fields.Damage_Bonus = die),
-								(v.theWea.abilitytodamage = false);
+							var die = lvl < 10 ? "1d8" : lvl < 18 ? "1d10" : "1d12";
+							((fields.Damage_Bonus = die), (v.theWea.abilitytodamage = false));
 						}
 					},
 					'When the phrase "Double Thrust" is added to an attack, I add a battle die, instead of my ability modifier, to the damage roll.',
@@ -1270,9 +1030,7 @@ AddSubClass("captain", "jolly roger", {
 				atkAdd: [
 					function (fields, v) {
 						if (v.isMeleeWeapon) {
-							fields.Description +=
-								(fields.Description ? "; " : "") +
-								"On hit vs crea my size or smaller, can switch w/ target";
+							fields.Description += (fields.Description ? "; " : "") + "On hit vs crea my size or smaller, can switch w/ target";
 						}
 					},
 				],
@@ -1291,8 +1049,7 @@ AddSubClass("captain", "jolly roger", {
 				companionCallback: [
 					function (prefix, oCrea, bAdd, sCompType) {
 						if (sCompType !== "cohort") return;
-						var str =
-							"\u25C6 Unfair Play: (bonus action) The cohort can take the Hide, Use an Object action, or attempt to shove a creature.";
+						var str = "\u25C6 Unfair Play: (bonus action) The cohort can take the Hide, Use an Object action, or attempt to shove a creature.";
 						var aFnc = bAdd ? AddString : RemoveString;
 						aFnc(prefix + "Comp.Use.Traits", str, true);
 					},
