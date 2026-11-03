@@ -15,4 +15,7 @@ const staged = execFileSync("git", ["diff", "--cached", "--name-only", "--diff-f
 if (staged.length > 0) {
 	const { status } = spawnSync(process.execPath, [PRETTIER, "--write", "--ignore-unknown", "--", ...staged], { stdio: "inherit" });
 	process.exitCode = status ?? 1;
+	// ! lefthook applies stage_fixed after every job, and the bundle and validate jobs read the index
+	// ! Safe for partly staged files, because lefthook hides their unstaged hunks before the jobs run
+	if (status === 0) execFileSync("git", ["add", "--", ...staged]);
 }

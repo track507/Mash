@@ -86,6 +86,18 @@ describe("format-staged", () => {
 		expect(read(APOSTROPHE)).toBe("var x = 1;\n");
 	});
 
+	it("stages the formatted text so later jobs read it from the index", async () => {
+		stage(APOSTROPHE, "var   x = 1\n");
+		expect((await format()).code).toBe(0);
+		expect(git("show", `:${APOSTROPHE}`)).toBe("var x = 1;\n");
+	});
+
+	it("leaves the index alone when Prettier fails", async () => {
+		stage("2014/a.js", "var = ;\n");
+		await format();
+		expect(git("show", ":2014/a.js")).toBe("var = ;\n");
+	});
+
 	it("leaves files out of its scope alone", async () => {
 		stage("docs/a.js", "var   x = 1\n");
 		expect((await format()).code).toBe(0);
