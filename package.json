@@ -18,7 +18,8 @@
 		"format:check": "prettier --check \"2014/**/*.js\" \"2024/**/*.js\" \"tools/**/*.{mjs,json}\" \"*.{json,jsonc,yml,yaml,mjs}\"",
 		"bundle": "node tools/bundle/src/cli.mjs",
 		"bundle:check": "node tools/bundle/src/cli.mjs --check",
-		"compare": "node tools/bundle/src/compare-cli.mjs"
+		"compare": "node tools/bundle/src/compare-cli.mjs",
+		"prepare": "lefthook install"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "21.2.4",
