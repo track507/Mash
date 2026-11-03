@@ -1,0 +1,30 @@
+{
+	"output": "VSoS.js",
+	"iFileName": "Valda's Spire of Secrets",
+	"requiredSheetVersion": "13.2.3",
+	"inputs": [
+		"races.js",
+		"feats.js",
+		"classes/Alchemist.js",
+		"classes/Captain.js",
+		"classes/Craftsman.js",
+		"classes/Gunslinger.js",
+		"classes/Investigator.js",
+		"classes/Martyr.js",
+		"classes/Necromancer.js",
+		"classes/Warden.js",
+		"classes/Witch.js",
+		"classes/Warmage.js",
+		"subclasses/Barbarian.js",
+		"subclasses/Bard.js",
+		"subclasses/Cleric.js",
+		"subclasses/Druid.js",
+		"subclasses/Monk.js",
+		"subclasses/Paladin.js",
+		"companions.js",
+		"creatures.js",
+		"magic-items.js",
+		"weapons.js",
+		"spells.js"
+	]
+}
