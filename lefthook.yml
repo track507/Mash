@@ -29,7 +29,7 @@ pre-commit:
 
 pre-push:
     jobs:
-        # ! An explicit file list, because lefthook skips a job with no push files, as on the first push of a branch
+        # ! An explicit file list, because lefthook skips a job when the pushed commit has no diff against the remote-tracking branch
         - name: lint
           files: git ls-files
           run: pnpm run lint
