@@ -1,3 +1,6 @@
+var iFileName = "VSoS_Necromancer.js";
+RequiredSheetVersion("13.2.3");
+
 if (!SourceList["VSoS"]) {
     SourceList["VSoS"] = {
         name : "Valda's Spire of Secrets",

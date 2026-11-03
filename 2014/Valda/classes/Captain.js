@@ -1,3 +1,6 @@
+var iFileName = "VSoS_Captain.js";
+RequiredSheetVersion("13.2.3");
+
 // ! INCOMPLETE
 
 if (!SourceList["VSoS"]) {
